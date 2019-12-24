@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  min-height: 100vh;
+}
+
+app-sidebar {
+  flex: 4 4 auto
+}
+
+main {
+  flex: 31 31 auto;
+}
