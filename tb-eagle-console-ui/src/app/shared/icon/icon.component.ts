@@ -8,9 +8,28 @@ const sizeMapping: {[K in IconSize]: number} = {
   lg: 30,
   xl: 40
 }
-
 const exceptions = ['slack', 'tb_rocket'];
 
+/**
+ * available icons:
+ * tb_rocket
+ * bell
+ * activator
+ * add
+ * chatbubbles
+ * cog
+ * expand_arrow
+ * search
+ * solutions
+ * slack
+ * sort
+ * grid
+ * star
+ * teams
+ * dots
+ * hamburger
+ * user
+ */
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
