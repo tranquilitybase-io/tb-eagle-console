@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: DashboardsComponent
   }
-]
+];
 
 @NgModule({
   declarations: [DashboardsComponent],

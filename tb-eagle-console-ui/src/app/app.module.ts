@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
@@ -9,10 +8,14 @@ const routes: Routes = [
     path: '', redirectTo: '/dashboard', pathMatch: 'full'
   },
   {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+  {
     path: 'dashboard',
     loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)
   }
-]
+];
 
 @NgModule({
   declarations: [
