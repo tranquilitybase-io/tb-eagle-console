@@ -1,0 +1,14 @@
+
+app-info-pane{
+  flex: auto;
+  float: left;
+  background-color: var(--primary-color);
+}
+
+aside {
+  display: flex;
+  height: 100%;
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+

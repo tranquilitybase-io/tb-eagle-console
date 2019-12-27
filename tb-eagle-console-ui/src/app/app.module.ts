@@ -1,8 +1,12 @@
+import { RouterModule } from '@angular/router';
+import { LoginModule } from './login/login.module';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SidebarModule } from './sidebar/sidebar.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +14,10 @@ import { SidebarModule } from './sidebar/sidebar.module';
   ],
   imports: [
     BrowserModule,
-    SidebarModule
+    SidebarModule,
+    AppRoutingModule,
+    LoginModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
