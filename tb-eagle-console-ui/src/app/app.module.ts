@@ -1,13 +1,8 @@
-import { RouterModule } from '@angular/router';
-import { LoginModule } from './login/login.module';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
-
-import { SidebarModule } from './sidebar/sidebar.module';
-import { AppRoutingModule } from './app-routing.module';
-
 
 const routes: Routes = [
   {
@@ -17,8 +12,7 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)
   }
-];
-
+]
 
 @NgModule({
   declarations: [
@@ -26,10 +20,6 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-
-    SidebarModule,
-    AppRoutingModule,
-    LoginModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
