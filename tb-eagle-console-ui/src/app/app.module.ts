@@ -1,8 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { SidebarModule } from './sidebar/sidebar.module';
+
+const routes: Routes = [
+  {
+    path: '', redirectTo: '/dashboard', pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)
+  }
+]
 
 @NgModule({
   declarations: [
@@ -10,7 +20,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
   ],
   imports: [
     BrowserModule,
-    SidebarModule
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
