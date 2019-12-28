@@ -1,1 +1,50 @@
 
+
+.title {
+  position: absolute;
+width: 575px;
+height: 160px;
+left: 10%;
+top: 15%;
+
+font-family: 'SF Pro Display';
+font-style: normal;
+font-weight: 800;
+font-size: 36px;
+line-height: 46px;
+/* or 128% */
+
+display: flex;
+align-items: center;
+
+/* TB1 */
+
+color: #FFFFFF;
+}
+
+.sub-title{
+  position: absolute;
+width: 529px;
+height: 26px;
+left: 10%;
+top: 28%;
+
+font-family: SF Pro Display;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height, or 144% */
+
+
+color: #DDDDDD;
+}
+
+.background-image{
+
+  width: 100%;
+  bottom:0;
+  left:0;
+  right:0;
+  position: absolute;
+}

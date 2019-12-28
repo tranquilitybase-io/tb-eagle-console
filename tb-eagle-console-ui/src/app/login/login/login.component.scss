@@ -2,13 +2,21 @@
 app-info-pane{
   flex: auto;
   float: left;
+  left:0;
   background-color: var(--primary-color);
+  position: absolute;
+  width:50%;
+  height: 100%;
 }
 
-aside {
-  display: flex;
+app-login-form-pane{
+  flex: auto;
+  float: right;
+  right: 0;
+  background-color: #FFFFFF;
+  position: absolute;
+  width:50%;
   height: 100%;
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
 }
+
 
