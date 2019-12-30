@@ -1,50 +1,34 @@
-
-
 .title {
-  position: absolute;
-width: 575px;
-height: 160px;
-left: 10%;
-top: 15%;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 2rem;
 
-font-family: 'SF Pro Display';
-font-style: normal;
-font-weight: 800;
-font-size: 36px;
-line-height: 46px;
-/* or 128% */
-
-display: flex;
-align-items: center;
-
-/* TB1 */
-
-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  margin-top: 3rem;
+  padding: 0 4rem;
 }
 
-.sub-title{
-  position: absolute;
-width: 529px;
-height: 26px;
-left: 10%;
-top: 28%;
+.sub-title {
+  font-style: normal;
+  font-size: 1rem;
+  padding: 0 4rem;
 
-font-family: SF Pro Display;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 26px;
-/* identical to box height, or 144% */
-
-
-color: #DDDDDD;
+  color: var(--light-grey);
 }
 
-.background-image{
+.container {
+  position: relative;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-  width: 100%;
-  bottom:0;
-  left:0;
-  right:0;
+.logo {
   position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

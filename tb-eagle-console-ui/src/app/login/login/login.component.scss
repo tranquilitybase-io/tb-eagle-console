@@ -1,22 +1,14 @@
+:host {
+  display: flex;
+  min-height: 100vh;
+}
 
-app-info-pane{
-  flex: auto;
-  float: left;
-  left:0;
+app-info-pane {
+  flex: 1 1 50%;
   background-color: var(--primary-color);
-  position: absolute;
-  width:50%;
-  height: 100%;
 }
 
 app-login-form-pane{
-  flex: auto;
-  float: right;
-  right: 0;
-  background-color: #FFFFFF;
-  position: absolute;
-  width:50%;
-  height: 100%;
+  flex: 1 1 50%;
+  background-color: var(--white);
 }
-
-
