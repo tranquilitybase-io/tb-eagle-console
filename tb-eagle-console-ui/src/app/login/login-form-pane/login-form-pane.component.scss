@@ -1,39 +1,33 @@
-* {
-
-  font-family: 'SF Pro Display';
- }
-
 .login-text {
   font-size: larger;
   font-weight: 1000;
   text-align: center;
 }
 
-.create-new{
+.create-new {
   position: absolute;
-left: 0%;
-right: 0%;
-top: 0%;
-bottom: 0%;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
 
-font-family: SF Compact Display;
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 16px;
-/* or 100% */
+  font-family: SF Compact Display;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  /* or 100% */
 
-display: flex;
-align-items: center;
-text-align: center;
-text-decoration-line: underline;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-decoration-line: underline;
 
-/* TBP */
+  /* TBP */
 
-color: #5F2A60;
+  color: #5f2a60;
 }
-.container{
 
-  margin-top:20%;
-
+.container {
+  margin-top: 20%;
 }

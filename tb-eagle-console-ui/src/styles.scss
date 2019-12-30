@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
+  font-family: "SF Pro Display";
   font-size: 16px;
 
   /* variables */
@@ -8,6 +9,10 @@
   --white: #FFF;
   --black: #000;
   --grey: #BBB;
+  --dark-grey: #999;
+  --light-grey: #DDD;
+  --active-grey-background: #EEE;
+  --transparent-white: rgba(255, 255, 255, 0.329);
   --radius: 0.3rem;
 }
 

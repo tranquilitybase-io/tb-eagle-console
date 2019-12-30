@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 
-export type IconSize = 'sm' | 'm' | 'lg' | 'xl' | number;
+export type IconSize = 'sm' | 'm' | 'lg' | 'xl' | 'xxl' | number;
 
 const sizeMapping: {[K in IconSize]: number} = {
   sm: 15,
   m: 20,
   lg: 30,
-  xl: 40
+  xl: 40,
+  xxl: 50
 }
 const exceptions = ['slack', 'tb_rocket'];
 
