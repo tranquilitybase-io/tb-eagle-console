@@ -1,0 +1,16 @@
+.nav-item {
+  display: flex;
+  padding: 0.5rem;
+
+  &.active {
+    background-color: var(--active-grey-background);
+
+    .name {
+      font-weight: 600;
+    }
+  }
+}
+
+.name {
+  padding-left: 1rem;
+}
