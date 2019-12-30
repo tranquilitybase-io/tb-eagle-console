@@ -29,5 +29,33 @@
 }
 
 .container {
-  margin-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  width: 30rem;
+}
+
+.login-btn {
+  color: var(--primary-color);
+  border: none;
+  outline: none;
+  background: transparent;
+  float: right;
+  font-weight: 600;
+  position: relative;
+  padding-right: 1rem;
+
+  &::after {
+    --arrow-width: 2px;
+    content: '';
+    display: block;
+    transform: rotate(45deg);
+    width: 0.7rem;
+    height: 0.7rem;
+    border-top: var(--arrow-width) solid var(--primary-color);
+    border-right: var(--arrow-width) solid var(--primary-color);
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+  }
 }

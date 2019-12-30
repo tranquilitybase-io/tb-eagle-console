@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { IconComponent } from './icon/icon.component';
 
 @NgModule({
@@ -7,10 +8,12 @@ import { IconComponent } from './icon/icon.component';
     IconComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild([])
   ],
   exports: [
-    IconComponent
+    IconComponent,
+    RouterModule
   ]
 })
 export class SharedModule { }
