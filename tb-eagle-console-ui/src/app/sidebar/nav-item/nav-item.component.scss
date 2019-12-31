@@ -1,6 +1,8 @@
 .nav-item {
   display: flex;
   padding: 0.5rem;
+  color: var(--black);
+  text-decoration: none;
 
   &.active {
     background-color: var(--active-grey-background);

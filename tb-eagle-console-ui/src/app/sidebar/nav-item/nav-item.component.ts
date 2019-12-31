@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
 export class NavItemComponent {
   @Input() icon: string;
   @Input() name: string;
-  @Input() active = false;
+  @Input() path: string = '/empty';
 }
