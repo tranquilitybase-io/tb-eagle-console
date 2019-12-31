@@ -10,6 +10,12 @@ export class ProgressComponent {
   @Input() current: number;
 
   get underlineWidth(): string {
-    return Math.round(100*((this.current + 1) / this.steps.length)) + '%';
+    let percentage = Math.round(100*((this.current + 1) / this.steps.length));
+
+    if (percentage < 100) {
+      percentage -= 1;
+    }
+
+    return percentage + '%';
   }
 }
