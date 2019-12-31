@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.step {
+  border-left: 1px solid var(--grey);
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1.25rem;
+
+  &:first-of-type {
+    font-weight: 800;
+  }
+}
+
+.active-badge {
+  border-radius: 0.2rem;
+  background-color: var(--green);
+  color: var(--white);
+  margin: 0 0.5rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+}

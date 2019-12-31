@@ -30,6 +30,7 @@ const exceptions = ['slack', 'tb_rocket'];
  * dots
  * hamburger
  * user
+ * progress_arrow
  */
 @Component({
   selector: 'app-icon',

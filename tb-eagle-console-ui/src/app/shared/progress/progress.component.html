@@ -1,0 +1,14 @@
+<div class="steps-container">
+  <div
+    class="step"
+    *ngFor="let step of steps; index as i"
+    [ngClass]="{
+      'current': i == current,
+      'activated': i < current
+    }">
+    {{ step }}
+  </div>
+</div>
+<div class="underline" [class.single]="current == 0" [style.width]="underlineWidth">
+  <app-icon icon="progress_arrow" size="sm"></app-icon>
+</div>

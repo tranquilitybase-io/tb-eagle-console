@@ -1,0 +1,5 @@
+<button class="cancel-btn" *ngIf="cancelActive">Cancel</button>
+<div class="step" *ngFor="let step of steps">
+  {{ step }}
+</div>
+<div class="active-badge" *ngIf="isActive">Active</div>

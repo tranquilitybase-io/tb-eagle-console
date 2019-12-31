@@ -1,1 +1,11 @@
-<p>activators works!</p>
+<header>
+  <app-breadcrumbs
+    [cancelActive]="true"
+    [steps]="['Create new application', 'Client Portal']"
+    [isActive]="true">
+  </app-breadcrumbs>
+  <app-progress
+    [steps]="['Select activator', 'Input app details']"
+    [current]="0">
+  </app-progress>
+</header>

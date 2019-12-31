@@ -1,0 +1,56 @@
+:host {
+  display: block;
+  padding: 1rem 0;
+  counter-reset: progress;
+}
+
+.steps-container {
+  display: flex;
+}
+
+.step {
+  flex: auto;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+
+  &::before {
+    counter-increment: progress;
+    content: counter(progress) ".";
+    display: block;
+    font-size: 0.625rem;
+    color: var(--blackish);
+    margin-right: 0.25rem;
+    padding-right: 0.25rem;
+    border-right: 1px solid var(--blackish);
+    position: absolute;
+    height: 2rem;
+    left: 0;
+  }
+
+  &.activated {
+    color: var(--green);
+
+    &::before {
+      color: var(--green);
+      border-right: 1px solid var(--green);
+    }
+  }
+}
+
+.underline {
+  position: relative;
+  background-image: linear-gradient(to right,var(--green) , var(--primary-color));
+  height: 1px;
+
+  &.single {
+    background-image: none;
+    background-color: var(--primary-color);
+  }
+
+  app-icon {
+    position: absolute;
+    right: -0.4rem;
+    top: -0.75rem;
+  }
+}

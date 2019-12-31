@@ -4,6 +4,8 @@ aside {
   box-shadow: 0.2rem 0 1rem var(--grey);
   border-top-right-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
+  position: relative;
+  z-index: 20;
 }
 
 app-icons-bar {
