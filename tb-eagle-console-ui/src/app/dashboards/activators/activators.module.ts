@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { ActivatorsComponent } from './activators/activators.component';
+import { ControlsComponent } from './controls/controls.component';
+import { CategorySwitchComponent } from './category-switch/category-switch.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ActivatorsComponent],
+  declarations: [ActivatorsComponent, ControlsComponent, CategorySwitchComponent],
   imports: [
     CommonModule,
     SharedModule,
