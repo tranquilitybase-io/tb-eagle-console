@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-category-switch',
@@ -6,10 +7,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./category-switch.component.scss']
 })
 export class CategorySwitchComponent {
+  current = 'Category';
+
   @Input() categoryCount: number;
   @Input() allCount: number;
 
-  @Output() onSwitch = new EventEmitter<string>();
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   get values(): { name: string; count: number }[] {
     return [
@@ -22,5 +25,9 @@ export class CategorySwitchComponent {
         count: this.allCount
       }
     ];
+  }
+
+  onSwitch(name: string) {
+    this.router.navigateByUrl(`/dashboard/activators/${name.toLowerCase()}`, { queryParamsHandling: 'preserve' });
   }
 }

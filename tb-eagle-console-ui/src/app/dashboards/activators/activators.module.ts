@@ -10,7 +10,22 @@ import { CategorySwitchComponent } from './category-switch/category-switch.compo
 const routes: Routes = [
   {
     path: '',
-    component: ActivatorsComponent
+    component: ActivatorsComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'category',
+        pathMatch: 'full'
+      },
+      {
+        path: 'category',
+        loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule)
+      },
+      {
+        path: 'all',
+        loadChildren: () => import('./all/all.module').then(m => m.AllModule)
+      }
+    ]
   }
 ];
 
