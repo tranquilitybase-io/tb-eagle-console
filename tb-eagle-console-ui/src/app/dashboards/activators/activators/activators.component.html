@@ -9,3 +9,9 @@
     [current]="1">
   </app-progress>
 </header>
+<div class="sub-header">
+  Activator store
+</div>
+<app-controls></app-controls>
+<app-all *ngIf="(current$ | async) === 'All'"></app-all>
+<app-categories *ngIf="(current$ | async) === 'Category'"></app-categories>

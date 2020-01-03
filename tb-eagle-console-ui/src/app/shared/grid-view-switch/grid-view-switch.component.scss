@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+}
+
+.option {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0.3rem 0.5rem 0.6rem;
+
+  &.active {
+    background-color: var(--primary-color);
+  }
+}

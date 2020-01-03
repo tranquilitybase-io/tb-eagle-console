@@ -9,9 +9,10 @@
   --white: #FFF;
   --black: #000;
   --blackish: #272424;
-  --grey: #BBB;
-  --dark-grey: #999;
-  --light-grey: #DDD;
+  --grey: #BDBDBD;
+  --middle-light-grey: #C4C4C4;
+  --dark-grey: #8C8C8C;
+  --light-grey: #FAFAFA;
   --active-grey-background: #F2F2F2;
   --transparent-white: rgba(255, 255, 255, 0.329);
   --transparent-grey: rgba(200, 200, 200, 0.192);
@@ -26,4 +27,8 @@ body {
 @font-face {
   font-family: 'SF Pro Display';
   src: url(assets/fonts/SFProDisplay-Regular.ttf) format("truetype");
+}
+
+.flex-filler {
+  flex: auto;
 }

@@ -4,12 +4,18 @@ import { RouterModule } from '@angular/router';
 import { IconComponent } from './icon/icon.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ProgressComponent } from './progress/progress.component';
+import { SwitchesComponent } from './switches/switches.component';
+import { SearchComponent } from './search/search.component';
+import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.component';
 
 @NgModule({
   declarations: [
     IconComponent,
     BreadcrumbsComponent,
-    ProgressComponent
+    ProgressComponent,
+    SwitchesComponent,
+    SearchComponent,
+    GridViewSwitchComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +25,10 @@ import { ProgressComponent } from './progress/progress.component';
     IconComponent,
     BreadcrumbsComponent,
     ProgressComponent,
-    RouterModule
+    RouterModule,
+    SwitchesComponent,
+    SearchComponent,
+    GridViewSwitchComponent
   ]
 })
 export class SharedModule { }
