@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--grey);
+  border-radius: calc(2 * var(--radius));
+}
+
+.head {
+  background-color: var(--active-grey-background);
+  padding: 0.5rem;
+  z-index: -10;
+}
+
+.description {
+  padding: 0.5rem;
+}
+

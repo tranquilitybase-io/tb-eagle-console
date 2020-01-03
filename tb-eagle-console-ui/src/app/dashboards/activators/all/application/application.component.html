@@ -1,1 +1,17 @@
-<p>application works!</p>
+<div class="head">
+  <div class="status">
+    <div class="available-flag" [class.locked]="!app.available">{{ app.available ? 'Available' : 'Locked' }}</div>
+  </div>
+  <div class="name">
+    {{ app.name }}
+  </div>
+  <div class="type">
+    {{ app.type }}
+  </div>
+</div>
+<div class="body">
+
+</div>
+<div class="description">
+  {{ app.description }}
+</div>
