@@ -32,3 +32,12 @@ body {
 .flex-filler {
   flex: auto;
 }
+
+.badge {
+  border-radius: 0.2rem;
+  background-color: var(--green);
+  color: var(--white);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+}

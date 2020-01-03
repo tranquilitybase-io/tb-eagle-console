@@ -1,0 +1,66 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--grey);
+  border-radius: calc(2 * var(--radius));
+}
+
+.head {
+  background-color: var(--active-grey-background);
+  padding: 0.5rem 0.5rem 1rem;
+  z-index: -10;
+}
+
+.status {
+  display: flex;
+}
+
+.badge {
+  &.locked {
+    background-color: var(--black);
+  }
+}
+
+app-icon {
+  margin-left: 1rem;
+}
+
+.name {
+  font-size: 1.375rem;
+  padding: 0.3rem 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.type {
+  font-size: 0.875rem;
+  color: var(--dark-grey);
+  text-align: center;
+}
+
+.body {
+  padding: 1rem 0.5rem;
+}
+
+.detail {
+  display: flex;
+}
+
+.detail-title {
+  width: 8rem;
+}
+
+.description {
+  padding: 1rem 0.5rem;
+}
+
+.desc-head {
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+
+.desc-content {
+  font-size: 0.75rem;
+}
