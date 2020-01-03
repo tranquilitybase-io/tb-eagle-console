@@ -1,6 +1,9 @@
 <div class="head">
   <div class="status">
-    <div class="available-flag" [class.locked]="!app.available">{{ app.available ? 'Available' : 'Locked' }}</div>
+    <div class="badge" [class.locked]="!app.available">{{ app.available ? 'Available' : 'Locked' }}</div>
+    <div class="flex-filler"></div>
+    <app-icon icon="star" [stroke]="true" [color]="strokeColor"></app-icon>
+    <app-icon icon="dots"></app-icon>
   </div>
   <div class="name">
     {{ app.name }}
@@ -10,8 +13,13 @@
   </div>
 </div>
 <div class="body">
-
+  <div class="desc-head">Details</div>
+  <div class="detail">
+    <div class="detail-title">Data sensitivity</div>
+    <div class="badge">{{ app.sensitivity }}</div>
+  </div>
 </div>
 <div class="description">
-  {{ app.description }}
+  <div class="desc-head">Description</div>
+  <div class="desc-content">{{ app.description }}</div>
 </div>

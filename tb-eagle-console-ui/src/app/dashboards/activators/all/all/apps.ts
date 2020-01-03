@@ -22,7 +22,7 @@ export default [
     description: 'Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy'
   },
   {
-    name: 'SQL Single region kubernetes',
+    name: 'SQL Single region kubernetes 234',
     type: 'Mirco-services',
     available: true,
     sensitivity: 'Restricted',
