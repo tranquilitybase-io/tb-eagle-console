@@ -1,0 +1,48 @@
+:host {
+    padding: {
+      top: 1.5rem;
+      left: 2rem;
+      right: 2rem;
+    }
+background-color: var(--active-grey-background);
+  }
+  
+  header{
+    padding: {
+      top: 1.5rem;
+      left: 2rem;
+      right: 2rem;
+    }
+    background: #FAFAFA;
+    text-align: center;
+    display: flex;
+    font-family: SF Pro Display;
+
+  }
+
+  #createsolution{
+    position: fixed;
+    right: 0;
+    background: #FAFAFA;
+    border: none;
+    align-items: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #5F2A60;
+    cursor:  pointer;
+
+  }
+
+  main {
+    padding: {
+      top: 1.5rem;
+      left: 2rem;
+      right: 2rem;
+    }
+    display: flex;
+    flex-wrap: wrap;
+
+    
+  }
