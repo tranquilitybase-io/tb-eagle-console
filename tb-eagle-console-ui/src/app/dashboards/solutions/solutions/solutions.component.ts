@@ -18,7 +18,7 @@ export class SolutionsComponent implements OnInit {
       'Solution for internal users to be able to process settlement for FX transactions',9, 3, '2018')
 ];
 private values= [
-  {name: "Favourites", count: 10 },
+  {name: "Favourites", count: 4 },
   {name: "Active", count: 4 },
   {name: "Archived", count: 3 }
 ];
