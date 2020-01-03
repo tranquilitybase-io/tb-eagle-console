@@ -13,4 +13,5 @@
   Activator store
 </div>
 <app-controls></app-controls>
-<router-outlet></router-outlet>
+<app-all *ngIf="(current$ | async) === 'All'"></app-all>
+<app-categories *ngIf="(current$ | async) === 'Category'"></app-categories>

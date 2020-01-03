@@ -1,1 +1,1 @@
-<app-switches [values]="values" [current]="current" (onValueChanged)="onSwitch($event)"></app-switches>
+<app-switches [values]="values" [current]="current$ | async" (onValueChanged)="onSwitch($event)"></app-switches>
