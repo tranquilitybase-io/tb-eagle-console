@@ -33,6 +33,7 @@ const exceptions = ['slack', 'tb_rocket'];
  * progress_arrow
  * 3x3grid
  * row_view
+ * category
  */
 @Component({
   selector: 'app-icon',
