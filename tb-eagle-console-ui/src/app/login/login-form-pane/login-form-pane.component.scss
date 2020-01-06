@@ -1,15 +1,14 @@
 .login-text {
-  font-size: larger;
+  font-size: 28px;
   font-weight: 1000;
   text-align: center;
+  font-family: SF Compact Display;
+
 }
 
+
+
 .create-new {
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
 
   font-family: SF Compact Display;
   font-style: normal;
@@ -18,7 +17,6 @@
   line-height: 16px;
   /* or 100% */
 
-  display: flex;
   align-items: center;
   text-align: center;
   text-decoration-line: underline;
@@ -28,12 +26,59 @@
   color: #5f2a60;
 }
 
+input[type=email], input[type=password]  {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+  background: rgba(249, 249, 249, 0.5);
+  border: 1px solid #C4C4C4;
+  border-radius: 5px;
+}
+
+
 .container {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
   width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-flow: column;
+}
+
+.login-options-container{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+}
+
+.tb-logo {
+  order: 0;
+}
+
+.login-form{
+order:1;
+}
+
+.login-options{
+  order:2;
+}
+
 
 .login-btn {
   color: var(--primary-color);

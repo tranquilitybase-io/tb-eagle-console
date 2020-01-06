@@ -1,23 +1,31 @@
 <div class="container">
 
-
-      <img src="/assets/images/tb_logo.svg" ><br>
+      <img class="tb-logo" src="/assets/images/tb_logo.svg" ><br>
       <span class="login-text">Log in</span><br>
 
-      <form (submit)="onSubmit($event)">
-
+      <form style="width: 100%;" (submit)="onSubmit($event)">
+        <div class="form-container">
           <label for="exampleInputEmail1">Email</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email here">
 
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter password here">
 
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <div>
+            <input style="border-color: black; border-radius: 3px; border-width: 3px; height: 25px; width: 25px;" type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
 
+          </div>
+
         <button class="login-btn" type="submit">Log in</button>
+      </div>
       </form>
+      <br>
+
+
+      <div class="login-options-container">
         <a>Forgot email or password?</a>
       Or
-        <a>Create a new account</a>
+        <a class="create-new">Create a new account</a>
+      </div>
   </div>

@@ -29,6 +29,11 @@ body {
   src: url(assets/fonts/SFProDisplay-Regular.ttf) format("truetype");
 }
 
+@font-face{
+  font-family: 'SF Compact Display';
+  src: url(assets/fonts/SFCompactDisplay/sf-compact-display-medium.otf) format("opentype")
+}
+
 .flex-filler {
   flex: auto;
 }
