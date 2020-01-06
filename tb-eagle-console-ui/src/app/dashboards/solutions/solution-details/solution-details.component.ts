@@ -6,12 +6,13 @@ import { Solution } from '../solutions/solutions.component';
   templateUrl: './solution-details.component.html',
   styleUrls: ['./solution-details.component.scss']
 })
+
 export class SolutionDetailsComponent implements OnInit {
 
   @Input('solution') solution: Solution;
-  
+
   constructor() {
-   }
+  }
 
   ngOnInit() {
 

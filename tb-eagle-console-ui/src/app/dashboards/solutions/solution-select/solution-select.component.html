@@ -1,6 +1,4 @@
-<main>
-    <button id="favourites">Favourites</button>
-    <button id="active">Active</button>
-    <button id="archived">Archieved</button>
-    <p></p>
-</main>
+<app-switches [values]="values" current="Favourites" (onValueChanged)="onSwitch($event)"></app-switches>
+<div class="flex-filler"></div>
+<app-search class="separated"></app-search>
+<app-grid-view-switch class="separated"></app-grid-view-switch>

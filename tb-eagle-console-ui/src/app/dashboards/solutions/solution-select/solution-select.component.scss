@@ -1,8 +1,22 @@
 :host {
-    padding: {
-        padding: 1.5rem 1rem;
-        width: 960px;
-        height: 79px;
+  display: flex;
+  margin: 1rem 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--grey);
+}
 
-    }
+.separated {
+  position: relative;
+  margin-left: 1rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 1.25rem;
+    left: -0.5rem;
+    top: 0.7rem;
+    background-color: var(--middle-light-grey);
   }
+}

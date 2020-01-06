@@ -16,8 +16,16 @@ const routes: Routes = [
   }
 ];
 
+
 @NgModule({
-  declarations: [SolutionsComponent,SolutionSelectComponent,SolutionDetailsComponent, CreateSolutionComponent],
+
+  declarations: [
+    SolutionsComponent,
+    SolutionSelectComponent,
+    SolutionDetailsComponent, 
+    CreateSolutionComponent,
+  ],
+
   imports: [
     CommonModule,
     SharedModule,
