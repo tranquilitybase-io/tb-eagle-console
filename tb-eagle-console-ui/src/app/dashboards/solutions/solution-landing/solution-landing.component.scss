@@ -1,0 +1,54 @@
+:host {
+  display: block;
+
+}
+
+header {
+  display: flex;
+  background: #fafafa;
+  text-align: center;
+  font-family: SF Pro Display;
+  padding: {
+    top: 1.5rem;
+    left: 2rem;
+    right: 2rem;
+  }
+  //background-color: var(--active-grey-background);
+  background: #FAFAFA
+}
+
+#createsolution {
+  position: absolute;
+  right: 0;
+  padding-right: 2rem;
+  border: none;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #5f2a60;
+  cursor: pointer;
+}
+
+.separated {
+  position: relative;
+  margin-left: 1rem;
+
+
+  &::before {
+    content: '';
+   position: absolute;
+    display: block;
+    width: 1px;
+    height: 1.25rem;
+    left: -0.5rem;
+    top: 0.7rem;
+    background-color: var(--middle-light-grey);
+  }
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+

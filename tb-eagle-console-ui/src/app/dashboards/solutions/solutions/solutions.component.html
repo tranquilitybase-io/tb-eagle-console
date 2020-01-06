@@ -1,11 +1,1 @@
-<header>
-    <app-breadcrumbs [steps]="['My Team solutions']">
-    </app-breadcrumbs>
-    <a id="createsolution" routerLink="create">Create new solution ></a>
-</header>
-<div>
-    <app-solution-select [values]="values"></app-solution-select>
-</div>
-<main>
-    <app-solution-details *ngFor="let solution of solutions" [solution]="solution"></app-solution-details>
-</main>
+<router-outlet></router-outlet>
