@@ -12,4 +12,8 @@ export class ApplicationComponent {
   strokeColor = getCustomProperty('--grey');
 
   @Input() app: Application;
+
+  isRestricted() {
+    return this.app.sensitivity.toLowerCase() === 'restricted';
+  }
 }

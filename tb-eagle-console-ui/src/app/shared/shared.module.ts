@@ -7,6 +7,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { SearchComponent } from './search/search.component';
 import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.component';
+import { BadgesComponent } from './badges/badges.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.com
     ProgressComponent,
     SwitchesComponent,
     SearchComponent,
-    GridViewSwitchComponent
+    GridViewSwitchComponent,
+    BadgesComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.com
     RouterModule,
     SwitchesComponent,
     SearchComponent,
-    GridViewSwitchComponent
+    GridViewSwitchComponent,
+    BadgesComponent
   ]
 })
 export class SharedModule { }

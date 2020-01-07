@@ -1,6 +1,6 @@
 <div class="head">
   <div class="status">
-    <div class="badge" [class.locked]="!app.available">{{ app.available ? 'Available' : 'Locked' }}</div>
+    <div class="badge" [class.black]="!app.available">{{ app.available ? 'Available' : 'Locked' }}</div>
     <div class="flex-filler"></div>
     <app-icon icon="star" [stroke]="true" [color]="strokeColor"></app-icon>
     <app-icon icon="dots"></app-icon>
@@ -16,7 +16,23 @@
   <div class="desc-head">Details</div>
   <div class="detail">
     <div class="detail-title">Data sensitivity</div>
-    <div class="badge">{{ app.sensitivity }}</div>
+    <div class="badge" [ngClass]="{'dark-grey': !isRestricted(), 'red': isRestricted()}">{{ app.sensitivity }}</div>
+  </div>
+  <div class="detail">
+    <div class="detail-title">Category</div>
+    <div class="badge grey">{{ app.category }}</div>
+  </div>
+  <div class="detail">
+    <div class="detail-title">Environments</div>
+    <app-badges [badges]="app.envs"></app-badges>
+  </div>
+  <div class="detail">
+    <div class="detail-title">Cloud platform</div>
+    <app-badges [badges]="app.platforms"></app-badges>
+  </div>
+  <div class="detail">
+    <div class="detail-title">Last updated</div>
+    <div class="badge grey">{{ app.update }}</div>
   </div>
 </div>
 <div class="description">

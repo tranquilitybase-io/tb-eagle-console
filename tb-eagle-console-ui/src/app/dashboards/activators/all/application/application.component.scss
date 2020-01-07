@@ -15,12 +15,6 @@
   display: flex;
 }
 
-.badge {
-  &.locked {
-    background-color: var(--black);
-  }
-}
-
 app-icon {
   margin-left: 1rem;
 }
@@ -46,6 +40,7 @@ app-icon {
 
 .detail {
   display: flex;
+  margin: 0.4rem 0;
 }
 
 .detail-title {
