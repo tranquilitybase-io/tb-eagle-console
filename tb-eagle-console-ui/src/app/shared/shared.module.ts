@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.component';
 import { BadgesComponent } from './badges/badges.component';
 import { SearchPillComponent } from './search-pill/search-pill.component';
+import { PillsComponent } from './pills/pills.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SearchPillComponent } from './search-pill/search-pill.component';
     SearchComponent,
     GridViewSwitchComponent,
     BadgesComponent,
-    SearchPillComponent
+    SearchPillComponent,
+    PillsComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { SearchPillComponent } from './search-pill/search-pill.component';
     SwitchesComponent,
     SearchComponent,
     GridViewSwitchComponent,
-    BadgesComponent
+    BadgesComponent,
+    PillsComponent
   ]
 })
 export class SharedModule { }

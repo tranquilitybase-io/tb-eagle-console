@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: start;
+}
+
+app-search-pill {
+  margin-right: 0.5rem;
+}
+
+.text-pill {
+  text-decoration: underline;
+  color: var(--blackish);
+  font-size: 0.875rem;
+}
+
+.icon {
+  padding: 0.3rem 0.5rem 0;
+  margin: 0.2rem 0;
+}
