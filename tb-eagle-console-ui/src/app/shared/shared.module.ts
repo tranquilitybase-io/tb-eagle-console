@@ -8,6 +8,7 @@ import { SwitchesComponent } from './switches/switches.component';
 import { SearchComponent } from './search/search.component';
 import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.component';
 import { BadgesComponent } from './badges/badges.component';
+import { SearchPillComponent } from './search-pill/search-pill.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { BadgesComponent } from './badges/badges.component';
     SwitchesComponent,
     SearchComponent,
     GridViewSwitchComponent,
-    BadgesComponent
+    BadgesComponent,
+    SearchPillComponent
   ],
   imports: [
     CommonModule,

@@ -3,10 +3,12 @@
 }
 
 .option {
+  display: flex;
   border: none;
   background: none;
   outline: none;
-  padding: 0.3rem 0.5rem 0.6rem;
+  padding: 0.2rem 0.5rem 0;
+  align-items: center;
 
   &.active {
     background-color: var(--primary-color);
