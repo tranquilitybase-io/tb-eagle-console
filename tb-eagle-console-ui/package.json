@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -- --proxy-config ./proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "mock-server": "json-server --watch mocks/db.json --routes mocks/routes.json"
   },
   "private": true,
   "dependencies": {
@@ -19,10 +20,16 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@ngrx/data": "^8.6.0",
+    "@ngrx/effects": "^8.6.0",
+    "@ngrx/entity": "^8.6.0",
+    "@ngrx/store": "^8.6.0",
+    "@ngrx/store-devtools": "^8.6.0",
     "rxjs": "~6.4.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
+    "json-server": "^0.15.1",
     "@angular-devkit/build-angular": "~0.803.21",
     "@angular/cli": "^8.3.21",
     "@angular/compiler-cli": "~8.2.14",

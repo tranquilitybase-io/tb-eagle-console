@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 import { IconComponent } from './icon/icon.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -25,7 +27,8 @@ import { PillsComponent } from './pills/pills.component';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([]),
+    HttpClientModule
   ],
   exports: [
     IconComponent,
@@ -36,7 +39,8 @@ import { PillsComponent } from './pills/pills.component';
     SearchComponent,
     GridViewSwitchComponent,
     BadgesComponent,
-    PillsComponent
+    PillsComponent,
+    HttpClientModule
   ]
 })
 export class SharedModule { }
