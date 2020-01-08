@@ -3,6 +3,15 @@
   flex-direction: column;
   border: 1px solid var(--grey);
   border-radius: calc(2 * var(--radius));
+
+  &:hover {
+    border-color: var(--primary-color);
+    box-shadow:
+    -2px -2px var(--primary-color),
+    -2px  2px var(--primary-color),
+     2px -2px var(--primary-color),
+     2px  2px var(--primary-color);
+  }
 }
 
 .head {
@@ -48,7 +57,7 @@ app-icon {
 }
 
 .description {
-  padding: 1rem 0.5rem;
+  padding: 0 0.5rem 1rem;
 }
 
 .desc-head {

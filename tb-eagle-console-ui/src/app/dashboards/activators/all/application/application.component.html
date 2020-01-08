@@ -35,7 +35,10 @@
     <div class="badge grey">{{ app.update }}</div>
   </div>
 </div>
-<div class="description">
+<div class="description" *ngIf="!active">
   <div class="desc-head">Description</div>
   <div class="desc-content">{{ app.description }}</div>
+</div>
+<div class="footer" *ngIf="active">
+  <button type="button" class="view">View</button>
 </div>
