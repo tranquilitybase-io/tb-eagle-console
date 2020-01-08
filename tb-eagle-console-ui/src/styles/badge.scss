@@ -1,0 +1,25 @@
+.badge {
+  border-radius: 0.2rem;
+  background-color: var(--green);
+  color: var(--white);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+
+  &.black {
+    background-color: var(--black);
+  }
+
+  &.dark-grey {
+    background-color: var(--dark-grey-2);
+  }
+
+  &.grey {
+    background-color: var(--active-grey-background);
+    color: var(--black);
+  }
+
+  &.red {
+    background-color: var(--red);
+  }
+}

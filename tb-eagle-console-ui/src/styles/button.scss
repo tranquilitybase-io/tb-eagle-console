@@ -1,0 +1,36 @@
+.button {
+  border: none;
+  background-color: var(--primary-color);
+  border-radius: calc(0.5 * var(--radius));
+  outline: none;
+  color: var(--white);
+  padding: 0.5em 1em;
+
+  &.empty {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+
+  &.text-only {
+    color: var(--primary-color);
+    background: transparent;
+    font-weight: 600;
+    line-height: 1.375;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    &::after {
+      --arrow-width: 2px;
+      content: '';
+      display: block;
+      transform: rotate(45deg);
+      width: 0.5em;
+      height: 0.5em;
+      border-top: var(--arrow-width) solid var(--primary-color);
+      border-right: var(--arrow-width) solid var(--primary-color);
+      margin-left: 1.5em;
+    }
+  }
+}

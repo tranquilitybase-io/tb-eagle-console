@@ -68,3 +68,13 @@ app-icon {
 .desc-content {
   font-size: 0.75rem;
 }
+
+.footer {
+  display: flex;
+  padding: 0 1.5rem;
+  justify-content: space-between;
+
+  .button {
+    font-size: 1rem;
+  }
+}

@@ -13,9 +13,7 @@
   margin-bottom: 2rem;
 }
 
-
 .create-new {
-
   font-family: SF Compact Display;
   font-style: normal;
   font-weight: 600;
@@ -28,8 +26,7 @@
   text-decoration-line: underline;
 
   /* TBP */
-
-  color: #5f2a60;
+  color: var(--primary-color);
 }
 
 input[type=email], input[type=password]  {
@@ -46,18 +43,16 @@ input[type=email], input[type=password]  {
 
 #loginForm{
   width:100%;
-
 }
 
 .form-text{
   font-family: SF Compact Display;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 16px;
-color: #828282;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #828282;
 }
-
 
 .container {
   margin-left: auto;
@@ -79,14 +74,12 @@ color: #828282;
 }
 
 .login-options-container{
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
   margin-top: 3rem;
-
 }
 
 .tb-logo {
@@ -94,52 +87,24 @@ color: #828282;
 }
 
 .login-form{
-order:1;
+  order:1;
 }
 
 .login-options{
   order:2;
 }
 
-
 .login-btn {
-  color: var(--primary-color);
-  border: none;
-  outline: none;
-  background: transparent;
   float: right;
-  font-weight: 600;
-  position: relative;
-  padding-right: 1rem;
-  font-family: SF Pro Display;
-  font-size: 16px;
-  line-height: 22px;
-  margin-top: auto;
-  margin-bottom: auto;
-
-  &::after {
-    --arrow-width: 2px;
-    content: '';
-    display: block;
-    transform: rotate(45deg);
-    width: 0.7rem;
-    height: 0.7rem;
-    border-top: var(--arrow-width) solid var(--primary-color);
-    border-right: var(--arrow-width) solid var(--primary-color);
-    position: absolute;
-    right: 0;
-    top: 0.5rem;
-  }
+  font-size: 1rem;
 }
-
 
 #exampleCheckText{
   font-family: SF Compact Display;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 16px;
-
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
 }
 
 #exampleCheck1{
@@ -150,10 +115,10 @@ line-height: 16px;
 .options{
   color: grey;
   font-family: SF Compact Display;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 16px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 /* Checkbox styling */
@@ -186,7 +151,6 @@ line-height: 16px;
 }
 
 .checkbox > input:checked {
-
   background-color: rgb(0, 0, 0);
 }
 

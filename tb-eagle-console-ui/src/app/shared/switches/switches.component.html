@@ -1,4 +1,4 @@
-<button class="button" type="button" [class.active]="value.name === current" (click)="onChange(value)" *ngFor="let value of values">
+<button class="switch-button" type="button" [class.active]="value.name === current" (click)="onChange(value)" *ngFor="let value of values">
   {{ value.name }}
   <span class="count">({{ value.count }})</span>
 </button>
