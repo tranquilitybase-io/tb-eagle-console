@@ -45,6 +45,7 @@ app-icon {
 
 .body {
   padding: 1rem 0.5rem;
+  flex: auto;
 }
 
 .detail {
@@ -73,6 +74,7 @@ app-icon {
   display: flex;
   padding: 0 1.5rem;
   justify-content: space-between;
+  margin-bottom: 1rem;
 
   .button {
     font-size: 1rem;
