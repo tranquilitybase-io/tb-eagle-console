@@ -14,6 +14,7 @@
   }
 
   &.text-only {
+    --arrow-width: 2px;
     color: var(--primary-color);
     background: transparent;
     font-weight: 600;
@@ -23,7 +24,6 @@
     align-items: center;
 
     &::after {
-      --arrow-width: 2px;
       content: '';
       display: block;
       transform: rotate(45deg);
@@ -32,6 +32,24 @@
       border-top: var(--arrow-width) solid var(--primary-color);
       border-right: var(--arrow-width) solid var(--primary-color);
       margin-left: 1.5em;
+    }
+
+    &.left {
+      &::after {
+        display: none;
+      }
+
+      &::before {
+        --arrow-width: 2px;
+        content: '';
+        display: block;
+        transform: rotate(45deg);
+        width: 0.5em;
+        height: 0.5em;
+        border-bottom: var(--arrow-width) solid var(--primary-color);
+        border-left: var(--arrow-width) solid var(--primary-color);
+        margin-right: 1.5em;
+      }
     }
   }
 }

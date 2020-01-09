@@ -9,7 +9,7 @@
       "category": "Tier 3",
       "envs": [ "POC", "DEV" ],
       "platforms": [ "GCP" ],
-      "update": "09 Apr 2019",
+      "update": "2020-01-09T15:59:10.916Z",
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -21,7 +21,7 @@
       "category": "Tier 1",
       "envs": [ "POC", "AWS", "Other", "Fancy" ],
       "platforms": [ "GCP" ],
-      "update": "09 Apr 2019",
+      "update": "2020-01-09T15:59:10.916Z",
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -33,7 +33,7 @@
       "category": "Tier 2",
       "envs": [ "POC", "Prod" ],
       "platforms": [ "Azure", "GCP", "AWS", "Other", "Fancy" ],
-      "update": "09 Apr 2019",
+      "update": "2020-01-09T15:59:10.916Z",
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -45,7 +45,7 @@
       "category": "Tier 3",
       "envs": [ "POC", "DEV" ],
       "platforms": [ "GCP" ],
-      "update": "09 Apr 2019",
+      "update": "2020-01-09T15:59:10.916Z",
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -57,7 +57,7 @@
       "category": "Tier 1",
       "envs": [ "POC", "AWS", "Other", "Fancy" ],
       "platforms": [ "GCP" ],
-      "update": "09 Apr 2019",
+      "update": "2020-01-09T15:59:10.916Z",
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -69,7 +69,7 @@
       "category": "Tier 2",
       "envs": [ "POC", "Prod" ],
       "platforms": [ "Azure", "GCP", "AWS", "Other", "Fancy" ],
-      "update": "09 Apr 2019",
+      "update": "2020-01-09T15:59:10.916Z",
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     }
   ]

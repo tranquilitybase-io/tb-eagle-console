@@ -1,7 +1,6 @@
 import { Component, Input, HostListener } from '@angular/core';
 import getCustomProperty from '@app/shared/utils/getCustomProperty';
-
-import { Application } from '../interfaces';
+import { Application } from '@app/dashboards/activators/interfaces';
 
 @Component({
   selector: 'app-application',

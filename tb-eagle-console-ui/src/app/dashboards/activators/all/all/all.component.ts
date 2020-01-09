@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { ApplicationsService } from '../applications.service';
-import { Application } from '../interfaces';
+import { ActivatorsService } from '@app/dashboards/activators/activators.service';
+import { Application } from '@app/dashboards/activators/interfaces';
 
 @Component({
   selector: 'app-all',
@@ -12,7 +11,7 @@ import { Application } from '../interfaces';
 export class AllComponent implements OnInit {
   apps$: Observable<Application[]>;
 
-  constructor(private appsService: ApplicationsService) {
+  constructor(private appsService: ActivatorsService) {
     this.apps$ = appsService.entities$;
   }
 

@@ -1,0 +1,13 @@
+.separated {
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1.25rem;
+    background-color: var(--middle-light-grey);
+    margin: 0 0.5rem;
+  }
+}
