@@ -5,7 +5,106 @@
     [isActive]="true">
   </app-breadcrumbs>
   <app-progress
-  [steps]="['Select solution', 'Input solution details']"
+  [steps]="['Details', 'Workspace']"
   [current]="1">
 </app-progress>
 </header>
+<main>
+<div class="container" *ngIf="!onPartTwo">
+  <form style="height:100%;">
+    <div class="form-container">
+      <label for="exampleInputName" class="label-text">Name</label>
+      <input class="input-text short-input form-input" type="text" id="exampleInputEmail1"  placeholder="Enter name here">
+      <label for="exampleInputDesc" class="label-text">Description</label>
+      <textarea id="exampleInputEmail1" class="input-text" placeholder="Enter description here"></textarea>
+      <label for="exampleInputBU" class="label-text">Business Unit</label>
+      <select class="input-text short-input">
+      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      </select>
+  </div>
+
+  <button class="login-btn" type="submit" (click)="toggleSolutionPage()">Continue</button>
+  </form>
+
+</div>
+
+
+<div class="workspace-container" *ngIf="onPartTwo">
+  <form style="height:100%;">
+
+    <div class='workspace-form-container'>
+
+      <!-- drop down 1 -->
+      <div class="dropdown-grid-one">
+      <label for="exampleInputCI" class="label-text">CI (Continous intergration service)</label>
+      <select class="input-text" >
+      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      </select>
+
+      <!-- drop down 2 -->
+      <label for="exampleInputCD" class="label-text">Source Control</label>
+      <select class="input-text " >
+      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      </select>
+
+      </div>
+
+      <!-- drop down 3 -->
+      <div class="dropdown-grid-one">
+      <label for="exampleInputSC" class="label-text">CD (Continous deployment)</label>
+      <select class="input-text " >
+      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      </select>
+
+      <!-- drop down 4 -->
+      <label for="exampleInputCC" class="label-text">Change Control</label>
+      <select class="input-text" >
+      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      </select>
+    </div>
+  </div>
+
+      <label class="label-text">Available Environments</label>
+      <br>
+      <div class="environment-container">
+        <label class="checkbox">
+          <input  type="checkbox" />
+          <span >Development</span>
+      </label>
+
+      <label class="checkbox">
+        <input  type="checkbox" />
+        <span >Staging</span>
+    </label>
+
+    <label class="checkbox">
+      <input  type="checkbox" />
+      <span >Testing</span>
+  </label>
+
+  <label class="checkbox">
+    <input  type="checkbox"/>
+    <span >Production</span>
+</label>
+
+    </div>
+
+
+
+
+
+
+  </form>
+  <div class="footer-container">
+    <button>Return</button>
+  <button class="login-btn"  type="submit">Continue</button>
+  </div>
+
+</div>
+
+
+</main>
+
+
+
+

@@ -5,10 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { EntityDataModule } from '@ngrx/data';
-
 import { AppComponent } from './app.component';
-import { FormOneComponent } from './create/solutions/form-one/form-one.component';
 import entityConfig from './entity-metadata';
+
 
 
 const routes: Routes = [
@@ -29,8 +28,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FormOneComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
