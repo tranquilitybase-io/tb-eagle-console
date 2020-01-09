@@ -1,1 +1,1 @@
-<app-application [app]="application" *ngFor="let application of apps"></app-application>
+<app-application [app]="application" *ngFor="let application of apps$ | async"></app-application>
