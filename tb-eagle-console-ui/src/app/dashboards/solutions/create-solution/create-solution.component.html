@@ -1,65 +1,68 @@
 <header>
 <app-breadcrumbs
     [cancelActive]="true"
-    [steps]="['Create new solution', 'Client Portal']"
-    [isActive]="true">
+    [steps]="['Create new solution']"
+    >
   </app-breadcrumbs>
   <app-progress
   [steps]="['Details', 'Workspace']"
-  [current]="1">
+  [current]="screenNum">
 </app-progress>
 </header>
 <main>
-<div class="container" *ngIf="!onPartTwo">
-  <form style="height:100%;">
+<div class="details-container" *ngIf="!onPartTwo">
+  <form >
     <div class="form-container">
-      <label for="exampleInputName" class="label-text">Name</label>
-      <input class="input-text short-input form-input" type="text" id="exampleInputEmail1"  placeholder="Enter name here">
-      <label for="exampleInputDesc" class="label-text">Description</label>
-      <textarea id="exampleInputEmail1" class="input-text" placeholder="Enter description here"></textarea>
-      <label for="exampleInputBU" class="label-text">Business Unit</label>
+      <label  class="label-text">Name</label>
+      <input class="input-text short-input form-input" type="text" placeholder="Enter name here">
+      <label  class="label-text">Description</label>
+      <textarea  class="input-text" placeholder="Enter description here"></textarea>
+      <label  class="label-text">Business Unit</label>
       <select class="input-text short-input">
       <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
       </select>
   </div>
 
-  <button class="login-btn" type="submit" (click)="toggleSolutionPage()">Continue</button>
+
   </form>
+  <div class="details-footer-container">
+  <button class="login-btn" type="submit" (click)="toggleSolutionPage()" >Continue</button>
+</div>
 
 </div>
 
 
 <div class="workspace-container" *ngIf="onPartTwo">
-  <form style="height:100%;">
+  <form >
 
     <div class='workspace-form-container'>
 
       <!-- drop down 1 -->
       <div class="dropdown-grid-one">
-      <label for="exampleInputCI" class="label-text">CI (Continous intergration service)</label>
+      <label  class="label-text">CI (Continous intergration service)</label>
       <select class="input-text" >
-      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      <option *ngFor="let option of ciOptions" value="{{option}}">{{option}}</option>
       </select>
 
       <!-- drop down 2 -->
-      <label for="exampleInputCD" class="label-text">Source Control</label>
+      <label  class="label-text">Source Control</label>
       <select class="input-text " >
-      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      <option *ngFor="let option of sourceControlOptions" value="{{option}}">{{option}}</option>
       </select>
 
       </div>
 
       <!-- drop down 3 -->
       <div class="dropdown-grid-one">
-      <label for="exampleInputSC" class="label-text">CD (Continous deployment)</label>
+      <label  class="label-text">CD (Continous deployment)</label>
       <select class="input-text " >
-      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      <option *ngFor="let option of cdOptions" value="{{option}}">{{option}}</option>
       </select>
 
       <!-- drop down 4 -->
-      <label for="exampleInputCC" class="label-text">Change Control</label>
+      <label  class="label-text">Change Control</label>
       <select class="input-text" >
-      <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
+      <option *ngFor="let option of changeControlOptions" value="{{option}}">{{option}}</option>
       </select>
     </div>
   </div>
@@ -75,29 +78,24 @@
       <label class="checkbox">
         <input  type="checkbox" />
         <span >Staging</span>
-    </label>
+      </label>
 
-    <label class="checkbox">
-      <input  type="checkbox" />
-      <span >Testing</span>
-  </label>
+      <label class="checkbox">
+        <input  type="checkbox" />
+        <span >Testing</span>
+      </label>
 
-  <label class="checkbox">
-    <input  type="checkbox"/>
-    <span >Production</span>
-</label>
+      <label class="checkbox">
+        <input  type="checkbox"/>
+        <span >Production</span>
+      </label>
 
     </div>
-
-
-
-
-
-
   </form>
-  <div class="footer-container">
-    <button>Return</button>
-  <button class="login-btn"  type="submit">Continue</button>
+  <!-- Back and continue buttons -->
+  <div class="workspace-footer-container">
+    <button class="back-button" (click)="toggleSolutionPage()">Back to details</button>
+    <button class="login-btn"  type="submit">Continue</button>
   </div>
 
 </div>
