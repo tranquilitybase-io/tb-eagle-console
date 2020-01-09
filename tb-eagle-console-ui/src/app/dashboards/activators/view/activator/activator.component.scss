@@ -1,0 +1,18 @@
+.sub-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--light-grey);
+  padding: 1rem 2rem;
+  font-weight: 600;
+}
+
+.back-btn {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: normal;
+
+  &.left::before {
+    border-color: var(--black);
+    margin-right: 0.5rem;
+  }
+}

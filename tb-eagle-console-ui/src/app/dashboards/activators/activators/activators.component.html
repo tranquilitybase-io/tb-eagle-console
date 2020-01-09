@@ -6,12 +6,7 @@
   </app-breadcrumbs>
   <app-progress
     [steps]="['Select activator', 'Input app details']"
-    [current]="1">
+    [current]="0">
   </app-progress>
 </header>
-<div class="sub-header">
-  Activator store
-</div>
-<app-controls [isAll]="(current$ | async) === 'All'"></app-controls>
-<app-all *ngIf="(current$ | async) === 'All'"></app-all>
-<app-categories *ngIf="(current$ | async) === 'Category'"></app-categories>
+<router-outlet></router-outlet>

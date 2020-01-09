@@ -1,0 +1,12 @@
+<div *ngIf="app">
+  <div class="sub-header">
+    <a
+      class="button text-only left back-btn"
+      routerLink="/dashboard/activators"
+      [queryParams]="{categorySwitch: 'All'}">
+      Back
+    </a>
+    <div class="app-name separated"> {{ app.name }}</div>
+  </div>
+  {{ app | json }}
+</div>

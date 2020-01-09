@@ -6,6 +6,6 @@ export interface Application {
   category: string;
   envs: string[];
   platforms: string[];
-  update: string;
+  update: Date;
   description: string;
 }

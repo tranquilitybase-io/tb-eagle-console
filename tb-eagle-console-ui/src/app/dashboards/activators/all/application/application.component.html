@@ -32,7 +32,7 @@
   </div>
   <div class="detail">
     <div class="detail-title">Last updated</div>
-    <div class="badge grey">{{ app.update }}</div>
+    <div class="badge grey">{{ app.update | date:'dd MMM yyyy' }}</div>
   </div>
 </div>
 <div class="description" *ngIf="!active">
@@ -40,6 +40,12 @@
   <div class="desc-content">{{ app.description }}</div>
 </div>
 <div class="footer" *ngIf="active">
-  <button class="button empty" type="button">View</button>
+  <a
+    class="button empty"
+    type="button"
+    routerLink="/dashboard/activators/view"
+    [queryParams]="{ 'id': app.id }">
+    View
+  </a>
   <button class="button text-only" type="button">Deploy to app</button>
 </div>

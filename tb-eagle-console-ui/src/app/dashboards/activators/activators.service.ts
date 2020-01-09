@@ -6,7 +6,7 @@ import {
 import { Application } from './interfaces';
 
 @Injectable()
-export class ApplicationsService extends EntityCollectionServiceBase<Application> {
+export class ActivatorsService extends EntityCollectionServiceBase<Application> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Application', serviceElementsFactory);
   }

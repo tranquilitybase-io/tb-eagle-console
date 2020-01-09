@@ -1,0 +1,6 @@
+<div class="sub-header">
+  Activator store
+</div>
+<app-controls [isAll]="(current$ | async) === 'All'"></app-controls>
+<app-all *ngIf="(current$ | async) === 'All'"></app-all>
+<app-categories *ngIf="(current$ | async) === 'Category'"></app-categories>
