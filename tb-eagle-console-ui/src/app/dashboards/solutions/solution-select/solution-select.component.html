@@ -1,4 +1,4 @@
-<app-switches [values]="values" current="Favourites" (onValueChanged)="onSwitch($event)"></app-switches>
+<app-switches [values]="values" [current]="current$ | async" (onValueChanged)="onGroupSwitch($event)"></app-switches>
 <div class="flex-filler"></div>
 <app-search class="separated"></app-search>
 <app-grid-view-switch class="separated"></app-grid-view-switch>
