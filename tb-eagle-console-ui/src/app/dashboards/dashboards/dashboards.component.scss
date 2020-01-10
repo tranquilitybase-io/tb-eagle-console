@@ -1,5 +1,6 @@
 :host {
-  display: flex;
+  display: grid;
+  grid-template-columns: 20rem calc(100% - 20rem);
   min-height: 100vh;
 }
 

@@ -3,6 +3,7 @@ module.exports = (req, res, next) => {
     const { username, password } = req.body;
 
     console.log('LOGIN!', username, password);
+    res.header('Access-Control-Allow-Origin', '*');
 
     if (username !== 'admin' || password !== 'pass1') {
       console.log('LOGIN FAILED!');
