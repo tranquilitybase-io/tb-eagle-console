@@ -2,5 +2,5 @@
   Activator store
 </div>
 <app-controls [isAll]="(current$ | async) === 'All'"></app-controls>
-<app-all *ngIf="(current$ | async) === 'All'"></app-all>
-<app-categories *ngIf="(current$ | async) === 'Category'"></app-categories>
+<app-all class="dashboard-grid" *ngIf="(current$ | async) === 'All'"></app-all>
+<app-categories class="dashboard-grid" *ngIf="(current$ | async) === 'Category'"></app-categories>
