@@ -1,22 +1,20 @@
-<div class="details-pane">
-    <div class="pane-header">
-        <h5>{{solution.name}}</h5>
+    <div class="head">
+        <h5 class="name">{{solution.name}}</h5>
     </div>
-    <div class="pane-content">
-        <h6>Details</h6>
+    <div class="body">
+        <h6 class= "details-head">Details</h6>
         <div class="details">
-            <label class="firstlabel">Applications</label>
-            <label class="secondlabel">{{solution.applications}}</label>
+            <label class="detail-title">Applications</label>
+            <label class="detail-value">{{solution.applications}}</label>
         </div>
         <div class="details">
-            <label class="firstlabel">Teams</label>
-            <label class="secondlabel">{{solution.teams}}</label>
+            <label class="detail-title">Teams</label>
+            <label class="detail-value">{{solution.teams}}</label>
         </div>
         <div class="details">
-            <label class="firstlabel">LastUpdated</label>
-            <label class="secondlabel">{{solution.lastUpdated}}</label>
+            <label class="detail-title">LastUpdated</label>
+            <label class="detail-value">{{solution.lastUpdated}}</label>
         </div>
-        <h6>Description</h6>
-        <p>{{solution.desc}}</p>
+        <h6 class="desc-head">Description</h6>
+        <p class="desc-content">{{solution.desc}}</p>
     </div>
-</div>
