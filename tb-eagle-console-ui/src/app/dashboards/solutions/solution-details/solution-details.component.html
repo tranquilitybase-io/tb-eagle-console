@@ -1,5 +1,12 @@
     <div class="head">
+        <div class="status">
+          <div class="badge" [class.black]="!solution.active">{{ solution.active ? 'Active' : 'Locked' }}</div>
+          <div class="flex-filler"></div>
+          <app-icon icon="star" [stroke]="true" color=grey></app-icon>
+          <app-icon icon="dots"></app-icon>
+        </div>
         <h5 class="name">{{solution.name}}</h5>
+
     </div>
     <div class="body">
         <h6 class= "details-head">Details</h6>

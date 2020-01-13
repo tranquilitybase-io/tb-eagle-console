@@ -13,14 +13,23 @@
 
 .body {
   padding: 1rem 0.5rem;
-  box-sizing: border-box;
 }
 
 .head {
   background-color: var(--active-grey-background);
   z-index: -10;
   border-bottom: 1px solid var(--grey);
-  box-sizing: border-box;
+
+}
+.status {
+  display: flex;
+  padding: 0.5rem 0.5rem 1rem;
+}
+
+
+app-icon {
+  margin-left: 1rem;
+
 }
 
 .name {
@@ -30,6 +39,8 @@
   white-space: nowrap;
   overflow: hidden;
   color: #333333;
+  margin: 0.4rem 0.4rem 1.5rem 0.4rem;
+
 }
 
 .details-head {
