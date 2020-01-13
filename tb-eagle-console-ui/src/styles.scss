@@ -7,6 +7,7 @@
   /* variables */
   --primary-color: #5F2A60;
   --white: #FFF;
+  --transparent-white: rgba(255, 255, 255, 0.8);
   --whitish: #F9F9F9;
   --black: #000;
   --blackish: #272424;
@@ -16,11 +17,14 @@
   --dark-grey-2: #6C7A89;
   --light-grey: #FAFAFA;
   --active-grey-background: #F2F2F2;
-  --transparent-white: rgba(255, 255, 255, 0.329);
+  --transparent-white:rgba(255, 255, 255, 0.76);
   --transparent-grey: rgba(200, 200, 200, 0.192);
   --green: #27AE60;
   --red: #EB5757;
+
   --radius: 0.3rem;
+  --sidebarWidth: 20rem;
+  --mainWidth: calc(100% - var(--sidebarWidth));
 }
 
 body {

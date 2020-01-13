@@ -82,3 +82,14 @@
   background-color: var(--whitish);
   padding: 0 0.5rem;
 }
+
+.deployment-footer {
+  padding: 0.5rem 2rem;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: var(--mainWidth);
+  box-sizing: border-box;
+  background-color: var(--transparent-white);
+}
