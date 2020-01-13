@@ -12,6 +12,7 @@ import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.com
 import { BadgesComponent } from './badges/badges.component';
 import { SearchPillComponent } from './search-pill/search-pill.component';
 import { PillsComponent } from './pills/pills.component';
+import { PropertiesComponent } from './properties/properties.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PillsComponent } from './pills/pills.component';
     GridViewSwitchComponent,
     BadgesComponent,
     SearchPillComponent,
-    PillsComponent
+    PillsComponent,
+    PropertiesComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { PillsComponent } from './pills/pills.component';
     GridViewSwitchComponent,
     BadgesComponent,
     PillsComponent,
+    PropertiesComponent,
     HttpClientModule
   ]
 })

@@ -10,6 +10,14 @@
       "envs": [ "POC", "DEV" ],
       "platforms": [ "GCP" ],
       "update": "2020-01-09T15:59:10.916Z",
+      "userCapacity": 1000,
+      "serverCapacity": 1200,
+      "regions": ["UK", "DB"],
+      "hosting": ["Appengine"],
+      "apiManagement": ["ApiGee"],
+      "ci": ["Jenkins", "Travis"],
+      "cd": ["Codeship", "Option"],
+      "sourceControl": ["JIRA", "Option"],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -22,6 +30,14 @@
       "envs": [ "POC", "AWS", "Other", "Fancy" ],
       "platforms": [ "GCP" ],
       "update": "2020-01-09T15:59:10.916Z",
+      "userCapacity": 1000,
+      "serverCapacity": 1200,
+      "regions": ["UK", "DB"],
+      "hosting": ["Appengine"],
+      "apiManagement": ["ApiGee"],
+      "ci": ["Jenkins", "Travis"],
+      "cd": ["Codeship", "Option"],
+      "sourceControl": ["JIRA", "Option"],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -34,6 +50,14 @@
       "envs": [ "POC", "Prod" ],
       "platforms": [ "Azure", "GCP", "AWS", "Other", "Fancy" ],
       "update": "2020-01-09T15:59:10.916Z",
+      "userCapacity": 1000,
+      "serverCapacity": 1200,
+      "regions": ["UK", "DB"],
+      "hosting": ["Appengine"],
+      "apiManagement": ["ApiGee"],
+      "ci": ["Jenkins", "Travis"],
+      "cd": ["Codeship", "Option"],
+      "sourceControl": ["JIRA", "Option"],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -46,6 +70,14 @@
       "envs": [ "POC", "DEV" ],
       "platforms": [ "GCP" ],
       "update": "2020-01-09T15:59:10.916Z",
+      "userCapacity": 1000,
+      "serverCapacity": 1200,
+      "regions": ["UK", "DB"],
+      "hosting": ["Appengine"],
+      "apiManagement": ["ApiGee"],
+      "ci": ["Jenkins", "Travis"],
+      "cd": ["Codeship", "Option"],
+      "sourceControl": ["JIRA", "Option"],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -58,6 +90,14 @@
       "envs": [ "POC", "AWS", "Other", "Fancy" ],
       "platforms": [ "GCP" ],
       "update": "2020-01-09T15:59:10.916Z",
+      "userCapacity": 1000,
+      "serverCapacity": 1200,
+      "regions": ["UK", "DB"],
+      "hosting": ["Appengine"],
+      "apiManagement": ["ApiGee"],
+      "ci": ["Jenkins", "Travis"],
+      "cd": ["Codeship", "Option"],
+      "sourceControl": ["JIRA", "Option"],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -70,6 +110,14 @@
       "envs": [ "POC", "Prod" ],
       "platforms": [ "Azure", "GCP", "AWS", "Other", "Fancy" ],
       "update": "2020-01-09T15:59:10.916Z",
+      "userCapacity": 1000,
+      "serverCapacity": 1200,
+      "regions": ["UK", "DB"],
+      "hosting": ["Appengine"],
+      "apiManagement": ["ApiGee"],
+      "ci": ["Jenkins", "Travis"],
+      "cd": ["Codeship", "Option"],
+      "sourceControl": ["JIRA", "Option"],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     }
   ]

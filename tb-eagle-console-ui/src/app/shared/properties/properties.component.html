@@ -1,0 +1,6 @@
+<div class="detail-head" *ngIf="title">{{ title }}</div>
+<div class="detail" [ngClass]="vertical ? 'vertical' : 'horizontal'" *ngFor="let property of properties">
+  <div class="detail-title">{{property.name}}</div>
+  <div class="badge" [ngClass]="getPropertyClass(property)" *ngIf="!isValueArray(property)">{{ property.value }}</div>
+  <app-badges [badges]="property.value" [variant]="getPropertyClass(property)" *ngIf="isValueArray(property)"></app-badges>
+</div>

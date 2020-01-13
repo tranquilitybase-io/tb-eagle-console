@@ -8,4 +8,12 @@ export interface Application {
   platforms: string[];
   update: Date;
   description: string;
+  userCapacity: number;
+  serverCapacity: number;
+  regions: string[];
+  ci: string[];
+  cd: string[];
+  hosting: string[];
+  apiManagement: string[];
+  sourceControl: string[];
 }

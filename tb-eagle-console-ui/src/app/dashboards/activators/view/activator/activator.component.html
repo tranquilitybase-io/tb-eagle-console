@@ -7,6 +7,30 @@
       Back
     </a>
     <div class="app-name separated"> {{ app.name }}</div>
+    <div class="separated">
+      <div class="badge" [class.black]="!app.available">{{ app.available ? 'Available' : 'Locked' }}</div>
+    </div>
+    <div class="badge grey time-badge">
+      <div>{{ app.update | date : 'hh:mma' }}</div>
+      <div class="separated">{{ app.update | date : 'dd MMM yyyy' }}</div>
+    </div>
+    <div class="separated tier">
+      <div class="tier-icon"></div>
+      Eagle tier 2 subscription
+    </div>
   </div>
-  {{ app | json }}
+  <div class="content">
+    <div>
+      <div class="title">Metadata</div>
+      <div class="sub-title">Description</div>
+      <div class="description">{{ app.description }}</div>
+    </div>
+    <div class="properties">
+      <app-properties [properties]="properties"></app-properties>
+    </div>
+    <div class="deployment-options">
+      <app-properties title="Deployment Options" [properties]="deploymentOptions" [vertical]="true"></app-properties>
+    </div>
+    <div class="deployments">deploy list</div>
+  </div>
 </div>
