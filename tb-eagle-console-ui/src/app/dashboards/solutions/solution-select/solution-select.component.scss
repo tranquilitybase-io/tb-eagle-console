@@ -5,18 +5,6 @@
   border-bottom: 1px solid var(--grey);
 }
 
-.separated {
-  position: relative;
-  margin-left: 1rem;
-
-  &::before {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 1px;
-    height: 1.25rem;
-    left: -0.5rem;
-    top: 0.7rem;
-    background-color: var(--middle-light-grey);
-  }
+app-pills {
+  flex: auto;
 }

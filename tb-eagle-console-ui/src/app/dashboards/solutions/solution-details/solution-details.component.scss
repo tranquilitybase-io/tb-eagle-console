@@ -53,7 +53,7 @@ app-icon {
   display: flex;
   font-size: 0.75rem;
   color: #8c8c8c;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
 }
 
 .detail-title {
@@ -68,7 +68,7 @@ app-icon {
   background: #f3f3f3;
   border: 1px solid #f3f3f3;
   box-sizing: border-box;
-  border-radius: 2px;
+  border-radius: calc(.5 * var(--radius));
 }
 
 .desc-head {
