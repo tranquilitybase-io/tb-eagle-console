@@ -5,11 +5,14 @@
 
       <form id='loginForm' (submit)="onSubmit($event)">
         <div class="form-container">
-          <label for="exampleInputEmail1" class="form-text">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email here">
+          <label  class="form-text">Email</label>
+          <input type="email" name="userName" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email here" [(ngModel)]="userName">
 
-          <label for="exampleInputPassword1" class="form-text">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter password here">
+          <label  class="form-text">Password</label>
+          <input type="password" name="userPassword" class="form-control"  placeholder="Enter password here" [(ngModel)]="userPassword">
+          <div *ngIf="!response && error">
+            <span class="login-failure">{{loginMessage}}</span>
+          </div>
 
         <label class="checkbox">
           <input  type="checkbox" id="exampleCheck1"/>
@@ -19,8 +22,6 @@
 
         <button class="button text-only login-btn" type="submit">Log in</button>
       </form>
-
-
 
       <div class="login-options-container">
         <a class="options" href="/login">Forgot email or password?</a><br>

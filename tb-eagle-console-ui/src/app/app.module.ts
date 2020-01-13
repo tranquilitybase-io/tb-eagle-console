@@ -1,13 +1,30 @@
+
+import { UserLoginService } from './user-login.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { EntityDataModule } from '@ngrx/data';
 import { AppComponent } from './app.component';
 import entityConfig from './entity-metadata';
 
+@Injectable()
+class OnlyLoggedInUsersGuard implements CanActivate {
+  constructor(private uls: UserLoginService) {}
+
+  canActivate() {
+    console.log('OnlyLoggedInUsers');
+    console.log(this.uls.isUserLoggedIn());
+    if (this.uls.isUserLoggedIn()) {
+      return true;
+    } else {
+      window.alert('You don\'t have permission to view this page');
+      return false;
+    }
+  }
+}
 
 
 const routes: Routes = [
@@ -22,7 +39,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)
+    loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule),
+    canActivate: [OnlyLoggedInUsersGuard]
   }
 ];
 
@@ -38,7 +56,8 @@ const routes: Routes = [
     EntityDataModule.forRoot(entityConfig),
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserLoginService, OnlyLoggedInUsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
