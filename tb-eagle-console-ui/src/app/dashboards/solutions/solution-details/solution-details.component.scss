@@ -14,7 +14,6 @@
 .body {
   padding: 1rem 0.5rem;
   box-sizing: border-box;
-  
 }
 
 .head {
@@ -22,31 +21,28 @@
   z-index: -10;
   border-bottom: 1px solid var(--grey);
   box-sizing: border-box;
-
-  
 }
 
-.name{
+.name {
   font-size: 1.375rem;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  color: #333333;;
+  color: #333333;
 }
 
 .details-head {
   font-size: 1rem;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   margin: 0.4rem 0.4rem 0.4rem 0.4rem;
 }
 
 .details {
   display: flex;
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: #8c8c8c;
   margin-top: 0.3rem;
-
 }
 
 .detail-title {
@@ -55,12 +51,11 @@
 }
 
 .detail-value {
-  
   color: #272424;
   font-weight: 600;
   padding: 0.3rem;
-  background: #F3F3F3;
-  border: 1px solid #F3F3F3;
+  background: #f3f3f3;
+  border: 1px solid #f3f3f3;
   box-sizing: border-box;
   border-radius: 2px;
 }
@@ -69,17 +64,14 @@
   font-size: 1rem;
   font-weight: 600;
   margin: 0.4rem 0.4rem 0.4rem 0.4rem;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-
-
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
-.desc-content{
+.desc-content {
   width: 16rem;
   font-size: 0.75rem;
   color: #8c8c8c;
   margin-bottom: 1rem;
   margin: 0.4rem 0.4rem 0.4rem 0.4rem;
-
 }
