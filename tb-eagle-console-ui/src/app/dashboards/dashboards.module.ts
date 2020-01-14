@@ -1,4 +1,3 @@
-import { CreateSolutionComponent } from './solutions/create-solution/create-solution.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarModule } from '@app/sidebar/sidebar.module';

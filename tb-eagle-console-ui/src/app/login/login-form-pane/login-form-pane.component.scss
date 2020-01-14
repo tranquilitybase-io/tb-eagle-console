@@ -28,6 +28,23 @@
   /* TBP */
   color: var(--primary-color);
 }
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.login-failure{
+  font-family: SF Compact Display;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: rgb(232, 93, 74);
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+
+
+}
+
+
 
 input[type=email], input[type=password]  {
   width: 100%;

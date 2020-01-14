@@ -32,7 +32,6 @@ export class SolutionLandingComponent implements OnInit {
 
   }
 
-
   getSolutions(value: string) {
 
     var temp: Solution[];
