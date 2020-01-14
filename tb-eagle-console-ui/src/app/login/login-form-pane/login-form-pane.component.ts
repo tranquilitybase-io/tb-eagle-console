@@ -21,43 +21,25 @@ export class LoginFormPaneComponent {
   loggedIn: boolean = this.uls.isUserLoggedIn();
 
   onSubmit($event: Event) {
+    const headers = new HttpHeaders().set("Content-Type", "application/json");
+    const params = {
+      username: this.userName,
+      password: this.userPassword
+    };
 
-    const headers = new HttpHeaders()
-    .set("Content-Type", "application/json");
-
-    this.http.post("http://localhost:3000/api/login",
-    {
-      "username": this.userName,
-      "password": this.userPassword
-
-  },{headers})
+    this.http.post("http://localhost:3000/api/login", params, { headers })
         .subscribe(
             (response) => {
-                console.log("PUT call successful value returned in body", response);
-
                 this.uls.setUserLoggedIn(true);
-
-                console.log(this.uls.isUserLoggedIn());
-
                 this.response = response;
-
-                this.router.navigateByUrl("/dashboard/solutions");
+                this.router.navigateByUrl('/dashboard/solutions');
             },
             (error) => {
-                console.log("PUT call in error", error);
-
                 this.uls.setUserLoggedIn(false);
-
                 this.error = error;
-
-                this.loginMessage = "Login failed, try again or register for an account.";
-
-            },
-            () => {
-                console.log("The PUT observable is now completed.");
+                this.loginMessage = 'Login failed, try again or register for an account.';
             }
         );
-
 
     $event.preventDefault();
   }
