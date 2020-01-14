@@ -1,0 +1,22 @@
+<button
+  type="button"
+  class="page prev"
+  *ngIf="current > 1"
+  (click)="change(current - 1)">
+  <
+</button>
+<button
+  type="button"
+  class="page"
+  [class.active]="page === current"
+  *ngFor="let page of pages"
+  (click)="change(page)">
+  {{page}}
+</button>
+<button
+  type="button"
+  class="page next"
+  *ngIf="current < pagesCount"
+  (click)="change(current + 1)">
+  >
+</button>

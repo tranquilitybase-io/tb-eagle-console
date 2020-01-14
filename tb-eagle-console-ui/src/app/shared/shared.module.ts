@@ -13,6 +13,7 @@ import { BadgesComponent } from './badges/badges.component';
 import { SearchPillComponent } from './search-pill/search-pill.component';
 import { PillsComponent } from './pills/pills.component';
 import { PropertiesComponent } from './properties/properties.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PropertiesComponent } from './properties/properties.component';
     BadgesComponent,
     SearchPillComponent,
     PillsComponent,
-    PropertiesComponent
+    PropertiesComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { PropertiesComponent } from './properties/properties.component';
     BadgesComponent,
     PillsComponent,
     PropertiesComponent,
-    HttpClientModule
+    HttpClientModule,
+    PaginationComponent
   ]
 })
 export class SharedModule { }

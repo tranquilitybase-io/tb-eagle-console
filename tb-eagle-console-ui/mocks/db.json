@@ -1,4 +1,7 @@
 {
+  "deployment_meta": {
+    "length": 100
+  },
   "applications": [
     {
       "id": 1,

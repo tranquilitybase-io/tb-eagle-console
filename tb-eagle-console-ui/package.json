@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "mock-server": "json-server --watch mocks/db.json --routes mocks/routes.json --middlewares ./mocks/login.js"
+    "mock-server": "json-server mocks/index.js --routes mocks/routes.json --middlewares ./mocks/login.js"
   },
   "private": true,
   "dependencies": {

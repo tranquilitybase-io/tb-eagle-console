@@ -5,6 +5,7 @@ import { SharedModule } from '@app/shared/shared.module';
 
 import { ActivatorComponent } from './activator/activator.component';
 import { ActivatorContainerComponent } from './activator-container/activator-container.component';
+import { DeploymentsComponent } from './deployments/deployments.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ActivatorComponent,
-    ActivatorContainerComponent
+    ActivatorContainerComponent,
+    DeploymentsComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 <header>
   <app-breadcrumbs [steps]="['My Team solutions']">
   </app-breadcrumbs>
-  <a id="createsolution" href="http://localhost:4200/dashboard/solutions/create">Create new solution ></a>
+  <a class="button text-only create" routerLink="/dashboard/solutions/create">Create new solution</a>
 </header>
 <div>
   <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>

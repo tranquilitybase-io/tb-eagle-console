@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+}
+
+.page {
+  background-color: var(--whitish);
+  border: none;
+  outline: none;
+  border-radius: calc(var(--radius) / 2);
+  color: var(--black);
+  padding: 0.5rem 0.3rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+
+  &.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+}
