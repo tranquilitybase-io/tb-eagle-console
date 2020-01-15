@@ -1,4 +1,5 @@
 export interface Application {
+  id: number;
   name: string;
   type: string;
   available: boolean;
@@ -16,4 +17,12 @@ export interface Application {
   hosting: string[];
   apiManagement: string[];
   sourceControl: string[];
+}
+
+export interface Deployment {
+  id: number;
+  application: string;
+  env: string;
+  status: boolean;
+  notes: string;
 }

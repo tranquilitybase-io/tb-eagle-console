@@ -10,6 +10,7 @@ import { AllModule } from './all/all.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ActivatorsService } from './activators.service';
 import { GridsComponent } from './grids/grids.component';
+import { DeploymentsService } from './deployments.service';
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
     GridsComponent
   ],
   providers: [
-    ActivatorsService
+    ActivatorsService,
+    DeploymentsService
   ],
   imports: [
     CommonModule,

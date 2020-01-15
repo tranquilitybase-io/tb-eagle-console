@@ -1,8 +1,8 @@
 const data = require('./db.json');
-const deployements = require('./deployments');
+const deployments = require('./deployments');
 
 module.exports = () => {
-  data.deployements = deployements;
+  data.deployments = deployments;
 
   return data;
 };

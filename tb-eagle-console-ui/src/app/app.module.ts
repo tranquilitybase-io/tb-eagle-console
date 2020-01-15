@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule),
-    canActivate: [OnlyLoggedInUsersGuard]
+    // canActivate: [OnlyLoggedInUsersGuard]
   }
 ];
 

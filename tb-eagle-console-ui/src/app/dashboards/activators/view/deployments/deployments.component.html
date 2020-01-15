@@ -1,1 +1,43 @@
-<app-pagination [totalSize]="100" [current]="1"></app-pagination>
+
+<div class="title">Deployed</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        Application
+      </th>
+      <th>
+        Environment
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Notes
+      </th>
+      <th>v</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let deployment of deployments$ | async">
+      <td>
+        {{ deployment.application }}
+      </td>
+      <td>
+        {{ deployment.env }}
+      </td>
+      <td>
+        {{ deployment.status }}
+      </td>
+      <td>
+        {{ deployment.notes }}
+      </td>
+      <td>
+        <app-icon icon="dots"></app-icon>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-pagination [totalSize]="100" [current]="page$ | async" (onPageChange)="onPageChange($event)"></app-pagination>

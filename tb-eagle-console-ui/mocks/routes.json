@@ -1,4 +1,5 @@
 {
+  "/api/deployment/*": "/api/deployements/$1",
   "/api/application/*": "/api/applications/$1",
   "/api/*": "/$1"
 }
