@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Actions, Action, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
 import { switchMap, map } from 'rxjs/operators';
 import { DeploymentsService } from '@app/dashboards/activators/deployments.service';
 

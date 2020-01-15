@@ -5,18 +5,25 @@
   <thead>
     <tr>
       <th>
-        Application
+        <div class="head-desc">
+          <div class="head-title">Application</div>
+          <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
       </th>
       <th>
-        Environment
+        <div class="head-desc">
+          <div class="head-title">Environment </div>
+          <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
       </th>
       <th>
-        Status
+        <div class="head-desc">
+          <div class="head-title">Status</div>
+          <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
       </th>
       <th>
-        Notes
+        <div class="head-desc">
+          <div class="head-title">Notes</div>
+          <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
       </th>
-      <th>v</th>
     </tr>
   </thead>
   <tbody>
@@ -32,8 +39,6 @@
       </td>
       <td>
         {{ deployment.notes }}
-      </td>
-      <td>
         <app-icon icon="dots"></app-icon>
       </td>
     </tr>

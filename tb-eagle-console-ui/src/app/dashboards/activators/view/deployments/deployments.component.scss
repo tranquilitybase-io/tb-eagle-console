@@ -1,0 +1,22 @@
+.head-desc {
+  background-color: var(--active-grey-background);
+  display: flex;
+  padding: 0.5rem 0.3rem;
+  font-size: 0.875rem;
+
+  app-icon {
+    margin: 0 1rem;
+  }
+
+  .head-title {
+    flex: auto;
+  }
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--active-grey-background);
+
+  td {
+    padding: 0.5rem 0.3rem;
+  }
+}
