@@ -1,15 +1,10 @@
-import { Injectable } from "@angular/core";
-import {
-  EntityCollectionServiceBase,
-  EntityCollectionServiceElementsFactory
-} from "@ngrx/data";
-import { Application } from "./interfaces";
+import { Injectable } from '@angular/core';
+import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
+import { Application } from './interfaces';
 
 @Injectable()
-export class ActivatorsService extends EntityCollectionServiceBase<
-  Application
-> {
+export class ActivatorsService extends EntityCollectionServiceBase<Application> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super("Application", serviceElementsFactory);
+    super('Application', serviceElementsFactory);
   }
 }
