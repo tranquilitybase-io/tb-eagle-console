@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LoginFormPaneComponent } from './login-form-pane.component';
+import { LoginFormPaneComponent } from "./login-form-pane.component";
 
-describe('LoginFormPaneComponent', () => {
+describe("LoginFormPaneComponent", () => {
   let component: LoginFormPaneComponent;
   let fixture: ComponentFixture<LoginFormPaneComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginFormPaneComponent ]
-    })
-    .compileComponents();
+      declarations: [LoginFormPaneComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('LoginFormPaneComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

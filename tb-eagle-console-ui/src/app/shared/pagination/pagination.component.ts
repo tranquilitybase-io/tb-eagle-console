@@ -1,10 +1,16 @@
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import range from '@app/shared/utils/range';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges
+} from "@angular/core";
+import range from "@app/shared/utils/range";
 
 @Component({
-  selector: 'app-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  selector: "app-pagination",
+  templateUrl: "./pagination.component.html",
+  styleUrls: ["./pagination.component.scss"]
 })
 export class PaginationComponent implements OnChanges {
   pages: number[] = [];

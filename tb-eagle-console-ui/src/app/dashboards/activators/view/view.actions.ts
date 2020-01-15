@@ -1,3 +1,6 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction, props } from "@ngrx/store";
 
-export const changePage = createAction('[Activators] Change Page', props<{ page: number }>());
+export const changePage = createAction(
+  "[Activators] Change Page",
+  props<{ page: number }>()
+);

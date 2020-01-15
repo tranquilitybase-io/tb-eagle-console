@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 export interface Property {
   name: string;
@@ -7,9 +7,9 @@ export interface Property {
 }
 
 @Component({
-  selector: 'app-properties',
-  templateUrl: './properties.component.html',
-  styleUrls: ['./properties.component.scss']
+  selector: "app-properties",
+  templateUrl: "./properties.component.html",
+  styleUrls: ["./properties.component.scss"]
 })
 export class PropertiesComponent {
   @Input() title: string;
@@ -17,7 +17,7 @@ export class PropertiesComponent {
   @Input() vertical = false;
 
   getPropertyClass(property: Property): string {
-    return property.class ? property.class : 'grey';
+    return property.class ? property.class : "grey";
   }
 
   isValueArray(property: Property): boolean {

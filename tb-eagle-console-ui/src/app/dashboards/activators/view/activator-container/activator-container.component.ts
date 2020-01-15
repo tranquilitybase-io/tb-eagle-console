@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { ActivatorsService } from '@app/dashboards/activators/activators.service';
-import { Application } from '@app/dashboards/activators/interfaces';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Observable, of } from "rxjs";
+import { map, switchMap } from "rxjs/operators";
+import { ActivatorsService } from "@app/dashboards/activators/activators.service";
+import { Application } from "@app/dashboards/activators/interfaces";
 
 @Component({
-  selector: 'app-activator-container',
-  templateUrl: './activator-container.component.html',
-  styleUrls: ['./activator-container.component.scss']
+  selector: "app-activator-container",
+  templateUrl: "./activator-container.component.html",
+  styleUrls: ["./activator-container.component.scss"]
 })
 export class ActivatorContainerComponent implements OnInit {
   app$: Observable<Application>;
@@ -33,6 +33,6 @@ export class ActivatorContainerComponent implements OnInit {
           })
         );
       })
-    )
+    );
   }
 }

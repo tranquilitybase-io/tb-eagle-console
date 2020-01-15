@@ -1,12 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserLoginService } from '@app/user-login.service';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { UserLoginService } from "@app/user-login.service";
 
 @Component({
-  selector: 'app-login-form-pane',
-  templateUrl: './login-form-pane.component.html',
-  styleUrls: ['./login-form-pane.component.scss']
+  selector: "app-login-form-pane",
+  templateUrl: "./login-form-pane.component.html",
+  styleUrls: ["./login-form-pane.component.scss"]
 })
 export class LoginFormPaneComponent {
   userName: String;
@@ -16,7 +16,11 @@ export class LoginFormPaneComponent {
   response: any;
   error: any;
 
-  constructor(private router: Router, private http: HttpClient, private uls: UserLoginService) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private uls: UserLoginService
+  ) {}
 
   loggedIn: boolean = this.uls.isUserLoggedIn();
 
@@ -27,19 +31,21 @@ export class LoginFormPaneComponent {
       password: this.userPassword
     };
 
-    this.http.post("http://localhost:3000/api/login", params, { headers })
-        .subscribe(
-            (response) => {
-                this.uls.setUserLoggedIn(true);
-                this.response = response;
-                this.router.navigateByUrl('/dashboard/solutions');
-            },
-            (error) => {
-                this.uls.setUserLoggedIn(false);
-                this.error = error;
-                this.loginMessage = 'Login failed, try again or register for an account.';
-            }
-        );
+    this.http
+      .post("http://localhost:3000/api/login", params, { headers })
+      .subscribe(
+        response => {
+          this.uls.setUserLoggedIn(true);
+          this.response = response;
+          this.router.navigateByUrl("/dashboard/solutions");
+        },
+        error => {
+          this.uls.setUserLoggedIn(false);
+          this.error = error;
+          this.loginMessage =
+            "Login failed, try again or register for an account.";
+        }
+      );
 
     $event.preventDefault();
   }

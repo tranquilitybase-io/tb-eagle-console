@@ -5,22 +5,22 @@
   font-size: 16px;
 
   /* variables */
-  --primary-color: #5F2A60;
-  --white: #FFF;
+  --primary-color: #5f2a60;
+  --white: #fff;
   --transparent-white: rgba(255, 255, 255, 0.8);
-  --whitish: #F9F9F9;
+  --whitish: #f9f9f9;
   --black: #000;
   --blackish: #272424;
-  --grey: #BDBDBD;
-  --middle-light-grey: #C4C4C4;
-  --dark-grey: #8C8C8C;
-  --dark-grey-2: #6C7A89;
-  --light-grey: #FAFAFA;
-  --active-grey-background: #F2F2F2;
-  --transparent-white:rgba(255, 255, 255, 0.76);
+  --grey: #bdbdbd;
+  --middle-light-grey: #c4c4c4;
+  --dark-grey: #8c8c8c;
+  --dark-grey-2: #6c7a89;
+  --light-grey: #fafafa;
+  --active-grey-background: #f2f2f2;
+  --transparent-white: rgba(255, 255, 255, 0.76);
   --transparent-grey: rgba(200, 200, 200, 0.192);
-  --green: #27AE60;
-  --red: #EB5757;
+  --green: #27ae60;
+  --red: #eb5757;
 
   --radius: 0.3rem;
   --sidebarWidth: 20rem;
@@ -32,19 +32,20 @@ body {
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
+  font-family: "SF Pro Display";
   src: url(assets/fonts/SFProDisplay-Regular.ttf) format("truetype");
 }
 
-@font-face{
-  font-family: 'SF Compact Display';
-  src: url(assets/fonts/SFCompactDisplay/sf-compact-display-medium.otf) format("opentype")
+@font-face {
+  font-family: "SF Compact Display";
+  src: url(assets/fonts/SFCompactDisplay/sf-compact-display-medium.otf)
+    format("opentype");
 }
 
 .flex-filler {
   flex: auto;
 }
 
-@import './styles/badge.scss';
-@import './styles/button.scss';
-@import './styles/others.scss';
+@import "./styles/badge.scss";
+@import "./styles/button.scss";
+@import "./styles/others.scss";

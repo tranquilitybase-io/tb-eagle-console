@@ -1,27 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserLoginService {
+  public loggedIn: boolean;
 
-  public loggedIn:boolean;
-
-  constructor() { }
+  constructor() {}
 
   isUserLoggedIn() {
-
     if (this.loggedIn === true) {
       return true;
     } else {
       return false;
     }
-
   }
 
   setUserLoggedIn(setLogin: boolean) {
-
     this.loggedIn = setLogin;
-
   }
 }

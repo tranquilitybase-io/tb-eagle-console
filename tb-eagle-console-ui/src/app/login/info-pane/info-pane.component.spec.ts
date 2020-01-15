@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { InfoPaneComponent } from './info-pane.component';
+import { InfoPaneComponent } from "./info-pane.component";
 
-describe('InfoPaneComponent', () => {
+describe("InfoPaneComponent", () => {
   let component: InfoPaneComponent;
   let fixture: ComponentFixture<InfoPaneComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InfoPaneComponent ]
-    })
-    .compileComponents();
+      declarations: [InfoPaneComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('InfoPaneComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

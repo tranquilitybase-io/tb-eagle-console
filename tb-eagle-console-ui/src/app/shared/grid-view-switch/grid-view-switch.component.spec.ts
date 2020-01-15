@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { GridViewSwitchComponent } from './grid-view-switch.component';
+import { GridViewSwitchComponent } from "./grid-view-switch.component";
 
-describe('GridViewSwitchComponent', () => {
+describe("GridViewSwitchComponent", () => {
   let component: GridViewSwitchComponent;
   let fixture: ComponentFixture<GridViewSwitchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GridViewSwitchComponent ]
-    })
-    .compileComponents();
+      declarations: [GridViewSwitchComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('GridViewSwitchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

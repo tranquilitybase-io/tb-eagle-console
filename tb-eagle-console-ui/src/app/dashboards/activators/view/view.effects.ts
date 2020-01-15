@@ -1,25 +1,31 @@
-import { Injectable } from '@angular/core';
-import { Actions, Action, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
-import { switchMap } from 'rxjs/operators';
-import { DeploymentsService } from '@app/dashboards/activators/deployments.service';
+import { Injectable } from "@angular/core";
+import {
+  Actions,
+  Action,
+  createEffect,
+  ofType,
+  OnInitEffects
+} from "@ngrx/effects";
+import { switchMap } from "rxjs/operators";
+import { DeploymentsService } from "@app/dashboards/activators/deployments.service";
 
-import { changePage } from './view.actions';
+import { changePage } from "./view.actions";
 
 @Injectable()
 export class ViewEffects implements OnInitEffects {
-  loadDeployments$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(changePage),
-      switchMap(({ page }) => {
-        this.deploymentsService.clearCache();
+  loadDeployments$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(changePage),
+        switchMap(({ page }) => {
+          this.deploymentsService.clearCache();
 
-        return this.deploymentsService
-          .getWithQuery({
+          return this.deploymentsService.getWithQuery({
             _page: page.toString(),
-            _limit: '10'
+            _limit: "10"
           });
-      })
-    ),
+        })
+      ),
     { dispatch: false }
   );
 

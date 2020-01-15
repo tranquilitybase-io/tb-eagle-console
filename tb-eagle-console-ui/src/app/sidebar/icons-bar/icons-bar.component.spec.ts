@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { IconsBarComponent } from './icons-bar.component';
+import { IconsBarComponent } from "./icons-bar.component";
 
-describe('IconsBarComponent', () => {
+describe("IconsBarComponent", () => {
   let component: IconsBarComponent;
   let fixture: ComponentFixture<IconsBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IconsBarComponent ]
-    })
-    .compileComponents();
+      declarations: [IconsBarComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('IconsBarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
