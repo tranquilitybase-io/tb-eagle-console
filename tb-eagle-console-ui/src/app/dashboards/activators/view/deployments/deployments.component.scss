@@ -26,3 +26,8 @@ tbody tr td {
 .notes-text {
   flex: auto;
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+}

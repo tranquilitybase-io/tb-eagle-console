@@ -46,5 +46,6 @@
     </tr>
   </tbody>
 </table>
-
-<app-pagination [totalSize]="length$ | async" [current]="page$ | async" (onPageChange)="onPageChange($event)"></app-pagination>
+<div class="pagination-container">
+  <app-pagination [totalSize]="length$ | async" [current]="page$ | async" (onPageChange)="onPageChange($event)"></app-pagination>
+</div>
