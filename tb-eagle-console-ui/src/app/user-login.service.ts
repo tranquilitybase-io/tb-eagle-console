@@ -9,11 +9,7 @@ export class UserLoginService {
   constructor() {}
 
   isUserLoggedIn() {
-    if (this.loggedIn === true) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.loggedIn === true;
   }
 
   setUserLoggedIn(setLogin: boolean) {
