@@ -8,12 +8,13 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "mock-server": "json-server mocks/index.js --routes mocks/routes.json --middlewares ./mocks/login.js"
+    "mock-server": "json-server mocks/index.js --routes mocks/routes.json --middlewares ./mocks/login.js",
+    "reformat": "prettier --write \"**/*.{scss,ts}\""
   },
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --pattern \"**/*.*(ts|scss)\" --staged"
     }
   },
   "dependencies": {

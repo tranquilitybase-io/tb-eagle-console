@@ -17,7 +17,7 @@
 
   &::before {
     counter-increment: progress;
-    content: counter(progress) ".";
+    content: counter(progress) '.';
     display: block;
     font-size: 0.625rem;
     color: var(--blackish);
@@ -41,11 +41,7 @@
 
 .underline {
   position: relative;
-  background-image: linear-gradient(
-    to right,
-    var(--green),
-    var(--primary-color)
-  );
+  background-image: linear-gradient(to right, var(--green), var(--primary-color));
   height: 1px;
 
   &.single {
