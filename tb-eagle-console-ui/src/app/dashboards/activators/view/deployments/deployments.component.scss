@@ -13,10 +13,16 @@
   }
 }
 
-tbody tr {
+tbody tr td {
+  padding: 0.5rem 0.3rem;
   border-bottom: 1px solid var(--active-grey-background);
+}
 
-  td {
-    padding: 0.5rem 0.3rem;
-  }
+.notes {
+  display: flex;
+  align-items: center;
+}
+
+.notes-text {
+  flex: auto;
 }

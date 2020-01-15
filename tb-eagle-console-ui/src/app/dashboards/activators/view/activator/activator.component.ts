@@ -15,6 +15,7 @@ export class ActivatorComponent {
 
   @Input() set app(app: Application) {
     this._app = app;
+
     if (app) {
       this.properties = this.getProps(app);
       this.deploymentOptions = this.getDeploymentOptions(app);

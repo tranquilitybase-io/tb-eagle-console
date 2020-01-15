@@ -35,11 +35,13 @@
         {{ deployment.env }}
       </td>
       <td>
-        {{ deployment.status }}
+        <span class="badge" [class.red]="!deployment.status">{{ deployment.status ? 'Active' : 'Inactive' }}</span>
       </td>
       <td>
-        {{ deployment.notes }}
-        <app-icon icon="dots"></app-icon>
+        <div class="notes">
+          <div class="notes-text">{{ deployment.notes }}</div>
+          <app-icon icon="dots"></app-icon>
+        </div>
       </td>
     </tr>
   </tbody>
