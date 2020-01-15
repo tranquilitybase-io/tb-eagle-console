@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { DeploymentsService } from '@app/dashboards/activators/deployments.service';
 import { Deployment } from '@app/dashboards/activators/interfaces';
 
-import { selectPage } from '../view.reducer';
+import { selectPage, selectLength } from '../view.reducer';
 import { changePage } from '../view.actions';
 
 @Component({
@@ -15,12 +15,14 @@ import { changePage } from '../view.actions';
 export class DeploymentsComponent implements OnInit {
   deployments$: Observable<Deployment[]>;
   page$: Observable<number>;
+  length$: Observable<number>;
 
   constructor(private deploymentService: DeploymentsService, private store: Store<any>) {}
 
   ngOnInit() {
     this.deployments$ = this.deploymentService.entities$;
     this.page$ = this.store.pipe(select(selectPage));
+    this.length$ = this.store.pipe(select(selectLength));
   }
 
   onPageChange(page: number) {

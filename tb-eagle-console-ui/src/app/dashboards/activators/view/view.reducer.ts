@@ -11,8 +11,8 @@ const initialState = {
 
 const innerReducer = createReducer(
   initialState,
-  on(changePage, (state, { page }) => ({ page, ...state })),
-  on(setLength, (state, { length }) => ({ length, ...state }))
+  on(changePage, (state, { page }) => ({ ...state, page })),
+  on(setLength, (state, { length }) => ({ ...state, length }))
 );
 
 export default function(state, action) {

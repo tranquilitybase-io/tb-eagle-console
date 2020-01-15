@@ -5,11 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { EntityDataModule } from '@ngrx/data';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import entityConfig from './entity-metadata';
 import { OnlyLoggedInUsersGuard } from './only-logged-in-user-guard.service';
 import { UserLoginService } from './user-login.service';
+import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {
@@ -23,8 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)
-    // canActivate: [OnlyLoggedInUsersGuard]
+    loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule),
+    canActivate: [OnlyLoggedInUsersGuard]
   }
 ];
 
@@ -36,7 +38,11 @@ const routes: Routes = [
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
-    HttpClientModule
+    HttpClientModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production // Restrict extension to log-only mode
+    })
   ],
   providers: [UserLoginService, OnlyLoggedInUsersGuard],
   bootstrap: [AppComponent]

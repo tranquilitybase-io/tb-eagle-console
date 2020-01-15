@@ -40,4 +40,4 @@
   </tbody>
 </table>
 
-<app-pagination [totalSize]="100" [current]="page$ | async" (onPageChange)="onPageChange($event)"></app-pagination>
+<app-pagination [totalSize]="length$ | async" [current]="page$ | async" (onPageChange)="onPageChange($event)"></app-pagination>
