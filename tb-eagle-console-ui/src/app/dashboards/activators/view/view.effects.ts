@@ -1,15 +1,9 @@
-import { Injectable } from "@angular/core";
-import {
-  Actions,
-  Action,
-  createEffect,
-  ofType,
-  OnInitEffects
-} from "@ngrx/effects";
-import { switchMap } from "rxjs/operators";
-import { DeploymentsService } from "@app/dashboards/activators/deployments.service";
+import { Injectable } from '@angular/core';
+import { Actions, Action, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
+import { switchMap } from 'rxjs/operators';
+import { DeploymentsService } from '@app/dashboards/activators/deployments.service';
 
-import { changePage } from "./view.actions";
+import { changePage } from './view.actions';
 
 @Injectable()
 export class ViewEffects implements OnInitEffects {
@@ -22,17 +16,14 @@ export class ViewEffects implements OnInitEffects {
 
           return this.deploymentsService.getWithQuery({
             _page: page.toString(),
-            _limit: "10"
+            _limit: '10'
           });
         })
       ),
     { dispatch: false }
   );
 
-  constructor(
-    private actions$: Actions,
-    private deploymentsService: DeploymentsService
-  ) {}
+  constructor(private actions$: Actions, private deploymentsService: DeploymentsService) {}
 
   ngrxOnInitEffects(): Action {
     return changePage({ page: 1 });

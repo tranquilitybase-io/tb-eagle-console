@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { CanActivate, Router } from "@angular/router";
-import { UserLoginService } from "./user-login.service";
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { UserLoginService } from './user-login.service';
 
 @Injectable()
 export class OnlyLoggedInUsersGuard implements CanActivate {
@@ -10,7 +10,7 @@ export class OnlyLoggedInUsersGuard implements CanActivate {
     if (this.uls.isUserLoggedIn()) {
       return true;
     } else {
-      this.router.navigateByUrl("/login");
+      this.router.navigateByUrl('/login');
 
       return false;
     }

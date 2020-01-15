@@ -1,29 +1,29 @@
-import { Component, Output, Input, EventEmitter } from "@angular/core";
-import getCustomProperty from "@app/shared/utils/getCustomProperty";
+import { Component, Output, Input, EventEmitter } from '@angular/core';
+import getCustomProperty from '@app/shared/utils/getCustomProperty';
 
-export type GridViewOption = "grid" | "row";
+export type GridViewOption = 'grid' | 'row';
 
 @Component({
-  selector: "app-grid-view-switch",
-  templateUrl: "./grid-view-switch.component.html",
-  styleUrls: ["./grid-view-switch.component.scss"]
+  selector: 'app-grid-view-switch',
+  templateUrl: './grid-view-switch.component.html',
+  styleUrls: ['./grid-view-switch.component.scss']
 })
 export class GridViewSwitchComponent {
-  activeColor = getCustomProperty("--white");
-  inactiveColor = getCustomProperty("--dark-grey");
+  activeColor = getCustomProperty('--white');
+  inactiveColor = getCustomProperty('--dark-grey');
 
   options = [
     {
-      name: "grid",
-      icon: "3x3grid"
+      name: 'grid',
+      icon: '3x3grid'
     },
     {
-      name: "row",
-      icon: "row_view"
+      name: 'row',
+      icon: 'row_view'
     }
   ];
 
-  @Input() current: GridViewOption = "grid";
+  @Input() current: GridViewOption = 'grid';
   @Output() onViewChange = new EventEmitter<GridViewOption>();
 
   isActive(name: GridViewOption): boolean {

@@ -1,9 +1,9 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: "app-controls",
-  templateUrl: "./controls.component.html",
-  styleUrls: ["./controls.component.scss"]
+  selector: 'app-controls',
+  templateUrl: './controls.component.html',
+  styleUrls: ['./controls.component.scss']
 })
 export class ControlsComponent {
   @Input() isAll: boolean;

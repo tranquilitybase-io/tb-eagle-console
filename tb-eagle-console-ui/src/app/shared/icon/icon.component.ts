@@ -1,6 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
-export type IconSize = "sm" | "m" | "lg" | "xl" | "xxl" | number;
+export type IconSize = 'sm' | 'm' | 'lg' | 'xl' | 'xxl' | number;
 
 const sizeMapping: { [K in IconSize]: number } = {
   sm: 15,
@@ -9,7 +9,7 @@ const sizeMapping: { [K in IconSize]: number } = {
   xl: 40,
   xxl: 50
 };
-const exceptions = ["slack", "tb_rocket"];
+const exceptions = ['slack', 'tb_rocket'];
 
 /**
  * available icons:
@@ -36,14 +36,14 @@ const exceptions = ["slack", "tb_rocket"];
  * category
  */
 @Component({
-  selector: "app-icon",
-  templateUrl: "./icon.component.html",
-  styleUrls: ["./icon.component.scss"]
+  selector: 'app-icon',
+  templateUrl: './icon.component.html',
+  styleUrls: ['./icon.component.scss']
 })
 export class IconComponent {
   @Input() icon: string;
-  @Input() color = "black";
-  @Input() size: IconSize = "m";
+  @Input() color = 'black';
+  @Input() size: IconSize = 'm';
   @Input() stroke = false;
 
   get href(): string {
@@ -51,7 +51,7 @@ export class IconComponent {
       return `assets/icons/${this.icon}.svg`;
     }
 
-    return "assets/icons.svg#" + this.icon;
+    return 'assets/icons.svg#' + this.icon;
   }
 
   get isException(): boolean {
@@ -59,6 +59,6 @@ export class IconComponent {
   }
 
   get dim(): number {
-    return typeof this.size === "string" ? sizeMapping[this.size] : this.size;
+    return typeof this.size === 'string' ? sizeMapping[this.size] : this.size;
   }
 }

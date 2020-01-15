@@ -1,9 +1,9 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: "app-progress",
-  templateUrl: "./progress.component.html",
-  styleUrls: ["./progress.component.scss"]
+  selector: 'app-progress',
+  templateUrl: './progress.component.html',
+  styleUrls: ['./progress.component.scss']
 })
 export class ProgressComponent {
   @Input() steps: string[];
@@ -16,6 +16,6 @@ export class ProgressComponent {
       percentage -= 1;
     }
 
-    return percentage + "%";
+    return percentage + '%';
   }
 }

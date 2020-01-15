@@ -1,8 +1,8 @@
-import { createReducer, createSelector, on } from "@ngrx/store";
+import { createReducer, createSelector, on } from '@ngrx/store';
 
-import { changePage } from "./view.actions";
+import { changePage } from './view.actions';
 
-export const featureKey = "activators-view";
+export const featureKey = 'activators-view';
 
 const initialState = {
   page: 1
