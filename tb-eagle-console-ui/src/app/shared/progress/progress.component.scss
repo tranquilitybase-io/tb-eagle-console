@@ -41,7 +41,11 @@
 
 .underline {
   position: relative;
-  background-image: linear-gradient(to right,var(--green) , var(--primary-color));
+  background-image: linear-gradient(
+    to right,
+    var(--green),
+    var(--primary-color)
+  );
   height: 1px;
 
   &.single {

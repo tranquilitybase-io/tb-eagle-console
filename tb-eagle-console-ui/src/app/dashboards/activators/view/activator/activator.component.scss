@@ -34,7 +34,7 @@
   margin-right: 0.5rem;
 
   &::after {
-    content: ' ';
+    content: " ";
     display: block;
     position: absolute;
     top: 30%;
@@ -78,7 +78,8 @@
   color: var(--blackish);
 }
 
-.properties, .deployment-options {
+.properties,
+.deployment-options {
   background-color: var(--whitish);
   padding: 0 0.5rem;
 }

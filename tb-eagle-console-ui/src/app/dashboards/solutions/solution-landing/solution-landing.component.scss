@@ -28,7 +28,7 @@ app-breadcrumbs {
   margin-left: 1rem;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     width: 1px;
@@ -43,4 +43,3 @@ main {
   display: flex;
   flex-wrap: wrap;
 }
-

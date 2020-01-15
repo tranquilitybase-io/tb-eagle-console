@@ -24,7 +24,7 @@
     align-items: center;
 
     &::after {
-      content: '';
+      content: "";
       display: block;
       transform: rotate(45deg);
       width: 0.5em;
@@ -41,7 +41,7 @@
 
       &::before {
         --arrow-width: 2px;
-        content: '';
+        content: "";
         display: block;
         transform: rotate(45deg);
         width: 0.5em;

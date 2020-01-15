@@ -19,17 +19,14 @@
   background-color: var(--active-grey-background);
   z-index: -10;
   border-bottom: 1px solid var(--grey);
-
 }
 .status {
   display: flex;
   padding: 0.5rem 0.5rem 1rem;
 }
 
-
 app-icon {
   margin-left: 1rem;
-
 }
 
 .name {
@@ -40,7 +37,6 @@ app-icon {
   overflow: hidden;
   color: #333333;
   margin: 0.4rem 0.4rem 1.5rem 0.4rem;
-
 }
 
 .details-head {
@@ -68,7 +64,7 @@ app-icon {
   background: #f3f3f3;
   border: 1px solid #f3f3f3;
   box-sizing: border-box;
-  border-radius: calc(.5 * var(--radius));
+  border-radius: calc(0.5 * var(--radius));
 }
 
 .desc-head {
