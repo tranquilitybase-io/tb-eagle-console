@@ -6,7 +6,7 @@
   </app-breadcrumbs>
   <app-progress
     [steps]="['Select activator', 'Input app details']"
-    [current]="0">
+    [current]="progress$ | async">
   </app-progress>
 </header>
 <router-outlet></router-outlet>

@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  padding: 1rem 2rem;
+  background-color: var(--active-grey-background);
+  align-items: center;
+}
+
+.text {
+  flex: auto;
+  font-size: 1rem;
+}
+
+app-icon {
+  padding-top: 0.15rem;
+  margin-right: 1rem;
+}

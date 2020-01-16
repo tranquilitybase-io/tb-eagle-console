@@ -14,6 +14,7 @@ import { SearchPillComponent } from './search-pill/search-pill.component';
 import { PillsComponent } from './pills/pills.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     SearchPillComponent,
     PillsComponent,
     PropertiesComponent,
-    PaginationComponent
+    PaginationComponent,
+    AlertComponent
   ],
   imports: [CommonModule, RouterModule.forChild([]), HttpClientModule],
   exports: [
@@ -42,7 +44,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     PillsComponent,
     PropertiesComponent,
     HttpClientModule,
-    PaginationComponent
+    PaginationComponent,
+    AlertComponent
   ]
 })
 export class SharedModule {}

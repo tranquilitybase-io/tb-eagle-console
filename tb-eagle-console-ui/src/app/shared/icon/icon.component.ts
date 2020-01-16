@@ -34,6 +34,7 @@ const exceptions = ['slack', 'tb_rocket'];
  * 3x3grid
  * row_view
  * category
+ * info
  */
 @Component({
   selector: 'app-icon',

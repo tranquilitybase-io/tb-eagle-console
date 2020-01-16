@@ -10,6 +10,7 @@ import { ActivatorContainerComponent } from './activator-container/activator-con
 import { DeploymentsComponent } from './deployments/deployments.component';
 import reducer, { featureKey } from './view.reducer';
 import { ViewEffects } from './view.effects';
+import { SharedModule as ActivatorsSharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([ViewEffects])
+    EffectsModule.forFeature([ViewEffects]),
+    ActivatorsSharedModule
   ]
 })
 export class ViewModule {}
