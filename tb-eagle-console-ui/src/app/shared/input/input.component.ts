@@ -1,21 +1,50 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true
+    }
+  ]
 })
-export class InputComponent {
+export class InputComponent implements ControlValueAccessor {
+  private registeredOnChange: (value: any) => void = () => {};
+  private registeredOnTouched: () => void = () => {};
+  value: any = '';
+  disabled: boolean;
+
   @Input() required = false;
   @Input() area = false;
   @Input() type = 'text';
   @Input() name: string;
   @Input() label: string;
-  @Input() value: any;
-  @Output() valueChange = new EventEmitter<any>();
 
-  onChange(value: any) {
+  onChange(event: InputEvent) {
+    const value = (event.target as any).value;
+
     this.value = value;
-    this.valueChange.emit(value);
+    this.registerOnChange(value);
+  }
+
+  registerOnChange(registeredOnChange: (value: any) => void) {
+    this.registeredOnChange = registeredOnChange;
+  }
+
+  registerOnTouched(registeredOnTouched: () => void) {
+    this.registerOnTouched = registeredOnTouched;
+  }
+
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
+  }
+
+  writeValue(value: any) {
+    this.value = value;
   }
 }

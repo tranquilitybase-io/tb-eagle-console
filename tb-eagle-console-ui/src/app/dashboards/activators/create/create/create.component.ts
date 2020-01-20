@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
+  name: string = 'Flame Birdy';
+
   constructor(private router: Router) {}
 
   onSubmit($event: Event) {
