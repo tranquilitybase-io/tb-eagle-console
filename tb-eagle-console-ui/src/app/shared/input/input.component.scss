@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+}
+
+.label-text {
+  color: var(--dark-grey);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+
+  &.required::after {
+    position: relative;
+    top: -0.3em;
+    content: '*';
+    color: var(--red);
+    font-size: 0.8em;
+  }
+}
+
+input,
+textarea {
+  border: 1px solid var(--grey);
+  border-radius: var(--radius);
+  outline: none;
+  padding: 0.7rem 1rem;
+}

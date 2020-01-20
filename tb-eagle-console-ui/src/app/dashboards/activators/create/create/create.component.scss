@@ -1,3 +1,24 @@
 :host {
   padding: 1rem 2rem;
 }
+
+.form-body {
+  display: grid;
+  grid-template-columns: 3fr 3fr 1fr;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 1rem;
+}
+
+.wide {
+  grid-column: 1/4;
+}
+
+.first {
+  grid-column: 1/2;
+}
+
+.form-footer {
+  display: flex;
+  margin: 1rem 0;
+  align-items: center;
+}

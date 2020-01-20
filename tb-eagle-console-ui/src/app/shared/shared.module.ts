@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { IconComponent } from './icon/icon.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
@@ -15,6 +16,7 @@ import { PillsComponent } from './pills/pills.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { AlertComponent } from './alert/alert.component';
+import { InputComponent } from './input/input.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,10 @@ import { AlertComponent } from './alert/alert.component';
     PillsComponent,
     PropertiesComponent,
     PaginationComponent,
-    AlertComponent
+    AlertComponent,
+    InputComponent
   ],
-  imports: [CommonModule, RouterModule.forChild([]), HttpClientModule],
+  imports: [CommonModule, RouterModule.forChild([]), HttpClientModule, FormsModule],
   exports: [
     IconComponent,
     BreadcrumbsComponent,
@@ -45,7 +48,9 @@ import { AlertComponent } from './alert/alert.component';
     PropertiesComponent,
     HttpClientModule,
     PaginationComponent,
-    AlertComponent
+    AlertComponent,
+    FormsModule,
+    InputComponent
   ]
 })
 export class SharedModule {}

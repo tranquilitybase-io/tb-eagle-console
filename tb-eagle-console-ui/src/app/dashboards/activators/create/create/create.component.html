@@ -1,2 +1,16 @@
 <app-set-progress-on-init [step]="1"></app-set-progress-on-init>
 <app-alert text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."></app-alert>
+<form (submit)="onSubmit($event)">
+  <div class="form-body">
+    <app-input type="text" name="name" label="Name" [required]="true"></app-input>
+    <app-input class="wide" type="text" name="description" label="Description" [area]="true" [required]="true"></app-input>
+    <app-input type="text" name="businessUnit" label="Business unit" [required]="true"></app-input>
+    <app-input type="text" name="costCentre" label="Cost centre" [required]="true"></app-input>
+    <app-input class="first" type="text" name="targetEnv" label="Target environments" [required]="true"></app-input>
+  </div>
+  <div class="form-footer">
+    <a type="button" class="button empty" routerLink="/dashboard/activators/view" queryParamsHandling="preserve">Back to activator</a>
+    <div class="flex-filler"></div>
+    <button type="submit" class="button text-only">Create and deploy application</button>
+  </div>
+</form>

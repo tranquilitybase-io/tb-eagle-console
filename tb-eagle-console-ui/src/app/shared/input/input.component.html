@@ -1,0 +1,6 @@
+<label>
+  <span class="label-text" [class.required]="required">{{ label }}</span>
+  <input *ngIf="!area" [attr.type]="type" [attr.name]="name" [ngModel]="value" (ngModelChange)="onChange($event)" [required]="required" />
+  <textarea *ngIf="area" [attr.type]="type" [attr.name]="name" [ngModel]="value" (ngModelChange)="onChange($event)" [required]="required"></textarea>
+</label>
+
