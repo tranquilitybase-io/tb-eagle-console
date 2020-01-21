@@ -4,9 +4,9 @@
   <div class="form-body">
     <app-input type="text" name="name" label="Name" [required]="true" [(ngModel)]="name"></app-input>
     <app-input class="wide" type="text" name="description" label="Description" [area]="true" [required]="true"></app-input>
-    <app-input type="text" name="businessUnit" label="Business unit" [required]="true"></app-input>
+    <app-dropdown name="businessUnit" [required]="true" [values]="['FICC Business Unit', 'Some Other Business Unit']" label="Business unit"></app-dropdown>
     <app-input type="text" name="costCentre" label="Cost centre" [required]="true"></app-input>
-    <app-input class="first" type="text" name="targetEnv" label="Target environments" [required]="true"></app-input>
+    <app-dropdown class="first" name="targetEnv" [required]="true" [values]="['PROD', 'DEV', 'UAT']" label="Target environments"></app-dropdown>
   </div>
   <div class="form-footer">
     <a type="button" class="button empty" routerLink="/dashboard/activators/view" queryParamsHandling="preserve">Back to activator</a>

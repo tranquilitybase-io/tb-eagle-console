@@ -25,7 +25,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() name: string;
   @Input() label: string;
 
-  onChange(event: InputEvent) {
+  onChange(event: Event) {
     const value = (event.target as any).value;
 
     this.value = value;

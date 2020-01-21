@@ -17,6 +17,7 @@ import { PropertiesComponent } from './properties/properties.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { AlertComponent } from './alert/alert.component';
 import { InputComponent } from './input/input.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { InputComponent } from './input/input.component';
     PropertiesComponent,
     PaginationComponent,
     AlertComponent,
-    InputComponent
+    InputComponent,
+    DropdownComponent
   ],
   imports: [CommonModule, RouterModule.forChild([]), HttpClientModule, FormsModule],
   exports: [
@@ -50,7 +52,8 @@ import { InputComponent } from './input/input.component';
     PaginationComponent,
     AlertComponent,
     FormsModule,
-    InputComponent
+    InputComponent,
+    DropdownComponent
   ]
 })
 export class SharedModule {}
