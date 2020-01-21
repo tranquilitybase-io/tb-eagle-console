@@ -15,6 +15,8 @@ export class ApplicationComponent {
   properties: Property[] = [];
   strokeColor = getCustomProperty('--grey');
   active = false;
+  deploymentInProgress = false;
+  percentage = 0;
 
   @Input() set app(app: Application) {
     this._app = app;
@@ -55,5 +57,22 @@ export class ApplicationComponent {
   @HostListener('mouseleave')
   onMouseLeave() {
     this.active = false;
+  }
+
+  deploy() {
+    this.deploymentInProgress = true;
+
+    // Mock-up code simulating deployment to be removed
+    const tick = () => {
+      if (this.percentage < 100) {
+        this.percentage += 2;
+        return setTimeout(tick, 40);
+      }
+
+      this.deploymentInProgress = false;
+      this.percentage = 0;
+    };
+
+    tick();
   }
 }

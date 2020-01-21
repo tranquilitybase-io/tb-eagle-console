@@ -12,7 +12,10 @@
     {{ app.type }}
   </div>
 </div>
-<app-properties title="Details" [properties]="properties"></app-properties>
+<app-properties *ngIf="!deploymentInProgress" title="Details" [properties]="properties"></app-properties>
+<div *ngIf="deploymentInProgress" class="loader-container">
+  <app-loader [percentage]="percentage" name="deployment"></app-loader>
+</div>
 <div class="description" *ngIf="!active">
   <div class="desc-head">Description</div>
   <div class="desc-content">{{ app.description }}</div>
@@ -25,5 +28,5 @@
     [queryParams]="{ 'id': app.id }">
     View
   </a>
-  <button class="button text-only" type="button">Deploy to app</button>
+  <button class="button text-only" type="button" (click)="deploy()">Deploy to app</button>
 </div>
