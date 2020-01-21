@@ -29,7 +29,8 @@ export class InputComponent implements ControlValueAccessor {
     const value = (event.target as any).value;
 
     this.value = value;
-    this.registerOnChange(value);
+    this.registeredOnChange(value);
+    this.registeredOnTouched();
   }
 
   registerOnChange(registeredOnChange: (value: any) => void) {

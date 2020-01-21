@@ -1,6 +1,6 @@
 <app-set-progress-on-init [step]="1"></app-set-progress-on-init>
 <app-alert text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."></app-alert>
-<form (submit)="onSubmit($event)">
+<form #form="ngForm" (submit)="onSubmit($event)">
   <div class="form-body">
     <app-input type="text" name="name" label="Name" [required]="true" [(ngModel)]="name"></app-input>
     <app-input class="wide" type="text" name="description" label="Description" [area]="true" [required]="true"></app-input>

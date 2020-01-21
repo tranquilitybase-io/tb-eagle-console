@@ -1,4 +1,4 @@
-<label>
+<label (click)="registeredOnTouched()">
   <span class="label-text" [class.required]="required">{{ label }}</span>
   <input *ngIf="!area" [attr.type]="type" [attr.name]="name" [value]="value" (change)="onChange($event)" [required]="required" [disabled]="disabled" />
   <textarea *ngIf="area" [attr.type]="type" [attr.name]="name" [value]="value" (change)="onChange($event)" [required]="required" [disabled]="disabled"></textarea>

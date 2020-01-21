@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -8,11 +9,13 @@ import { Router } from '@angular/router';
 })
 export class CreateComponent {
   name: string = 'Flame Birdy';
+  @ViewChild('form', { static: true }) form: NgForm;
 
   constructor(private router: Router) {}
 
   onSubmit($event: Event) {
+    console.log('form', this.form);
     $event.preventDefault();
-    this.router.navigateByUrl('/dashboard/activators?categorySwitch=All');
+    // this.router.navigateByUrl('/dashboard/activators?categorySwitch=All');
   }
 }
