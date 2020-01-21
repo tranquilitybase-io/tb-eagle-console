@@ -1,12 +1,11 @@
-import { State } from './../login.reducer';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserLoginService } from '@app/login/user-login.service';
 import { User } from '../user.interface';
-
-import { select, Store } from '@ngrx/store';
 import * as loginActions from '../login.actions';
+import { State, selectLoggedIn } from '../login.reducer';
 
 @Component({
   selector: 'app-login-form-pane',
@@ -35,7 +34,7 @@ export class LoginFormPaneComponent implements OnInit {
   //loggedIn: boolean = this.uls.isUserLoggedIn();
 
   ngOnInit() {
-    this.loggedIn$ = this.store.select(state => state.loggedIn);
+    this.loggedIn$ = this.store.pipe(select(selectLoggedIn));
   }
 
   onSubmit($event: Event) {

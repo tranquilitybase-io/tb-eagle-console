@@ -19,3 +19,6 @@ const loginReducer = createReducer(
 export function reducer(state: State | undefined, action: Action) {
   return loginReducer(state, action);
 }
+
+export const selectFeature = state => state[loginFeatureKey];
+export const selectLoggedIn = createSelector(selectFeature, ({ loggedIn }) => loggedIn);
