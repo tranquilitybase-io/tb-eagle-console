@@ -10,7 +10,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
 import entityConfig from './entity-metadata';
 import { OnlyLoggedInUsersGuard } from './only-logged-in-user-guard.service';
-import { UserLoginService } from './user-login.service';
 import { environment } from '../environments/environment';
 
 const routes: Routes = [
@@ -44,7 +43,7 @@ const routes: Routes = [
       logOnly: environment.production // Restrict extension to log-only mode
     })
   ],
-  providers: [UserLoginService, OnlyLoggedInUsersGuard],
+  providers: [OnlyLoggedInUsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

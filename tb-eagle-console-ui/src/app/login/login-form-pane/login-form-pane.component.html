@@ -10,9 +10,11 @@
 
           <label  class="form-text">Password</label>
           <input type="password" name="userPassword" class="form-control"  placeholder="Enter password here" [(ngModel)]="userPassword">
-          <div *ngIf="!response && error">
+          <div *ngIf="error">
             <span class="login-failure">{{loginMessage}}</span>
           </div>
+
+        <p> {{loggedIn$ | async }}</p>
 
         <label class="checkbox">
           <input  type="checkbox" id="exampleCheck1"/>

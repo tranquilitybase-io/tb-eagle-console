@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { InfoPaneComponent } from './info-pane/info-pane.component';
 import { LoginFormPaneComponent } from './login-form-pane/login-form-pane.component';
+import { UserLoginService } from './user-login.service';
+import { loginFeatureKey, reducer } from './login.reducer';
+import { StoreModule } from '@ngrx/store';
 
 const routes: Routes = [
   {
@@ -17,6 +20,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [LoginComponent, InfoPaneComponent, LoginFormPaneComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), SharedModule, FormsModule]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    SharedModule,
+    FormsModule,
+    StoreModule.forFeature(loginFeatureKey, reducer)
+  ],
+  providers: [UserLoginService]
 })
 export class LoginModule {}

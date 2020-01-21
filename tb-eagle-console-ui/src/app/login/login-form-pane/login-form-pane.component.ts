@@ -1,45 +1,70 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { State } from './../login.reducer';
+import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserLoginService } from '@app/user-login.service';
+import { UserLoginService } from '@app/login/user-login.service';
+import { User } from '../user.interface';
+
+import { select, Store } from '@ngrx/store';
+import * as loginActions from '../login.actions';
 
 @Component({
   selector: 'app-login-form-pane',
   templateUrl: './login-form-pane.component.html',
   styleUrls: ['./login-form-pane.component.scss']
 })
-export class LoginFormPaneComponent {
-  userName: String;
-  userPassword: String;
-  loginMessage: String;
+export class LoginFormPaneComponent implements OnInit {
+  userName: string;
+  userPassword: string;
+
+  failMessage: string;
+  loginMessage: string = 'Ivalid username/password. Please try again or create an account.';
+
+  obs: Observable<User>;
 
   response: any;
   error: any;
 
-  constructor(private router: Router, private http: HttpClient, private uls: UserLoginService) {}
+  responseJson: string;
+  loggedIn$: Observable<boolean>;
 
-  loggedIn: boolean = this.uls.isUserLoggedIn();
+  loggedIn: any;
+
+  constructor(private router: Router, private uls: UserLoginService, private store: Store<State>) {}
+
+  //loggedIn: boolean = this.uls.isUserLoggedIn();
+
+  ngOnInit() {
+    this.loggedIn$ = this.store.select(state => state.loggedIn);
+  }
 
   onSubmit($event: Event) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const params = {
-      username: this.userName,
-      password: this.userPassword
-    };
+    this.store.dispatch(loginActions.login());
+    console.log('Login Action Dispatched');
 
-    this.http.post('http://localhost:3000/api/login', params, { headers }).subscribe(
+    //{username: this.userName, password: this.userPassword}
+
+    /*
+    this.obs = this.uls.login(this.userName, this.userPassword);
+    this.obs.subscribe(
       response => {
+
+        //this.responseJson = JSON.stringify(response);
+
         this.uls.setUserLoggedIn(true);
+        //this.router.navigateByUrl('/dashboard/solutions');
         this.response = response;
-        this.router.navigateByUrl('/dashboard/solutions');
+        console.log(this.response);
+
       },
+
       error => {
         this.uls.setUserLoggedIn(false);
         this.error = error;
-        this.loginMessage = 'Login failed, try again or register for an account.';
+
       }
     );
-
+    */
     $event.preventDefault();
   }
 }
