@@ -60,7 +60,12 @@ export class ApplicationComponent {
   }
 
   deploy() {
+    if (this.deploymentInProgress) {
+      return;
+    }
+
     this.deploymentInProgress = true;
+    this.percentage = 0;
 
     // Mock-up code simulating deployment to be removed
     const tick = () => {
@@ -70,7 +75,6 @@ export class ApplicationComponent {
       }
 
       this.deploymentInProgress = false;
-      this.percentage = 0;
     };
 
     tick();

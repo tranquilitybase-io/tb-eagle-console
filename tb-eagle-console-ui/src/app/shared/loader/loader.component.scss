@@ -27,6 +27,8 @@
 }
 
 .loader {
+  --circle-x: calc(50% + var(--x) * 2);
+  --circle-y: calc(50% - var(--y) * 2);
   display: block;
   position: absolute;
   top: 0;
@@ -34,15 +36,33 @@
   left: 0;
   right: 0;
   border-radius: 50%;
-  border: 0.1rem solid var(--primary-color);
-  clip-path: polygon(50% 0, 150% 0, var(--x) var(--y), 50% 50%);
+  border: 0.15rem solid var(--primary-color);
+  clip-path: polygon(50% 0, 150% 0, var(--circle-x) var(--circle-y), 50% 50%);
   box-sizing: border-box;
 
   &.second-half {
-    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%, var(--x) var(--y), 50% 50%);
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%, var(--circle-x) var(--circle-y), 50% 50%);
   }
 
   &.last-quarter {
-    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%, 0 0, var(--x) var(--y), 50% 50%);
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%, 0 0, var(--circle-x) var(--circle-y), 50% 50%);
   }
+}
+
+.shadow {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  border: 1px solid var(--grey);
+}
+
+app-icon {
+  position: absolute;
+  top: calc(50% - var(--y) - 0.56rem);
+  left: calc(50% + var(--x) - 0.3rem);
+  transform: rotate(var(--arrow-angle));
 }

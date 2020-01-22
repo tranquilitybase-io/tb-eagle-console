@@ -8,7 +8,7 @@ import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 export class LoaderComponent {
   private _percentage: number;
 
-  @ViewChild('loader', { static: true }) el: ElementRef;
+  @ViewChild('loader', { static: true }) loaderRef: ElementRef;
   @Input() name: string;
   @Input() set percentage(percentage: number) {
     if (percentage && !isNaN(percentage)) {
@@ -18,15 +18,17 @@ export class LoaderComponent {
     this._percentage = percentage;
   }
 
+  constructor(private hostRef: ElementRef) {}
+
   get percentage(): number {
     return this._percentage;
   }
 
   private setPercentage(percentage) {
-    const loader = this.el.nativeElement;
+    const loader = this.loaderRef.nativeElement;
     const radians = (percentage / 100) * 2 * Math.PI;
-    const x = 50 + 100 * Math.sin(radians);
-    const y = 50 - 100 * Math.cos(radians);
+    const x = 50 * Math.sin(radians);
+    const y = 50 * Math.cos(radians);
 
     if (percentage > 75) {
       loader.classList.remove('second-half');
@@ -39,7 +41,8 @@ export class LoaderComponent {
       loader.classList.remove('second-half');
     }
 
-    loader.style.setProperty('--x', x + '%');
-    loader.style.setProperty('--y', y + '%');
+    this.hostRef.nativeElement.style.setProperty('--x', x + '%');
+    this.hostRef.nativeElement.style.setProperty('--y', y + '%');
+    this.hostRef.nativeElement.style.setProperty('--arrow-angle', radians + 'rad');
   }
 }
