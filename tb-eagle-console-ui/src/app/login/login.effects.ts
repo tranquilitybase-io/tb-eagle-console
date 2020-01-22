@@ -27,7 +27,7 @@ export class LoginEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginActions.loginSuccess),
-        tap(() => localStorage.setItem('isLoggedIn', 'true'))
+        tap(() => this.LoginService.loginSuccess('true'))
       ),
     { dispatch: false }
   );
@@ -36,7 +36,7 @@ export class LoginEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginActions.loginFailure),
-        tap(() => localStorage.setItem('isLoggedIn', 'false'))
+        tap(() => this.LoginService.loginFailure('false'))
       ),
     { dispatch: false }
   );
