@@ -2,6 +2,60 @@
   "deployment_meta": {
     "length": 100
   },
+  "solutions": [
+    {
+      "id":1,
+      "name": "Risk Engine",
+      "desc": "Solution for internal users to be able to process settlement for FX transactions",
+      "businessUnit": "Modern Apps",
+      "ci": "Jenkins CI",
+      "cd": "Spinnaker",
+      "sourceControl": "GitHub",
+      "changeControl": "Service Now",
+      "environment": "Development",
+      "active": true,
+      "favourite": true,
+      "applications": 5,
+      "teams": 2,
+      "lastUpdated": "2009"
+  
+    },
+    {
+      "id":2,
+      "name": "Back Office Settlements ",
+      "desc": "Solution for internal users to be able to process settlement for FX transactions",
+      "businessUnit": "Modern Apps",
+      "ci": "Jenkins CI",
+      "cd": "Spinnaker",
+      "sourceControl": "GitHub",
+      "changeControl": "Service Now",
+      "environment": "Prod",
+      "active": false,
+      "favourite": false,
+      "applications": 5,
+      "teams": 2,
+      "lastUpdated": "2009"
+  
+    },
+    {
+      "id":3,
+      "name": "FX Engine ",
+      "desc": "Solution for internal users to be able to process settlement for FX transactions",
+      "businessUnit": "Modern Apps",
+      "ci": "Jenkins CI",
+      "cd": "Spinnaker",
+      "sourceControl": "GitHub",
+      "changeControl": "Service Now",
+      "environment": "Testing",
+      "active": false,
+      "favourite": false,
+      "applications": 5,
+      "teams": 2,
+      "lastUpdated": "2009"
+  
+    }
+  ],
+
   "applications": [
     {
       "id": 1,
