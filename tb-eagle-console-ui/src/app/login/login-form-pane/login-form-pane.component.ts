@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { UserLoginService } from '@app/login/user-login.service';
 import { User } from '../user.interface';
 import * as loginActions from '../login.actions';
-import { State, selectLoggedIn } from '../login.reducer';
+import { State, selectLoggedIn, selectUser } from '../login.reducer';
 
 @Component({
   selector: 'app-login-form-pane',
@@ -19,29 +19,20 @@ export class LoginFormPaneComponent implements OnInit {
   failMessage: string;
   loginMessage: string = 'Ivalid username/password. Please try again or create an account.';
 
-  obs: Observable<User>;
-
   response: any;
   error: any;
 
   responseJson: string;
   loggedIn$: Observable<boolean>;
 
-  loggedIn: any;
-
   constructor(private router: Router, private uls: UserLoginService, private store: Store<State>) {}
-
-  //loggedIn: boolean = this.uls.isUserLoggedIn();
 
   ngOnInit() {
     this.loggedIn$ = this.store.pipe(select(selectLoggedIn));
   }
 
   onSubmit($event: Event) {
-    this.store.dispatch(loginActions.login());
-    console.log('Login Action Dispatched');
-
-    //{username: this.userName, password: this.userPassword}
+    this.store.dispatch(loginActions.login({ username: this.userName, password: this.userPassword }));
 
     /*
     this.obs = this.uls.login(this.userName, this.userPassword);
