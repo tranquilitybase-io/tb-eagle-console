@@ -1,22 +1,34 @@
-import { Component, Input, HostListener } from '@angular/core';
-import { formatDate } from '@angular/common';
+import { Component, Input, HostListener, OnInit } from '@angular/core';
+import { formatDate, registerLocaleData } from '@angular/common';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import getCustomProperty from '@app/shared/utils/getCustomProperty';
 import { Application } from '@app/dashboards/activators/interfaces';
 import { Property } from '@app/shared/properties/properties.component';
+
+import { selectProgress, selectInProgress } from '../all.reducer';
+import { startDeployment } from '../all.actions';
 
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.scss']
 })
-export class ApplicationComponent {
+export class ApplicationComponent implements OnInit {
   private _app: Application;
 
   properties: Property[] = [];
   strokeColor = getCustomProperty('--grey');
   active = false;
-  deploymentInProgress = false;
-  percentage = 0;
+  deploymentInProgress$: Observable<boolean>;
+  percentage$: Observable<number>;
+
+  constructor(private store: Store<any>) {}
+
+  ngOnInit() {
+    this.deploymentInProgress$ = this.store.pipe(select(selectInProgress(this.app.id.toString())));
+    this.percentage$ = this.store.pipe(select(selectProgress(this.app.id.toString())));
+  }
 
   @Input() set app(app: Application) {
     this._app = app;
@@ -60,23 +72,10 @@ export class ApplicationComponent {
   }
 
   deploy() {
-    if (this.deploymentInProgress) {
-      return;
-    }
-
-    this.deploymentInProgress = true;
-    this.percentage = 0;
-
-    // Mock-up code simulating deployment to be removed
-    const tick = () => {
-      if (this.percentage < 100) {
-        this.percentage += 2;
-        return setTimeout(tick, 40);
-      }
-
-      this.deploymentInProgress = false;
-    };
-
-    tick();
+    this.store.dispatch(
+      startDeployment({
+        name: this.app.id.toString()
+      })
+    );
   }
 }

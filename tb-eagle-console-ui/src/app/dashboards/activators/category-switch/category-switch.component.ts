@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -6,7 +6,8 @@ import { map, startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-category-switch',
   templateUrl: './category-switch.component.html',
-  styleUrls: ['./category-switch.component.scss']
+  styleUrls: ['./category-switch.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategorySwitchComponent implements OnInit {
   current$: Observable<string>;
