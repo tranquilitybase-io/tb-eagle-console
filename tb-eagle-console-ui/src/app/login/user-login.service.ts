@@ -31,4 +31,8 @@ export class UserLoginService {
 
     return this.http.post<User>(url, params, { headers });
   }
+
+  setLoggedInState(setLogin: string): void {
+    localStorage.setItem('isLoggedIn', setLogin);
+  }
 }

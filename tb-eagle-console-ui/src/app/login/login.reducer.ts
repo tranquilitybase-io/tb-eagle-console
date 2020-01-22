@@ -1,5 +1,5 @@
 import { Action, createReducer, on, createSelector } from '@ngrx/store';
-import * as loginActions from './login.actions';
+import { loginSuccess, loginFailure } from './login.actions';
 
 export const loginFeatureKey = 'login-reducer';
 
@@ -13,7 +13,8 @@ export const initialState: State = {
 
 const loginReducer = createReducer(
   initialState,
-  on(loginActions.login, state => ({ ...state, loggedIn: true }))
+  on(loginSuccess, state => ({ ...state, loggedIn: true })),
+  on(loginFailure, state => ({ ...state, loggedIn: false }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
@@ -22,3 +23,4 @@ export function reducer(state: State | undefined, action: Action) {
 
 export const selectFeature = state => state[loginFeatureKey];
 export const selectLoggedIn = createSelector(selectFeature, ({ loggedIn }) => loggedIn);
+export const selectUser = createSelector(selectFeature, ({ user }) => user);

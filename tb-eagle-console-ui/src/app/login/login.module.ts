@@ -10,6 +10,8 @@ import { LoginFormPaneComponent } from './login-form-pane/login-form-pane.compon
 import { UserLoginService } from './user-login.service';
 import { loginFeatureKey, reducer } from './login.reducer';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { LoginEffects } from './login.effects';
 
 const routes: Routes = [
   {
@@ -25,7 +27,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     FormsModule,
-    StoreModule.forFeature(loginFeatureKey, reducer)
+    StoreModule.forFeature(loginFeatureKey, reducer),
+    EffectsModule.forFeature([LoginEffects])
   ],
   providers: [UserLoginService]
 })
