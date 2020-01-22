@@ -9,7 +9,7 @@ export interface SolutionsState {
   solutions: Solution[];
   visibilityFilter: string;
 }
-export const solutionFeatureKey = 'solutions';
+export const solutionFeatureKey = 'solution-landing';
 
 export const solutionsReducer = createReducer(
   intialState,

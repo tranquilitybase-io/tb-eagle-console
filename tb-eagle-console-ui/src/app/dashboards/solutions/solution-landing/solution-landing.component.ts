@@ -41,6 +41,6 @@ export class SolutionLandingComponent implements OnInit {
 
   getSolutions(filter: string) {
     this.store.dispatch(refreshSolutions({ filter }));
-    //this.solutions = this.store.pipe(select(selectVisibleSolutions));
+    this.solutions = this.store.pipe(select(selectVisibleSolutions));
   }
 }
