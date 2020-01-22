@@ -1,7 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map, filter, first } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
+import { Solution } from '../interfaces';
+import { Store, select } from '@ngrx/store';
+import { setFavourites, refreshSolutions } from '../solutions.actions';
+import { selectVisibleSolutions, SolutionsState } from '../solutions.reducers';
 
 @Component({
   selector: 'app-solution-landing',
@@ -9,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./solution-landing.component.scss']
 })
 export class SolutionLandingComponent implements OnInit {
-  solutions: Solution[];
+  solutions: Observable<Solution[]>;
 
   private values = [
     { name: 'Favourites', count: 4 },
@@ -20,79 +25,22 @@ export class SolutionLandingComponent implements OnInit {
   current$: Observable<string>;
   event: string;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private solutionsService: SolutionsService,
+    private store: Store<SolutionsState>,
+    private route: ActivatedRoute
+  ) {
+    this.solutions = solutionsService.entities$;
+  }
 
   ngOnInit() {
+    this.solutionsService.getAll();
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
     this.current$.subscribe(event => this.getSolutions(event));
   }
 
-  getSolutions(value: string) {
-    var temp: Solution[];
-    console.log(value);
-    if (value === 'Favourites') {
-      this.solutions = [
-        new Solution(
-          'Back-Office Settlements',
-          'Solution for internal users to be able to process settlement for FX transactions',
-          5,
-          2,
-          '2091'
-        ),
-        new Solution(
-          'Risk Engine',
-          'Solution for internal users to be able to process settlement for FX transactions',
-          3,
-          1,
-          '2010'
-        )
-      ];
-    }
-    if (value === 'Active') {
-      this.solutions = [
-        new Solution(
-          'Back-Office Settlements-Active',
-          'Solution for internal users to be able to process settlement for FX transactions',
-          5,
-          2,
-          '2091'
-        ),
-        new Solution(
-          'Risk Engine-Active',
-          'Solution for internal users to be able to process settlement for FX transactions',
-          3,
-          1,
-          '2023'
-        )
-      ];
-    }
-    if (value === 'Archived') {
-      this.solutions = [
-        new Solution(
-          'Back-Office Settlements-Archived',
-          'Solution for internal users to be able to process settlement for FX transactions',
-          5,
-          2,
-          '2001'
-        ),
-        new Solution(
-          'Risk Engine-Archived',
-          'Solution for internal users to be able to process settlement for FX transactions',
-          3,
-          1,
-          '2000'
-        )
-      ];
-    }
+  getSolutions(filter: string) {
+    this.store.dispatch(refreshSolutions({ filter }));
+    //this.solutions = this.store.pipe(select(selectVisibleSolutions));
   }
-}
-export class Solution {
-  constructor(
-    public name: string,
-    public desc: string,
-    public applications: number,
-    public teams: number,
-    public lastUpdated: string,
-    public active: string = 'Active'
-  ) {}
 }
