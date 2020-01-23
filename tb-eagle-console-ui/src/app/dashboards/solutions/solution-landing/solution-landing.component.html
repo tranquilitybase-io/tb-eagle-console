@@ -7,6 +7,6 @@
   <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>
 </div>
 
-<main>
+<main class="dashboard-grid">
   <app-solution-details *ngFor="let solution of solutions$ | async" [solution]="solution"></app-solution-details>
 </main>

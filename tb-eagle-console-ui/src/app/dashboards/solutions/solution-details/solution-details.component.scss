@@ -1,11 +1,6 @@
 :host {
   display: flex;
   flex-direction: column;
-  margin: {
-    top: 1.5rem;
-    left: 2rem;
-    right: 2rem;
-  }
   border: 1px solid var(--grey);
   border-radius: calc(2 * var(--radius));
   font-family: SF Pro Display;
