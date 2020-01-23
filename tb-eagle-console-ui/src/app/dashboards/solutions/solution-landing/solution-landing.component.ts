@@ -14,7 +14,7 @@ import { selectVisibleSolutions, SolutionsState, selectFeature } from '../soluti
   styleUrls: ['./solution-landing.component.scss']
 })
 export class SolutionLandingComponent implements OnInit {
-  solutions: Observable<Solution[]>;
+  solutions$: Observable<Solution[]>;
 
   private values = [
     { name: 'Favourites', count: 4 },
@@ -30,7 +30,7 @@ export class SolutionLandingComponent implements OnInit {
     private store: Store<SolutionsState>,
     private route: ActivatedRoute
   ) {
-    this.solutions = solutionsService.entities$;
+    this.solutions$ = solutionsService.filteredEntities$;
   }
 
   ngOnInit() {
@@ -40,7 +40,6 @@ export class SolutionLandingComponent implements OnInit {
   }
 
   getSolutions(filter: string) {
-    this.store.dispatch(refreshSolutions({ filter }));
-    this.solutions = this.store.pipe(select(selectVisibleSolutions));
+    this.solutionsService.setFilter(filter);
   }
 }
