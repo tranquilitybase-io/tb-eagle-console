@@ -3,7 +3,7 @@ import { createReducer, on, createSelector, select, createFeatureSelector } from
 import { refreshSolutions, setSolutions } from './solutions.actions';
 import { Solution } from './interfaces';
 
-export const intialState = { solutions: [{}], visibilityFilter: 'Favuorites' };
+export const intialState = { solutions: [{}], visibilityFilter: 'Favourites' };
 
 export interface SolutionsState {
   solutions: Solution[];
