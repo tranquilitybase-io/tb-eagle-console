@@ -7,7 +7,7 @@ export class OnlyLoggedInUsersGuard implements CanActivate {
   constructor(private uls: UserLoginService, private router: Router) {}
 
   canActivate() {
-    if (this.uls.isUserLoggedIn()) {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
       return true;
     } else {
       this.router.navigateByUrl('/login');

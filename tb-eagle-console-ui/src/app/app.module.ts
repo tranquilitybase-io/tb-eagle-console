@@ -16,7 +16,8 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/dashboard/solutions',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [OnlyLoggedInUsersGuard]
   },
   {
     path: 'login',
@@ -24,8 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule)
-    // canActivate: [OnlyLoggedInUsersGuard]
+    loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule),
+    canActivate: [OnlyLoggedInUsersGuard]
   }
 ];
 

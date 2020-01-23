@@ -7,5 +7,5 @@
   <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>
 </div>
 <main>
-  <app-solution-details *ngFor="let solution of solutions" [solution]="solution"></app-solution-details>
+  <app-solution-details *ngFor="let solution of solutions | async" [solution]="solution"></app-solution-details>
 </main>

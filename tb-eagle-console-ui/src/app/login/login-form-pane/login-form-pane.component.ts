@@ -20,10 +20,11 @@ export class LoginFormPaneComponent implements OnInit {
   loginMessage: string = 'Ivalid username/password. Please try again or create an account.';
 
   response: any;
-  error: any;
 
   responseJson: string;
   loggedIn$: Observable<boolean>;
+
+  error: boolean = false;
 
   constructor(private router: Router, private uls: UserLoginService, private store: Store<State>) {}
 
@@ -33,8 +34,14 @@ export class LoginFormPaneComponent implements OnInit {
 
   onSubmit($event: Event) {
     this.store.dispatch(loginActions.login({ username: this.userName, password: this.userPassword }));
-
     /*
+    if ( localStorage.getItem('isLoggedIn') === 'false') {
+
+      this.error = true;
+
+    }
+
+
     this.obs = this.uls.login(this.userName, this.userPassword);
     this.obs.subscribe(
       response => {

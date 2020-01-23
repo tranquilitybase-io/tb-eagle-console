@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Solution } from '../solution-landing/solution-landing.component';
+import { Solution } from '../interfaces';
 
 @Component({
   selector: 'app-solution-details',

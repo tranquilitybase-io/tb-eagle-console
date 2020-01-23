@@ -32,7 +32,13 @@ export class UserLoginService {
     return this.http.post<User>(url, params, { headers });
   }
 
-  setLoggedInState(setLogin: string): void {
+  loginSuccess(setLogin: string): void {
     localStorage.setItem('isLoggedIn', setLogin);
+    this.router.navigateByUrl('/dashboard/solutions');
+  }
+
+  loginFailure(setLogin: string): void {
+    localStorage.setItem('isLoggedIn', setLogin);
+    this.router.navigateByUrl('/login');
   }
 }

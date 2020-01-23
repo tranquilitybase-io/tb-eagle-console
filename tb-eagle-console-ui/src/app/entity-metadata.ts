@@ -2,7 +2,8 @@ import { EntityMetadataMap } from '@ngrx/data';
 
 const entityMetadata: EntityMetadataMap = {
   Application: {},
-  Deployment: {}
+  Deployment: {},
+  Solution: {}
 };
 
 export default {
