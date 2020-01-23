@@ -1,6 +1,6 @@
 import { createReducer, on, createSelector, select, createFeatureSelector } from '@ngrx/store';
 
-import { setFavourites, refreshSolutions } from './solutions.actions';
+import { refreshSolutions, setSolutions } from './solutions.actions';
 import { Solution } from './interfaces';
 
 export const intialState = { solutions: [{}], visibilityFilter: 'Favuorites' };
@@ -13,8 +13,20 @@ export const solutionFeatureKey = 'solution-landing';
 
 export const solutionsReducer = createReducer(
   intialState,
-  on(setFavourites, (state, action) => {
-    state.solutions = action.solutions;
+  on(setSolutions, (state, action) => {
+    const filter = action.filter;
+    if (filter === 'Favourites') {
+      state.solutions = action.solutions.filter(solution => solution.favourite === true);
+      state.visibilityFilter = action.filter;
+    }
+    if (filter === 'Active') {
+      state.solutions = action.solutions.filter(solution => solution.active === true);
+      state.visibilityFilter = action.filter;
+    }
+    if (filter === 'Archived') {
+      state.solutions = action.solutions.filter(solution => solution.active === false);
+      state.visibilityFilter = action.filter;
+    }
     return state;
   })
 );

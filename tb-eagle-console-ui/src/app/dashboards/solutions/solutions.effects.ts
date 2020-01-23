@@ -1,10 +1,10 @@
-import { exhaustMap, map, catchError, tap } from 'rxjs/operators';
+import { exhaustMap, map, catchError, tap, filter, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { SolutionsService } from './solutions.service';
-import { refreshSolutions, setFavourites } from './solutions.actions';
+import { refreshSolutions, setSolutions } from './solutions.actions';
 
 @Injectable()
 export class SolutionEffects {
@@ -13,7 +13,20 @@ export class SolutionEffects {
   refreshEffects$ = createEffect(() =>
     this.actions$.pipe(
       ofType(refreshSolutions),
-      exhaustMap(action => this.solutionService.getAll().pipe(map(solutions => setFavourites({ solutions }))))
+      switchMap(action =>
+        this.solutionService.getAll().pipe(map(solutions => setSolutions({ solutions, filter: action.filter })))
+      )
     )
   );
+
+  //   refreshEffects$ = createEffect(() =>
+  //     this.actions$.pipe(
+  //       ofType(refreshSolutions),
+  //       exhaustMap(action =>
+  //         this.solutionService.getAll().pipe(
+  //             map(solutions => setFavourites({solutions}))
+  //           )
+  //       )
+  //     )
+  //   );
 }

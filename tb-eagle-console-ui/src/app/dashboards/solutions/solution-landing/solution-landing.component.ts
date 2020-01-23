@@ -5,8 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
 import { Solution } from '../interfaces';
 import { Store, select } from '@ngrx/store';
-import { setFavourites, refreshSolutions } from '../solutions.actions';
-import { selectVisibleSolutions, SolutionsState } from '../solutions.reducers';
+import { refreshSolutions } from '../solutions.actions';
+import { selectVisibleSolutions, SolutionsState, selectFeature } from '../solutions.reducers';
 
 @Component({
   selector: 'app-solution-landing',

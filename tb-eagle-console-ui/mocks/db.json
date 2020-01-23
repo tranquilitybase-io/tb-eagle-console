@@ -30,7 +30,7 @@
       "sourceControl": "GitHub",
       "changeControl": "Service Now",
       "environment": "Prod",
-      "active": false,
+      "active": true,
       "favourite": false,
       "applications": 5,
       "teams": 2,
