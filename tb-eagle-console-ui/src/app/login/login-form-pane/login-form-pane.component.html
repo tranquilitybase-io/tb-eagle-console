@@ -10,7 +10,7 @@
 
           <label  class="form-text">Password</label>
           <input type="password" name="userPassword" class="form-control"  placeholder="Enter password here" [(ngModel)]="userPassword">
-          <div *ngIf="error">
+          <div *ngIf="(loggedIn$ | async) === false">
             <span class="login-failure">{{loginMessage}}</span>
           </div>
 

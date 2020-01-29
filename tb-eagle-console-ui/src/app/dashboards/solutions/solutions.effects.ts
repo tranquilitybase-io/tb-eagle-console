@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { SolutionsService } from './solutions.service';
-import { refreshSolutions, setSolutions } from './solutions.actions';
+import { refreshSolutions, setSolutions, createSolution } from './solutions.actions';
 
 @Injectable()
 export class SolutionEffects {
@@ -17,6 +17,15 @@ export class SolutionEffects {
         this.solutionService.getAll().pipe(map(solutions => setSolutions({ solutions, filter: action.filter })))
       )
     )
+  );
+
+  createSolution$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(createSolution),
+        tap(action => this.solutionService.createSolution(action.solution))
+      ),
+    { dispatch: false }
   );
 
   //   refreshEffects$ = createEffect(() =>

@@ -9,61 +9,97 @@
   [current]="screenNum">
 </app-progress>
 </header>
-<main>
+<form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
 <div class="details-container" *ngIf="!onPartTwo">
-  <form >
+
+
     <div class="form-container">
+      <!--
       <label  class="label-text">Name</label>
-      <input class="input-text short-input form-input" type="text" placeholder="Enter name here">
-      <label  class="label-text">Description</label>
-      <textarea  class="input-text" placeholder="Enter description here"></textarea>
+      <input class="input-text short-input form-input" name="name" [(ngModel)]="solutionName" type="text" placeholder="Enter name here" >
+      -->
+      <app-input class="short-input" type="text" formControlName="name" label="Name" [required]="true" placeholder="Enter name here"></app-input>
+
+      <label >
+        <span class="label-text">Description</span>
+      <textarea  class="input-text" formControlName="desc" placeholder="Enter description here"></textarea>
+    </label>
+
+      <!--
+    <app-input class="tall" type="text"  name="description" label="Description" [area]="true" placeholder="Enter description here" [required]="true" [(ngModel)]="solutionDescription"></app-input>
+-->
+    <!--
+
       <label  class="label-text">Business Unit</label>
-      <select class="input-text short-input">
+      <select name="businessUnits" class="input-text short-input" [(ngModel)]="solutionBU">
       <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
       </select>
+    -->
+    <app-dropdown class="short-input" formControlName="businessUnit" [required]="true" [values]="['FICC', 'Modern Apps', 'Data']" label="Business unit"></app-dropdown>
+
   </div>
 
 
-  </form>
+
+
   <div class="details-footer-container">
-  <button class="login-btn" type="submit" (click)="toggleSolutionPage()" >Continue</button>
+  <button class="login-btn" (click)="toggleSolutionPage()"> Continue </button>
 </div>
 
 </div>
 
 
 <div class="workspace-container" *ngIf="onPartTwo">
-  <form >
+
 
     <div class='workspace-form-container'>
 
-      <!-- drop down 1 -->
+
       <div class="dropdown-grid-one">
+        <!-- drop down 1
       <label  class="label-text">CI (Continous intergration service)</label>
       <select class="input-text" >
       <option *ngFor="let option of ciOptions" value="{{option}}">{{option}}</option>
       </select>
+      -->
 
-      <!-- drop down 2 -->
+      <app-dropdown class="short-input input-margin" formControlName="ci" [required]="true" [values]="['Jenkins CI', 'Bamboo', 'Travis CI']" label="CI (Continous intergration service)"></app-dropdown>
+
+
+      <!-- drop down 2
       <label  class="label-text">Source Control</label>
       <select class="input-text " >
       <option *ngFor="let option of sourceControlOptions" value="{{option}}">{{option}}</option>
       </select>
+       -->
+
+      <app-dropdown class="short-input input-margin" formControlName="sourceControl" [required]="true" [values]="['GitHub', 'ButBucket']" label="Source Control"></app-dropdown>
+
 
       </div>
 
-      <!-- drop down 3 -->
+
       <div class="dropdown-grid-one">
+        <!-- drop down 3
       <label  class="label-text">CD (Continous deployment)</label>
       <select class="input-text " >
       <option *ngFor="let option of cdOptions" value="{{option}}">{{option}}</option>
       </select>
+       -->
+      <app-dropdown class="short-input input-margin" formControlName="cd" [required]="true" [values]="['Jenkins', 'Spinnaker', 'Screwdriver']" label="CD (Continous deployment)"></app-dropdown>
 
-      <!-- drop down 4 -->
+
+      <!-- drop down 4
       <label  class="label-text">Change Control</label>
       <select class="input-text" >
       <option *ngFor="let option of changeControlOptions" value="{{option}}">{{option}}</option>
       </select>
+       -->
+      <app-dropdown class="short-input input-margin" formControlName="changeControl" [required]="true" [values]="['GitHub', 'ButBucket']" label="Change Control"></app-dropdown>
+
+
+
+
     </div>
   </div>
 
@@ -91,7 +127,7 @@
       </label>
 
     </div>
-  </form>
+
   <!-- Back and continue buttons -->
   <div class="workspace-footer-container">
     <button class="back-button" (click)="toggleSolutionPage()">Back to details</button>
@@ -99,9 +135,10 @@
   </div>
 
 </div>
+</form>
 
 
-</main>
+
 
 
 

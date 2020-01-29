@@ -11,6 +11,8 @@ import reducer, { solutionFeatureKey } from './solutions.reducers';
 import { SolutionsService } from './solutions.service';
 import { EffectsModule } from '@ngrx/effects';
 import { SolutionEffects } from './solutions.effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -27,11 +29,14 @@ const routes: Routes = [
   declarations: [SolutionSelectComponent, SolutionDetailsComponent, CreateSolutionComponent, SolutionLandingComponent],
   providers: [SolutionsService],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     SharedModule,
     StoreModule.forFeature(solutionFeatureKey, reducer),
     EffectsModule.forFeature([SolutionEffects]),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule
   ]
 })
 export class SolutionsModule {}

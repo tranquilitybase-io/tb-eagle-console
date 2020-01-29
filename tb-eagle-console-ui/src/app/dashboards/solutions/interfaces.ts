@@ -3,10 +3,10 @@ export class Solution {
   name: string;
   desc: string;
   businessUnit: string;
-  ci: string[];
-  cd: string[];
-  sourceControl: string[];
-  changeControl: string[];
+  ci: string;
+  cd: string;
+  sourceControl: string;
+  changeControl: string;
   envs: string[];
   active: boolean;
   favourite: boolean;

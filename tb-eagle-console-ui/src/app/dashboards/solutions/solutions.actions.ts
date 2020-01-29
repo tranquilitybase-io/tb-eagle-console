@@ -7,3 +7,5 @@ export const setSolutions = createAction(
   props<{ solutions: Solution[]; filter: string }>()
 );
 export const refreshSolutions = createAction('refreshSolutions [Solutions]', props<{ filter: string }>());
+
+export const createSolution = createAction('[solutions-creation] create-solution', props<{ solution: Solution }>());

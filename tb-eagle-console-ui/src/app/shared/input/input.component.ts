@@ -24,6 +24,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type = 'text';
   @Input() name: string;
   @Input() label: string;
+  @Input() placeholder: string;
 
   onChange(event: Event) {
     const value = (event.target as any).value;

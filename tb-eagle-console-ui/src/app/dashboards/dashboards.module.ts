@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarModule } from '@app/sidebar/sidebar.module';
@@ -24,6 +25,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [DashboardsComponent],
-  imports: [CommonModule, SidebarModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, FormsModule, SidebarModule, RouterModule.forChild(routes)]
 })
 export class DashboardsModule {}

@@ -1,5 +1,6 @@
+import { catchError } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserLoginService } from '@app/login/user-login.service';
@@ -17,7 +18,7 @@ export class LoginFormPaneComponent implements OnInit {
   userPassword: string;
 
   failMessage: string;
-  loginMessage: string = 'Ivalid username/password. Please try again or create an account.';
+  loginMessage: string = 'Invalid username/password. Please try again or create an account.';
 
   response: any;
 
@@ -26,42 +27,17 @@ export class LoginFormPaneComponent implements OnInit {
 
   error: boolean = false;
 
-  constructor(private router: Router, private uls: UserLoginService, private store: Store<State>) {}
+  loadingError$: any;
 
-  ngOnInit() {
-    this.loggedIn$ = this.store.pipe(select(selectLoggedIn));
-  }
+  constructor(private uls: UserLoginService, private store: Store<State>) {}
+
+  ngOnInit() {}
 
   onSubmit($event: Event) {
     this.store.dispatch(loginActions.login({ username: this.userName, password: this.userPassword }));
-    /*
-    if ( localStorage.getItem('isLoggedIn') === 'false') {
 
-      this.error = true;
+    this.loggedIn$ = this.store.pipe(select(selectLoggedIn));
 
-    }
-
-
-    this.obs = this.uls.login(this.userName, this.userPassword);
-    this.obs.subscribe(
-      response => {
-
-        //this.responseJson = JSON.stringify(response);
-
-        this.uls.setUserLoggedIn(true);
-        //this.router.navigateByUrl('/dashboard/solutions');
-        this.response = response;
-        console.log(this.response);
-
-      },
-
-      error => {
-        this.uls.setUserLoggedIn(false);
-        this.error = error;
-
-      }
-    );
-    */
     $event.preventDefault();
   }
 }
