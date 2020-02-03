@@ -6,6 +6,10 @@ import { Solution } from './interfaces';
 import { error } from 'protractor';
 @Injectable()
 export class SolutionsService extends EntityCollectionServiceBase<Solution> {
+  //TODO Use ngrx store/Reducer
+  public isAlmostReady = false;
+  public isReady = false;
+
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
     super('Solution', serviceElementsFactory);
   }

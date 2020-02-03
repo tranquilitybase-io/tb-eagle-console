@@ -2,6 +2,7 @@ import { SolutionDetailsComponent } from './../solution-details/solution-details
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
 import { SolutionsState } from '../solutions.reducers';
 import * as SolutionActions from '../solutions.actions';
 import { Solution } from '../interfaces';
@@ -24,7 +25,12 @@ export class CreateSolutionComponent implements OnInit {
 
   solutionForm;
 
-  constructor(private store: Store<SolutionsState>, private router: Router, private formBuilder: FormBuilder) {}
+  constructor(
+    private solutionsService: SolutionsService,
+    private store: Store<SolutionsState>,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.solutionForm = this.formBuilder.group({
@@ -53,6 +59,7 @@ export class CreateSolutionComponent implements OnInit {
 
   onSubmit(solution) {
     this.store.dispatch(SolutionActions.createSolution({ solution }));
+    this.solutionsService.isAlmostReady = true;
     this.router.navigateByUrl('/dashboard/solutions');
   }
 }

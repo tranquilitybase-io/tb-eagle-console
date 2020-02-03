@@ -2,6 +2,22 @@
   <app-breadcrumbs [steps]="['My Team solutions']"> </app-breadcrumbs>
   <a class="button text-only create" routerLink="/dashboard/solutions/create">Create new solution</a>
 </header>
+<div *ngIf="isAlmostReady" class="solution almost-ready">
+  <app-icon icon="check_simple"></app-icon>
+  <p>
+    Your solution workspace is almost ready.
+    <span>| We will notify you when it's complete.</span>
+  </p>
+  <a [routerLink]="" (click)="DismissAlmostReady()">Dismiss</a>
+</div>
+<div *ngIf="isReady" class="solution ready">
+  <app-icon icon="check_simple"></app-icon>
+  <p>
+    Solution workspace created.
+    <span>| You can now begin to create applications.</span>
+  </p>
+  <a [routerLink]="" (click)="DismissReady()">Dismiss</a>
+</div>
 <div>
   <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>
 </div>

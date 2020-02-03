@@ -42,4 +42,23 @@ export class SolutionLandingComponent implements OnInit {
   getSolutions(filter: string) {
     this.solutionsService.setFilter(filter);
   }
+
+  //#region Use ngrx store/Reducer
+  get isAlmostReady() {
+    return this.solutionsService.isAlmostReady;
+  }
+
+  public DismissAlmostReady() {
+    this.solutionsService.isAlmostReady = false;
+    this.solutionsService.isReady = true;
+  }
+
+  get isReady() {
+    return this.solutionsService.isReady;
+  }
+
+  public DismissReady() {
+    this.solutionsService.isReady = false;
+  }
+  //#endregion Use ngrx store/Reducer
 }

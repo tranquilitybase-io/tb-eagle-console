@@ -65,4 +65,8 @@
   <symbol id="loader_arrow" viewBox="0 0 9 10">
     <path d="M8 6.19615C8.66667 5.81125 8.66667 4.849 8 4.4641L2.75 1.43301C1.75 0.855661 0.5 1.57735 0.5 2.73205L0.5 7.9282C0.5 9.08291 1.75 9.80459 2.75 9.22724L8 6.19615Z" fill="#FAFAFA" stroke="#F2644C"/>
   </symbol>
+  <symbol id="check_simple" viewBox="0 0 18 14">
+    <path d="M17.5 1.41L5.5 13.41L0 7.91L1.41 6.5L5.5 10.58L16.09 1.52588e-07L17.5 1.41Z" fill="white"/>
+  </symbol>
+
 </svg>
