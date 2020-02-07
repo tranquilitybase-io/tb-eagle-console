@@ -1,14 +1,47 @@
-import { exhaustMap, map, catchError, tap, filter, switchMap } from 'rxjs/operators';
+import { map, tap, switchMap, mergeMap } from 'rxjs/operators';
 
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { SolutionsService } from './solutions.service';
-import { refreshSolutions, setSolutions, createSolution } from './solutions.actions';
+import range from '@app/shared/utils/range';
+import {
+  refreshSolutions,
+  setSolutions,
+  createSolution,
+  startDeployment,
+  updateDeploymentProgress,
+  stopDeployment
+} from './solutions.actions';
+
+function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
+  return new Observable(observer => {
+    let i = 0;
+
+    function tick() {
+      console.log(i, values[i]);
+
+      if (i < values.length) {
+        observer.next(values[i]);
+
+        if (i === values.length - 1) {
+          observer.complete();
+
+          return;
+        }
+
+        i++;
+        setTimeout(tick, delay);
+      }
+    }
+
+    tick();
+  });
+}
 
 @Injectable()
 export class SolutionEffects {
-  constructor(private actions$: Actions, private solutionService: SolutionsService) {}
+  constructor(private actions$: Actions, private solutionService: SolutionsService, private zone: NgZone) {}
 
   refreshEffects$ = createEffect(() =>
     this.actions$.pipe(
@@ -26,6 +59,21 @@ export class SolutionEffects {
         tap(action => this.solutionService.createSolution(action.solution))
       ),
     { dispatch: false }
+  );
+
+  deployments$ = createEffect(() =>
+    this.zone.runOutsideAngular(() =>
+      this.actions$.pipe(
+        ofType(startDeployment),
+        // This part of code mocks up deployment process
+        mergeMap(({ name }) =>
+          emitRangeDelayed(range(0, 100, 2), 300).pipe(
+            tap(console.log),
+            map(progress => (progress >= 100 ? stopDeployment({ name }) : updateDeploymentProgress({ name, progress })))
+          )
+        )
+      )
+    )
   );
 
   //   refreshEffects$ = createEffect(() =>

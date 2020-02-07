@@ -4,6 +4,12 @@
   border: 1px solid var(--grey);
   border-radius: calc(2 * var(--radius));
   font-family: SF Pro Display;
+
+  &:hover {
+    border-color: var(--primary-color);
+    box-shadow: -2px -2px var(--primary-color), -2px 2px var(--primary-color), 2px -2px var(--primary-color),
+      2px 2px var(--primary-color);
+  }
 }
 
 .body {
@@ -62,18 +68,30 @@ app-icon {
   border-radius: calc(0.5 * var(--radius));
 }
 
-.desc-head {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0.4rem 0.4rem 0.4rem 0.4rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+.description {
+  padding: 0 0.5rem 1rem;
+  > .desc-head {
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+  }
+  > .desc-content {
+    font-size: 0.75rem;
+  }
 }
 
-.desc-content {
-  width: 16rem;
-  font-size: 0.75rem;
-  color: #8c8c8c;
+.footer {
+  display: flex;
+  padding: 0 1.5rem;
+  justify-content: space-between;
   margin-bottom: 1rem;
-  margin: 0.4rem 0.4rem 0.4rem 0.4rem;
+
+  .button {
+    font-size: 1rem;
+  }
+}
+
+.loader-container {
+  margin: auto;
+  height: 10rem;
+  width: 10rem;
 }

@@ -45,9 +45,9 @@ export class CreateSolutionComponent implements OnInit {
       envs: [''],
       active: true,
       favourite: true,
-      applications: 3,
-      teams: 1,
-      lastUpdated: '2020'
+      applications: 0,
+      teams: 0,
+      lastUpdated: 'Just now'
     });
   }
 
@@ -59,7 +59,6 @@ export class CreateSolutionComponent implements OnInit {
 
   onSubmit(solution) {
     this.store.dispatch(SolutionActions.createSolution({ solution }));
-    this.solutionsService.isAlmostReady = true;
     this.router.navigateByUrl('/dashboard/solutions');
   }
 }

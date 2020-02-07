@@ -67,10 +67,12 @@ app-breadcrumbs {
     }
   }
 
-  > a {
+  > .dismiss {
     position: absolute;
     right: 32px;
     margin-top: 20px;
     color: #fff;
+    cursor: pointer;
+    text-decoration: underline;
   }
 }
