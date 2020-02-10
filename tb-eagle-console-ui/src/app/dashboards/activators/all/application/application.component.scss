@@ -42,15 +42,13 @@ app-icon {
 
 .description {
   padding: 0 0.5rem 1rem;
-}
-
-.desc-head {
-  font-weight: 600;
-  padding-bottom: 0.5rem;
-}
-
-.desc-content {
-  font-size: 0.75rem;
+  > .desc-head {
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+  }
+  > .desc-content {
+    font-size: 0.75rem;
+  }
 }
 
 .footer {

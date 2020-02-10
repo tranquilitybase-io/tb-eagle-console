@@ -48,3 +48,12 @@ body {
 @import './styles/badge.scss';
 @import './styles/button.scss';
 @import './styles/others.scss';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

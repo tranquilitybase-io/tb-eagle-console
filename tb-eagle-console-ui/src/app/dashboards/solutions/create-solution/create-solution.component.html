@@ -1,60 +1,55 @@
 <header>
-<app-breadcrumbs
-    [cancelActive]="true"
-    [steps]="['Create new solution']"
-    >
-  </app-breadcrumbs>
-  <app-progress
-  [steps]="['Details', 'Workspace']"
-  [current]="screenNum">
-</app-progress>
+  <app-breadcrumbs [cancelActive]="true" [steps]="['Create new solution']"> </app-breadcrumbs>
+  <app-progress [steps]="['Details', 'Workspace']" [current]="screenNum"> </app-progress>
 </header>
 <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
-<div class="details-container" *ngIf="!onPartTwo">
-
-
+  <div class="details-container" *ngIf="!onPartTwo">
     <div class="form-container">
       <!--
       <label  class="label-text">Name</label>
       <input class="input-text short-input form-input" name="name" [(ngModel)]="solutionName" type="text" placeholder="Enter name here" >
       -->
-      <app-input class="short-input" type="text" formControlName="name" label="Name" [required]="true" placeholder="Enter name here"></app-input>
+      <app-input
+        class="short-input"
+        type="text"
+        formControlName="name"
+        label="Name"
+        [required]="true"
+        placeholder="E.g. project name..."
+      ></app-input>
 
-      <label >
+      <label>
         <span class="label-text">Description</span>
-      <textarea  class="input-text" formControlName="desc" placeholder="Enter description here"></textarea>
-    </label>
+        <textarea class="input-text" formControlName="desc" placeholder="Type your description here..."></textarea>
+      </label>
 
       <!--
     <app-input class="tall" type="text"  name="description" label="Description" [area]="true" placeholder="Enter description here" [required]="true" [(ngModel)]="solutionDescription"></app-input>
 -->
-    <!--
+      <!--
 
       <label  class="label-text">Business Unit</label>
       <select name="businessUnits" class="input-text short-input" [(ngModel)]="solutionBU">
       <option *ngFor="let bu of businessUnits" value="{{bu}}">{{bu}}</option>
       </select>
     -->
-    <app-dropdown class="short-input" formControlName="businessUnit" [required]="true" [values]="['FICC', 'Modern Apps', 'Data']" label="Business unit"></app-dropdown>
+      <app-dropdown
+        class="short-input"
+        formControlName="businessUnit"
+        placeholder="Please select"
+        [required]="true"
+        [values]="['FICC', 'Modern Apps', 'Data']"
+        label="Business unit"
+      ></app-dropdown>
+    </div>
 
+    <div class="details-footer-container">
+      <button class="login-btn" (click)="toggleSolutionPage()">Continue</button>
+    </div>
   </div>
 
-
-
-
-  <div class="details-footer-container">
-  <button class="login-btn" (click)="toggleSolutionPage()"> Continue </button>
-</div>
-
-</div>
-
-
-<div class="workspace-container" *ngIf="onPartTwo">
-
-
-    <div class='workspace-form-container'>
-
-
+  <div class="workspace-container" *ngIf="onPartTwo">
+    <div class="workspace-form-container">
       <div class="dropdown-grid-one">
         <!-- drop down 1
       <label  class="label-text">CI (Continous intergration service)</label>
@@ -63,21 +58,31 @@
       </select>
       -->
 
-      <app-dropdown class="short-input input-margin" formControlName="ci" [required]="true" [values]="['Jenkins CI', 'Bamboo', 'Travis CI']" label="CI (Continous intergration service)"></app-dropdown>
+        <app-dropdown
+          class="short-input input-margin"
+          formControlName="ci"
+          placeholder="Select an option..."
+          [required]="true"
+          [values]="['Jenkins CI', 'Bamboo', 'Travis CI']"
+          label="CI (Continous intergration service)"
+        ></app-dropdown>
 
-
-      <!-- drop down 2
+        <!-- drop down 2
       <label  class="label-text">Source Control</label>
       <select class="input-text " >
       <option *ngFor="let option of sourceControlOptions" value="{{option}}">{{option}}</option>
       </select>
        -->
 
-      <app-dropdown class="short-input input-margin" formControlName="sourceControl" [required]="true" [values]="['GitHub', 'ButBucket']" label="Source Control"></app-dropdown>
-
-
+        <app-dropdown
+          class="short-input input-margin"
+          formControlName="sourceControl"
+          placeholder="Select an option..."
+          [required]="true"
+          [values]="['GitHub', 'BitBucket']"
+          label="Source Control"
+        ></app-dropdown>
       </div>
-
 
       <div class="dropdown-grid-one">
         <!-- drop down 3
@@ -86,60 +91,60 @@
       <option *ngFor="let option of cdOptions" value="{{option}}">{{option}}</option>
       </select>
        -->
-      <app-dropdown class="short-input input-margin" formControlName="cd" [required]="true" [values]="['Jenkins', 'Spinnaker', 'Screwdriver']" label="CD (Continous deployment)"></app-dropdown>
+        <app-dropdown
+          class="short-input input-margin"
+          formControlName="cd"
+          placeholder="Select an option..."
+          [required]="true"
+          [values]="['Jenkins', 'Spinnaker', 'Screwdriver']"
+          label="CD (Continous deployment)"
+        ></app-dropdown>
 
-
-      <!-- drop down 4
+        <!-- drop down 4
       <label  class="label-text">Change Control</label>
       <select class="input-text" >
       <option *ngFor="let option of changeControlOptions" value="{{option}}">{{option}}</option>
       </select>
        -->
-      <app-dropdown class="short-input input-margin" formControlName="changeControl" [required]="true" [values]="['GitHub', 'ButBucket']" label="Change Control"></app-dropdown>
-
-
-
-
-    </div>
-  </div>
-
-      <label class="label-text">Available Environments</label>
-      <br>
-      <div class="environment-container">
-        <label class="checkbox">
-          <input  type="checkbox" />
-          <span >Development</span>
-      </label>
-
-      <label class="checkbox">
-        <input  type="checkbox" />
-        <span >Staging</span>
-      </label>
-
-      <label class="checkbox">
-        <input  type="checkbox" />
-        <span >Testing</span>
-      </label>
-
-      <label class="checkbox">
-        <input  type="checkbox"/>
-        <span >Production</span>
-      </label>
-
+        <app-dropdown
+          class="short-input input-margin"
+          formControlName="changeControl"
+          placeholder="Select an option..."
+          [required]="true"
+          [values]="['GitHub', 'BitBucket']"
+          label="Change Control"
+        ></app-dropdown>
+      </div>
     </div>
 
-  <!-- Back and continue buttons -->
-  <div class="workspace-footer-container">
-    <button class="back-button" (click)="toggleSolutionPage()">Back to details</button>
-    <button class="login-btn"  type="submit">Continue</button>
-  </div>
+    <label class="label-text">Available environments</label>
+    <br />
+    <div class="environment-container">
+      <label class="checkbox">
+        <input type="checkbox" />
+        <span>Development</span>
+      </label>
 
-</div>
+      <label class="checkbox">
+        <input type="checkbox" />
+        <span>Staging</span>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" />
+        <span>Testing</span>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" />
+        <span>Production</span>
+      </label>
+    </div>
+
+    <!-- Back and continue buttons -->
+    <div class="workspace-footer-container">
+      <button class="back-button" (click)="toggleSolutionPage()">Back to details</button>
+      <button class="login-btn" type="submit">Continue</button>
+    </div>
+  </div>
 </form>
-
-
-
-
-
-
-

@@ -38,3 +38,41 @@ app-breadcrumbs {
     background-color: var(--middle-light-grey);
   }
 }
+
+.solution {
+  display: flex;
+  color: #fff;
+  height: 60px;
+
+  &.almost-ready {
+    background: #5f2a60;
+  }
+
+  &.ready {
+    background: #27ae60;
+  }
+
+  > app-icon {
+    margin: 20px 0 0 42px;
+  }
+
+  > p {
+    margin: 20px 0 0 10px;
+    font-weight: 500;
+    font-size: 16px;
+    > span {
+      margin-left: 3px;
+      font-weight: 100;
+      font-size: 12px;
+    }
+  }
+
+  > .dismiss {
+    position: absolute;
+    right: 32px;
+    margin-top: 20px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

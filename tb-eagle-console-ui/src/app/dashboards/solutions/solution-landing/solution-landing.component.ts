@@ -5,8 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
 import { Solution } from '../interfaces';
 import { Store, select } from '@ngrx/store';
-import { refreshSolutions } from '../solutions.actions';
-import { selectVisibleSolutions, SolutionsState, selectFeature } from '../solutions.reducers';
+import { refreshSolutions, dismissAlmostReadyAlert, dismissDeploymentReadyAlert } from '../solutions.actions';
+import { SolutionsState, selectIsAlmostReady, selectIsDeploymentReady } from '../solutions.reducers';
 
 @Component({
   selector: 'app-solution-landing',
@@ -41,5 +41,21 @@ export class SolutionLandingComponent implements OnInit {
 
   getSolutions(filter: string) {
     this.solutionsService.setFilter(filter);
+  }
+
+  get isAlmostReady$() {
+    return this.store.pipe(select(selectIsAlmostReady));
+  }
+
+  public DismissAlmostReady() {
+    this.store.dispatch(dismissAlmostReadyAlert());
+  }
+
+  get isReady$() {
+    return this.store.pipe(select(selectIsDeploymentReady));
+  }
+
+  public DismissReady() {
+    this.store.dispatch(dismissDeploymentReadyAlert());
   }
 }

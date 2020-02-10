@@ -1,6 +1,6 @@
 <label>
   <span class="label-text" [class.required]="required">{{ label }}</span>
-  <div class="selected" (click)="toggleOpen()" [class.open]="open">
+  <div class="selected" [ngClass]="{ placeholder: selected === '' }" (click)="toggleOpen()" [class.open]="open">
     <div class="flex-filler">{{ displayFn(selected) }}</div>
   </div>
   <div class="values" [class.open]="open">

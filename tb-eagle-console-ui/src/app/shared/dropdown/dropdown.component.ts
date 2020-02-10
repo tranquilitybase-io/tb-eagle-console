@@ -23,7 +23,8 @@ export class DropdownComponent implements ControlValueAccessor {
 
   @Input() required = false;
   @Input() label: string;
-  @Input() displayFn: (value: any) => string = x => (!x ? '' : x.toString());
+  @Input() placeholder = '';
+  @Input() displayFn: (value: any) => string = x => (!x ? this.placeholder : x.toString());
   @Input() set values(values: any[]) {
     this._values = values;
     this.selected = values[0];
