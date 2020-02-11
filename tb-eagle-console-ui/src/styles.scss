@@ -45,9 +45,10 @@ body {
   flex: auto;
 }
 
-@import './styles/badge.scss';
-@import './styles/button.scss';
-@import './styles/others.scss';
+@import './styles/badge';
+@import './styles/button';
+@import './styles/others';
+@import './styles/material';
 
 html,
 body {
