@@ -1,1 +1,156 @@
-<p>Overview Content</p>
+<mat-grid-list cols="5" rowHeight="120px">
+  <mat-grid-tile [colspan]="3" [rowspan]="6">
+    <mat-grid-tile-header>Metadata</mat-grid-tile-header>
+    <mat-grid-list class="internalMatGrid" cols="2" rowHeight="110px">
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Description
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>New backend running containers on Kubernetes for the Client Portal solution.</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <mat-card class="dashboard-card" [style.background]="'#F9F9F9'">
+          <mat-card-content class="dashboard-card-content">
+            <mat-list dense>
+              <mat-list-item>Data sensitivity</mat-list-item>
+              <mat-list-item>Users</mat-list-item>
+              <mat-list-item>Servers</mat-list-item>
+              <mat-list-item>Regions</mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Business unit
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>FICC Business Unit</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Cost centre
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>XXX-123-456-YYY</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Technology owner
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>Sanjeev Gupta</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Technology owner e-mail
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>s.gupta@company.name</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Billing
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>Monthly: Eagle tier 2</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="5" class="configuration-grid-tile">
+    <mat-grid-tile-header>Configuration</mat-grid-tile-header>
+    <mat-grid-list class="internalMatGrid" cols="1" rowHeight="110px">
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Activator
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>Single Region Kubernetes</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Category
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>Micro-services Tier 2</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Environments
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>POC</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Cloud patform
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>GCP</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Resources
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>GKE Cluster | 40.123.45.236</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+</mat-grid-list>
