@@ -13,6 +13,7 @@ import { BillingComponent } from './details-container/billing/billing.component'
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -40,6 +41,7 @@ const routes: Routes = [
     ActivatorsSharedModule,
     MatButtonModule,
     MatCardModule,
+    MatChipsModule,
     MatGridListModule,
     MatListModule,
     MatTabsModule

@@ -1,8 +1,8 @@
-<mat-grid-list cols="5" rowHeight="120px">
-  <mat-grid-tile [colspan]="3" [rowspan]="6">
+<mat-grid-list cols="5" rowHeight="700px">
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
     <mat-grid-tile-header>Metadata</mat-grid-tile-header>
-    <mat-grid-list class="internalMatGrid" cols="2" rowHeight="110px">
-      <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-grid-list class="internalMatGrid" cols="2" rowHeight="95px">
+      <mat-grid-tile [colspan]="2" [rowspan]="3">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
@@ -11,17 +11,32 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <div>New backend running containers on Kubernetes for the Client Portal solution.</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="2" [rowspan]="2">
-        <mat-card class="dashboard-card" [style.background]="'#F9F9F9'">
-          <mat-card-content class="dashboard-card-content">
-            <mat-list dense>
-              <mat-list-item>Data sensitivity</mat-list-item>
-              <mat-list-item>Users</mat-list-item>
-              <mat-list-item>Servers</mat-list-item>
-              <mat-list-item>Regions</mat-list-item>
+
+            <mat-list dense class="description-list">
+              <mat-list-item>
+                <div class="mat-body-1">Data sensitivity</div>
+                <mat-chip-list>
+                  <mat-chip color="warn" selected>Restricted</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Users</div>
+                <mat-chip-list>
+                  <mat-chip>600</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Servers</div>
+                <mat-chip-list>
+                  <mat-chip>100</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Regions</div>
+                <mat-chip-list>
+                  <mat-chip>UK</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
             </mat-list>
           </mat-card-content>
         </mat-card>
@@ -34,7 +49,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>FICC Business Unit</div>
+            <div class="mat-body-2">FICC Business Unit</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -46,7 +61,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>XXX-123-456-YYY</div>
+            <div class="mat-body-2">XXX-123-456-YYY</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -58,7 +73,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>Sanjeev Gupta</div>
+            <div class="mat-body-2">Sanjeev Gupta</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -70,7 +85,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>s.gupta@company.name</div>
+            <div class="mat-body-2">s.gupta@company.name</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -82,16 +97,16 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>Monthly: Eagle tier 2</div>
+            <div class="mat-body-2">Monthly: Eagle tier 2 <a href="#">View details</a></div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="5" class="configuration-grid-tile">
+  <mat-grid-tile [colspan]="2" [rowspan]="1" class="configuration-grid-tile">
     <mat-grid-tile-header>Configuration</mat-grid-tile-header>
     <mat-grid-list class="internalMatGrid" cols="1" rowHeight="110px">
-      <mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
@@ -103,7 +118,7 @@
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
-      <mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
@@ -111,11 +126,14 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>Micro-services Tier 2</div>
+            <mat-chip-list>
+              <mat-chip>Micro-services</mat-chip>
+              <mat-chip>Tier 2</mat-chip>
+            </mat-chip-list>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
-      <mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
@@ -123,11 +141,13 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>POC</div>
+            <mat-chip-list>
+              <mat-chip>POC</mat-chip>
+            </mat-chip-list>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
-      <mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
@@ -135,11 +155,13 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>GCP</div>
+            <mat-chip-list>
+              <mat-chip>GCP</mat-chip>
+            </mat-chip-list>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
-      <mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="2">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
@@ -147,7 +169,11 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>GKE Cluster | 40.123.45.236</div>
+            <mat-chip-list>
+              <mat-chip>GKE Cluster | <a href="#">40.123.45.236</a></mat-chip>
+              <mat-chip>ITSO | <a href="#">40.123.45.236</a></mat-chip>
+              <mat-chip>Cloud SQL | <a href="#">40.123.45.236</a></mat-chip>
+            </mat-chip-list>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>

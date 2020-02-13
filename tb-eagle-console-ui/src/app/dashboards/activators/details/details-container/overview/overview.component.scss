@@ -4,7 +4,10 @@
   left: 1rem;
   right: 1rem;
   bottom: 1rem;
+  border: none;
+  box-shadow: none;
 }
+
 .special-dashboard-card {
   position: absolute;
   top: 0.5rem;
@@ -27,4 +30,17 @@
   mat-card {
     background-color: #f9f9f9;
   }
+}
+
+.dashboard-card-content .description-list {
+  background-color: #f9f9f9;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  .mat-body-1 {
+    width: 8rem;
+  }
+}
+
+a {
+  margin-left: 5px;
 }
