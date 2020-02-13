@@ -39,6 +39,13 @@
   .mat-body-1 {
     width: 8rem;
   }
+  .mat-chip.sensitivity {
+    color: white;
+    background-color: var(--dark-grey-2);
+    &.red {
+      background-color: var(--red);
+    }
+  }
 }
 
 a {

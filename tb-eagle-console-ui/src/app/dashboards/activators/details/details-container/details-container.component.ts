@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { startDeployment } from '@app/dashboards/activators/all/all.actions';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Application } from '../../interfaces';
+import { Observable, of } from 'rxjs';
+import { ActivatorsService } from '../../activators.service';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details-container',
@@ -10,14 +11,25 @@ import { startDeployment } from '@app/dashboards/activators/all/all.actions';
   styleUrls: ['./details-container.component.scss']
 })
 export class DetailsContainerComponent {
-  name: string = 'Flame Birdy';
-  @ViewChild('form', { static: true }) form: NgForm;
+  app$: Observable<Application>;
 
-  constructor(private router: Router, private store: Store<any>, private route: ActivatedRoute) {}
+  constructor(private appsService: ActivatorsService, private route: ActivatedRoute) {}
 
-  onSubmit($event: Event) {
-    $event.preventDefault();
-    this.store.dispatch(startDeployment({ name: this.route.snapshot.queryParams.id }));
-    this.router.navigateByUrl('/dashboard/activators?categorySwitch=All');
+  ngOnInit() {
+    this.app$ = this.route.queryParams.pipe(
+      switchMap(({ id }) => {
+        return this.appsService.entityMap$.pipe(
+          map(entityMap => entityMap[id]),
+          switchMap(app => {
+            if (app) {
+              return of(app);
+            }
+
+            // Fetches activator from server if not previously loaded
+            return this.appsService.getByKey(id);
+          })
+        );
+      })
+    );
   }
 }

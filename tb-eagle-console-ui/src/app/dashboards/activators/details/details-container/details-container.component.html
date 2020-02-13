@@ -1,5 +1,5 @@
 <mat-tab-group mat-stretch-tabs>
-  <mat-tab label="Overview"> <app-overview></app-overview> </mat-tab>
+  <mat-tab label="Overview"> <app-overview [app]="app$ | async"></app-overview> </mat-tab>
   <mat-tab label="Audit history"> <app-audit-history></app-audit-history> </mat-tab>
   <mat-tab label="Version history"> <app-version-history></app-version-history> </mat-tab>
   <mat-tab label="Users"> <app-users></app-users> </mat-tab>

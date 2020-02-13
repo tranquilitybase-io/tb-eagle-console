@@ -10,31 +10,31 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>New backend running containers on Kubernetes for the Client Portal solution.</div>
+            <div>{{ app.name }} - {{ app.description }}</div>
 
             <mat-list dense class="description-list">
               <mat-list-item>
                 <div class="mat-body-1">Data sensitivity</div>
                 <mat-chip-list>
-                  <mat-chip color="warn" selected>Restricted</mat-chip>
+                  <mat-chip class="sensitivity" [ngClass]="sensitivityColor">{{ app.sensitivity }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Users</div>
                 <mat-chip-list>
-                  <mat-chip>600</mat-chip>
+                  <mat-chip>{{ app.userCapacity }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Servers</div>
                 <mat-chip-list>
-                  <mat-chip>100</mat-chip>
+                  <mat-chip>{{ app.serverCapacity }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Regions</div>
                 <mat-chip-list>
-                  <mat-chip>UK</mat-chip>
+                  <mat-chip *ngFor="let region of app.regions">{{ region }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
             </mat-list>
@@ -49,7 +49,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">FICC Business Unit</div>
+            <div class="mat-body-2">{{ app.businessUnity }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -61,7 +61,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">XXX-123-456-YYY</div>
+            <div class="mat-body-2">{{ app.costCentre }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -73,7 +73,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">Sanjeev Gupta</div>
+            <div class="mat-body-2">{{ app.technologyOwner }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -85,7 +85,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">s.gupta@company.name</div>
+            <div class="mat-body-2">{{ app.technologyOwnerEmail }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -97,7 +97,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">Monthly: Eagle tier 2 <a href="#">View details</a></div>
+            <div class="mat-body-2">{{ app.billing }} <a href="#">View details</a></div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -114,7 +114,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>Single Region Kubernetes</div>
+            <div>{{ app.activator }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -127,8 +127,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip>Micro-services</mat-chip>
-              <mat-chip>Tier 2</mat-chip>
+              <mat-chip>{{ app.category }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -142,7 +141,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip>POC</mat-chip>
+              <mat-chip *ngFor="let env of app.envs">{{ env }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -156,7 +155,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip>GCP</mat-chip>
+              <mat-chip *ngFor="let platform of app.platforms">{{ platform }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -170,9 +169,9 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip>GKE Cluster | <a href="#">40.123.45.236</a></mat-chip>
-              <mat-chip>ITSO | <a href="#">40.123.45.236</a></mat-chip>
-              <mat-chip>Cloud SQL | <a href="#">40.123.45.236</a></mat-chip>
+              <mat-chip *ngFor="let resource of app.resources">
+                {{ resource.name }} | <a href="#">{{ resource.ipAddress }}</a>
+              </mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>

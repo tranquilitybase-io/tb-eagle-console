@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Application } from '@app/dashboards/activators/interfaces';
 
 @Component({
   selector: 'app-overview',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent {
-  constructor() {}
+  @Input() app: Application;
+
+  get sensitivityColor(): string {
+    return String(this.app.sensitivity).toLowerCase() === 'restricted' ? 'red' : 'dark-grey';
+  }
 }

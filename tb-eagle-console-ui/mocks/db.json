@@ -4,7 +4,7 @@
   },
   "solutions": [
     {
-      "id":1,
+      "id": 1,
       "name": "Risk Engine",
       "desc": "Solution for internal users to be able to process settlement for FX transactions",
       "businessUnit": "Modern Apps",
@@ -18,10 +18,9 @@
       "applications": 5,
       "teams": 2,
       "lastUpdated": "2009"
-  
     },
     {
-      "id":2,
+      "id": 2,
       "name": "Back Office Settlements ",
       "desc": "Solution for internal users to be able to process settlement for FX transactions",
       "businessUnit": "Modern Apps",
@@ -35,10 +34,9 @@
       "applications": 5,
       "teams": 2,
       "lastUpdated": "2009"
-  
     },
     {
-      "id":3,
+      "id": 3,
       "name": "FX Engine ",
       "desc": "Solution for internal users to be able to process settlement for FX transactions",
       "businessUnit": "Modern Apps",
@@ -52,7 +50,6 @@
       "applications": 5,
       "teams": 2,
       "lastUpdated": "2009"
-  
     }
   ],
 
@@ -64,8 +61,8 @@
       "available": true,
       "sensitivity": "Public",
       "category": "Tier 3",
-      "envs": [ "POC", "DEV" ],
-      "platforms": [ "GCP" ],
+      "envs": ["POC", "DEV"],
+      "platforms": ["GCP"],
       "update": "2020-01-09T15:59:10.916Z",
       "userCapacity": 1000,
       "serverCapacity": 1200,
@@ -75,6 +72,17 @@
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
+      "businessUnity": "FICC Business Unit",
+      "costCentre": "XXX-123-456-YYY",
+      "technologyOwner": "Sanjeev Gupta",
+      "technologyOwnerEmail": "s.gupta@company.name",
+      "billing": "Monthly: Eagle tier 3",
+      "activator": "Single Region Kubernetes",
+      "resources": [
+        { "name": "GKE Cluster", "ipAddress": "40.123.45.236" },
+        { "name": "ITSO", "ipAddress": "40.123.45.236" },
+        { "name": "Cloud SQL", "ipAddress": "40.123.45.236" }
+      ],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -84,17 +92,27 @@
       "available": false,
       "sensitivity": "Restricted",
       "category": "Tier 1",
-      "envs": [ "POC", "AWS", "Other", "Fancy" ],
-      "platforms": [ "GCP" ],
+      "envs": ["POC", "AWS", "Other", "Fancy"],
+      "platforms": ["GCP"],
       "update": "2020-01-09T15:59:10.916Z",
-      "userCapacity": 1000,
-      "serverCapacity": 1200,
+      "userCapacity": 1300,
+      "serverCapacity": 2000,
       "regions": ["UK", "DB"],
       "hosting": ["Appengine"],
       "apiManagement": ["ApiGee"],
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
+      "businessUnity": "M&A Business Unit",
+      "costCentre": "XXX-111-444-YYY",
+      "technologyOwner": "Nathanael Stoltenberg",
+      "technologyOwnerEmail": "Nathanael.Stoltenberg@yahoo.com",
+      "billing": "Monthly: Eagle tier 1",
+      "activator": "Multi Region Kubernetes",
+      "resources": [
+        { "name": "GKE Cluster", "ipAddress": "40.123.45.236" },
+        { "name": "Cloud SQL", "ipAddress": "40.123.45.236" }
+      ],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -104,17 +122,27 @@
       "available": true,
       "sensitivity": "Restricted",
       "category": "Tier 2",
-      "envs": [ "POC", "Prod" ],
-      "platforms": [ "Azure", "GCP", "AWS", "Other", "Fancy" ],
+      "envs": ["POC", "Prod"],
+      "platforms": ["Azure", "GCP", "AWS", "Other", "Fancy"],
       "update": "2020-01-09T15:59:10.916Z",
-      "userCapacity": 1000,
-      "serverCapacity": 1200,
+      "userCapacity": 100,
+      "serverCapacity": 120,
       "regions": ["UK", "DB"],
       "hosting": ["Appengine"],
       "apiManagement": ["ApiGee"],
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
+      "businessUnity": "Equity Capital Business Unit",
+      "costCentre": "XXX-554-325-YYY",
+      "technologyOwner": "Brando Howell",
+      "technologyOwnerEmail": "Brando.Howell@hotmail.com",
+      "billing": "Monthly: Eagle tier 2",
+      "activator": "Single Region Kubernetes",
+      "resources": [
+        { "name": "ITSO", "ipAddress": "40.123.45.236" },
+        { "name": "Cloud SQL", "ipAddress": "40.123.45.236" }
+      ],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -124,17 +152,27 @@
       "available": true,
       "sensitivity": "Public",
       "category": "Tier 3",
-      "envs": [ "POC", "DEV" ],
-      "platforms": [ "GCP" ],
+      "envs": ["POC", "DEV"],
+      "platforms": ["GCP"],
       "update": "2020-01-09T15:59:10.916Z",
-      "userCapacity": 1000,
-      "serverCapacity": 1200,
+      "userCapacity": 500,
+      "serverCapacity": 300,
       "regions": ["UK", "DB"],
       "hosting": ["Appengine"],
       "apiManagement": ["ApiGee"],
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
+      "businessUnity": "Debit Capital Business Unit",
+      "costCentre": "XXX-445-875-YYY",
+      "technologyOwner": "Mohammed Will PhD",
+      "technologyOwnerEmail": "Mohammed.Will@gmail.com",
+      "billing": "Monthly: Eagle tier 3",
+      "activator": "Single Region Kubernetes",
+      "resources": [
+        { "name": "GKE Cluster", "ipAddress": "40.123.45.236" },
+        { "name": "ITSO", "ipAddress": "40.123.45.236" }
+      ],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -144,17 +182,27 @@
       "available": false,
       "sensitivity": "Restricted",
       "category": "Tier 1",
-      "envs": [ "POC", "AWS", "Other", "Fancy" ],
-      "platforms": [ "GCP" ],
+      "envs": ["POC", "AWS", "Other", "Fancy"],
+      "platforms": ["GCP"],
       "update": "2020-01-09T15:59:10.916Z",
-      "userCapacity": 1000,
-      "serverCapacity": 1200,
+      "userCapacity": 1600,
+      "serverCapacity": 2500,
       "regions": ["UK", "DB"],
       "hosting": ["Appengine"],
       "apiManagement": ["ApiGee"],
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
+      "businessUnity": "FICC Business Unit",
+      "costCentre": "XXX-325-568-YYY",
+      "technologyOwner": "Tressa Ullrich",
+      "technologyOwnerEmail": "Tressa97@yahoo.com",
+      "billing": "Monthly: Eagle tier 1",
+      "activator": "Single Region Kubernetes",
+      "resources": [
+        { "name": "ITSO", "ipAddress": "40.123.45.236" },
+        { "name": "Cloud SQL", "ipAddress": "40.123.45.236" }
+      ],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     },
     {
@@ -164,17 +212,27 @@
       "available": true,
       "sensitivity": "Restricted",
       "category": "Tier 2",
-      "envs": [ "POC", "Prod" ],
-      "platforms": [ "Azure", "GCP", "AWS", "Other", "Fancy" ],
+      "envs": ["POC", "Prod"],
+      "platforms": ["Azure", "GCP", "AWS", "Other", "Fancy"],
       "update": "2020-01-09T15:59:10.916Z",
-      "userCapacity": 1000,
-      "serverCapacity": 1200,
+      "userCapacity": 900,
+      "serverCapacity": 600,
       "regions": ["UK", "DB"],
       "hosting": ["Appengine"],
       "apiManagement": ["ApiGee"],
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
+      "businessUnity": "M&A Business Unit",
+      "costCentre": "XXX-458-798-YYY",
+      "technologyOwner": "Rose Dickens Sr.",
+      "technologyOwnerEmail": "Rose.Dickens19@hotmail.com",
+      "billing": "Monthly: Eagle tier 2",
+      "activator": "Single Region Kubernetes",
+      "resources": [
+        { "name": "GKE Cluster", "ipAddress": "40.123.45.236" },
+        { "name": "ITSO", "ipAddress": "40.123.45.236" }
+      ],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     }
   ]
