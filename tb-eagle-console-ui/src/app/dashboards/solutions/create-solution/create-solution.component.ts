@@ -6,7 +6,7 @@ import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
 import { SolutionsState } from '../solutions.reducers';
 import * as SolutionActions from '../solutions.actions';
 import { Solution } from '../interfaces';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-solution',
@@ -14,12 +14,15 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./create-solution.component.scss']
 })
 export class CreateSolutionComponent implements OnInit {
+  nameFormControl = new FormControl('', [Validators.required]);
+  descFormControl = new FormControl('', [Validators.required]);
   onPartTwo: boolean = false;
   screenNum: number = 0;
 
   solutionName: string = '';
   solutionDescription: string = '';
   solutionBU: string = '';
+  availableEnvs: string[] = ['Development', 'Production'];
 
   formHeight: string = '20rem';
 
@@ -41,7 +44,6 @@ export class CreateSolutionComponent implements OnInit {
       ci: '',
       cd: '',
       sourceControl: '',
-      changeControl: '',
       envs: [''],
       active: true,
       favourite: true,
