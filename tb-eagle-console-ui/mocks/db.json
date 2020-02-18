@@ -1,4 +1,31 @@
 {
+  "businessUnit": [
+    { "key": "FICC", "value": "FICC" },
+    { "key": "Modern Apps", "value": "Modern Apps" },
+    { "key": "Data", "value": "Data" }
+  ],
+  "cd": [
+    { "key": "Central", "value": "Central" },
+    { "key": "Spinnaker", "value": "Spinnaker" },
+    { "key": "Team City", "value": "Team City" },
+    { "key": "Screwdriver", "value": "Screwdriver" }
+  ],
+  "ci": [
+    { "key": "Jenkins", "value": "Jenkins" },
+    { "key": "Team City", "value": "Team City" },
+    { "key": "Cloud native", "value": "Cloud native" },
+    { "key": "Bamboo", "value": "Bamboo" },
+    { "key": "Travis", "value": "Travis" }
+  ],
+  "environment": [
+    { "key": "Development", "value": "Development" },
+    { "key": "Production", "value": "Production" }
+  ],
+  "sourceControl": [
+    { "key": "GitHub", "value": "GitHub" },
+    { "key": "BitBucket", "value": "BitBucket" },
+    { "key": "Cloud native", "value": "Cloud native" }
+  ],
   "deployment_meta": {
     "length": 100
   },

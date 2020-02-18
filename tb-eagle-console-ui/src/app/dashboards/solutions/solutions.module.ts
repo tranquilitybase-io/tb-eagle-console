@@ -26,6 +26,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { LayoutModule } from '@angular/cdk/layout';
+import { BusinessUnitResolver } from './resolvers/business-unit.resolver';
+import { ContinuousDeploymentResolver } from './resolvers/continuous-deployment.resolver';
+import { ContinuousIntegrationResolver } from './resolvers/continuous-integration.resolver';
+import { EnvironmentResolver } from './resolvers/environment.resolver';
+import { SourceControlResolver } from './resolvers/source-control.resolver';
 
 const routes: Routes = [
   {
@@ -34,7 +39,14 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: CreateSolutionComponent
+    component: CreateSolutionComponent,
+    resolve: {
+      businessUnitList: BusinessUnitResolver,
+      cdList: ContinuousDeploymentResolver,
+      ciList: ContinuousIntegrationResolver,
+      environmentList: EnvironmentResolver,
+      sourceControlList: SourceControlResolver
+    }
   },
   {
     path: 'view',

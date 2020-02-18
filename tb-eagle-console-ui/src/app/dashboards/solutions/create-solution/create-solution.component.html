@@ -27,9 +27,7 @@
     <mat-form-field id="business-unit" appearance="outline">
       <mat-label>Business unit</mat-label>
       <mat-select required formControlName="businessUnit">
-        <mat-option value="FICC">FICC</mat-option>
-        <mat-option value="Modern Apps">Modern Apps</mat-option>
-        <mat-option value="Data">Data</mat-option>
+        <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -43,30 +41,21 @@
   <div class="workspace-container" *ngIf="onPartTwo">
     <p>
       <mat-form-field appearance="outline">
-        <mat-label>CI (Continous intergration service)</mat-label>
+        <mat-label>CI (Continuous intergration service)</mat-label>
         <mat-select required formControlName="ci">
-          <mat-option value="Jenkins">Jenkins</mat-option>
-          <mat-option value="Team City">Team City</mat-option>
-          <mat-option value="Cloud native">Cloud native</mat-option>
-          <mat-option value="Bamboo">Bamboo</mat-option>
-          <mat-option value="Travis">Travis</mat-option>
+          <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Source Control</mat-label>
         <mat-select required formControlName="sourceControl">
-          <mat-option value="GitHub">GitHub</mat-option>
-          <mat-option value="BitBucket">BitBucket</mat-option>
-          <mat-option value="Cloud native">Cloud native</mat-option>
+          <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>CD (Continous deployment)</mat-label>
+        <mat-label>CD (Continuous deployment)</mat-label>
         <mat-select required formControlName="cd">
-          <mat-option value="Central">Central</mat-option>
-          <mat-option value="Spinnaker">Spinnaker</mat-option>
-          <mat-option value="Team City">Team City</mat-option>
-          <mat-option value="Screwdriver">Screwdriver</mat-option>
+          <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
         </mat-select>
       </mat-form-field>
     </p>
@@ -74,8 +63,8 @@
     <p>
       <span class="mat-subheading-1">Available environments</span>
       <mat-selection-list formControlName="envs">
-        <mat-list-option *ngFor="let env of availableEnvs" [value]="env">
-          {{ env }}
+        <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
+          {{ item.value }}
         </mat-list-option>
       </mat-selection-list>
     </p>
