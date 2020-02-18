@@ -30,7 +30,12 @@
   <div class="desc-content">{{ solution.desc }}</div>
 </div>
 <div class="footer" *ngIf="active">
-  <a class="button empty" type="button" routerLink="/dashboard/activators/view" [queryParams]="{ id: solution.id }">
+  <a
+    class="button empty"
+    type="button"
+    routerLink="view"
+    [queryParams]="{ id: solution.id, categorySwitch: 'Applications' }"
+  >
     View
   </a>
   <button class="button text-only" type="button" (click)="deploy()">Deploy</button>

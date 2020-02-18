@@ -12,7 +12,13 @@
     {{ app.type }}
   </div>
 </div>
-<app-properties *ngIf="!(deploymentInProgress$ | async)" title="Details" [properties]="properties"></app-properties>
+<app-properties
+  *ngIf="!(deploymentInProgress$ | async)"
+  routerLink="/dashboard/activators/details"
+  [queryParams]="{ id: app.id }"
+  title="Details"
+  [properties]="properties"
+></app-properties>
 <div *ngIf="deploymentInProgress$ | async" class="loader-container">
   <app-loader [percentage]="percentage$ | async" name="Deployment"></app-loader>
 </div>
@@ -21,11 +27,7 @@
   <div class="desc-content">{{ app.description }}</div>
 </div>
 <div class="footer" *ngIf="active">
-  <a
-    class="button empty"
-    type="button"
-    routerLink="/dashboard/activators/view"
-    [queryParams]="{ 'id': app.id }">
+  <a class="button empty" type="button" routerLink="/dashboard/activators/view" [queryParams]="{ id: app.id }">
     View
   </a>
   <button class="button text-only" type="button" (click)="deploy()">Deploy to app</button>

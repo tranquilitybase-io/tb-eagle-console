@@ -45,9 +45,10 @@ body {
   flex: auto;
 }
 
-@import './styles/badge.scss';
-@import './styles/button.scss';
-@import './styles/others.scss';
+@import './styles/badge';
+@import './styles/button';
+@import './styles/others';
+@import './styles/material';
 
 html,
 body {
@@ -56,4 +57,8 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.mat-tab-body-wrapper {
+  padding-top: 1rem;
 }

@@ -13,6 +13,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { SolutionEffects } from './solutions.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewComponent } from './view/view.component';
+import { ApplicationsGridComponent } from './view/applications-grid/applications-grid.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
 
 const routes: Routes = [
   {
@@ -22,11 +30,22 @@ const routes: Routes = [
   {
     path: 'create',
     component: CreateSolutionComponent
+  },
+  {
+    path: 'view',
+    component: ViewComponent
   }
 ];
 
 @NgModule({
-  declarations: [SolutionSelectComponent, SolutionDetailsComponent, CreateSolutionComponent, SolutionLandingComponent],
+  declarations: [
+    SolutionSelectComponent,
+    SolutionDetailsComponent,
+    CreateSolutionComponent,
+    SolutionLandingComponent,
+    ViewComponent,
+    ApplicationsGridComponent
+  ],
   providers: [SolutionsService],
   imports: [
     FormsModule,
@@ -36,7 +55,13 @@ const routes: Routes = [
     StoreModule.forFeature(solutionFeatureKey, reducer),
     EffectsModule.forFeature([SolutionEffects]),
     RouterModule.forChild(routes),
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule
   ]
 })
 export class SolutionsModule {}
