@@ -1,11 +1,12 @@
 <header>
-    <app-breadcrumbs [steps]="['My Team solutions']"> </app-breadcrumbs>
-    <a class="button text-only create" routerLink="/dashboard/solutions/create">Create new solution</a>
-  </header>
-  <div>
-    <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>
-  </div>
-  
-  <main class="dashboard-grid">
-    <app-applications-grid></app-applications-grid>
-  </main>
+  <app-breadcrumbs [steps]="['My Team solutions']"> </app-breadcrumbs>
+  <a class="button text-only create" routerLink="/dashboard/solutions/create">Create new solution</a>
+</header>
+<div>
+  <app-solution-select [values]="values"></app-solution-select>
+</div>
+
+<main class="dashboard-grid">
+  <app-applications-grid *ngIf="(current$ | async) !== 'Workspace'"></app-applications-grid>
+  <app-workspace-info [solution]="solution" *ngIf="(current$ | async) === 'Workspace'"></app-workspace-info>
+</main>

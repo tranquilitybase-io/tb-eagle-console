@@ -53,7 +53,7 @@ export class CreateSolutionComponent implements OnInit {
       ci: '',
       cd: '',
       sourceControl: '',
-      envs: [''],
+      environments: [''],
       active: true,
       favourite: true,
       applications: 0,

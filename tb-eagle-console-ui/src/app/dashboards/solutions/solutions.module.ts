@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewComponent } from './view/view.component';
 import { ApplicationsGridComponent } from './view/applications-grid/applications-grid.component';
+import { WorkspaceInfoComponent } from './view/workspace-info/workspace-info.component';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -26,11 +28,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { LayoutModule } from '@angular/cdk/layout';
+
 import { BusinessUnitResolver } from './resolvers/business-unit.resolver';
 import { ContinuousDeploymentResolver } from './resolvers/continuous-deployment.resolver';
 import { ContinuousIntegrationResolver } from './resolvers/continuous-integration.resolver';
 import { EnvironmentResolver } from './resolvers/environment.resolver';
 import { SourceControlResolver } from './resolvers/source-control.resolver';
+import { ViewResolver } from './resolvers/view.resolver';
 
 const routes: Routes = [
   {
@@ -50,7 +54,10 @@ const routes: Routes = [
   },
   {
     path: 'view',
-    component: ViewComponent
+    component: ViewComponent,
+    resolve: {
+      solution: ViewResolver
+    }
   }
 ];
 
@@ -61,7 +68,8 @@ const routes: Routes = [
     CreateSolutionComponent,
     SolutionLandingComponent,
     ViewComponent,
-    ApplicationsGridComponent
+    ApplicationsGridComponent,
+    WorkspaceInfoComponent
   ],
   providers: [SolutionsService],
   imports: [

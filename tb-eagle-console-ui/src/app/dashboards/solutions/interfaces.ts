@@ -6,8 +6,7 @@ export class Solution {
   ci: string;
   cd: string;
   sourceControl: string;
-  changeControl: string;
-  envs: string[];
+  environments: string[];
   active: boolean;
   favourite: boolean;
   applications: number;
