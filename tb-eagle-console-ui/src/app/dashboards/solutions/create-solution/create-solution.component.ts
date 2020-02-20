@@ -12,8 +12,6 @@ import { KeyValue } from '@angular/common';
   styleUrls: ['./create-solution.component.scss']
 })
 export class CreateSolutionComponent implements OnInit {
-  nameFormControl = new FormControl('', [Validators.required]);
-  descFormControl = new FormControl('', [Validators.required]);
   onPartTwo: boolean = false;
   screenNum: number = 0;
 
@@ -26,8 +24,6 @@ export class CreateSolutionComponent implements OnInit {
   businessUnitList: KeyValue<string, string>[];
   sourceControlList: KeyValue<string, string>[];
   environmentList: KeyValue<string, string>[];
-
-  formHeight: string = '20rem';
 
   solutionForm;
 
@@ -49,7 +45,8 @@ export class CreateSolutionComponent implements OnInit {
       id: 0,
       name: '',
       desc: '',
-      businessUnit: [''],
+      businessUnit: '',
+      costCentre: '',
       ci: '',
       cd: '',
       sourceControl: '',

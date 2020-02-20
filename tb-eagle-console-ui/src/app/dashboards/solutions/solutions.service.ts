@@ -7,6 +7,7 @@ import { startDeployment } from '../solutions/solutions.actions';
 import { KeyValue } from '@angular/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Application } from '../activators/interfaces';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +35,23 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
       }
     );
     console.log(solution + ' posted');
+  }
+
+  appendApplication(solution: Solution, application: Application): void {
+    const url = `${this.BASE_URL}/solution/${solution.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.patch(url, { applications: [...solution.applications, application] }, { headers }).subscribe(
+      val => {
+        console.log('PATCH call successful value returned in body', val);
+      },
+      response => {
+        console.log('PATCH call in error', response);
+      },
+      () => {
+        console.log('The PATCH observable is now completed.');
+      }
+    );
+    console.log(application + ' appended to solution: ' + solution);
   }
 
   private handleError(error: HttpErrorResponse) {

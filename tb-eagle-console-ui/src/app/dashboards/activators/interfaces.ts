@@ -8,7 +8,7 @@ export interface Application {
   envs: string[];
   platforms: string[];
   update: Date;
-  description: string;
+  desc: string;
   userCapacity: number;
   serverCapacity: number;
   regions: string[];

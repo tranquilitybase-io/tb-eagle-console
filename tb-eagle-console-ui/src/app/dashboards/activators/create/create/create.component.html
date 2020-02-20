@@ -1,16 +1,43 @@
 <app-set-progress-on-init [step]="1"></app-set-progress-on-init>
-<app-alert text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."></app-alert>
-<form #form="ngForm" (submit)="onSubmit($event)">
-  <div class="form-body">
-    <app-input type="text" name="name" label="Name" [required]="true" [(ngModel)]="name"></app-input>
-    <app-input class="wide" type="text" name="description" label="Description" [area]="true" [required]="true"></app-input>
-    <app-dropdown name="businessUnit" [required]="true" [values]="['FICC Business Unit', 'Some Other Business Unit']" label="Business unit"></app-dropdown>
-    <app-input type="text" name="costCentre" label="Cost centre" [required]="true"></app-input>
-    <app-dropdown class="first" name="targetEnv" [required]="true" [values]="['PROD', 'DEV', 'UAT']" label="Target environments"></app-dropdown>
-  </div>
-  <div class="form-footer">
-    <a type="button" class="button empty" routerLink="/dashboard/activators/view" queryParamsHandling="preserve">Back to activator</a>
-    <div class="flex-filler"></div>
-    <button type="submit" class="button text-only">Create and deploy application</button>
+<form [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm.value)">
+  <app-alert
+    class="app-alert"
+    text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."
+  ></app-alert>
+  <p>
+    <mat-form-field class="small-width" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput required type="text" maxlength="50" formControlName="name" placeholder="E.g. project name..." />
+      <mat-error *ngIf="isFieldValid('name')"> Name is <strong>required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        required
+        #desctext
+        maxlength="200"
+        formControlName="desc"
+        placeholder="Type your description here..."
+      ></textarea>
+      <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+      <mat-error *ngIf="isFieldValid('desc')"> Description is <strong>required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+
+  <div class="footer-container">
+    <button
+      mat-button
+      color="primary"
+      type="button"
+      routerLink="/dashboard/activators/view"
+      queryParamsHandling="preserve"
+    >
+      <mat-icon>keyboard_arrow_left</mat-icon> Review activator
+    </button>
+    <button mat-button color="primary" type="submit">Add to Solution <mat-icon>keyboard_arrow_right</mat-icon></button>
   </div>
 </form>

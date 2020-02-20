@@ -4,32 +4,47 @@
 </header>
 <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
   <div class="details-container" *ngIf="!onPartTwo">
-    <mat-form-field id="name" appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput required type="text" maxlength="50" formControlName="name" placeholder="E.g. project name..." />
-      <mat-error *ngIf="nameFormControl.hasError('required')"> Name is <strong>required</strong> </mat-error>
-    </mat-form-field>
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required type="text" maxlength="50" formControlName="name" placeholder="E.g. project name..." />
+      </mat-form-field>
+    </p>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        required
-        #desctext
-        maxlength="200"
-        formControlName="desc"
-        placeholder="Type your description here..."
-      ></textarea>
-      <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
-      <mat-error *ngIf="descFormControl.hasError('required')"> Description is <strong>required</strong> </mat-error>
-    </mat-form-field>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          required
+          #desctext
+          maxlength="200"
+          formControlName="desc"
+          placeholder="Type your description here..."
+        ></textarea>
+        <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+      </mat-form-field>
+    </p>
 
-    <mat-form-field id="business-unit" appearance="outline">
-      <mat-label>Business unit</mat-label>
-      <mat-select required formControlName="businessUnit">
-        <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Business unit</mat-label>
+        <mat-select required formControlName="businessUnit">
+          <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Cost centre</mat-label>
+        <input
+          matInput
+          required
+          type="text"
+          maxlength="50"
+          formControlName="costCentre"
+          placeholder="XXX-123-456-YYY"
+        />
+      </mat-form-field>
+    </p>
 
     <div class="footer-container details-footer-container">
       <button mat-button color="primary" (click)="toggleSolutionPage()">

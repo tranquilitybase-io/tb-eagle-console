@@ -11,8 +11,10 @@ import {
   createSolution,
   startDeployment,
   updateDeploymentProgress,
-  stopDeployment
+  stopDeployment,
+  appendApplication
 } from './solutions.actions';
+import { Solution } from './interfaces';
 
 function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
   return new Observable(observer => {
@@ -57,6 +59,19 @@ export class SolutionEffects {
       this.actions$.pipe(
         ofType(createSolution),
         tap(action => this.solutionService.createSolution(action.solution))
+      ),
+    { dispatch: false }
+  );
+
+  appendApplication$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(appendApplication),
+        tap(action => {
+          this.solutionService.getByKey(action.solutionId).subscribe((solution: Solution) => {
+            this.solutionService.appendApplication(solution, action.application);
+          });
+        })
       ),
     { dispatch: false }
   );

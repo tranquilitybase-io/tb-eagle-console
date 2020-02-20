@@ -7,7 +7,8 @@ import {
   startDeployment,
   stopDeployment,
   dismissAlmostReadyAlert,
-  dismissDeploymentReadyAlert
+  dismissDeploymentReadyAlert,
+  setSelectedSolution
 } from './solutions.actions';
 import { Solution } from './interfaces';
 
@@ -45,6 +46,7 @@ export const solutionsReducer = createReducer(
 
     return state;
   }),
+  on(setSelectedSolution, (state, { solution }) => ({ ...state, selectedSolution: solution })),
   on(startDeployment, state => ({ ...state, progress: 0, inProgress: true })),
   on(stopDeployment, state => ({ ...state, inProgress: false })),
   on(updateDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
@@ -77,3 +79,4 @@ export const selectIsAlmostReady = createSelector(
   selectFeature,
   state => !state.dismissAlmostReady && Object.values(state).some(deployment => deployment['inProgress'])
 );
+export const selectSelectedSolution = createSelector(selectFeature, state => state['selectedSolution']);

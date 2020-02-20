@@ -22,10 +22,19 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: left;
-  align-items: left;
-  align-content: left;
-  flex-flow: column;
   height: calc(100vh - 11rem);
+
+  p {
+    width: 100%;
+    .mat-form-field {
+      width: 100%;
+
+      &.small-width {
+        width: 30%;
+        margin-right: 2rem;
+      }
+    }
+  }
 }
 
 main {
@@ -102,9 +111,4 @@ main {
 
 .mat-form-field {
   font-size: 14px;
-
-  &#name,
-  &#business-unit {
-    width: 30%;
-  }
 }
