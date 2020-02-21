@@ -1,14 +1,14 @@
 import { createReducer, on, createSelector, select, createFeatureSelector } from '@ngrx/store';
 
 import {
-  refreshSolutions,
   setSolutions,
   updateDeploymentProgress,
   startDeployment,
   stopDeployment,
   dismissAlmostReadyAlert,
   dismissDeploymentReadyAlert,
-  setSelectedSolution
+  setSelectedSolution,
+  discardSelectedSolution
 } from './solutions.actions';
 import { Solution } from './interfaces';
 
@@ -47,6 +47,7 @@ export const solutionsReducer = createReducer(
     return state;
   }),
   on(setSelectedSolution, (state, { solution }) => ({ ...state, selectedSolution: solution })),
+  on(discardSelectedSolution, state => ({ ...state, selectedSolution: undefined })),
   on(startDeployment, state => ({ ...state, progress: 0, inProgress: true })),
   on(stopDeployment, state => ({ ...state, inProgress: false })),
   on(updateDeploymentProgress, (state, { progress }) => ({ ...state, progress })),

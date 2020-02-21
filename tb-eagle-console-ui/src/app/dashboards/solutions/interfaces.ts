@@ -1,9 +1,15 @@
-import { Application } from '../activators/interfaces';
+import { Activator } from '../activators/interfaces';
+
+export class Application {
+  name: string;
+  description: string;
+  activator: Activator;
+}
 
 export class Solution {
   id: number;
   name: string;
-  desc: string;
+  description: string;
   businessUnit: string;
   costCentre: string;
   ci: string;

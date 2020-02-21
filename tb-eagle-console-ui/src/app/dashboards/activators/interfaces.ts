@@ -1,4 +1,4 @@
-export interface Application {
+export interface Activator {
   id: number;
   name: string;
   type: string;
@@ -8,7 +8,7 @@ export interface Application {
   envs: string[];
   platforms: string[];
   update: Date;
-  desc: string;
+  description: string;
   userCapacity: number;
   serverCapacity: number;
   regions: string[];

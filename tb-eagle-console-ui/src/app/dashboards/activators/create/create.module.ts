@@ -11,11 +11,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { ActivatorByIdResolver } from '../resolvers/activator-by-id.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: CreateComponent
+    component: CreateComponent,
+    resolve: {
+      activator: ActivatorByIdResolver
+    }
   }
 ];
 

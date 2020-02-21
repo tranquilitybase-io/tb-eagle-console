@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import * as SolutionActions from '@app/dashboards/solutions/solutions.actions';
-import { Application } from '../../interfaces';
 import { selectSelectedSolution } from '@app/dashboards/solutions/solutions.reducers';
-import { Solution } from '@app/dashboards/solutions/interfaces';
+import { Solution, Application } from '@app/dashboards/solutions/interfaces';
+import { Activator } from '../../interfaces';
 
 @Component({
   selector: 'app-create',
@@ -13,20 +13,27 @@ import { Solution } from '@app/dashboards/solutions/interfaces';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
-  @Input() activator: any;
   applicationForm: FormGroup;
   private solution: Solution;
 
-  constructor(private router: Router, private store: Store<any>, private formBuilder: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private store: Store<any>,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.store.pipe(select(selectSelectedSolution)).subscribe((solution: Solution) => {
       this.solution = solution;
     });
+
+    const activator: Activator = this.route.snapshot.data['activator'];
+
     this.applicationForm = this.formBuilder.group({
       name: ['', Validators.required],
-      desc: ['', Validators.required],
-      activator: this.activator
+      description: ['', Validators.required],
+      activator
     });
   }
 
@@ -36,8 +43,10 @@ export class CreateComponent {
 
   onSubmit(application: Application) {
     if (this.applicationForm.valid) {
-      this.store.dispatch(SolutionActions.appendApplication({ solutionId: this.solution.id, application }));
-      this.router.navigateByUrl(`/dashboard/solutions/view?id=${this.solution.id}&categorySwitch=Applications`);
+      const solutionId = this.solution.id;
+      this.store.dispatch(SolutionActions.appendApplication({ solutionId: solutionId, application }));
+      this.store.dispatch(SolutionActions.discardSelectedSolution());
+      this.router.navigateByUrl(`/dashboard/solutions/view?id=${solutionId}&categorySwitch=Applications`);
     } else {
       this.applicationForm.markAllAsTouched();
     }

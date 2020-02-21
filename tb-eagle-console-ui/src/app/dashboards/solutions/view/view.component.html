@@ -1,5 +1,5 @@
 <header>
-  <app-breadcrumbs [steps]="[solution.name, solution.desc]" [isActive]="solution.active"> </app-breadcrumbs>
+  <app-breadcrumbs [steps]="[solution.name, solution.description]" [isActive]="solution.active"> </app-breadcrumbs>
 </header>
 <div>
   <app-solution-select [values]="values"></app-solution-select>
@@ -16,10 +16,6 @@
       <span class="mat-small">{{ solution.costCentre }}</span>
     </span>
   </p>
-  <app-applications-grid
-    [solution]="solution"
-    [apps]="solution.applications"
-    *ngIf="(current$ | async) !== 'Workspace'"
-  ></app-applications-grid>
+  <app-applications-grid [solution]="solution" *ngIf="(current$ | async) !== 'Workspace'"></app-applications-grid>
   <app-workspace-info [solution]="solution" *ngIf="(current$ | async) === 'Workspace'"></app-workspace-info>
 </main>

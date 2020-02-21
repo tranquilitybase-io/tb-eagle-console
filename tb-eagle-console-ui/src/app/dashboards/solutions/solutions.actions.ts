@@ -1,12 +1,12 @@
 import { createAction, props } from '@ngrx/store';
-import { Solution } from './interfaces';
-import { Application } from '../activators/interfaces';
+import { Solution, Application } from './interfaces';
 
 export const setSolutions = createAction(
   'setSolutions [Solutions]',
   props<{ solutions: Solution[]; filter: string }>()
 );
 export const setSelectedSolution = createAction('setSelectedSolution [Solutions]', props<{ solution: Solution }>());
+export const discardSelectedSolution = createAction('discardSelectedSolution [Solutions]');
 export const refreshSolutions = createAction('refreshSolutions [Solutions]', props<{ filter: string }>());
 
 export const createSolution = createAction('[solutions-creation] create-solution', props<{ solution: Solution }>());

@@ -33,7 +33,7 @@
     {
       "id": 1,
       "name": "Risk Engine",
-      "desc": "Solution for internal users to be able to process settlement for FX transactions",
+      "description": "Solution for internal users to be able to process settlement for FX transactions",
       "businessUnit": "Modern Apps",
       "costCentre": "XXX-123-456-YYY",
       "ci": "Jenkins CI",
@@ -44,12 +44,12 @@
       "favourite": true,
       "applications": [],
       "teams": 2,
-      "lastUpdated": "2009"
+      "lastUpdated": "1582309207887"
     },
     {
       "id": 2,
       "name": "Back Office Settlements ",
-      "desc": "Solution for internal users to be able to process settlement for FX transactions",
+      "description": "Solution for internal users to be able to process settlement for FX transactions",
       "businessUnit": "Modern Apps",
       "costCentre": "XXX-111-444-YYY",
       "ci": "Jenkins CI",
@@ -60,12 +60,12 @@
       "favourite": false,
       "applications": [],
       "teams": 2,
-      "lastUpdated": "2009"
+      "lastUpdated": "1582309207887"
     },
     {
       "id": 3,
       "name": "FX Engine ",
-      "desc": "Solution for internal users to be able to process settlement for FX transactions",
+      "description": "Solution for internal users to be able to process settlement for FX transactions",
       "businessUnit": "Modern Apps",
       "costCentre": "XXX-554-325-YYY",
       "ci": "Jenkins CI",
@@ -76,7 +76,7 @@
       "favourite": false,
       "applications": [],
       "teams": 2,
-      "lastUpdated": "2009"
+      "lastUpdated": "1582309207887"
     }
   ],
 

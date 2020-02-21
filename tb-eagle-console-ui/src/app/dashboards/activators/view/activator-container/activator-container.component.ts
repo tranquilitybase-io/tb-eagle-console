@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { ActivatorsService } from '@app/dashboards/activators/activators.service';
-import { Application } from '@app/dashboards/activators/interfaces';
+import { Activator } from '@app/dashboards/activators/interfaces';
 
 @Component({
   selector: 'app-activator-container',
@@ -11,7 +11,7 @@ import { Application } from '@app/dashboards/activators/interfaces';
   styleUrls: ['./activator-container.component.scss']
 })
 export class ActivatorContainerComponent implements OnInit {
-  app$: Observable<Application>;
+  app$: Observable<Activator>;
 
   constructor(private appsService: ActivatorsService, private route: ActivatedRoute) {}
 

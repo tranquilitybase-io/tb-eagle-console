@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Application } from '@app/dashboards/activators/interfaces';
 import { Store } from '@ngrx/store';
 import { setSelectedSolution } from '../../solutions.actions';
-import { Solution } from '../../interfaces';
+import { Solution, Application } from '../../interfaces';
 
 @Component({
   selector: 'app-applications-grid',
@@ -11,10 +10,13 @@ import { Solution } from '../../interfaces';
   styleUrls: ['./applications-grid.component.scss']
 })
 export class ApplicationsGridComponent {
-  @Input() apps: Array<Application>;
   @Input() solution: Solution;
 
   constructor(private router: Router, private store: Store<any>) {}
+
+  get apps(): Array<Application> {
+    return this.solution.applications;
+  }
 
   redirect() {
     this.store.dispatch(setSelectedSolution({ solution: this.solution }));

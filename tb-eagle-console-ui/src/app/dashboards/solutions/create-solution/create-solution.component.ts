@@ -43,19 +43,19 @@ export class CreateSolutionComponent implements OnInit {
 
     this.solutionForm = this.formBuilder.group({
       id: 0,
-      name: '',
-      desc: '',
-      businessUnit: '',
-      costCentre: '',
-      ci: '',
-      cd: '',
-      sourceControl: '',
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      businessUnit: ['', Validators.required],
+      costCentre: ['', Validators.required],
+      ci: ['', Validators.required],
+      cd: ['', Validators.required],
+      sourceControl: ['', Validators.required],
       environments: [''],
       active: true,
       favourite: true,
-      applications: 0,
+      applications: [],
       teams: 0,
-      lastUpdated: 'Just now'
+      lastUpdated: Date.now()
     });
   }
 
