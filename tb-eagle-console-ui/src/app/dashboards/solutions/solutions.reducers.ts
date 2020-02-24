@@ -8,7 +8,10 @@ import {
   dismissAlmostReadyAlert,
   dismissDeploymentReadyAlert,
   setSelectedSolution,
-  discardSelectedSolution
+  discardSelectedSolution,
+  startDeployApplication,
+  updateDeploymentProgressApp,
+  stopDeploymentApp
 } from './solutions.actions';
 import { Solution } from './interfaces';
 
@@ -52,7 +55,10 @@ export const solutionsReducer = createReducer(
   on(stopDeployment, state => ({ ...state, inProgress: false })),
   on(updateDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
   on(dismissDeploymentReadyAlert, state => ({ ...state, isDeploymentReady: false })),
-  on(dismissAlmostReadyAlert, state => ({ ...state, dismissAlmostReady: true }))
+  on(dismissAlmostReadyAlert, state => ({ ...state, dismissAlmostReady: true })),
+  on(startDeployApplication, state => ({ ...state, progressApp: 0, inProgressApp: true })),
+  on(updateDeploymentProgressApp, (state, { progressApp }) => ({ ...state, progressApp })),
+  on(stopDeploymentApp, state => ({ ...state, inProgressApp: false }))
 );
 
 export default function reducer(state, action) {
@@ -63,6 +69,18 @@ export default function reducer(state, action) {
       isDeploymentReady: action.type === stopDeployment.type || state.isDeploymentReady,
       dismissAlmostReady:
         action.type === startDeployment.type ? false : action.type === stopDeployment.type || state.dismissAlmostReady
+    };
+  }
+
+  if ([startDeployApplication.type, updateDeploymentProgressApp.type, stopDeploymentApp.type].includes(action.type)) {
+    return {
+      ...state,
+      [action.name]: solutionsReducer(state[action.name], action),
+      isDeploymentReady: action.type === stopDeploymentApp.type || state.isDeploymentReady,
+      dismissAlmostReady:
+        action.type === startDeployApplication.type
+          ? false
+          : action.type === stopDeploymentApp.type || state.dismissAlmostReady
     };
   }
 
@@ -81,3 +99,8 @@ export const selectIsAlmostReady = createSelector(
   state => !state.dismissAlmostReady && Object.values(state).some(deployment => deployment['inProgress'])
 );
 export const selectSelectedSolution = createSelector(selectFeature, state => state['selectedSolution']);
+
+export const selectProgressApp = name =>
+  createSelector(selectFeature, state => (state[name] ? state[name].progressApp : 0));
+export const selectInProgressApp = name =>
+  createSelector(selectFeature, state => (state[name] ? state[name].inProgressApp : false));

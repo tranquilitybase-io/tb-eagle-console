@@ -12,7 +12,10 @@ import {
   startDeployment,
   updateDeploymentProgress,
   stopDeployment,
-  appendApplication
+  appendApplication,
+  startDeployApplication,
+  stopDeploymentApp,
+  updateDeploymentProgressApp
 } from './solutions.actions';
 import { Solution } from './interfaces';
 
@@ -85,6 +88,23 @@ export class SolutionEffects {
           emitRangeDelayed(range(0, 100, 2), 300).pipe(
             tap(console.log),
             map(progress => (progress >= 100 ? stopDeployment({ name }) : updateDeploymentProgress({ name, progress })))
+          )
+        )
+      )
+    )
+  );
+
+  deploymentsApp$ = createEffect(() =>
+    this.zone.runOutsideAngular(() =>
+      this.actions$.pipe(
+        ofType(startDeployApplication),
+        // This part of code mocks up deployment process
+        mergeMap(({ name }) =>
+          emitRangeDelayed(range(0, 100, 2), 300).pipe(
+            tap(console.log),
+            map(progressApp =>
+              progressApp >= 100 ? stopDeploymentApp({ name }) : updateDeploymentProgressApp({ name, progressApp })
+            )
           )
         )
       )

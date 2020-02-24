@@ -14,7 +14,7 @@
     <mat-card-subtitle>{{ app.activator.type }}</mat-card-subtitle>
   </mat-card-header>
 
-  <mat-card-content>
+  <mat-card-content *ngIf="!(deploymentInProgressApp$ | async)">
     <div class="mat-body-strong">Details</div>
     <mat-list dense class="description-list">
       <mat-list-item>
@@ -44,6 +44,11 @@
     </mat-list>
   </mat-card-content>
 
+  <mat-card-content *ngIf="deploymentInProgressApp$ | async" class="spinner">
+    <div class="mat-body">Deployment</div>
+    <mat-progress-spinner color="primary" mode="indeterminate" diameter="200" strokeWidth="5" [value]="percentage$ | async"> </mat-progress-spinner>
+  </mat-card-content>
+
   <mat-card-footer *ngIf="!active">
     <div>
       <div class="mat-body-strong">Description</div>
@@ -52,6 +57,6 @@
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
     <button mat-stroked-button>View</button>
-    <button mat-button color="primary">Deploy <mat-icon>chevron_right</mat-icon></button>
+    <button mat-button color="primary" (click)="deploy()">Deploy <mat-icon>chevron_right</mat-icon></button>
   </mat-card-actions>
 </mat-card>

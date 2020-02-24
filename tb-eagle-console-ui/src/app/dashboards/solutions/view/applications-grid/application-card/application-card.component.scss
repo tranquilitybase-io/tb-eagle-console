@@ -35,6 +35,17 @@
   .mat-card-content {
     cursor: pointer;
     padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+
+    &.spinner {
+      display: flex;
+      justify-content: center;
+      .mat-body {
+        position: absolute;
+        display: flex;
+        align-self: center;
+      }
+    }
+
     .description-list {
       .mat-body {
         width: 8rem;
