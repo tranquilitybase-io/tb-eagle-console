@@ -6,11 +6,16 @@ import { startDeployment } from '../solutions/solutions.actions';
 import { KeyValue } from '@angular/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class SolutionsService extends EntityCollectionServiceBase<Solution> {
-  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
+  constructor(
+    serviceElementsFactory: EntityCollectionServiceElementsFactory,
+    private http: HttpClient,
+    private router: Router
+  ) {
     super('Solution', serviceElementsFactory);
   }
 
@@ -47,6 +52,7 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
       },
       () => {
         console.log('The PATCH observable is now completed.');
+        this.router.navigateByUrl(`/dashboard/solutions/view?id=${solution.id}&categorySwitch=Applications`);
       }
     );
     console.log(application + ' appended to solution: ' + solution);

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import * as SolutionActions from '@app/dashboards/solutions/solutions.actions';
@@ -16,12 +16,7 @@ export class CreateComponent {
   applicationForm: FormGroup;
   private solution: Solution;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private store: Store<any>,
-    private formBuilder: FormBuilder
-  ) {}
+  constructor(private route: ActivatedRoute, private store: Store<any>, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.store.pipe(select(selectSelectedSolution)).subscribe((solution: Solution) => {
@@ -46,7 +41,6 @@ export class CreateComponent {
       const solutionId = this.solution.id;
       this.store.dispatch(SolutionActions.appendApplication({ solutionId: solutionId, application }));
       this.store.dispatch(SolutionActions.discardSelectedSolution());
-      this.router.navigateByUrl(`/dashboard/solutions/view?id=${solutionId}&categorySwitch=Applications`);
     } else {
       this.applicationForm.markAllAsTouched();
     }

@@ -18,7 +18,7 @@ export class ApplicationsGridComponent {
     return this.solution.applications;
   }
 
-  redirect() {
+  createNewApplication() {
     this.store.dispatch(setSelectedSolution({ solution: this.solution }));
     this.router.navigateByUrl('/dashboard/activators');
   }

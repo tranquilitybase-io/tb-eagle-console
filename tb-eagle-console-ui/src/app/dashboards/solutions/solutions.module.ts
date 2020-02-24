@@ -20,6 +20,7 @@ import { WorkspaceInfoComponent } from './view/workspace-info/workspace-info.com
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -35,6 +36,7 @@ import { ContinuousIntegrationResolver } from './resolvers/continuous-integratio
 import { EnvironmentResolver } from './resolvers/environment.resolver';
 import { SourceControlResolver } from './resolvers/source-control.resolver';
 import { ViewResolver } from './resolvers/view.resolver';
+import { ApplicationCardComponent } from './view/applications-grid/application-card/application-card.component';
 
 const routes: Routes = [
   {
@@ -69,7 +71,8 @@ const routes: Routes = [
     SolutionLandingComponent,
     ViewComponent,
     ApplicationsGridComponent,
-    WorkspaceInfoComponent
+    WorkspaceInfoComponent,
+    ApplicationCardComponent
   ],
   providers: [SolutionsService],
   imports: [
@@ -84,6 +87,7 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatChipsModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
