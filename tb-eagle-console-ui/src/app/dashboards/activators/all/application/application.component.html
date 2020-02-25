@@ -1,9 +1,10 @@
 <div class="head">
   <div class="status">
-    <div class="badge" [class.black]="!app.available">{{ app.available ? 'Available' : 'Locked' }}</div>
+    <div class="badge" [class.black]="app.available=='Locked'" [class.yellow]="app.available=='Deprecated'">{{app.available}}</div>
     <div class="flex-filler"></div>
     <app-icon icon="star" [stroke]="true" [color]="strokeColor"></app-icon>
     <app-icon icon="dots"></app-icon>
+    <!-- <button aria-label="sideMenu"><mat-icon>more_horiz</mat-icon></button> -->
   </div>
   <div class="name">
     {{ app.name }}

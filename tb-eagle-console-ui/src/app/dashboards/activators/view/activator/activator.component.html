@@ -8,7 +8,7 @@
     </a>
     <div class="app-name separated"> {{ app.name }}</div>
     <div class="separated">
-      <div class="badge" [class.black]="!app.available">{{ app.available ? 'Available' : 'Locked' }}</div>
+      <div class="badge" [class.black]="app.available=='Locked'" [class.yellow]="app.available=='Deprecated'">{{app.available}}</div>
     </div>
     <div class="badge grey time-badge">
       <div>{{ app.update | date : 'hh:mma' }}</div>
