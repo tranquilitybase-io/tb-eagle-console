@@ -36,3 +36,6 @@ export const stopDeploymentApp = createAction(
   '[solutions-deploy-application] Stop Deployment',
   props<{ name: string }>()
 );
+export const dismissDeploymentAppReadyAlert = createAction(
+  '[solutions-deploy-application] Stop showing off deployment ready alert'
+);

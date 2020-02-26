@@ -29,6 +29,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { BusinessUnitResolver } from './resolvers/business-unit.resolver';
@@ -38,6 +39,8 @@ import { EnvironmentResolver } from './resolvers/environment.resolver';
 import { SourceControlResolver } from './resolvers/source-control.resolver';
 import { ViewResolver } from './resolvers/view.resolver';
 import { ApplicationCardComponent } from './view/applications-grid/application-card/application-card.component';
+import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
+import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 
 const routes: Routes = [
   {
@@ -73,9 +76,12 @@ const routes: Routes = [
     ViewComponent,
     ApplicationsGridComponent,
     WorkspaceInfoComponent,
-    ApplicationCardComponent
+    ApplicationCardComponent,
+    AppUnderDeploymentComponent,
+    AppIsDeployedComponent
   ],
-  providers: [SolutionsService],
+  entryComponents: [AppUnderDeploymentComponent, AppIsDeployedComponent],
+  providers: [SolutionsService, { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -97,6 +103,7 @@ const routes: Routes = [
     MatMenuModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatSnackBarModule,
     LayoutModule
   ]
 })

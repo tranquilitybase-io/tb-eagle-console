@@ -11,7 +11,8 @@ import {
   discardSelectedSolution,
   startDeployApplication,
   updateDeploymentProgressApp,
-  stopDeploymentApp
+  stopDeploymentApp,
+  dismissDeploymentAppReadyAlert
 } from './solutions.actions';
 import { Solution } from './interfaces';
 
@@ -58,7 +59,8 @@ export const solutionsReducer = createReducer(
   on(dismissAlmostReadyAlert, state => ({ ...state, dismissAlmostReady: true })),
   on(startDeployApplication, state => ({ ...state, progressApp: 0, inProgressApp: true })),
   on(updateDeploymentProgressApp, (state, { progressApp }) => ({ ...state, progressApp })),
-  on(stopDeploymentApp, state => ({ ...state, inProgressApp: false }))
+  on(stopDeploymentApp, state => ({ ...state, inProgressApp: false })),
+  on(dismissDeploymentAppReadyAlert, state => ({ ...state, isDeploymentAppReady: false }))
 );
 
 export default function reducer(state, action) {
@@ -76,11 +78,7 @@ export default function reducer(state, action) {
     return {
       ...state,
       [action.name]: solutionsReducer(state[action.name], action),
-      isDeploymentReady: action.type === stopDeploymentApp.type || state.isDeploymentReady,
-      dismissAlmostReady:
-        action.type === startDeployApplication.type
-          ? false
-          : action.type === stopDeploymentApp.type || state.dismissAlmostReady
+      isDeploymentAppReady: action.type === stopDeploymentApp.type || state.isDeploymentReady
     };
   }
 
@@ -104,3 +102,4 @@ export const selectProgressApp = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].progressApp : 0));
 export const selectInProgressApp = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].inProgressApp : false));
+export const selectIsDeploymentAppReady = createSelector(selectFeature, state => state.isDeploymentAppReady);

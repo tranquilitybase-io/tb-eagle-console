@@ -9,7 +9,7 @@
           <mat-icon>more_horiz</mat-icon>
         </button>
       </div>
-      {{ app.activator.name }}
+      {{ app.name }}
     </mat-card-title>
     <mat-card-subtitle>{{ app.activator.type }}</mat-card-subtitle>
   </mat-card-header>
@@ -17,6 +17,12 @@
   <mat-card-content *ngIf="!(deploymentInProgressApp$ | async)">
     <div class="mat-body-strong">Details</div>
     <mat-list dense class="description-list">
+      <mat-list-item>
+        <div class="mat-body">Activator's name</div>
+        <mat-chip-list>
+          <mat-chip>{{ app.activator.name }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
       <mat-list-item>
         <div class="mat-body">Data sensitivity</div>
         <mat-chip-list>
@@ -32,7 +38,8 @@
       <mat-list-item>
         <div class="mat-body">Cloud platform</div>
         <mat-chip-list>
-          <mat-chip *ngFor="let platform of app.activator.platforms">{{ platform }}</mat-chip>
+          <mat-chip>{{ app.activator.platforms[0] }}</mat-chip>
+          <mat-chip *ngIf="app.activator.platforms.length > 1">+{{ app.activator.platforms.length - 1 }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
@@ -46,17 +53,23 @@
 
   <mat-card-content *ngIf="deploymentInProgressApp$ | async" class="spinner">
     <div class="mat-body">Deployment</div>
-    <mat-progress-spinner color="primary" mode="indeterminate" diameter="200" strokeWidth="5" [value]="percentage$ | async"> </mat-progress-spinner>
+    <mat-progress-spinner
+      color="primary"
+      mode="indeterminate"
+      diameter="200"
+      strokeWidth="5"
+      [value]="percentage$ | async"
+    >
+    </mat-progress-spinner>
   </mat-card-content>
 
   <mat-card-footer *ngIf="!active">
     <div>
       <div class="mat-body-strong">Description</div>
-      <div class="mat-caption">{{ app.activator.description }}</div>
+      <div class="mat-caption">{{ app.description }}</div>
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
-    <button mat-stroked-button>View</button>
     <button mat-button color="primary" (click)="deploy()">Deploy <mat-icon>chevron_right</mat-icon></button>
   </mat-card-actions>
 </mat-card>

@@ -33,7 +33,6 @@
   }
 
   .mat-card-content {
-    cursor: pointer;
     padding: 0.7rem 0.5rem 0.7rem 0.5rem;
 
     &.spinner {
@@ -46,12 +45,15 @@
       }
     }
 
-    .description-list {
+    .description-list .mat-list-item {
+      height: 2rem;
       .mat-body {
         width: 8rem;
       }
       .mat-chip {
         font-size: 12px;
+        padding: 0.2rem 0.5rem;
+        min-height: 1.5rem;
         border-radius: 0.2rem;
         &.sensitivity {
           color: white;
@@ -83,6 +85,6 @@
     display: flex;
     position: absolute;
     bottom: 1rem;
-    justify-content: space-around;
+    justify-content: flex-end;
   }
 }
