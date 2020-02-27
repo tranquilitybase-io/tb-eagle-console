@@ -1,6 +1,7 @@
 import { Activator } from '../activators/interfaces';
 
 export class Application {
+  solutionId: number;
   name: string;
   description: string;
   activator: Activator;

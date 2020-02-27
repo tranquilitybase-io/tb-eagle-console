@@ -12,7 +12,7 @@ export const refreshSolutions = createAction('refreshSolutions [Solutions]', pro
 export const createSolution = createAction('[solutions-creation] create-solution', props<{ solution: Solution }>());
 export const appendApplication = createAction(
   '[solutions-append-application] Appends application to solution',
-  props<{ solutionId: number; application: Application }>()
+  props<{ application: Application }>()
 );
 
 export const startDeployment = createAction('[solutions-creation] Start Deployment', props<{ name: string }>());

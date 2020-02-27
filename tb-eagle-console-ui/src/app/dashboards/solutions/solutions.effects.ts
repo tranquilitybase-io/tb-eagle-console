@@ -71,7 +71,7 @@ export class SolutionEffects {
       this.actions$.pipe(
         ofType(appendApplication),
         tap(action => {
-          this.solutionService.getByKey(action.solutionId).subscribe((solution: Solution) => {
+          this.solutionService.getByKey(action.application.solutionId).subscribe((solution: Solution) => {
             this.solutionService.appendApplication(solution, action.application);
           });
         })

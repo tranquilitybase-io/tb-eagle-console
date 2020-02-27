@@ -6,6 +6,10 @@ import * as SolutionActions from '@app/dashboards/solutions/solutions.actions';
 import { selectSelectedSolution } from '@app/dashboards/solutions/solutions.reducers';
 import { Solution, Application } from '@app/dashboards/solutions/interfaces';
 import { Activator } from '../../interfaces';
+import { Observable } from 'rxjs';
+import { KeyValue } from '@angular/common';
+import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create',
@@ -14,21 +18,39 @@ import { Activator } from '../../interfaces';
 })
 export class CreateComponent {
   applicationForm: FormGroup;
-  private solution: Solution;
+  availableSolutions$: Observable<KeyValue<string, string>[]>;
+  selectedSolution$: Observable<Solution>;
+  selectedSolutionID: number;
 
-  constructor(private route: ActivatedRoute, private store: Store<any>, private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private solutionsService: SolutionsService,
+    private store: Store<any>
+  ) {
+    this.availableSolutions$ = solutionsService.filteredEntities$.pipe(
+      map(filteredSolutions => filteredSolutions.map(solution => ({ key: String(solution.id), value: solution.name })))
+    );
+  }
 
   ngOnInit() {
-    this.store.pipe(select(selectSelectedSolution)).subscribe((solution: Solution) => {
-      this.solution = solution;
-    });
+    this.solutionsService.setFilter('Active');
+    this.solutionsService.getAll();
 
-    const activator: Activator = this.route.snapshot.data['activator'];
+    const activator = this.route.snapshot.data['activator'] as Activator;
 
     this.applicationForm = this.formBuilder.group({
+      solutionId: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
       activator
+    });
+
+    this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
+    this.selectedSolution$.subscribe((solution: Solution) => {
+      if (solution) {
+        this.applicationForm.controls['solutionId'].setValue(String(solution.id));
+      }
     });
   }
 
@@ -38,8 +60,7 @@ export class CreateComponent {
 
   onSubmit(application: Application) {
     if (this.applicationForm.valid) {
-      const solutionId = this.solution.id;
-      this.store.dispatch(SolutionActions.appendApplication({ solutionId: solutionId, application }));
+      this.store.dispatch(SolutionActions.appendApplication({ application }));
       this.store.dispatch(SolutionActions.discardSelectedSolution());
     } else {
       this.applicationForm.markAllAsTouched();

@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { ActivatorByIdResolver } from '../resolvers/activator-by-id.resolver';
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ]
 })
 export class CreateModule {}
