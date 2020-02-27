@@ -14,6 +14,10 @@ import { GridsComponent } from './grids/grids.component';
 import { DeploymentsService } from './deployments.service';
 import reducer, { featureKey } from './activators.reducer';
 import { SharedModule as ActivatorsSharedModule } from './shared/shared.module';
+import { MissingAvailableSolutionsDialogComponent } from './dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -41,7 +45,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ActivatorsComponent, ControlsComponent, CategorySwitchComponent, GridsComponent],
+  declarations: [
+    ActivatorsComponent,
+    ControlsComponent,
+    CategorySwitchComponent,
+    GridsComponent,
+    MissingAvailableSolutionsDialogComponent
+  ],
+  entryComponents: [MissingAvailableSolutionsDialogComponent],
   providers: [ActivatorsService, DeploymentsService],
   imports: [
     CommonModule,
@@ -50,7 +61,9 @@ const routes: Routes = [
     AllModule,
     CategoriesModule,
     StoreModule.forFeature(featureKey, reducer),
-    ActivatorsSharedModule
+    ActivatorsSharedModule,
+    MatButtonModule,
+    MatDialogModule
   ]
 })
 export class ActivatorsModule {}

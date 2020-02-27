@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 import { KeyValue } from '@angular/common';
 import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
 import { map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { MissingAvailableSolutionsDialogComponent } from '../../dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';
 
 @Component({
   selector: 'app-create',
@@ -26,16 +28,24 @@ export class CreateComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private solutionsService: SolutionsService,
-    private store: Store<any>
+    private store: Store<any>,
+    private dialog: MatDialog
   ) {
-    this.availableSolutions$ = solutionsService.filteredEntities$.pipe(
+    this.availableSolutions$ = this.solutionsService.filteredEntities$.pipe(
       map(filteredSolutions => filteredSolutions.map(solution => ({ key: String(solution.id), value: solution.name })))
     );
   }
 
   ngOnInit() {
     this.solutionsService.setFilter('Active');
-    this.solutionsService.getAll();
+    this.solutionsService.getAll().subscribe(() =>
+      this.availableSolutions$.subscribe(availableSolutions => {
+        console.log('availableSolutions: ' + availableSolutions);
+        if (!(availableSolutions.length || this.dialog.openDialogs.length)) {
+          this.dialog.open(MissingAvailableSolutionsDialogComponent, { disableClose: true, autoFocus: false });
+        }
+      })
+    );
 
     const activator = this.route.snapshot.data['activator'] as Activator;
 
