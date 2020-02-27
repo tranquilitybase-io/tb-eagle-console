@@ -8,6 +8,9 @@ import { AllComponent } from './all/all.component';
 import { ApplicationComponent } from './application/application.component';
 import reducer, { featureKey } from './all.reducer';
 import { AllEffects } from './all.effects';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AllComponent, ApplicationComponent],
@@ -15,7 +18,10 @@ import { AllEffects } from './all.effects';
     CommonModule,
     SharedModule,
     StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([AllEffects])
+    EffectsModule.forFeature([AllEffects]),
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule
   ],
   exports: [AllComponent]
 })
