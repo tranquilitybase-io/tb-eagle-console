@@ -1,0 +1,12 @@
+<app-switches
+  hideCount="true"
+  [values]="values"
+  [current]="current$ | async"
+  (onValueChanged)="onGroupSwitch($event)"
+></app-switches>
+<app-pills [pills]="['Owner', 'Type']" class="separated"></app-pills>
+<div class="separated">
+  <button mat-raised-button color="primary" [disabled]="!enableDeployAll">Deploy all</button>
+</div>
+<app-search class="separated"></app-search>
+<app-grid-view-switch class="separated"></app-grid-view-switch>

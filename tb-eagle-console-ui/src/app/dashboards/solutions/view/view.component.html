@@ -2,7 +2,7 @@
   <app-breadcrumbs [steps]="[solution.name, solution.description]" [isActive]="solution.active"> </app-breadcrumbs>
 </header>
 <div>
-  <app-solution-select [values]="values"></app-solution-select>
+  <app-application-select [values]="values" [enableDeployAll]="solution.applications.length"></app-application-select>
 </div>
 
 <main>

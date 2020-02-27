@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewComponent } from './view/view.component';
 import { ApplicationsGridComponent } from './view/applications-grid/applications-grid.component';
+import { ApplicationSelectComponent } from './application-select/application-select.component';
 import { WorkspaceInfoComponent } from './view/workspace-info/workspace-info.component';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -77,6 +78,7 @@ const routes: Routes = [
     ApplicationsGridComponent,
     WorkspaceInfoComponent,
     ApplicationCardComponent,
+    ApplicationSelectComponent,
     AppUnderDeploymentComponent,
     AppIsDeployedComponent
   ],

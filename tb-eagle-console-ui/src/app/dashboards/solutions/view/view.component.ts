@@ -10,7 +10,7 @@ import { Solution } from '../interfaces';
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit {
-  private values = [
+  values = [
     { name: 'Applications', count: 0 },
     { name: 'Workspace', count: 0 }
   ];
