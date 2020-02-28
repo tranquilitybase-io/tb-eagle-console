@@ -9,7 +9,7 @@
     <mat-form-field class="small-width" appearance="outline">
       <mat-label>Solution</mat-label>
       <mat-select required formControlName="solutionId">
-        <mat-option *ngFor="let item of availableSolutions$ | async" [value]="item.key"> {{ item.value }} </mat-option>
+        <mat-option *ngFor="let item of availableSolutions" [value]="item.key"> {{ item.value }} </mat-option>
       </mat-select>
       <mat-error *ngIf="isFieldValid('solutionId')"> Solution is <strong>required</strong> </mat-error>
     </mat-form-field>

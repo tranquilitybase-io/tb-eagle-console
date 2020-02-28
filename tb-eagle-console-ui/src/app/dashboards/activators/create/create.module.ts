@@ -13,13 +13,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatorByIdResolver } from '../resolvers/activator-by-id.resolver';
+import { ActiveSolutionsResolver } from '../resolvers/active-solutions.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: CreateComponent,
     resolve: {
-      activator: ActivatorByIdResolver
+      activator: ActivatorByIdResolver,
+      availableSolutions: ActiveSolutionsResolver
     }
   }
 ];

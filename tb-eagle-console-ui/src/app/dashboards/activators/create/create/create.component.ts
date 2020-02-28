@@ -6,10 +6,7 @@ import * as SolutionActions from '@app/dashboards/solutions/solutions.actions';
 import { selectSelectedSolution } from '@app/dashboards/solutions/solutions.reducers';
 import { Solution, Application } from '@app/dashboards/solutions/interfaces';
 import { Activator } from '../../interfaces';
-import { Observable } from 'rxjs';
 import { KeyValue } from '@angular/common';
-import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
-import { map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { MissingAvailableSolutionsDialogComponent } from '../../dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';
 
@@ -20,34 +17,19 @@ import { MissingAvailableSolutionsDialogComponent } from '../../dialogs/missing-
 })
 export class CreateComponent {
   applicationForm: FormGroup;
-  availableSolutions$: Observable<KeyValue<string, string>[]>;
-  selectedSolution$: Observable<Solution>;
-  selectedSolutionID: number;
+  availableSolutions: KeyValue<string, string>[];
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private solutionsService: SolutionsService,
     private store: Store<any>,
     private dialog: MatDialog
-  ) {
-    this.availableSolutions$ = this.solutionsService.filteredEntities$.pipe(
-      map(filteredSolutions => filteredSolutions.map(solution => ({ key: String(solution.id), value: solution.name })))
-    );
-  }
+  ) {}
 
   ngOnInit() {
-    this.solutionsService.setFilter('Active');
-    this.solutionsService.getAll().subscribe(() =>
-      this.availableSolutions$.subscribe(availableSolutions => {
-        console.log('availableSolutions: ' + availableSolutions);
-        if (!(availableSolutions.length || this.dialog.openDialogs.length)) {
-          this.dialog.open(MissingAvailableSolutionsDialogComponent, { disableClose: true, autoFocus: false });
-        }
-      })
-    );
-
     const activator = this.route.snapshot.data['activator'] as Activator;
+    const availableSolutions = this.route.snapshot.data['availableSolutions'] as Solution[];
+    this.availableSolutions = availableSolutions.map(solution => ({ key: String(solution.id), value: solution.name }));
 
     this.applicationForm = this.formBuilder.group({
       solutionId: ['', Validators.required],
@@ -56,12 +38,15 @@ export class CreateComponent {
       activator
     });
 
-    this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
-    this.selectedSolution$.subscribe((solution: Solution) => {
+    this.store.pipe(select(selectSelectedSolution)).subscribe((solution: Solution) => {
       if (solution) {
         this.applicationForm.controls['solutionId'].setValue(String(solution.id));
       }
     });
+
+    if (!(availableSolutions.length || this.dialog.openDialogs.length)) {
+      this.dialog.open(MissingAvailableSolutionsDialogComponent, { disableClose: true, autoFocus: false });
+    }
   }
 
   isFieldValid(field: string) {
