@@ -1,31 +1,56 @@
 <div class="container">
+  <img class="tb-logo" src="/assets/images/tb_logo.svg" /><br />
+  <span id="loginText">Log in</span><br />
 
-      <img class="tb-logo" src="/assets/images/tb_logo.svg" ><br>
-      <span id="loginText">Log in</span><br>
+  <form id="loginForm" (submit)="onSubmit($event)">
+    <div class="form-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          name="userName"
+          placeholder="email@your.company"
+          [(ngModel)]="userName"
+          [formControl]="emailFormControl"
+        />
+        <mat-icon matSuffix>alternate_email</mat-icon>
+        <mat-hint>Enter a valid email here</mat-hint>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')"> Email is <strong>required</strong> </mat-error>
+      </mat-form-field>
 
-      <form id='loginForm' (submit)="onSubmit($event)">
-        <div class="form-container">
-          <label  class="form-text">Email</label>
-          <input type="email" name="userName" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email here" [(ngModel)]="userName">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          name="userPassword"
+          placeholder="Must have at least 5 characters"
+          [(ngModel)]="userPassword"
+          [formControl]="pwdFormControl"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-hint>Must have at least 5 characters</mat-hint>
+        <mat-error *ngIf="pwdFormControl.hasError('minlength')">Must have at least 5 characters</mat-error>
+        <mat-error *ngIf="pwdFormControl.hasError('required')"> Password is <strong>required</strong> </mat-error>
+      </mat-form-field>
 
-          <label  class="form-text">Password</label>
-          <input type="password" name="userPassword" class="form-control"  placeholder="Enter password here" [(ngModel)]="userPassword">
-          <div *ngIf="(loggedIn$ | async) === false">
-            <span class="login-failure">{{loginMessage}}</span>
-          </div>
-
-        <label class="checkbox">
-          <input  type="checkbox" id="exampleCheck1"/>
-          <span id="exampleCheckText" >Keep me logged in</span>
-      </label>
-          </div>
-
-        <button class="button text-only login-btn" type="submit">Log in</button>
-      </form>
-
-      <div class="login-options-container">
-        <a class="options" href="/login">Forgot email or password?</a><br>
-          <span class="options" >Or</span><br>
-        <a class="create-new" href="/login">Create a new account</a>
+      <div *ngIf="(loggedIn$ | async) === false">
+        <span class="login-failure">{{ loginMessage }}</span>
       </div>
+
+      <mat-checkbox>Keep me logged in</mat-checkbox>
+    </div>
+
+    <button mat-button type="submit" color="primary" class="login-btn">Log in <mat-icon>keyboard_arrow_right</mat-icon></button>
+  </form>
+
+  <div class="login-options-container">
+    <a class="options" href="/login">Forgot email or password?</a><br />
+    <span class="options">Or</span><br />
+    <a class="create-new" href="/login">Create a new account</a>
   </div>
+</div>

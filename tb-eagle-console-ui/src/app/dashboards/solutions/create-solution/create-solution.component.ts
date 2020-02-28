@@ -1,12 +1,10 @@
-import { SolutionDetailsComponent } from './../solution-details/solution-details.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
 import { SolutionsState } from '../solutions.reducers';
 import * as SolutionActions from '../solutions.actions';
-import { Solution } from '../interfaces';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-create-solution',
@@ -14,6 +12,8 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./create-solution.component.scss']
 })
 export class CreateSolutionComponent implements OnInit {
+  nameFormControl = new FormControl('', [Validators.required]);
+  descFormControl = new FormControl('', [Validators.required]);
   onPartTwo: boolean = false;
   screenNum: number = 0;
 
@@ -21,18 +21,30 @@ export class CreateSolutionComponent implements OnInit {
   solutionDescription: string = '';
   solutionBU: string = '';
 
+  cdList: KeyValue<string, string>[];
+  ciList: KeyValue<string, string>[];
+  businessUnitList: KeyValue<string, string>[];
+  sourceControlList: KeyValue<string, string>[];
+  environmentList: KeyValue<string, string>[];
+
   formHeight: string = '20rem';
 
   solutionForm;
 
   constructor(
-    private solutionsService: SolutionsService,
     private store: Store<SolutionsState>,
     private router: Router,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
+    this.cdList = this.route.snapshot.data['cdList'];
+    this.ciList = this.route.snapshot.data['ciList'];
+    this.businessUnitList = this.route.snapshot.data['businessUnitList'];
+    this.sourceControlList = this.route.snapshot.data['sourceControlList'];
+    this.environmentList = this.route.snapshot.data['environmentList'];
+
     this.solutionForm = this.formBuilder.group({
       id: 0,
       name: '',
@@ -41,8 +53,7 @@ export class CreateSolutionComponent implements OnInit {
       ci: '',
       cd: '',
       sourceControl: '',
-      changeControl: '',
-      envs: [''],
+      environments: [''],
       active: true,
       favourite: true,
       applications: 0,

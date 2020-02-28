@@ -15,12 +15,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewComponent } from './view/view.component';
 import { ApplicationsGridComponent } from './view/applications-grid/applications-grid.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+import { WorkspaceInfoComponent } from './view/workspace-info/workspace-info.component';
+
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { LayoutModule } from '@angular/cdk/layout';
+
+import { BusinessUnitResolver } from './resolvers/business-unit.resolver';
+import { ContinuousDeploymentResolver } from './resolvers/continuous-deployment.resolver';
+import { ContinuousIntegrationResolver } from './resolvers/continuous-integration.resolver';
+import { EnvironmentResolver } from './resolvers/environment.resolver';
+import { SourceControlResolver } from './resolvers/source-control.resolver';
+import { ViewResolver } from './resolvers/view.resolver';
 
 const routes: Routes = [
   {
@@ -29,11 +43,21 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: CreateSolutionComponent
+    component: CreateSolutionComponent,
+    resolve: {
+      businessUnitList: BusinessUnitResolver,
+      cdList: ContinuousDeploymentResolver,
+      ciList: ContinuousIntegrationResolver,
+      environmentList: EnvironmentResolver,
+      sourceControlList: SourceControlResolver
+    }
   },
   {
     path: 'view',
-    component: ViewComponent
+    component: ViewComponent,
+    resolve: {
+      solution: ViewResolver
+    }
   }
 ];
 
@@ -44,7 +68,8 @@ const routes: Routes = [
     CreateSolutionComponent,
     SolutionLandingComponent,
     ViewComponent,
-    ApplicationsGridComponent
+    ApplicationsGridComponent,
+    WorkspaceInfoComponent
   ],
   providers: [SolutionsService],
   imports: [
@@ -56,11 +81,16 @@ const routes: Routes = [
     EffectsModule.forFeature([SolutionEffects]),
     RouterModule.forChild(routes),
     HttpClientModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
     MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatSelectModule,
     LayoutModule
   ]
 })

@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
     console.log('LOGIN!', username, password);
     res.header('Access-Control-Allow-Origin', '*');
 
-    if (username !== 'admin' || password !== 'pass1') {
+    if (username !== 'admin@your.company' || password !== 'pass1') {
       console.log('LOGIN FAILED!');
       res.status(401);
 
@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
     }
 
     return res.send({
-      id: 'admin',
+      id: 'admin@your.company',
       firstname: 'Adam',
       lastname: 'Smith'
     });

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormOneComponent } from './form-one.component';
+import { WorkspaceInfoComponent } from './workspace-info.component';
 
-describe('FormOneComponent', () => {
-  let component: FormOneComponent;
-  let fixture: ComponentFixture<FormOneComponent>;
+describe('WorkspaceInfoComponent', () => {
+  let component: WorkspaceInfoComponent;
+  let fixture: ComponentFixture<WorkspaceInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormOneComponent]
+      declarations: [WorkspaceInfoComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormOneComponent);
+    fixture = TestBed.createComponent(WorkspaceInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

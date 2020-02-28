@@ -1,12 +1,10 @@
-import { catchError } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserLoginService } from '@app/login/user-login.service';
-import { User } from '../user.interface';
 import * as loginActions from '../login.actions';
-import { State, selectLoggedIn, selectUser } from '../login.reducer';
+import { State, selectLoggedIn } from '../login.reducer';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form-pane',
@@ -14,6 +12,8 @@ import { State, selectLoggedIn, selectUser } from '../login.reducer';
   styleUrls: ['./login-form-pane.component.scss']
 })
 export class LoginFormPaneComponent implements OnInit {
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  pwdFormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
   userName: string;
   userPassword: string;
 

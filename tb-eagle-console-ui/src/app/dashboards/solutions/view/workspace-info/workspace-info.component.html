@@ -1,0 +1,16 @@
+<div class="mat-title">
+  CI (Continuous intergration service):
+  <p class="mat-body-1">{{ solution.ci }}</p>
+</div>
+<div class="mat-title">
+  Source Control:
+  <p class="mat-body-1">{{ solution.sourceControl }}</p>
+</div>
+<div class="mat-title">
+  CD (Continuous deployment):
+  <p class="mat-body-1">{{ solution.cd }}</p>
+</div>
+<div class="mat-title">
+  Environments:
+  <p *ngFor="let env of solution.environments" class="mat-body-1">{{ env }}</p>
+</div>
