@@ -88,3 +88,8 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($material-custom-theme);
+
+.mat-card-header > .mat-card-header-text {
+  width: 100%;
+  margin: 0px;
+}

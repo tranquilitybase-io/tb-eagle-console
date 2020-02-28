@@ -1,24 +1,52 @@
-:host {
-  padding: 1rem 2rem;
-}
+form {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  width: 90%;
 
-.form-body {
-  display: grid;
-  grid-template-columns: 3fr 3fr 1fr;
-  grid-column-gap: 0.5rem;
-  grid-row-gap: 1rem;
-}
-
-.wide {
-  grid-column: 1/4;
-}
-
-.first {
-  grid-column: 1/2;
-}
-
-.form-footer {
   display: flex;
-  margin: 1rem 0 2.5rem;
+  flex-direction: column;
+  justify-content: left;
+  height: calc(100vh - 9rem);
+
+  .app-alert {
+    margin-bottom: 2rem;
+  }
+
+  p {
+    width: 100%;
+    .mat-form-field {
+      width: 100%;
+
+      &.small-width {
+        width: 30%;
+        margin-right: 2rem;
+      }
+    }
+  }
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  height: 5rem;
+  width: 100%;
   align-items: center;
+  justify-content: space-between;
+  align-self: flex-end;
+  margin-top: auto;
+
+  &.details-footer-container {
+    justify-content: flex-end;
+  }
+
+  button {
+    font-weight: 600;
+    font-family: 'SF Pro Display';
+    font-size: 16px;
+  }
+}
+
+.mat-form-field {
+  font-size: 14px;
 }

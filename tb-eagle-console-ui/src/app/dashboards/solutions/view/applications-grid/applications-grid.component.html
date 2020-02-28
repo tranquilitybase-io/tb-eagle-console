@@ -1,19 +1,12 @@
 <div class="grid-container">
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card (click)="redirect()" class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{ card.title }}
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>
-            <mat-icon>add</mat-icon>
-            <span class="mat-headline">Create new application</span>
-          </div>
-        </mat-card-content>
-      </mat-card>
+  <mat-grid-list cols="4" rowHeight="420px">
+    <mat-grid-tile *ngFor="let app of apps" colspan="1" rowspan="1">
+      <app-application-card [app]="app"></app-application-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-stroked-button class="create-new-button" color="primary" (click)="createNewApplication()">
+        <mat-icon>add</mat-icon>Create new application
+      </button>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

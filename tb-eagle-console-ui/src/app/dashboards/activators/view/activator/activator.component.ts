@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Application } from '@app/dashboards/activators/interfaces';
+import { Activator } from '@app/dashboards/activators/interfaces';
 import { Property } from '@app/shared/properties/properties.component';
 
 @Component({
@@ -8,12 +8,12 @@ import { Property } from '@app/shared/properties/properties.component';
   styleUrls: ['./activator.component.scss']
 })
 export class ActivatorComponent {
-  private _app: Application;
+  private _app: Activator;
 
   properties: Property[];
   deploymentOptions: Property[];
 
-  @Input() set app(app: Application) {
+  @Input() set app(app: Activator) {
     this._app = app;
 
     if (app) {
@@ -22,11 +22,11 @@ export class ActivatorComponent {
     }
   }
 
-  get app(): Application {
+  get app(): Activator {
     return this._app;
   }
 
-  private getProps(app: Application): Property[] {
+  private getProps(app: Activator): Property[] {
     return [
       {
         name: 'Data sensitivity',
@@ -52,7 +52,7 @@ export class ActivatorComponent {
     ];
   }
 
-  private getDeploymentOptions(app: Application): Property[] {
+  private getDeploymentOptions(app: Activator): Property[] {
     return [
       {
         name: 'Hosting',

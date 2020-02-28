@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Application } from './interfaces';
+import { Activator } from './interfaces';
 
-@Injectable()
-export class ActivatorsService extends EntityCollectionServiceBase<Application> {
+@Injectable({
+  providedIn: 'root'
+})
+export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Application', serviceElementsFactory);
   }

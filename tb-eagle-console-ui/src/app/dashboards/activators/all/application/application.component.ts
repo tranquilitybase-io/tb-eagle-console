@@ -1,13 +1,13 @@
 import { Component, Input, HostListener, OnInit } from '@angular/core';
-import { formatDate, registerLocaleData } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import getCustomProperty from '@app/shared/utils/getCustomProperty';
-import { Application } from '@app/dashboards/activators/interfaces';
+import { Activator } from '@app/dashboards/activators/interfaces';
 import { Property } from '@app/shared/properties/properties.component';
 
 import { selectProgress, selectInProgress } from '../all.reducer';
-import { startDeployment } from '../all.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-application',
@@ -15,7 +15,7 @@ import { startDeployment } from '../all.actions';
   styleUrls: ['./application.component.scss']
 })
 export class ApplicationComponent implements OnInit {
-  private _app: Application;
+  private _app: Activator;
 
   properties: Property[] = [];
   strokeColor = getCustomProperty('--grey');
@@ -23,14 +23,14 @@ export class ApplicationComponent implements OnInit {
   deploymentInProgress$: Observable<boolean>;
   percentage$: Observable<number>;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<any>, private router: Router) {}
 
   ngOnInit() {
     this.deploymentInProgress$ = this.store.pipe(select(selectInProgress(this.app.id.toString())));
     this.percentage$ = this.store.pipe(select(selectProgress(this.app.id.toString())));
   }
 
-  @Input() set app(app: Application) {
+  @Input() set app(app: Activator) {
     this._app = app;
     this.properties = [
       {
@@ -57,7 +57,7 @@ export class ApplicationComponent implements OnInit {
     ];
   }
 
-  get app(): Application {
+  get app(): Activator {
     return this._app;
   }
 
@@ -71,11 +71,7 @@ export class ApplicationComponent implements OnInit {
     this.active = false;
   }
 
-  deploy() {
-    this.store.dispatch(
-      startDeployment({
-        name: this.app.id.toString()
-      })
-    );
+  addToSolution() {
+    this.router.navigateByUrl(`/dashboard/activators/create?id=${this.app.id}`);
   }
 }

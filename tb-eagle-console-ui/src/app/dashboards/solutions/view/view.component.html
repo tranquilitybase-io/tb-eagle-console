@@ -1,12 +1,21 @@
 <header>
-  <app-breadcrumbs [steps]="['My Team solutions']"> </app-breadcrumbs>
-  <a class="button text-only create" routerLink="/dashboard/solutions/create">Create new solution</a>
+  <app-breadcrumbs [steps]="[solution.name, solution.description]" [isActive]="solution.active"> </app-breadcrumbs>
 </header>
 <div>
-  <app-solution-select [values]="values"></app-solution-select>
+  <app-application-select [values]="values" [enableDeployAll]="solution.applications.length"></app-application-select>
 </div>
 
-<main class="dashboard-grid">
-  <app-applications-grid *ngIf="(current$ | async) !== 'Workspace'"></app-applications-grid>
+<main>
+  <p class="details">
+    <span class="mat-body-strong">
+      Business Unit:
+      <span class="mat-small">{{ solution.businessUnit }}</span>
+    </span>
+    <span class="mat-body-strong">
+      Cost Centre:
+      <span class="mat-small">{{ solution.costCentre }}</span>
+    </span>
+  </p>
+  <app-applications-grid [solution]="solution" *ngIf="(current$ | async) !== 'Workspace'"></app-applications-grid>
   <app-workspace-info [solution]="solution" *ngIf="(current$ | async) === 'Workspace'"></app-workspace-info>
 </main>

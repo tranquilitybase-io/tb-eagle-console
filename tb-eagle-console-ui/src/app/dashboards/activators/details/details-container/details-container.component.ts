@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Application } from '../../interfaces';
+import { Activator } from '../../interfaces';
 import { Observable, of } from 'rxjs';
 import { ActivatorsService } from '../../activators.service';
 import { switchMap, map } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { switchMap, map } from 'rxjs/operators';
   styleUrls: ['./details-container.component.scss']
 })
 export class DetailsContainerComponent {
-  app$: Observable<Application>;
+  app$: Observable<Activator>;
 
   constructor(private appsService: ActivatorsService, private route: ActivatedRoute) {}
 

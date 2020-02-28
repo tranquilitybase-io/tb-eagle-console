@@ -1,6 +1,6 @@
 <div class="head">
   <div class="status">
-    <div class="badge" [class.black]="!solution.active">{{ solution.active ? 'Active' : 'Locked' }}</div>
+    <div class="badge" [class.black]="!solution.active">{{ solution.active ? 'Active' : 'Inactive' }}</div>
     <div class="flex-filler"></div>
     <app-icon icon="star" [stroke]="true" color="grey"></app-icon>
     <app-icon icon="dots"></app-icon>
@@ -11,7 +11,7 @@
   <h6 class="details-head">Details</h6>
   <div class="details">
     <label class="detail-title">Applications</label>
-    <label class="detail-value">{{ solution.applications }}</label>
+    <label class="detail-value">{{ solution.applications.length }}</label>
   </div>
   <div class="details">
     <label class="detail-title">Teams</label>
@@ -19,7 +19,7 @@
   </div>
   <div class="details">
     <label class="detail-title">LastUpdated</label>
-    <label class="detail-value">{{ solution.lastUpdated }}</label>
+    <label class="detail-value">{{ solution.lastUpdated | date: 'dd MMM yyyy' }}</label>
   </div>
 </div>
 <div *ngIf="deploymentInProgress$ | async" class="loader-container">
@@ -27,7 +27,7 @@
 </div>
 <div class="description" *ngIf="!active">
   <div class="desc-head">Description</div>
-  <div class="desc-content">{{ solution.desc }}</div>
+  <div class="desc-content">{{ solution.description }}</div>
 </div>
 <div class="footer" *ngIf="active">
   <a

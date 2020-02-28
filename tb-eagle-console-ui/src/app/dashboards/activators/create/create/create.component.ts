@@ -1,8 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { startDeployment } from '@app/dashboards/activators/all/all.actions';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
+import * as SolutionActions from '@app/dashboards/solutions/solutions.actions';
+import { selectSelectedSolution } from '@app/dashboards/solutions/solutions.reducers';
+import { Solution, Application } from '@app/dashboards/solutions/interfaces';
+import { Activator } from '../../interfaces';
+import { KeyValue } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { MissingAvailableSolutionsDialogComponent } from '../../dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';
 
 @Component({
   selector: 'app-create',
@@ -10,14 +16,49 @@ import { startDeployment } from '@app/dashboards/activators/all/all.actions';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
-  name: string = 'Flame Birdy';
-  @ViewChild('form', { static: true }) form: NgForm;
+  applicationForm: FormGroup;
+  availableSolutions: KeyValue<string, string>[];
 
-  constructor(private router: Router, private store: Store<any>, private route: ActivatedRoute) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private store: Store<any>,
+    private dialog: MatDialog
+  ) {}
 
-  onSubmit($event: Event) {
-    $event.preventDefault();
-    this.store.dispatch(startDeployment({ name: this.route.snapshot.queryParams.id }));
-    this.router.navigateByUrl('/dashboard/activators?categorySwitch=All');
+  ngOnInit() {
+    const activator = this.route.snapshot.data['activator'] as Activator;
+    const availableSolutions = this.route.snapshot.data['availableSolutions'] as Solution[];
+    this.availableSolutions = availableSolutions.map(solution => ({ key: String(solution.id), value: solution.name }));
+
+    this.applicationForm = this.formBuilder.group({
+      solutionId: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      activator
+    });
+
+    this.store.pipe(select(selectSelectedSolution)).subscribe((solution: Solution) => {
+      if (solution) {
+        this.applicationForm.controls['solutionId'].setValue(String(solution.id));
+      }
+    });
+
+    if (!(availableSolutions.length || this.dialog.openDialogs.length)) {
+      this.dialog.open(MissingAvailableSolutionsDialogComponent, { disableClose: true, autoFocus: false });
+    }
+  }
+
+  isFieldValid(field: string) {
+    return this.applicationForm.get(field).touched && !this.applicationForm.get(field).valid;
+  }
+
+  onSubmit(application: Application) {
+    if (this.applicationForm.valid) {
+      this.store.dispatch(SolutionActions.appendApplication({ application }));
+      this.store.dispatch(SolutionActions.discardSelectedSolution());
+    } else {
+      this.applicationForm.markAllAsTouched();
+    }
   }
 }

@@ -1,4 +1,4 @@
-export interface Application {
+export interface Activator {
   id: number;
   name: string;
   type: string;

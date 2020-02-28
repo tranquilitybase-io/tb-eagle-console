@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatorsService } from '@app/dashboards/activators/activators.service';
-import { Application } from '@app/dashboards/activators/interfaces';
+import { Activator } from '@app/dashboards/activators/interfaces';
 
 @Component({
   selector: 'app-all',
@@ -9,7 +9,7 @@ import { Application } from '@app/dashboards/activators/interfaces';
   styleUrls: ['./all.component.scss']
 })
 export class AllComponent implements OnInit {
-  apps$: Observable<Application[]>;
+  apps$: Observable<Activator[]>;
 
   constructor(private appsService: ActivatorsService) {
     this.apps$ = appsService.entities$;

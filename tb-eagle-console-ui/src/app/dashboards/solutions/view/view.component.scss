@@ -2,6 +2,18 @@
   display: block;
 }
 
+main {
+  margin: 1rem 1.5rem;
+  .details {
+    padding: 1rem;
+    border-radius: 1.5rem;
+    background-color: var(--whitish);
+    .mat-body-strong {
+      margin-right: 1rem;
+    }
+  }
+}
+
 header {
   display: flex;
   text-align: center;
