@@ -9,6 +9,7 @@ import { Activator } from '../activators.model';
 import { KeyValue } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MissingAvailableSolutionsDialogComponent } from '../dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';
+import { setProgress } from '../activators.actions';
 
 @Component({
   selector: 'app-create',
@@ -27,6 +28,7 @@ export class CreateComponent {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(setProgress({ step: 1 }));
     const activator = this.route.snapshot.data['activator'] as Activator;
     const availableSolutions = this.route.snapshot.data['availableSolutions'] as Solution[];
     this.availableSolutions = availableSolutions.map(solution => ({ key: String(solution.id), value: solution.name }));

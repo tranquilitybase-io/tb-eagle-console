@@ -13,7 +13,6 @@ import { ActivatorsService } from './activators.service';
 import { GridsComponent } from './grids/grids.component';
 import { DeploymentsService } from './deployments.service';
 import reducer, { featureKey } from './activators.reducer';
-import { SharedModule as ActivatorsSharedModule } from './shared/shared.module';
 import { MissingAvailableSolutionsDialogComponent } from './dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -61,7 +60,6 @@ const routes: Routes = [
     AllModule,
     CategoriesModule,
     StoreModule.forFeature(featureKey, reducer),
-    ActivatorsSharedModule,
     MatButtonModule,
     MatDialogModule
   ]

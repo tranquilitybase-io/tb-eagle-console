@@ -1,18 +1,21 @@
-<div class="app" *ngIf="app">
+<div class="app">
   <div class="sub-header">
     <a
       class="button text-only left back-btn"
       routerLink="/dashboard/activators"
-      [queryParams]="{categorySwitch: 'All'}">
+      [queryParams]="{ categorySwitch: 'All' }"
+    >
       Back
     </a>
-    <div class="app-name separated"> {{ app.name }}</div>
+    <div class="app-name separated">{{ activator.name }}</div>
     <div class="separated">
-      <div class="badge" [class.black]="app.available=='Locked'" [class.yellow]="app.available=='Deprecated'">{{app.available}}</div>
+      <div class="badge" [class.black]="activator.available == 'Locked'" [class.yellow]="activator.available == 'Deprecated'">
+        {{ activator.available }}
+      </div>
     </div>
     <div class="badge grey time-badge">
-      <div>{{ app.update | date : 'hh:mma' }}</div>
-      <div class="separated">{{ app.update | date : 'dd MMM yyyy' }}</div>
+      <div>{{ activator.update | date: 'hh:mma' }}</div>
+      <div class="separated">{{ activator.update | date: 'dd MMM yyyy' }}</div>
     </div>
     <div class="separated tier">
       <div class="tier-icon"></div>
@@ -23,7 +26,7 @@
     <div>
       <div class="title">Metadata</div>
       <div class="sub-title">Description</div>
-      <div class="description">{{ app.description }}</div>
+      <div class="description">{{ activator.description }}</div>
     </div>
     <div class="properties">
       <app-properties [properties]="properties"></app-properties>
@@ -37,5 +40,7 @@
   </div>
 </div>
 <div class="deployment-footer">
-  <a routerLink="/dashboard/activators/create" queryParamsHandling="preserve" class="button text-only">Select for application</a>
+  <a routerLink="/dashboard/activators/create" queryParamsHandling="preserve" class="button text-only"
+    >Select for application</a
+  >
 </div>

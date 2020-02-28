@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { DetailsComponent } from './details.component';
-import { SharedModule as ActivatorsSharedModule } from '../shared/shared.module';
 import { OverviewComponent } from './overview/overview.component';
 import { AuditHistoryComponent } from './audit-history/audit-history.component';
 import { VersionHistoryComponent } from './version-history/version-history.component';
@@ -38,7 +37,6 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-    ActivatorsSharedModule,
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
