@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Solution } from '../interfaces';
+import { Solution } from '../solutions.model';
 import { selectProgress, selectInProgress } from '../solutions.reducers';
 import { startDeployment } from '../solutions.actions';
 import { Observable } from 'rxjs';

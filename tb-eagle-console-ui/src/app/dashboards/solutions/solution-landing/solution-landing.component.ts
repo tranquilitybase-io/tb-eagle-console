@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { map, filter, first } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
-import { Solution } from '../interfaces';
+import { Solution } from '../solutions.model';
 import { Store, select } from '@ngrx/store';
 import { refreshSolutions, dismissAlmostReadyAlert, dismissDeploymentReadyAlert } from '../solutions.actions';
 import { SolutionsState, selectIsAlmostReady, selectIsDeploymentReady } from '../solutions.reducers';

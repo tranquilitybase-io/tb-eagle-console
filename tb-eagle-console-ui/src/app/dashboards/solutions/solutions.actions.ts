@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Solution, Application } from './interfaces';
+import { Solution, Application } from './solutions.model';
 
 export const setSolutions = createAction(
   'setSolutions [Solutions]',

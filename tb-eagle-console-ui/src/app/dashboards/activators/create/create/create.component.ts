@@ -4,7 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import * as SolutionActions from '@app/dashboards/solutions/solutions.actions';
 import { selectSelectedSolution } from '@app/dashboards/solutions/solutions.reducers';
-import { Solution, Application } from '@app/dashboards/solutions/interfaces';
+import { Solution, Application } from '@app/dashboards/solutions/solutions.model';
 import { Activator } from '../../interfaces';
 import { KeyValue } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
