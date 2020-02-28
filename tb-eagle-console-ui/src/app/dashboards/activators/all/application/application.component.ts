@@ -8,6 +8,7 @@ import { Property } from '@app/shared/properties/properties.component';
 
 import { selectProgress, selectInProgress } from '../all.reducer';
 import { Router } from '@angular/router';
+// import {MatIconModule} from '@angular/material/icon'
 
 @Component({
   selector: 'app-application',
@@ -16,7 +17,8 @@ import { Router } from '@angular/router';
 })
 export class ApplicationComponent implements OnInit {
   private _app: Activator;
-
+  // isOpened: boolean = false;
+  isStroke: boolean = true;
   properties: Property[] = [];
   strokeColor = getCustomProperty('--grey');
   active = false;
@@ -29,6 +31,11 @@ export class ApplicationComponent implements OnInit {
     this.deploymentInProgress$ = this.store.pipe(select(selectInProgress(this.app.id.toString())));
     this.percentage$ = this.store.pipe(select(selectProgress(this.app.id.toString())));
   }
+
+  // toggleMenu() {
+  //   this.isOpened = !this.isOpened;
+  //   console.log(this.app.name);
+  // }
 
   @Input() set app(app: Activator) {
     this._app = app;
