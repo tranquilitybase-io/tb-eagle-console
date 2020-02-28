@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Activator } from './interfaces';
+import { Activator } from './activators.model';
 
 @Injectable({
   providedIn: 'root'

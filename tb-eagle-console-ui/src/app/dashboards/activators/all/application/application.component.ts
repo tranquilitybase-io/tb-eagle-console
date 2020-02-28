@@ -3,7 +3,7 @@ import { formatDate } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import getCustomProperty from '@app/shared/utils/getCustomProperty';
-import { Activator } from '@app/dashboards/activators/interfaces';
+import { Activator } from '@app/dashboards/activators/activators.model';
 import { Property } from '@app/shared/properties/properties.component';
 
 import { selectProgress, selectInProgress } from '../all.reducer';

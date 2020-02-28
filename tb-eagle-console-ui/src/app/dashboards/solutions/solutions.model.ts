@@ -1,4 +1,4 @@
-import { Activator } from '../activators/interfaces';
+import { Activator } from '../activators/activators.model';
 
 export class Application {
   solutionId: number;

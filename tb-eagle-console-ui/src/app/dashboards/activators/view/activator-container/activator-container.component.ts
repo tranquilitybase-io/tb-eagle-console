@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { ActivatorsService } from '@app/dashboards/activators/activators.service';
-import { Activator } from '@app/dashboards/activators/interfaces';
+import { Activator } from '@app/dashboards/activators/activators.model';
 
 @Component({
   selector: 'app-activator-container',

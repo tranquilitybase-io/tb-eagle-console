@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Activator } from '../../interfaces';
+import { Activator } from '../../activators.model';
 import { Observable, of } from 'rxjs';
 import { ActivatorsService } from '../../activators.service';
 import { switchMap, map } from 'rxjs/operators';

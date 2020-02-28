@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import * as SolutionActions from '@app/dashboards/solutions/solutions.actions';
 import { selectSelectedSolution } from '@app/dashboards/solutions/solutions.reducers';
 import { Solution, Application } from '@app/dashboards/solutions/solutions.model';
-import { Activator } from '../../interfaces';
+import { Activator } from '../../activators.model';
 import { KeyValue } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MissingAvailableSolutionsDialogComponent } from '../../dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';

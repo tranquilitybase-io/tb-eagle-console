@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ActivatorsService } from '../activators.service';
-import { Activator } from '../interfaces';
+import { Activator } from '../activators.model';
 
 @Injectable({ providedIn: 'root' })
 export class ActivatorByIdResolver implements Resolve<Activator> {

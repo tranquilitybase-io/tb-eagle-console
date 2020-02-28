@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Activator } from '@app/dashboards/activators/interfaces';
+import { Activator } from '@app/dashboards/activators/activators.model';
 
 @Component({
   selector: 'app-overview',
