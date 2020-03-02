@@ -1,0 +1,91 @@
+.mat-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 10px;
+  padding: 0px;
+
+  &:hover {
+    box-shadow: 0px 2px 1px -1px var(--primary-color), 0px 1px 1px 0px var(--primary-color),
+      0px 1px 3px 0px var(--primary-color);
+  }
+
+  .mat-card-header {
+    padding: 0.3rem;
+    text-align: center;
+    background-color: var(--active-grey-background);
+    border-radius: 10px 10px 0px 0px;
+    .mat-card-subtitle {
+      margin-bottom: 10px;
+    }
+
+    .card-actions-bar {
+      display: flex;
+      justify-content: flex-end;
+      .mat-icon-button {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+  }
+
+  .mat-card-content {
+    padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+    cursor: pointer;
+
+    &.spinner {
+      display: flex;
+      justify-content: center;
+      .mat-body {
+        position: absolute;
+        display: flex;
+        align-self: center;
+      }
+    }
+
+    .description-list .mat-list-item {
+      height: 2rem;
+      .mat-body {
+        width: 8rem;
+      }
+      .mat-chip {
+        font-size: 12px;
+        padding: 0.2rem 0.5rem;
+        min-height: 1.5rem;
+        border-radius: 0.2rem;
+        &.sensitivity {
+          color: white;
+          background-color: var(--dark-grey-2);
+          &.red {
+            background-color: var(--red);
+          }
+        }
+      }
+    }
+  }
+
+  .mat-card-footer {
+    margin: 0;
+    display: flex;
+    position: absolute;
+    bottom: 0.7rem;
+    > div {
+      padding: 0 0.5rem;
+    }
+    .mat-caption {
+      line-height: 1rem;
+    }
+  }
+
+  .mat-card-actions {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+    justify-content: space-around;
+  }
+}

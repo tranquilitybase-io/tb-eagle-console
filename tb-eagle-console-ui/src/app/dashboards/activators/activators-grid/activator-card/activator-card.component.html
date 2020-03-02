@@ -1,0 +1,72 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <div class="card-actions-bar">
+        <button mat-icon-button>
+          <mat-icon>star_border</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item>Request Access</button>
+        </mat-menu>
+      </div>
+      {{ activator.name }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ activator.type }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content routerLink="/dashboard/activators/details" [queryParams]="{ id: activator.id }" title="Details">
+    <div class="mat-body-strong">Details</div>
+    <mat-list dense class="description-list">
+      <mat-list-item>
+        <div class="mat-body">Data sensitivity</div>
+        <mat-chip-list>
+          <mat-chip class="sensitivity" [ngClass]="sensitivityColor()">{{ activator.sensitivity }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body">Category</div>
+        <mat-chip-list>
+          <mat-chip>{{ activator.category }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body">Environments</div>
+        <mat-chip-list>
+          <mat-chip>{{ activator.envs[0] }}</mat-chip>
+          <mat-chip *ngIf="activator.envs.length > 1">+{{ activator.envs.length - 1 }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body">Cloud platform</div>
+        <mat-chip-list>
+          <mat-chip>{{ activator.platforms[0] }}</mat-chip>
+          <mat-chip *ngIf="activator.platforms.length > 1">+{{ activator.platforms.length - 1 }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body">Last updated</div>
+        <mat-chip-list>
+          <mat-chip>{{ activator.update | date }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-footer *ngIf="!active">
+    <div>
+      <div class="mat-body-strong">Description</div>
+      <div class="mat-caption">{{ activator.description }}</div>
+    </div>
+  </mat-card-footer>
+  <mat-card-actions *ngIf="active">
+    <a mat-stroked-button routerLink="/dashboard/activators/view" [queryParams]="{ id: activator.id }">
+      View
+    </a>
+    <a mat-button color="primary" routerLink="/dashboard/activators/create" [queryParams]="{ id: activator.id }">
+      Add to Solution <mat-icon>chevron_right</mat-icon>
+    </a>
+  </mat-card-actions>
+</mat-card>

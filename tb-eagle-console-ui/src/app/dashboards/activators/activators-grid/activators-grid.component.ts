@@ -1,22 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Activator } from '../activators.model';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setProgress } from '../activators.actions';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-grids',
-  templateUrl: './grids.component.html',
-  styleUrls: ['./grids.component.scss']
+  selector: 'app-activators-grid',
+  templateUrl: './activators-grid.component.html',
+  styleUrls: ['./activators-grid.component.scss']
 })
-export class GridsComponent implements OnInit {
+export class ActivatorsGridComponent implements OnInit {
   current$: Observable<string>;
+  activators: Activator[];
 
   constructor(private route: ActivatedRoute, private store: Store<any>) {}
 
   ngOnInit() {
     this.store.dispatch(setProgress({ step: 0 }));
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('categorySwitch')));
+    this.activators = this.route.snapshot.data['activators'] as Activator[];
   }
 }

@@ -4,19 +4,27 @@ import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '@app/shared/shared.module';
 
-import { ActivatorsComponent } from './activators/activators.component';
+import { ActivatorsComponent } from './activators.component';
 import { ControlsComponent } from './controls/controls.component';
 import { CategorySwitchComponent } from './category-switch/category-switch.component';
-import { AllModule } from './all/all.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ActivatorsService } from './activators.service';
-import { GridsComponent } from './grids/grids.component';
 import { DeploymentsService } from './deployments.service';
 import reducer, { featureKey } from './activators.reducer';
 import { MissingAvailableSolutionsDialogComponent } from './dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';
 
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+
+import { ActivatorsResolver } from './resolvers/activators.resolver';
+import { ActivatorCardComponent } from './activators-grid/activator-card/activator-card.component';
+import { ActivatorsGridComponent } from './activators-grid/activators-grid.component';
 
 const routes: Routes = [
   {
@@ -25,7 +33,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: GridsComponent
+        component: ActivatorsGridComponent,
+        resolve: {
+          activators: ActivatorsResolver
+        }
       },
       {
         path: 'view',
@@ -48,8 +59,9 @@ const routes: Routes = [
     ActivatorsComponent,
     ControlsComponent,
     CategorySwitchComponent,
-    GridsComponent,
-    MissingAvailableSolutionsDialogComponent
+    MissingAvailableSolutionsDialogComponent,
+    ActivatorCardComponent,
+    ActivatorsGridComponent
   ],
   entryComponents: [MissingAvailableSolutionsDialogComponent],
   providers: [ActivatorsService, DeploymentsService],
@@ -57,11 +69,16 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-    AllModule,
     CategoriesModule,
     StoreModule.forFeature(featureKey, reducer),
     MatButtonModule,
-    MatDialogModule
+    MatCardModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatGridListModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule
   ]
 })
 export class ActivatorsModule {}
