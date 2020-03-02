@@ -12,6 +12,32 @@
       0px 1px 3px 0px var(--primary-color);
   }
 
+  .mat-chip {
+    font-size: 12px;
+    padding: 0.2rem 0.5rem;
+    min-height: 1.5rem;
+    border-radius: 0.2rem;
+    &.sensitivity {
+      color: white;
+      background-color: var(--dark-grey-2);
+    }
+    &.red {
+      background-color: var(--red);
+    }
+    &.black {
+      background-color: var(--black);
+      color: white;
+    }
+    &.yellow {
+      background-color: var(--yellow);
+      color: white;
+    }
+    &.green {
+      background-color: var(--green);
+      color: white;
+    }
+  }
+
   .mat-card-header {
     padding: 0.3rem;
     text-align: center;
@@ -21,13 +47,16 @@
       margin-bottom: 10px;
     }
 
-    .card-actions-bar {
+    .card-header {
       display: flex;
-      justify-content: flex-end;
-      .mat-icon-button {
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
+      justify-content: space-between;
+
+      .card-actions-bar {
+        .mat-icon-button {
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+        }
       }
     }
   }
@@ -50,19 +79,6 @@
       height: 2rem;
       .mat-body {
         width: 8rem;
-      }
-      .mat-chip {
-        font-size: 12px;
-        padding: 0.2rem 0.5rem;
-        min-height: 1.5rem;
-        border-radius: 0.2rem;
-        &.sensitivity {
-          color: white;
-          background-color: var(--dark-grey-2);
-          &.red {
-            background-color: var(--red);
-          }
-        }
       }
     }
   }

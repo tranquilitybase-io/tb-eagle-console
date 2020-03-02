@@ -10,12 +10,24 @@ export class ActivatorCardComponent implements OnInit {
   @Input() activator: Activator;
   active = false;
 
+  private statusColorMap: Map<string, string>;
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.statusColorMap = new Map([
+      ['available', 'green'],
+      ['locked', 'black'],
+      ['deprecated', 'yellow']
+    ]);
+  }
 
   sensitivityColor(): string {
     return String(this.activator.sensitivity).toLowerCase() === 'restricted' ? 'red' : 'dark-grey';
+  }
+
+  statusColor(): string {
+    return this.statusColorMap.get(String(this.activator.available).toLowerCase());
   }
 
   @HostListener('mouseover')

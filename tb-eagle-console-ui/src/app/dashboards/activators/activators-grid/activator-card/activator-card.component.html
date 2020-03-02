@@ -1,16 +1,20 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      <div class="card-actions-bar">
-        <button mat-icon-button>
-          <mat-icon>star_border</mat-icon>
-        </button>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_horiz</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item>Request Access</button>
-        </mat-menu>
+      <div class="card-header">
+        <mat-chip [ngClass]="statusColor()">{{ activator.available }}</mat-chip>
+
+        <div class="card-actions-bar">
+          <button mat-icon-button>
+            <mat-icon>star_border</mat-icon>
+          </button>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item>Request Access</button>
+          </mat-menu>
+        </div>
       </div>
       {{ activator.name }}
     </mat-card-title>
