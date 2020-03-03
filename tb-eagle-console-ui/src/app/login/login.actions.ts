@@ -1,9 +1,8 @@
 import { createAction, props } from '@ngrx/store';
+import { User } from './login.model';
 
-export const login = createAction('[logi-form-pane component] login', props<{ username: string; password: string }>());
+export const login = createAction('[login-form-pane component] login', props<{ username: string; password: string }>());
 
-export const getUser = createAction('[logi-form-pane component] get-user');
+export const loginSuccess = createAction('[login-form-pane component] login-success', props<{ user: User }>());
 
-export const loginSuccess = createAction('[logi-form-pane component] login-success');
-
-export const loginFailure = createAction('[logi-form-pane component] login-failure');
+export const loginFailure = createAction('[login-form-pane component] login-failure');

@@ -38,7 +38,7 @@
         <mat-error *ngIf="pwdFormControl.hasError('required')"> Password is <strong>required</strong> </mat-error>
       </mat-form-field>
 
-      <div *ngIf="(loggedIn$ | async) === false">
+      <div *ngIf="(isAuthenticated$ | async) === false">
         <span class="login-failure">{{ loginMessage }}</span>
       </div>
 

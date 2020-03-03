@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { UserLoginService } from '@app/login/user-login.service';
 import * as loginActions from '../login.actions';
-import { State, selectLoggedIn } from '../login.reducer';
+import { State, selectIsAuthenticated } from '../login.reducer';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -23,7 +23,7 @@ export class LoginFormPaneComponent implements OnInit {
   response: any;
 
   responseJson: string;
-  loggedIn$: Observable<boolean>;
+  isAuthenticated$: Observable<boolean>;
 
   error: boolean = false;
 
@@ -36,7 +36,7 @@ export class LoginFormPaneComponent implements OnInit {
   onSubmit($event: Event) {
     this.store.dispatch(loginActions.login({ username: this.userName, password: this.userPassword }));
 
-    this.loggedIn$ = this.store.pipe(select(selectLoggedIn));
+    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
 
     $event.preventDefault();
   }

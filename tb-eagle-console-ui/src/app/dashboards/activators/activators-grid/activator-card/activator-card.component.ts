@@ -1,5 +1,9 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Activator } from '../../activators.model';
+import { Observable } from 'rxjs';
+import { User } from '@app/login/login.model';
+import { Store, select } from '@ngrx/store';
+import { selectUserIsAdmin } from '@app/login/login.reducer';
 
 @Component({
   selector: 'app-activator-card',
@@ -9,10 +13,11 @@ import { Activator } from '../../activators.model';
 export class ActivatorCardComponent implements OnInit {
   @Input() activator: Activator;
   active = false;
+  userIsAdmin$: Observable<User>;
 
   private statusColorMap: Map<string, string>;
 
-  constructor() {}
+  constructor(private store: Store<User>) {}
 
   ngOnInit() {
     this.statusColorMap = new Map([
@@ -20,6 +25,7 @@ export class ActivatorCardComponent implements OnInit {
       ['locked', 'black'],
       ['deprecated', 'yellow']
     ]);
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
 
   sensitivityColor(): string {

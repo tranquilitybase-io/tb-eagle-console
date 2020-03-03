@@ -12,7 +12,9 @@
             <mat-icon>more_horiz</mat-icon>
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item>Request Access</button>
+            <button mat-menu-item *ngIf="!(userIsAdmin$ | async)">Request Access</button>
+            <button mat-menu-item *ngIf="userIsAdmin$ | async">Grant Access</button>
+            <button mat-menu-item *ngIf="userIsAdmin$ | async">Deprecate</button>
           </mat-menu>
         </div>
       </div>

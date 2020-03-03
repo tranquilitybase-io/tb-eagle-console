@@ -2,23 +2,19 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { User } from './user.interface';
+import { User } from './login.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserLoginService {
-  public loggedIn: boolean;
+  isAuthenticated = false;
   private BASE_URL = 'http://localhost:3000/api';
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  isUserLoggedIn() {
-    return this.loggedIn === true;
-  }
-
-  setUserLoggedIn(setLogin: boolean) {
-    this.loggedIn = setLogin;
+  setUserIsAuthenticated(setLogin: boolean) {
+    this.isAuthenticated = setLogin;
   }
 
   login(userName, userPassword): Observable<User> {
@@ -32,13 +28,11 @@ export class UserLoginService {
     return this.http.post<User>(url, params, { headers });
   }
 
-  loginSuccess(setLogin: string): void {
-    localStorage.setItem('isLoggedIn', setLogin);
+  loginSuccess(): void {
     this.router.navigateByUrl('/dashboard/solutions');
   }
 
-  loginFailure(setLogin: string): void {
-    localStorage.setItem('isLoggedIn', setLogin);
+  loginFailure(): void {
     this.router.navigateByUrl('/login');
   }
 }

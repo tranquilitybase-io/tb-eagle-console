@@ -9,31 +9,34 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import entityConfig from './entity-metadata';
-import { OnlyLoggedInUsersGuard } from './only-logged-in-user-guard.service';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuardService } from './guards/auth-guard.service';
+import { LoginComponent } from './login/login/login.component';
+import { LoginModule } from './login/login.module';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/dashboard/solutions',
     pathMatch: 'full',
-    canActivate: [OnlyLoggedInUsersGuard]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    component: LoginComponent
   },
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule),
-    canActivate: [OnlyLoggedInUsersGuard]
+    canActivate: [AuthGuardService]
   }
 ];
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    LoginModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
@@ -46,7 +49,7 @@ const routes: Routes = [
     }),
     BrowserAnimationsModule
   ],
-  providers: [OnlyLoggedInUsersGuard],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
