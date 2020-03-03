@@ -17,25 +17,6 @@
     padding: 0.2rem 0.5rem;
     min-height: 1.5rem;
     border-radius: 0.2rem;
-    &.sensitivity {
-      color: white;
-      background-color: var(--dark-grey-2);
-    }
-    &.red {
-      background-color: var(--red);
-    }
-    &.black {
-      background-color: var(--black);
-      color: white;
-    }
-    &.yellow {
-      background-color: var(--yellow);
-      color: white;
-    }
-    &.green {
-      background-color: var(--green);
-      color: white;
-    }
   }
 
   .mat-card-header {

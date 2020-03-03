@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setProgress } from '../activators.actions';
 import { map } from 'rxjs/operators';
+import { ActivatorsService } from '../activators.service';
 
 @Component({
   selector: 'app-activators-grid',
@@ -13,13 +14,15 @@ import { map } from 'rxjs/operators';
 })
 export class ActivatorsGridComponent implements OnInit {
   current$: Observable<string>;
-  activators: Activator[];
+  activators$: Observable<Activator[]>;
 
-  constructor(private route: ActivatedRoute, private store: Store<any>) {}
+  constructor(private activatorsService: ActivatorsService, private route: ActivatedRoute, private store: Store<any>) {
+    this.activators$ = activatorsService.filteredEntities$;
+  }
 
   ngOnInit() {
+    this.activatorsService.getAll();
     this.store.dispatch(setProgress({ step: 0 }));
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('categorySwitch')));
-    this.activators = this.route.snapshot.data['activators'] as Activator[];
   }
 }

@@ -2,19 +2,23 @@
   <mat-card-header>
     <mat-card-title>
       <div class="card-header">
-        <mat-chip [ngClass]="statusColor()">{{ activator.available }}</mat-chip>
+        <mat-chip [color]="statusColor" selected>{{ activator.status }}</mat-chip>
 
         <div class="card-actions-bar">
           <button mat-icon-button>
             <mat-icon>star_border</mat-icon>
           </button>
           <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_horiz</mat-icon>
+            <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item *ngIf="!(userIsAdmin$ | async)">Request Access</button>
-            <button mat-menu-item *ngIf="userIsAdmin$ | async">Grant Access</button>
-            <button mat-menu-item *ngIf="userIsAdmin$ | async">Deprecate</button>
+            <a mat-menu-item routerLink="/dashboard/activators/view" [queryParams]="{ id: activator.id }">View</a>
+            <a mat-menu-item routerLink="/dashboard/activators/details" [queryParams]="{ id: activator.id }">Details</a>
+
+            <button mat-menu-item *ngIf="isLocked && !(userIsAdmin$ | async)">Request Access</button>
+            <button mat-menu-item *ngIf="isLocked && (userIsAdmin$ | async)">Grant Access</button>
+            <button mat-menu-item *ngIf="isAvailable && (userIsAdmin$ | async)" (click)="setLocked()">Lock</button>
+            <button mat-menu-item *ngIf="isAvailable && (userIsAdmin$ | async)" (click)="setDeprecated()">Deprecate</button>
           </mat-menu>
         </div>
       </div>
@@ -29,7 +33,7 @@
       <mat-list-item>
         <div class="mat-body">Data sensitivity</div>
         <mat-chip-list>
-          <mat-chip class="sensitivity" [ngClass]="sensitivityColor()">{{ activator.sensitivity }}</mat-chip>
+          <mat-chip [color]="sensitivityColor" selected>{{ activator.sensitivity }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>

@@ -2,7 +2,7 @@ export interface Activator {
   id: number;
   name: string;
   type: string;
-  available: string;
+  status: string;
   sensitivity: string;
   category: string;
   envs: string[];

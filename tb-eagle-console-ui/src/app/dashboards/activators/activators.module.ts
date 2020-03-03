@@ -22,9 +22,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { ActivatorsResolver } from './resolvers/activators.resolver';
 import { ActivatorCardComponent } from './activators-grid/activator-card/activator-card.component';
 import { ActivatorsGridComponent } from './activators-grid/activators-grid.component';
+import { EffectsModule } from '@ngrx/effects';
+import { ActivatorsEffects } from './activators.effects';
 
 const routes: Routes = [
   {
@@ -33,10 +34,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ActivatorsGridComponent,
-        resolve: {
-          activators: ActivatorsResolver
-        }
+        component: ActivatorsGridComponent
       },
       {
         path: 'view',
@@ -71,6 +69,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CategoriesModule,
     StoreModule.forFeature(featureKey, reducer),
+    EffectsModule.forFeature([ActivatorsEffects]),
     MatButtonModule,
     MatCardModule,
     MatChipsModule,

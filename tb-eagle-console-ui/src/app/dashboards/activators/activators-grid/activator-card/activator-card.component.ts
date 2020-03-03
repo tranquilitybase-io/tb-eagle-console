@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '@app/login/login.model';
 import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { setDeprecated, setLocked } from '../../activators.actions';
 
 @Component({
   selector: 'app-activator-card',
@@ -21,19 +22,26 @@ export class ActivatorCardComponent implements OnInit {
 
   ngOnInit() {
     this.statusColorMap = new Map([
-      ['available', 'green'],
-      ['locked', 'black'],
-      ['deprecated', 'yellow']
+      ['available', 'accent'],
+      ['deprecated', 'warn']
     ]);
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
 
-  sensitivityColor(): string {
-    return String(this.activator.sensitivity).toLowerCase() === 'restricted' ? 'red' : 'dark-grey';
+  get isAvailable(): boolean {
+    return String(this.activator.status).toLowerCase() === 'available';
   }
 
-  statusColor(): string {
-    return this.statusColorMap.get(String(this.activator.available).toLowerCase());
+  get isLocked(): boolean {
+    return String(this.activator.status).toLowerCase() === 'locked';
+  }
+
+  get sensitivityColor(): string {
+    return String(this.activator.sensitivity).toLowerCase() === 'restricted' ? 'warn' : '';
+  }
+
+  get statusColor(): string {
+    return this.statusColorMap.get(String(this.activator.status).toLowerCase());
   }
 
   @HostListener('mouseover')
@@ -44,5 +52,13 @@ export class ActivatorCardComponent implements OnInit {
   @HostListener('mouseleave')
   onMouseLeave() {
     this.active = false;
+  }
+
+  setDeprecated() {
+    this.store.dispatch(setDeprecated({ id: this.activator.id }));
+  }
+
+  setLocked() {
+    this.store.dispatch(setLocked({ id: this.activator.id }));
   }
 }

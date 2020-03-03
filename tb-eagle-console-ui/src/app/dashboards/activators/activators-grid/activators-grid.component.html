@@ -4,7 +4,7 @@
 <app-controls [isAll]="(current$ | async) === 'All'"></app-controls>
 <div *ngIf="(current$ | async) === 'All'" class="grid-container">
   <mat-grid-list cols="4" rowHeight="420px">
-    <mat-grid-tile *ngFor="let activator of activators" colspan="1" rowspan="1">
+    <mat-grid-tile *ngFor="let activator of activators$ | async" colspan="1" rowspan="1">
       <app-activator-card [activator]="activator"></app-activator-card>
     </mat-grid-tile>
   </mat-grid-list>

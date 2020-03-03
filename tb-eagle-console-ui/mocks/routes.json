@@ -1,7 +1,7 @@
 {
   "/api/deployment": "/api/deployments",
   "/api/deployment/*": "/api/deployments/$1",
-  "/api/application/*": "/api/applications/$1",
+  "/api/activator/*": "/api/activators/$1",
   "/api/keyValues/businessUnit": "/businessUnit",
   "/api/keyValues/cd": "/cd",
   "/api/keyValues/ci": "/ci",
