@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-missing-available-solutions-dialog',
@@ -8,11 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./missing-available-solutions-dialog.component.scss']
 })
 export class MissingAvailableSolutionsDialogComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private dialogRef: MatDialogRef<MissingAvailableSolutionsDialogComponent>
-  ) {}
+  constructor(private router: Router, private dialogRef: MatDialogRef<MissingAvailableSolutionsDialogComponent>) {}
 
   ngOnInit() {}
 

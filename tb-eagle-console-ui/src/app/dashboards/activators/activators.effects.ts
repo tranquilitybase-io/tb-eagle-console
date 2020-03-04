@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ActivatorsService } from './activators.service';
 import { tap } from 'rxjs/operators';
-import { setDeprecated, setLocked } from './activators.actions';
+import { setDeprecated, setLocked, denyAccess, grantAccess } from './activators.actions';
 
 @Injectable()
 export class ActivatorsEffects {
@@ -22,6 +22,24 @@ export class ActivatorsEffects {
       this.actions$.pipe(
         ofType(setLocked),
         tap(({ id }) => this.service.setLocked(id))
+      ),
+    { dispatch: false }
+  );
+
+  denyAccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(denyAccess),
+        tap(({ activatorId, teamId }) => this.service.denyAccess(activatorId, teamId))
+      ),
+    { dispatch: false }
+  );
+
+  grantAccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(grantAccess),
+        tap(({ activatorId, teamId }) => this.service.grantAccess(activatorId, teamId))
       ),
     { dispatch: false }
   );

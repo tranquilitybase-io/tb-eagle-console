@@ -1,3 +1,5 @@
+import { KeyValue } from '@angular/common';
+
 export interface Activator {
   id: number;
   name: string;
@@ -25,4 +27,9 @@ export interface Deployment {
   env: string;
   status: boolean;
   notes: string;
+}
+
+export interface ActivatorGrantAccessDialogData {
+  activatorId: number;
+  teamList: KeyValue<string, string>[];
 }

@@ -26,6 +26,7 @@
     { "key": "BitBucket", "value": "BitBucket" },
     { "key": "Cloud native", "value": "Cloud native" }
   ],
+  "team": [{ "key": "Developers", "value": "Developers" }],
   "deployment_meta": {
     "length": 100
   },

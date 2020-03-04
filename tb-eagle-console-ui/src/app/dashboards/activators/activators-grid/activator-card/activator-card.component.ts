@@ -5,6 +5,10 @@ import { User } from '@app/login/login.model';
 import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { setDeprecated, setLocked } from '../../activators.actions';
+import { ActivatorGrantAccessDialogComponent } from '../../dialogs/activator-grant-access-dialog/activator-grant-access-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-activator-card',
@@ -17,8 +21,9 @@ export class ActivatorCardComponent implements OnInit {
   userIsAdmin$: Observable<User>;
 
   private statusColorMap: Map<string, string>;
+  private teamList: KeyValue<string, string>[];
 
-  constructor(private store: Store<User>) {}
+  constructor(private store: Store<any>, private dialog: MatDialog, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.statusColorMap = new Map([
@@ -26,6 +31,7 @@ export class ActivatorCardComponent implements OnInit {
       ['deprecated', 'warn']
     ]);
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.teamList = this.route.snapshot.data['teamList'];
   }
 
   get isAvailable(): boolean {
@@ -34,6 +40,10 @@ export class ActivatorCardComponent implements OnInit {
 
   get isLocked(): boolean {
     return String(this.activator.status).toLowerCase() === 'locked';
+  }
+
+  get isDeprecated(): boolean {
+    return String(this.activator.status).toLowerCase() === 'deprecated';
   }
 
   get sensitivityColor(): string {
@@ -60,5 +70,15 @@ export class ActivatorCardComponent implements OnInit {
 
   setLocked() {
     this.store.dispatch(setLocked({ id: this.activator.id }));
+  }
+
+  grantAccess() {
+    this.dialog.open(ActivatorGrantAccessDialogComponent, {
+      autoFocus: false,
+      data: {
+        activatorId: this.activator.id,
+        teamList: this.teamList
+      }
+    });
   }
 }

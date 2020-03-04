@@ -16,9 +16,16 @@
             <a mat-menu-item routerLink="/dashboard/activators/details" [queryParams]="{ id: activator.id }">Details</a>
 
             <button mat-menu-item *ngIf="isLocked && !(userIsAdmin$ | async)">Request Access</button>
-            <button mat-menu-item *ngIf="isLocked && (userIsAdmin$ | async)">Grant Access</button>
+            <button mat-menu-item *ngIf="isLocked && (userIsAdmin$ | async)" (click)="grantAccess()">
+              Grant Access
+            </button>
             <button mat-menu-item *ngIf="isAvailable && (userIsAdmin$ | async)" (click)="setLocked()">Lock</button>
-            <button mat-menu-item *ngIf="isAvailable && (userIsAdmin$ | async)" (click)="setDeprecated()">Deprecate</button>
+            <button mat-menu-item *ngIf="(isAvailable || isLocked) && (userIsAdmin$ | async)" (click)="setDeprecated()">
+              Deprecate
+            </button>
+            <button mat-menu-item *ngIf="isDeprecated && (userIsAdmin$ | async)" (click)="setLocked()">
+              Revive
+            </button>
           </mat-menu>
         </div>
       </div>

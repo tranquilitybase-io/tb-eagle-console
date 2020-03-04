@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '@app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ActivatorsComponent } from './activators.component';
 import { ControlsComponent } from './controls/controls.component';
@@ -12,20 +13,24 @@ import { ActivatorsService } from './activators.service';
 import { DeploymentsService } from './deployments.service';
 import reducer, { featureKey } from './activators.reducer';
 import { MissingAvailableSolutionsDialogComponent } from './dialogs/missing-available-solutions-dialog/missing-available-solutions-dialog.component';
+import { ActivatorGrantAccessDialogComponent } from './dialogs/activator-grant-access-dialog/activator-grant-access-dialog.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ActivatorCardComponent } from './activators-grid/activator-card/activator-card.component';
 import { ActivatorsGridComponent } from './activators-grid/activators-grid.component';
 import { EffectsModule } from '@ngrx/effects';
 import { ActivatorsEffects } from './activators.effects';
+import { TeamResolver } from './resolvers/team.resolver';
 
 const routes: Routes = [
   {
@@ -34,7 +39,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ActivatorsGridComponent
+        component: ActivatorsGridComponent,
+        resolve: {
+          teamList: TeamResolver
+        }
       },
       {
         path: 'view',
@@ -58,12 +66,15 @@ const routes: Routes = [
     ControlsComponent,
     CategorySwitchComponent,
     MissingAvailableSolutionsDialogComponent,
+    ActivatorGrantAccessDialogComponent,
     ActivatorCardComponent,
     ActivatorsGridComponent
   ],
-  entryComponents: [MissingAvailableSolutionsDialogComponent],
+  entryComponents: [MissingAvailableSolutionsDialogComponent, ActivatorGrantAccessDialogComponent],
   providers: [ActivatorsService, DeploymentsService],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
@@ -74,10 +85,12 @@ const routes: Routes = [
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ]
 })
 export class ActivatorsModule {}

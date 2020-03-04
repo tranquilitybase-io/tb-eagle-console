@@ -7,6 +7,7 @@
   "/api/keyValues/ci": "/ci",
   "/api/keyValues/environment": "/environment",
   "/api/keyValues/sourceControl": "/sourceControl",
+  "/api/keyValues/team": "/team",
   "/api/solution/*": "/solutions/$1",
   "/api/*": "/$1"
 }
