@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { KeyValue } from '@angular/common';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { User } from '@app/login/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/activator/${activatorId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .patch(url, { status: 'Locked' }, { headers })
+      .patch(url, { status: 'Locked', accessRequestedBy: null }, { headers })
       .subscribe(this.patchSuccess, this.patchError, this.patchCompleted);
     console.log('Locked status set to activator: ' + activatorId);
   }
@@ -59,9 +60,18 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/activator/${activatorId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .patch(url, { status: 'Available' }, { headers })
+      .patch(url, { status: 'Available', accessRequestedBy: null }, { headers })
       .subscribe(this.patchSuccess, this.patchError, this.patchCompleted);
     console.log('Available status set to activator: ' + activatorId);
+  }
+
+  requestAccess(id: number, user: User) {
+    const url = `${this.BASE_URL}/activator/${id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http
+      .patch(url, { accessRequestedBy: user }, { headers })
+      .subscribe(this.patchSuccess, this.patchError, this.patchCompleted);
+    console.log(`Access requested to activator ${id} by user ${user.id}`);
   }
 
   private handleError(error: HttpErrorResponse) {

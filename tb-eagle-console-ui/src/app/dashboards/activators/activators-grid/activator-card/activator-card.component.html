@@ -3,6 +3,7 @@
     <mat-card-title>
       <div class="card-header">
         <mat-chip [color]="statusColor" selected>{{ activator.status }}</mat-chip>
+        <mat-chip color="warn" selected *ngIf="activator.accessRequestedBy">Access Requested</mat-chip>
 
         <div class="card-actions-bar">
           <button mat-icon-button>
@@ -15,16 +16,20 @@
             <a mat-menu-item routerLink="/dashboard/activators/view" [queryParams]="{ id: activator.id }">View</a>
             <a mat-menu-item routerLink="/dashboard/activators/details" [queryParams]="{ id: activator.id }">Details</a>
 
-            <button mat-menu-item *ngIf="isLocked && !(userIsAdmin$ | async)">Request Access</button>
+            <button mat-menu-item *ngIf="isLocked && !(userIsAdmin$ | async)" (click)="requestAccess()">
+              Request Access
+            </button>
             <button mat-menu-item *ngIf="isLocked && (userIsAdmin$ | async)" (click)="grantAccess()">
               Grant Access
             </button>
-            <button mat-menu-item *ngIf="isAvailable && (userIsAdmin$ | async)" (click)="setLocked()">Lock</button>
+            <button mat-menu-item *ngIf="isAvailable && (userIsAdmin$ | async)" (click)="setLocked()">
+              Lock
+            </button>
             <button mat-menu-item *ngIf="(isAvailable || isLocked) && (userIsAdmin$ | async)" (click)="setDeprecated()">
               Deprecate
             </button>
             <button mat-menu-item *ngIf="isDeprecated && (userIsAdmin$ | async)" (click)="setLocked()">
-              Revive
+              Undeprecate
             </button>
           </mat-menu>
         </div>

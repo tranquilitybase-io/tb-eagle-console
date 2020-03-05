@@ -1,10 +1,12 @@
 import { KeyValue } from '@angular/common';
+import { User } from '@app/login/login.model';
 
 export interface Activator {
   id: number;
   name: string;
   type: string;
   status: string;
+  accessRequestedBy: User;
   sensitivity: string;
   category: string;
   envs: string[];
@@ -32,4 +34,5 @@ export interface Deployment {
 export interface ActivatorGrantAccessDialogData {
   activatorId: number;
   teamList: KeyValue<string, string>[];
+  accessRequestedBy: User;
 }

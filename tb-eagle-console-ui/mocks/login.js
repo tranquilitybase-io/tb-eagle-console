@@ -8,8 +8,8 @@ module.exports = (req, res, next) => {
     if (username === 'admin@your.company' && password === 'pass1') {
       return res.send({
         id: 'admin@your.company',
-        firstname: 'Adam',
-        lastname: 'Smith',
+        firstName: 'Adam',
+        lastName: 'Smith',
         isAdmin: true
       });
     }
@@ -17,8 +17,8 @@ module.exports = (req, res, next) => {
     if (username === 'dev@your.company' && password === 'pass2') {
       return res.send({
         id: 'dev@your.company',
-        firstname: 'Adam',
-        lastname: 'Smith',
+        firstName: 'John',
+        lastName: 'Snow',
         isAdmin: false
       });
     }

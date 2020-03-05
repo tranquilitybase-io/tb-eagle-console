@@ -34,6 +34,11 @@ export class ActivatorGrantAccessDialogComponent implements OnInit {
     return this.data.teamList;
   }
 
+  get accessRequestedBy(): string {
+    const user = this.data.accessRequestedBy;
+    return `${user.firstName} ${user.lastName}`;
+  }
+
   isFieldValid(field: string) {
     return this.grantAccessForm.get(field).touched && !this.grantAccessForm.get(field).valid;
   }

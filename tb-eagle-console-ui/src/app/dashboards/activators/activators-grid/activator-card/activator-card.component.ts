@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '@app/login/login.model';
 import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
-import { setDeprecated, setLocked } from '../../activators.actions';
+import { setDeprecated, setLocked, requestAccess } from '../../activators.actions';
 import { ActivatorGrantAccessDialogComponent } from '../../dialogs/activator-grant-access-dialog/activator-grant-access-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -77,8 +77,13 @@ export class ActivatorCardComponent implements OnInit {
       autoFocus: false,
       data: {
         activatorId: this.activator.id,
-        teamList: this.teamList
+        teamList: this.teamList,
+        accessRequestedBy: this.activator.accessRequestedBy
       }
     });
+  }
+
+  requestAccess() {
+    this.store.dispatch(requestAccess({ id: this.activator.id }));
   }
 }
