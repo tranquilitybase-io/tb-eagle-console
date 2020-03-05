@@ -17,7 +17,7 @@ import {
   stopDeploymentApp,
   updateDeploymentProgressApp
 } from './solutions.actions';
-import { Solution } from './interfaces';
+import { Solution } from './solutions.model';
 
 function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
   return new Observable(observer => {

@@ -14,7 +14,7 @@ import {
   stopDeploymentApp,
   dismissDeploymentAppReadyAlert
 } from './solutions.actions';
-import { Solution } from './interfaces';
+import { Solution } from './solutions.model';
 
 export const intialState = {
   solutions: [{}],

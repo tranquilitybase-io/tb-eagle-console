@@ -5,19 +5,28 @@ module.exports = (req, res, next) => {
     console.log('LOGIN!', username, password);
     res.header('Access-Control-Allow-Origin', '*');
 
-    if (username !== 'admin@your.company' || password !== 'pass1') {
-      console.log('LOGIN FAILED!');
-      res.status(401);
-
-      return res.end();
+    if (username === 'admin@your.company' && password === 'pass1') {
+      return res.send({
+        id: 'admin@your.company',
+        firstName: 'Adam',
+        lastName: 'Smith',
+        isAdmin: true
+      });
     }
 
-    return res.send({
-      id: 'admin@your.company',
-      firstname: 'Adam',
-      lastname: 'Smith'
-    });
+    if (username === 'dev@your.company' && password === 'pass2') {
+      return res.send({
+        id: 'dev@your.company',
+        firstName: 'John',
+        lastName: 'Snow',
+        isAdmin: false
+      });
+    }
+
+    console.log('LOGIN FAILED!');
+    res.status(401);
+    return res.end();
   }
 
   next();
-}
+};

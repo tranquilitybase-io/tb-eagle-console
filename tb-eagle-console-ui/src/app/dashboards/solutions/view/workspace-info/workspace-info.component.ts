@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Solution } from '../../interfaces';
+import { Solution } from '../../solutions.model';
 
 @Component({
   selector: 'app-workspace-info',

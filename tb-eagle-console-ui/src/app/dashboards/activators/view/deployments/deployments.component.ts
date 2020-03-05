@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DeploymentsService } from '@app/dashboards/activators/deployments.service';
-import { Deployment } from '@app/dashboards/activators/interfaces';
+import { Deployment } from '@app/dashboards/activators/activators.model';
 
 import { selectPage, selectLength } from '../view.reducer';
 import { changePage } from '../view.actions';

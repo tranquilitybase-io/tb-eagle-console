@@ -1,0 +1,19 @@
+<form [formGroup]="grantAccessForm">
+  <h1 mat-dialog-title>Grant Access to Activator</h1>
+  <div mat-dialog-content>
+    <p>{{accessRequestedBy}} requested access</p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Team</mat-label>
+        <mat-select required formControlName="teamId">
+          <mat-option *ngFor="let item of availableTeams" [value]="item.key"> {{ item.value }} </mat-option>
+        </mat-select>
+        <mat-error *ngIf="isFieldValid('teamId')"> Team is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button (click)="denyAccess()" type="button">Deny Access</button>
+    <button mat-raised-button (click)="grantAccess()" type="button" color="primary">Grant Access</button>
+  </div>
+</form>

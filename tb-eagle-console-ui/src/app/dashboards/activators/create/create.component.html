@@ -1,0 +1,52 @@
+<form [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm.value)">
+  <app-alert
+    class="app-alert"
+    text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."
+  ></app-alert>
+
+  <p>
+    <mat-form-field class="small-width" appearance="outline">
+      <mat-label>Solution</mat-label>
+      <mat-select required formControlName="solutionId">
+        <mat-option *ngFor="let item of availableSolutions" [value]="item.key"> {{ item.value }} </mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldValid('solutionId')"> Solution is <strong>required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="small-width" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput required type="text" maxlength="50" formControlName="name" placeholder="E.g. project name..." />
+      <mat-error *ngIf="isFieldValid('name')"> Name is <strong>required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        required
+        #desctext
+        maxlength="200"
+        formControlName="description"
+        placeholder="Type your description here..."
+      ></textarea>
+      <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+      <mat-error *ngIf="isFieldValid('description')"> Description is <strong>required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+
+  <div class="footer-container">
+    <button
+      mat-button
+      color="primary"
+      type="button"
+      routerLink="/dashboard/activators/view"
+      queryParamsHandling="preserve"
+    >
+      <mat-icon>keyboard_arrow_left</mat-icon> Review activator
+    </button>
+    <button mat-button color="primary" type="submit">Add to Solution <mat-icon>keyboard_arrow_right</mat-icon></button>
+  </div>
+</form>

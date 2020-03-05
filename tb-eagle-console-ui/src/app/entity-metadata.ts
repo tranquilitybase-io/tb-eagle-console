@@ -1,8 +1,8 @@
 import { EntityMetadataMap } from '@ngrx/data';
-import { Solution } from './dashboards/solutions/interfaces';
+import { Solution } from './dashboards/solutions/solutions.model';
 
 const entityMetadata: EntityMetadataMap = {
-  Application: {},
+  Activator: {},
   Deployment: {},
   Solution: {
     filterFn: (solutions: Solution[], filter: string) => {

@@ -93,3 +93,7 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
   width: 100%;
   margin: 0px;
 }
+
+.mat-dialog-container {
+  min-width: 550px;
+}

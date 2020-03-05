@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Application } from '@app/dashboards/solutions/interfaces';
+import { Application } from '@app/dashboards/solutions/solutions.model';
 import { Store, select } from '@ngrx/store';
 import { startDeployApplication, dismissDeploymentAppReadyAlert } from '@app/dashboards/solutions/solutions.actions';
 import {

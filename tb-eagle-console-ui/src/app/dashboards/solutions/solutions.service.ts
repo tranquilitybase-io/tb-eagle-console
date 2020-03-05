@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Solution, Application } from './interfaces';
+import { Solution, Application } from './solutions.model';
 import { startDeployment } from '../solutions/solutions.actions';
 import { KeyValue } from '@angular/common';
 import { Observable, throwError } from 'rxjs';

@@ -4,23 +4,24 @@ import { loginSuccess, loginFailure } from './login.actions';
 export const loginFeatureKey = 'login-reducer';
 
 export interface State {
-  loggedIn: boolean;
+  isAuthenticated: boolean;
 }
 
 export const initialState: State = {
-  loggedIn: false
+  isAuthenticated: false
 };
 
 const loginReducer = createReducer(
   initialState,
-  on(loginSuccess, state => ({ ...state, loggedIn: true })),
-  on(loginFailure, state => ({ ...state, loggedIn: false }))
+  on(loginSuccess, (state, { user }) => ({ ...state, user, isAuthenticated: true })),
+  on(loginFailure, state => ({ ...state, user: undefined, isAuthenticated: false }))
 );
 
-export function reducer(state: State | undefined, action: Action) {
+export function reducer(state: State, action: Action) {
   return loginReducer(state, action);
 }
 
 export const selectFeature = state => state[loginFeatureKey];
-export const selectLoggedIn = createSelector(selectFeature, ({ loggedIn }) => loggedIn);
+export const selectIsAuthenticated = createSelector(selectFeature, ({ isAuthenticated }) => isAuthenticated);
 export const selectUser = createSelector(selectFeature, ({ user }) => user);
+export const selectUserIsAdmin = createSelector(selectFeature, ({ user }) => user && user.isAdmin);

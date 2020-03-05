@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setSelectedSolution } from '../../solutions.actions';
-import { Solution, Application } from '../../interfaces';
+import { Solution, Application } from '../../solutions.model';
 
 @Component({
   selector: 'app-applications-grid',

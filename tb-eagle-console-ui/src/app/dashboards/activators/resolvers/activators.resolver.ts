@@ -1,0 +1,14 @@
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ActivatorsService } from '../activators.service';
+import { Activator } from '../activators.model';
+
+@Injectable({ providedIn: 'root' })
+export class ActivatorsResolver implements Resolve<Activator[]> {
+  constructor(private service: ActivatorsService) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Activator[]> {
+    return this.service.getAll();
+  }
+}

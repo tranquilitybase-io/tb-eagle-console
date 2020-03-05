@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Solution } from '../interfaces';
+import { Solution } from '../solutions.model';
 
 @Component({
   selector: 'app-view',
