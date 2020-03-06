@@ -1,1 +1,10 @@
 node_modules
+tb-houston-service/venv
+tb-houston-service/.pytest_cache
+tb-houston-service/.coverage
+tb-houston-service/__pycache__
+tb-houston-service/dist
+tb-houston-service/.idea
+tb-houston-service/tb_houston_service.egg-info
+tb-houston-service/tb_houston_service/config/local_*.py
+*.pyc
