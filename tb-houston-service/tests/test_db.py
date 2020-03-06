@@ -3,7 +3,7 @@ from mysql.connector import errorcode;
 
 config = {
     'user': 'eagle-user',
-    'password': 'eagle123',
+    'password': 'xxxxxx',
     'database': 'eagle_db',
     'host': '127.0.0.1',
     'unix_socket': '/tmp/mysql.sock'
