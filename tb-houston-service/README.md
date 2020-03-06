@@ -29,4 +29,4 @@ This README would normally document whatever steps are necessary to get your app
 * Other community or team contact
 
 
-[tranquilitybase.io](http://tranquilitybase.io).
+[tranquilitybase.io](http://tranquilitybase.io)
