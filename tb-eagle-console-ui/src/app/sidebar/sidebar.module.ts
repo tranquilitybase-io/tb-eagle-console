@@ -10,6 +10,9 @@ import { OrganizationComponent } from './organization/organization.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     SidebarComponent,
@@ -20,7 +23,7 @@ import { NavItemComponent } from './nav-item/nav-item.component';
     SectionHeaderComponent,
     NavItemComponent
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, MatButtonModule, MatIconModule],
   exports: [SidebarComponent]
 })
 export class SidebarModule {}

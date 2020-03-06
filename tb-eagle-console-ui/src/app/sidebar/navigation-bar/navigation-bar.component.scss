@@ -3,3 +3,10 @@
   padding: 1.5rem 1rem;
   flex-direction: column;
 }
+
+.mat-button {
+  text-align: left;
+  .mat-icon {
+    margin-right: 1rem;
+  }
+}

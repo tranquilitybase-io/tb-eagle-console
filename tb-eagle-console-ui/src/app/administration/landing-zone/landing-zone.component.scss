@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  padding: 0.3rem 2rem;
+  background-color: var(--active-grey-background);
+  h1 {
+    font-size: 1.25rem;
+    .vertical-divider {
+      border-left: 1px solid var(--grey);
+      margin: 0.5rem;
+    }
+  }
+}
+
+main {
+  margin: 1.5rem 2rem;
+  .filters {
+    .mat-button-toggle {
+      min-width: 15rem;
+    }
+  }
+  .mat-divider {
+    margin: 1.5rem 0;
+  }
+}

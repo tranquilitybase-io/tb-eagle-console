@@ -4,6 +4,8 @@
 <app-nav-item icon="activator" name="Activator store" path="/dashboard/activators"></app-nav-item>
 
 <app-section-header>Administration menu</app-section-header>
-<app-nav-item icon="user" name="Users"></app-nav-item>
-<app-nav-item icon="teams" name="Teams"></app-nav-item>
-<app-nav-item icon="cog" name="Settings"></app-nav-item>
+<a mat-button routerLink="/administration/landing-zone"><mat-icon>account_tree</mat-icon> Landing Zone</a>
+<button mat-button><mat-icon>storage</mat-icon> Datacenter</button>
+<button mat-button><mat-icon>person</mat-icon> Users</button>
+<button mat-button><mat-icon>group</mat-icon> Teams</button>
+<button mat-button><mat-icon>settings</mat-icon> Settings</button>

@@ -89,11 +89,22 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
 // that you are using.
 @include angular-material-theme($material-custom-theme);
 
-.mat-card-header > .mat-card-header-text {
-  width: 100%;
-  margin: 0px;
+@mixin mix-app-theme($material-custom-theme) {
+  $primary: map-get($material-custom-theme, primary);
+
+  .mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+    background-color: mat-color($primary);
+    color: mat-contrast($primary, 800);
+  }
+
+  .mat-card-header > .mat-card-header-text {
+    width: 100%;
+    margin: 0px;
+  }
+
+  .mat-dialog-container {
+    min-width: 550px;
+  }
 }
 
-.mat-dialog-container {
-  min-width: 550px;
-}
+@include mix-app-theme($material-custom-theme);
