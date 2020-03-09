@@ -38,7 +38,7 @@ PyYAML==5.3
 requests==2.23.0
 rsa==4.0
 six==1.12.0
-SQLAlchemy==1.2.18
+SQLAlchemy==1.3.0
 swagger-ui-bundle==0.0.6
 uritemplate==3.0.1
 urllib3==1.25.8
