@@ -17,13 +17,13 @@ header {
 }
 
 main {
-  margin: 1.5rem 2rem;
+  margin: 1.5rem 2rem 0 2rem;
   .filters {
     .mat-button-toggle {
       min-width: 15rem;
     }
   }
   .mat-divider {
-    margin: 1.5rem 0;
+    margin-top: 1.5rem;
   }
 }
