@@ -7,9 +7,9 @@ import { Activator } from '@app/dashboards/activators/activators.model';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent {
-  @Input() app: Activator;
+  @Input() activator: Activator;
 
   get sensitivityColor(): string {
-    return String(this.app.sensitivity).toLowerCase() === 'restricted' ? 'red' : 'dark-grey';
+    return String(this.activator.sensitivity).toLowerCase() === 'restricted' ? 'red' : 'dark-grey';
   }
 }

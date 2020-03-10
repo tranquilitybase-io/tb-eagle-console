@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, filter, first } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
 import { Solution } from '../solutions.model';
 import { Store, select } from '@ngrx/store';
-import { refreshSolutions, dismissAlmostReadyAlert, dismissDeploymentReadyAlert } from '../solutions.actions';
+import { dismissAlmostReadyAlert, dismissDeploymentReadyAlert } from '../solutions.actions';
 import { SolutionsState, selectIsAlmostReady, selectIsDeploymentReady } from '../solutions.reducers';
 
 @Component({
@@ -16,7 +16,7 @@ import { SolutionsState, selectIsAlmostReady, selectIsDeploymentReady } from '..
 export class SolutionLandingComponent implements OnInit {
   solutions$: Observable<Solution[]>;
 
-  private values = [
+  values = [
     { name: 'Favourites', count: 4 },
     { name: 'Active', count: 4 },
     { name: 'Archived', count: 3 }

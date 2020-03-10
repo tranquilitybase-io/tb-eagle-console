@@ -7,6 +7,7 @@ import { KeyValue } from '@angular/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +20,7 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
     super('Solution', serviceElementsFactory);
   }
 
-  private BASE_URL = 'http://localhost:3000/api';
+  private BASE_URL = `${environment.apiUrl}/api`;
 
   createSolution(solution: Solution): void {
     const url = `${this.BASE_URL}/solutions`;

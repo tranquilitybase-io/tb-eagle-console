@@ -1,6 +1,11 @@
 import { KeyValue } from '@angular/common';
 import { User } from '@app/login/login.model';
 
+export interface Resource {
+  name: string;
+  ipAddress: string;
+}
+
 export interface Activator {
   id: number;
   name: string;
@@ -21,6 +26,11 @@ export interface Activator {
   hosting: string[];
   apiManagement: string[];
   sourceControl: string[];
+  businessUnity: string;
+  technologyOwner: string;
+  technologyOwnerEmail: string;
+  billing: string;
+  resources: Resource[];
 }
 
 export interface Deployment {
