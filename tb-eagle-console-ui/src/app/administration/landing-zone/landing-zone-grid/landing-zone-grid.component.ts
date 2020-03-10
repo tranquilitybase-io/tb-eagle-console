@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-landing-zone-grid',
@@ -27,5 +29,9 @@ export class LandingZoneGridComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  gridCols$: Observable<number>;
+
+  constructor(private breakpointObserver: BreakpointObserver, private gridColsService: GridColsService) {
+    this.gridCols$ = this.gridColsService.gridColsObserver$;
+  }
 }

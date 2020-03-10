@@ -1,4 +1,4 @@
-<mat-grid-list cols="4" rowHeight="150px">
+<mat-grid-list [cols]="gridCols$ | async" rowHeight="150px">
   <mat-grid-tile *ngFor="let action of actions | async" colspan="1" rowspan="1">
     <button mat-stroked-button class="action-button">
       <div class="category border" [ngClass]="action.categoryClass"></div>
