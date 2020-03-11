@@ -4,14 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { LandingZoneComponent } from './landing-zone.component';
 import { SharedModule } from '@app/shared/shared.module';
 
-import { MatDividerModule } from '@angular/material/divider';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { LandingZoneGridComponent } from './landing-zone-grid/landing-zone-grid.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LayoutModule } from '@angular/cdk/layout';
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
     MatGridListModule,
     MatIconModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
     LayoutModule
   ]
 })

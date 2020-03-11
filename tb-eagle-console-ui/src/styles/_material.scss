@@ -105,6 +105,10 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
   .mat-dialog-container {
     min-width: 550px;
   }
+
+  .mat-progress-spinner.guide-line circle {
+    stroke: #c4c4c4;
+  }
 }
 
 @include mix-app-theme($material-custom-theme);

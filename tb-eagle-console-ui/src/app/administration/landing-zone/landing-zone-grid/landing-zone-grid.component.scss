@@ -9,11 +9,32 @@
   border-radius: 10px;
   font-size: 22px;
   padding: 0;
+  .progress {
+    position: absolute;
+    bottom: 31px;
+    left: 31px;
+    .mat-progress-spinner {
+      position: absolute;
+    }
+    .value {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: 9px;
+      line-height: 10px;
+      &.completed {
+        left: 5px;
+      }
+      &.one-digit {
+        left: 10px;
+      }
+    }
+  }
   .category {
     &.border {
-      border-left: 20px solid rgb(100, 99, 99);
       position: absolute;
       top: 0;
+      border-left: 20px solid rgb(100, 99, 99);
       border-radius: 10px 0 0 10px;
       height: 100%;
     }

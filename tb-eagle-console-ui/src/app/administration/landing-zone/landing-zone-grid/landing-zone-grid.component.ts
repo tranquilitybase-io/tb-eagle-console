@@ -13,18 +13,78 @@ export class LandingZoneGridComponent {
   actions = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(() => {
       return [
-        { title: 'Folder structure', categoryName: '', categoryClass: 'folder-structure' },
-        { title: 'WAN', categoryName: 'Network Setup', categoryClass: 'network-setup' },
-        { title: 'LAN', categoryName: 'Network Setup', categoryClass: 'network-setup' },
-        { title: 'DNS', categoryName: 'Network Setup', categoryClass: 'network-setup' },
-        { title: 'Internet access', categoryName: 'Network Setup', categoryClass: 'network-setup' },
-        { title: 'SSO', categoryName: 'AD Integration', categoryClass: 'ad-integration' },
-        { title: 'ADFS', categoryName: 'AD Integration', categoryClass: 'ad-integration' },
-        { title: 'Stackdriver', categoryName: 'Logging', categoryClass: 'logging' },
-        { title: 'Data Dog', categoryName: 'Logging', categoryClass: 'logging' },
-        { title: 'Cloud Health', categoryName: 'Billing/Cost Management', categoryClass: 'billing-cost-management' },
-        { title: 'Security', categoryName: '', categoryClass: 'security' },
-        { title: 'Multizone setup', categoryName: '', categoryClass: 'multizone-setup' }
+        {
+          title: 'Folder structure',
+          categoryName: '',
+          categoryClass: 'folder-structure',
+          completionRate: 50
+        },
+        {
+          title: 'WAN',
+          categoryName: 'Network Setup',
+          categoryClass: 'network-setup',
+          completionRate: 100
+        },
+        {
+          title: 'LAN',
+          categoryName: 'Network Setup',
+          categoryClass: 'network-setup',
+          completionRate: 25
+        },
+        {
+          title: 'DNS',
+          categoryName: 'Network Setup',
+          categoryClass: 'network-setup',
+          completionRate: 75
+        },
+        {
+          title: 'Internet access',
+          categoryName: 'Network Setup',
+          categoryClass: 'network-setup',
+          completionRate: 9
+        },
+        {
+          title: 'SSO',
+          categoryName: 'AD Integration',
+          categoryClass: 'ad-integration',
+          completionRate: 25
+        },
+        {
+          title: 'ADFS',
+          categoryName: 'AD Integration',
+          categoryClass: 'ad-integration',
+          completionRate: 0
+        },
+        {
+          title: 'Stackdriver',
+          categoryName: 'Logging',
+          categoryClass: 'logging',
+          completionRate: 50
+        },
+        {
+          title: 'Data Dog',
+          categoryName: 'Logging',
+          categoryClass: 'logging',
+          completionRate: 30
+        },
+        {
+          title: 'Cloud Health',
+          categoryName: 'Billing/Cost Management',
+          categoryClass: 'billing-cost-management',
+          completionRate: 19
+        },
+        {
+          title: 'Security',
+          categoryName: '',
+          categoryClass: 'security',
+          completionRate: 13
+        },
+        {
+          title: 'Multizone setup',
+          categoryName: '',
+          categoryClass: 'multizone-setup',
+          completionRate: 12
+        }
       ];
     })
   );
@@ -33,5 +93,9 @@ export class LandingZoneGridComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, private gridColsService: GridColsService) {
     this.gridCols$ = this.gridColsService.gridColsObserver$;
+  }
+
+  progressValueClass(value: number): string {
+    return value < 10 ? 'one-digit' : value == 100 ? 'completed' : '';
   }
 }

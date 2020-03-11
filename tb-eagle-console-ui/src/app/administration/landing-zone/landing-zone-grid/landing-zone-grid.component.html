@@ -3,6 +3,19 @@
     <button mat-stroked-button class="action-button">
       <div class="category border" [ngClass]="action.categoryClass"></div>
       <div class="category title" [ngClass]="action.categoryClass">{{ action.categoryName }}</div>
+      <div class="progress">
+        <mat-progress-spinner class="guide-line" mode="determinate" diameter="26" strokeWidth="3" [value]="100">
+        </mat-progress-spinner>
+        <mat-progress-spinner
+          color="primary"
+          mode="determinate"
+          diameter="26"
+          strokeWidth="3"
+          [value]="action.completionRate"
+        >
+        </mat-progress-spinner>
+        <div class="value" [ngClass]="progressValueClass(action.completionRate)">{{ action.completionRate }}</div>
+      </div>
       <div>
         <div>
           <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
