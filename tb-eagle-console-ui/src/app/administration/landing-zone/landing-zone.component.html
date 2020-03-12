@@ -1,8 +1,56 @@
-<header>
-  <h1>
-    <span class="vertical-divider"></span>
-    Landing Zone
-  </h1>
+<header class="app-landing-header">
+  <mat-accordion>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h1>
+            <span class="vertical-divider"></span>
+            Landing Zone
+          </h1>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="setup-progress">
+        <h2>Setup Progress</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer hendrerit, urna eget dictum elementum, dui
+          magna vehicula dui, ut blandit ex ex a dui. Nullam a nisi massa. Vivamus convallis malesuada neque ut luctus.
+        </p>
+        <mat-horizontal-stepper [selectedIndex]="2" [linear]="true" color="accent" [disableRipple]="true">
+          <mat-step label="WAN" state="wan" [editable]="false" [completed]="true"> </mat-step>
+          <mat-step label="DNS" state="dns" [editable]="false" [completed]="true"> </mat-step>
+          <mat-step label="ADFS" state="adfs" [editable]="false" [completed]="false"> </mat-step>
+          <mat-step label="SSO" state="sso" [editable]="false" [completed]="false"> </mat-step>
+          <mat-step label="Logging" state="logging" [editable]="false" [completed]="false"> </mat-step>
+          <mat-step label="Billing" state="billing" [editable]="false" [completed]="false"> </mat-step>
+          <!-- Icon overrides. -->
+          <ng-template matStepperIcon="edit">
+            <mat-icon>file_copy</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="done">
+            <mat-icon>done</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="wan">
+            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="dns">
+            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="adfs">
+            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="sso">
+            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="logging">
+            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="billing">
+            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+          </ng-template>
+        </mat-horizontal-stepper>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </header>
 <main>
   <div class="filters">

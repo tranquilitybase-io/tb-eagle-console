@@ -91,6 +91,7 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
 
 @mixin mix-app-theme($material-custom-theme) {
   $primary: map-get($material-custom-theme, primary);
+  $accent: map-get($material-custom-theme, accent);
 
   .mat-button-toggle-checked.mat-button-toggle-appearance-standard {
     background-color: mat-color($primary);
@@ -108,6 +109,25 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
 
   .mat-progress-spinner.guide-line circle {
     stroke: #c4c4c4;
+  }
+
+  header.app-landing-header {
+    .mat-step-header .mat-step-icon-selected,
+    .mat-step-header .mat-step-icon-state-done,
+    .mat-step-header .mat-step-icon-state-edit {
+      background-color: mat-color($accent);
+    }
+    .mat-horizontal-content-container {
+      padding: 0;
+    }
+    .mat-step-header.cdk-keyboard-focused,
+    .mat-step-header.cdk-program-focused,
+    .mat-step-header:hover {
+      background-color: unset;
+    }
+    .mat-step-header {
+      cursor: default;
+    }
   }
 }
 

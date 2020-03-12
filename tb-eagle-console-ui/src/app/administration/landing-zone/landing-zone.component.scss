@@ -5,13 +5,40 @@
 }
 
 header {
-  padding: 0.3rem 2rem;
+  padding: 0.3rem 0.5rem;
   background-color: var(--active-grey-background);
-  h1 {
-    font-size: 1.25rem;
-    .vertical-divider {
-      border-left: 1px solid var(--grey);
-      margin: 0.5rem;
+  .mat-expansion-panel {
+    box-shadow: unset;
+    background: unset;
+    h1 {
+      font-size: 1.25rem;
+      .vertical-divider {
+        border-left: 1px solid var(--grey);
+        margin: 0.5rem;
+      }
+    }
+    .setup-progress {
+      border: 1px solid #dcdcdc;
+      border-radius: 5px;
+      h2 {
+        margin-left: 26px;
+        font-family: 'SF Pro Display';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+      }
+      p {
+        max-width: 564px;
+        margin-left: 26px;
+        font-family: 'SF Pro Display';
+        font-size: 11px;
+        line-height: 14px;
+        color: #828282;
+      }
+      .mat-stepper-horizontal {
+        background-color: unset;
+      }
     }
   }
 }
