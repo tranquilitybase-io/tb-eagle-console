@@ -4,6 +4,8 @@ export class Application {
   solutionId: number;
   name: string;
   description: string;
+  env: string;
+  status: boolean;
   activator: Activator;
 }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DeploymentsService } from '@app/dashboards/activators/deployments.service';
-import { Deployment } from '@app/dashboards/activators/activators.model';
+import { Application } from '@app/dashboards/solutions/solutions.model';
 
 import { selectPage, selectLength } from '../view.reducer';
 import { changePage } from '../view.actions';
@@ -13,7 +13,7 @@ import { changePage } from '../view.actions';
   styleUrls: ['./deployments.component.scss']
 })
 export class DeploymentsComponent implements OnInit {
-  deployments$: Observable<Deployment[]>;
+  deployments$: Observable<Application[]>;
   page$: Observable<number>;
   length$: Observable<number>;
 

@@ -21,7 +21,7 @@
       </th>
       <th>
         <div class="head-desc">
-          <div class="head-title">Notes</div>
+          <div class="head-title">Description</div>
           <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
       </th>
     </tr>
@@ -29,7 +29,7 @@
   <tbody>
     <tr *ngFor="let deployment of deployments$ | async">
       <td>
-        {{ deployment.application }}
+        {{ deployment.name }}
       </td>
       <td>
         {{ deployment.env }}
@@ -39,7 +39,7 @@
       </td>
       <td>
         <div class="notes">
-          <div class="notes-text">{{ deployment.notes }}</div>
+          <div class="notes-text">{{ deployment.description }}</div>
           <app-icon icon="dots"></app-icon>
         </div>
       </td>

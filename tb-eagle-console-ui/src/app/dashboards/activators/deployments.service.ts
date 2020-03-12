@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Observable } from 'rxjs';
-import { Deployment } from './activators.model';
+import { Application } from '../solutions/solutions.model';
 
 @Injectable()
-export class DeploymentsService extends EntityCollectionServiceBase<Deployment> {
+export class DeploymentsService extends EntityCollectionServiceBase<Application> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
-    super('Deployment', serviceElementsFactory);
+    super('Application', serviceElementsFactory);
   }
 
   fetchMetaDataForDeployments(): Observable<{ length: number }> {
-    return this.http.get<{ length: number }>('/api/deployment_meta');
+    return this.http.get<{ length: number }>('/api/application_meta');
   }
 }

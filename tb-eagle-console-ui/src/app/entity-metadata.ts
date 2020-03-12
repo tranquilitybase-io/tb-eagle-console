@@ -3,7 +3,7 @@ import { Solution } from './dashboards/solutions/solutions.model';
 
 const entityMetadata: EntityMetadataMap = {
   Activator: {},
-  Deployment: {},
+  Application: {},
   Solution: {
     filterFn: (solutions: Solution[], filter: string) => {
       if (filter === 'Favourites') {
