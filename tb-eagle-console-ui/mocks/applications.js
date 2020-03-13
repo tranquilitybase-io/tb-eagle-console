@@ -3,9 +3,9 @@ const { range, randomChoice } = require('./utils');
 module.exports = range(1, 100).map(index => {
   return {
     id: index,
-    name: randomChoice([ 'Placeholder', 'Great App', 'Other App']),
+    name: randomChoice(['Placeholder', 'Great App', 'Other App']),
     env: randomChoice(['PROD', 'POC', 'DEV', 'UAT']),
-    status: randomChoice([true, false]),
+    status: randomChoice(['Active', 'Inactive']),
     description: `
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

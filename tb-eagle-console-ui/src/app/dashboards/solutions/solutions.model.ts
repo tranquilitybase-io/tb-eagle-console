@@ -5,7 +5,7 @@ export class Application {
   name: string;
   description: string;
   env: string;
-  status: boolean;
+  status: string;
   activator: Activator;
 }
 
