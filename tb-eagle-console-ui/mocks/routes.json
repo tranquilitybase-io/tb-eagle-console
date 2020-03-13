@@ -9,5 +9,6 @@
   "/api/keyValues/sourceControl": "/sourceControl",
   "/api/keyValues/team": "/team",
   "/api/solution/*": "/solutions/$1",
+  "/api/landingzoneaction/*": "/landingzoneactions/$1",
   "/api/*": "/$1"
 }
