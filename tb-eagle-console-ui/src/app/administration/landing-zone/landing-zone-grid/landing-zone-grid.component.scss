@@ -9,6 +9,28 @@
   border-radius: 10px;
   font-size: 22px;
   padding: 0;
+  &:disabled {
+    background-color: #f2f2f2;
+    .lock-icon {
+      position: absolute;
+      line-height: 15px;
+      top: 5px;
+      left: 5px;
+      .mat-icon {
+        height: 15px;
+        width: 15px;
+      }
+      .material-icons {
+        font-size: 15px;
+      }
+      span {
+        font-size: small;
+        margin-left: 8px;
+        position: absolute;
+        top: 0px;
+      }
+    }
+  }
   .progress {
     position: absolute;
     bottom: 31px;

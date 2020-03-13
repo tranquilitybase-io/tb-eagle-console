@@ -1,12 +1,13 @@
 <mat-grid-list [cols]="gridCols$ | async" rowHeight="150px">
   <mat-grid-tile *ngFor="let action of actions | async" colspan="1" rowspan="1">
-    <button mat-stroked-button class="action-button">
+    <button mat-stroked-button class="action-button" [disabled]="action.disabled">
       <div class="category border" [ngClass]="action.categoryClass"></div>
       <div class="category title" [ngClass]="action.categoryClass">{{ action.categoryName }}</div>
       <div class="progress">
         <mat-progress-spinner class="guide-line" mode="determinate" diameter="26" strokeWidth="3" [value]="100">
         </mat-progress-spinner>
         <mat-progress-spinner
+          *ngIf="!action.disabled"
           color="primary"
           mode="determinate"
           diameter="26"
@@ -14,7 +15,13 @@
           [value]="action.completionRate"
         >
         </mat-progress-spinner>
-        <div class="value" [ngClass]="progressValueClass(action.completionRate)">{{ action.completionRate }}</div>
+        <div *ngIf="!action.disabled" class="value" [ngClass]="progressValueClass(action.completionRate)">
+          {{ action.completionRate }}
+        </div>
+        <div *ngIf="action.disabled" class="lock-icon">
+          <mat-icon *ngIf="action.disabled">lock</mat-icon>
+          <span>Please complete previous requirements</span>
+        </div>
       </div>
       <div>
         <div>

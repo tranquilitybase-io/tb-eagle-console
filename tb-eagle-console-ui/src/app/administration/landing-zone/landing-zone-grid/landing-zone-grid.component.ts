@@ -17,73 +17,85 @@ export class LandingZoneGridComponent {
           title: 'Folder structure',
           categoryName: '',
           categoryClass: 'folder-structure',
-          completionRate: 50
+          completionRate: 50,
+          disabled: false
         },
         {
           title: 'WAN',
           categoryName: 'Network Setup',
           categoryClass: 'network-setup',
-          completionRate: 100
+          completionRate: 100,
+          disabled: false
         },
         {
           title: 'LAN',
           categoryName: 'Network Setup',
           categoryClass: 'network-setup',
-          completionRate: 25
+          completionRate: 25,
+          disabled: false
         },
         {
           title: 'DNS',
           categoryName: 'Network Setup',
           categoryClass: 'network-setup',
-          completionRate: 75
+          completionRate: 75,
+          disabled: true
         },
         {
           title: 'Internet access',
           categoryName: 'Network Setup',
           categoryClass: 'network-setup',
-          completionRate: 9
+          completionRate: 9,
+          disabled: true
         },
         {
           title: 'SSO',
           categoryName: 'AD Integration',
           categoryClass: 'ad-integration',
-          completionRate: 25
+          completionRate: 25,
+          disabled: false
         },
         {
           title: 'ADFS',
           categoryName: 'AD Integration',
           categoryClass: 'ad-integration',
-          completionRate: 0
+          completionRate: 0,
+          disabled: false
         },
         {
           title: 'Stackdriver',
           categoryName: 'Logging',
           categoryClass: 'logging',
-          completionRate: 50
+          completionRate: 50,
+          disabled: false
         },
         {
           title: 'Data Dog',
           categoryName: 'Logging',
           categoryClass: 'logging',
-          completionRate: 30
+          completionRate: 30,
+          disabled: false
         },
         {
           title: 'Cloud Health',
           categoryName: 'Billing/Cost Management',
           categoryClass: 'billing-cost-management',
-          completionRate: 19
+          completionRate: 19,
+          disabled: false
         },
         {
           title: 'Security',
           categoryName: '',
           categoryClass: 'security',
-          completionRate: 13
+          completionRate: 13,
+          disabled: false
         },
         {
           title: 'Multizone setup',
           categoryName: '',
           categoryClass: 'multizone-setup',
-          completionRate: 12
+          completionRate: 12,
+          disabled: false
         }
       ];
     })
