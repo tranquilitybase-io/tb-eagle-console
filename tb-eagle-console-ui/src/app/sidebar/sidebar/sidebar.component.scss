@@ -16,4 +16,21 @@ app-icons-bar {
 
 app-navigation-bar {
   flex: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 4rem;
+  right: 0;
+}
+
+.nav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.purpleNav {
+  background-color: var(--grey);
+  color: var(--primary-color);
 }
