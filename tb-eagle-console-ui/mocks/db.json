@@ -257,5 +257,103 @@
       ],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
     }
+  ],
+  "landingzoneactions": [
+    {
+      "id": 1,
+      "title": "Folder structure",
+      "categoryName": "",
+      "categoryClass": "folder-structure",
+      "completionRate": 50,
+      "locked": false
+    },
+    {
+      "id": 2,
+      "title": "WAN",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 100,
+      "locked": false
+    },
+    {
+      "id": 3,
+      "title": "LAN",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 25,
+      "locked": false
+    },
+    {
+      "id": 4,
+      "title": "DNS",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 75,
+      "locked": true
+    },
+    {
+      "id": 5,
+      "title": "Internet access",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 9,
+      "locked": true
+    },
+    {
+      "id": 6,
+      "title": "SSO",
+      "categoryName": "AD Integration",
+      "categoryClass": "ad-integration",
+      "completionRate": 25,
+      "locked": false
+    },
+    {
+      "id": 7,
+      "title": "ADFS",
+      "categoryName": "AD Integration",
+      "categoryClass": "ad-integration",
+      "completionRate": 0,
+      "locked": false
+    },
+    {
+      "id": 8,
+      "title": "Stackdriver",
+      "categoryName": "Logging",
+      "categoryClass": "logging",
+      "completionRate": 50,
+      "locked": false
+    },
+    {
+      "id": 9,
+      "title": "Data Dog",
+      "categoryName": "Logging",
+      "categoryClass": "logging",
+      "completionRate": 30,
+      "locked": false
+    },
+    {
+      "id": 10,
+      "title": "Cloud Health",
+      "categoryName": "Billing/Cost Management",
+      "categoryClass": "billing-cost-management",
+      "completionRate": 19,
+      "locked": false
+    },
+    {
+      "id": 11,
+      "title": "Security",
+      "categoryName": "",
+      "categoryClass": "security",
+      "completionRate": 13,
+      "locked": false
+    },
+    {
+      "id": 12,
+      "title": "Multizone setup",
+      "categoryName": "",
+      "categoryClass": "multizone-setup",
+      "completionRate": 12,
+      "locked": false
+    }
   ]
 }
