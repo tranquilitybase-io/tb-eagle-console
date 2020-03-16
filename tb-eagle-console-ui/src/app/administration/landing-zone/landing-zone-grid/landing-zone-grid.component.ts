@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
 import { Observable } from 'rxjs';
 import { LandingZoneAction } from '../landing-zone.model';
-import { LandingZoneService } from '../landing-zone.service';
+import { LandingZoneGridService } from './landing-zone-grid.service';
 
 @Component({
   selector: 'app-landing-zone-grid',
@@ -14,13 +14,13 @@ export class LandingZoneGridComponent implements OnInit {
 
   gridCols$: Observable<number>;
 
-  constructor(private gridColsService: GridColsService, private landingZoneService: LandingZoneService) {
-    this.actions$ = landingZoneService.filteredEntities$;
+  constructor(private gridColsService: GridColsService, private landingZoneGridService: LandingZoneGridService) {
+    this.actions$ = landingZoneGridService.filteredEntities$;
     this.gridCols$ = this.gridColsService.gridColsObserver$;
   }
 
   ngOnInit() {
-    this.landingZoneService.getAll();
+    this.landingZoneGridService.getAll();
   }
 
   progressValueClass(value: number): string {

@@ -355,5 +355,37 @@
       "completionRate": 12,
       "locked": false
     }
+  ],
+  "landingzoneprogressitems": [
+    {
+      "id": 0,
+      "label": "WAN",
+      "completed": true
+    },
+    {
+      "id": 1,
+      "label": "DNS",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "label": "ADFS",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "label": "SSO",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "label": "Logging",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "label": "Billing",
+      "completed": false
+    }
   ]
 }
