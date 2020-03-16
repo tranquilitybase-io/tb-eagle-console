@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class InputComponent implements ControlValueAccessor {
   private registeredOnChange: (value: any) => void = () => {};
-  private registeredOnTouched: () => void = () => {};
+  registeredOnTouched: () => void = () => {};
   value: any = '';
   disabled: boolean;
 

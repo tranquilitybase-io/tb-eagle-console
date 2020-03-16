@@ -9,8 +9,8 @@
     </a>
     <div class="app-name separated">{{ activator.name }}</div>
     <div class="separated">
-      <div class="badge" [class.black]="activator.available == 'Locked'" [class.yellow]="activator.available == 'Deprecated'">
-        {{ activator.available }}
+      <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
+        {{ activator.status }}
       </div>
     </div>
     <div class="badge grey time-badge">

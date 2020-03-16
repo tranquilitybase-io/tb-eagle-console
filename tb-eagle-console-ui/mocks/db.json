@@ -101,7 +101,6 @@
       "technologyOwner": "Sanjeev Gupta",
       "technologyOwnerEmail": "s.gupta@company.name",
       "billing": "Monthly: Eagle tier 3",
-      "activator": "Single Region Kubernetes",
       "resources": [
         { "name": "GKE Cluster", "ipAddress": "40.123.45.236" },
         { "name": "ITSO", "ipAddress": "40.123.45.236" },
@@ -131,7 +130,6 @@
       "technologyOwner": "Nathanael Stoltenberg",
       "technologyOwnerEmail": "Nathanael.Stoltenberg@yahoo.com",
       "billing": "Monthly: Eagle tier 1",
-      "activator": "Multi Region Kubernetes",
       "resources": [
         { "name": "GKE Cluster", "ipAddress": "40.123.45.236" },
         { "name": "Cloud SQL", "ipAddress": "40.123.45.236" }
@@ -160,7 +158,6 @@
       "technologyOwner": "Brando Howell",
       "technologyOwnerEmail": "Brando.Howell@hotmail.com",
       "billing": "Monthly: Eagle tier 2",
-      "activator": "Single Region Kubernetes",
       "resources": [
         { "name": "ITSO", "ipAddress": "40.123.45.236" },
         { "name": "Cloud SQL", "ipAddress": "40.123.45.236" }
@@ -189,7 +186,6 @@
       "technologyOwner": "Mohammed Will PhD",
       "technologyOwnerEmail": "Mohammed.Will@gmail.com",
       "billing": "Monthly: Eagle tier 3",
-      "activator": "Single Region Kubernetes",
       "resources": [
         { "name": "GKE Cluster", "ipAddress": "40.123.45.236" },
         { "name": "ITSO", "ipAddress": "40.123.45.236" }
@@ -218,7 +214,6 @@
       "technologyOwner": "Tressa Ullrich",
       "technologyOwnerEmail": "Tressa97@yahoo.com",
       "billing": "Monthly: Eagle tier 1",
-      "activator": "Single Region Kubernetes",
       "resources": [
         { "name": "ITSO", "ipAddress": "40.123.45.236" },
         { "name": "Cloud SQL", "ipAddress": "40.123.45.236" }
@@ -247,7 +242,6 @@
       "technologyOwner": "Rose Dickens Sr.",
       "technologyOwnerEmail": "Rose.Dickens19@hotmail.com",
       "billing": "Monthly: Eagle tier 2",
-      "activator": "Single Region Kubernetes",
       "resources": [
         { "name": "GKE Cluster", "ipAddress": "40.123.45.236" },
         { "name": "ITSO", "ipAddress": "40.123.45.236" }

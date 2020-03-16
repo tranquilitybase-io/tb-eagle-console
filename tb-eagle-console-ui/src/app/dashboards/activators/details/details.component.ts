@@ -11,14 +11,14 @@ import { switchMap, map } from 'rxjs/operators';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent {
-  app$: Observable<Activator>;
+  activator$: Observable<Activator>;
 
-  constructor(private appsService: ActivatorsService, private route: ActivatedRoute) {}
+  constructor(private service: ActivatorsService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.app$ = this.route.queryParams.pipe(
+    this.activator$ = this.route.queryParams.pipe(
       switchMap(({ id }) => {
-        return this.appsService.entityMap$.pipe(
+        return this.service.entityMap$.pipe(
           map(entityMap => entityMap[id]),
           switchMap(app => {
             if (app) {
@@ -26,7 +26,7 @@ export class DetailsComponent {
             }
 
             // Fetches activator from server if not previously loaded
-            return this.appsService.getByKey(id);
+            return this.service.getByKey(id);
           })
         );
       })

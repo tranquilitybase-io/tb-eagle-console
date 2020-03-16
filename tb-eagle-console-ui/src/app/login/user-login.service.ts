@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from './login.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserLoginService {
   isAuthenticated = false;
-  private BASE_URL = 'http://localhost:3000/api';
+  private BASE_URL = `${environment.apiUrl}/api`;
 
   constructor(private router: Router, private http: HttpClient) {}
 

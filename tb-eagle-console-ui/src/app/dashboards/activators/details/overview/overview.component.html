@@ -10,38 +10,38 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>{{ app.name }} - {{ app.description }}</div>
+            <div>{{ activator.name }} - {{ activator.description }}</div>
 
             <mat-list dense class="description-list">
               <mat-list-item>
                 <div class="mat-body-1">Data sensitivity</div>
                 <mat-chip-list>
-                  <mat-chip class="sensitivity" [ngClass]="sensitivityColor">{{ app.sensitivity }}</mat-chip>
+                  <mat-chip class="sensitivity" [ngClass]="sensitivityColor">{{ activator.sensitivity }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Users</div>
                 <mat-chip-list>
-                  <mat-chip>{{ app.userCapacity }}</mat-chip>
+                  <mat-chip>{{ activator.userCapacity }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Servers</div>
                 <mat-chip-list>
-                  <mat-chip>{{ app.serverCapacity }}</mat-chip>
+                  <mat-chip>{{ activator.serverCapacity }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Regions</div>
                 <mat-chip-list>
-                  <mat-chip *ngFor="let region of app.regions">{{ region }}</mat-chip>
+                  <mat-chip *ngFor="let region of activator.regions">{{ region }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
             </mat-list>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
@@ -49,19 +49,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ app.businessUnit }}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Cost centre
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ app.costCentre }}</div>
+            <div class="mat-body-2">{{ activator.businessUnity }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -73,7 +61,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ app.technologyOwner }}</div>
+            <div class="mat-body-2">{{ activator.technologyOwner }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -85,7 +73,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ app.technologyOwnerEmail }}</div>
+            <div class="mat-body-2">{{ activator.technologyOwnerEmail }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -97,7 +85,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ app.billing }} <a href="#">View details</a></div>
+            <div class="mat-body-2">{{ activator.billing }} <a href="#">View details</a></div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -114,7 +102,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>{{ app.activator }}</div>
+            <div>{{ activator.name }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -127,7 +115,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip>{{ app.category }}</mat-chip>
+              <mat-chip>{{ activator.category }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -141,7 +129,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip *ngFor="let env of app.envs">{{ env }}</mat-chip>
+              <mat-chip *ngFor="let env of activator.envs">{{ env }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -155,7 +143,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip *ngFor="let platform of app.platforms">{{ platform }}</mat-chip>
+              <mat-chip *ngFor="let platform of activator.platforms">{{ platform }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -169,7 +157,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip *ngFor="let resource of app.resources">
+              <mat-chip *ngFor="let resource of activator.resources">
                 {{ resource.name }} | <a href="#">{{ resource.ipAddress }}</a>
               </mat-chip>
             </mat-chip-list>
