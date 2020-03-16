@@ -10,7 +10,7 @@ export class DeploymentsService extends EntityCollectionServiceBase<Application>
     super('Application', serviceElementsFactory);
   }
 
-  fetchMetaDataForDeployments(): Observable<{ length: number }> {
-    return this.http.get<{ length: number }>('/api/application_meta');
-  }
+  // fetchMetaDataForDeployments(): Observable<{ length: number }> {
+  //   return this.http.get<{ length: number }>('/api/application_meta');
+  // }
 }

@@ -14,18 +14,18 @@ import { changePage } from '../view.actions';
 })
 export class DeploymentsComponent implements OnInit {
   deployments$: Observable<Application[]>;
-  page$: Observable<number>;
-  length$: Observable<number>;
+  // page$: Observable<number>;
+  // length$: Observable<number>;
 
   constructor(private deploymentService: DeploymentsService, private store: Store<any>) {}
 
   ngOnInit() {
     this.deployments$ = this.deploymentService.entities$;
-    this.page$ = this.store.pipe(select(selectPage));
-    this.length$ = this.store.pipe(select(selectLength));
+    // this.page$ = this.store.pipe(select(selectPage));
+    // this.length$ = this.store.pipe(select(selectLength));
   }
 
-  onPageChange(page: number) {
-    this.store.dispatch(changePage({ page }));
-  }
+  // onPageChange(page: number) {
+  //   this.store.dispatch(changePage({ page }));
+  // }
 }

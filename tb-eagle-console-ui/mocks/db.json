@@ -27,9 +27,6 @@
     { "key": "Cloud native", "value": "Cloud native" }
   ],
   "team": [{ "key": "Developers", "value": "Developers" }],
-  "application_meta": {
-    "length": 100
-  },
   "solutions": [
     {
       "id": 1,

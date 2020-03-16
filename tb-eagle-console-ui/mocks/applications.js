@@ -1,6 +1,6 @@
 const { range, randomChoice } = require('./utils');
 
-module.exports = range(1, 100).map(index => {
+module.exports = range(1, 10).map(index => {
   return {
     id: index,
     name: randomChoice(['Placeholder', 'Great App', 'Other App']),
