@@ -12,6 +12,7 @@ import entityConfig from './entity-metadata';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { AdminGuardService } from './guards/admin-guard.service';
 import { LoginComponent } from './login/login/login.component';
 import { LoginModule } from './login/login.module';
 
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule),
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'administration',
+    loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
+    canActivate: [AuthGuardService, AdminGuardService]
   }
 ];
 
@@ -49,7 +55,7 @@ const routes: Routes = [
     }),
     BrowserAnimationsModule
   ],
-  providers: [AuthGuardService],
+  providers: [AuthGuardService, AdminGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

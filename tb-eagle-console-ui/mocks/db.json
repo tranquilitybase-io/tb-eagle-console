@@ -27,9 +27,6 @@
     { "key": "Cloud native", "value": "Cloud native" }
   ],
   "team": [{ "key": "Developers", "value": "Developers" }],
-  "deployment_meta": {
-    "length": 100
-  },
   "solutions": [
     {
       "id": 1,
@@ -100,7 +97,7 @@
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
-      "businessUnity": "FICC Business Unit",
+      "businessUnit": "FICC Business Unit",
       "technologyOwner": "Sanjeev Gupta",
       "technologyOwnerEmail": "s.gupta@company.name",
       "billing": "Monthly: Eagle tier 3",
@@ -129,7 +126,7 @@
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
-      "businessUnity": "M&A Business Unit",
+      "businessUnit": "M&A Business Unit",
       "technologyOwner": "Nathanael Stoltenberg",
       "technologyOwnerEmail": "Nathanael.Stoltenberg@yahoo.com",
       "billing": "Monthly: Eagle tier 1",
@@ -157,7 +154,7 @@
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
-      "businessUnity": "Equity Capital Business Unit",
+      "businessUnit": "Equity Capital Business Unit",
       "technologyOwner": "Brando Howell",
       "technologyOwnerEmail": "Brando.Howell@hotmail.com",
       "billing": "Monthly: Eagle tier 2",
@@ -185,7 +182,7 @@
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
-      "businessUnity": "Debit Capital Business Unit",
+      "businessUnit": "Debit Capital Business Unit",
       "technologyOwner": "Mohammed Will PhD",
       "technologyOwnerEmail": "Mohammed.Will@gmail.com",
       "billing": "Monthly: Eagle tier 3",
@@ -213,7 +210,7 @@
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
-      "businessUnity": "FICC Business Unit",
+      "businessUnit": "FICC Business Unit",
       "technologyOwner": "Tressa Ullrich",
       "technologyOwnerEmail": "Tressa97@yahoo.com",
       "billing": "Monthly: Eagle tier 1",
@@ -241,7 +238,7 @@
       "ci": ["Jenkins", "Travis"],
       "cd": ["Codeship", "Option"],
       "sourceControl": ["JIRA", "Option"],
-      "businessUnity": "M&A Business Unit",
+      "businessUnit": "M&A Business Unit",
       "technologyOwner": "Rose Dickens Sr.",
       "technologyOwnerEmail": "Rose.Dickens19@hotmail.com",
       "billing": "Monthly: Eagle tier 2",
@@ -250,6 +247,136 @@
         { "name": "ITSO", "ipAddress": "40.123.45.236" }
       ],
       "description": "Some very long description that I did not want to copy. Some very long description that I did not want to copy. Some very long description that I did not want to copy"
+    }
+  ],
+  "landingzoneactions": [
+    {
+      "id": 1,
+      "title": "Folder structure",
+      "categoryName": "",
+      "categoryClass": "folder-structure",
+      "completionRate": 50,
+      "locked": false
+    },
+    {
+      "id": 2,
+      "title": "WAN",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 100,
+      "locked": false
+    },
+    {
+      "id": 3,
+      "title": "LAN",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 25,
+      "locked": false
+    },
+    {
+      "id": 4,
+      "title": "DNS",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 75,
+      "locked": true
+    },
+    {
+      "id": 5,
+      "title": "Internet access",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 9,
+      "locked": true
+    },
+    {
+      "id": 6,
+      "title": "SSO",
+      "categoryName": "AD Integration",
+      "categoryClass": "ad-integration",
+      "completionRate": 25,
+      "locked": false
+    },
+    {
+      "id": 7,
+      "title": "ADFS",
+      "categoryName": "AD Integration",
+      "categoryClass": "ad-integration",
+      "completionRate": 0,
+      "locked": false
+    },
+    {
+      "id": 8,
+      "title": "Stackdriver",
+      "categoryName": "Logging",
+      "categoryClass": "logging",
+      "completionRate": 50,
+      "locked": false
+    },
+    {
+      "id": 9,
+      "title": "Data Dog",
+      "categoryName": "Logging",
+      "categoryClass": "logging",
+      "completionRate": 30,
+      "locked": false
+    },
+    {
+      "id": 10,
+      "title": "Cloud Health",
+      "categoryName": "Billing/Cost Management",
+      "categoryClass": "billing-cost-management",
+      "completionRate": 19,
+      "locked": false
+    },
+    {
+      "id": 11,
+      "title": "Security",
+      "categoryName": "",
+      "categoryClass": "security",
+      "completionRate": 13,
+      "locked": false
+    },
+    {
+      "id": 12,
+      "title": "Multizone setup",
+      "categoryName": "",
+      "categoryClass": "multizone-setup",
+      "completionRate": 12,
+      "locked": false
+    }
+  ],
+  "landingzoneprogressitems": [
+    {
+      "id": 0,
+      "label": "WAN",
+      "completed": true
+    },
+    {
+      "id": 1,
+      "label": "DNS",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "label": "ADFS",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "label": "SSO",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "label": "Logging",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "label": "Billing",
+      "completed": false
     }
   ]
 }

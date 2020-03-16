@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { setProgress } from '../activators.actions';
 import { map } from 'rxjs/operators';
 import { ActivatorsService } from '../activators.service';
+import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
 
 @Component({
   selector: 'app-activators-grid',
@@ -15,9 +16,16 @@ import { ActivatorsService } from '../activators.service';
 export class ActivatorsGridComponent implements OnInit {
   current$: Observable<string>;
   activators$: Observable<Activator[]>;
+  gridCols$: Observable<number>;
 
-  constructor(private activatorsService: ActivatorsService, private route: ActivatedRoute, private store: Store<any>) {
+  constructor(
+    private activatorsService: ActivatorsService,
+    private route: ActivatedRoute,
+    private store: Store<any>,
+    private gridColsService: GridColsService
+  ) {
     this.activators$ = activatorsService.filteredEntities$;
+    this.gridCols$ = this.gridColsService.gridColsObserver$;
   }
 
   ngOnInit() {

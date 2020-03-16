@@ -1,6 +1,6 @@
 {
-  "/api/deployment": "/api/deployments",
-  "/api/deployment/*": "/api/deployments/$1",
+  "/api/application": "/api/applications",
+  "/api/application/*": "/api/applications/$1",
   "/api/activator/*": "/api/activators/$1",
   "/api/keyValues/businessUnit": "/businessUnit",
   "/api/keyValues/cd": "/cd",
@@ -9,5 +9,7 @@
   "/api/keyValues/sourceControl": "/sourceControl",
   "/api/keyValues/team": "/team",
   "/api/solution/*": "/solutions/$1",
+  "/api/landingzoneaction/*": "/landingzoneactions/$1",
+  "/api/landingzoneprogressitem/*": "/landingzoneprogressitems/$1",
   "/api/*": "/$1"
 }

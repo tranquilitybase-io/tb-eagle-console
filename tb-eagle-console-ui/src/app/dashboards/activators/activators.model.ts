@@ -33,14 +33,6 @@ export interface Activator {
   resources: Resource[];
 }
 
-export interface Deployment {
-  id: number;
-  application: string;
-  env: string;
-  status: boolean;
-  notes: string;
-}
-
 export interface ActivatorGrantAccessDialogData {
   activatorId: number;
   teamList: KeyValue<string, string>[];

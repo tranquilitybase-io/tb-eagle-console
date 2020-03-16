@@ -1,0 +1,5 @@
+:host {
+  display: grid;
+  grid-template-columns: var(--sidebarWidth) var(--mainWidth);
+  min-height: 100vh;
+}

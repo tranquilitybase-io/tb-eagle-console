@@ -1,4 +1,3 @@
-
 <div class="title">Deployed</div>
 
 <table>
@@ -7,45 +6,53 @@
       <th>
         <div class="head-desc">
           <div class="head-title">Application</div>
-          <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
+          <app-icon icon="expand_arrow" [size]="10"></app-icon>
+        </div>
       </th>
       <th>
         <div class="head-desc">
-          <div class="head-title">Environment </div>
-          <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
+          <div class="head-title">Environment</div>
+          <app-icon icon="expand_arrow" [size]="10"></app-icon>
+        </div>
       </th>
       <th>
         <div class="head-desc">
           <div class="head-title">Status</div>
-          <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
+          <app-icon icon="expand_arrow" [size]="10"></app-icon>
+        </div>
       </th>
       <th>
         <div class="head-desc">
-          <div class="head-title">Notes</div>
-          <app-icon icon="expand_arrow" [size]="10"></app-icon></div>
+          <div class="head-title">Description</div>
+          <app-icon icon="expand_arrow" [size]="10"></app-icon>
+        </div>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let deployment of deployments$ | async">
       <td>
-        {{ deployment.application }}
+        {{ deployment.name }}
       </td>
       <td>
         {{ deployment.env }}
       </td>
       <td>
-        <span class="badge" [class.red]="!deployment.status">{{ deployment.status ? 'Active' : 'Inactive' }}</span>
+        <span class="badge" [ngClass]="{ red: deployment.status === 'Inactive' }">{{ deployment.status }}</span>
       </td>
       <td>
         <div class="notes">
-          <div class="notes-text">{{ deployment.notes }}</div>
+          <div class="notes-text">{{ deployment.description }}</div>
           <app-icon icon="dots"></app-icon>
         </div>
       </td>
     </tr>
   </tbody>
 </table>
-<div class="pagination-container">
-  <app-pagination [totalSize]="length$ | async" [current]="page$ | async" (onPageChange)="onPageChange($event)"></app-pagination>
-</div>
+<!-- <div class="pagination-container">
+  <app-pagination
+    [totalSize]="length$ | async"
+    [current]="page$ | async"
+    (onPageChange)="onPageChange($event)"
+  ></app-pagination>
+</div> -->

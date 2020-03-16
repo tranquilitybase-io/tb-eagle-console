@@ -15,18 +15,19 @@ export class ViewEffects implements OnInitEffects {
         switchMap(({ page }) => {
           this.deploymentsService.clearCache();
 
-          return this.deploymentsService.getWithQuery({
-            _page: page.toString(),
-            _limit: '10'
-          });
+          // return this.deploymentsService.getWithQuery({
+          //   _page: page.toString(),
+          //   _limit: '10'
+          // });
+          return this.deploymentsService.getAll();
         })
       ),
     { dispatch: false }
   );
 
-  loadSize$ = createEffect(() =>
-    this.deploymentsService.fetchMetaDataForDeployments().pipe(map(payload => setLength(payload)))
-  );
+  // loadSize$ = createEffect(() =>
+  //   this.deploymentsService.fetchMetaDataForDeployments().pipe(map(payload => setLength(payload)))
+  // );
 
   constructor(private actions$: Actions, private deploymentsService: DeploymentsService) {}
 
