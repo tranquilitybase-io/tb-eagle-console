@@ -16,36 +16,29 @@
           completed, you will be able to start the Datacenter setup by clicking on the Datacenter tab in the menu on the
           left.
         </p>
-        <mat-horizontal-stepper [selectedIndex]="2" [linear]="true" color="accent" [disableRipple]="true">
-          <mat-step label="WAN" state="wan" [editable]="false" [completed]="true"> </mat-step>
-          <mat-step label="DNS" state="dns" [editable]="false" [completed]="true"> </mat-step>
-          <mat-step label="ADFS" state="adfs" [editable]="false" [completed]="false"> </mat-step>
-          <mat-step label="SSO" state="sso" [editable]="false" [completed]="false"> </mat-step>
-          <mat-step label="Logging" state="logging" [editable]="false" [completed]="false"> </mat-step>
-          <mat-step label="Billing" state="billing" [editable]="false" [completed]="false"> </mat-step>
-          <!-- Icon overrides. -->
+        <mat-horizontal-stepper
+          [selectedIndex]="selectedIndex$ | async"
+          [linear]="true"
+          color="accent"
+          [disableRipple]="true"
+        >
+          <!-- Progress items -->
+          <mat-step
+            *ngFor="let item of progressItems$ | async"
+            [label]="item.label"
+            state="app-progress-item"
+            [editable]="false"
+            [completed]="item.completed"
+          >
+          </mat-step>
+          <!-- Icon overrides -->
           <ng-template matStepperIcon="edit">
             <mat-icon>file_copy</mat-icon>
           </ng-template>
           <ng-template matStepperIcon="done">
             <mat-icon>done</mat-icon>
           </ng-template>
-          <ng-template matStepperIcon="wan">
-            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
-          </ng-template>
-          <ng-template matStepperIcon="dns">
-            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
-          </ng-template>
-          <ng-template matStepperIcon="adfs">
-            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
-          </ng-template>
-          <ng-template matStepperIcon="sso">
-            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
-          </ng-template>
-          <ng-template matStepperIcon="logging">
-            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
-          </ng-template>
-          <ng-template matStepperIcon="billing">
+          <ng-template matStepperIcon="app-progress-item">
             <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
           </ng-template>
         </mat-horizontal-stepper>

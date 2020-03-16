@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LandingZoneProgressItem } from './landing-zone.model';
+import { Observable } from 'rxjs';
+import { LandingZoneService } from './landing-zone.service';
+import { map, startWith, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-landing-zone',
@@ -6,7 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-zone.component.scss']
 })
 export class LandingZoneComponent implements OnInit {
-  constructor() {}
+  progressItems$: Observable<LandingZoneProgressItem[]>;
+  selectedIndex$: Observable<number>;
 
-  ngOnInit() {}
+  constructor(landingZoneService: LandingZoneService) {
+    this.progressItems$ = landingZoneService.getAll();
+  }
+
+  ngOnInit() {
+    this.selectedIndex$ = this.progressItems$.pipe(
+      map(items => {
+        const index = items.findIndex(item => !item.completed);
+        return index < 0 ? 0 : index;
+      }),
+      startWith(0),
+      delay(0)
+    );
+  }
 }

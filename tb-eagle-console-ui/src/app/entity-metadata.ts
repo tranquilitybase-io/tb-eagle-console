@@ -3,6 +3,7 @@ import { Solution } from './dashboards/solutions/solutions.model';
 import { LandingZoneAction } from './administration/landing-zone/landing-zone.model';
 
 const entityMetadata: EntityMetadataMap = {
+  LandingZoneProgressItem: {},
   LandingZoneAction: {
     filterFn: (actions: LandingZoneAction[], filter: string) => {
       if (filter === 'Completed') {
