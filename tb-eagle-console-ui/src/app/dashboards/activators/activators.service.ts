@@ -6,6 +6,7 @@ import { KeyValue } from '@angular/common';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { User } from '@app/login/login.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
     super('Activator', serviceElementsFactory);
   }
-  private BASE_URL = 'http://localhost:3000/api';
+  private BASE_URL = `${environment.apiUrl}/api`;
 
   private patchSuccess = val => {
     console.log('PATCH call successful value returned in body', val);
