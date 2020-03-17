@@ -40,7 +40,7 @@ const routes: Routes = [
 ];
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: environment.apiUrl,
+  root: `${environment.apiUrl}/api`,
   timeout: 1000 * 60
 };
 
