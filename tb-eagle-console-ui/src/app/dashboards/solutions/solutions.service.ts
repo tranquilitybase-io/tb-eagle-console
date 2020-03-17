@@ -23,7 +23,7 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
   private BASE_URL = `${environment.apiUrl}/api`;
 
   createSolution(solution: Solution): void {
-    const url = `${this.BASE_URL}/solutions`;
+    const url = `${this.BASE_URL}/solution/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(url, solution, { headers }).subscribe(
       (val: Solution) => {
@@ -42,17 +42,17 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
   }
 
   appendApplication(solution: Solution, application: Application): void {
-    const url = `${this.BASE_URL}/solution/${solution.id}`;
+    const url = `${this.BASE_URL}/solution/${solution.id}/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.patch(url, { applications: [...solution.applications, application] }, { headers }).subscribe(
+    this.http.post(url, { applications: [...solution.applications, application] }, { headers }).subscribe(
       val => {
-        console.log('PATCH call successful value returned in body', val);
+        console.log('POST call successful value returned in body', val);
       },
       response => {
-        console.log('PATCH call in error', response);
+        console.log('POST call in error', response);
       },
       () => {
-        console.log('The PATCH observable is now completed.');
+        console.log('The POST observable is now completed.');
         this.router.navigateByUrl(`/dashboard/solutions/view?id=${solution.id}&categorySwitch=Applications`);
       }
     );

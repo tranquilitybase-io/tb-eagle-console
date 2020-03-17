@@ -17,16 +17,16 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
   }
   private BASE_URL = `${environment.apiUrl}/api`;
 
-  private patchSuccess = val => {
-    console.log('PATCH call successful value returned in body', val);
+  private postSuccess = val => {
+    console.log('POST call successful value returned in body', val);
   };
 
-  private patchError = err => {
-    console.log('PATCH call in error', err);
+  private postError = err => {
+    console.log('POST call in error', err);
   };
 
-  private patchCompleted = () => {
-    console.log('The PATCH observable is now completed.');
+  private postCompleted = () => {
+    console.log('The POST observable is now completed.');
     this.getAll();
   };
 
@@ -34,8 +34,8 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/activator/${id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .patch(url, { status: 'Deprecated' }, { headers })
-      .subscribe(this.patchSuccess, this.patchError, this.patchCompleted);
+      .post(url, { status: 'Deprecated' }, { headers })
+      .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Deprecated status set to activator: ' + id);
   }
 
@@ -43,8 +43,8 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/activator/${id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .patch(url, { status: 'Locked' }, { headers })
-      .subscribe(this.patchSuccess, this.patchError, this.patchCompleted);
+      .post(url, { status: 'Locked' }, { headers })
+      .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Locked status set to activator: ' + id);
   }
 
@@ -52,8 +52,8 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/activator/${activatorId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .patch(url, { status: 'Locked', accessRequestedBy: null }, { headers })
-      .subscribe(this.patchSuccess, this.patchError, this.patchCompleted);
+      .post(url, { status: 'Locked', accessRequestedBy: null }, { headers })
+      .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Locked status set to activator: ' + activatorId);
   }
 
@@ -61,8 +61,8 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/activator/${activatorId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .patch(url, { status: 'Available', accessRequestedBy: null }, { headers })
-      .subscribe(this.patchSuccess, this.patchError, this.patchCompleted);
+      .post(url, { status: 'Available', accessRequestedBy: null }, { headers })
+      .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Available status set to activator: ' + activatorId);
   }
 
@@ -70,8 +70,8 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/activator/${id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .patch(url, { accessRequestedBy: user }, { headers })
-      .subscribe(this.patchSuccess, this.patchError, this.patchCompleted);
+      .post(url, { accessRequestedBy: user }, { headers })
+      .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log(`Access requested to activator ${id} by user ${user.id}`);
   }
 
