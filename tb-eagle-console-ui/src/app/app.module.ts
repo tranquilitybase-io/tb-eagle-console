@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { EntityDataModule } from '@ngrx/data';
+import { EntityDataModule, DefaultDataServiceConfig } from '@ngrx/data';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
@@ -39,6 +39,11 @@ const routes: Routes = [
   }
 ];
 
+const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  root: environment.apiUrl,
+  timeout: 1000 * 60
+};
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -55,7 +60,11 @@ const routes: Routes = [
     }),
     BrowserAnimationsModule
   ],
-  providers: [AuthGuardService, AdminGuardService],
+  providers: [
+    AuthGuardService,
+    AdminGuardService,
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
