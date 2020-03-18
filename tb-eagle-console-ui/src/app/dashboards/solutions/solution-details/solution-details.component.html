@@ -19,7 +19,7 @@
   </div>
   <div class="details">
     <label class="detail-title">LastUpdated</label>
-    <label class="detail-value">{{ solution.lastUpdated | date: 'dd MMM yyyy' }}</label>
+    <label class="detail-value">{{ lastUpdated | date: 'dd MMM yyyy' }}</label>
   </div>
 </div>
 <div *ngIf="deploymentInProgress$ | async" class="loader-container">

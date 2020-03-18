@@ -54,8 +54,7 @@ export class CreateSolutionComponent implements OnInit {
       active: true,
       favourite: true,
       applications: [[]],
-      teams: 0,
-      lastUpdated: Date.now()
+      teams: 0
     });
   }
 

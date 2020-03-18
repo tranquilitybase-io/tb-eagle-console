@@ -36,4 +36,8 @@ export class SolutionDetailsComponent implements OnInit {
   deploy() {
     this.store.dispatch(startDeployment({ name: String(this.solution.id) }));
   }
+
+  get lastUpdated(): Date {
+    return new Date(this.solution.lastUpdated);
+  }
 }
