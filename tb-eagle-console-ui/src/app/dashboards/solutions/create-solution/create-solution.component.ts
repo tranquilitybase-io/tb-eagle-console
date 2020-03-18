@@ -50,11 +50,7 @@ export class CreateSolutionComponent implements OnInit {
       ci: ['', Validators.required],
       cd: ['', Validators.required],
       sourceControl: ['', Validators.required],
-      environments: [''],
-      active: true,
-      favourite: true,
-      applications: [[]],
-      teams: 0
+      environments: ['']
     });
   }
 
