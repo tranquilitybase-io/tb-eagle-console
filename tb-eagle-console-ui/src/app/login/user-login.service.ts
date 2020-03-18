@@ -30,7 +30,7 @@ export class UserLoginService {
   }
 
   loginSuccess(): void {
-    this.router.navigateByUrl('/dashboard/solutions');
+    this.router.navigateByUrl('/administration/landing-zone');
   }
 
   loginFailure(): void {

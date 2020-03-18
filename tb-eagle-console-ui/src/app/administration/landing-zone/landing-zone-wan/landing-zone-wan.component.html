@@ -1,0 +1,19 @@
+<header class="app-landing-wan-header">
+  <div>
+    <a mat-button color="primary" routerLink="/administration/landing-zone"> <mat-icon>chevron_left</mat-icon> Back </a>
+  </div>
+  <div>
+    <span class="vertical-divider"></span>
+    <span class="title">WAN</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">Landing Zone</span>
+  </div>
+</header>
+<div class="tab-background"></div>
+<main>
+  <mat-tab-group mat-stretch-tabs color="accent">
+    <mat-tab label="VPN"> <app-landing-zone-wan-grid></app-landing-zone-wan-grid></mat-tab>
+    <mat-tab label="Partner Interconnect"> <app-landing-zone-wan-partner></app-landing-zone-wan-partner></mat-tab>
+    <mat-tab label="Direct Peering"> <app-landing-zone-wan-direct></app-landing-zone-wan-direct> </mat-tab>
+  </mat-tab-group>
+</main>

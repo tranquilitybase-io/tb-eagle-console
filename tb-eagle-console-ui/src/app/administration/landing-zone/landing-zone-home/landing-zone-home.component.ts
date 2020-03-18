@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { LandingZoneProgressItem } from './landing-zone.model';
 import { Observable } from 'rxjs';
-import { LandingZoneService } from './landing-zone.service';
+import { LandingZoneProgressItem } from '../landing-zone.model';
+import { LandingZoneService } from '../landing-zone.service';
 import { map, startWith, delay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-landing-zone',
-  templateUrl: './landing-zone.component.html',
-  styleUrls: ['./landing-zone.component.scss']
+  selector: 'app-landing-zone-home',
+  templateUrl: './landing-zone-home.component.html',
+  styleUrls: ['./landing-zone-home.component.scss']
 })
-export class LandingZoneComponent implements OnInit {
+export class LandingZoneHomeComponent implements OnInit {
   progressItems$: Observable<LandingZoneProgressItem[]>;
   selectedIndex$: Observable<number>;
 

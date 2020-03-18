@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '@app/shared/shared.module';
-
-import { LandingZoneGridComponent } from './landing-zone-grid/landing-zone-grid.component';
+import { LandingZoneHomeComponent } from './landing-zone-home.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,23 +15,19 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { LandingZoneHomeGridComponent } from './landing-zone-home-grid/landing-zone-home-grid.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./landing-zone-home/landing-zone-home.module').then(m => m.LandingZoneHomeModule)
-  },
-  {
-    path: 'wan',
-    loadChildren: () => import('./landing-zone-wan/landing-zone-wan.module').then(m => m.LandingZoneWanModule)
+    component: LandingZoneHomeComponent
   }
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [LandingZoneHomeComponent, LandingZoneHomeGridComponent],
   imports: [
     CommonModule,
-    SharedModule,
     RouterModule.forChild(routes),
     LayoutModule,
     MatButtonModule,
@@ -54,4 +48,4 @@ const routes: Routes = [
     }
   ]
 })
-export class LandingZoneModule {}
+export class LandingZoneHomeModule {}

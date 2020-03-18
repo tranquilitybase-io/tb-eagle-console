@@ -264,7 +264,8 @@
       "categoryName": "Network Setup",
       "categoryClass": "network-setup",
       "completionRate": 100,
-      "locked": false
+      "locked": false,
+      "routerLink": "/administration/landing-zone/wan"
     },
     {
       "id": 3,
