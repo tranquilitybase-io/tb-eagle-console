@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingZoneWanComponent } from './landing-zone-wan.component';
+import { LandingZoneWanVPNComponent } from './landing-zone-wan-vpn.component';
 
-describe('LandingZoneWanComponent', () => {
-  let component: LandingZoneWanComponent;
-  let fixture: ComponentFixture<LandingZoneWanComponent>;
+describe('LandingZoneWanVPNComponent', () => {
+  let component: LandingZoneWanVPNComponent;
+  let fixture: ComponentFixture<LandingZoneWanVPNComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LandingZoneWanComponent]
+      declarations: [LandingZoneWanVPNComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingZoneWanComponent);
+    fixture = TestBed.createComponent(LandingZoneWanVPNComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { LandingZoneWanComponent } from './landing-zone-wan.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,24 +10,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { LandingZoneWanDirectComponent } from './landing-zone-wan-direct/landing-zone-wan-direct.component';
-import { LandingZoneWanGridComponent } from './landing-zone-wan-grid/landing-zone-wan-grid.component';
-import { LandingZoneWanPartnerComponent } from './landing-zone-wan-partner/landing-zone-wan-partner.component';
-
 const routes: Routes = [
   {
     path: '',
-    component: LandingZoneWanComponent
+    loadChildren: () =>
+      import('./landing-zone-wan-home/landing-zone-wan-home.module').then(m => m.LandingZoneWanHomeModule)
   }
 ];
 
 @NgModule({
-  declarations: [
-    LandingZoneWanComponent,
-    LandingZoneWanGridComponent,
-    LandingZoneWanPartnerComponent,
-    LandingZoneWanDirectComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
