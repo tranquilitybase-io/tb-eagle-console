@@ -256,14 +256,15 @@
       "categoryName": "",
       "categoryClass": "folder-structure",
       "completionRate": 50,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 2,
       "title": "WAN",
       "categoryName": "Network Setup",
       "categoryClass": "network-setup",
-      "completionRate": 100,
+      "completionRate": 0,
       "locked": false,
       "routerLink": "/administration/landing-zone/wan"
     },
@@ -273,7 +274,8 @@
       "categoryName": "Network Setup",
       "categoryClass": "network-setup",
       "completionRate": 25,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 4,
@@ -281,7 +283,8 @@
       "categoryName": "Network Setup",
       "categoryClass": "network-setup",
       "completionRate": 75,
-      "locked": true
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 5,
@@ -289,7 +292,8 @@
       "categoryName": "Network Setup",
       "categoryClass": "network-setup",
       "completionRate": 9,
-      "locked": true
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 6,
@@ -297,7 +301,8 @@
       "categoryName": "AD Integration",
       "categoryClass": "ad-integration",
       "completionRate": 25,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 7,
@@ -305,7 +310,8 @@
       "categoryName": "AD Integration",
       "categoryClass": "ad-integration",
       "completionRate": 0,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 8,
@@ -313,7 +319,8 @@
       "categoryName": "Logging",
       "categoryClass": "logging",
       "completionRate": 50,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 9,
@@ -321,7 +328,8 @@
       "categoryName": "Logging",
       "categoryClass": "logging",
       "completionRate": 30,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 10,
@@ -329,7 +337,8 @@
       "categoryName": "Billing/Cost Management",
       "categoryClass": "billing-cost-management",
       "completionRate": 19,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 11,
@@ -337,7 +346,8 @@
       "categoryName": "",
       "categoryClass": "security",
       "completionRate": 13,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 12,
@@ -345,19 +355,20 @@
       "categoryName": "",
       "categoryClass": "multizone-setup",
       "completionRate": 12,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     }
   ],
   "landingzoneprogressitems": [
     {
       "id": 0,
       "label": "WAN",
-      "completed": true
+      "completed": false
     },
     {
       "id": 1,
       "label": "DNS",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
