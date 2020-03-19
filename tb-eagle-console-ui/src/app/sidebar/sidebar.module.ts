@@ -12,7 +12,8 @@ import { NavItemComponent } from './nav-item/nav-item.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatSidenavModule } from '@angular/material';
+const uiModules = [MatSidenavModule, MatIconModule, MatButtonModule];
 @NgModule({
   declarations: [
     SidebarComponent,
@@ -23,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
     SectionHeaderComponent,
     NavItemComponent
   ],
-  imports: [CommonModule, SharedModule, MatButtonModule, MatIconModule],
-  exports: [SidebarComponent]
+  imports: [CommonModule, SharedModule, MatButtonModule, MatIconModule, uiModules],
+  exports: [SidebarComponent, uiModules]
 })
 export class SidebarModule {}

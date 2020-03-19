@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdministrationComponent } from './administration.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SidebarModule } from '@app/sidebar/sidebar.module';
+import { welcomeComponent } from '@app/welcome/welcome.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AdministrationComponent],
+  declarations: [AdministrationComponent, welcomeComponent],
   imports: [CommonModule, SidebarModule, RouterModule.forChild(routes)]
 })
 export class AdministrationModule {}
