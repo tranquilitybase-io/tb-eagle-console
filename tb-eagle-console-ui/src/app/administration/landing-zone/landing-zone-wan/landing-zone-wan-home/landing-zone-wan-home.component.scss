@@ -15,7 +15,8 @@
 main {
   padding: 1.5rem 2rem 0 2rem;
 }
-.app-landing-wan-header {
+
+header {
   padding: 0.3rem 0.5rem;
   background-color: var(--active-grey-background);
   display: flex;
@@ -33,6 +34,7 @@ main {
     }
   }
 }
+
 .create-new-button {
   height: 93%;
   width: 93%;

@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--active-grey-background);
+  display: flex;
+  align-items: center;
+  span {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-size: 20px;
+    &.title {
+      font-weight: 800;
+    }
+    &.vertical-divider {
+      border-left: 1px solid var(--grey);
+      margin: 0.5rem;
+    }
+  }
+}
+
+.mat-stepper-horizontal {
+  form {
+    margin-bottom: 5rem;
+    .app-stepper-action {
+      z-index: 1;
+      position: fixed;
+      bottom: 1rem;
+      &.right {
+        right: 1rem;
+      }
+    }
+  }
+}
+
+footer {
+  z-index: 0;
+  height: 4.5rem;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  background-color: var(--active-grey-background);
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.12);
+}

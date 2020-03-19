@@ -8,9 +8,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { LandingZoneWanDirectComponent } from './landing-zone-wan-direct/landing-zone-wan-direct.component';
-import { LandingZoneWanPartnerComponent } from './landing-zone-wan-partner/landing-zone-wan-partner.component';
-import { LandingZoneWanVPNComponent } from './landing-zone-wan-vpn/landing-zone-wan-vpn.component';
+import { LandingZoneWanHomeDirectComponent } from './landing-zone-wan-home-direct/landing-zone-wan-home-direct.component';
+import { LandingZoneWanHomePartnerComponent } from './landing-zone-wan-home-partner/landing-zone-wan-home-partner.component';
+import { LandingZoneWanHomeVPNComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn.component';
 
 const routes: Routes = [
   {
@@ -22,9 +22,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     LandingZoneWanHomeComponent,
-    LandingZoneWanDirectComponent,
-    LandingZoneWanPartnerComponent,
-    LandingZoneWanVPNComponent
+    LandingZoneWanHomeDirectComponent,
+    LandingZoneWanHomePartnerComponent,
+    LandingZoneWanHomeVPNComponent
   ],
   imports: [
     CommonModule,

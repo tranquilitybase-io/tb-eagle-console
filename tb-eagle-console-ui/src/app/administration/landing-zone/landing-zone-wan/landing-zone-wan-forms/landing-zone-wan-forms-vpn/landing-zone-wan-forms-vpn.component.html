@@ -1,0 +1,87 @@
+<header>
+  <div>
+    <a mat-button color="primary" routerLink="/administration/landing-zone/wan"> Cancel </a>
+  </div>
+  <div>
+    <span class="vertical-divider"></span>
+    <span class="title">Create new connection</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">VPN</span>
+  </div>
+</header>
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="vpnFormGroup">
+    <form [formGroup]="vpnFormGroup">
+      <ng-template matStepLabel>VPN</ng-template>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Field" formControlName="fieldCtrl" required />
+        </mat-form-field>
+      </p>
+      <div class="app-stepper-action right">
+        <button mat-button color="primary" matStepperNext>
+          Next
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="googleSessionFormGroup">
+    <form [formGroup]="googleSessionFormGroup">
+      <ng-template matStepLabel>Google session</ng-template>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Field" formControlName="fieldCtrl" required />
+        </mat-form-field>
+      </p>
+      <div class="app-stepper-action left">
+        <button mat-button color="primary" matStepperPrevious>
+          <mat-icon>chevron_left</mat-icon>
+          Back
+        </button>
+      </div>
+      <div class="app-stepper-action right">
+        <button mat-button color="primary" matStepperNext>
+          Next
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="onPremiseSessionFormGroup">
+    <form [formGroup]="onPremiseSessionFormGroup">
+      <ng-template matStepLabel>On premise session</ng-template>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Field" formControlName="fieldCtrl" required />
+        </mat-form-field>
+      </p>
+      <div class="app-stepper-action left">
+        <button mat-button color="primary" matStepperPrevious>
+          <mat-icon>chevron_left</mat-icon>
+          Back
+        </button>
+      </div>
+      <div class="app-stepper-action right">
+        <button mat-button color="primary" matStepperNext>
+          Next
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Review</ng-template>
+    You are now done.
+    <div class="app-stepper-action left">
+      <button mat-button color="primary" matStepperPrevious>
+        <mat-icon>chevron_left</mat-icon>
+        Back
+      </button>
+    </div>
+    <div class="app-stepper-action right">
+      <button mat-button color="primary" (click)="submit()">Submit</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+<footer></footer>

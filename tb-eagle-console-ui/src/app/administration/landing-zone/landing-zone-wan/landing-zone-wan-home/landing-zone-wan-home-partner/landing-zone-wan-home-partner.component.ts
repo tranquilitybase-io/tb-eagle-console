@@ -3,11 +3,11 @@ import { Observable } from 'rxjs';
 import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
 
 @Component({
-  selector: 'app-landing-zone-wan-vpn',
-  templateUrl: './landing-zone-wan-vpn.component.html',
-  styleUrls: ['./landing-zone-wan-vpn.component.scss']
+  selector: 'app-landing-zone-wan-home-partner',
+  templateUrl: './landing-zone-wan-home-partner.component.html',
+  styleUrls: ['./landing-zone-wan-home-partner.component.scss']
 })
-export class LandingZoneWanVPNComponent implements OnInit {
+export class LandingZoneWanHomePartnerComponent implements OnInit {
   gridCols$: Observable<number>;
 
   constructor(private gridColsService: GridColsService) {
