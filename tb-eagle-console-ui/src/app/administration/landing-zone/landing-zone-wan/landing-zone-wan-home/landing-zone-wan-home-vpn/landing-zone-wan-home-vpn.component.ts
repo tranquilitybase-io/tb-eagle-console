@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './landing-zone-wan-home-vpn.component.html',
   styleUrls: ['./landing-zone-wan-home-vpn.component.scss']
 })
-export class LandingZoneWanHomeVPNComponent implements OnInit {
+export class LandingZoneWanHomeVpnComponent implements OnInit {
   gridCols$: Observable<number>;
 
   constructor(private router: Router, private gridColsService: GridColsService) {

@@ -11,77 +11,24 @@
 </header>
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="vpnFormGroup">
-    <form [formGroup]="vpnFormGroup">
-      <ng-template matStepLabel>VPN</ng-template>
-      <p>
-        <mat-form-field>
-          <input matInput placeholder="Field" formControlName="fieldCtrl" required />
-        </mat-form-field>
-      </p>
-      <div class="app-stepper-action right">
-        <button mat-button color="primary" matStepperNext>
-          Next
-          <mat-icon>chevron_right</mat-icon>
-        </button>
-      </div>
-    </form>
+    <ng-template matStepLabel>VPN</ng-template>
+    <app-landing-zone-wan-forms-vpn-tab [formGroup]="vpnFormGroup"></app-landing-zone-wan-forms-vpn-tab>
   </mat-step>
   <mat-step [stepControl]="googleSessionFormGroup">
-    <form [formGroup]="googleSessionFormGroup">
-      <ng-template matStepLabel>Google session</ng-template>
-      <p>
-        <mat-form-field>
-          <input matInput placeholder="Field" formControlName="fieldCtrl" required />
-        </mat-form-field>
-      </p>
-      <div class="app-stepper-action left">
-        <button mat-button color="primary" matStepperPrevious>
-          <mat-icon>chevron_left</mat-icon>
-          Back
-        </button>
-      </div>
-      <div class="app-stepper-action right">
-        <button mat-button color="primary" matStepperNext>
-          Next
-          <mat-icon>chevron_right</mat-icon>
-        </button>
-      </div>
-    </form>
+    <ng-template matStepLabel>Google session</ng-template>
+    <app-landing-zone-wan-forms-vpn-google-tab
+      [formGroup]="googleSessionFormGroup"
+    ></app-landing-zone-wan-forms-vpn-google-tab>
   </mat-step>
   <mat-step [stepControl]="onPremiseSessionFormGroup">
-    <form [formGroup]="onPremiseSessionFormGroup">
-      <ng-template matStepLabel>On premise session</ng-template>
-      <p>
-        <mat-form-field>
-          <input matInput placeholder="Field" formControlName="fieldCtrl" required />
-        </mat-form-field>
-      </p>
-      <div class="app-stepper-action left">
-        <button mat-button color="primary" matStepperPrevious>
-          <mat-icon>chevron_left</mat-icon>
-          Back
-        </button>
-      </div>
-      <div class="app-stepper-action right">
-        <button mat-button color="primary" matStepperNext>
-          Next
-          <mat-icon>chevron_right</mat-icon>
-        </button>
-      </div>
-    </form>
+    <ng-template matStepLabel>On premise session</ng-template>
+    <app-landing-zone-wan-forms-vpn-on-premise-tab
+      [formGroup]="onPremiseSessionFormGroup"
+    ></app-landing-zone-wan-forms-vpn-on-premise-tab>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Review</ng-template>
-    You are now done.
-    <div class="app-stepper-action left">
-      <button mat-button color="primary" matStepperPrevious>
-        <mat-icon>chevron_left</mat-icon>
-        Back
-      </button>
-    </div>
-    <div class="app-stepper-action right">
-      <button mat-button color="primary" (click)="submit()">Submit</button>
-    </div>
+    <app-landing-zone-wan-forms-vpn-review-tab (onSubmit)="submit()"></app-landing-zone-wan-forms-vpn-review-tab>
   </mat-step>
 </mat-horizontal-stepper>
 <footer></footer>

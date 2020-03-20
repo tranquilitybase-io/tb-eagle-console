@@ -9,6 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { LandingZoneWanFormsVpnTabComponent } from './landing-zone-wan-forms-vpn-tab/landing-zone-wan-forms-vpn-tab.component';
+import { LandingZoneWanFormsVpnGoogleTabComponent } from './landing-zone-wan-forms-vpn-google-tab/landing-zone-wan-forms-vpn-google-tab.component';
+import { LandingZoneWanFormsVpnOnPremiseTabComponent } from './landing-zone-wan-forms-vpn-on-premise-tab/landing-zone-wan-forms-vpn-on-premise-tab.component';
+import { LandingZoneWanFormsVpnReviewTabComponent } from './landing-zone-wan-forms-vpn-review-tab/landing-zone-wan-forms-vpn-review-tab.component';
 
 const routes: Routes = [
   {
@@ -18,7 +22,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LandingZoneWanFormsVpnComponent],
+  declarations: [
+    LandingZoneWanFormsVpnComponent,
+    LandingZoneWanFormsVpnTabComponent,
+    LandingZoneWanFormsVpnGoogleTabComponent,
+    LandingZoneWanFormsVpnOnPremiseTabComponent,
+    LandingZoneWanFormsVpnReviewTabComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -1,0 +1,13 @@
+<form [formGroup]="formGroup">
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="Field" formControlName="fieldCtrl" required />
+    </mat-form-field>
+  </p>
+  <div class="app-stepper-action right">
+    <button mat-button color="primary" matStepperNext>
+      Next
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</form>

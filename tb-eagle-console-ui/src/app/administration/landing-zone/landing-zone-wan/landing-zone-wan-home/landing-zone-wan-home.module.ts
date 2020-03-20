@@ -10,7 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { LandingZoneWanHomeDirectComponent } from './landing-zone-wan-home-direct/landing-zone-wan-home-direct.component';
 import { LandingZoneWanHomePartnerComponent } from './landing-zone-wan-home-partner/landing-zone-wan-home-partner.component';
-import { LandingZoneWanHomeVPNComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn.component';
+import { LandingZoneWanHomeVpnComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn.component';
 
 const routes: Routes = [
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     LandingZoneWanHomeComponent,
     LandingZoneWanHomeDirectComponent,
     LandingZoneWanHomePartnerComponent,
-    LandingZoneWanHomeVPNComponent
+    LandingZoneWanHomeVpnComponent
   ],
   imports: [
     CommonModule,

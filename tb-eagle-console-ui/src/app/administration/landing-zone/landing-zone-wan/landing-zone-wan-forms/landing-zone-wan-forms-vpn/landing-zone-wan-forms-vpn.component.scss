@@ -26,14 +26,6 @@ header {
 .mat-stepper-horizontal {
   form {
     margin-bottom: 5rem;
-    .app-stepper-action {
-      z-index: 1;
-      position: fixed;
-      bottom: 1rem;
-      &.right {
-        right: 1rem;
-      }
-    }
   }
 }
 
