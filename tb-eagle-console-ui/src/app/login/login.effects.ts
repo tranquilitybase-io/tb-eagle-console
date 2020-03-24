@@ -27,7 +27,7 @@ export class LoginEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginActions.loginSuccess),
-        tap(() => this.LoginService.loginSuccess())
+        tap(({ user }) => this.LoginService.loginSuccess(user))
       ),
     { dispatch: false }
   );

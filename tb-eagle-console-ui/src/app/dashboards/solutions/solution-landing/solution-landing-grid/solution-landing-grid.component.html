@@ -1,0 +1,12 @@
+<div class="grid-container">
+  <mat-grid-list [cols]="gridCols$ | async" rowHeight="350px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-stroked-button class="create-new-button" color="primary" (click)="createNewSolution()">
+        <mat-icon>add</mat-icon>Create new solution
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let solution of solutions$ | async" colspan="1" rowspan="1">
+      <app-solution-landing-grid-card [solution]="solution"></app-solution-landing-grid-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

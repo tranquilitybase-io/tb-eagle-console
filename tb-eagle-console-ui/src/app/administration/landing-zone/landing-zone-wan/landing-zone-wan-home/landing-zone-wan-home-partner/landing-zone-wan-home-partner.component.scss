@@ -1,0 +1,16 @@
+.create-new-button {
+  height: 93%;
+  width: 93%;
+  border-radius: 10px;
+  border: 1px dashed var(--dark-grey-2);
+  font-size: 1.5rem;
+  padding: 0;
+
+  .mat-icon {
+    line-height: 3rem;
+    font-size: 2rem;
+    height: 3rem;
+    width: 3rem;
+    margin-left: -2rem;
+  }
+}

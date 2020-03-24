@@ -1,0 +1,39 @@
+<header>
+  <div>
+    <a mat-button color="primary" routerLink="/administration/landing-zone/wan"> Cancel </a>
+  </div>
+  <div>
+    <span class="vertical-divider"></span>
+    <span class="title">Create new connection</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">VPN</span>
+  </div>
+</header>
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="vpnFormGroup">
+    <ng-template matStepLabel>VPN</ng-template>
+    <app-landing-zone-wan-forms-vpn-tab [formGroup]="vpnFormGroup"></app-landing-zone-wan-forms-vpn-tab>
+  </mat-step>
+  <mat-step [stepControl]="googleSessionFormGroup">
+    <ng-template matStepLabel>Google session</ng-template>
+    <app-landing-zone-wan-forms-vpn-google-tab
+      [formGroup]="googleSessionFormGroup"
+    ></app-landing-zone-wan-forms-vpn-google-tab>
+  </mat-step>
+  <mat-step [stepControl]="onPremiseSessionFormGroup">
+    <ng-template matStepLabel>On premise session</ng-template>
+    <app-landing-zone-wan-forms-vpn-on-premise-tab
+      [formGroup]="onPremiseSessionFormGroup"
+    ></app-landing-zone-wan-forms-vpn-on-premise-tab>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Review</ng-template>
+    <app-landing-zone-wan-forms-vpn-review-tab
+      [vpnFormGroup]="vpnFormGroup"
+      [googleSessionFormGroup]="googleSessionFormGroup"
+      [onPremiseSessionFormGroup]="onPremiseSessionFormGroup"
+      (onSubmit)="submit()"
+    ></app-landing-zone-wan-forms-vpn-review-tab>
+  </mat-step>
+</mat-horizontal-stepper>
+<footer></footer>

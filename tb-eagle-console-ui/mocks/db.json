@@ -26,6 +26,9 @@
     { "key": "BitBucket", "value": "BitBucket" },
     { "key": "Cloud native", "value": "Cloud native" }
   ],
+  "subnetMode": [{ "key": "Custom", "value": "Custom" }],
+  "bgpRoutingMode": [{ "key": "Global", "value": "Global" }],
+  "vpnOnPremiseVendor": [{ "key": "Fortinet", "value": "Fortinet" }],
   "team": [{ "key": "Developers", "value": "Developers" }],
   "solutions": [
     {
@@ -255,24 +258,27 @@
       "title": "Folder structure",
       "categoryName": "",
       "categoryClass": "folder-structure",
-      "completionRate": 50,
-      "locked": false
+      "completionRate": 100,
+      "locked": false,
+      "routerLink": ""
     },
     {
       "id": 2,
-      "title": "WAN",
-      "categoryName": "Network Setup",
-      "categoryClass": "network-setup",
-      "completionRate": 100,
-      "locked": false
-    },
-    {
-      "id": 3,
       "title": "LAN",
       "categoryName": "Network Setup",
       "categoryClass": "network-setup",
-      "completionRate": 25,
-      "locked": false
+      "completionRate": 100,
+      "locked": false,
+      "routerLink": ""
+    },
+    {
+      "id": 3,
+      "title": "WAN",
+      "categoryName": "Network Setup",
+      "categoryClass": "network-setup",
+      "completionRate": 0,
+      "locked": false,
+      "routerLink": "/administration/landing-zone/wan"
     },
     {
       "id": 4,
@@ -280,7 +286,8 @@
       "categoryName": "Network Setup",
       "categoryClass": "network-setup",
       "completionRate": 75,
-      "locked": true
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 5,
@@ -288,7 +295,8 @@
       "categoryName": "Network Setup",
       "categoryClass": "network-setup",
       "completionRate": 9,
-      "locked": true
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 6,
@@ -296,7 +304,8 @@
       "categoryName": "AD Integration",
       "categoryClass": "ad-integration",
       "completionRate": 25,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 7,
@@ -304,7 +313,8 @@
       "categoryName": "AD Integration",
       "categoryClass": "ad-integration",
       "completionRate": 0,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 8,
@@ -312,7 +322,8 @@
       "categoryName": "Logging",
       "categoryClass": "logging",
       "completionRate": 50,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 9,
@@ -320,7 +331,8 @@
       "categoryName": "Logging",
       "categoryClass": "logging",
       "completionRate": 30,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 10,
@@ -328,7 +340,8 @@
       "categoryName": "Billing/Cost Management",
       "categoryClass": "billing-cost-management",
       "completionRate": 19,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 11,
@@ -336,7 +349,8 @@
       "categoryName": "",
       "categoryClass": "security",
       "completionRate": 13,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     },
     {
       "id": 12,
@@ -344,39 +358,51 @@
       "categoryName": "",
       "categoryClass": "multizone-setup",
       "completionRate": 12,
-      "locked": false
+      "locked": true,
+      "routerLink": ""
     }
   ],
   "landingzoneprogressitems": [
     {
       "id": 0,
-      "label": "WAN",
+      "label": "Folder structure",
       "completed": true
     },
     {
       "id": 1,
-      "label": "DNS",
+      "label": "LAN",
       "completed": true
     },
     {
       "id": 2,
-      "label": "ADFS",
+      "label": "WAN",
       "completed": false
     },
     {
       "id": 3,
-      "label": "SSO",
+      "label": "DNS",
       "completed": false
     },
     {
       "id": 4,
-      "label": "Logging",
+      "label": "ADFS",
       "completed": false
     },
     {
       "id": 5,
+      "label": "SSO",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "label": "Logging",
+      "completed": false
+    },
+    {
+      "id": 7,
       "label": "Billing",
       "completed": false
     }
-  ]
+  ],
+  "landingzonewans": []
 }

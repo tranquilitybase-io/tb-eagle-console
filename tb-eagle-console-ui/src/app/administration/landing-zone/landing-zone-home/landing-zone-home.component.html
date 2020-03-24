@@ -1,0 +1,50 @@
+<header class="app-landing-header">
+  <mat-accordion>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h1>
+            <span class="vertical-divider"></span>
+            Landing Zone
+          </h1>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="setup-progress" *ngIf="progressItems$ | async">
+        <h2>Setup Progress</h2>
+        <p>
+          Select the tiles below in turn, to progress through the Landing Zone setup. Once the below items are
+          completed, you will be able to start the Datacenter setup by clicking on the Datacenter tab in the menu on the
+          left.
+        </p>
+        <mat-horizontal-stepper
+          [selectedIndex]="selectedIndex$ | async"
+          [linear]="true"
+          color="accent"
+          [disableRipple]="true"
+        >
+          <!-- Progress items -->
+          <mat-step
+            *ngFor="let item of progressItems$ | async"
+            [label]="item.label"
+            state="app-progress-item"
+            [editable]="false"
+            [completed]="item.completed"
+          >
+          </mat-step>
+          <!-- Icon overrides -->
+          <ng-template matStepperIcon="edit">
+            <mat-icon>file_copy</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="done">
+            <mat-icon>done</mat-icon>
+          </ng-template>
+          <ng-template matStepperIcon="app-progress-item">
+            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+          </ng-template>
+        </mat-horizontal-stepper>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</header>
+
+<app-landing-zone-home-grid></app-landing-zone-home-grid>
