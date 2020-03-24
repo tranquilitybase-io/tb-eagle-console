@@ -11,13 +11,13 @@
 }
 
 .mat-button {
+  width: 225px;
   text-align: left;
   .mat-icon,
   app-icon {
     margin-right: 1rem;
   }
-}
-
-.active {
-  background-color: var(--active-grey-background);
+  &.active {
+    background-color: var(--active-grey-background);
+  }
 }
