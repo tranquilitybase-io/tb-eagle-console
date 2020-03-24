@@ -6,6 +6,8 @@
 
   &.active {
     background-color: var(--active-grey-background);
+    border-radius: var(--radius);
+    fill-opacity: 0.5;
 
     .name {
       font-weight: 600;

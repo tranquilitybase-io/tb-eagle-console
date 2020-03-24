@@ -1,19 +1,39 @@
 aside {
   display: flex;
   height: 100%;
+  width: 20rem;
+  background-color: var(--white);
   box-shadow: 0.2rem 0 1rem var(--grey);
   border-top-right-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
-  position: relative;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
 }
 
 app-icons-bar {
   width: 4rem;
+  height: 100vh;
+  position: fixed;
   flex: none;
   background-color: var(--primary-color);
 }
 
 app-navigation-bar {
   flex: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 4rem;
+  right: 0;
+}
+
+.nav-container {
+  width: 20rem;
+}
+.purpleNav {
+  color: var(--primary-color);
 }

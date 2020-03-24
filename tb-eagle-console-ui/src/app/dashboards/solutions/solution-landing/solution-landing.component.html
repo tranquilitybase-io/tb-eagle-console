@@ -1,6 +1,5 @@
 <header>
   <app-breadcrumbs [steps]="['My Team solutions']"> </app-breadcrumbs>
-  <a class="button text-only create" routerLink="/dashboard/solutions/create">Create new solution</a>
 </header>
 <div *ngIf="isAlmostReady$ | async" class="solution almost-ready">
   <app-icon icon="check_simple"></app-icon>
@@ -22,6 +21,4 @@
   <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>
 </div>
 
-<main class="dashboard-grid">
-  <app-solution-details *ngFor="let solution of solutions$ | async" [solution]="solution"></app-solution-details>
-</main>
+<app-solution-landing-grid [solutions$]="solutions$"></app-solution-landing-grid>

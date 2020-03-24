@@ -5,6 +5,7 @@ export interface LandingZoneAction {
   categoryClass: string;
   completionRate: number;
   locked: boolean;
+  routerLink: string;
 }
 
 export interface LandingZoneProgressItem {

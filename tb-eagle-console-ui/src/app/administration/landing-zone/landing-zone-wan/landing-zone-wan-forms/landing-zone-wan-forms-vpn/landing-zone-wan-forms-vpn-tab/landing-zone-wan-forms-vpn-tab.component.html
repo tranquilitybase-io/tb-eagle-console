@@ -1,0 +1,134 @@
+<form [formGroup]="formGroup">
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Project Name</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="projectName"
+        placeholder="E.g. project name..."
+      />
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>VPC Network Name</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="vpcName"
+        placeholder="Generate network name"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        required
+        #desctext
+        maxlength="200"
+        formControlName="description"
+        placeholder="Type your description here..."
+      ></textarea>
+      <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Subnet Mode</mat-label>
+      <mat-select required formControlName="subnetMode">
+        <mat-option *ngFor="let item of subnetModeList" [value]="item.key">{{ item.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>BGP Routing Mode</mat-label>
+      <mat-select required formControlName="bgpRoutingMode">
+        <mat-option *ngFor="let item of bgpRoutingModeList" [value]="item.key">{{ item.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>HA VPN Gateway</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="haVpnGateway"
+        placeholder="ha-vpn-gw-tranquilitybase"
+      />
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Cloud Router Name</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="cloudRouterName"
+        placeholder="tranquilitybase-router-tranquilitybase"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>External VPN Gateway</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="externalVpnGateway"
+        placeholder="tranquilitybase-peer-gw"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Google ASN</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="googleASN"
+        placeholder="65001"
+      />
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Peer ASN</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="peerASN"
+        placeholder="65002"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>BGP interface netmask length</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="bgpInterfaceNetLength"
+        placeholder="/30"
+      />
+    </mat-form-field>
+  </p>
+  <div class="app-stepper-action right">
+    <button mat-button color="primary" matStepperNext>
+      Next
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</form>

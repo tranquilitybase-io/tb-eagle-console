@@ -7,9 +7,14 @@
   "/api/keyValues/ci": "/ci",
   "/api/keyValues/environment": "/environment",
   "/api/keyValues/sourceControl": "/sourceControl",
+  "/api/keyValues/subnetMode": "/subnetMode",
+  "/api/keyValues/bgpRoutingMode": "/bgpRoutingMode",
+  "/api/keyValues/vpnOnPremiseVendor": "/vpnOnPremiseVendor",
   "/api/keyValues/team": "/team",
   "/api/solution/*": "/solutions/$1",
   "/api/landingzoneaction/*": "/landingzoneactions/$1",
   "/api/landingzoneprogressitem/*": "/landingzoneprogressitems/$1",
+  "/api/landingzonewan": "/landingzonewans",
+  "/api/landingzonewan/*": "/landingzonewans/$1",
   "/api/*": "/$1"
 }

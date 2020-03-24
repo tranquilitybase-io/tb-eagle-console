@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { LandingZoneComponent } from './landing-zone.component';
 import { SharedModule } from '@app/shared/shared.module';
 
-import { LandingZoneGridComponent } from './landing-zone-grid/landing-zone-grid.component';
+import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -15,22 +14,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
-import { LayoutModule } from '@angular/cdk/layout';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 const routes: Routes = [
   {
     path: '',
-    component: LandingZoneComponent
+    loadChildren: () => import('./landing-zone-home/landing-zone-home.module').then(m => m.LandingZoneHomeModule)
+  },
+  {
+    path: 'wan',
+    loadChildren: () => import('./landing-zone-wan/landing-zone-wan.module').then(m => m.LandingZoneWanModule)
   }
 ];
 
 @NgModule({
-  declarations: [LandingZoneComponent, LandingZoneGridComponent],
+  declarations: [],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
+    LayoutModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -40,8 +43,7 @@ const routes: Routes = [
     MatIconModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatStepperModule,
-    LayoutModule
+    MatStepperModule
   ],
   providers: [
     {

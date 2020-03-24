@@ -42,6 +42,8 @@ import { ViewResolver } from './resolvers/view.resolver';
 import { ApplicationCardComponent } from './view/applications-grid/application-card/application-card.component';
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
+import { SolutionLandingGridComponent } from './solution-landing/solution-landing-grid/solution-landing-grid.component';
+import { SolutionLandingGridCardComponent } from './solution-landing/solution-landing-grid/solution-landing-grid-card/solution-landing-grid-card.component';
 
 const routes: Routes = [
   {
@@ -80,7 +82,9 @@ const routes: Routes = [
     ApplicationCardComponent,
     ApplicationSelectComponent,
     AppUnderDeploymentComponent,
-    AppIsDeployedComponent
+    AppIsDeployedComponent,
+    SolutionLandingGridComponent,
+    SolutionLandingGridCardComponent
   ],
   entryComponents: [AppUnderDeploymentComponent, AppIsDeployedComponent],
   providers: [SolutionsService, { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }],

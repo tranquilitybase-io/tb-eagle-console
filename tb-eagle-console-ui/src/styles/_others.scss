@@ -27,3 +27,12 @@
     grid-template-columns: repeat(2, calc(50% - 0.6rem));
   }
 }
+
+.app-stepper-action {
+  z-index: 1;
+  position: fixed;
+  bottom: 1rem;
+  &.right {
+    right: 1rem;
+  }
+}

@@ -1,11 +1,25 @@
 <app-organization></app-organization>
-<app-section-header>Mission control</app-section-header>
-<app-nav-item icon="solutions" name="Solutions" path="/dashboard/solutions"></app-nav-item>
-<app-nav-item icon="activator" name="Activator store" path="/dashboard/activators"></app-nav-item>
 
-<app-section-header>Administration menu</app-section-header>
-<a mat-button routerLink="/administration/landing-zone"><mat-icon>account_tree</mat-icon> Landing Zone</a>
-<button mat-button><mat-icon>storage</mat-icon> Datacenter</button>
-<button mat-button><mat-icon>person</mat-icon> Users</button>
-<button mat-button><mat-icon>group</mat-icon> Teams</button>
-<button mat-button><mat-icon>settings</mat-icon> Settings</button>
+<div>
+  <div class="section-header">Mission control</div>
+  <a mat-button routerLink="/dashboard/solutions" routerLinkActive="active">
+    <app-icon icon="solutions"></app-icon>
+    Solutions
+  </a>
+  <a mat-button routerLink="/dashboard/activators" routerLinkActive="active">
+    <app-icon icon="activator"></app-icon>
+    Activator store
+  </a>
+</div>
+
+<div *ngIf="(userIsAdmin$ | async)">
+  <div class="section-header">Administration menu</div>
+  <a mat-button routerLink="/administration/landing-zone" routerLinkActive="active">
+    <mat-icon>account_tree</mat-icon>
+    Landing Zone
+  </a>
+  <button mat-button><mat-icon>storage</mat-icon> Datacenter</button>
+  <button mat-button><mat-icon>person</mat-icon> Users</button>
+  <button mat-button><mat-icon>group</mat-icon> Teams</button>
+  <button mat-button><mat-icon>settings</mat-icon> Settings</button>
+</div>
