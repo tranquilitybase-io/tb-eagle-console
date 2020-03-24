@@ -29,8 +29,9 @@ export class UserLoginService {
     return this.http.post<User>(url, params, { headers });
   }
 
-  loginSuccess(): void {
-    this.router.navigateByUrl('/administration/landing-zone');
+  loginSuccess(user: User): void {
+    if (user.isAdmin) this.router.navigateByUrl('/administration/landing-zone');
+    else this.router.navigateByUrl('/dashboard/solutions');
   }
 
   loginFailure(): void {

@@ -4,9 +4,20 @@
   flex-direction: column;
 }
 
+.section-header {
+  color: var(--dark-grey);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .mat-button {
   text-align: left;
-  .mat-icon {
+  .mat-icon,
+  app-icon {
     margin-right: 1rem;
   }
+}
+
+.active {
+  background-color: var(--active-grey-background);
 }
