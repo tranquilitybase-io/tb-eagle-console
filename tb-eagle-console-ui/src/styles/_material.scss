@@ -129,6 +129,12 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
       cursor: default;
     }
   }
+
+  .mat-stepper-horizontal {
+    form {
+      margin-bottom: 5rem;
+    }
+  }
 }
 
 @include mix-app-theme($material-custom-theme);

@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { LandingZoneWanEffects } from './landing-zone-wan.effects';
+import reducer, { featureKey } from './landing-zone-wan.reducers';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,6 +32,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    StoreModule.forFeature(featureKey, reducer),
+    EffectsModule.forFeature([LandingZoneWanEffects]),
     LayoutModule,
     MatButtonModule,
     MatCardModule,

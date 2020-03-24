@@ -1,12 +1,12 @@
 <div class="grid-container">
   <mat-grid-list [cols]="gridCols$ | async" rowHeight="420px">
-    <!-- <mat-grid-tile *ngFor="let app of apps" colspan="1" rowspan="1">
-          <app-application-card [app]="app"></app-application-card>
-        </mat-grid-tile> -->
     <mat-grid-tile colspan="1" rowspan="1">
       <button mat-stroked-button class="create-new-button" color="primary" (click)="createNewConnection()">
         <mat-icon>add</mat-icon>Create new connection
       </button>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let wanVpn of wanConfigurations$ | async" colspan="1" rowspan="1">
+      <app-landing-zone-wan-home-vpn-card [wanVpn]="wanVpn"></app-landing-zone-wan-home-vpn-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
