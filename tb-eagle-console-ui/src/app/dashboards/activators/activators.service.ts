@@ -15,7 +15,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
     super('Activator', serviceElementsFactory);
   }
-  private BASE_URL = `${environment.apiUrl}/api`;
+  private BASE_URL = `${globalThis.location.origin}/api`;
 
   private postSuccess = val => {
     console.log('POST call successful value returned in body', val);

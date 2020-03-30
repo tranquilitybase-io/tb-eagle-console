@@ -20,7 +20,7 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
     super('Solution', serviceElementsFactory);
   }
 
-  private BASE_URL = `${environment.apiUrl}/api`;
+  private BASE_URL = `${globalThis.location.origin}/api`;
 
   createSolution(solution: Solution): void {
     const url = `${this.BASE_URL}/solution/`;

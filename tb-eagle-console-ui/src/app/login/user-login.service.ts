@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserLoginService {
   isAuthenticated = false;
-  private BASE_URL = `${environment.apiUrl}/api`;
+  private BASE_URL = `${globalThis.location.origin}/api`;
 
   constructor(private router: Router, private http: HttpClient) {}
 

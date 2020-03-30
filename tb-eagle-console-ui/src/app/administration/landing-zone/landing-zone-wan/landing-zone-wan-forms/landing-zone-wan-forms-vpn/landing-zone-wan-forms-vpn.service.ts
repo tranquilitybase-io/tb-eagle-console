@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class LandingZoneWanFormsVpnService {
   constructor(private http: HttpClient) {}
 
-  private BASE_URL = `${environment.apiUrl}/api`;
+  private BASE_URL = `${globalThis.location.origin}/api`;
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
