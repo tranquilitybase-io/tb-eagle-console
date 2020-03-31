@@ -70,7 +70,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id, accessRequestedBy: user }, { headers })
+      .post(url, { id, accessRequestedBy: user.id }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log(`Access requested to activator ${id} by user ${user.id}`);
   }

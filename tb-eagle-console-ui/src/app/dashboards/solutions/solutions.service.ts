@@ -73,27 +73,27 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
   }
 
   getBusinessUnit(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/businessUnit`;
+    const url = `${this.BASE_URL}/keyValues/businessUnit/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 
   getContinuousDeployment(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/cd`;
+    const url = `${this.BASE_URL}/keyValues/cd/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 
   getContinuousIntegration(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/ci`;
+    const url = `${this.BASE_URL}/keyValues/ci/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 
   getEnvironment(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/environment`;
+    const url = `${this.BASE_URL}/keyValues/environment/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 
   getSourceControl(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/sourceControl`;
+    const url = `${this.BASE_URL}/keyValues/sourceControl/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 }
