@@ -1,8 +1,0 @@
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "application": "Application7", "deploymentId": 7, "env": "PROD", "notes": "App5", "status": "false" }' 'http://localhost:5000/api/deployments'
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "application": "Application8", "deploymentId": 8, "env": "PROD", "notes": "App6", "status": "false" }' 'http://localhost:5000/api/deployments'
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "application": "Application9", "deploymentId": 9, "env": "PROD", "notes": "App5", "status": "false" }' 'http://localhost:5000/api/deployments'
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "application": "Application10", "deploymentId": 10, "env": "PROD", "notes": "App6", "status": "false" }' 'http://localhost:5000/api/deployments'
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "application": "Application11", "deploymentId": 11, "env": "PROD", "notes": "App6", "status": "false" }' 'http://localhost:5000/api/deployments'
-curl -X PUT --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{ "application": "Application11", "deploymentId": 11, "env": "DEV", "notes": "App11", "status": "false" }' 'http://localhost:5000/api/deployments/11'
-curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:5000/api/deployments/11'
-curl -X DELETE --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:5000/api/deployments/11'
