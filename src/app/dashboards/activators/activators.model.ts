@@ -16,7 +16,7 @@ export interface Activator {
   category: string;
   envs: string[];
   platforms: string[];
-  update: Date;
+  lastUpdated: string;
   description: string;
   userCapacity: number;
   serverCapacity: number;

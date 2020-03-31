@@ -86,4 +86,8 @@ export class ActivatorCardComponent implements OnInit {
   requestAccess() {
     this.store.dispatch(requestAccess({ id: this.activator.id }));
   }
+
+  get lastUpdated(): Date {
+    return new Date(this.activator.lastUpdated);
+  }
 }
