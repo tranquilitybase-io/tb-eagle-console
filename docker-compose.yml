@@ -1,0 +1,9 @@
+version: '3.1'
+
+services:
+  eagle-console:
+    image: gcr.io/tranquility-base-images/tb-eagle-console:dev
+    restart: always
+    ports:
+      - 4200:4200
+      

@@ -7,8 +7,8 @@ To run Eagle console locally
 
 1. Download the eagle-console code base
 2. Install dependencies by running  'npm install'
-3. Run Angular web server using command 'npm start' ( or ng serve -- --proxy-config ./proxy.conf.json)
-4. Run JSON mock server using command 'npm run mock-server' .
+3. Install docker and run the docker daemon
+4. Run the EagleConsole stack using command 'docker-compose up'
 
 
 # GCP Build commands
@@ -23,6 +23,8 @@ npm run build
 gcloud config set project tranquility-base-images
 docker build -t gcr.io/tranquility-base-images/tb-eagle-console-ui:alpha .
 docker push gcr.io/tranquility-base-images/tb-eagle-console-ui:alpha
+docker build -f Dockerfile.dev -t gcr.io/tranquility-base-images/tb-eagle-console-ui:dev .
+docker push gcr.io/tranquility-base-images/tb-eagle-console-ui:dev
 ```
 
 # TbEagleConsoleUi
