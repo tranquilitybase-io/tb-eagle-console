@@ -52,7 +52,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id: activatorId, status: 'Locked', accessRequestedBy: null }, { headers })
+      .post(url, { id: activatorId, status: 'Locked', accessRequestedBy: 0 }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Locked status set to activator: ' + activatorId);
   }
@@ -61,7 +61,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id: activatorId, status: 'Available', accessRequestedBy: null }, { headers })
+      .post(url, { id: activatorId, status: 'Available', accessRequestedBy: 0 }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Available status set to activator: ' + activatorId);
   }
