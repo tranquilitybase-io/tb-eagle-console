@@ -21,10 +21,10 @@ cd tb-eagle-console
 npm install --production
 npm run build
 gcloud config set project tranquility-base-images
-docker build -t gcr.io/tranquility-base-images/tb-eagle-console-ui:alpha .
-docker push gcr.io/tranquility-base-images/tb-eagle-console-ui:alpha
-docker build -f Dockerfile.dev -t gcr.io/tranquility-base-images/tb-eagle-console-ui:dev .
-docker push gcr.io/tranquility-base-images/tb-eagle-console-ui:dev
+docker build -t gcr.io/tranquility-base-images/tb-eagle-console:alpha .
+docker push gcr.io/tranquility-base-images/tb-eagle-console:alpha
+docker build -f Dockerfile.dev -t gcr.io/tranquility-base-images/tb-eagle-console:dev .
+docker push gcr.io/tranquility-base-images/tb-eagle-console:dev
 ```
 
 # TbEagleConsoleUi

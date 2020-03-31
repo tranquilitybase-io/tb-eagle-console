@@ -34,7 +34,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id, status: 'Deprecated' }, { headers })
+      .post(url, { id, status: 'Deprecated', accessRequestedBy: 0 }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Deprecated status set to activator: ' + id);
   }
@@ -43,7 +43,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id, status: 'Locked' }, { headers })
+      .post(url, { id, status: 'Locked', accessRequestedBy: 0 }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Locked status set to activator: ' + id);
   }
