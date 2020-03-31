@@ -89,7 +89,7 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
   }
 
   getTeam(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/team`;
+    const url = `${this.BASE_URL}/keyValues/team/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 }
