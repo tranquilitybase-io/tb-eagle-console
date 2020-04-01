@@ -6,6 +6,7 @@ import { Application } from '@app/dashboards/solutions/solutions.model';
 
 import { selectPage, selectLength } from '../view.reducer';
 import { changePage } from '../view.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-deployments',
@@ -17,10 +18,11 @@ export class DeploymentsComponent implements OnInit {
   // page$: Observable<number>;
   // length$: Observable<number>;
 
-  constructor(private deploymentService: DeploymentsService, private store: Store<any>) {}
+  constructor(private deploymentService: DeploymentsService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.deployments$ = this.deploymentService.entities$;
+    const activatorId = this.route.snapshot.queryParams['id'];
+    this.deployments$ = this.deploymentService.getWithQuery({ activatorId });
     // this.page$ = this.store.pipe(select(selectPage));
     // this.length$ = this.store.pipe(select(selectLength));
   }

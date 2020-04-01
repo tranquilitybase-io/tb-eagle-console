@@ -9,6 +9,6 @@ export class ActiveSolutionsResolver implements Resolve<Solution[]> {
   constructor(private service: SolutionsService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Solution[]> {
-    return this.service.getWithQuery({ active: 'true' });
+    return this.service.getWithQuery({ active: 'true', namesonly: 'true' });
   }
 }
