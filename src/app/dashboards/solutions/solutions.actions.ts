@@ -10,10 +10,6 @@ export const discardSelectedSolution = createAction('discardSelectedSolution [So
 export const refreshSolutions = createAction('refreshSolutions [Solutions]', props<{ filter: string }>());
 
 export const createSolution = createAction('[solutions-creation] create-solution', props<{ solution: Solution }>());
-export const appendApplication = createAction(
-  '[solutions-append-application] Appends application to solution',
-  props<{ application: Application }>()
-);
 
 export const startDeployment = createAction('[solutions-creation] Start Deployment', props<{ name: string }>());
 export const stopDeployment = createAction('[solutions-creation] Stop Deployment', props<{ name: string }>());

@@ -8,8 +8,8 @@ To run Eagle console locally
 1. Download the eagle-console code base
 2. Install dependencies by running  `npm install`
 3. Install docker and run the docker daemon
-4. Run the tb-houston-service stack using command `docker-compose -f tb-houston-service.yml up -d`
-5. Run the EagleConsole using command `npm start`
+4. Run the tb-houston-service stack using command `docker-compose -f tb-houston-service.yml up`
+5. In a new Terminal run the EagleConsole using command `npm start`
 
 ## Start tb-houston-service detached mode
 * `docker-compose -f tb-houston-service.yml up -d`
@@ -28,6 +28,9 @@ To run Eagle console locally
 * `docker-compose -f tb-houston-service.yml down`
 * `docker-compose -f tb-houston-service.yml pull`
 * `docker-compose -f tb-houston-service.yml up -d`
+
+## Remove all docker images (Save disk space when not running)
+* `docker rmi -f $(docker images -a -q)`
 
 # GCP Build commands
 

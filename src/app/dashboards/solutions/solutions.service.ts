@@ -1,22 +1,16 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Solution, Application } from './solutions.model';
+import { Solution } from './solutions.model';
 import { startDeployment } from '../solutions/solutions.actions';
 import { KeyValue } from '@angular/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class SolutionsService extends EntityCollectionServiceBase<Solution> {
-  constructor(
-    serviceElementsFactory: EntityCollectionServiceElementsFactory,
-    private http: HttpClient,
-    private router: Router
-  ) {
+  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
     super('Solution', serviceElementsFactory);
   }
 
@@ -39,24 +33,6 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
       }
     );
     console.log(solution + ' posted');
-  }
-
-  appendApplication(solution: Solution, application: Application): void {
-    const url = `${this.BASE_URL}/solution/${solution.id}/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, { applications: [...solution.applications, application] }, { headers }).subscribe(
-      val => {
-        console.log('POST call successful value returned in body', val);
-      },
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
-        console.log('The POST observable is now completed.');
-        this.router.navigateByUrl(`/dashboard/solutions/view?id=${solution.id}&categorySwitch=Applications`);
-      }
-    );
-    console.log(application + ' appended to solution: ' + solution);
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
+import * as ActivatorsActions from '@app/dashboards/activators/activators.actions';
 import * as SolutionActions from '@app/dashboards/solutions/solutions.actions';
 import { selectSelectedSolution } from '@app/dashboards/solutions/solutions.reducers';
 import { Solution, Application } from '@app/dashboards/solutions/solutions.model';
@@ -37,7 +38,7 @@ export class CreateComponent {
       solutionId: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      activator
+      activatorId: activator.id
     });
 
     this.store.pipe(select(selectSelectedSolution)).subscribe((solution: Solution) => {
@@ -57,7 +58,7 @@ export class CreateComponent {
 
   onSubmit(application: Application) {
     if (this.applicationForm.valid) {
-      this.store.dispatch(SolutionActions.appendApplication({ application }));
+      this.store.dispatch(ActivatorsActions.createApplication({ application }));
       this.store.dispatch(SolutionActions.discardSelectedSolution());
     } else {
       this.applicationForm.markAllAsTouched();

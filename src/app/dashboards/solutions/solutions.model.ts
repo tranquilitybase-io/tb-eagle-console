@@ -2,6 +2,7 @@ import { Activator } from '../activators/activators.model';
 
 export class Application {
   solutionId: number;
+  activatorId: number;
   name: string;
   description: string;
   env: string;

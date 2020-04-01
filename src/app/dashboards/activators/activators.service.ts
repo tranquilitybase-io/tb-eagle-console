@@ -6,13 +6,18 @@ import { KeyValue } from '@angular/common';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { User } from '@app/login/login.model';
-import { environment } from 'src/environments/environment';
+import { Application } from '../solutions/solutions.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
-  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
+  constructor(
+    serviceElementsFactory: EntityCollectionServiceElementsFactory,
+    private http: HttpClient,
+    private router: Router
+  ) {
     super('Activator', serviceElementsFactory);
   }
   private BASE_URL = `${globalThis.location.origin}/api`;
@@ -91,5 +96,23 @@ export class ActivatorsService extends EntityCollectionServiceBase<Activator> {
   getTeam(): Observable<KeyValue<string, string>[]> {
     const url = `${this.BASE_URL}/keyValues/team/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
+  }
+
+  createApplication(application: Application): void {
+    const url = `${this.BASE_URL}/application/`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(url, { ...application, solutionId: Number(application.solutionId) }, { headers }).subscribe(
+      val => {
+        console.log('POST call successful value returned in body', val);
+      },
+      response => {
+        console.log('POST call in error', response);
+      },
+      () => {
+        console.log('The POST observable is now completed.');
+        this.router.navigateByUrl(`/dashboard/solutions/view?id=${application.solutionId}&categorySwitch=Applications`);
+      }
+    );
+    console.log(application + ' created.');
   }
 }
