@@ -20,12 +20,15 @@ To run Eagle console locally
 ## Removing tb-houston-service leftover from memory
 * `docker-compose -f tb-houston-service.yml down`
 
+## Removing tb-houston-service leftover from memory and disk
+* `docker-compose -f tb-houston-service.yml down --rmi all`
+
 ## Get latest tb-houston-service update
 * `docker-compose -f tb-houston-service.yml pull`
 
 ## Recreate tb-houston-service (with initial DataBase setup)
 * `docker-compose -f tb-houston-service.yml kill`
-* `docker-compose -f tb-houston-service.yml down`
+* `docker-compose -f tb-houston-service.yml down --rmi all`
 * `docker-compose -f tb-houston-service.yml pull`
 * `docker-compose -f tb-houston-service.yml up -d`
 
