@@ -88,6 +88,6 @@ export class ActivatorCardComponent implements OnInit {
   }
 
   get lastUpdated(): Date {
-    return new Date(this.activator.lastUpdated);
+    return new Date(this.activator.lastUpdated || null);
   }
 }

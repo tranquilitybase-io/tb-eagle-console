@@ -38,6 +38,6 @@ export class SolutionDetailsComponent implements OnInit {
   }
 
   get lastUpdated(): Date {
-    return new Date(this.solution.lastUpdated);
+    return new Date(this.solution.lastUpdated || null);
   }
 }

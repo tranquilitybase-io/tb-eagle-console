@@ -7,6 +7,7 @@ export class Application {
   description: string;
   env: string;
   status: string;
+  lastUpdated: string;
   activator: Activator;
 }
 

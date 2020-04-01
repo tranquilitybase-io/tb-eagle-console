@@ -59,4 +59,8 @@ export class ApplicationCardComponent implements OnInit {
     this.snackBar.openFromComponent(AppUnderDeploymentComponent);
     this.store.dispatch(startDeployApplication({ name: this.app.name }));
   }
+
+  get lastUpdated(): Date {
+    return new Date(this.app.lastUpdated || null);
+  }
 }
