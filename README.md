@@ -6,10 +6,28 @@ Hi, and welcome to EagleConsole  - It is a Front-end self-service portal for Tra
 To run Eagle console locally
 
 1. Download the eagle-console code base
-2. Install dependencies by running  'npm install'
+2. Install dependencies by running  `npm install`
 3. Install docker and run the docker daemon
-4. Run the EagleConsole stack using command 'docker-compose up'
+4. Run the tb-houston-service stack using command `docker-compose -f tb-houston-service.yml up -d`
+5. Run the EagleConsole using command `npm start`
 
+## Start tb-houston-service detached mode
+* `docker-compose -f tb-houston-service.yml up -d`
+
+## Stopping tb-houston-service
+* `docker-compose -f tb-houston-service.yml stop`
+
+## Removing tb-houston-service leftover from memory
+* `docker-compose -f tb-houston-service.yml down`
+
+## Get latest tb-houston-service update
+* `docker-compose -f tb-houston-service.yml pull`
+
+## Recreate tb-houston-service (with initial DataBase setup)
+* `docker-compose -f tb-houston-service.yml kill`
+* `docker-compose -f tb-houston-service.yml down`
+* `docker-compose -f tb-houston-service.yml pull`
+* `docker-compose -f tb-houston-service.yml up -d`
 
 # GCP Build commands
 
@@ -30,10 +48,6 @@ docker push gcr.io/tranquility-base-images/tb-eagle-console:dev
 # TbEagleConsoleUi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
-
-## TbHoustonService stack server
-
-Run tb-houston-service stack server with ``docker-compose -f stack.yml up``
 
 ## Development server
 
