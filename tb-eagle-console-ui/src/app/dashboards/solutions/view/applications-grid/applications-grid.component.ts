@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { setSelectedSolution } from '../../solutions.actions';
 import { Solution, Application } from '../../solutions.model';
 import { Observable } from 'rxjs';
-import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
+import { LayoutService } from '@app/shared/layout/layout.service';
+import { Layout } from '@app/shared/layout/layout.model';
 
 @Component({
   selector: 'app-applications-grid',
@@ -13,10 +14,10 @@ import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
 })
 export class ApplicationsGridComponent {
   @Input() solution: Solution;
-  gridCols$: Observable<number>;
+  layout$: Observable<Layout>;
 
-  constructor(private router: Router, private store: Store<any>, private gridColsService: GridColsService) {
-    this.gridCols$ = this.gridColsService.gridColsObserver$;
+  constructor(private router: Router, private store: Store<any>, private layoutService: LayoutService) {
+    this.layout$ = this.layoutService.layoutObserver$;
   }
 
   get apps(): Array<Application> {

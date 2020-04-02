@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LandingZoneAction } from '../../landing-zone.model';
-import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
+import { LayoutService } from '@app/shared/layout/layout.service';
+import { Layout } from '@app/shared/layout/layout.model';
 import { Router } from '@angular/router';
 import { LandingZoneHomeGridService } from './landing-zone-home-grid.service';
 
@@ -12,7 +13,7 @@ import { LandingZoneHomeGridService } from './landing-zone-home-grid.service';
 })
 export class LandingZoneHomeGridComponent implements OnInit {
   actions$: Observable<LandingZoneAction[]>;
-  gridCols$: Observable<number>;
+  layout$: Observable<Layout>;
 
   filterAllLength = 0;
   filterCompletedLength = 0;
@@ -20,12 +21,12 @@ export class LandingZoneHomeGridComponent implements OnInit {
   filterLockedLength = 0;
 
   constructor(
-    private gridColsService: GridColsService,
+    private layoutService: LayoutService,
     private landingZoneGridService: LandingZoneHomeGridService,
     private router: Router
   ) {
     this.actions$ = landingZoneGridService.filteredEntities$;
-    this.gridCols$ = this.gridColsService.gridColsObserver$;
+    this.layout$ = this.layoutService.layoutObserver$;
   }
 
   ngOnInit() {

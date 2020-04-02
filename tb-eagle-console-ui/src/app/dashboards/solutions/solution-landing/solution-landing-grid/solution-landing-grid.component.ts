@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Solution } from '../../solutions.model';
 import { Observable } from 'rxjs';
-import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
+import { LayoutService } from '@app/shared/layout/layout.service';
 import { Router } from '@angular/router';
+import { Layout } from '@app/shared/layout/layout.model';
 
 @Component({
   selector: 'app-solution-landing-grid',
@@ -11,10 +12,10 @@ import { Router } from '@angular/router';
 })
 export class SolutionLandingGridComponent implements OnInit {
   @Input() solutions$: Observable<Solution[]>;
-  gridCols$: Observable<number>;
+  layout$: Observable<Layout>;
 
-  constructor(private gridColsService: GridColsService, private router: Router) {
-    this.gridCols$ = this.gridColsService.gridColsObserver$;
+  constructor(private layoutService: LayoutService, private router: Router) {
+    this.layout$ = this.layoutService.layoutObserver$;
   }
 
   ngOnInit() {}

@@ -1,5 +1,5 @@
 <div class="grid-container">
-  <mat-grid-list [cols]="gridCols$ | async" rowHeight="350px">
+  <mat-grid-list [cols]="(layout$ | async).gridCols" rowHeight="350px">
     <mat-grid-tile colspan="1" rowspan="1">
       <button mat-stroked-button class="create-new-button" color="primary" (click)="createNewSolution()">
         <mat-icon>add</mat-icon>Create new solution
