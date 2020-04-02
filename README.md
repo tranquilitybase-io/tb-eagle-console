@@ -6,10 +6,64 @@ Hi, and welcome to EagleConsole  - It is a Front-end self-service portal for Tra
 To run Eagle console locally
 
 1. Download the eagle-console code base
-2. Install dependencies by running  'npm install'
-3. Run Angular web server using command 'npm start' ( or ng serve -- --proxy-config ./proxy.conf.json)
-4. Run JSON mock server using command 'npm run mock-server' .
+2. Install dependencies by running  `npm install`
+3. Install docker and run the docker daemon
+4. Run the tb-houston-service stack using command `docker-compose -f tb-houston-service.yml up`
+5. In a new Terminal run the EagleConsole using command `npm start`
 
+# Using development prebuild docker images
+
+## Run the stack as containers
+
+### Start the stack detached mode
+* `docker-compose up -d`
+
+### Stopping the stack 
+* `docker-compose stop`
+
+### Removing the stack leftover from memory
+* `docker-compose down`
+
+### Removing the stack leftover from memory and disk
+* `docker-compose down --rmi all`
+
+### Get latest the stack update
+* `docker-compose pull`
+
+### Recreate the stack (with initial DataBase setup)
+* `docker-compose kill`
+* `docker-compose down --rmi all`
+* `docker-compose pull`
+* `docker-compose up -d`
+
+### Remove all docker images (Save disk space when not running)
+* `docker rmi -f $(docker images -a -q)`
+
+## Run the server as containers
+
+### Start tb-houston-service detached mode
+* `docker-compose -f tb-houston-service.yml up -d`
+
+### Stopping tb-houston-service
+* `docker-compose -f tb-houston-service.yml stop`
+
+### Removing tb-houston-service leftover from memory
+* `docker-compose -f tb-houston-service.yml down`
+
+### Removing tb-houston-service leftover from memory and disk
+* `docker-compose -f tb-houston-service.yml down --rmi all`
+
+### Get latest tb-houston-service update
+* `docker-compose -f tb-houston-service.yml pull`
+
+### Recreate tb-houston-service (with initial DataBase setup)
+* `docker-compose -f tb-houston-service.yml kill`
+* `docker-compose -f tb-houston-service.yml down --rmi all`
+* `docker-compose -f tb-houston-service.yml pull`
+* `docker-compose -f tb-houston-service.yml up -d`
+
+### Remove all docker images (Save disk space when not running)
+* `docker rmi -f $(docker images -a -q)`
 
 # GCP Build commands
 
@@ -17,13 +71,40 @@ To run Eagle console locally
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 git clone https://github.com/tranquilitybase-io/tb-eagle-console.git
-cd tb-eagle-console/tb-eagle-console-ui
+cd tb-eagle-console
 npm install --production
-export API_URL="http://api.url.address:example"
-sed 's+API_URL+$API_URL+g' src/environments/environment.dev.ts > src/environments/environment.prod.ts
 npm run build
-export PROJ_NAME="tb-eagle-console-example"
-gcloud config set project $PROJ_NAME
-docker build -t gcr.io/$PROJ_NAME/tb-eagle-console-ui:alpha .
-docker push gcr.io/$PROJ_NAME/tb-eagle-console-ui:alpha
+gcloud config set project tranquility-base-images
+docker build -t gcr.io/tranquility-base-images/tb-eagle-console:alpha .
+docker push gcr.io/tranquility-base-images/tb-eagle-console:alpha
+docker build -f Dockerfile.dev -t gcr.io/tranquility-base-images/tb-eagle-console:dev .
+docker push gcr.io/tranquility-base-images/tb-eagle-console:dev
 ```
+
+# TbEagleConsoleUi
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+
+## Development server
+
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
