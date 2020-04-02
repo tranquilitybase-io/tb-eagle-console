@@ -15,22 +15,22 @@ To run Eagle console locally
 
 ## Run the stack as containers
 
-### Start tb-houston-service detached mode
+### Start the stack detached mode
 * `docker-compose up -d`
 
-### Stopping tb-houston-service
+### Stopping the stack 
 * `docker-compose stop`
 
-### Removing tb-houston-service leftover from memory
+### Removing the stack leftover from memory
 * `docker-compose down`
 
-### Removing tb-houston-service leftover from memory and disk
+### Removing the stack leftover from memory and disk
 * `docker-compose down --rmi all`
 
-### Get latest tb-houston-service update
+### Get latest the stack update
 * `docker-compose pull`
 
-### Recreate tb-houston-service (with initial DataBase setup)
+### Recreate the stack (with initial DataBase setup)
 * `docker-compose kill`
 * `docker-compose down --rmi all`
 * `docker-compose pull`
