@@ -38,6 +38,8 @@ export class CreateComponent {
       solutionId: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
+      env: 'DEV',
+      status: 'Inactive',
       activatorId: activator.id
     });
 
