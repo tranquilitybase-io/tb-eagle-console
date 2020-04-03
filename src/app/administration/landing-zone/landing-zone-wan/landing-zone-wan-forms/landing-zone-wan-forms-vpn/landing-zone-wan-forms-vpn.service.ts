@@ -27,17 +27,17 @@ export class LandingZoneWanFormsVpnService {
   }
 
   getSubnetMode(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/subnetMode`;
+    const url = `${this.BASE_URL}/keyValues/subnetmode/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 
   getBgpRoutingMode(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/bgpRoutingMode`;
+    const url = `${this.BASE_URL}/keyValues/bgproutingmode/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 
   getVpnOnPremiseVendor(): Observable<KeyValue<string, string>[]> {
-    const url = `${this.BASE_URL}/keyValues/vpnOnPremiseVendor`;
+    const url = `${this.BASE_URL}/keyValues/vpnonpremisevendor/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
 }
