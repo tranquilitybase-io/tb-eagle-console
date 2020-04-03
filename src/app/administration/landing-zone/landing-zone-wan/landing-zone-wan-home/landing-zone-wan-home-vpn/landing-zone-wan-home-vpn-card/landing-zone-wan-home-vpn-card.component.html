@@ -14,7 +14,7 @@
     <mat-card-subtitle>{{ wanVpn.vpn.externalVpnGateway }}</mat-card-subtitle>
   </mat-card-header>
 
-  <mat-card-content>
+  <mat-card-content *ngIf="!(deploymentInProgress$ | async)">
     <div class="mat-body-strong">Details</div>
     <mat-list dense class="description-list">
       <mat-list-item>
@@ -50,13 +50,25 @@
     </mat-list>
   </mat-card-content>
 
-  <mat-card-footer>
+  <mat-card-content *ngIf="deploymentInProgress$ | async" class="spinner">
+    <div class="mat-body">Deployment</div>
+    <mat-progress-spinner
+      color="primary"
+      mode="indeterminate"
+      diameter="150"
+      strokeWidth="5"
+      [value]="percentage$ | async"
+    >
+    </mat-progress-spinner>
+  </mat-card-content>
+
+  <mat-card-footer *ngIf="!active">
     <div>
       <div class="mat-body-strong">Description</div>
       <div class="mat-caption">{{ wanVpn.vpn.description }}</div>
     </div>
   </mat-card-footer>
-  <!-- <mat-card-actions *ngIf="active">
+  <mat-card-actions *ngIf="active">
     <button mat-button color="primary" (click)="deploy()">Deploy <mat-icon>chevron_right</mat-icon></button>
-  </mat-card-actions> -->
+  </mat-card-actions>
 </mat-card>

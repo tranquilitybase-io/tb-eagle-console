@@ -10,11 +10,17 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LandingZoneWanHomeDirectComponent } from './landing-zone-wan-home-direct/landing-zone-wan-home-direct.component';
 import { LandingZoneWanHomePartnerComponent } from './landing-zone-wan-home-partner/landing-zone-wan-home-partner.component';
 import { LandingZoneWanHomeVpnComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn.component';
 import { LandingZoneWanHomeVpnCardComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn-card/landing-zone-wan-home-vpn-card.component';
+
+import reducer, { featureKey } from '../landing-zone-wan.reducers';
+import { LandingZoneWanEffects } from '../landing-zone-wan.effects';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 const routes: Routes = [
   {
@@ -33,6 +39,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    StoreModule.forFeature(featureKey, reducer),
+    EffectsModule.forFeature([LandingZoneWanEffects]),
     RouterModule.forChild(routes),
     MatButtonModule,
     MatCardModule,
@@ -40,7 +48,8 @@ const routes: Routes = [
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule
   ]
 })
 export class LandingZoneWanHomeModule {}
