@@ -19,32 +19,32 @@ export class LandingZoneWanFormsVpnComponent implements OnInit {
 
   ngOnInit() {
     this.vpnFormGroup = this.formBuilder.group({
-      projectName: ['dev', Validators.required],
-      vpcName: ['dev', Validators.required],
-      description: ['Backup VPN connection between GCP US and CISCO 5505 on prem', Validators.required],
-      subnetMode: ['dev', Validators.required],
-      bgpRoutingMode: ['dev', Validators.required],
-      haVpnGateway: ['dev', Validators.required],
-      cloudRouterName: ['dev', Validators.required],
-      externalVpnGateway: ['dev', Validators.required],
-      googleASN: ['30000', Validators.required],
-      peerASN: ['30001', Validators.required],
-      bgpInterfaceNetLength: ['dev', Validators.required]
+      projectName: ['', Validators.required],
+      vpcName: ['', Validators.required],
+      description: ['', Validators.required],
+      subnetMode: ['', Validators.required],
+      bgpRoutingMode: ['', Validators.required],
+      haVpnGateway: ['', Validators.required],
+      cloudRouterName: ['', Validators.required],
+      externalVpnGateway: ['', Validators.required],
+      googleASN: ['', Validators.required],
+      peerASN: ['', Validators.required],
+      bgpInterfaceNetLength: ['', Validators.required]
     });
     this.googleSessionFormGroup = this.formBuilder.group({
-      primaryRegion: ['dev', Validators.required],
-      primarySubnetName: ['dev', Validators.required],
-      primaryGcpVpcSubnet: ['dev', Validators.required],
+      primaryRegion: ['', Validators.required],
+      primarySubnetName: ['', Validators.required],
+      primaryGcpVpcSubnet: ['', Validators.required],
       secondaryRegion: [''],
       secondarySubnetName: [''],
       secondaryGcpVpcSubnet: ['']
     });
     this.onPremiseSessionFormGroup = this.formBuilder.group({
-      vendor: ['dev', Validators.required],
-      primaryPeerIp: ['dev', Validators.required],
-      primaryPeerIpSubnet: ['dev'],
-      primaryVpnTunnel: ['dev', Validators.required],
-      primaryBgpPeer: ['dev', Validators.required],
+      vendor: ['', Validators.required],
+      primaryPeerIp: ['', Validators.required],
+      primaryPeerIpSubnet: [''],
+      primaryVpnTunnel: ['', Validators.required],
+      primaryBgpPeer: ['', Validators.required],
       primarySharedSecret: [''],
       secondaryPeerIp: [''],
       secondaryPeerIpSubnet: [''],
