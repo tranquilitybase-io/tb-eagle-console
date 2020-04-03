@@ -27,8 +27,8 @@ export class LandingZoneWanFormsVpnComponent implements OnInit {
       haVpnGateway: ['dev', Validators.required],
       cloudRouterName: ['dev', Validators.required],
       externalVpnGateway: ['dev', Validators.required],
-      googleASN: ['dev', Validators.required],
-      peerASN: ['dev', Validators.required],
+      googleASN: ['30000', Validators.required],
+      peerASN: ['30001', Validators.required],
       bgpInterfaceNetLength: ['dev', Validators.required]
     });
     this.googleSessionFormGroup = this.formBuilder.group({
@@ -55,9 +55,13 @@ export class LandingZoneWanFormsVpnComponent implements OnInit {
   }
 
   submit() {
+    const googleASN = Number(this.vpnFormGroup.value['googleASN']);
+    const peerASN = Number(this.vpnFormGroup.value['peerASN']);
     const wanConfiguration = {
       vpn: {
-        ...this.vpnFormGroup.value
+        ...this.vpnFormGroup.value,
+        googleASN,
+        peerASN
       },
       googleSession: {
         ...this.googleSessionFormGroup.value

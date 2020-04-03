@@ -18,8 +18,8 @@ services:
     restart: always
     environment:
       SQLALCHEMY_DATABASE_URI: 'mysql+mysqlconnector://eagle-user:eagle-user-secret-pw@mysql57/eagle_db'
-      SQLALCHEMY_ECHO: 'True'
-      SQLALCHEMY_TRACK_MODIFICATIONS: 'True'
+      SQLALCHEMY_ECHO: 'False'
+      SQLALCHEMY_TRACK_MODIFICATIONS: 'False'
     depends_on:
       - mysql57
     ports:

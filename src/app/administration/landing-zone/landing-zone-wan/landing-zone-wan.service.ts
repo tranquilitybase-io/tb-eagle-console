@@ -15,7 +15,7 @@ export class LandingZoneWanService extends EntityCollectionServiceBase<WanConfig
   private BASE_URL = `${globalThis.location.origin}/api`;
 
   createWanConfiguration(wanConfiguration: WanConfiguration): void {
-    const url = `${this.BASE_URL}/landingzonewan`;
+    const url = `${this.BASE_URL}/landingzonewan/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(url, wanConfiguration, { headers }).subscribe(
       (val: WanConfiguration) => {
