@@ -36,7 +36,7 @@
       </div>
       {{ activator.name }}
     </mat-card-title>
-    <mat-card-subtitle>{{ activator.type }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ activator.category }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content routerLink="/dashboard/activators/details" [queryParams]="{ id: activator.id }" title="Details">
@@ -49,9 +49,9 @@
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
-        <div class="mat-body">Category</div>
+        <div class="mat-body">Type</div>
         <mat-chip-list>
-          <mat-chip>{{ activator.category }}</mat-chip>
+          <mat-chip>{{ activator.type }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
