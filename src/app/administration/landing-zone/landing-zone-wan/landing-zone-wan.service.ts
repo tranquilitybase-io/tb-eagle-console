@@ -12,7 +12,7 @@ export class LandingZoneWanService extends EntityCollectionServiceBase<WanConfig
     super('LandingZoneWan', serviceElementsFactory);
   }
 
-  private BASE_URL = `${globalThis.location.origin}/api`;
+  private BASE_URL = `${environment.apiUrl}/api`;
 
   createWanConfiguration(wanConfiguration: WanConfiguration): void {
     const url = `${this.BASE_URL}/landingzonewan/`;
