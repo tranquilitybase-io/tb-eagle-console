@@ -1,7 +1,19 @@
 <div class="sub-header">
   Activator store
 </div>
-<app-controls [isAll]="(current$ | async) === 'All'"></app-controls>
+
+<div class="controls">
+  <app-switches
+    [values]="values_controls"
+    [current]="current$ | async"
+    (onValueChanged)="onSwitch($event)"
+  ></app-switches>
+  <div class="flex-filler" *ngIf="(current$ | async) !== 'All'"></div>
+  <app-pills [pills]="['Type', 'Availability', 'Environment']" class="separated" *ngIf="(current$ | async) === 'All'"></app-pills>
+  <app-search class="separated"></app-search>
+  <app-grid-view-switch class="separated"></app-grid-view-switch>
+</div>
+
 <div *ngIf="(current$ | async) === 'All'" class="grid-container">
   <mat-grid-list [cols]="gridCols$ | async" rowHeight="420px">
     <mat-grid-tile *ngFor="let activator of activators$ | async" colspan="1" rowspan="1">

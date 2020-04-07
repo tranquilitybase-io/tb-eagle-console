@@ -6,8 +6,6 @@ import { SharedModule } from '@app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ActivatorsComponent } from './activators.component';
-import { ControlsComponent } from './controls/controls.component';
-import { CategorySwitchComponent } from './category-switch/category-switch.component';
 import { CategoriesModule } from './categories/categories.module';
 import { ActivatorsService } from './activators.service';
 import { DeploymentsService } from './deployments.service';
@@ -63,8 +61,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ActivatorsComponent,
-    ControlsComponent,
-    CategorySwitchComponent,
     MissingAvailableSolutionsDialogComponent,
     ActivatorGrantAccessDialogComponent,
     ActivatorCardComponent,

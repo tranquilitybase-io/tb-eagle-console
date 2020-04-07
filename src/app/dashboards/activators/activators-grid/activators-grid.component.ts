@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Activator } from '../activators.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setProgress } from '../activators.actions';
 import { map } from 'rxjs/operators';
@@ -18,9 +18,13 @@ export class ActivatorsGridComponent implements OnInit {
   activators$: Observable<Activator[]>;
   gridCols$: Observable<number>;
 
+  categoryCount = 8;
+  allCount = 50;
+
   constructor(
     private activatorsService: ActivatorsService,
     private route: ActivatedRoute,
+    private router: Router,
     private store: Store<any>,
     private gridColsService: GridColsService
   ) {
@@ -32,5 +36,30 @@ export class ActivatorsGridComponent implements OnInit {
     this.activatorsService.getAll();
     this.store.dispatch(setProgress({ step: 0 }));
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('categorySwitch')));
+
+    this.onSwitch(this.route.snapshot.queryParams.categorySwitch || 'Category');
+  }
+
+  get values_controls(): { name: string; count: number }[] {
+    return [
+      {
+        name: 'Category',
+        count: this.categoryCount
+      },
+      {
+        name: 'All',
+        count: this.allCount
+      }
+    ];
+  }
+
+  onSwitch(name: string) {
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
+      queryParamsHandling: 'merge',
+      queryParams: {
+        categorySwitch: name
+      }
+    });
   }
 }
