@@ -6,23 +6,18 @@ export const createWanConfiguration = createAction(
   props<{ wanConfiguration: WanConfiguration }>()
 );
 
-export const startDeployment = createAction('[landing-wan-creation] Start Deployment', props<{ name: string }>());
-export const stopDeployment = createAction('[landing-wan-creation] Stop Deployment', props<{ name: string }>());
-export const updateDeploymentProgress = createAction(
-  '[landing-wan-creation] Update Deployment Progress',
+export const startConnectionDeployment = createAction(
+  '[landing-zone-wan-deploy-connection] Start Deployment',
+  props<{ name: string }>()
+);
+export const stopConnectionDeployment = createAction(
+  '[landing-zone-wan-deploy-connection] Stop Deployment',
+  props<{ name: string }>()
+);
+export const updateConnectionDeploymentProgress = createAction(
+  '[landing-zone-wan-deploy-connection] Update Deployment Progress',
   props<{ name: string; progress: number }>()
 );
-
-export const startDeployApplication = createAction(
-  '[landing-wan-deploy-application] Start Deployment',
-  props<{ name: string }>()
-);
-
-export const updateDeploymentProgressApp = createAction(
-  '[landing-wan-deploy-application] Update Deployment Progress',
-  props<{ name: string; progressApp: number }>()
-);
-export const stopDeploymentApp = createAction(
-  '[landing-wan-deploy-application] Stop Deployment',
-  props<{ name: string }>()
+export const dismissDeploymentConnectionReadyAlert = createAction(
+  '[landing-zone-wan-deploy-connection] Stop showing off deployment ready alert'
 );
