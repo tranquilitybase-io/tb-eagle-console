@@ -1,0 +1,6 @@
+FROM node:12.16.1-stretch
+WORKDIR /data
+COPY . .
+EXPOSE 4200
+RUN ["npm", "install"]
+CMD ["npm", "start"]
