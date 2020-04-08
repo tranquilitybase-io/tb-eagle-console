@@ -39,4 +39,7 @@ export class WanConfiguration {
   vpn: WanVpnConfiguration;
   googleSession: WanGoogleSessionConfiguration;
   onPremiseSession: WanOnPremiseConfiguration;
+
+  id: number;
+  lastUpdated: string;
 }
