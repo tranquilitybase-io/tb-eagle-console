@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  padding: {
+    top: 1.5rem;
+    left: 2rem;
+    right: 2rem;
+  }
+  background-color: var(--active-grey-background);
+}

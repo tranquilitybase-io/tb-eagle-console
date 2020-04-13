@@ -1,0 +1,43 @@
+.sub-header {
+  background-color: var(--light-grey);
+  padding: 1rem 2rem;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  margin: 1rem 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--grey);
+
+  app-pills {
+    flex: auto;
+  }
+}
+
+.grid-container {
+  padding: 0 1.5rem;
+}
+
+.category-component {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--middle-light-grey);
+  border-radius: calc(2 * var(--radius));
+  padding: 1rem 2rem 1.5rem;
+  align-items: center;
+  font-size: 1.375rem;
+  color: var(--blackish);
+
+  &::before {
+    position: absolute;
+    content: '';
+    background-color: var(--light-grey);
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1rem;
+    z-index: -10;
+  }
+}

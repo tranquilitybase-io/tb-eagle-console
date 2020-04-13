@@ -1,6 +1,6 @@
 import { EntityMetadataMap } from '@ngrx/data';
-import { Solution } from './dashboards/solutions/solutions.model';
 import { LandingZoneAction } from './administration/landing-zone/landing-zone.model';
+import { Solution } from './mission-control/solutions/solutions.model';
 
 const entityMetadata: EntityMetadataMap = {
   LandingZoneWan: {},

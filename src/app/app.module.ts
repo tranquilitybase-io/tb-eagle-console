@@ -19,7 +19,7 @@ import { LoginModule } from './login/login.module';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard/solutions',
+    redirectTo: '/mission-control/solutions',
     pathMatch: 'full',
     canActivate: [AuthGuardService]
   },
@@ -28,8 +28,8 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule),
+    path: 'mission-control',
+    loadChildren: () => import('./mission-control/mission-control.module').then(m => m.MissionControlModule),
     canActivate: [AuthGuardService]
   },
   {
