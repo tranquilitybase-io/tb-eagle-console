@@ -125,6 +125,9 @@ export const selectIsAlmostReady = createSelector(
   state => !state.dismissAlmostReady && Object.values(state).some(deployment => deployment['inProgress'])
 );
 export const selectSelectedSolution = createSelector(selectFeature, state => state && state['selectedSolution']);
+export const selectIsSelectedSolution = createSelector(selectFeature, state =>
+  Boolean(state && state['selectedSolution'])
+);
 
 export const selectProgressApp = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].progressApp : 0));
