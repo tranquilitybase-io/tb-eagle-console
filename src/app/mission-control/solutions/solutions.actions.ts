@@ -35,3 +35,19 @@ export const stopDeploymentApp = createAction(
 export const dismissDeploymentAppReadyAlert = createAction(
   '[solutions-deploy-application] Stop showing off deployment ready alert'
 );
+
+export const startSolutionDeployment = createAction(
+  '[solutions-deploy-solution] Start Deployment',
+  props<{ name: string }>()
+);
+export const stopSolutionDeployment = createAction(
+  '[solutions-deploy-solution] Stop Deployment',
+  props<{ name: string }>()
+);
+export const updateSolutionDeploymentProgress = createAction(
+  '[solutions-deploy-solution] Update Deployment Progress',
+  props<{ name: string; progress: number }>()
+);
+export const dismissDeploymentSolutionReadyAlert = createAction(
+  '[solutions-deploy-solution] Stop showing off deployment ready alert'
+);

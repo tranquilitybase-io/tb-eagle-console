@@ -20,12 +20,14 @@ import { SearchComponent } from './search/search.component';
 import { SearchPillComponent } from './search-pill/search-pill.component';
 import { SwitchesComponent } from './switches/switches.component';
 
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
+import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
+import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creation/solution-under-creation.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SharedService } from './shared.service';
 
@@ -47,9 +49,16 @@ import { SharedService } from './shared.service';
     PropertiesComponent,
     SearchComponent,
     SearchPillComponent,
+    SolutionCreatedComponent,
+    SolutionUnderCreationComponent,
     SwitchesComponent
   ],
-  entryComponents: [AppUnderDeploymentComponent, AppIsDeployedComponent],
+  entryComponents: [
+    AppIsDeployedComponent,
+    AppUnderDeploymentComponent,
+    SolutionCreatedComponent,
+    SolutionUnderCreationComponent
+  ],
   providers: [SharedService, { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }],
   imports: [
     CommonModule,
@@ -79,6 +88,8 @@ import { SharedService } from './shared.service';
     PropertiesComponent,
     RouterModule,
     SearchComponent,
+    SolutionCreatedComponent,
+    SolutionUnderCreationComponent,
     SwitchesComponent
   ]
 })

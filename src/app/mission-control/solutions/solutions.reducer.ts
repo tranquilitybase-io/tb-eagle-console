@@ -12,7 +12,11 @@ import {
   startDeployApplication,
   updateDeploymentProgressApp,
   stopDeploymentApp,
-  dismissDeploymentAppReadyAlert
+  dismissDeploymentAppReadyAlert,
+  startSolutionDeployment,
+  stopSolutionDeployment,
+  updateSolutionDeploymentProgress,
+  dismissDeploymentSolutionReadyAlert
 } from './solutions.actions';
 import { Solution } from './solutions.model';
 
@@ -63,6 +67,14 @@ export const solutionsReducer = createReducer(
   on(dismissDeploymentAppReadyAlert, state => ({ ...state, isDeploymentAppReady: false }))
 );
 
+export const solutionReducer = createReducer(
+  intialState,
+  on(startSolutionDeployment, state => ({ ...state, progress: 0, inProgress: true })),
+  on(stopSolutionDeployment, state => ({ ...state, inProgress: false })),
+  on(updateSolutionDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
+  on(dismissDeploymentSolutionReadyAlert, state => ({ ...state, isSolutionDeploymentReady: false }))
+);
+
 export default function reducer(state, action) {
   if ([startDeployment.type, updateDeploymentProgress.type, stopDeployment.type].includes(action.type)) {
     return {
@@ -79,6 +91,22 @@ export default function reducer(state, action) {
       ...state,
       [action.name]: solutionsReducer(state[action.name], action),
       isDeploymentAppReady: action.type === stopDeploymentApp.type || state.isDeploymentReady
+    };
+  }
+
+  if (
+    [startSolutionDeployment.type, updateSolutionDeploymentProgress.type, stopSolutionDeployment.type].includes(
+      action.type
+    )
+  ) {
+    return {
+      ...state,
+      [action.name]: solutionReducer(state[action.name], action),
+      isSolutionDeploymentReady: action.type === stopSolutionDeployment.type || state.isSolutionDeploymentReady,
+      dismissAlmostReady:
+        action.type === startSolutionDeployment.type
+          ? false
+          : action.type === stopSolutionDeployment.type || state.dismissAlmostReady
     };
   }
 
