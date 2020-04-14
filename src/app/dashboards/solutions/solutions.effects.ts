@@ -14,7 +14,10 @@ import {
   stopDeployment,
   startDeployApplication,
   stopDeploymentApp,
-  updateDeploymentProgressApp
+  updateDeploymentProgressApp,
+  startSolutionDeployment,
+  stopSolutionDeployment,
+  updateSolutionDeploymentProgress
 } from './solutions.actions';
 
 function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
@@ -73,6 +76,23 @@ export class SolutionEffects {
           emitRangeDelayed(range(0, 100, 2), 300).pipe(
             tap(console.log),
             map(progress => (progress >= 100 ? stopDeployment({ name }) : updateDeploymentProgress({ name, progress })))
+          )
+        )
+      )
+    )
+  );
+
+  startSolutionDeployment$ = createEffect(() =>
+    this.zone.runOutsideAngular(() =>
+      this.actions$.pipe(
+        ofType(startSolutionDeployment),
+        // This part of code mocks up deployment process
+        mergeMap(({ name }) =>
+          emitRangeDelayed(range(0, 100, 2), 300).pipe(
+            tap(console.log),
+            map(progress =>
+              progress >= 100 ? stopSolutionDeployment({ name }) : updateSolutionDeploymentProgress({ name, progress })
+            )
           )
         )
       )
