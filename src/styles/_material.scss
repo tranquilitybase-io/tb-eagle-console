@@ -135,6 +135,10 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
       margin-bottom: 5rem;
     }
   }
+
+  .activator-grid-card .description-list .mat-list-item .mat-list-item-content {
+    flex-wrap: wrap;
+  }
 }
 
 @include mix-app-theme($material-custom-theme);
