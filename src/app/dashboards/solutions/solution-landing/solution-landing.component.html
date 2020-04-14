@@ -1,4 +1,7 @@
 <header>
   <app-breadcrumbs [steps]="['My Team solutions']"> </app-breadcrumbs>
 </header>
+<div>	
+  <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>	
+</div>
 <app-solution-landing-grid [solutions$]="solutions$"></app-solution-landing-grid>
