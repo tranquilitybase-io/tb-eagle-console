@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { SolutionsService } from '@app/dashboards/solutions/solutions.service';
 import { Solution } from '../solutions.model';
 import { Store, select } from '@ngrx/store';
-import { dismissAlmostReadyAlert, dismissDeploymentReadyAlert } from '../solutions.actions';
-import { SolutionsState, selectIsAlmostReady, selectIsDeploymentReady } from '../solutions.reducers';
+import { dismissDeploymentReadyAlert, startSolutionDeployment } from '../solutions.actions';
+import { SolutionsState, selectIsDeploymentReady } from '../solutions.reducers';
+import { MatSnackBar } from '@angular/material';
+import { SolutionUnderCreationComponent } from '../snack-bar/solution-under-creation/solution-under-creation.component';
+import { SolutionCreatedComponent } from '../snack-bar/solution-created/solution-created.component';
 
 @Component({
   selector: 'app-solution-landing',
@@ -15,6 +17,7 @@ import { SolutionsState, selectIsAlmostReady, selectIsDeploymentReady } from '..
 })
 export class SolutionLandingComponent implements OnInit {
   solutions$: Observable<Solution[]>;
+  active = false;
 
   values = [
     { name: 'Favourites', count: 4 },
@@ -22,40 +25,25 @@ export class SolutionLandingComponent implements OnInit {
     { name: 'Archived', count: 3 }
   ];
 
-  current$: Observable<string>;
-  event: string;
-
   constructor(
     private solutionsService: SolutionsService,
     private store: Store<SolutionsState>,
-    private route: ActivatedRoute
+    private snackBar: MatSnackBar
   ) {
     this.solutions$ = solutionsService.filteredEntities$;
   }
 
   ngOnInit() {
     this.solutionsService.getAll();
-    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
-    this.current$.subscribe(event => this.getSolutions(event));
-  }
-
-  getSolutions(filter: string) {
-    this.solutionsService.setFilter(filter);
-  }
-
-  get isAlmostReady$() {
-    return this.store.pipe(select(selectIsAlmostReady));
-  }
-
-  public DismissAlmostReady() {
-    this.store.dispatch(dismissAlmostReadyAlert());
-  }
-
-  get isReady$() {
-    return this.store.pipe(select(selectIsDeploymentReady));
-  }
-
-  public DismissReady() {
-    this.store.dispatch(dismissDeploymentReadyAlert());
+    this.store.pipe(select(selectIsDeploymentReady)).subscribe(isReady => {
+      if (isReady) {
+        this.snackBar
+          .openFromComponent(SolutionCreatedComponent)
+          .afterDismissed()
+          .subscribe(() => {
+            this.store.dispatch(dismissDeploymentReadyAlert());
+          });
+      }
+    });
   }
 }

@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { selectInProgress, selectProgress } from '@app/dashboards/solutions/solutions.reducers';
 import { startDeployment } from '@app/dashboards/solutions/solutions.actions';
+import { SolutionUnderCreationComponent } from '@app/dashboards/solutions/snack-bar/solution-under-creation/solution-under-creation.component';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-solution-landing-grid-card',
@@ -18,7 +20,7 @@ export class SolutionLandingGridCardComponent implements OnInit {
   deploymentInProgress$: Observable<boolean>;
   percentage$: Observable<number>;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<any>, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.deploymentInProgress$ = this.store.pipe(select(selectInProgress(this.solution.id.toString())));
@@ -36,6 +38,7 @@ export class SolutionLandingGridCardComponent implements OnInit {
   }
 
   deploy() {
+    this.snackBar.openFromComponent(SolutionUnderCreationComponent);
     this.store.dispatch(startDeployment({ name: String(this.solution.id) }));
   }
 }
