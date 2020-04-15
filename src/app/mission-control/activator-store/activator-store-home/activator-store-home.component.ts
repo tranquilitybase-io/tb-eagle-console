@@ -13,50 +13,26 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./activator-store-home.component.scss']
 })
 export class ActivatorStoreHomeComponent implements OnInit {
-  current$: Observable<string>;
-  activators$: Observable<Activator[]>;
+  categorySwitch$: Observable<string>;
 
   categoryCount = 8;
   allCount = 50;
   categories = ['Web applications'];
 
-  constructor(
-    private activatorStoreService: ActivatorStoreService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private store: Store<any>
-  ) {
-    this.activators$ = activatorStoreService.filteredEntities$;
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
 
   ngOnInit() {
-    this.activatorStoreService.getAll();
     this.store.dispatch(setProgress({ step: 0 }));
-    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('categorySwitch')));
+    this.categorySwitch$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('categorySwitch')));
 
     this.onSwitch(this.route.snapshot.queryParams.categorySwitch || 'Category');
   }
 
-  get values_controls(): { name: string; count: number }[] {
-    return [
-      {
-        name: 'Category',
-        count: this.categoryCount
-      },
-      {
-        name: 'All',
-        count: this.allCount
-      }
-    ];
-  }
-
-  onSwitch(name: string) {
+  onSwitch(categorySwitch: string) {
     this.router.navigate(['.'], {
       relativeTo: this.route,
       queryParamsHandling: 'merge',
-      queryParams: {
-        categorySwitch: name
-      }
+      queryParams: { categorySwitch }
     });
   }
 }

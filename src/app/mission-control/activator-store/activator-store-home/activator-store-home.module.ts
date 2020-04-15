@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { TeamResolver } from '@app/shared/resolvers/team.resolver';
-import { ActivatorStoreCategoriesResolver } from '@app/shared/resolvers/activator-store-categories.resolver';
+import { ActivatorStoreHomeCategoryGridComponent } from './activator-store-home-category-grid/activator-store-home-category-grid.component';
 
 import { ActivatorStoreHomeGridCardComponent } from './activator-store-home-grid/activator-store-home-grid-card/activator-store-home-grid-card.component';
 import { ActivatorStoreHomeGridComponent } from './activator-store-home-grid/activator-store-home-grid.component';
@@ -26,14 +26,18 @@ const routes: Routes = [
     path: '',
     component: ActivatorStoreHomeComponent,
     resolve: {
-      teamList: TeamResolver,
-      activatorStoreCategoriesList: ActivatorStoreCategoriesResolver
+      teamList: TeamResolver
     }
   }
 ];
 
 @NgModule({
-  declarations: [ActivatorStoreHomeComponent, ActivatorStoreHomeGridComponent, ActivatorStoreHomeGridCardComponent],
+  declarations: [
+    ActivatorStoreHomeComponent,
+    ActivatorStoreHomeGridComponent,
+    ActivatorStoreHomeGridCardComponent,
+    ActivatorStoreHomeCategoryGridComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,

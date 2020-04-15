@@ -2,11 +2,21 @@
 
 <div>
   <div class="section-header">Mission control</div>
-  <a mat-button routerLink="/mission-control/solutions" routerLinkActive="active">
+  <a
+    mat-button
+    routerLink="/mission-control/solutions"
+    [queryParams]="{ groupSwitch: 'Favourites' }"
+    routerLinkActive="active"
+  >
     <app-icon icon="solutions"></app-icon>
     Solutions
   </a>
-  <a mat-button routerLink="/mission-control/activator-store" routerLinkActive="active">
+  <a
+    mat-button
+    routerLink="/mission-control/activator-store"
+    [queryParams]="{ categorySwitch: 'Category' }"
+    routerLinkActive="active"
+  >
     <app-icon icon="activator"></app-icon>
     Activator store
   </a>

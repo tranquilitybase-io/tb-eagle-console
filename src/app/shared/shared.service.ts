@@ -55,9 +55,4 @@ export class SharedService {
     const url = `${this.BASE_URL}/keyValues/team/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
-
-  getActivatorCategories(): Observable<ActivatorCategory[]> {
-    const url = `${this.BASE_URL}/activatorcategories/`;
-    return this.http.get<ActivatorCategory[]>(url).pipe(catchError(this.handleError));
-  }
 }
