@@ -98,3 +98,86 @@
 .app {
   margin-bottom: 1.5rem;
 }
+
+.dashboard-card {
+  position: absolute;
+  // padding-top: 0;
+  // padding-bottom: 0;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  border: none;
+  box-shadow: none;
+}
+
+.special-dashboard-card {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.internalMatGrid {
+  min-width: 100%;
+  position: absolute;
+  top: 3rem;
+  left: 0rem;
+  right: 0rem;
+  bottom: 0rem;
+}
+
+.configuration-grid-tile {
+  background-color: #f9f9f9;
+  mat-card {
+    background-color: #f9f9f9;
+  }
+}
+
+.dashboard-card-content .description-list {
+  background-color: #f9f9f9;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  .mat-body-1 {
+    width: 8rem;
+  }
+  .mat-chip.sensitivity {
+    color: white;
+    background-color: var(--dark-grey-2);
+    &.red {
+      background-color: var(--red);
+    }
+  }
+}
+
+a {
+  margin-left: 5px;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.mat-chip-alternative {
+  background-color: #e0e0e0;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  padding: 7px 12px;
+  border-radius: 16px;
+  align-items: center;
+  cursor: default;
+  min-height: 32px;
+  height: 1px;
+
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  transform: translateZ(0);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  margin: 4px;
+}

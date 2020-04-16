@@ -32,4 +32,3 @@ services:
       PROXY_TARGET: 'http://houston-service:3000'
     ports:
       - 4200:4200
-      

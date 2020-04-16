@@ -11,6 +11,17 @@ import reducer, { featureKey } from './view.reducer';
 import { ViewEffects } from './view.effects';
 import { ActivatorByIdResolver } from '../resolvers/activator-by-id.resolver';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
+
 const routes: Routes = [
   {
     path: '',
@@ -28,7 +39,16 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([ViewEffects])
+    EffectsModule.forFeature([ViewEffects]),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatGridListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    MatChipsModule
   ]
 })
 export class ViewModule {}
