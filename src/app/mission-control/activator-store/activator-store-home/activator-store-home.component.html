@@ -1,0 +1,47 @@
+<div class="controls">
+  <div class="switches">
+    <button
+      mat-flat-button
+      [color]="(categorySwitch$ | async) === 'Category' && 'primary'"
+      (click)="onSwitch('Category')"
+    >
+      Category
+      <span class="count">({{ categoriesCount$ | async }})</span>
+    </button>
+    <button
+      *ngIf="!((categorySwitch$ | async) === 'All' || (categorySwitch$ | async) === 'Category')"
+      mat-flat-button
+      color="primary"
+    >
+      {{ categorySwitch$ | async }}
+      <span class="count">({{ activatorsCount$ | async }})</span>
+    </button>
+    <button
+      *ngIf="(categorySwitch$ | async) === 'All' || (categorySwitch$ | async) === 'Category'"
+      mat-flat-button
+      [color]="(categorySwitch$ | async) === 'All' && 'primary'"
+      (click)="onSwitch('All')"
+    >
+      All
+      <span class="count">({{ activatorsCount$ | async }})</span>
+    </button>
+  </div>
+  <div class="flex-filler" *ngIf="(categorySwitch$ | async) === 'Category'"></div>
+  <app-pills
+    [pills]="['Type', 'Availability', 'Environment']"
+    class="separated"
+    *ngIf="(categorySwitch$ | async) !== 'Category'"
+  ></app-pills>
+  <app-search class="separated"></app-search>
+  <app-grid-view-switch class="separated"></app-grid-view-switch>
+</div>
+
+<app-activator-store-home-grid
+  *ngIf="(categorySwitch$ | async) !== 'Category'"
+  class="grid-container"
+></app-activator-store-home-grid>
+
+<app-activator-store-home-category-grid
+  *ngIf="(categorySwitch$ | async) === 'Category'"
+  class="grid-container"
+></app-activator-store-home-category-grid>

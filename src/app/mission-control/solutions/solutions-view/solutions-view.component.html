@@ -1,0 +1,30 @@
+<header>
+  <app-breadcrumbs [steps]="[solution.name, solution.description]" [isActive]="solution.active"> </app-breadcrumbs>
+</header>
+<div>
+  <app-solutions-view-select
+    [values]="values"
+    [enableDeployAll]="solution.applications.length"
+  ></app-solutions-view-select>
+</div>
+
+<main>
+  <p class="details">
+    <span class="mat-body-strong">
+      Business Unit:
+      <span class="mat-small">{{ solution.businessUnit }}</span>
+    </span>
+    <span class="mat-body-strong">
+      Cost Centre:
+      <span class="mat-small">{{ solution.costCentre }}</span>
+    </span>
+  </p>
+  <app-solutions-view-app-grid
+    [solution]="solution"
+    *ngIf="(current$ | async) !== 'Workspace'"
+  ></app-solutions-view-app-grid>
+  <app-solutions-view-workspace-info
+    [solution]="solution"
+    *ngIf="(current$ | async) === 'Workspace'"
+  ></app-solutions-view-workspace-info>
+</main>
