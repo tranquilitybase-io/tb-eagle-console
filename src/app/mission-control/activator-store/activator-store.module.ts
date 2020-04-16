@@ -8,6 +8,8 @@ import { ActivatorStoreEffects } from './activator-store.effects';
 import { ActivatorStoreComponent } from './activator-store.component';
 import { SharedModule } from '@app/shared/shared.module';
 
+import { MatButtonModule } from '@angular/material/button';
+
 const routes: Routes = [
   {
     path: '',
@@ -46,7 +48,8 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([ActivatorStoreEffects])
+    EffectsModule.forFeature([ActivatorStoreEffects]),
+    MatButtonModule
   ]
 })
 export class ActivatorStoreModule {}
