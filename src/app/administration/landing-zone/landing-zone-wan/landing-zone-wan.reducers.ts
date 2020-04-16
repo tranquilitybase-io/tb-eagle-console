@@ -2,7 +2,12 @@ import { createReducer, on, createSelector, select, createFeatureSelector } from
 
 import { WanConfiguration } from './landing-zone-wan.model';
 
-import { updateDeploymentProgress, startDeployment, stopDeployment } from './landing-zone-wan.actions';
+import {
+  updateConnectionDeploymentProgress,
+  startConnectionDeployment,
+  stopConnectionDeployment,
+  dismissDeploymentConnectionReadyAlert
+} from './landing-zone-wan.actions';
 
 export const intialState = {
   wanConfiguration: [{}]
@@ -15,19 +20,26 @@ export const featureKey = 'landing-zone-wan';
 
 export const landingZoneWanReducer = createReducer(
   intialState,
-  on(startDeployment, state => ({ ...state, progress: 0, inProgress: true })),
-  on(stopDeployment, state => ({ ...state, inProgress: false })),
-  on(updateDeploymentProgress, (state, { progress }) => ({ ...state, progress }))
+  on(startConnectionDeployment, state => ({ ...state, progress: 0, inProgress: true })),
+  on(stopConnectionDeployment, state => ({ ...state, inProgress: false })),
+  on(updateConnectionDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
+  on(dismissDeploymentConnectionReadyAlert, state => ({ ...state, isConnectionDeploymentReady: false }))
 );
 
 export default function reducer(state, action) {
-  if ([startDeployment.type, updateDeploymentProgress.type, stopDeployment.type].includes(action.type)) {
+  if (
+    [startConnectionDeployment.type, updateConnectionDeploymentProgress.type, stopConnectionDeployment.type].includes(
+      action.type
+    )
+  ) {
     return {
       ...state,
       [action.name]: landingZoneWanReducer(state[action.name], action),
-      isDeploymentReady: action.type === stopDeployment.type || state.isDeploymentReady,
+      isConnectionDeploymentReady: action.type === stopConnectionDeployment.type || state.isConnectionDeploymentReady,
       dismissAlmostReady:
-        action.type === startDeployment.type ? false : action.type === stopDeployment.type || state.dismissAlmostReady
+        action.type === startConnectionDeployment.type
+          ? false
+          : action.type === stopConnectionDeployment.type || state.dismissAlmostReady
     };
   }
 
@@ -38,3 +50,4 @@ export const selectFeature = state => state[featureKey];
 export const selectProgress = name => createSelector(selectFeature, state => (state[name] ? state[name].progress : 0));
 export const selectInProgress = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].inProgress : false));
+export const selectIsDeploymentReady = createSelector(selectFeature, state => state.isConnectionDeploymentReady);

@@ -1,19 +1,15 @@
-import { map, tap, switchMap, mergeMap } from 'rxjs/operators';
+import { map, tap, mergeMap } from 'rxjs/operators';
 
 import { Injectable, NgZone } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { LandingZoneWanService } from './landing-zone-wan.service';
 import range from '@app/shared/utils/range';
-import { WanConfiguration } from './landing-zone-wan.model';
 import {
   createWanConfiguration,
-  startDeployment,
-  startDeployApplication,
-  stopDeployment,
-  updateDeploymentProgress,
-  stopDeploymentApp,
-  updateDeploymentProgressApp
+  startConnectionDeployment,
+  stopConnectionDeployment,
+  updateConnectionDeploymentProgress
 } from './landing-zone-wan.actions';
 
 function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
@@ -54,31 +50,18 @@ export class LandingZoneWanEffects {
     { dispatch: false }
   );
 
-  deployments$ = createEffect(() =>
+  startConnectionDeployment$ = createEffect(() =>
     this.zone.runOutsideAngular(() =>
       this.actions$.pipe(
-        ofType(startDeployment),
+        ofType(startConnectionDeployment),
         // This part of code mocks up deployment process
         mergeMap(({ name }) =>
           emitRangeDelayed(range(0, 100, 2), 300).pipe(
             tap(console.log),
-            map(progress => (progress >= 100 ? stopDeployment({ name }) : updateDeploymentProgress({ name, progress })))
-          )
-        )
-      )
-    )
-  );
-
-  deploymentsApp$ = createEffect(() =>
-    this.zone.runOutsideAngular(() =>
-      this.actions$.pipe(
-        ofType(startDeployApplication),
-        // This part of code mocks up deployment process
-        mergeMap(({ name }) =>
-          emitRangeDelayed(range(0, 100, 2), 300).pipe(
-            tap(console.log),
-            map(progressApp =>
-              progressApp >= 100 ? stopDeploymentApp({ name }) : updateDeploymentProgressApp({ name, progressApp })
+            map(progress =>
+              progress >= 100
+                ? stopConnectionDeployment({ name })
+                : updateConnectionDeploymentProgress({ name, progress })
             )
           )
         )

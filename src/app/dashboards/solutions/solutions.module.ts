@@ -44,6 +44,8 @@ import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/ap
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 import { SolutionLandingGridComponent } from './solution-landing/solution-landing-grid/solution-landing-grid.component';
 import { SolutionLandingGridCardComponent } from './solution-landing/solution-landing-grid/solution-landing-grid-card/solution-landing-grid-card.component';
+import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creation/solution-under-creation.component';
+import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
 
 const routes: Routes = [
   {
@@ -84,9 +86,16 @@ const routes: Routes = [
     AppUnderDeploymentComponent,
     AppIsDeployedComponent,
     SolutionLandingGridComponent,
-    SolutionLandingGridCardComponent
+    SolutionLandingGridCardComponent,
+    SolutionUnderCreationComponent,
+    SolutionCreatedComponent
   ],
-  entryComponents: [AppUnderDeploymentComponent, AppIsDeployedComponent],
+  entryComponents: [
+    AppUnderDeploymentComponent,
+    AppIsDeployedComponent,
+    SolutionUnderCreationComponent,
+    SolutionCreatedComponent
+  ],
   providers: [SolutionsService, { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }],
   imports: [
     FormsModule,
