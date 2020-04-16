@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Activator, ActivatorCategory } from './activator-store.model';
+import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/login/login.model';
 import { Application } from '../solutions/solutions.model';
@@ -111,6 +111,11 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
+  }
+
+  getMetadata(): Observable<ActivatorsMetadata> {
+    const url = `${this.BASE_URL}/activator_meta/`;
+    return this.http.get<ActivatorsMetadata>(url).pipe(catchError(this.handleError));
   }
 
   getActivatorCategories(): Observable<ActivatorCategory[]> {

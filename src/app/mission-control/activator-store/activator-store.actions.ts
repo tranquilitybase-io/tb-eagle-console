@@ -1,6 +1,14 @@
 import { createAction, props } from '@ngrx/store';
 import { Application } from '../solutions/solutions.model';
 
+export const setCategoriesCount = createAction(
+  '[ActivatorStore] set-categories-count',
+  props<{ categoriesCount: number }>()
+);
+export const setActivatorsCount = createAction(
+  '[ActivatorStore] set-activators-count',
+  props<{ activatorsCount: number }>()
+);
 export const setProgress = createAction('[ActivatorStore] set-progress', props<{ step: number }>());
 export const setDeprecated = createAction('[ActivatorStore] set-deprecated', props<{ id: number }>());
 export const setLocked = createAction('[ActivatorStore] set-locked', props<{ id: number }>());

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { Activator } from '../activator-store.model';
-import { ActivatorStoreService } from '../activator-store.service';
+import { Store, select } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { setProgress } from '../activator-store.actions';
 import { map } from 'rxjs/operators';
+import { selectCategoriesCount, selectActivatorsCount } from '../activator-store.reducer';
 
 @Component({
   selector: 'app-activator-store-home',
@@ -14,9 +13,9 @@ import { map } from 'rxjs/operators';
 })
 export class ActivatorStoreHomeComponent implements OnInit {
   categorySwitch$: Observable<string>;
+  categoriesCount$: Observable<number>;
+  activatorsCount$: Observable<number>;
 
-  categoryCount = 8;
-  allCount = 50;
   categories = ['Web applications'];
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
@@ -26,6 +25,9 @@ export class ActivatorStoreHomeComponent implements OnInit {
     this.categorySwitch$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('categorySwitch')));
 
     this.onSwitch(this.route.snapshot.queryParams.categorySwitch || 'Category');
+
+    this.categoriesCount$ = this.store.pipe(select(selectCategoriesCount));
+    this.activatorsCount$ = this.store.pipe(select(selectActivatorsCount));
   }
 
   onSwitch(categorySwitch: string) {

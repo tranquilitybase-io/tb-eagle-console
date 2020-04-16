@@ -1,6 +1,10 @@
 import { KeyValue } from '@angular/common';
 import { User } from '@app/login/login.model';
 
+export interface ActivatorsMetadata {
+  count: number;
+}
+
 export interface ActivatorCategory {
   category: string;
 }

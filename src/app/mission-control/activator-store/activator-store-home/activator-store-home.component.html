@@ -10,7 +10,7 @@
       (click)="onSwitch('Category')"
     >
       Category
-      <span class="count">(8)</span>
+      <span class="count">({{ categoriesCount$ | async }})</span>
     </button>
     <button
       *ngIf="!((categorySwitch$ | async) === 'All' || (categorySwitch$ | async) === 'Category')"
@@ -18,7 +18,7 @@
       color="primary"
     >
       {{ categorySwitch$ | async }}
-      <span class="count">(51)</span>
+      <span class="count">({{ activatorsCount$ | async }})</span>
     </button>
     <button
       *ngIf="(categorySwitch$ | async) === 'All' || (categorySwitch$ | async) === 'Category'"
@@ -27,7 +27,7 @@
       (click)="onSwitch('All')"
     >
       All
-      <span class="count">(50)</span>
+      <span class="count">({{ activatorsCount$ | async }})</span>
     </button>
   </div>
   <div class="flex-filler" *ngIf="(categorySwitch$ | async) === 'Category'"></div>
