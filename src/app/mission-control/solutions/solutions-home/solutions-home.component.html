@@ -3,4 +3,7 @@
     My Team solutions
   </div>
 </header>
+<div>
+  <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>
+</div>
 <app-solutions-home-grid [solutions$]="solutions$"></app-solutions-home-grid>

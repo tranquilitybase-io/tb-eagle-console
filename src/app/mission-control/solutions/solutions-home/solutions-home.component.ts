@@ -7,6 +7,8 @@ import { Store, select } from '@ngrx/store';
 import { dismissDeploymentReadyAlert } from '../solutions.actions';
 import { MatSnackBar } from '@angular/material';
 import { SolutionCreatedComponent } from '@app/shared/snack-bar/solution-created/solution-created.component';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-solutions-home',
@@ -23,16 +25,21 @@ export class SolutionsHomeComponent implements OnInit {
     { name: 'Archived', count: 3 }
   ];
 
+  current$: Observable<string>;
+
   constructor(
     private solutionsService: SolutionsService,
     private store: Store<SolutionsState>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) {
     this.solutions$ = solutionsService.filteredEntities$;
   }
 
   ngOnInit() {
     this.solutionsService.getAll();
+    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
+    this.current$.subscribe(event => this.getSolutions(event));
     this.store.pipe(select(selectIsDeploymentReady)).subscribe(isReady => {
       if (isReady) {
         this.snackBar
@@ -43,5 +50,9 @@ export class SolutionsHomeComponent implements OnInit {
           });
       }
     });
+  }
+
+  getSolutions(filter: string) {
+    this.solutionsService.setFilter(filter);
   }
 }
