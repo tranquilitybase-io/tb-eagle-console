@@ -2,17 +2,27 @@
 
 <div>
   <div class="section-header">Mission control</div>
-  <a mat-button routerLink="/dashboard/solutions" routerLinkActive="active">
+  <a
+    mat-button
+    routerLink="/mission-control/solutions"
+    [queryParams]="{ groupSwitch: 'Favourites' }"
+    routerLinkActive="active"
+  >
     <app-icon icon="solutions"></app-icon>
     Solutions
   </a>
-  <a mat-button routerLink="/dashboard/activators" routerLinkActive="active">
+  <a
+    mat-button
+    routerLink="/mission-control/activator-store"
+    [queryParams]="{ categorySwitch: 'Category' }"
+    routerLinkActive="active"
+  >
     <app-icon icon="activator"></app-icon>
     Activator store
   </a>
 </div>
 
-<div *ngIf="(userIsAdmin$ | async)">
+<div *ngIf="userIsAdmin$ | async">
   <div class="section-header">Administration menu</div>
   <a mat-button routerLink="/administration/landing-zone" routerLinkActive="active">
     <mat-icon>account_tree</mat-icon>

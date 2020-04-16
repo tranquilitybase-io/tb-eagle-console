@@ -1,0 +1,12 @@
+<div class="grid-container">
+  <mat-grid-list [cols]="gridCols$ | async" rowHeight="420px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-stroked-button class="create-new-button" color="primary" (click)="createNewApplication()">
+        <mat-icon>add</mat-icon>Create new application
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let app of apps" colspan="1" rowspan="1">
+      <app-solutions-view-app-grid-card [app]="app"></app-solutions-view-app-grid-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

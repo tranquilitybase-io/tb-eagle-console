@@ -1,0 +1,32 @@
+.controls {
+  display: flex;
+  margin: 1rem 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--grey);
+
+  app-pills {
+    flex: auto;
+  }
+
+  .switches {
+    display: flex;
+    background-color: var(--active-grey-background);
+    padding: 0.2rem;
+    border-radius: var(--radius);
+
+    button {
+      &:not(.mat-primary) {
+        background: none;
+      }
+      margin-right: 5px;
+      .count {
+        color: var(--grey);
+      }
+    }
+  }
+}
+
+.grid-container {
+  display: block;
+  padding: 0 1.5rem;
+}
