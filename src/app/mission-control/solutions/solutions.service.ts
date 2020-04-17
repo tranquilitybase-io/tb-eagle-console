@@ -34,7 +34,7 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
   }
 
   deploySolution(id: number): void {
-    const url = `${this.BASE_URL}/solutiondeploy/`;
+    const url = `${this.BASE_URL}/solutiondeployments/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(url, { id }, { headers }).subscribe(
       (val: Solution) => {
