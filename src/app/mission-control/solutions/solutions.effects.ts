@@ -71,6 +71,7 @@ export class SolutionEffects {
     this.zone.runOutsideAngular(() =>
       this.actions$.pipe(
         ofType(startDeployment),
+        tap(action => this.solutionService.deploySolution(Number(action.name))),
         // This part of code mocks up deployment process
         mergeMap(({ name }) =>
           emitRangeDelayed(range(0, 100, 2), 300).pipe(

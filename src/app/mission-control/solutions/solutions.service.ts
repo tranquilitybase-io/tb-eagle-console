@@ -32,4 +32,22 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
     );
     console.log(solution + ' posted');
   }
+
+  deploySolution(id: number): void {
+    const url = `${this.BASE_URL}/solutiondeploy/`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(url, { id }, { headers }).subscribe(
+      (val: Solution) => {
+        console.log('POST call successful value returned in body', val);
+      },
+      response => {
+        console.log('POST call in error', response);
+      },
+      () => {
+        console.log('The POST observable is now completed.');
+        this.getAll();
+      }
+    );
+    console.log(`Solution ${id} is been deployed`);
+  }
 }
