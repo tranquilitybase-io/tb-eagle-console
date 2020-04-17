@@ -30,13 +30,8 @@ export class DeploymentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const activatorId = this.route.snapshot.queryParams['id'];
-    this.deploymentService
-      .getWithQuery({ activatorId })
-      .toPromise()
-      .then(callback => {
-        this.dataSource = new MatTableDataSource(callback);
-      });
+    const applications = this.route.snapshot.data['applications'] as Application[];
+    this.dataSource = new MatTableDataSource(applications);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

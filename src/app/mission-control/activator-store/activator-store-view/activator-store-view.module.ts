@@ -4,6 +4,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ActivatorStoreViewComponent } from './activator-store-view.component';
 import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
+import { ApplicationsByActivatorIdResolver } from '@app/shared/resolvers/applications-by-activator-id.resolver';
 import { DeploymentsComponent } from './deployments/deployments.component';
 import { StoreModule } from '@ngrx/store';
 import reducer, { featureKey } from './view.reducer';
@@ -27,7 +28,8 @@ const routes: Routes = [
     path: '',
     component: ActivatorStoreViewComponent,
     resolve: {
-      activator: ActivatorByIdResolver
+      activator: ActivatorByIdResolver,
+      applications: ApplicationsByActivatorIdResolver
     }
   }
 ];
