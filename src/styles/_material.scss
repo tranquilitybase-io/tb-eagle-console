@@ -136,8 +136,30 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
     }
   }
 
-  .activator-grid-card .description-list .mat-list-item .mat-list-item-content {
-    flex-wrap: wrap;
+  .activator-grid-card,
+  .solution-grid-card {
+    .description-list .mat-list-item .mat-list-item-content {
+      flex-wrap: wrap;
+
+      .mat-chip-list {
+        min-width: 6rem;
+      }
+    }
+
+    .mat-card-footer {
+      max-height: 104px;
+      overflow: hidden;
+    }
+  }
+
+  .solution-grid-container {
+    .create-new-button {
+      .mat-button-wrapper {
+        max-width: 100%;
+        display: block;
+        white-space: normal;
+      }
+    }
   }
 }
 

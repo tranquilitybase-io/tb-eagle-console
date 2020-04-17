@@ -88,7 +88,10 @@
       View
     </a>
     <a mat-button color="primary" routerLink="/dashboard/activators/create" [queryParams]="{ id: activator.id }">
-      Add to Solution <mat-icon>chevron_right</mat-icon>
+      <div class="mat-button-text">
+        Add to Solution
+      </div>
+      <mat-icon>chevron_right</mat-icon>
     </a>
   </mat-card-actions>
 </mat-card>

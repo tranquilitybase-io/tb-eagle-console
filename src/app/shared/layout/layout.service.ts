@@ -16,27 +16,37 @@ export class LayoutService {
           case breakpoints[Breakpoints.Small]:
             return {
               gridCols: 2,
-              landingZoneGridItemHeight: '180px'
+              landingZoneGridItemHeight: '180px',
+              activatorGridItemHeight: '750px',
+              solutionGridItemHeight: '470px'
             };
           case breakpoints[Breakpoints.Medium]:
             return {
               gridCols: 3,
-              landingZoneGridItemHeight: '150px'
+              landingZoneGridItemHeight: '150px',
+              activatorGridItemHeight: '650px',
+              solutionGridItemHeight: '430px'
             };
           case breakpoints[Breakpoints.Large]:
             return {
               gridCols: 4,
-              landingZoneGridItemHeight: '150px'
+              landingZoneGridItemHeight: '150px',
+              activatorGridItemHeight: '550px',
+              solutionGridItemHeight: '390px'
             };
           case breakpoints[Breakpoints.XLarge]:
             return {
               gridCols: 5,
-              landingZoneGridItemHeight: '150px'
+              landingZoneGridItemHeight: '150px',
+              activatorGridItemHeight: '450px',
+              solutionGridItemHeight: '350px'
             };
           default:
             return {
               gridCols: 1,
-              landingZoneGridItemHeight: '210px'
+              landingZoneGridItemHeight: '210px',
+              activatorGridItemHeight: '570px',
+              solutionGridItemHeight: '510px'
             };
         }
       })
