@@ -31,7 +31,7 @@ export class UserLoginService {
 
   loginSuccess(user: User): void {
     if (user.isAdmin) this.router.navigateByUrl('/administration/landing-zone');
-    else this.router.navigateByUrl('/dashboard/solutions');
+    else this.router.navigateByUrl('/mission-control/solutions');
   }
 
   loginFailure(): void {

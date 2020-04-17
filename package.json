@@ -8,12 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "reformat": "prettier --write \"**/*.{scss,ts}\""
+    "reformat": "prettier --write \"**/*.{html,ts,scss}\""
   },
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --pattern \"**/*.*(ts|scss)\" --staged"
+      "pre-commit": "pretty-quick --pattern \"**/*.*(html|ts|scss)\" --staged"
     }
   },
   "dependencies": {
