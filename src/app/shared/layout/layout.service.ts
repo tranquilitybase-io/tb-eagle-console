@@ -18,6 +18,7 @@ export class LayoutService {
               gridCols: 2,
               landingZoneGridItemHeight: '180px',
               activatorGridItemHeight: '750px',
+              applicationGridItemHeight: '600px',
               solutionGridItemHeight: '470px'
             };
           case breakpoints[Breakpoints.Medium]:
@@ -25,6 +26,7 @@ export class LayoutService {
               gridCols: 3,
               landingZoneGridItemHeight: '150px',
               activatorGridItemHeight: '650px',
+              applicationGridItemHeight: '550px',
               solutionGridItemHeight: '430px'
             };
           case breakpoints[Breakpoints.Large]:
@@ -32,6 +34,7 @@ export class LayoutService {
               gridCols: 4,
               landingZoneGridItemHeight: '150px',
               activatorGridItemHeight: '550px',
+              applicationGridItemHeight: '500px',
               solutionGridItemHeight: '390px'
             };
           case breakpoints[Breakpoints.XLarge]:
@@ -39,6 +42,7 @@ export class LayoutService {
               gridCols: 5,
               landingZoneGridItemHeight: '150px',
               activatorGridItemHeight: '450px',
+              applicationGridItemHeight: '500px',
               solutionGridItemHeight: '350px'
             };
           default:
@@ -46,6 +50,7 @@ export class LayoutService {
               gridCols: 1,
               landingZoneGridItemHeight: '210px',
               activatorGridItemHeight: '570px',
+              applicationGridItemHeight: '600px',
               solutionGridItemHeight: '510px'
             };
         }
