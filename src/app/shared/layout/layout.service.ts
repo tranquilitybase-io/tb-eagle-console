@@ -17,7 +17,7 @@ export class LayoutService {
             return {
               gridCols: 2,
               landingZoneGridItemHeight: '180px',
-              activatorGridItemHeight: '750px',
+              activatorGridItemHeight: '730px',
               applicationGridItemHeight: '600px',
               solutionGridItemHeight: '470px'
             };
@@ -25,7 +25,7 @@ export class LayoutService {
             return {
               gridCols: 3,
               landingZoneGridItemHeight: '150px',
-              activatorGridItemHeight: '650px',
+              activatorGridItemHeight: '630px',
               applicationGridItemHeight: '550px',
               solutionGridItemHeight: '430px'
             };
@@ -33,7 +33,7 @@ export class LayoutService {
             return {
               gridCols: 4,
               landingZoneGridItemHeight: '150px',
-              activatorGridItemHeight: '550px',
+              activatorGridItemHeight: '530px',
               applicationGridItemHeight: '500px',
               solutionGridItemHeight: '390px'
             };
@@ -41,7 +41,7 @@ export class LayoutService {
             return {
               gridCols: 5,
               landingZoneGridItemHeight: '150px',
-              activatorGridItemHeight: '450px',
+              activatorGridItemHeight: '430px',
               applicationGridItemHeight: '500px',
               solutionGridItemHeight: '350px'
             };
@@ -49,7 +49,7 @@ export class LayoutService {
             return {
               gridCols: 1,
               landingZoneGridItemHeight: '210px',
-              activatorGridItemHeight: '570px',
+              activatorGridItemHeight: '550px',
               applicationGridItemHeight: '600px',
               solutionGridItemHeight: '510px'
             };

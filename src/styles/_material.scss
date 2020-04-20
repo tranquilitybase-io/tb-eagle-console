@@ -163,14 +163,11 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
     }
   }
 
-  .application-grid-container,
-  .solution-grid-container {
-    .create-new-button {
-      .mat-button-wrapper {
-        max-width: 100%;
-        display: block;
-        white-space: normal;
-      }
+  .create-new-button {
+    .mat-button-wrapper {
+      max-width: 100%;
+      display: block;
+      white-space: normal;
     }
   }
 }

@@ -1,0 +1,13 @@
+<mat-grid-list [cols]="(layout$ | async).gridCols" rowHeight="150px" gutterSize="24px">
+  <mat-grid-tile *ngFor="let item of categories$ | async" colspan="1" rowspan="1">
+    <button mat-stroked-button class="category-button" (click)="nagivate(item.category)">
+      <div class="category border"></div>
+      <div>
+        <div>
+          <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+        </div>
+        {{ item.category }}
+      </div>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>
