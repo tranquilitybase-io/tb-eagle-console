@@ -11,7 +11,14 @@ on:
 
 jobs:
   build:
-    ### Continuous Integration
+    - name: Extract current branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+    - name: Echo Branch Name
+      shell: bash
+      run: |
+        echo Branch name: ${{ steps.extract_branch.outputs.branch }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
