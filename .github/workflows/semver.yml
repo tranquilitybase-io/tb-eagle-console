@@ -1,0 +1,42 @@
+# This workflow will install Python dependencies, with a single version of Python.
+# Apply sematic versioning.
+#
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Eagle Console - SEMVER Workflow
+
+on:
+  push:
+    branches-ignore: [ master ]
+
+jobs:
+  build:
+    ### Continuous Integration
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: tranquilitybase-io/TranquilityBase
+        path: TranquilityBase
+        fetch-depth: 0
+    - uses: actions/checkout@v2
+      with:
+        repository: tranquilitybase-io/tb-eagle-console
+        path: tb-eagle-console
+        fetch-depth: 0
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
+
+    - name: run semver, store in step variable version
+      shell: bash
+      run: |
+        cd ${GITHUB_WORKSPACE}/tb-eagle-console/
+        echo "##[set-output name=version;]$(python ${GITHUB_WORKSPACE}/TranquilityBase/scripts/semver.py ${{ steps.extract_branch.outputs.branch }})"
+      id: get_version
+    - name: check if version variable is set
+      shell: bash
+      run: |
+        if [[ -z "${{ steps.get_version.outputs.version }}" ]]; then
+          echo "Error: version in environment is not set." 1>&2
