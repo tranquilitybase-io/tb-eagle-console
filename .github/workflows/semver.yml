@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
     - name: Extract current branch name
       shell: bash
@@ -20,7 +21,6 @@ jobs:
       shell: bash
       run: |
         echo "Branch name: ${{ steps.extract_branch.outputs.branch }}"
-    runs-on: ubuntu-latest
     - uses: actions/checkout@v2
       with:
         repository: tranquilitybase-io/TranquilityBase
