@@ -66,3 +66,4 @@ jobs:
         branch: ${{ steps.extract_branch.outputs.branch }}
         force: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        directory: "${GITHUB_WORKSPACE}/tb-eagle-console/"
