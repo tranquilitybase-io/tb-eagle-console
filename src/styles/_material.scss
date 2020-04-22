@@ -135,6 +135,41 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
       margin-bottom: 5rem;
     }
   }
+
+  .activator-grid-card,
+  .application-grid-card,
+  .solution-grid-card {
+    .description-list .mat-list-item .mat-list-item-content {
+      flex-wrap: wrap;
+
+      .mat-chip-list {
+        min-width: 6rem;
+      }
+    }
+
+    .mat-card-footer {
+      max-height: 104px;
+      overflow: hidden;
+    }
+  }
+
+  .application-grid-card {
+    .description-list .mat-list-item .mat-list-item-content {
+      flex-wrap: wrap;
+
+      .mat-chip-list {
+        min-width: 9rem;
+      }
+    }
+  }
+
+  .create-new-button {
+    .mat-button-wrapper {
+      max-width: 100%;
+      display: block;
+      white-space: normal;
+    }
+  }
 }
 
 @include mix-app-theme($material-custom-theme);
