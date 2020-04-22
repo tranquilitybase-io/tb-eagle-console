@@ -66,4 +66,6 @@ jobs:
         branch: ${{ steps.extract_branch.outputs.branch }}
         force: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        directory: "${GITHUB_WORKSPACE}/tb-eagle-console/"
+        # directory: "${GITHUB_WORKSPACE}/tb-eagle-console/"
+        # Workaround, variable is not being expanded
+        directory: "/home/runner/work/tb-eagle-console/tb-eagle-console/tb-eagle-console"
