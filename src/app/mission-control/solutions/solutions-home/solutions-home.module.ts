@@ -15,6 +15,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { SolutionsViewEditComponent } from '../solutions-view-edit/solutions-view-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -28,7 +33,8 @@ const routes: Routes = [
     SolutionSelectComponent,
     SolutionsHomeComponent,
     SolutionsHomeGridCardComponent,
-    SolutionsHomeGridComponent
+    SolutionsHomeGridComponent,
+    SolutionsViewEditComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +46,18 @@ const routes: Routes = [
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatDialogModule,
+    // temporary to check out vie-edit:
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSelectModule
   ]
 })
 export class SolutionsHomeModule {}

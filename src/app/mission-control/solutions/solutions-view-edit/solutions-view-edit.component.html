@@ -1,0 +1,93 @@
+<!-- <header>
+  <app-breadcrumbs [cancelActive]="true" [steps]="['Create new solution']"> </app-breadcrumbs>
+  <app-progress [steps]="['Details', 'Workspace']" [current]="screenNum"> </app-progress>
+</header> -->
+<div>
+  <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
+    <div class="details-container">
+      <p>
+        <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            required
+            type="text"
+            maxlength="50"
+            formControlName="name"
+            placeholder="E.g. project name..."
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            required
+            #desctext
+            maxlength="200"
+            formControlName="description"
+            placeholder="Type your description here..."
+          ></textarea>
+          <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Business unit</mat-label>
+          <mat-select required formControlName="businessUnit">
+            <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Cost centre</mat-label>
+          <input
+            matInput
+            required
+            type="text"
+            maxlength="50"
+            formControlName="costCentre"
+            placeholder="XXX-123-456-YYY"
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>CI (Continuous intergration service)</mat-label>
+          <mat-select required formControlName="ci">
+            <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Source Control</mat-label>
+          <mat-select required formControlName="sourceControl">
+            <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>CD (Continuous deployment)</mat-label>
+          <mat-select required formControlName="cd">
+            <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <span class="mat-subheading-1">Available environments</span>
+        <mat-selection-list formControlName="environments">
+          <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
+            {{ item.value }}
+          </mat-list-option>
+        </mat-selection-list>
+      </p>
+
+      <div class="footer-container">
+        <button mat-button color="primary" (click)="toggleSolutionPage()">
+          Cancel
+        </button>
+        <button mat-button color="primary" type="submit">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
