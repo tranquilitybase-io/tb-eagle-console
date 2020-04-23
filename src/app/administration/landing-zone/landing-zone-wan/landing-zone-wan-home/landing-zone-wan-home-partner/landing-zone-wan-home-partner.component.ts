@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
+import { LayoutService } from '@app/shared/layout/layout.service';
+import { Layout } from '@app/shared/layout/layout.model';
 
 @Component({
   selector: 'app-landing-zone-wan-home-partner',
@@ -8,10 +9,10 @@ import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
   styleUrls: ['./landing-zone-wan-home-partner.component.scss']
 })
 export class LandingZoneWanHomePartnerComponent implements OnInit {
-  gridCols$: Observable<number>;
+  layout$: Observable<Layout>;
 
-  constructor(private gridColsService: GridColsService) {
-    this.gridCols$ = this.gridColsService.gridColsObserver$;
+  constructor(private layoutService: LayoutService) {
+    this.layout$ = this.layoutService.layoutObserver$;
   }
 
   ngOnInit() {}

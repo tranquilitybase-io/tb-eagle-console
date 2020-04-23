@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GridColsService } from './grid-cols.service';
+import { LayoutService } from './layout.service';
 
-describe('GridColsService', () => {
+describe('LayoutService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GridColsService = TestBed.get(GridColsService);
+    const service: LayoutService = TestBed.get(LayoutService);
     expect(service).toBeTruthy();
   });
 });
