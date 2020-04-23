@@ -62,13 +62,14 @@
     </mat-progress-spinner>
   </mat-card-content>
 
-  <mat-card-footer *ngIf="!active">
+  <!-- <mat-card-footer *ngIf="!active">
     <div>
       <div class="mat-body-strong">Description</div>
       <div class="mat-caption">{{ wanVpn.vpn.description }}</div>
     </div>
   </mat-card-footer>
-  <mat-card-actions *ngIf="active">
+  <mat-card-actions *ngIf="active && !(deployed$ | async)">
     <button mat-button color="primary" (click)="deploy()">Deploy <mat-icon>chevron_right</mat-icon></button>
   </mat-card-actions>
+</mat-card> -->
 </mat-card>

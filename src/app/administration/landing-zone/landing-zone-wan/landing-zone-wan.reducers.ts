@@ -50,4 +50,6 @@ export const selectFeature = state => state[featureKey];
 export const selectProgress = name => createSelector(selectFeature, state => (state[name] ? state[name].progress : 0));
 export const selectInProgress = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].inProgress : false));
+export const selectDeployed = name =>
+  createSelector(selectFeature, state => (state[name] ? state[name].deployed : false));
 export const selectIsDeploymentReady = createSelector(selectFeature, state => state.isConnectionDeploymentReady);
