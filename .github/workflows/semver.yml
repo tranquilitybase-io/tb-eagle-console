@@ -34,10 +34,9 @@ jobs:
     - name: run semver
       shell: bash
       run: |
-        bash -x ${GITHUB_WORKSPACE}/TranquilityBase/scripts/semver_tag.sh
+        bash -x ${GITHUB_WORKSPACE}/TranquilityBase/scripts/semver_tagv.1.1.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SOURCE: "tb-eagle-console"
         TAG_PREFIX: "internal-"
         WITH_V: "true"
-        DEFAULT_BUMP: "patch"
