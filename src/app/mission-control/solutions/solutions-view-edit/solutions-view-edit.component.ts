@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { createSolution, updateSolution } from '../solutions.actions';
-// TODO: add updateSolution to actions
+
 @Component({
   selector: 'app-solutions-view-edit',
   templateUrl: './solutions-view-edit.component.html',

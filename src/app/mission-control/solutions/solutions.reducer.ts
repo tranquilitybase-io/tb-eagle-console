@@ -16,7 +16,8 @@ import {
   startSolutionDeployment,
   stopSolutionDeployment,
   updateSolutionDeploymentProgress,
-  dismissDeploymentSolutionReadyAlert
+  dismissDeploymentSolutionReadyAlert,
+  updateSolution
 } from './solutions.actions';
 import { Solution } from './solutions.model';
 
@@ -72,7 +73,8 @@ export const solutionReducer = createReducer(
   on(startSolutionDeployment, state => ({ ...state, progress: 0, inProgress: true })),
   on(stopSolutionDeployment, state => ({ ...state, inProgress: false })),
   on(updateSolutionDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
-  on(dismissDeploymentSolutionReadyAlert, state => ({ ...state, isSolutionDeploymentReady: false }))
+  on(dismissDeploymentSolutionReadyAlert, state => ({ ...state, isSolutionDeploymentReady: false })),
+  on(updateSolution, (state, { solution }) => ({ ...state, selectedSolution: solution }))
 );
 
 export default function reducer(state, action) {
