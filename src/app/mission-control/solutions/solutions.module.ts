@@ -30,17 +30,17 @@ const routes: Routes = [
       sourceControlList: SourceControlResolver
     }
   },
-  // {
-  //   path: 'edit',
-  //   loadChildren: () => import('./solutions-view-edit/solutions-view-edit.module').then(m => m.SolutionsViewEditModule),
-  //   resolve: {
-  //     businessUnitList: BusinessUnitResolver,
-  //     cdList: ContinuousDeploymentResolver,
-  //     ciList: ContinuousIntegrationResolver,
-  //     environmentList: EnvironmentResolver,
-  //     sourceControlList: SourceControlResolver
-  //   }
-  // },
+  {
+    path: 'edit',
+    loadChildren: () => import('./solutions-view-edit/solutions-view-edit.module').then(m => m.SolutionsViewEditModule),
+    resolve: {
+      businessUnitList: BusinessUnitResolver,
+      cdList: ContinuousDeploymentResolver,
+      ciList: ContinuousIntegrationResolver,
+      environmentList: EnvironmentResolver,
+      sourceControlList: SourceControlResolver
+    }
+  },
   {
     path: 'view',
     loadChildren: () => import('./solutions-view/solutions-view.module').then(m => m.SolutionsViewModule),

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { KeyValue } from '@angular/common';
 import { SolutionsState } from '../solutions.reducer';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
-import { createSolution } from '../solutions.actions';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { createSolution, updateSolution } from '../solutions.actions';
 // TODO: add updateSolution to actions
 @Component({
   selector: 'app-solutions-view-edit',
@@ -13,11 +13,10 @@ import { createSolution } from '../solutions.actions';
   styleUrls: ['./solutions-view-edit.component.scss']
 })
 export class SolutionsViewEditComponent implements OnInit {
-  onPartTwo: boolean = false;
-  screenNum: number = 0;
+  @Input() solutionForm: FormGroup;
 
-  solutionName: string = '';
-  solutionDescription: string = '';
+  // solutionName: string = '';
+  // solutionDescription: string = '';
   solutionBU: string = '';
 
   cdList: KeyValue<string, string>[];
@@ -25,8 +24,6 @@ export class SolutionsViewEditComponent implements OnInit {
   businessUnitList: KeyValue<string, string>[];
   sourceControlList: KeyValue<string, string>[];
   environmentList: KeyValue<string, string>[];
-
-  solutionForm;
 
   constructor(
     private store: Store<SolutionsState>,
@@ -44,25 +41,59 @@ export class SolutionsViewEditComponent implements OnInit {
 
     this.solutionForm = this.formBuilder.group({
       id: 0,
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      businessUnit: ['', Validators.required],
-      costCentre: ['', Validators.required],
-      ci: ['', Validators.required],
-      cd: ['', Validators.required],
-      sourceControl: ['', Validators.required],
+      name: [''],
+      description: [''],
+      businessUnit: [''],
+      costCentre: [''],
+      ci: [''],
+      cd: [''],
+      sourceControl: [''],
       environments: ['']
     });
   }
 
-  toggleSolutionPage() {
-    this.onPartTwo = !this.onPartTwo;
+  get solutionId(): string {
+    return this.solutionForm.get('id').value;
+  }
 
-    this.screenNum = this.screenNum == 0 ? (this.screenNum = 1) : (this.screenNum = 0);
+  get solutionName(): string {
+    return this.solutionForm.get('name').value;
+  }
+
+  get solutionDescription(): string {
+    return this.solutionForm.get('description').value;
+  }
+
+  get solutionBusinessUnit(): string {
+    return this.solutionForm.get('businessUnit').value;
+  }
+
+  get solutionCostCentre(): string {
+    return this.solutionForm.get('costCentre').value;
+  }
+
+  get solutionCi(): string {
+    return this.solutionForm.get('ci').value;
+  }
+
+  get solutionCd(): string {
+    return this.solutionForm.get('cd').value;
+  }
+
+  get solutionSourceControl(): string {
+    return this.solutionForm.get('sourceControl').value;
+  }
+
+  get solutionEnvironments(): string {
+    return this.solutionForm.get('environments').value;
+  }
+
+  cancel() {
+    this.router.navigateByUrl('/mission-control/solutions');
   }
 
   onSubmit(solution) {
-    this.store.dispatch(createSolution({ solution })); // TODO: use updateSolution
+    this.store.dispatch(updateSolution({ solution })); // <- find specific solution
     this.router.navigateByUrl('/mission-control/solutions');
   }
 }

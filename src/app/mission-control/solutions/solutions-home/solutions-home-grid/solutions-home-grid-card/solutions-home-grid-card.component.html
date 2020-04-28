@@ -9,7 +9,8 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <a mat-menu-item>Edit</a>
+          <a mat-menu-item routerLink="/mission-control/solutions-view-edit/edit">Edit</a>
+          <!-- [queryParams]="{ id: solution.id }" -->
         </mat-menu>
       </div>
       {{ solution.name }}

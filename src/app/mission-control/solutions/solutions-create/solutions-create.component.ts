@@ -3,7 +3,7 @@ import { KeyValue } from '@angular/common';
 import { SolutionsState } from '../solutions.reducer';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { createSolution } from '../solutions.actions';
 
 @Component({
@@ -25,7 +25,7 @@ export class SolutionsCreateComponent implements OnInit {
   sourceControlList: KeyValue<string, string>[];
   environmentList: KeyValue<string, string>[];
 
-  solutionForm;
+  solutionForm: FormGroup;
 
   constructor(
     private store: Store<SolutionsState>,

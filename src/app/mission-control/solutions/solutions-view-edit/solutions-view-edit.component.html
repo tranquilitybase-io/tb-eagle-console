@@ -8,14 +8,7 @@
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Name</mat-label>
-          <input
-            matInput
-            required
-            type="text"
-            maxlength="50"
-            formControlName="name"
-            placeholder="E.g. project name..."
-          />
+          <input matInput required type="text" maxlength="50" formControlName="name" placeholder="name" name="name" />
         </mat-form-field>
       </p>
 
@@ -83,10 +76,11 @@
       </p>
 
       <div class="footer-container">
-        <button mat-button color="primary" (click)="toggleSolutionPage()">
+        <button mat-button color="primary" (click)="cancel()">
           Cancel
         </button>
         <button mat-button color="primary" type="submit">Update</button>
+        <!-- add (click)="updateSolution()" -->
       </div>
     </div>
   </form>
