@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SolutionsViewEditComponent } from './solutions-view-edit.component';
+import { SolutionsEditComponent } from './solutions-edit.component';
 import {
   MatFormFieldModule,
   MatSelectModule,
@@ -13,14 +13,14 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('SolutionsViewEditComponent', () => {
-  let component: SolutionsViewEditComponent;
-  let fixture: ComponentFixture<SolutionsViewEditComponent>;
+describe('SolutionsEditComponent', () => {
+  let component: SolutionsEditComponent;
+  let fixture: ComponentFixture<SolutionsEditComponent>;
   let store: MockStore<any>;
   const initialState = true;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SolutionsViewEditComponent],
+      declarations: [SolutionsEditComponent],
       imports: [
         RouterTestingModule,
         MatFormFieldModule,
@@ -38,7 +38,7 @@ describe('SolutionsViewEditComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SolutionsViewEditComponent);
+    fixture = TestBed.createComponent(SolutionsEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

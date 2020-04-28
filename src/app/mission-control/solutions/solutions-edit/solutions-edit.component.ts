@@ -6,14 +6,17 @@ import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { createSolution, updateSolution } from '../solutions.actions';
+import { Solution } from '../solutions.model';
 
 @Component({
-  selector: 'app-solutions-view-edit',
-  templateUrl: './solutions-view-edit.component.html',
-  styleUrls: ['./solutions-view-edit.component.scss']
+  selector: 'app-solutions-edit',
+  templateUrl: './solutions-edit.component.html',
+  styleUrls: ['./solutions-edit.component.scss']
 })
-export class SolutionsViewEditComponent implements OnInit {
-  @Input() solutionForm: FormGroup;
+export class SolutionsEditComponent implements OnInit {
+  solution: Solution;
+
+  solutionForm: FormGroup;
 
   // solutionName: string = '';
   // solutionDescription: string = '';
@@ -38,6 +41,7 @@ export class SolutionsViewEditComponent implements OnInit {
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.sourceControlList = this.route.snapshot.data['sourceControlList'];
     this.environmentList = this.route.snapshot.data['environmentList'];
+    this.solution = this.route.snapshot.data['solution'];
 
     this.solutionForm = this.formBuilder.group({
       id: 0,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SolutionsViewEditComponent } from './solutions-view-edit.component';
+import { SolutionsEditComponent } from './solutions-edit.component';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@app/shared/shared.module';
@@ -16,13 +16,12 @@ import { MatSelectModule } from '@angular/material/select';
 const routes: Routes = [
   {
     path: '',
-    component: SolutionsViewEditComponent
+    component: SolutionsEditComponent
   }
 ];
 
 @NgModule({
-  declarations: [SolutionsViewEditComponent],
-  exports: [SolutionsViewEditComponent],
+  declarations: [SolutionsEditComponent],
   imports: [
     CommonModule,
     SharedModule,

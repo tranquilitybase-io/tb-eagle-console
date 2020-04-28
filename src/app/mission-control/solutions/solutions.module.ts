@@ -32,13 +32,14 @@ const routes: Routes = [
   },
   {
     path: 'edit',
-    loadChildren: () => import('./solutions-view-edit/solutions-view-edit.module').then(m => m.SolutionsViewEditModule),
+    loadChildren: () => import('./solutions-edit/solutions-edit.module').then(m => m.SolutionsViewEditModule),
     resolve: {
       businessUnitList: BusinessUnitResolver,
       cdList: ContinuousDeploymentResolver,
       ciList: ContinuousIntegrationResolver,
       environmentList: EnvironmentResolver,
-      sourceControlList: SourceControlResolver
+      sourceControlList: SourceControlResolver,
+      solution: SolutionsViewResolver
     }
   },
   {
