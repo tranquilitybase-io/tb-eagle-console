@@ -27,4 +27,5 @@ const uiModules = [MatSidenavModule, MatIconModule, MatButtonModule];
   imports: [CommonModule, SharedModule, MatButtonModule, MatIconModule, uiModules],
   exports: [SidebarComponent, uiModules]
 })
+
 export class SidebarModule {}
