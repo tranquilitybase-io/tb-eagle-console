@@ -63,6 +63,11 @@
     <a mat-button routerLink="view" [queryParams]="{ id: solution.id, categorySwitch: 'Applications' }">
       View
     </a>
-    <button mat-button color="primary" (click)="deploy()">Deploy <mat-icon>chevron_right</mat-icon></button>
+    <button mat-button color="primary" (click)="deploy()">
+      <div class="mat-button-text">
+        Deploy
+      </div>
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>
