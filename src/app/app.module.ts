@@ -16,6 +16,10 @@ import { AdminGuardService } from './guards/admin-guard.service';
 import { LoginComponent } from './login/login/login.component';
 import { LoginModule } from './login/login.module';
 
+
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from  '@angular/material';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -47,6 +51,15 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+
+    
+    
     LoginModule,
     BrowserModule,
     RouterModule.forRoot(routes),

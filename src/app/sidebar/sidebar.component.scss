@@ -1,6 +1,11 @@
 :host {
   min-height: 100vh;
 }
+mat-toolbar {
+position: fixed;
+z-index: 30;
+}
+
 mat-sidenav-container {
   position: fixed;
   width: 100%;

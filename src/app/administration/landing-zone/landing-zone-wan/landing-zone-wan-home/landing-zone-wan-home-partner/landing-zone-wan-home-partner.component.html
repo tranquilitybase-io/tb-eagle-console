@@ -1,5 +1,5 @@
 <div class="grid-container">
-  <mat-grid-list [cols]="(layout$ | async).gridCols" rowHeight="420px" gutterSize="24px">
+  <mat-grid-list [cols]="gridCols$ | async" rowHeight="420px">
     <!-- <mat-grid-tile *ngFor="let app of apps" colspan="1" rowspan="1">
             <app-application-card [app]="app"></app-application-card>
           </mat-grid-tile> -->

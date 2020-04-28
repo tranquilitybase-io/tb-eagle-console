@@ -1,2 +1,61 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
+      <h1>Tranquility Base</h1>
+      <span class="menu-spacer"></span>
+      <div class="row">
+        <a mat-button [routerLink]="'/accounts'"><mat-icon>search</mat-icon></a>
+        <a mat-button [routerLink]="'/create-account'"><mat-icon>add</mat-icon></a>
+        <span class="spacer"></span>
+        <a mat-button [routerLink]="'/contacts'"><mat-icon>question_answer</mat-icon></a>
+        <a mat-button [routerLink]="'/create-contact'"><mat-icon>share</mat-icon></a>
+        <a mat-button [routerLink]="'/activities'"><mat-icon>notifications</mat-icon></a>
+        <a mat-button [routerLink]="'/create-activity'"><mat-icon>apps</mat-icon></a>
+        <a routerlink="/login" routerlinkactive="active" ng-reflect-router-link="/login" ng-reflect-router-link-active="active" href="/login"><span class="user-initials">RM</span></a>
+      </div>
+    </mat-toolbar-row>
+  
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side">
+      <mat-nav-list>
+        <div>
+            <div class="section-header"><img src="assets/icons/tb_rocket.svg" class="rocket"> Mission control</div>
+            <a mat-list-item routerLink="/mission-control/solutions" [queryParams]="{ groupSwitch: 'Favourites' }" routerLinkActive="active">
+                <mat-icon>filter_none</mat-icon>
+                Solutions
+            </a>
+            <a mat-list-item routerLink="/mission-control/activator-store" [queryParams]="{ categorySwitch: 'Category' }" routerLinkActive="active">
+                <mat-icon>storefront</mat-icon>
+                Activator store
+            </a>
+        </div>
+        
+        <div *ngIf="userIsAdmin$ | async">
+            <div class="section-header">Administration menu</div>
+            <a mat-list-item routerLink="/administration/landing-zone" routerLinkActive="active">
+                <mat-icon>account_tree</mat-icon>
+                Landing Zone
+            </a>
+            <a mat-list-item>
+                <mat-icon>storage</mat-icon> Datacenter</a>
+            <a mat-list-item>
+                <mat-icon>person</mat-icon> Users</a>
+            <a mat-list-item>
+                <mat-icon>group</mat-icon> Teams</a>
+            <a mat-list-item>
+                <mat-icon>settings</mat-icon> Settings</a>
+        </div> 
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+  
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 

@@ -30,7 +30,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { SharedService } from './shared.service';
-import { DeploymentsService } from '@app/mission-control/activator-store/activator-store-view/deployments.service';
 
 @NgModule({
   declarations: [
@@ -60,11 +59,7 @@ import { DeploymentsService } from '@app/mission-control/activator-store/activat
     SolutionCreatedComponent,
     SolutionUnderCreationComponent
   ],
-  providers: [
-    SharedService,
-    DeploymentsService,
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }
-  ],
+  providers: [SharedService, { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }],
   imports: [
     CommonModule,
     RouterModule.forChild([]),

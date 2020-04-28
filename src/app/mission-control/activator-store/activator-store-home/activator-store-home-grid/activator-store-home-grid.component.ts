@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Activator } from '../../activator-store.model';
-import { LayoutService } from '@app/shared/layout/layout.service';
-import { Layout } from '@app/shared/layout/layout.model';
+import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
 import { ActivatorStoreService } from '../../activator-store.service';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -15,15 +14,15 @@ import { setActivatorsCount } from '../../activator-store.actions';
 })
 export class ActivatorStoreHomeGridComponent implements OnInit {
   activators$: Observable<Activator[]>;
-  layout$: Observable<Layout>;
+  gridCols$: Observable<number>;
 
   constructor(
-    private layoutService: LayoutService,
+    private gridColsService: GridColsService,
     private activatorStoreService: ActivatorStoreService,
     private route: ActivatedRoute,
     private store: Store<any>
   ) {
-    this.layout$ = this.layoutService.layoutObserver$;
+    this.gridCols$ = this.gridColsService.gridColsObserver$;
   }
 
   ngOnInit() {

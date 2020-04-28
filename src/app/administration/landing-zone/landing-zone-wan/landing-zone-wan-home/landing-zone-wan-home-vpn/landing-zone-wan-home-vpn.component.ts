@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LayoutService } from '@app/shared/layout/layout.service';
+import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
 import { Router } from '@angular/router';
 import { LandingZoneWanService } from '../../landing-zone-wan.service';
 import { WanConfiguration } from '../../landing-zone-wan.model';
-import { Layout } from '@app/shared/layout/layout.model';
 
 @Component({
   selector: 'app-landing-zone-wan-home-vpn',
@@ -13,15 +12,15 @@ import { Layout } from '@app/shared/layout/layout.model';
 })
 export class LandingZoneWanHomeVpnComponent implements OnInit {
   wanConfigurations$: Observable<WanConfiguration[]>;
-  layout$: Observable<Layout>;
+  gridCols$: Observable<number>;
 
   constructor(
     private router: Router,
-    private layoutService: LayoutService,
+    private gridColsService: GridColsService,
     private landingZoneWanService: LandingZoneWanService
   ) {
     this.wanConfigurations$ = landingZoneWanService.filteredEntities$;
-    this.layout$ = this.layoutService.layoutObserver$;
+    this.gridCols$ = this.gridColsService.gridColsObserver$;
   }
 
   ngOnInit() {

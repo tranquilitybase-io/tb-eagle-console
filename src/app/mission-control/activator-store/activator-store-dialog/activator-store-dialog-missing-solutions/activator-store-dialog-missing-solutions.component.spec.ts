@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActivatorStoreDialogMissingSolutionsComponent } from './activator-store-dialog-missing-solutions.component';
+import { MissingAvailableSolutionsDialogComponent } from './missing-available-solutions-dialog.component';
 
-describe('ActivatorStoreDialogMissingSolutionsComponent', () => {
-  let component: ActivatorStoreDialogMissingSolutionsComponent;
-  let fixture: ComponentFixture<ActivatorStoreDialogMissingSolutionsComponent>;
+describe('MissingAvailableSolutionsDialogComponent', () => {
+  let component: MissingAvailableSolutionsDialogComponent;
+  let fixture: ComponentFixture<MissingAvailableSolutionsDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreDialogMissingSolutionsComponent]
+      declarations: [MissingAvailableSolutionsDialogComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActivatorStoreDialogMissingSolutionsComponent);
+    fixture = TestBed.createComponent(MissingAvailableSolutionsDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Solution, Application } from '../../solutions.model';
 import { Observable } from 'rxjs';
-import { LayoutService } from '@app/shared/layout/layout.service';
-import { Layout } from '@app/shared/layout/layout.model';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
 import { setSelectedSolution } from '../../solutions.actions';
 
 @Component({
@@ -14,10 +13,10 @@ import { setSelectedSolution } from '../../solutions.actions';
 })
 export class SolutionsViewAppGridComponent {
   @Input() solution: Solution;
-  layout$: Observable<Layout>;
+  gridCols$: Observable<number>;
 
-  constructor(private router: Router, private store: Store<any>, private layoutService: LayoutService) {
-    this.layout$ = this.layoutService.layoutObserver$;
+  constructor(private router: Router, private store: Store<any>, private gridColsService: GridColsService) {
+    this.gridCols$ = this.gridColsService.gridColsObserver$;
   }
 
   get apps(): Array<Application> {
