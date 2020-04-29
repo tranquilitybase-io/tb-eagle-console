@@ -22,6 +22,6 @@ export function reducer(state: State, action: Action) {
 }
 
 export const selectFeature = state => state[loginFeatureKey];
-export const selectIsAuthenticated = createSelector(selectFeature, ({ isAuthenticated }) => isAuthenticated);
+export const selectIsAuthenticated = createSelector(selectFeature, ({ isAuthenticated }) => true);
 export const selectUser = createSelector(selectFeature, ({ user }) => user);
 export const selectUserIsAdmin = createSelector(selectFeature, ({ user }) => user && user.isAdmin);
