@@ -49,7 +49,7 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
   }
 
   updateSolution(solution: Solution): void {
-    console.debug('123', solution, Solution);
+    console.log('123', solution, Solution);
     const url = `${this.BASE_URL}/solution/${solution.id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.put(url, solution, { headers }).subscribe(
@@ -58,6 +58,8 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
         this.store.dispatch(startDeployment({ name: String(val.id) }));
       },
       response => {
+        console.log('123', solution, Solution);
+
         console.log('PUT call in error', response);
       },
       () => {

@@ -43,7 +43,7 @@ export class SolutionsEditComponent implements OnInit {
     this.solution = this.route.snapshot.data['solution'];
 
     this.solutionForm = this.formBuilder.group({
-      id: 0,
+      id: [''],
       name: [''],
       description: [''],
       businessUnit: [''],
