@@ -6,7 +6,7 @@
 <div>
   <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
     <div class="details-container">
-      <input matInput required type="text" formControlName="id" name="id" value="{{ solution.id }}" />
+      <input class="d-none" matInput required type="text" formControlName="id" name="id" value="{{ solution.id }}" />
 
       <p>
         <mat-form-field class="small-width" appearance="outline">
