@@ -1,14 +1,24 @@
-<!-- <header>
-  <app-breadcrumbs [cancelActive]="true" [steps]="['Create new solution']"> </app-breadcrumbs>
-  <app-progress [steps]="['Details', 'Workspace']" [current]="screenNum"> </app-progress>
-</header> -->
+<header>
+  <div class="title">
+    Solution in edit mode
+  </div>
+</header>
 <div>
   <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
     <div class="details-container">
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Name</mat-label>
-          <input matInput required type="text" maxlength="50" formControlName="name" placeholder="name" name="name" />
+          <input
+            matInput
+            required
+            type="text"
+            maxlength="50"
+            formControlName="name"
+            placeholder="name"
+            name="name"
+            value="{{ solution.name }}"
+          />
         </mat-form-field>
       </p>
 
@@ -22,6 +32,7 @@
             maxlength="200"
             formControlName="description"
             placeholder="Type your description here..."
+            value="{{ solution.description }}"
           ></textarea>
           <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
         </mat-form-field>
@@ -31,7 +42,7 @@
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Business unit</mat-label>
           <mat-select required formControlName="businessUnit">
-            <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
+            <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="small-width" appearance="outline">
@@ -43,9 +54,9 @@
             maxlength="50"
             formControlName="costCentre"
             placeholder="XXX-123-456-YYY"
+            value="{{ solution.costCentre }}"
           />
         </mat-form-field>
-        <mat-icon>edit</mat-icon>
       </p>
       <p>
         <mat-form-field appearance="outline">
@@ -62,7 +73,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>CD (Continuous deployment)</mat-label>
-          <mat-select required formControlName="cd">
+          <mat-select required formControlName="cd" value="{{ solution.cd }}">
             <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
           </mat-select>
         </mat-form-field>

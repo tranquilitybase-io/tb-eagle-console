@@ -4,6 +4,29 @@
   min-height: 100vh;
 }
 
+header {
+  .title {
+    border-left: 1px solid var(--grey);
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  display: flex;
+  text-align: center;
+  font-family: 'SF Pro Display';
+
+  padding: {
+    top: 1.5rem;
+    left: 2rem;
+    right: 2rem;
+    bottom: 1rem;
+  }
+
+  background-color: var(--whitish);
+}
+
 .details-container {
   margin-left: auto;
   margin-right: auto;
@@ -17,6 +40,7 @@
 
   p {
     width: 100%;
+
     .mat-form-field {
       width: 100%;
 
@@ -45,7 +69,7 @@ main {
 .workspace-container {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3rem;
+  margin-top: 2rem;
   width: 90%;
   height: calc(100vh - 11rem);
   display: flex;
@@ -54,6 +78,7 @@ main {
 
   p {
     width: 100%;
+
     .mat-form-field {
       width: 30%;
       margin: 1rem;
@@ -74,6 +99,7 @@ main {
   justify-content: left;
   align-self: flex-end;
   margin-bottom: 2rem;
+
   p {
     width: 100%;
   }
@@ -88,6 +114,8 @@ main {
   justify-content: space-between;
   align-self: flex-end;
   margin-top: auto;
+  margin-bottom: 2rem;
+  float: right;
 
   &.details-footer-container {
     justify-content: flex-end;
