@@ -17,8 +17,8 @@ export class SolutionsEditComponent implements OnInit {
   solution: Solution;
   solutionForm: FormGroup;
 
-  // solutionName: string = '';
-  // solutionDescription: string = '';
+  solutionName: string = '';
+  solutionDescription: string = '';
   solutionBU: string = '';
 
   cdList: KeyValue<string, string>[];
@@ -43,52 +43,16 @@ export class SolutionsEditComponent implements OnInit {
     this.solution = this.route.snapshot.data['solution'];
 
     this.solutionForm = this.formBuilder.group({
-      id: [''],
-      name: [''],
-      description: [''],
-      businessUnit: [''],
-      costCentre: [''],
-      ci: [''],
-      cd: [''],
-      sourceControl: [''],
-      environments: ['']
+      id: this.solution.id,
+      name: [this.solution.name],
+      description: [this.solution.description],
+      businessUnit: [this.solution.businessUnit],
+      costCentre: [this.solution.costCentre],
+      ci: [this.solution.ci],
+      cd: [this.solution.cd],
+      sourceControl: [this.solution.sourceControl],
+      environments: [this.solution.environments]
     });
-  }
-
-  get solutionId(): string {
-    return this.solutionForm.get('id').value;
-  }
-
-  get solutionName(): string {
-    return this.solutionForm.get('name').value;
-  }
-
-  get solutionDescription(): string {
-    return this.solutionForm.get('description').value;
-  }
-
-  get solutionBusinessUnit(): string {
-    return this.solutionForm.get('businessUnit').value;
-  }
-
-  get solutionCostCentre(): string {
-    return this.solutionForm.get('costCentre').value;
-  }
-
-  get solutionCi(): string {
-    return this.solutionForm.get('ci').value;
-  }
-
-  get solutionCd(): string {
-    return this.solutionForm.get('cd').value;
-  }
-
-  get solutionSourceControl(): string {
-    return this.solutionForm.get('sourceControl').value;
-  }
-
-  get solutionEnvironments(): string {
-    return this.solutionForm.get('environments').value;
   }
 
   cancel() {

@@ -11,16 +11,7 @@
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Name</mat-label>
-          <input
-            matInput
-            required
-            type="text"
-            maxlength="50"
-            formControlName="name"
-            placeholder="name"
-            name="name"
-            value="{{ solution.name }}"
-          />
+          <input matInput required type="text" maxlength="50" formControlName="name" placeholder="name" name="name" />
         </mat-form-field>
       </p>
 
@@ -34,7 +25,6 @@
             maxlength="200"
             formControlName="description"
             placeholder="Type your description here..."
-            value="{{ solution.description }}"
           ></textarea>
           <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
         </mat-form-field>
@@ -56,7 +46,6 @@
             maxlength="50"
             formControlName="costCentre"
             placeholder="XXX-123-456-YYY"
-            value="{{ solution.costCentre }}"
           />
         </mat-form-field>
       </p>
@@ -75,7 +64,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>CD (Continuous deployment)</mat-label>
-          <mat-select required formControlName="cd" value="{{ solution.cd }}">
+          <mat-select required formControlName="cd">
             <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
           </mat-select>
         </mat-form-field>
