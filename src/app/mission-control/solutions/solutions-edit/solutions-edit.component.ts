@@ -15,7 +15,6 @@ import { Solution } from '../solutions.model';
 })
 export class SolutionsEditComponent implements OnInit {
   solution: Solution;
-
   solutionForm: FormGroup;
 
   // solutionName: string = '';

@@ -48,6 +48,26 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
     console.log(solution + ' posted');
   }
 
+  updateSolution(solution: Solution): void {
+    console.debug('123', solution, Solution);
+    const url = `${this.BASE_URL}/solution/${solution.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.put(url, solution, { headers }).subscribe(
+      (val: Solution) => {
+        console.log('PUT call successful value returned in body', val);
+        this.store.dispatch(startDeployment({ name: String(val.id) }));
+      },
+      response => {
+        console.log('PUT call in error', response);
+      },
+      () => {
+        console.log('The PUT observable is now completed.');
+        this.getAll();
+      }
+    );
+    console.log(solution + ' putted');
+  }
+
   getSolutionsData(): Observable<Solution> {
     const url = `${this.BASE_URL}/edit/`;
     return this.http.get<Solution>(url).pipe(catchError(this.handleError));
