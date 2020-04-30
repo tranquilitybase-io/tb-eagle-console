@@ -6,15 +6,13 @@
 <div>
   <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
     <div class="details-container">
-      <input class="d-none" matInput required type="text" formControlName="id" name="id" value="{{ solution.id }}" />
-
+      <input class="d-none" matInput required type="text" formControlName="id" name="id" />
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Name</mat-label>
           <input matInput required type="text" maxlength="50" formControlName="name" placeholder="name" name="name" />
         </mat-form-field>
       </p>
-
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
@@ -29,7 +27,6 @@
           <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
         </mat-form-field>
       </p>
-
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Business unit</mat-label>
