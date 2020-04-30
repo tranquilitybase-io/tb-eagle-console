@@ -20,8 +20,8 @@ export const featureKey = 'landing-zone-wan';
 
 export const landingZoneWanReducer = createReducer(
   intialState,
-  on(startConnectionDeployment, state => ({ ...state, progress: 0, inProgress: true, deployed: true })),
-  on(stopConnectionDeployment, state => ({ ...state, inProgress: false })),
+  on(startConnectionDeployment, state => ({ ...state, progress: 0, inProgress: true })),
+  on(stopConnectionDeployment, state => ({ ...state, inProgress: false, deployed: true })),
   on(updateConnectionDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
   on(dismissDeploymentConnectionReadyAlert, state => ({ ...state, isConnectionDeploymentReady: false }))
 );
