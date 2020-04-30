@@ -60,7 +60,7 @@ export class SolutionsEditComponent implements OnInit {
   }
 
   onSubmit(solution) {
-    this.store.dispatch(updateSolution({ solution })); // <- find specific solution
+    this.store.dispatch(updateSolution({ solution }));
     this.router.navigateByUrl('/mission-control/solutions');
   }
 }
