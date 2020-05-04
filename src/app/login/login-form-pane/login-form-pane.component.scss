@@ -35,7 +35,7 @@
   width: 100%;
 }
 
-.container {
+.login-container {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
@@ -47,7 +47,7 @@
   align-content: center;
 }
 
-.form-container {
+.login-form-container {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -62,7 +62,7 @@
   align-content: center;
   margin-top: 3rem;
 
-  .options {
+  .login-options {
     color: grey;
     font-family: SF Compact Display;
     font-style: normal;
@@ -71,7 +71,7 @@
     line-height: 16px;
   }
 
-  .create-new {
+  .login-create-new {
     font-family: SF Compact Display;
     font-style: normal;
     font-weight: 600;
