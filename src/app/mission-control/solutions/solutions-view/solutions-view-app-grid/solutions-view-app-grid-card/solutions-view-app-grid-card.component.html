@@ -70,6 +70,8 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
-    <button mat-button color="primary" (click)="deploy()">Deploy <mat-icon>chevron_right</mat-icon></button>
+    <button [disabled]="deployed$ | async" mat-button color="primary" (click)="deploy()">
+      Deploy <mat-icon>chevron_right</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

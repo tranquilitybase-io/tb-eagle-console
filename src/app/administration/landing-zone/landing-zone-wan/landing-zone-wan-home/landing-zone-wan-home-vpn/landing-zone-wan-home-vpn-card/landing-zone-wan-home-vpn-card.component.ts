@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import {
   selectInProgress,
+  selectDeployed,
   selectProgress,
   selectIsDeploymentReady
 } from '@app/administration/landing-zone/landing-zone-wan/landing-zone-wan.reducers';
@@ -27,12 +28,15 @@ export class LandingZoneWanHomeVpnCardComponent implements OnInit {
   active = false;
 
   deploymentInProgress$: Observable<boolean>;
+  deployed$: Observable<boolean>;
   percentage$: Observable<number>;
 
   constructor(private store: Store<any>, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.deploymentInProgress$ = this.store.pipe(select(selectInProgress(this.wanVpn.id.toString())));
+    this.deployed$ = this.store.pipe(select(selectDeployed(this.wanVpn.id.toString())));
+
     this.percentage$ = this.store.pipe(select(selectProgress(this.wanVpn.id.toString())));
     this.store.pipe(select(selectIsDeploymentReady)).subscribe(isReady => {
       if (isReady) {
