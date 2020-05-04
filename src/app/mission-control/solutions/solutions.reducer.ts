@@ -61,9 +61,9 @@ export const solutionsReducer = createReducer(
   on(updateDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
   on(dismissDeploymentReadyAlert, state => ({ ...state, isDeploymentReady: false })),
   on(dismissAlmostReadyAlert, state => ({ ...state, dismissAlmostReady: true })),
-  on(startDeployApplication, state => ({ ...state, progressApp: 0, inProgressApp: true, deployed: true })),
+  on(startDeployApplication, state => ({ ...state, progressApp: 0, inProgressApp: true })),
   on(updateDeploymentProgressApp, (state, { progressApp }) => ({ ...state, progressApp })),
-  on(stopDeploymentApp, state => ({ ...state, inProgressApp: false })),
+  on(stopDeploymentApp, state => ({ ...state, inProgressApp: false, deployed: true })),
   on(dismissDeploymentAppReadyAlert, state => ({ ...state, isDeploymentAppReady: false }))
 );
 
