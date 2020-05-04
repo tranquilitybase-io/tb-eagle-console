@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
+  selectDeployedApp,
   selectInProgressApp,
   selectProgressApp,
   selectIsDeploymentAppReady
@@ -25,12 +26,15 @@ export class SolutionsViewAppGridCardComponent implements OnInit {
   active = false;
 
   deploymentInProgressApp$: Observable<boolean>;
+  deployed$: Observable<boolean>;
   percentage$: Observable<number>;
 
   constructor(private store: Store<any>, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.deploymentInProgressApp$ = this.store.pipe(select(selectInProgressApp(this.app.name)));
+    this.deployed$ = this.store.pipe(select(selectDeployedApp(this.app.name)));
+
     this.percentage$ = this.store.pipe(select(selectProgressApp(this.app.name)));
     this.store.pipe(select(selectIsDeploymentAppReady)).subscribe(isReady => {
       if (isReady) {
