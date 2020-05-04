@@ -4,7 +4,7 @@
 
 main {
   margin: 1rem 1.5rem;
-  .details {
+  .details-sol-view {
     padding: 1rem;
     border-radius: 1.5rem;
     background-color: var(--whitish);
@@ -31,6 +31,6 @@ app-breadcrumbs {
   flex: auto;
 }
 
-.create {
+.create-sol-view {
   text-decoration: none;
 }
