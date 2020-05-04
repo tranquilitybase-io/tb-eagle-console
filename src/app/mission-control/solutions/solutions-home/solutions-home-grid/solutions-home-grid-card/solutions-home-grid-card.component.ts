@@ -16,6 +16,7 @@ export class SolutionsHomeGridCardComponent implements OnInit {
   @Input() solution: Solution;
 
   active = false;
+  clicked = false;
 
   deploymentInProgress$: Observable<boolean>;
   percentage$: Observable<number>;

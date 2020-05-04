@@ -59,7 +59,7 @@
     <a mat-button routerLink="view" [queryParams]="{ id: solution.id, categorySwitch: 'Applications' }">
       View
     </a>
-    <button mat-button color="primary" (click)="deploy()">
+    <button mat-button color="primary" [disabled]="clicked" (click)="deploy(); clicked = true">
       <div class="mat-button-text">
         Deploy
       </div>
