@@ -7,10 +7,6 @@
   border-radius: 10px;
   padding: 0px;
 
-  .is-deployed {
-    background: var(--green) !important;
-  }
-
   &:hover {
     box-shadow: 0px 2px 1px -1px var(--primary-color), 0px 1px 1px 0px var(--primary-color),
       0px 1px 3px 0px var(--primary-color);
@@ -21,6 +17,11 @@
     text-align: center;
     background-color: var(--active-grey-background);
     border-radius: 10px 10px 0px 0px;
+
+    &.is-deployed {
+      background: #c2e6cd;
+    }
+
     .mat-card-subtitle {
       margin-bottom: 10px;
     }
