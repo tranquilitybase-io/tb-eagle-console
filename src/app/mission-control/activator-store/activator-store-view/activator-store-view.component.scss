@@ -1,4 +1,4 @@
-.sub-header {
+.activ-sub-header {
   display: flex;
   align-items: center;
   background-color: var(--light-grey);
@@ -6,7 +6,7 @@
   font-weight: 600;
 }
 
-.back-btn {
+.activ-back-btn {
   color: var(--black);
   text-decoration: none;
   font-weight: normal;
@@ -44,7 +44,7 @@
   }
 }
 
-.content {
+.activ-content {
   display: grid;
   padding: 1rem 2rem;
   grid-template-columns: 3fr 2fr;
@@ -84,7 +84,7 @@
   padding: 0 0.5rem;
 }
 
-.deployment-footer {
+.activ-deployment-footer {
   padding: 0.5rem 2rem;
   position: fixed;
   bottom: 0;
@@ -99,7 +99,7 @@
   margin-bottom: 1.5rem;
 }
 
-.dashboard-card {
+.activ-dashboard-card {
   position: absolute;
   // padding-top: 0;
   // padding-bottom: 0;
@@ -182,6 +182,6 @@ a {
   margin: 4px;
 }
 
-.view-info {
+.activ-view-info {
   margin: 1rem;
 }

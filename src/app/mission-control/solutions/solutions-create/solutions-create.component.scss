@@ -13,7 +13,7 @@ header {
   background-color: var(--active-grey-background);
 }
 
-.details-container {
+.solution-details-container {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
@@ -51,7 +51,7 @@ main {
 
 /* Workspace view */
 
-.workspace-container {
+.solution-workspace-container {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
@@ -88,7 +88,7 @@ main {
   }
 }
 
-.footer-container {
+.solution-footer-container {
   display: flex;
   flex-direction: row;
   height: 5rem;
@@ -98,7 +98,7 @@ main {
   align-self: flex-end;
   margin-top: auto;
 
-  &.details-footer-container {
+  &.solution-details-footer-container {
     justify-content: flex-end;
   }
 
