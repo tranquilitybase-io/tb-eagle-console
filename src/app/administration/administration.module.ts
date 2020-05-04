@@ -20,8 +20,8 @@ const routes: Routes = [
         loadChildren: () => import('./landing-zone/landing-zone.module').then(m => m.LandingZoneModule)
         // },
         // {
-        //   path: 'datacenter',
-        //   loadChildren: () => import('./datacenter/datacenter.module').then(m => m.DatacenterModule)
+        //   path: 'shared-services',
+        //   loadChildren: () => import('./shared-services/shared-services.module').then(m => m.SharedServicesModule)
         // },
         // {
         //   path: 'users',
