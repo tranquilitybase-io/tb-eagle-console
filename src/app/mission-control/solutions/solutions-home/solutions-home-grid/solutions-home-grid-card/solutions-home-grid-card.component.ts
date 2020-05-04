@@ -2,7 +2,7 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { selectInProgress, selectProgress } from '@app/mission-control/solutions/solutions.reducer';
+import { selectDeployed, selectInProgress, selectProgress } from '@app/mission-control/solutions/solutions.reducer';
 import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
 import { MatSnackBar } from '@angular/material';
@@ -16,15 +16,17 @@ export class SolutionsHomeGridCardComponent implements OnInit {
   @Input() solution: Solution;
 
   active = false;
-  clicked = false;
 
   deploymentInProgress$: Observable<boolean>;
+  deployed$: Observable<boolean>;
   percentage$: Observable<number>;
 
   constructor(private store: Store<any>, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.deploymentInProgress$ = this.store.pipe(select(selectInProgress(this.solution.id.toString())));
+    this.deployed$ = this.store.pipe(select(selectDeployed(this.solution.id.toString())));
+
     this.percentage$ = this.store.pipe(select(selectProgress(this.solution.id.toString())));
   }
 
