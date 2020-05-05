@@ -13,6 +13,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
+import { LandingZoneWanEditComponent } from './landing-zone-wan-edit/landing-zone-wan-edit.component';
+import { LandingZoneWanEditModule } from './landing-zone-wan-edit/landing-zone-wan-edit.module';
 
 const routes: Routes = [
   {
@@ -28,13 +30,12 @@ const routes: Routes = [
   {
     path: 'edit',
     loadChildren: () =>
-      import('./landing-zone-wan-edit/landing-zone-wan-edit.module').then(m => m.LandingZoneWanEditModule),
-    resolve: {}
+      import('./landing-zone-wan-edit/landing-zone-wan-edit.module').then(m => m.LandingZoneWanEditModule)
   }
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [LandingZoneWanEditComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -46,7 +47,8 @@ const routes: Routes = [
     MatGridListModule,
     MatIconModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    LandingZoneWanEditModule
   ]
 })
 export class LandingZoneWanModule {}
