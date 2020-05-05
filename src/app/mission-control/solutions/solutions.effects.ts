@@ -9,6 +9,7 @@ import {
   refreshSolutions,
   setSolutions,
   createSolution,
+  updateSolution,
   startDeployment,
   updateDeploymentProgress,
   stopDeployment,
@@ -63,6 +64,15 @@ export class SolutionEffects {
       this.actions$.pipe(
         ofType(createSolution),
         tap(action => this.solutionService.createSolution(action.solution))
+      ),
+    { dispatch: false }
+  );
+
+  updateSolution$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateSolution),
+        tap(action => this.solutionService.updateSolution(action.solution))
       ),
     { dispatch: false }
   );

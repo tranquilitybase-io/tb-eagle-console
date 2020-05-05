@@ -31,6 +31,18 @@ const routes: Routes = [
     }
   },
   {
+    path: 'edit',
+    loadChildren: () => import('./solutions-edit/solutions-edit.module').then(m => m.SolutionsViewEditModule),
+    resolve: {
+      businessUnitList: BusinessUnitResolver,
+      cdList: ContinuousDeploymentResolver,
+      ciList: ContinuousIntegrationResolver,
+      environmentList: EnvironmentResolver,
+      sourceControlList: SourceControlResolver,
+      solution: SolutionsViewResolver
+    }
+  },
+  {
     path: 'view',
     loadChildren: () => import('./solutions-view/solutions-view.module').then(m => m.SolutionsViewModule),
     resolve: {

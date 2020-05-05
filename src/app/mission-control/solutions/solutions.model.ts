@@ -23,6 +23,7 @@ export class Solution {
   environments: string[];
   active: boolean;
   favourite: boolean;
+  deploymentStatus: string;
   applications: Array<Application>;
   teams: number;
   lastUpdated: string;
