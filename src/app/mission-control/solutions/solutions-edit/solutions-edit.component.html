@@ -4,13 +4,24 @@
   </div>
 </header>
 <div>
+  <div class="alert" *ngIf="disableEdit">
+    To edit this fields all resouces created for it must be removed from the respective Cloud Service Provider
+  </div>
   <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
     <div class="details-container">
-      <input class="d-none" matInput required type="text" formControlName="id" name="id" />
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Name</mat-label>
-          <input matInput required type="text" maxlength="50" formControlName="name" placeholder="name" name="name" />
+          <input
+            matInput
+            required
+            [readonly]="disableEdit"
+            type="text"
+            maxlength="50"
+            formControlName="name"
+            placeholder="name"
+            name="name"
+          />
         </mat-form-field>
       </p>
       <p>
@@ -19,6 +30,7 @@
           <textarea
             matInput
             required
+            [readonly]="disableEdit"
             #desctext
             maxlength="200"
             formControlName="description"
@@ -30,7 +42,7 @@
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Business unit</mat-label>
-          <mat-select required formControlName="businessUnit">
+          <mat-select required [disabled]="disableEdit" formControlName="businessUnit">
             <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -39,6 +51,7 @@
           <input
             matInput
             required
+            [readonly]="disableEdit"
             type="text"
             maxlength="50"
             formControlName="costCentre"
@@ -49,26 +62,26 @@
       <p>
         <mat-form-field appearance="outline">
           <mat-label>CI (Continuous intergration service)</mat-label>
-          <mat-select required formControlName="ci">
+          <mat-select required [disabled]="disableEdit" formControlName="ci">
             <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Source Control</mat-label>
-          <mat-select required formControlName="sourceControl">
+          <mat-select required [disabled]="disableEdit" formControlName="sourceControl">
             <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>CD (Continuous deployment)</mat-label>
-          <mat-select required formControlName="cd">
+          <mat-select required [disabled]="disableEdit" formControlName="cd">
             <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
           </mat-select>
         </mat-form-field>
       </p>
       <p>
         <span class="mat-subheading-1">Available environments</span>
-        <mat-selection-list formControlName="environments">
+        <mat-selection-list [disabled]="disableEdit" formControlName="environments">
           <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
             {{ item.value }}
           </mat-list-option>
@@ -79,8 +92,7 @@
         <button mat-button color="primary" (click)="cancel()">
           Cancel
         </button>
-        <button mat-button color="primary" type="submit">Update</button>
-        <!-- add (click)="updateSolution()" -->
+        <button mat-button [disabled]="disableEdit" color="primary" type="submit">Update</button>
       </div>
     </div>
   </form>

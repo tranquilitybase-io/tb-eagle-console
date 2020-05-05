@@ -27,6 +27,17 @@ header {
   background-color: var(--whitish);
 }
 
+.alert {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  width: 90%;
+  text-align: center;
+  padding-top: 0.5rem;
+  height: 2rem;
+  background-color: #ffe0b2;
+}
+
 .details-container {
   margin-left: auto;
   margin-right: auto;

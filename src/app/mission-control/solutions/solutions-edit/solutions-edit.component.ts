@@ -4,8 +4,8 @@ import { KeyValue } from '@angular/common';
 import { SolutionsState } from '../solutions.reducer';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { createSolution, updateSolution } from '../solutions.actions';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { updateSolution } from '../solutions.actions';
 import { Solution } from '../solutions.model';
 
 @Component({
@@ -62,5 +62,14 @@ export class SolutionsEditComponent implements OnInit {
   onSubmit(solution) {
     this.store.dispatch(updateSolution({ solution }));
     this.router.navigateByUrl('/mission-control/solutions');
+  }
+
+  get disableEdit(): boolean {
+    return (
+      this.solution.deploymentStatus === 'SUCCESS' ||
+      this.solution.deploymentStatus === 'STARTED' ||
+      this.solution.deploymentStatus === 'PENDING' ||
+      this.solution.deploymentStatus === 'RETRY'
+    );
   }
 }
