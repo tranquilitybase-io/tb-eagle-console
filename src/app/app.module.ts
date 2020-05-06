@@ -15,14 +15,14 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { AdminGuardService } from './guards/admin-guard.service';
 import { LoginComponent } from './login/login/login.component';
 import { LoginModule } from './login/login.module';
-
 import {
   MatToolbarModule,
   MatIconModule,
   MatSidenavModule,
   MatListModule,
   MatButtonModule,
-  MatMenuModule
+  MatMenuModule,
+  MatTooltipModule
 } from '@angular/material';
 
 const routes: Routes = [
@@ -62,6 +62,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatTooltipModule,
 
     LoginModule,
     BrowserModule,
