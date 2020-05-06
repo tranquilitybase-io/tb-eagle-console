@@ -15,26 +15,18 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { AdminGuardService } from './guards/admin-guard.service';
 import { LoginComponent } from './login/login/login.component';
 import { LoginModule } from './login/login.module';
-import {
-  MatToolbarModule,
-  MatIconModule,
-  MatSidenavModule,
-  MatListModule,
-  MatButtonModule,
-  MatMenuModule,
-  MatTooltipModule
-} from '@angular/material';
+import { SidebarModule } from './sidebar/sidebar.module';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: '',
     redirectTo: '/mission-control/solutions',
     pathMatch: 'full',
     canActivate: [AuthGuardService]
-  },
-  {
-    path: 'login',
-    component: LoginComponent
   },
   {
     path: 'mission-control',
@@ -56,13 +48,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatTooltipModule,
+    SidebarModule,
 
     LoginModule,
     BrowserModule,

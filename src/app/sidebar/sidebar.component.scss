@@ -1,11 +1,6 @@
 :host {
   min-height: 100vh;
 }
-mat-toolbar {
-position: fixed;
-z-index: 30;
-}
-
 mat-sidenav-container {
   position: fixed;
   width: 100%;
@@ -13,9 +8,9 @@ mat-sidenav-container {
 mat-sidenav {
   display: flex;
   height: 100%;
-  width: 16rem;
+  width: 14rem;
   background-color: var(--white);
-  box-shadow:  0 0.2rem 3px var(--grey);
+  box-shadow: 0 0.2rem 3px var(--grey);
   border-bottom-right-radius: var(--radius);
   position: fixed;
   top: 4rem;
@@ -54,7 +49,6 @@ mat-sidenav {
   }
 }
 
-
 .name {
   padding-left: 1rem;
 }
@@ -91,4 +85,19 @@ a {
   display: inline;
   max-width: 15px;
   max-height: 15px;
+  filter: drop-shadow(0 0 0 #000);
+}
+mat-toolbar-row {
+  box-shadow: inset 0 -1px 1px #3d1b3d;
+}
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 20;
+}
+mat-sidenav-content {
+  top: 4rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

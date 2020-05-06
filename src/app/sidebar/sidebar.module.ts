@@ -2,17 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { SidebarComponent } from './sidebar.component';
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatListModule,
+  MatButtonModule,
+  MatMenuModule,
+  MatTooltipModule
+} from '@angular/material';
 
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from  '@angular/material';
-
-const uiModules = [MatSidenavModule, MatIconModule, MatButtonModule];
 @NgModule({
-  declarations: [
-    SidebarComponent,
-  ],
-  imports: [CommonModule, SharedModule, MatButtonModule, MatIconModule, uiModules,
+  declarations: [SidebarComponent],
+  imports: [
+    CommonModule,
+    SharedModule,
     MatToolbarModule,
-    MatListModule],
-  exports: [SidebarComponent, uiModules]
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatTooltipModule
+  ],
+  exports: [SidebarComponent]
 })
 export class SidebarModule {}
