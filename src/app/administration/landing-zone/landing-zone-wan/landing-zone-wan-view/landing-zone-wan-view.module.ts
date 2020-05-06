@@ -15,29 +15,25 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { LandingZoneWanFormsVpnTabComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn-tab/landing-zone-wan-forms-vpn-tab.component';
-import { LandingZoneWanFormsVpnGoogleTabComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn-google-tab/landing-zone-wan-forms-vpn-google-tab.component';
-import { LandingZoneWanFormsVpnOnPremiseTabComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn-on-premise-tab/landing-zone-wan-forms-vpn-on-premise-tab.component';
-import { LandingZoneWanFormsVpnReviewTabComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn-review-tab/landing-zone-wan-forms-vpn-review-tab.component';
-import { LandingZoneWanFormsVpnComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn.component';
 import { LandingZoneWanViewComponent } from './landing-zone-wan-view.component';
+import { SubnetModeResolver } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/subnet-mode.resolver';
+import { BgpRoutingModeResolver } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/bgp-routing-mode.resolver';
+import { VpnOnPremiseVendorResolver } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/vpn-on-premise-vendor.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: LandingZoneWanViewComponent
+    component: LandingZoneWanViewComponent,
+    resolve: {
+      subnetModeList: SubnetModeResolver,
+      bgpRoutingModeList: BgpRoutingModeResolver,
+      vpnOnPremiseVendorList: VpnOnPremiseVendorResolver
+    }
   }
 ];
 
 @NgModule({
-  declarations: [
-    LandingZoneWanViewComponent,
-    LandingZoneWanFormsVpnComponent,
-    LandingZoneWanFormsVpnTabComponent,
-    LandingZoneWanFormsVpnGoogleTabComponent,
-    LandingZoneWanFormsVpnOnPremiseTabComponent,
-    LandingZoneWanFormsVpnReviewTabComponent
-  ],
+  declarations: [LandingZoneWanViewComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
