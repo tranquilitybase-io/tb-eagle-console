@@ -44,7 +44,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side">
+  <mat-sidenav #sidenav mode="side" [opened]="true">
     <mat-nav-list>
       <div>
         <div class="section-header"><img src="assets/icons/tb_rocket.svg" class="rocket" /> Mission control</div>
@@ -82,7 +82,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 88vh">
+    <div style="height: 89vh">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
