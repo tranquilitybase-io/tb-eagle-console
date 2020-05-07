@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1>Tranquility Base</h1>
+    <h1><img src="assets/icons/tb_rocket.svg" class="rocket" alt="TB_logo" /> Tranquility Base</h1>
     <span class="menu-spacer"></span>
     <div class="row">
       <a mat-button [routerLink]="'/search'" matTooltip="Search" aria-label="Search"><mat-icon>search</mat-icon></a>
@@ -47,7 +47,7 @@
   <mat-sidenav #sidenav mode="side" [opened]="true">
     <mat-nav-list>
       <div>
-        <div class="section-header"><img src="assets/icons/tb_rocket.svg" class="rocket" /> Mission control</div>
+        <div class="section-header">Mission control</div>
         <a
           mat-list-item
           routerLink="/mission-control/solutions"
