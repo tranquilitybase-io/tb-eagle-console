@@ -13,6 +13,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SubnetModeResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/subnet-mode.resolver';
+import { BgpRoutingModeResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/bgp-routing-mode.resolver';
+import { VpnOnPremiseVendorResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/vpn-on-premise-vendor.resolver';
+import { LandingViewResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/landing-zone-wan-view.resolver';
 
 const routes: Routes = [
   {
@@ -28,7 +32,13 @@ const routes: Routes = [
   {
     path: 'view',
     loadChildren: () =>
-      import('./landing-zone-wan-view/landing-zone-wan-view.module').then(m => m.LandingZoneWanViewModule)
+      import('./landing-zone-wan-view/landing-zone-wan-view.module').then(m => m.LandingZoneWanViewModule),
+    resolve: {
+      subnetModeList: SubnetModeResolver,
+      bgpRoutingModeList: BgpRoutingModeResolver,
+      vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
+      view: LandingViewResolver
+    }
   }
 ];
 

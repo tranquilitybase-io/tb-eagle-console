@@ -23,12 +23,7 @@ import { VpnOnPremiseVendorResolver } from '../landing-zone-wan-forms/landing-zo
 const routes: Routes = [
   {
     path: '',
-    component: LandingZoneWanViewComponent,
-    resolve: {
-      subnetModeList: SubnetModeResolver,
-      bgpRoutingModeList: BgpRoutingModeResolver,
-      vpnOnPremiseVendorList: VpnOnPremiseVendorResolver
-    }
+    component: LandingZoneWanViewComponent
   }
 ];
 

@@ -31,4 +31,22 @@ export class LandingZoneWanService extends EntityCollectionServiceBase<WanConfig
     );
     console.log(wanConfiguration + ' posted');
   }
+
+  displayWanConfiguration(view: WanConfiguration): void {
+    const url = `${this.BASE_URL}/landingzonewan/${view.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(url, { headers }).subscribe(
+      (val: WanConfiguration) => {
+        console.log('GET call successful value returned in body', val);
+      },
+      response => {
+        console.log('GET call in error', response);
+      },
+      () => {
+        console.log('The GET observable is now completed.');
+        this.getAll();
+      }
+    );
+    console.log(view + ' get');
+  }
 }
