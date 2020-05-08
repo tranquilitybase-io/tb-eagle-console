@@ -28,10 +28,6 @@
   --mainWidth: 100%;
 }
 
-body {
-  margin: 0;
-}
-
 @font-face {
   font-family: 'SF Pro Display';
   src: url(assets/fonts/SFProDisplay-Regular.ttf) format('truetype');
@@ -51,12 +47,12 @@ body {
 @import './styles/others';
 @import './styles/material';
 
-html,
-body {
+html {
   height: 100%;
 }
 
 body {
+  height: 100%;
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
