@@ -5,7 +5,7 @@ import { LandingZoneHomeGridService } from './landing-zone-home-grid.service';
 describe('LandingZoneHomeGridService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
+  xit('should be created', () => {
     const service: LandingZoneHomeGridService = TestBed.get(LandingZoneHomeGridService);
     expect(service).toBeTruthy();
   });

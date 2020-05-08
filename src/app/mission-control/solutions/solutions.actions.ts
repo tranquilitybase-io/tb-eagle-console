@@ -20,6 +20,8 @@ export const updateDeploymentProgress = createAction(
 export const dismissAlmostReadyAlert = createAction('[solutions-creation] Stop showing off almost ready alert');
 export const dismissDeploymentReadyAlert = createAction('[solutions-creation] Stop showing off deployment ready alert');
 
+export const updateSolution = createAction('[solutions-edit] update-solution', props<{ solution: Solution }>());
+
 export const startDeployApplication = createAction(
   '[solutions-deploy-application] Start Deployment',
   props<{ name: string }>()

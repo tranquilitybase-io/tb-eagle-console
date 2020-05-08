@@ -17,6 +17,11 @@
     text-align: center;
     background-color: var(--active-grey-background);
     border-radius: 10px 10px 0px 0px;
+
+    &.is-deployed {
+      background: #c2e6cd;
+    }
+
     .mat-card-subtitle {
       margin-bottom: 10px;
     }
