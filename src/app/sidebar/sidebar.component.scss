@@ -2,12 +2,12 @@
   min-height: 100vh;
 }
 
-mat-sidenav-container {
+.mat-sidenav-container {
   position: fixed;
   width: 100%;
 }
 
-mat-sidenav {
+.mat-sidenav {
   display: flex;
   height: 100%;
   width: 13.5rem;
@@ -20,7 +20,7 @@ mat-sidenav {
   left: 0;
   right: 0;
   z-index: 20;
-  padding: 0rem 1rem;
+  padding: 0 1rem;
 }
 
 .section-header {
@@ -39,7 +39,7 @@ mat-sidenav {
   border-radius: var(--radius);
 
   .mat-icon,
-  app-icon {
+  .app-icon {
     margin-right: 1rem;
   }
 
@@ -92,16 +92,16 @@ a {
   filter: drop-shadow(1px 1px 0 #3d1b3d);
 }
 
-mat-toolbar-row {
+.mat-toolbar-row {
   box-shadow: inset 0 -1px 1px #3d1b3d;
 }
 
-mat-toolbar {
+.mat-toolbar {
   top: 0;
   z-index: 20;
 }
 
 .mat-toolbar h1,
-mat-toolbar-row mat-icon {
+.mat-toolbar-row .mat-icon {
   text-shadow: 1px 1px 0 #3d1b3d;
 }
