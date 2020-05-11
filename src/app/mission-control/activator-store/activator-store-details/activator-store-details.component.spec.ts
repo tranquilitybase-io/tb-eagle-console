@@ -7,7 +7,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ActivatorStoreDetailsOverviewComponent } from './activator-store-details-overview/activator-store-details-overview.component';
 import { ActivatorStoreDetailsAuditHistoryComponent } from './activator-store-details-audit-history/activator-store-details-audit-history.component';
 import { ActivatorStoreDetailsVersionHistoryComponent } from './activator-store-details-version-history/activator-store-details-version-history.component';
 import { ActivatorStoreDetailsUsersComponent } from './activator-store-details-users/activator-store-details-users.component';
@@ -21,7 +20,6 @@ describe('ActivatorStoreDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ActivatorStoreDetailsComponent,
-        ActivatorStoreDetailsOverviewComponent,
         ActivatorStoreDetailsAuditHistoryComponent,
         ActivatorStoreDetailsVersionHistoryComponent,
         ActivatorStoreDetailsUsersComponent,

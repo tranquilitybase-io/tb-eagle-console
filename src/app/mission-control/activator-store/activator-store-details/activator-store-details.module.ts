@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { ActivatorStoreDetailsComponent } from './activator-store-details.component';
-import { ActivatorStoreDetailsOverviewComponent } from './activator-store-details-overview/activator-store-details-overview.component';
 import { ActivatorStoreDetailsAuditHistoryComponent } from './activator-store-details-audit-history/activator-store-details-audit-history.component';
 import { ActivatorStoreDetailsVersionHistoryComponent } from './activator-store-details-version-history/activator-store-details-version-history.component';
 import { ActivatorStoreDetailsUsersComponent } from './activator-store-details-users/activator-store-details-users.component';
@@ -32,7 +31,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ActivatorStoreDetailsComponent,
-    ActivatorStoreDetailsOverviewComponent,
     ActivatorStoreDetailsAuditHistoryComponent,
     ActivatorStoreDetailsVersionHistoryComponent,
     ActivatorStoreDetailsUsersComponent,

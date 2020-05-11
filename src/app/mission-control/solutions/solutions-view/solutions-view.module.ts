@@ -7,6 +7,7 @@ import { SolutionsViewAppGridCardComponent } from './solutions-view-app-grid/sol
 import { SolutionsViewAppGridComponent } from './solutions-view-app-grid/solutions-view-app-grid.component';
 import { SolutionsViewComponent } from './solutions-view.component';
 import { SolutionsViewSelectComponent } from './solutions-view-select/solutions-view-select.component';
+import { SolutionsViewDetailsOverviewComponent } from './solutions-view-details-overview/solutions-view-details-overview.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -16,11 +17,22 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SolutionsViewWorkspaceInfoComponent } from './solutions-view-workspace-info/solutions-view-workspace-info.component';
+import { MatMenuModule } from '@angular/material/menu';
+//import { ApplicationByIdResolver} from '@app/shared/resolvers/application-by-id.resolver';
+import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: SolutionsViewComponent
+  },
+  {
+    path: 'application',
+    component: SolutionsViewDetailsOverviewComponent,
+    resolve: {
+      //application: ApplicationByIdResolver
+      activator: ActivatorByIdResolver
+    }
   }
 ];
 
@@ -30,7 +42,8 @@ const routes: Routes = [
     SolutionsViewAppGridComponent,
     SolutionsViewComponent,
     SolutionsViewSelectComponent,
-    SolutionsViewWorkspaceInfoComponent
+    SolutionsViewWorkspaceInfoComponent,
+    SolutionsViewDetailsOverviewComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +55,8 @@ const routes: Routes = [
     MatCardModule,
     MatListModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule
   ]
 })
 export class SolutionsViewModule {}

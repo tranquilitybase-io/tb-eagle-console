@@ -5,9 +5,14 @@
         <button mat-icon-button>
           <mat-icon>star_border</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <a mat-menu-item routerLink="/mission-control/solution/details" [queryParams]="{ id: app.activator.id }"
+            >Details</a
+          >
+        </mat-menu>
       </div>
       {{ app.name }}
     </mat-card-title>
@@ -70,6 +75,13 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
+    <a
+      mat-stroked-button
+      routerLink="/mission-control/solutions/view/application"
+      [queryParams]="{ id: app.activator.id }"
+    >
+      View
+    </a>
     <button
       [disabled]="(deployed$ | async) || (deploymentInProgressApp$ | async)"
       mat-button
