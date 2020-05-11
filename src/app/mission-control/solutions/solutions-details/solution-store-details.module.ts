@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 
-import { ActivatorStoreDetailsComponent } from './activator-store-details.component';
-import { ActivatorStoreDetailsAuditHistoryComponent } from './activator-store-details-audit-history/activator-store-details-audit-history.component';
-import { ActivatorStoreDetailsVersionHistoryComponent } from './activator-store-details-version-history/activator-store-details-version-history.component';
-import { ActivatorStoreDetailsUsersComponent } from './activator-store-details-users/activator-store-details-users.component';
-import { ActivatorStoreDetailsBillingComponent } from './activator-store-details-billing/activator-store-details-billing.component';
+import { SolutionDetailsComponent } from './activator-store-details.component';
+import { SolutionDetailsAuditHistoryComponent } from './activator-store-details-audit-history/activator-store-details-audit-history.component';
+import { SolutionDetailsVersionHistoryComponent } from './activator-store-details-version-history/activator-store-details-version-history.component';
+import { SolutionDetailsUsersComponent } from './activator-store-details-users/activator-store-details-users.component';
+import { SolutionDetailsBillingComponent } from './activator-store-details-billing/activator-store-details-billing.component';
 
 import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
 
@@ -21,7 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 const routes: Routes = [
   {
     path: '',
-    component: ActivatorStoreDetailsComponent,
+    component: SolutionDetailsComponent,
     resolve: {
       activator: ActivatorByIdResolver
     }
@@ -30,11 +30,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    ActivatorStoreDetailsComponent,
-    ActivatorStoreDetailsAuditHistoryComponent,
-    ActivatorStoreDetailsVersionHistoryComponent,
-    ActivatorStoreDetailsUsersComponent,
-    ActivatorStoreDetailsBillingComponent
+    SolutionDetailsComponent,
+    SolutionDetailsAuditHistoryComponent,
+    SolutionDetailsVersionHistoryComponent,
+    SolutionDetailsUsersComponent,
+    SolutionDetailsBillingComponent
   ],
   imports: [
     CommonModule,
@@ -48,4 +48,4 @@ const routes: Routes = [
     MatTabsModule
   ]
 })
-export class ActivatorStoreDetailsModule {}
+export class SolutionDetailsModule {}

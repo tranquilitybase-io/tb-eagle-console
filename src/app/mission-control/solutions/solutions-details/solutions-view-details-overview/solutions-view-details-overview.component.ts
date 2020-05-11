@@ -4,11 +4,11 @@ import { Activator } from '../../activator-store/activator-store.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-solutions-view-details-overview',
-  templateUrl: './solutions-view-details-overview.component.html',
-  styleUrls: ['./solutions-view-details-overview.component.scss']
+  selector: 'app-solutions-details-overview',
+  templateUrl: './solutions-details-overview.component.html',
+  styleUrls: ['./solutions-details-overview.component.scss']
 })
-export class SolutionsViewDetailsOverviewComponent {
+export class SolutionsDetailsOverviewComponent {
   //application: Application;
   activator: Activator;
 
