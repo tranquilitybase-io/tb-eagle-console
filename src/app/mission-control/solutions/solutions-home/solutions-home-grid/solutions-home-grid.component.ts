@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LayoutService } from '@app/shared/layout/layout.service';
+import { Layout } from '@app/shared/layout/layout.model';
 import { Solution } from '../../solutions.model';
-import { GridColsService } from '@app/shared/grid-cols/grid-cols.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,10 +12,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SolutionsHomeGridComponent {
   @Input() solutions$: Observable<Solution[]>;
-  gridCols$: Observable<number>;
+  layout$: Observable<Layout>;
 
-  constructor(private gridColsService: GridColsService, private router: Router, private route: ActivatedRoute) {
-    this.gridCols$ = this.gridColsService.gridColsObserver$;
+  constructor(private layoutService: LayoutService, private router: Router, private route: ActivatedRoute) {
+    this.layout$ = this.layoutService.layoutObserver$;
   }
 
   createNewSolution() {

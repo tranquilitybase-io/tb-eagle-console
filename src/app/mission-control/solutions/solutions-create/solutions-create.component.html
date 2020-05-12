@@ -3,7 +3,7 @@
   <app-progress [steps]="['Details', 'Workspace']" [current]="screenNum"> </app-progress>
 </header>
 <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
-  <div class="details-container" *ngIf="!onPartTwo">
+  <div class="solution-details-container" *ngIf="!onPartTwo">
     <p>
       <mat-form-field class="small-width" appearance="outline">
         <mat-label>Name</mat-label>
@@ -46,14 +46,14 @@
       </mat-form-field>
     </p>
 
-    <div class="footer-container details-footer-container">
+    <div class="solution-footer-container solution-details-footer-container">
       <button mat-button color="primary" (click)="toggleSolutionPage()">
         Continue <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </div>
   </div>
 
-  <div class="workspace-container" *ngIf="onPartTwo">
+  <div class="solution-workspace-container" *ngIf="onPartTwo">
     <p>
       <mat-form-field appearance="outline">
         <mat-label>CI (Continuous intergration service)</mat-label>
@@ -84,7 +84,7 @@
       </mat-selection-list>
     </p>
 
-    <div class="footer-container">
+    <div class="solution-footer-container">
       <button mat-button color="primary" (click)="toggleSolutionPage()">
         <mat-icon>keyboard_arrow_left</mat-icon> Back to details
       </button>

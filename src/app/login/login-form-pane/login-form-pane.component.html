@@ -1,9 +1,9 @@
-<div class="container">
+<div class="login-container">
   <img class="tb-logo" src="/assets/images/tb_logo.svg" /><br />
   <span id="loginText">Log in</span><br />
 
   <form id="loginForm" (submit)="onSubmit($event)">
-    <div class="form-container">
+    <div class="login-form-container">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input
@@ -45,12 +45,14 @@
       <mat-checkbox>Keep me logged in</mat-checkbox>
     </div>
 
-    <button mat-button type="submit" color="primary" class="login-btn">Log in <mat-icon>keyboard_arrow_right</mat-icon></button>
+    <button mat-button type="submit" color="primary" class="login-btn">
+      Log in <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
   </form>
 
   <div class="login-options-container">
-    <a class="options" href="/login">Forgot email or password?</a><br />
-    <span class="options">Or</span><br />
-    <a class="create-new" href="/login">Create a new account</a>
+    <a class="login-options" href="/login">Forgot email or password?</a><br />
+    <span class="login-options">Or</span><br />
+    <a class="login-create-new" href="/login">Create a new account</a>
   </div>
 </div>

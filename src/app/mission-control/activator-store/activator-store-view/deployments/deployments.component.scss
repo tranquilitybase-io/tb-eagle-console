@@ -1,4 +1,4 @@
-.head-desc {
+.activ-dpl-head-desc {
   background-color: var(--active-grey-background);
   display: flex;
   padding: 0.5rem 0.3rem;
@@ -8,7 +8,7 @@
     margin: 0 1rem;
   }
 
-  .head-title {
+  .activ-dpl-head-title {
     flex: auto;
   }
 }
@@ -30,4 +30,19 @@ tbody tr td {
 .pagination-container {
   display: flex;
   justify-content: flex-end;
+}
+
+// Example
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 20%;
 }

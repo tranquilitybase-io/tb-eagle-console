@@ -1,9 +1,9 @@
 .mat-card {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
   border-radius: 10px;
   padding: 0px;
 
@@ -17,11 +17,16 @@
     text-align: center;
     background-color: var(--active-grey-background);
     border-radius: 10px 10px 0px 0px;
+
+    &.is-deployed {
+      background: #c2e6cd;
+    }
+
     .mat-card-subtitle {
       margin-bottom: 10px;
     }
 
-    .card-actions-bar {
+    .sol-card-actions-bar {
       display: flex;
       justify-content: flex-end;
       .mat-icon-button {
@@ -35,7 +40,7 @@
   .mat-card-content {
     padding: 0.7rem 0.5rem 0.7rem 0.5rem;
 
-    &.spinner {
+    &.sol-spinner {
       display: flex;
       justify-content: center;
       .mat-body {
@@ -45,8 +50,11 @@
       }
     }
 
-    .description-list .mat-list-item {
+    .sol-description-list .mat-list-item {
       height: 2rem;
+      @media (max-width: 1727px), (min-width: 1921px) and (max-width: 2073px) {
+        height: 3rem;
+      }
       .mat-body {
         width: 8rem;
       }
@@ -55,7 +63,8 @@
         padding: 0.2rem 0.5rem;
         min-height: 1.5rem;
         border-radius: 0.2rem;
-        &.sensitivity {
+
+        &.sol-sensitivity {
           color: white;
           background-color: var(--dark-grey-2);
           &.red {
@@ -75,7 +84,13 @@
       padding: 0 0.5rem;
     }
     .mat-caption {
+      max-height: 80px;
       line-height: 1rem;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 5;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
     }
   }
 
