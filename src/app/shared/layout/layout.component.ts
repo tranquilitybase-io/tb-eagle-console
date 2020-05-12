@@ -5,11 +5,11 @@ import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin, selectIsAuthenticated } from '@app/login/login.reducer';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class LayoutComponent implements OnInit {
   userIsAdmin$: Observable<User>;
   isAuthenticated$: Observable<any>;
   constructor(private store: Store<any>) {}
