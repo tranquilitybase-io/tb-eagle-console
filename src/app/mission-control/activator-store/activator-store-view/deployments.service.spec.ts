@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DeploymentsService } from './deployments.service';
 
-describe('DeployementsService', () => {
+describe('DeploymentsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   xit('should be created', () => {

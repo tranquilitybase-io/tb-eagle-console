@@ -4,18 +4,15 @@
 
 .filters-row {
   margin: 1.5rem 2rem 0 2rem;
-
   .filters {
     .mat-button-toggle-group {
       width: 100%;
       max-width: 60em;
     }
-
     .mat-button-toggle {
       width: 25%;
     }
   }
-
   .mat-divider {
     margin-top: 1.5rem;
   }
@@ -28,10 +25,8 @@
   border-radius: 10px;
   font-size: 22px;
   padding: 2rem 0 1rem;
-
   &:disabled {
     background-color: #f2f2f2;
-
     .locked-text {
       font-size: small;
       margin: 0 8px;
@@ -43,7 +38,6 @@
       text-align: left;
     }
   }
-
   .progress {
     position: relative;
     padding: 0.5rem 0.5rem 0 2rem;
@@ -52,34 +46,28 @@
     box-sizing: border-box;
     left: 0;
     align-items: center;
-
     &-spinner-container {
       width: 26px;
       height: 26px;
       position: relative;
       display: block;
       flex-shrink: 0;
-
       .mat-progress-spinner {
         position: absolute;
       }
-
       .value {
         position: absolute;
         top: 8px;
         left: 8px;
         font-size: 9px;
         line-height: 10px;
-
         &.completed {
           left: 6px;
         }
-
         &.one-digit {
           left: 10px;
         }
       }
-
       .lock-icon {
         position: absolute;
         top: 50%;
@@ -88,19 +76,16 @@
         height: 15px;
         width: 15px;
         line-height: 15px;
-
         .mat-icon {
           height: 15px;
           width: 15px;
         }
-
         .material-icons {
           font-size: 15px;
         }
       }
     }
   }
-
   .category {
     &.border {
       position: absolute;
@@ -109,7 +94,6 @@
       border-radius: 10px 0 0 10px;
       height: 100%;
     }
-
     &.title {
       position: absolute;
       top: 10px;
@@ -119,38 +103,31 @@
       padding: 0 9px;
       line-height: 20px;
     }
-
     &.folder-structure {
       border-color: rgb(54, 197, 240);
       color: rgb(54, 197, 240);
     }
-
     &.network-setup {
       border-color: rgb(39, 174, 96);
       color: rgb(39, 174, 96);
     }
-
     &.ad-integration {
       border-color: rgb(224, 30, 90);
       color: rgb(224, 30, 90);
     }
-
     &.logging {
       border-color: rgb(236, 178, 46);
       color: rgb(236, 178, 46);
     }
-
     &.billing-cost-management {
       border-color: rgba(67, 67, 67, 0.7);
       background-color: rgba(67, 67, 67, 0.7);
       color: white;
     }
-
     &.security {
       border-color: rgba(95, 42, 96, 0.7);
       color: rgba(95, 42, 96, 0.7);
     }
-
     &.multizone-setup {
       border-color: rgba(1, 69, 136, 0.7);
       color: rgba(1, 69, 136, 0.7);
