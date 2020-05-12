@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Activator } from '../../activator-store/activator-store.model';
+import { Activator } from '../../../activator-store/activator-store.model';
 //import { Application } from '../../solutions.model';
 import { ActivatedRoute } from '@angular/router';
 

@@ -25,11 +25,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./activator-store-view/activator-store-view.module').then(m => m.ActivatorStoreViewModule)
       },
-      {
-        path: 'details',
-        loadChildren: () =>
-          import('./activator-store-details/activator-store-details.module').then(m => m.ActivatorStoreDetailsModule)
-      },
+      // {
+      //   path: 'details',
+      //   loadChildren: () =>
+      //     import('./activator-store-details/activator-store-details.module').then(m => m.ActivatorStoreDetailsModule)
+      // },
       {
         path: 'create-app',
         loadChildren: () =>

@@ -7,7 +7,6 @@ import { SolutionsViewAppGridCardComponent } from './solutions-view-app-grid/sol
 import { SolutionsViewAppGridComponent } from './solutions-view-app-grid/solutions-view-app-grid.component';
 import { SolutionsViewComponent } from './solutions-view.component';
 import { SolutionsViewSelectComponent } from './solutions-view-select/solutions-view-select.component';
-import { SolutionsViewDetailsOverviewComponent } from './solutions-view-details-overview/solutions-view-details-overview.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -25,14 +24,6 @@ const routes: Routes = [
   {
     path: '',
     component: SolutionsViewComponent
-  },
-  {
-    path: 'application',
-    component: SolutionsViewDetailsOverviewComponent,
-    resolve: {
-      //application: ApplicationByIdResolver
-      activator: ActivatorByIdResolver
-    }
   }
 ];
 
@@ -42,8 +33,7 @@ const routes: Routes = [
     SolutionsViewAppGridComponent,
     SolutionsViewComponent,
     SolutionsViewSelectComponent,
-    SolutionsViewWorkspaceInfoComponent,
-    SolutionsViewDetailsOverviewComponent
+    SolutionsViewWorkspaceInfoComponent
   ],
   imports: [
     CommonModule,
