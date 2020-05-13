@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdministrationComponent } from './administration.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SidebarModule } from '@app/sidebar/sidebar.module';
-import { welcomeComponent } from '@app/welcome/welcome.component';
+import { welcomeComponent } from '@app/administration/landing-zone/welcome/welcome.component';
 
 const routes: Routes = [
   {
