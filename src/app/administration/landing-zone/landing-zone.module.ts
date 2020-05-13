@@ -22,10 +22,6 @@ const routes: Routes = [
     loadChildren: () => import('./landing-zone-home/landing-zone-home.module').then(m => m.LandingZoneHomeModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./welcome/welcome.component').then(m => m.welcomeComponent)
-  },
-  {
     path: 'wan',
     loadChildren: () => import('./landing-zone-wan/landing-zone-wan.module').then(m => m.LandingZoneWanModule)
   }
