@@ -11,6 +11,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
+import { LayoutComponent } from './layout/layout.component';
 import { LoaderComponent } from './loader/loader.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PillsComponent } from './pills/pills.component';
@@ -26,10 +27,16 @@ import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/ap
 import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
 import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creation/solution-under-creation.component';
 
+import { SharedService } from './shared.service';
+import { DeploymentsService } from '@app/mission-control/activator-store/activator-store-view/deployments.service';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-import { SharedService } from './shared.service';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -42,6 +49,7 @@ import { SharedService } from './shared.service';
     GridViewSwitchComponent,
     IconComponent,
     InputComponent,
+    LayoutComponent,
     LoaderComponent,
     PaginationComponent,
     PillsComponent,
@@ -59,7 +67,11 @@ import { SharedService } from './shared.service';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent
   ],
-  providers: [SharedService, { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }],
+  providers: [
+    SharedService,
+    DeploymentsService,
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild([]),
@@ -67,7 +79,12 @@ import { SharedService } from './shared.service';
     FormsModule,
     MatButtonModule,
     MatIconModule,
-    MatSnackBarModule
+    MatListModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatTooltipModule
   ],
   exports: [
     AlertComponent,
@@ -81,6 +98,7 @@ import { SharedService } from './shared.service';
     HttpClientModule,
     IconComponent,
     InputComponent,
+    LayoutComponent,
     LoaderComponent,
     PaginationComponent,
     PillsComponent,

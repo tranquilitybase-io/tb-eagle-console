@@ -1,5 +1,12 @@
-<mat-grid-list [cols]="gridCols$ | async" rowHeight="420px">
+<mat-grid-list
+  [cols]="(layout$ | async).gridCols"
+  [rowHeight]="(layout$ | async).activatorGridItemHeight"
+  gutterSize="24px"
+>
   <mat-grid-tile *ngFor="let activator of activators$ | async" colspan="1" rowspan="1">
-    <app-activator-store-home-grid-card [activator]="activator"></app-activator-store-home-grid-card>
+    <app-activator-store-home-grid-card
+      class="activator-grid-card"
+      [activator]="activator"
+    ></app-activator-store-home-grid-card>
   </mat-grid-tile>
 </mat-grid-list>

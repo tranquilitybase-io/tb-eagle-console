@@ -6,28 +6,16 @@
     <h1><img src="assets/icons/tb_rocket.svg" class="rocket" alt="TB_logo" /> Tranquility Base</h1>
     <span class="menu-spacer"></span>
     <div class="row">
-      <a mat-button [routerLink]="'/search'" matTooltip="Search" aria-label="Search"><mat-icon>search</mat-icon></a>
-      <a mat-button [routerLink]="'/add'" matTooltip="Add" aria-label="Add"><mat-icon>add</mat-icon></a>
+      <button mat-button matTooltip="Search" aria-label="Search"><mat-icon>search</mat-icon></button>
+      <button mat-button matTooltip="Add" aria-label="Add"><mat-icon>add</mat-icon></button>
       <span class="spacer"></span>
-      <button mat-button matTooltip="Your messages" aria-label="Your messages" [matMenuTriggerFor]="beforeMenu">
+      <button mat-button matTooltip="Your messages" aria-label="Your messages">
         <mat-icon>question_answer</mat-icon>
       </button>
-      <mat-menu class="btnMenu" #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>Welcome to TB!</button>
-        <button mat-menu-item>Here's a basic FAQ</button>
-      </mat-menu>
-      <a mat-button [routerLink]="'/share'" matTooltip="Share" aria-label="Share"><mat-icon>share</mat-icon></a>
-      <button
-        mat-button
-        matTooltip="Your notifications"
-        aria-label="Your notifications"
-        [matMenuTriggerFor]="notifyMenu"
-      >
+      <button mat-button matTooltip="Share" aria-label="Share"><mat-icon>share</mat-icon></button>
+      <button mat-button matTooltip="Your notifications" aria-label="Your notifications">
         <mat-icon>notifications</mat-icon>
       </button>
-      <mat-menu class="btnMenu" #notifyMenu="matMenu" xPosition="before">
-        <p mat-menu-item>Clean! No new notifications.</p>
-      </mat-menu>
       <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps"><mat-icon>apps</mat-icon></a>
       <a
         routerlink="/login"
@@ -74,7 +62,7 @@
           <mat-icon>account_tree</mat-icon>
           Landing Zone
         </a>
-        <a mat-list-item> <mat-icon>storage</mat-icon> Datacenter</a>
+        <a mat-list-item> <mat-icon>storage</mat-icon> Shared Services</a>
         <a mat-list-item> <mat-icon>person</mat-icon> Users</a>
         <a mat-list-item> <mat-icon>group</mat-icon> Teams</a>
         <a mat-list-item> <mat-icon>settings</mat-icon> Settings</a>

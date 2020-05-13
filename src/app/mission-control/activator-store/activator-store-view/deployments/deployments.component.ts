@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DeploymentsService } from '../deployments.service';
@@ -8,6 +8,10 @@ import { selectPage, selectLength } from '../view.reducer';
 import { changePage } from '../view.actions';
 import { ActivatedRoute } from '@angular/router';
 
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
 @Component({
   selector: 'app-deployments',
   templateUrl: './deployments.component.html',
@@ -15,19 +19,29 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DeploymentsComponent implements OnInit {
   deployments$: Observable<Application[]>;
-  // page$: Observable<number>;
-  // length$: Observable<number>;
+  displayedColumns: string[] = ['id', 'name', 'env', 'status', 'description'];
+  dataSource: MatTableDataSource<Application>;
 
-  constructor(private deploymentService: DeploymentsService, private route: ActivatedRoute) {}
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  ngOnInit() {
-    const activatorId = this.route.snapshot.queryParams['id'];
-    this.deployments$ = this.deploymentService.getWithQuery({ activatorId });
-    // this.page$ = this.store.pipe(select(selectPage));
-    // this.length$ = this.store.pipe(select(selectLength));
+  constructor(private deploymentService: DeploymentsService, private route: ActivatedRoute) {
+    this.dataSource = new MatTableDataSource([]);
   }
 
-  // onPageChange(page: number) {
-  //   this.store.dispatch(changePage({ page }));
-  // }
+  ngOnInit() {
+    const applications = this.route.snapshot.data['applications'] as Application[];
+    this.dataSource = new MatTableDataSource(applications);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }
