@@ -1,0 +1,83 @@
+.mat-grid-tile.google-session-tile {
+  background-color: var(--active-grey-background);
+}
+
+.mat-chip {
+  font-size: 12px;
+  padding: 0.2rem 0.5rem;
+  min-height: 1.5rem;
+  border-radius: 0.2rem;
+}
+
+.mat-grid-list {
+  margin-bottom: 1rem;
+}
+
+.mat-grid-list .mat-card {
+  height: 80%;
+  width: 95%;
+}
+
+.mat-grid-list .mat-card.google-session-card {
+  position: absolute;
+  height: 40%;
+  width: 90%;
+  background-color: var(--active-grey-background);
+}
+
+.mat-grid-list .mat-card.google-session-card.primary {
+  top: 52px;
+}
+
+.mat-grid-list .mat-card.google-session-card.secondary {
+  top: 366px;
+}
+
+.mat-grid-list .mat-card.on-premise-card .mat-body-1 {
+  width: 16rem;
+}
+
+.mat-grid-list .mat-card .mat-card-content.vpn-card-content .mat-list {
+  background-color: var(--active-grey-background);
+  padding: 1rem 0;
+}
+
+.mat-grid-list .mat-card .mat-card-content.vpn-card-content .mat-list .mat-body-1 {
+  width: 16rem;
+}
+
+.mat-grid-list .mat-card .mat-card-content.google-session-card-content .mat-h4 {
+  margin: 8px 0 8px;
+}
+
+.mat-grid-list .mat-card .on-premise-card-content .table-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 46px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: var(--active-grey-background);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.mat-grid-list .mat-card .on-premise-card-content .table-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 46px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mat-grid-list .mat-card .on-premise-card-content .col {
+  width: 35%;
+}
+
+.mat-grid-list .mat-card .on-premise-card-content .col:first-child {
+  width: 25%;
+}
+/*# sourceMappingURL=landing-zone-wan-forms-vpn-review-tab.component.css.map */

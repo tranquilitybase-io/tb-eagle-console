@@ -1,0 +1,142 @@
+#loginText {
+  font-size: 28px;
+  font-weight: 1000;
+  text-align: center;
+  font-family: SF Compact Display;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 16px;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.login-failure {
+  font-family: SF Compact Display;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: #e85d4a;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+#loginForm {
+  width: 100%;
+}
+
+.login-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.login-form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-flow: column;
+      flex-flow: column;
+}
+
+.login-options-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-top: 3rem;
+}
+
+.login-options-container .login-options {
+  color: grey;
+  font-family: SF Compact Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.login-options-container .login-create-new {
+  font-family: SF Compact Display;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  /* or 100% */
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  /* TBP */
+  color: var(--primary-color);
+}
+
+.tb-logo {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+}
+
+.login-btn {
+  float: right;
+  font-size: 1rem;
+}
+
+.mat-form-field {
+  margin-bottom: 0.5rem;
+}
+/*# sourceMappingURL=login-form-pane.component.css.map */

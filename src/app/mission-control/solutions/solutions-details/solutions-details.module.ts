@@ -9,7 +9,7 @@ import { SolutionsDetailsVersionHistoryComponent } from './solutions-details-ver
 import { SolutionsDetailsUsersComponent } from './solutions-details-users/solutions-details-users.component';
 import { SolutionsDetailsBillingComponent } from './solutions-details-billing/solutions-details-billing.component';
 
-import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
+import { ApplicationsByActivatorIdResolver } from '@app/shared/resolvers/applications-by-activator-id.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -17,13 +17,15 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SolutionsDetailsOverviewComponent } from './solutions-details-overview/solutions-details-overview.component';
+import { ApplicationByIdResolver } from '@app/shared/resolvers/application-by-id.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: SolutionsDetailsComponent,
     resolve: {
-      activator: ActivatorByIdResolver
+      application: ApplicationByIdResolver
     }
   }
 ];
@@ -34,7 +36,8 @@ const routes: Routes = [
     SolutionsDetailsAuditHistoryComponent,
     SolutionsDetailsVersionHistoryComponent,
     SolutionsDetailsUsersComponent,
-    SolutionsDetailsBillingComponent
+    SolutionsDetailsBillingComponent,
+    SolutionsDetailsOverviewComponent
   ],
   imports: [
     CommonModule,

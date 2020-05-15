@@ -1,0 +1,108 @@
+:host {
+  --line: 1px solid var(--grey);
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0.5rem 0;
+}
+
+.label-text {
+  color: var(--dark-grey);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.label-text.required::after {
+  position: relative;
+  top: -0.3em;
+  content: '*';
+  color: var(--red);
+  font-size: 0.8em;
+}
+
+.selected {
+  border: var(--line);
+  padding: 0.6rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.selected.placeholder {
+  background: rgba(249, 249, 249, 0.5);
+  color: #c4c4c4;
+}
+
+.selected:not(.open) {
+  border-radius: var(--radius);
+}
+
+.selected.open {
+  border-bottom: none;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.selected.open::after {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+
+.selected::after {
+  content: '';
+  display: block;
+  position: relative;
+  top: -0.1rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-bottom: 2px solid var(--black);
+  border-right: 2px solid var(--black);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.values {
+  display: none;
+  z-index: 100;
+}
+
+.values.open {
+  display: block;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  border-left: var(--line);
+  border-right: var(--line);
+  border-bottom: var(--line);
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  background-color: var(--white);
+}
+
+.value {
+  padding: 0.6rem 1rem;
+}
+
+.value:hover {
+  background-color: var(--active-grey-background);
+}
+
+.value:hover:last-child {
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+/*# sourceMappingURL=dropdown.component.css.map */

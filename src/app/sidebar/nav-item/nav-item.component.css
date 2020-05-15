@@ -1,0 +1,23 @@
+.nav-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5rem;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.nav-item.active {
+  background-color: var(--active-grey-background);
+  border-radius: var(--radius);
+  fill-opacity: 0.5;
+}
+
+.nav-item.active .name {
+  font-weight: 600;
+}
+
+.name {
+  padding-left: 1rem;
+}
+/*# sourceMappingURL=nav-item.component.css.map */

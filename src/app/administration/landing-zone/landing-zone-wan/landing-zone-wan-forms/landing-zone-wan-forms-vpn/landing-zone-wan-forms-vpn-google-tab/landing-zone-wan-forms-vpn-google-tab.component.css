@@ -1,0 +1,21 @@
+.side-by-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.side-by-side .mat-card {
+  width: 45%;
+}
+
+.side-by-side p {
+  width: 100%;
+}
+
+.side-by-side p .mat-form-field {
+  width: 100%;
+}
+/*# sourceMappingURL=landing-zone-wan-forms-vpn-google-tab.component.css.map */

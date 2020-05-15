@@ -1,0 +1,18 @@
+p {
+  width: 100%;
+}
+
+p .mat-form-field {
+  width: 100%;
+}
+
+p .mat-form-field.small-width {
+  width: 30%;
+  margin-right: 2rem;
+}
+
+p .mat-form-field.half-width {
+  width: 45%;
+  margin-right: 2rem;
+}
+/*# sourceMappingURL=landing-zone-wan-forms-vpn-tab.component.css.map */

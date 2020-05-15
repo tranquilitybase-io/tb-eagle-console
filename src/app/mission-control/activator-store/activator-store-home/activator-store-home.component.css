@@ -1,0 +1,41 @@
+.controls-activator-home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1rem 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--grey);
+}
+
+.controls-activator-home app-pills {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+
+.controls-activator-home .switches-activator-home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: var(--active-grey-background);
+  padding: 0.2rem;
+  border-radius: var(--radius);
+}
+
+.controls-activator-home .switches-activator-home button {
+  margin-right: 5px;
+}
+
+.controls-activator-home .switches-activator-home button:not(.mat-primary) {
+  background: none;
+}
+
+.controls-activator-home .switches-activator-home button .count {
+  color: var(--grey);
+}
+
+.grid-container {
+  display: block;
+  padding: 0 1.5rem;
+}
+/*# sourceMappingURL=activator-store-home.component.css.map */

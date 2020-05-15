@@ -1,0 +1,12 @@
+.mat-dialog-title {
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+/*# sourceMappingURL=activator-store-dialog-missing-solutions.component.css.map */

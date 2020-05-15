@@ -1,0 +1,23 @@
+:host {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0.2rem 0.5rem 0.1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.option.active {
+  background-color: var(--primary-color);
+}
+/*# sourceMappingURL=grid-view-switch.component.css.map */

@@ -13,7 +13,6 @@ import { ContinuousIntegrationResolver } from '@app/shared/resolvers/continuous-
 import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver';
 import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
 import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
-import { SolutionsDetailsComponent } from './solutions-details/solutions-details.component';
 import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
 
 const routes: Routes = [
@@ -52,10 +51,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'application',
-    component: SolutionsDetailsComponent,
+    path: 'view/application',
+    loadChildren: () => import('./solutions-details/solutions-details.module').then(m => m.SolutionsDetailsModule),
     resolve: {
-      //application: ApplicationByIdResolver
+      // application: ApplicationByIdResolver
       activator: ActivatorByIdResolver
     }
   }

@@ -1,0 +1,24 @@
+:host {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+app-search-pill {
+  margin-right: 0.5rem;
+}
+
+.text-pill {
+  text-decoration: underline;
+  color: var(--blackish);
+  font-size: 0.875rem;
+}
+
+.icon {
+  padding: 0.3rem 0.5rem 0;
+  margin: 0.2rem 0;
+}
+/*# sourceMappingURL=pills.component.css.map */

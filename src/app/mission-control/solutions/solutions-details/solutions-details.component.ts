@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Activator } from '../../activator-store/activator-store.model';
 import { SolutionsService } from '../solutions.service';
 import { ActivatedRoute } from '@angular/router';
+import { Application } from '../solutions.model';
 
 @Component({
   selector: 'app-solutions-details',
@@ -9,11 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./solutions-details.component.scss']
 })
 export class SolutionsDetailsComponent implements OnInit {
-  activator: Activator;
+  application: Application;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.activator = this.route.snapshot.data['activator'] as Activator;
+    this.application = this.route.snapshot.data['application'] as Application;
+  }
+
+  get activator() {
+    return this.application.activator;
   }
 }

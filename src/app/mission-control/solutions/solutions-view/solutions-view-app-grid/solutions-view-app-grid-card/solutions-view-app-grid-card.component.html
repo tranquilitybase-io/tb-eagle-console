@@ -9,9 +9,9 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <a mat-menu-item routerLink="/mission-control/solution/details" [queryParams]="{ id: app.activator.id }"
+          <!-- <a mat-menu-item routerLink="/mission-control/solution/details" [queryParams]="{ id: app.activator.id }"
             >Details</a
-          >
+          > -->
         </mat-menu>
       </div>
       {{ app.name }}
@@ -75,11 +75,7 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
-    <a
-      mat-stroked-button
-      routerLink="/mission-control/solutions/view/application"
-      [queryParams]="{ id: app.activator.id }"
-    >
+    <a mat-stroked-button routerLink="/mission-control/solutions/view/application" [queryParams]="{ id: app.id }">
       View
     </a>
     <button

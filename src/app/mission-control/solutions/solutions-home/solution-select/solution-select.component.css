@@ -1,0 +1,15 @@
+:host {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1rem 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--grey);
+}
+
+app-pills {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+/*# sourceMappingURL=solution-select.component.css.map */

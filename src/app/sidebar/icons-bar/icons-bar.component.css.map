@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,KAAK,EAAE,YAAY;EACnB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,QAAQ;CAClB;;AAED,AAAA,IAAI,CAAC;EACH,MAAM,EAAE,kBAAkB;CAC3B;;AAED,AAAA,QAAQ,CAAC;EACP,MAAM,EAAE,QAAQ;CACjB",
+    "sources": [
+        "icons-bar.component.scss"
+    ],
+    "names": [],
+    "file": "icons-bar.component.css"
+}

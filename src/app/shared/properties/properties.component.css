@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  padding: 1rem 0.5rem;
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+
+.detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0.4rem 0;
+}
+
+.detail.vertical {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.detail.vertical .detail-title {
+  width: 100%;
+}
+
+.detail-title {
+  width: 8rem;
+}
+
+.detail-head {
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+/*# sourceMappingURL=properties.component.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,mBAAmB,CAAC,gBAAgB;EAC3D,UAAU,EAAE,KAAK;CAClB",
+    "sources": [
+        "mission-control.component.scss"
+    ],
+    "names": [],
+    "file": "mission-control.component.css"
+}

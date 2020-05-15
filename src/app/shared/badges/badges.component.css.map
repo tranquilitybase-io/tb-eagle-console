@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,IAAI;CACd;;AAED,AAAA,MAAM,CAAC;EACL,YAAY,EAAE,MAAM;CACrB",
+    "sources": [
+        "badges.component.scss"
+    ],
+    "names": [],
+    "file": "badges.component.css"
+}

@@ -1,0 +1,22 @@
+:host {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+  border: 0.5px solid var(--transparent-white);
+  border-radius: 50%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+a {
+  color: var(--white);
+  text-decoration: none;
+}
+/*# sourceMappingURL=user.component.css.map */

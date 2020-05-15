@@ -1,0 +1,10 @@
+:host {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.badge {
+  margin-right: 0.2rem;
+}
+/*# sourceMappingURL=badges.component.css.map */

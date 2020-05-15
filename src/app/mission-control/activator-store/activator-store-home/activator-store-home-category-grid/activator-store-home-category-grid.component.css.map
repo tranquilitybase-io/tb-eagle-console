@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACf,WAAW,EAAE,sDAAsD;EACnE,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,aAAa,EAAE,IAAI;EACnB,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,CAAC;CAUX;;AAhBD,AAQI,gBARY,CAOd,SAAS,AACN,OAAO,CAAC;EACP,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,CAAC;EACN,WAAW,EAAE,IAAI,CAAC,KAAK,CAAC,wBAAwB;EAChD,aAAa,EAAE,aAAa;EAC5B,MAAM,EAAE,IAAI;CACb",
+    "sources": [
+        "activator-store-home-category-grid.component.scss"
+    ],
+    "names": [],
+    "file": "activator-store-home-category-grid.component.css"
+}

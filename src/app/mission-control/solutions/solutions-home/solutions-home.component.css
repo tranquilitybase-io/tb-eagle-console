@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  font-family: 'SF Pro Display';
+  padding-top: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  background-color: var(--whitish);
+}
+
+header .title {
+  border-left: 1px solid var(--grey);
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+app-breadcrumbs {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+/*# sourceMappingURL=solutions-home.component.css.map */

@@ -1,0 +1,8 @@
+:host {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: var(--sidebarWidth) var(--mainWidth);
+      grid-template-columns: var(--sidebarWidth) var(--mainWidth);
+  min-height: 100vh;
+}
+/*# sourceMappingURL=mission-control.component.css.map */
