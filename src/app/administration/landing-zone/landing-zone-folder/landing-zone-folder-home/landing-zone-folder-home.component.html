@@ -4,9 +4,158 @@
   </div>
   <div>
     <span class="vertical-divider"></span>
-    <span class="title">Folder Structure</span>
+    <span class="title">Environment</span>
     <span class="vertical-divider"></span>
     <span class="subtitle">Landing Zone</span>
   </div>
 </header>
-<main>Main content</main>
+<main>
+  <mat-accordion>
+    <mat-expansion-panel (closed)="cancelFolderStructure()" (opened)="folderStructureTreeControl.expandAll()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Folder Structure
+        </mat-panel-title>
+        <mat-panel-description>
+          Define your levels to the applications following the GCP best practice
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-tree [dataSource]="folderStructureDataSource" [treeControl]="folderStructureTreeControl">
+        <!-- This is the tree node template for leaf nodes -->
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+          <li class="mat-tree-node">
+            <!-- use a disabled button to provide padding for tree leaf -->
+            <button mat-icon-button disabled></button>
+            <mat-checkbox
+              [checked]="node.isEnabled"
+              [disabled]="!isFolderStructureEdit"
+              (change)="toggleFolderStructureItem(node)"
+            >
+              {{ node.name }}
+            </mat-checkbox>
+          </li>
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-nested-tree-node *matTreeNodeDef="let node; when: folderStructureHasChild">
+          <li>
+            <div class="mat-tree-node">
+              <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{ folderStructureTreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                </mat-icon>
+              </button>
+              <mat-checkbox
+                [checked]="node.isEnabled"
+                [disabled]="!isFolderStructureEdit"
+                (change)="toggleFolderStructureItem(node)"
+              >
+                {{ node.name }}
+              </mat-checkbox>
+            </div>
+            <ul [class.invisible]="!folderStructureTreeControl.isExpanded(node)">
+              <ng-container matTreeNodeOutlet></ng-container>
+            </ul>
+          </li>
+        </mat-nested-tree-node>
+      </mat-tree>
+
+      <mat-action-row>
+        <button *ngIf="!isFolderStructureEdit" mat-button color="primary" (click)="setFolderStructureEdit()">
+          Edit
+        </button>
+        <button *ngIf="isFolderStructureEdit" mat-button (click)="cancelFolderStructure()">
+          Cancel
+        </button>
+        <button *ngIf="isFolderStructureEdit" mat-button color="primary" (click)="saveFolderStructure()">
+          Save
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (closed)="cancelEnvironmentEdit()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Available Environments
+        </mat-panel-title>
+        <mat-panel-description>
+          Define your list of available environments to deploy applications on
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <mat-chip-list #chipList aria-label="Available Environments">
+          <mat-chip
+            *ngFor="let item of environmentList"
+            color="accent"
+            selectable="true"
+            [removable]="isEnvironmentEdit"
+            (removed)="removeEnvironment(item)"
+          >
+            {{ item }}
+            <mat-icon matChipRemove *ngIf="isEnvironmentEdit">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="List of Available Environments"
+            [readonly]="!isEnvironmentEdit"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true"
+            (matChipInputTokenEnd)="addEnvironment($event)"
+          />
+        </mat-chip-list>
+      </mat-form-field>
+
+      <mat-action-row>
+        <button *ngIf="!isEnvironmentEdit" mat-button color="primary" (click)="setEnvironmentEdit()">
+          Edit
+        </button>
+        <button *ngIf="isEnvironmentEdit" mat-button (click)="cancelEnvironmentEdit()">
+          Cancel
+        </button>
+        <button *ngIf="isEnvironmentEdit" mat-button color="primary" (click)="saveEnvironmentList()">
+          Save
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <form [formGroup]="lanVPCForm" (ngSubmit)="onLanVPCSubmit(lanVPCForm.value)">
+      <mat-expansion-panel expanded (closed)="onLanVPCCancel()">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            LAN VPC
+          </mat-panel-title>
+          <mat-panel-description>
+            Define your Virtual Private Cloud following the GCP best practice
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+          <mat-label>Environments connected to Development VPC</mat-label>
+          <mat-select [disabled]="!isLanVPCEdit" formControlName="lanVPC_dev" multiple>
+            <mat-option *ngFor="let item of environmentList$ | async" [value]="item">{{ item }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Environments connected to Production VPC</mat-label>
+          <mat-select [disabled]="!isLanVPCEdit" formControlName="lanVPC_prod" multiple>
+            <mat-option *ngFor="let item of environmentList$ | async" [value]="item">{{ item }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-action-row>
+          <button *ngIf="!isLanVPCEdit" mat-button type="button" color="primary" (click)="setLanVPCEdit()">
+            Edit
+          </button>
+          <button *ngIf="isLanVPCEdit" mat-button type="button" (click)="onLanVPCCancel()">
+            Cancel
+          </button>
+          <button *ngIf="isLanVPCEdit" mat-button color="primary">
+            Save
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </form>
+  </mat-accordion>
+</main>

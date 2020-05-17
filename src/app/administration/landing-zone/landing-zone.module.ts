@@ -26,7 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./landing-zone-wan/landing-zone-wan.module').then(m => m.LandingZoneWanModule)
   },
   {
-    path: 'folder',
+    path: 'environment',
     loadChildren: () => import('./landing-zone-folder/landing-zone-folder.module').then(m => m.LandingZoneFolderModule)
   }
 ];

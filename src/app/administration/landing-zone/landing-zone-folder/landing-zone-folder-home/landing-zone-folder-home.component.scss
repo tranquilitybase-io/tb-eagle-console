@@ -4,10 +4,6 @@
   min-height: 100vh;
 }
 
-main {
-  padding: 1.5rem 2rem 0 2rem;
-}
-
 header {
   padding: 0.3rem 0.5rem;
   background-color: var(--active-grey-background);
@@ -23,6 +19,32 @@ header {
     &.vertical-divider {
       border-left: 1px solid var(--grey);
       margin: 0.5rem;
+    }
+  }
+}
+
+main {
+  padding: 1.5rem 2rem 0 2rem;
+
+  .mat-expansion-panel-header-title,
+  .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .mat-tree {
+    ul,
+    li {
+      margin-top: 0;
+      margin-bottom: 0;
+      list-style-type: none;
+
+      &.invisible {
+        display: none;
+      }
     }
   }
 }
