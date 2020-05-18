@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,CAAC,CAAC;EACA,KAAK,EAAE,IAAI;CAaZ;;AAdD,AAEE,CAFD,CAEC,eAAe,CAAC;EACd,KAAK,EAAE,IAAI;CAUZ;;AAbH,AAKI,CALH,CAEC,eAAe,AAGZ,YAAY,CAAC;EACZ,KAAK,EAAE,GAAG;EACV,YAAY,EAAE,IAAI;CACnB;;AARL,AASI,CATH,CAEC,eAAe,AAOZ,WAAW,CAAC;EACX,KAAK,EAAE,GAAG;EACV,YAAY,EAAE,IAAI;CACnB",
-    "sources": [
-        "landing-zone-wan-forms-vpn-tab.component.scss"
-    ],
-    "names": [],
-    "file": "landing-zone-wan-forms-vpn-tab.component.css"
-}

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,IAAI;EACb,OAAO,EAAE,SAAS;EAClB,gBAAgB,EAAE,6BAA6B;EAC/C,WAAW,EAAE,MAAM;CACpB;;AAED,AAAA,KAAK,CAAC;EACJ,IAAI,EAAE,IAAI;EACV,SAAS,EAAE,IAAI;CAChB;;AAED,AAAA,QAAQ,CAAC;EACP,WAAW,EAAE,OAAO;EACpB,YAAY,EAAE,IAAI;CACnB",
-    "sources": [
-        "alert.component.scss"
-    ],
-    "names": [],
-    "file": "alert.component.css"
-}
