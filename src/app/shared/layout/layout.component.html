@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="isExpanded = !isExpanded" (click)="sidenav.toggle()">
+    <button mat-icon-button (click)="isExpanded = !isExpanded">
       <mat-icon>menu</mat-icon>
     </button>
     <h1><img src="assets/icons/tb_rocket.svg" class="rocket" alt="TB_logo" /> Tranquility Base</h1>
@@ -32,7 +32,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container autosize>
-  <mat-sidenav #sidenav mode="side" [opened]="false">
+  <mat-sidenav mode="side" [opened]="isExpanded">
     <mat-nav-list>
       <div>
         <div class="section-header" *ngIf="isExpanded">Mission control</div>

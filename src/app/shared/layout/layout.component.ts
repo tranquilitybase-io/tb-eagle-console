@@ -10,7 +10,7 @@ import { selectUserIsAdmin } from '@app/login/login.reducer';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  isExpanded = false;
+  isExpanded = true;
   userIsAdmin$: Observable<User>;
   constructor(private store: Store<any>) {}
 
