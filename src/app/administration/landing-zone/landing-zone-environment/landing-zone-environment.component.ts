@@ -14,11 +14,11 @@ interface FolderStructureNode {
 }
 
 @Component({
-  selector: 'app-landing-zone-folder-home',
-  templateUrl: './landing-zone-folder-home.component.html',
-  styleUrls: ['./landing-zone-folder-home.component.scss']
+  selector: 'app-landing-zone-environment',
+  templateUrl: './landing-zone-environment.component.html',
+  styleUrls: ['./landing-zone-environment.component.scss']
 })
-export class LandingZoneFolderHomeComponent implements OnInit {
+export class LandingZoneEnvironmentComponent implements OnInit {
   lanVPCForm: FormGroup;
   environmentList: String[];
   isFolderStructureEdit = false;

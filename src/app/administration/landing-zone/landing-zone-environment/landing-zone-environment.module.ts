@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LandingZoneFolderHomeComponent } from './landing-zone-folder-home.component';
+import { LandingZoneEnvironmentComponent } from './landing-zone-environment.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -18,12 +18,12 @@ import { MatTreeModule } from '@angular/material/tree';
 const routes: Routes = [
   {
     path: '',
-    component: LandingZoneFolderHomeComponent
+    component: LandingZoneEnvironmentComponent
   }
 ];
 
 @NgModule({
-  declarations: [LandingZoneFolderHomeComponent],
+  declarations: [LandingZoneEnvironmentComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -41,4 +41,4 @@ const routes: Routes = [
     MatTreeModule
   ]
 })
-export class LandingZoneFolderHomeModule {}
+export class LandingZoneEnvironmentModule {}

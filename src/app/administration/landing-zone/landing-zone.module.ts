@@ -27,7 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'environment',
-    loadChildren: () => import('./landing-zone-folder/landing-zone-folder.module').then(m => m.LandingZoneFolderModule)
+    loadChildren: () =>
+      import('./landing-zone-environment/landing-zone-environment.module').then(m => m.LandingZoneEnvironmentModule)
   }
 ];
 
