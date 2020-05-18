@@ -5,6 +5,7 @@
 .mat-sidenav-container {
   position: fixed;
   width: 100%;
+  background-color: #fff;
 }
 
 .mat-sidenav {
@@ -12,7 +13,6 @@
   height: 100%;
   width: var(--drawerWidth);
   background-color: var(--white);
-  box-shadow: 0 0.2rem 3px var(--grey);
   border-bottom-right-radius: var(--radius);
   position: fixed;
   top: 4rem;
@@ -22,13 +22,15 @@
   z-index: 20;
   padding: 0 1rem;
 }
-.smallDrawer {
-  width: 5.5rem;
+.mat-sidenav:not(.mat-drawer-opened) {
+  transform: translate3d(0, 0, 0) !important;
+  visibility: visible !important;
+  width: 5.5rem !important;
+  overflow: hidden;
 }
-.miniDrawerBr {
-  margin: 10px 0 10px 0;
+.mainContainer {
+  margin-left: 5.5rem !important;
 }
-
 .section-header {
   color: var(--dark-grey);
   margin-top: 1rem;
@@ -113,4 +115,13 @@ a {
 }
 h1:hover {
   filter: drop-shadow(0px 0px 2px var(--dark-grey));
+}
+.mat-sidenav .mat-icon {
+  text-shadow: 1px 1px 1px #c4c4c4;
+}
+.smallDrawer {
+  width: 5.5rem;
+}
+.miniDrawerBr {
+  margin: 10px 0 10px 0;
 }
