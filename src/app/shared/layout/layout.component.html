@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="isExpanded = !isExpanded" (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1 id="TBTitle"><img src="assets/icons/tb_rocket.svg" class="rocket" alt="TB_logo" /> Tranquility Base</h1>
+    <h1><img src="assets/icons/tb_rocket.svg" class="rocket" alt="TB_logo" /> Tranquility Base</h1>
     <span class="menu-spacer"></span>
     <div class="row">
       <button mat-button matTooltip="Search" aria-label="Search"><mat-icon>search</mat-icon></button>
@@ -32,7 +32,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container autosize>
-  <mat-sidenav #sidenav mode="side" [opened]="false" [ngClass]="isExpanded == false ? 'smallDrawer' : null">
+  <mat-sidenav #sidenav mode="side" [opened]="false">
     <mat-nav-list>
       <div>
         <div class="section-header" *ngIf="isExpanded">Mission control</div>
@@ -87,8 +87,8 @@
       </div>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content style="margin-left: 5.5rem;">
-    <div [ngClass]="isExpanded == false ? 'mainContainer' : null" style="height: 89vh">
+  <mat-sidenav-content>
+    <div [ngClass]="isExpanded == false ? 'smallDrawer' : null" style="height: 89vh">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

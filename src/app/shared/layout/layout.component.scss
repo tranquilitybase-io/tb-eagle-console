@@ -25,11 +25,12 @@
 .mat-sidenav:not(.mat-drawer-opened) {
   transform: translate3d(0, 0, 0) !important;
   visibility: visible !important;
-  width: 5.5rem !important;
+  width: 4.5rem !important;
   overflow: hidden;
+  padding: 0 0.5rem;
 }
 .mainContainer {
-  margin-left: 5.5rem !important;
+  margin-left: 4.5rem !important;
 }
 .section-header {
   color: var(--dark-grey);
@@ -98,10 +99,12 @@ a {
 .rocket {
   display: inline;
   filter: drop-shadow(1px 1px 0 #3d1b3d);
+  margin-left: 20px;
 }
 
 .mat-toolbar-row {
   box-shadow: inset 0 -1px 1px #3d1b3d;
+  width: 100%;
 }
 
 .mat-toolbar {
@@ -119,9 +122,12 @@ h1:hover {
 .mat-sidenav .mat-icon {
   text-shadow: 1px 1px 1px #c4c4c4;
 }
-.smallDrawer {
-  width: 5.5rem;
-}
 .miniDrawerBr {
   margin: 10px 0 10px 0;
+}
+.smallDrawer {
+  margin-left: 4.5rem;
+  transition-property: margin-left;
+  transition-duration: 310ms;
+  transition-delay: 60ms;
 }
