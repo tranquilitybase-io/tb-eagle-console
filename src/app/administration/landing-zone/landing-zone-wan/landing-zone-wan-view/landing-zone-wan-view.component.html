@@ -1,5 +1,5 @@
 <mat-grid-list cols="5" rowHeight="700px" gutterSize="10px">
-  <mat-grid-tile [colspan]="3" [rowspan]="1">
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [formGroup]="vpnFormGroup">
     <mat-grid-tile-header>{{ vpnProjectName }}</mat-grid-tile-header>
     <mat-card>
       <mat-card-header>
@@ -65,7 +65,7 @@
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="2" [rowspan]="1" class="google-session-tile">
+  <mat-grid-tile [colspan]="2" [rowspan]="1" class="google-session-tile" [formGroup]="googleSessionFormGroup">
     <mat-grid-tile-header>Google session</mat-grid-tile-header>
     <mat-card class="google-session-card primary">
       <mat-card-header>
@@ -125,7 +125,7 @@
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="3" [rowspan]="1">
+  <mat-grid-tile [colspan]="3" [rowspan]="1" [formGroup]="onPremiseSessionFormGroup">
     <mat-grid-tile-header>On Premise Session</mat-grid-tile-header>
 
     <mat-card class="on-premise-card">
