@@ -63,6 +63,14 @@ export class LandingZoneWanViewComponent implements OnInit {
     });
   }
 
+  get vpnProjectName(): string {
+    return this.vpnFormGroup.get('projectName').value;
+  }
+
+  get vpnDescription(): string {
+    return this.vpnFormGroup.get('description').value;
+  }
+
   cancel() {
     this.router.navigateByUrl(`/administration/landing-zone/`);
   }
