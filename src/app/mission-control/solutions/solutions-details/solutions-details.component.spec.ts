@@ -1,36 +1,37 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SolutionDetailsComponent } from './solutions-details.component';
+import { SolutionsDetailsAuditHistoryComponent } from './solutions-details-audit-history/solutions-details-audit-history.component';
+import { SolutionsDetailsBillingComponent } from './solutions-details-billing/solutions-details-billing.component';
+import { SolutionsDetailsComponent } from './solutions-details.component';
+import { SolutionsDetailsUsersComponent } from './solutions-details-users/solutions-details-users.component';
+import { SolutionsDetailsVersionHistoryComponent } from './solutions-details-version-history/solutions-details-version-history.component';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
-import { SolutionDetailsAuditHistoryComponent } from './solutions-details-audit-history/solutions-details-audit-history.component';
-import { SolutionDetailsVersionHistoryComponent } from './solutions-details-version-history/solutions-details-version-history.component';
-import { SolutionDetailsUsersComponent } from './solutions-details-users/solutions-details-users.component';
-import { SolutionDetailsBillingComponent } from './solutions-details-billing/solutions-details-billing.component';
 
-describe('SolutionDetailsComponent', () => {
-  let component: SolutionDetailsComponent;
-  let fixture: ComponentFixture<SolutionDetailsComponent>;
+describe('SolutionsDetailsComponent', () => {
+  let component: SolutionsDetailsComponent;
+  let fixture: ComponentFixture<SolutionsDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        SolutionDetailsComponent,
-        SolutionDetailsAuditHistoryComponent,
-        SolutionDetailsVersionHistoryComponent,
-        SolutionDetailsUsersComponent,
-        SolutionDetailsBillingComponent
+        SolutionsDetailsAuditHistoryComponent,
+        SolutionsDetailsBillingComponent,
+        SolutionsDetailsComponent,
+        SolutionsDetailsUsersComponent,
+        SolutionsDetailsVersionHistoryComponent
       ],
       imports: [MatButtonModule, MatCardModule, MatChipsModule, MatGridListModule, MatListModule, MatTabsModule]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SolutionDetailsComponent);
+    fixture = TestBed.createComponent(SolutionsDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

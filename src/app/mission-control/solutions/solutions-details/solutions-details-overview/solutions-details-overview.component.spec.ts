@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SolutionsVieweDetailsOverviewComponent } from '.solutions-view-details-overview.component';
+import { SolutionsDetailsOverviewComponent } from './solutions-details-overview.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -9,18 +9,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 
 describe('SolutionsViewDetailsOverviewComponent', () => {
-  let component: SolutionsVieweDetailsOverviewComponent;
-  let fixture: ComponentFixture<SolutionsVieweDetailsOverviewComponent>;
+  let component: SolutionsDetailsOverviewComponent;
+  let fixture: ComponentFixture<SolutionsDetailsOverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SolutionsVieweDetailsOverviewComponent],
+      declarations: [SolutionsDetailsOverviewComponent],
       imports: [MatButtonModule, MatCardModule, MatChipsModule, MatGridListModule, MatListModule, MatTabsModule]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SolutionsVieweDetailsOverviewComponent);
+    fixture = TestBed.createComponent(SolutionsDetailsOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
