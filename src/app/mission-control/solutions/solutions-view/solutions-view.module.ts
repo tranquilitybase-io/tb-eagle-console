@@ -17,8 +17,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SolutionsViewWorkspaceInfoComponent } from './solutions-view-workspace-info/solutions-view-workspace-info.component';
 import { MatMenuModule } from '@angular/material/menu';
-//import { ApplicationByIdResolver} from '@app/shared/resolvers/application-by-id.resolver';
-import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
 
 const routes: Routes = [
   {
