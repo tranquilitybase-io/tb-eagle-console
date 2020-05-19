@@ -15,6 +15,7 @@ export class LandingZoneWanService extends EntityCollectionServiceBase<WanConfig
   private BASE_URL = `${globalThis.location.origin}/api`;
 
   createWanConfiguration(wanConfiguration: WanConfiguration): void {
+    debugger;
     const url = `${this.BASE_URL}/landingzonewan/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(url, wanConfiguration, { headers }).subscribe(
@@ -32,22 +33,23 @@ export class LandingZoneWanService extends EntityCollectionServiceBase<WanConfig
     console.log(wanConfiguration + ' posted');
   }
 
-  displayWanConfiguration(view: WanConfiguration): void {
-    // landingzonewands ??? <- swagger
-    const url = `${this.BASE_URL}/landingzonewan/${view.id}`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(url, { headers }).subscribe(
-      (val: WanConfiguration) => {
-        console.log('GET call successful value returned in body', val);
-      },
-      response => {
-        console.log('GET call in error', response);
-      },
-      () => {
-        console.log('The GET observable is now completed.');
-        this.getAll();
-      }
-    );
-    console.log(view + ' get');
-  }
+  // displayWanConfiguration(view: WanConfiguration): void {
+  //   // landingzonewands ??? <- swagger
+  //   debugger
+  //   const url = `${this.BASE_URL}/landingzonewan/${view.id}`;
+  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(url, { headers }).subscribe(
+  //     (val: WanConfiguration) => {
+  //       console.log('GET call successful value returned in body', val);
+  //     },
+  //     response => {
+  //       console.log('GET call in error', response);
+  //     },
+  //     () => {
+  //       console.log('The GET observable is now completed.');
+  //       this.getAll();
+  //     }
+  //   );
+  //   console.log(view + ' get');
+  // }
 }

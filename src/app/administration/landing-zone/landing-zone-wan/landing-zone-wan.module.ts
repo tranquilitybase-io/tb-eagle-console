@@ -34,10 +34,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./landing-zone-wan-view/landing-zone-wan-view.module').then(m => m.LandingZoneWanViewModule),
     resolve: {
-      subnetModeList: SubnetModeResolver,
-      bgpRoutingModeList: BgpRoutingModeResolver,
-      vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
-      view: LandingViewResolver
+      // subnetModeList: SubnetModeResolver,
+      // bgpRoutingModeList: BgpRoutingModeResolver,
+      // vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
+      wanVpn: LandingViewResolver
     }
   }
 ];

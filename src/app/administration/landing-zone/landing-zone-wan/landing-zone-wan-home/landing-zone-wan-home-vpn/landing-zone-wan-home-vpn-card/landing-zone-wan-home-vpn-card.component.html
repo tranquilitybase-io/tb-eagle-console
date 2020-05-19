@@ -9,7 +9,7 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <a mat-menu-item routerLink="view">View</a>
+          <a mat-menu-item routerLink="view" [queryParams]="{ id: wanVpn.vpn.id }">View</a>
         </mat-menu>
       </div>
       {{ wanVpn.vpn.projectName }}
