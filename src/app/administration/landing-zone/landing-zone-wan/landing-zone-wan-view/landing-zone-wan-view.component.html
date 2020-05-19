@@ -1,13 +1,13 @@
 <mat-grid-list cols="5" rowHeight="700px" gutterSize="10px">
-  <mat-grid-tile [colspan]="3" [rowspan]="1" [formGroup]="vpnFormGroup">
-    <mat-grid-tile-header>{{ vpnProjectName }}</mat-grid-tile-header>
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <mat-grid-tile-header>{{ wanConfiguration.vpn.projectName }}</mat-grid-tile-header>
     <mat-card>
       <mat-card-header>
         <mat-card-title>
           Description
         </mat-card-title>
         <mat-card-subtitle>
-          {{ vpnDescription }}
+          {{ wanConfiguration.vpn.description }}
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content class="vpn-card-content">
@@ -15,49 +15,49 @@
           <mat-list-item>
             <div class="mat-body-1">Subnet Mode</div>
             <mat-chip-list>
-              <mat-chip>{{ vpnSubnetMode }}</mat-chip>
+              <mat-chip>{{ wanConfiguration.vpn.subnetMode }}</mat-chip>
             </mat-chip-list>
           </mat-list-item>
           <mat-list-item>
             <div class="mat-body-1">BGP Routing Mode</div>
             <mat-chip-list>
-              <mat-chip>{{ vpnBgpRoutingMode }}</mat-chip>
+              <mat-chip>{{ wanConfiguration.vpn.bgpRoutingMode }}</mat-chip>
             </mat-chip-list>
           </mat-list-item>
           <mat-list-item>
             <div class="mat-body-1">HA VPN Gateway</div>
             <mat-chip-list>
-              <mat-chip>{{ vpnHaVpnGateway }}</mat-chip>
+              <mat-chip>{{ wanConfiguration.vpn.haVpnGateway }}</mat-chip>
             </mat-chip-list>
           </mat-list-item>
           <mat-list-item>
             <div class="mat-body-1">Cloud Router Name</div>
             <mat-chip-list>
-              <mat-chip>{{ vpnCloudRouterName }}</mat-chip>
+              <mat-chip>{{ wanConfiguration.vpn.cloudRouterName }}</mat-chip>
             </mat-chip-list>
           </mat-list-item>
           <mat-list-item>
             <div class="mat-body-1">External VPN Gateway</div>
             <mat-chip-list>
-              <mat-chip>{{ vpnExternalVpnGateway }}</mat-chip>
+              <mat-chip>{{ wanConfiguration.vpn.externalVpnGateway }}</mat-chip>
             </mat-chip-list>
           </mat-list-item>
           <mat-list-item>
             <div class="mat-body-1">Google ASN</div>
             <mat-chip-list>
-              <mat-chip>{{ vpnGoogleASN }}</mat-chip>
+              <mat-chip>{{ wanConfiguration.vpn.googleASN }}</mat-chip>
             </mat-chip-list>
           </mat-list-item>
           <mat-list-item>
             <div class="mat-body-1">Peer ASN</div>
             <mat-chip-list>
-              <mat-chip>{{ vpnPeerASN }}</mat-chip>
+              <mat-chip>{{ wanConfiguration.vpn.peerASN }}</mat-chip>
             </mat-chip-list>
           </mat-list-item>
           <mat-list-item>
             <div class="mat-body-1">BGP interface netmask length</div>
             <mat-chip-list>
-              <mat-chip>{{ vpnPeerASN }}</mat-chip>
+              <mat-chip>{{ wanConfiguration.vpn.peerASN }}</mat-chip>
             </mat-chip-list>
           </mat-list-item>
         </mat-list>
@@ -65,7 +65,7 @@
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="2" [rowspan]="1" class="google-session-tile" [formGroup]="googleSessionFormGroup">
+  <mat-grid-tile [colspan]="2" [rowspan]="1" class="google-session-tile">
     <mat-grid-tile-header>Google session</mat-grid-tile-header>
     <mat-card class="google-session-card primary">
       <mat-card-header>
@@ -79,19 +79,19 @@
           Region
         </div>
         <mat-chip-list>
-          <mat-chip>{{ googlePrimaryRegion }}</mat-chip>
+          <mat-chip>{{ wanConfiguration.googleSession.primaryRegion }}</mat-chip>
         </mat-chip-list>
         <div class="mat-h4">
           Subnet Name
         </div>
         <mat-chip-list>
-          <mat-chip>{{ googlePrimarySubnetName }}</mat-chip>
+          <mat-chip>{{ wanConfiguration.googleSession.primarySubnetName }}</mat-chip>
         </mat-chip-list>
         <div class="mat-h4">
           GCP VPC subnet
         </div>
         <mat-chip-list>
-          <mat-chip>{{ googlePrimaryGcpVpcSubnet }}</mat-chip>
+          <mat-chip>{{ wanConfiguration.googleSession.primaryGcpVpcSubnet }}</mat-chip>
         </mat-chip-list>
       </mat-card-content>
     </mat-card>
@@ -107,25 +107,25 @@
           Region
         </div>
         <mat-chip-list>
-          <mat-chip>{{ googleSecondaryRegion }}</mat-chip>
+          <mat-chip>{{ wanConfiguration.googleSession.secondaryRegion }}</mat-chip>
         </mat-chip-list>
         <div class="mat-h4">
           Subnet Name
         </div>
         <mat-chip-list>
-          <mat-chip>{{ googleSecondarySubnetName }}</mat-chip>
+          <mat-chip>{{ wanConfiguration.googleSession.secondarySubnetName }}</mat-chip>
         </mat-chip-list>
         <div class="mat-h4">
           GCP VPC subnet
         </div>
         <mat-chip-list>
-          <mat-chip>{{ googleSecondaryGcpVpcSubnet }}</mat-chip>
+          <mat-chip>{{ wanConfiguration.googleSession.secondaryGcpVpcSubnet }}</mat-chip>
         </mat-chip-list>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="3" [rowspan]="1" [formGroup]="onPremiseSessionFormGroup">
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
     <mat-grid-tile-header>On Premise Session</mat-grid-tile-header>
 
     <mat-card class="on-premise-card">
@@ -135,7 +135,7 @@
             <mat-list-item>
               <div class="mat-body-1">Vendor</div>
               <mat-chip-list>
-                <mat-chip selected>{{ onPremiseVendor }}</mat-chip>
+                <mat-chip selected>{{ wanConfiguration.onPremiseSession.vendor }}</mat-chip>
               </mat-chip-list>
             </mat-list-item>
           </mat-list>
@@ -149,32 +149,32 @@
         </div>
         <div class="table-row">
           <div class="col">Peer IP</div>
-          <div class="col">{{ onPremisePrimaryPeerIp }}</div>
-          <div class="col">{{ onPremiseSecondaryPeerIp }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.primaryPeerIp }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.secondaryPeerIp }}</div>
         </div>
         <mat-divider></mat-divider>
         <div class="table-row">
           <div class="col">Peer IP subnet</div>
-          <div class="col">{{ onPremisePrimaryPeerIpSubnet }}</div>
-          <div class="col">{{ onPremiseSecondaryPeerIpSubnet }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.primaryPeerIpSubnet }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.secondaryPeerIpSubnet }}</div>
         </div>
         <mat-divider></mat-divider>
         <div class="table-row">
           <div class="col">VPN Tunnel</div>
-          <div class="col">{{ onPremisePrimaryVpnTunnel }}</div>
-          <div class="col">{{ onPremiseSecondaryVpnTunnel }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.primaryVpnTunnel }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.secondaryVpnTunnel }}</div>
         </div>
         <mat-divider></mat-divider>
         <div class="table-row">
           <div class="col">BGP Peer</div>
-          <div class="col">{{ onPremisePrimaryBgpPeer }}</div>
-          <div class="col">{{ onPremiseSecondaryBgpPeer }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.primaryBgpPeer }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.secondaryBgpPeer }}</div>
         </div>
         <mat-divider></mat-divider>
         <div class="table-row">
           <div class="col">Shared Secret</div>
-          <div class="col">{{ onPremisePrimarySharedSecret }}</div>
-          <div class="col">{{ onPremiseSecondarySharedSecret }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.primarySharedSecret }}</div>
+          <div class="col">{{ wanConfiguration.onPremiseSession.secondarySharedSecret }}</div>
         </div>
         <mat-divider></mat-divider>
       </mat-card-content>
@@ -182,6 +182,5 @@
   </mat-grid-tile>
 </mat-grid-list>
 <div>
-  <!-- todo: fix button -->
-  <button mat-button color="primary" (click)="cancel()">Back</button>
+  <a mat-button color="primary" routerLink="/administration/landing-zone/">Back</a>
 </div>

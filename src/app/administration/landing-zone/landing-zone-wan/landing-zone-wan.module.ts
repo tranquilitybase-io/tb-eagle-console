@@ -16,7 +16,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { SubnetModeResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/subnet-mode.resolver';
 import { BgpRoutingModeResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/bgp-routing-mode.resolver';
 import { VpnOnPremiseVendorResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/vpn-on-premise-vendor.resolver';
-import { LandingViewResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/landing-zone-wan-view.resolver';
+import { LandingZoneWanViewResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/landing-zone-wan-view.resolver';
 
 const routes: Routes = [
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
       subnetModeList: SubnetModeResolver,
       bgpRoutingModeList: BgpRoutingModeResolver,
       vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
-      view: LandingViewResolver
+      wanConfiguration: LandingZoneWanViewResolver
     }
   }
 ];
