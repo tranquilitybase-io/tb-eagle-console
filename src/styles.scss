@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  font-family: SF Pro Display;
+  font-family: 'SF Pro Display', monospace;
   font-size: 16px;
 
   /* variables */
@@ -25,12 +25,8 @@
 
   // Sidebar styling
   --radius: 0.3rem;
-  --sidebarWidth: 20rem;
-  --mainWidth: calc(100% - var(--sidebarWidth));
-}
-
-body {
-  margin: 0;
+  --mainWidth: 100%;
+  --drawerWidth: 14.5rem;
 }
 
 @font-face {
@@ -52,11 +48,13 @@ body {
 @import './styles/others';
 @import './styles/material';
 
-html,
+html {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
