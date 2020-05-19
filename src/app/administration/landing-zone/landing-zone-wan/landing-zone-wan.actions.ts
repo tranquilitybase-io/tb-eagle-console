@@ -6,6 +6,11 @@ export const createWanConfiguration = createAction(
   props<{ wanConfiguration: WanConfiguration }>()
 );
 
+export const displayWanConfiguration = createAction(
+  '[landing-zone-wan-view]',
+  props<{ wanConfiguration: WanConfiguration }>()
+);
+
 export const startConnectionDeployment = createAction(
   '[landing-zone-wan-deploy-connection] Start Deployment',
   props<{ name: string }>()
