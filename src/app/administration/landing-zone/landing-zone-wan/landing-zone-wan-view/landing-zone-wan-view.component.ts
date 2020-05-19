@@ -28,23 +28,23 @@ export class LandingZoneWanViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const googleASN = Number(this.vpnFormGroup.value['googleASN']);
-    const peerASN = Number(this.vpnFormGroup.value['peerASN']);
-    const wanConfiguration = {
-      vpn: {
-        ...this.vpnFormGroup.value,
-        googleASN,
-        peerASN
-      },
-      googleSession: {
-        ...this.googleSessionFormGroup.value
-      },
-      onPremiseSession: {
-        ...this.onPremiseSessionFormGroup.value
-      }
-    } as WanConfiguration;
+    // const googleASN = Number(this.vpnFormGroup.value['googleASN']);
+    // const peerASN = Number(this.vpnFormGroup.value['peerASN']);
+    // const wanConfiguration = {
+    //   vpn: {
+    //     ...this.vpnFormGroup.value,
+    //     googleASN,
+    //     peerASN
+    //   },
+    //   googleSession: {
+    //     ...this.googleSessionFormGroup.value
+    //   },
+    //   onPremiseSession: {
+    //     ...this.onPremiseSessionFormGroup.value
+    //   }
+    // } as WanConfiguration;
 
-    this.store.dispatch(WanActions.displayWanConfiguration({ wanConfiguration }));
+    // this.store.dispatch(WanActions.displayWanConfiguration({ wanConfiguration }));
 
     this.vpnFormGroup = this.formBuilder.group({
       projectName: [this.view.vpn.projectName],
@@ -82,17 +82,17 @@ export class LandingZoneWanViewComponent implements OnInit {
     });
   }
 
-  // get vpnProjectName(): string {
-  //   return this.vpnFormGroup.get('projectName').value;
-  // }
+  get vpnProjectName(): string {
+    return this.vpnFormGroup.get('projectName').value;
+  }
 
-  // get vpnDescription(): string {
-  //   return this.vpnFormGroup.get('description').value;
-  // }
+  get vpnDescription(): string {
+    return this.vpnFormGroup.get('description').value;
+  }
 
-  // get vpnSubnetMode(): string {
-  //   return this.vpnFormGroup.get('subnetMode').value;
-  // }
+  get vpnSubnetMode(): string {
+    return this.vpnFormGroup.get('subnetMode').value;
+  }
 
   // get vpnBgpRoutingMode(): string {
   //   return this.vpnFormGroup.get('bgpRoutingMode').value;

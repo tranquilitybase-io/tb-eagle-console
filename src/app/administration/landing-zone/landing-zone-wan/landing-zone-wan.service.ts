@@ -33,6 +33,7 @@ export class LandingZoneWanService extends EntityCollectionServiceBase<WanConfig
   }
 
   displayWanConfiguration(view: WanConfiguration): void {
+    // landingzonewands ??? <- swagger
     const url = `${this.BASE_URL}/landingzonewan/${view.id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(url, { headers }).subscribe(
