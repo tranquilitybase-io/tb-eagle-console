@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MissionControlComponent } from './mission-control.component';
 import { Routes, RouterModule } from '@angular/router';
-import { SidebarModule } from '@app/sidebar/sidebar.module';
 
 const routes: Routes = [
   {
@@ -28,6 +27,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MissionControlComponent],
-  imports: [CommonModule, SidebarModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, RouterModule.forChild(routes)]
 })
 export class MissionControlModule {}

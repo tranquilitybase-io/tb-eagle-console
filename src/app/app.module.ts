@@ -15,27 +15,33 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { AdminGuardService } from './guards/admin-guard.service';
 import { LoginComponent } from './login/login/login.component';
 import { LoginModule } from './login/login.module';
+import { LayoutComponent } from './shared/layout/layout.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/mission-control/solutions',
-    pathMatch: 'full',
-    canActivate: [AuthGuardService]
-  },
   {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: 'mission-control',
-    loadChildren: () => import('./mission-control/mission-control.module').then(m => m.MissionControlModule),
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'administration',
-    loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
-    canActivate: [AuthGuardService, AdminGuardService]
+    path: '',
+    component: LayoutComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: '',
+        redirectTo: '/mission-control/solutions',
+        pathMatch: 'full'
+      },
+      {
+        path: 'mission-control',
+        loadChildren: () => import('./mission-control/mission-control.module').then(m => m.MissionControlModule)
+      },
+      {
+        path: 'administration',
+        loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
+        canActivate: [AdminGuardService]
+      }
+    ]
   }
 ];
 
