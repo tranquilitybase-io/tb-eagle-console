@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
-import { ActivatorStoreCreateAppComponent } from './activator-store-create-app.component';
+import { ApplicationsCreateComponent } from './applications-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ActivatorStoreDialogModule } from '../activator-store-dialog/activator-store-dialog.module';
+
+import { ActivatorStoreDialogModule } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog.module';
 
 import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
 import { ActiveSolutionsResolver } from '@app/shared/resolvers/active-solutions.resolver';
@@ -19,7 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 const routes: Routes = [
   {
     path: '',
-    component: ActivatorStoreCreateAppComponent,
+    component: ApplicationsCreateComponent,
     resolve: {
       activator: ActivatorByIdResolver,
       availableSolutions: ActiveSolutionsResolver
@@ -28,14 +29,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ActivatorStoreCreateAppComponent],
+  declarations: [ApplicationsCreateComponent],
   imports: [
     CommonModule,
     SharedModule,
-    ActivatorStoreDialogModule,
+    RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
+    ActivatorStoreDialogModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -44,4 +45,4 @@ const routes: Routes = [
     MatSelectModule
   ]
 })
-export class ActivatorStoreCreateAppModule {}
+export class ApplicationsCreateModule {}

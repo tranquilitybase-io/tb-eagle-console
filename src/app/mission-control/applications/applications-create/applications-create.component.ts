@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { KeyValue } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { MatDialog } from '@angular/material/dialog';
-import { setProgress, createApplication } from '../activator-store.actions';
-import { Activator } from '../activator-store.model';
-import { Application } from '@app/mission-control/applications/applications.model';
+import { MatDialog } from '@angular/material';
+import { KeyValue } from '@angular/common';
+import { setProgress, createApplication } from '@app/mission-control/activator-store/activator-store.actions';
+import { Activator } from '@app/mission-control/activator-store/activator-store.model';
+import { Application } from '../applications.model';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { selectSelectedSolution } from '@app/mission-control/solutions/solutions.reducer';
-import { ActivatorStoreDialogMissingSolutionsComponent } from '../activator-store-dialog/activator-store-dialog-missing-solutions/activator-store-dialog-missing-solutions.component';
 import { discardSelectedSolution } from '@app/mission-control/solutions/solutions.actions';
+import { ActivatorStoreDialogMissingSolutionsComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-missing-solutions/activator-store-dialog-missing-solutions.component';
 
 @Component({
-  selector: 'app-activator-store-create-app',
-  templateUrl: './activator-store-create-app.component.html',
-  styleUrls: ['./activator-store-create-app.component.scss']
+  selector: 'app-applications-create',
+  templateUrl: './applications-create.component.html',
+  styleUrls: ['./applications-create.component.scss']
 })
-export class ActivatorStoreCreateAppComponent implements OnInit {
+export class ApplicationsCreateComponent implements OnInit {
   applicationForm: FormGroup;
   availableSolutions: KeyValue<string, string>[];
 

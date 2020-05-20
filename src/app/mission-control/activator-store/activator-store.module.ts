@@ -28,8 +28,8 @@ const routes: Routes = [
       {
         path: 'create-app',
         loadChildren: () =>
-          import('./activator-store-create-app/activator-store-create-app.module').then(
-            m => m.ActivatorStoreCreateAppModule
+          import('@app/mission-control/applications/applications-create/applications-create.module.ts').then(
+            m => m.ApplicationsCreateModule
           )
       }
     ]
