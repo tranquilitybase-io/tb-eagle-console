@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Application } from '../solutions/solutions.model';
+import { Application } from '../applications/applications.model';
 
 export const setCategoriesCount = createAction(
   '[ActivatorStore] set-categories-count',

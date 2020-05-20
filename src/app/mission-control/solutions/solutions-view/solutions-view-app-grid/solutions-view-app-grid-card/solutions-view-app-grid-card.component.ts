@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Application } from '@app/mission-control/solutions/solutions.model';
+import { Application } from '@app/mission-control/applications/applications.model';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';

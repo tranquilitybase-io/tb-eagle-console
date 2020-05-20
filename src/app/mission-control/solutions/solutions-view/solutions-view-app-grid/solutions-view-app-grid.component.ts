@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Solution, Application } from '../../solutions.model';
+import { Component, Input } from '@angular/core';
+import { Application } from '@app/mission-control/applications/applications.model';
+import { Solution } from '../../solutions.model';
 import { Observable } from 'rxjs';
 import { LayoutService } from '@app/shared/layout/layout.service';
 import { Layout } from '@app/shared/layout/layout.model';

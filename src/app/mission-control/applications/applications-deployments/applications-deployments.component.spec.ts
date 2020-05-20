@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeploymentsComponent } from './deployments.component';
+import { ApplicationsDeploymentsComponent } from './applications-deployments.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -11,13 +11,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 
-describe('DeploymentsComponent', () => {
-  let component: DeploymentsComponent;
-  let fixture: ComponentFixture<DeploymentsComponent>;
+describe('ApplicationsDeploymentsComponent', () => {
+  let component: ApplicationsDeploymentsComponent;
+  let fixture: ComponentFixture<ApplicationsDeploymentsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DeploymentsComponent],
+      declarations: [ApplicationsDeploymentsComponent],
       imports: [
         MatTableModule,
         MatPaginatorModule,
@@ -33,7 +33,7 @@ describe('DeploymentsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeploymentsComponent);
+    fixture = TestBed.createComponent(ApplicationsDeploymentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

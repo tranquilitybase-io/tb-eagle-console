@@ -1,23 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { DeploymentsService } from '../deployments.service';
-import { Application } from '@app/mission-control/solutions/solutions.model';
-
-import { selectPage, selectLength } from '../view.reducer';
-import { changePage } from '../view.actions';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { Application } from '../applications.model';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-deployments',
-  templateUrl: './deployments.component.html',
-  styleUrls: ['./deployments.component.scss']
+  selector: 'app-applications-deployments',
+  templateUrl: './applications-deployments.component.html',
+  styleUrls: ['./applications-deployments.component.scss']
 })
-export class DeploymentsComponent implements OnInit {
+export class ApplicationsDeploymentsComponent implements OnInit {
   deployments$: Observable<Application[]>;
   displayedColumns: string[] = ['id', 'name', 'env', 'status', 'description'];
   dataSource: MatTableDataSource<Application>;
@@ -25,7 +21,7 @@ export class DeploymentsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private deploymentService: DeploymentsService, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute) {
     this.dataSource = new MatTableDataSource([]);
   }
 

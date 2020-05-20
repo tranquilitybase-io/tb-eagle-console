@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Activator } from '../../../activator-store/activator-store.model';
 import { ActivatedRoute } from '@angular/router';
-import { Application } from '../../solutions.model';
+import { Application } from '@app/mission-control/applications/applications.model';
 import { ActivatorStoreService } from '@app/mission-control/activator-store/activator-store.service';
 import { Observable } from 'rxjs';
 

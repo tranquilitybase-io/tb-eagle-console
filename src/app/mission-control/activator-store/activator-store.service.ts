@@ -3,7 +3,7 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/login/login.model';
-import { Application } from '../solutions/solutions.model';
+import { Application } from '../applications/applications.model';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
