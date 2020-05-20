@@ -9,7 +9,6 @@ export class SolutionsViewResolver implements Resolve<Solution> {
   constructor(private solutionsService: SolutionsService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Solution> {
-    debugger;
     return this.solutionsService.getByKey(state.root.queryParamMap.get('id'));
   }
 }

@@ -51,15 +51,6 @@ export class LandingZoneWanEffects {
     { dispatch: false }
   );
 
-  displayWanConfiguration = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(displayWanConfiguration),
-        tap(action => this.langingZoneWanService.displayWanConfiguration(action.wanConfiguration))
-      ),
-    { dispatch: false }
-  );
-
   startConnectionDeployment$ = createEffect(() =>
     this.zone.runOutsideAngular(() =>
       this.actions$.pipe(
