@@ -9,8 +9,7 @@ import {
   createWanConfiguration,
   startConnectionDeployment,
   stopConnectionDeployment,
-  updateConnectionDeploymentProgress,
-  displayWanConfiguration
+  updateConnectionDeploymentProgress
 } from './landing-zone-wan.actions';
 
 function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
