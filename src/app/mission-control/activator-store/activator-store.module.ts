@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
+import { ApplicationsModule } from '../applications/applications.module';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { SharedModule } from '@app/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
+import { Routes, RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import reducer, { featureKey } from './activator-store.reducer';
+import { featureKey, reducer } from './activator-store.reducer';
 import { ActivatorStoreEffects } from './activator-store.effects';
 import { ActivatorStoreComponent } from './activator-store.component';
-import { SharedModule } from '@app/shared/shared.module';
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
+    ApplicationsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
     EffectsModule.forFeature([ActivatorStoreEffects]),

@@ -3,8 +3,6 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/login/login.model';
-import { Application } from '../applications/applications.model';
-import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -14,11 +12,7 @@ import { catchError } from 'rxjs/operators';
 export class ActivatorStoreService extends EntityCollectionServiceBase<Activator> {
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  constructor(
-    serviceElementsFactory: EntityCollectionServiceElementsFactory,
-    private http: HttpClient,
-    private router: Router
-  ) {
+  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
     super('Activator', serviceElementsFactory);
   }
 
@@ -78,26 +72,6 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       .post(url, { id, accessRequestedBy: user.id }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log(`Access requested to activator ${id} by user ${user.id}`);
-  }
-
-  createApplication(application: Application): void {
-    const url = `${this.BASE_URL}/application/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, { ...application, solutionId: Number(application.solutionId) }, { headers }).subscribe(
-      val => {
-        console.log('POST call successful value returned in body', val);
-      },
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
-        console.log('The POST observable is now completed.');
-        this.router.navigateByUrl(
-          `/mission-control/solutions/view?id=${application.solutionId}&categorySwitch=Applications`
-        );
-      }
-    );
-    console.log(application + ' created.');
   }
 
   private handleError(error: HttpErrorResponse) {
