@@ -5,7 +5,7 @@ import { WanConfiguration } from '../../../landing-zone-wan.model';
 import { LandingZoneWanService } from '../../../landing-zone-wan.service';
 
 @Injectable({ providedIn: 'root' })
-export class LandingViewResolver implements Resolve<WanConfiguration> {
+export class LandingZoneWanViewResolver implements Resolve<WanConfiguration> {
   constructor(private landingZoneWanService: LandingZoneWanService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<WanConfiguration> {
