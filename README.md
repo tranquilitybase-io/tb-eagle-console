@@ -8,7 +8,7 @@ To run Eagle console locally
 1. Download the eagle-console code base
 2. Install dependencies by running  `npm install`
 3. Install docker and run the docker daemon
-4. Run the tb-houston-service stack using command `docker-compose -f tb-houston-service.yml up`
+4. Run the tb-houston-service stack using command `docker-compose -f docker-compose.experimental.yml up`
 5. In a new Terminal run the EagleConsole using command `npm start`
 
 # Using development prebuild docker images
@@ -41,26 +41,26 @@ To run Eagle console locally
 
 ## Run the server as containers
 
-### Start tb-houston-service detached mode
-* `docker-compose -f tb-houston-service.yml up -d`
+### Start tb-houston-service and tb-gcp-dac (mock) detached mode
+* `docker-compose -f docker-compose.experimental.yml up -d`
 
-### Stopping tb-houston-service
-* `docker-compose -f tb-houston-service.yml stop`
+### Stopping tb-houston-service and tb-gcp-dac (mock)
+* `docker-compose -f docker-compose.experimental.yml stop`
 
-### Removing tb-houston-service leftover from memory
-* `docker-compose -f tb-houston-service.yml down`
+### Removing tb-houston-service and tb-gcp-dac (mock) leftover from memory
+* `docker-compose -f docker-compose.experimental.yml down`
 
-### Removing tb-houston-service leftover from memory and disk
-* `docker-compose -f tb-houston-service.yml down --rmi all`
+### Removing tb-houston-service and tb-gcp-dac (mock) leftover from memory and disk
+* `docker-compose -f docker-compose.experimental.yml down --rmi all`
 
-### Get latest tb-houston-service update
-* `docker-compose -f tb-houston-service.yml pull`
+### Get latest tb-houston-service and tb-gcp-dac (mock) update
+* `docker-compose -f docker-compose.experimental.yml pull`
 
-### Recreate tb-houston-service (with initial DataBase setup)
-* `docker-compose -f tb-houston-service.yml kill`
-* `docker-compose -f tb-houston-service.yml down --rmi all`
-* `docker-compose -f tb-houston-service.yml pull`
-* `docker-compose -f tb-houston-service.yml up -d`
+### Recreate tb-houston-service and tb-gcp-dac (mock) (with initial DataBase setup)
+* `docker-compose -f docker-compose.experimental.yml kill`
+* `docker-compose -f docker-compose.experimental.yml down --rmi all`
+* `docker-compose -f docker-compose.experimental.yml pull`
+* `docker-compose -f docker-compose.experimental.yml up -d`
 
 ### Remove all docker images (Save disk space when not running)
 * `docker rmi -f $(docker images -a -q)`
@@ -77,8 +77,8 @@ npm run build
 gcloud config set project tranquility-base-images
 docker build -t gcr.io/tranquility-base-images/tb-eagle-console:alpha .
 docker push gcr.io/tranquility-base-images/tb-eagle-console:alpha
-docker build -f Dockerfile.dev -t gcr.io/tranquility-base-images/tb-eagle-console:dev .
-docker push gcr.io/tranquility-base-images/tb-eagle-console:dev
+docker build -f Dockerfile.experimental -t gcr.io/tranquility-base-images/tb-eagle-console:experimental .
+docker push gcr.io/tranquility-base-images/tb-eagle-console:experimental
 ```
 
 # TbEagleConsoleUi
