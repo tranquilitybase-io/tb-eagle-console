@@ -4,16 +4,16 @@ Hi, and welcome to EagleConsole - It is a Front-end self-service portal for Tran
 
 To run Eagle console locally
 
-1. Download the eagle-console code base
-2. Install dependencies by running `npm install`
-3. Install docker and run the docker daemon
-4. Run the tb-houston-service stack using command
+1.  Download the eagle-console code base
+2.  Install dependencies by running `npm install`
+3.  Install docker and run the docker daemon
+4.  Run the tb-houston-service stack using command
 
 ```sh
 docker-compose -f docker-compose.experimental.yml up
 ```
 
-5. In a new Terminal run the EagleConsole using command
+5.  In a new Terminal run the EagleConsole using command
 
 ```sh
 npm start
