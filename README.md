@@ -16,54 +16,54 @@ To run Eagle console locally
 ## Run the stack as containers
 
 ### Start the stack detached mode
-* `docker-compose up -d`
+*  `docker-compose up -d`
 
 ### Stopping the stack 
-* `docker-compose stop`
+*  `docker-compose stop`
 
 ### Removing the stack leftover from memory
-* `docker-compose down`
+*  `docker-compose down`
 
 ### Removing the stack leftover from memory and disk
-* `docker-compose down --rmi all`
+*  `docker-compose down --rmi all`
 
 ### Get latest the stack update
-* `docker-compose pull`
+*  `docker-compose pull`
 
 ### Recreate the stack (with initial DataBase setup)
-* `docker-compose kill`
-* `docker-compose down --rmi all`
-* `docker-compose pull`
-* `docker-compose up -d`
+*  `docker-compose kill`
+*  `docker-compose down --rmi all`
+*  `docker-compose pull`
+*  `docker-compose up -d`
 
 ### Remove all docker images (Save disk space when not running)
-* `docker rmi -f $(docker images -a -q)`
+*  `docker rmi -f $(docker images -a -q)`
 
 ## Run the server as containers
 
 ### Start tb-houston-service and tb-gcp-dac (mock) detached mode
-* `docker-compose -f docker-compose.experimental.yml up -d`
+*  `docker-compose -f docker-compose.experimental.yml up -d`
 
 ### Stopping tb-houston-service and tb-gcp-dac (mock)
-* `docker-compose -f docker-compose.experimental.yml stop`
+*  `docker-compose -f docker-compose.experimental.yml stop`
 
 ### Removing tb-houston-service and tb-gcp-dac (mock) leftover from memory
-* `docker-compose -f docker-compose.experimental.yml down`
+*  `docker-compose -f docker-compose.experimental.yml down`
 
 ### Removing tb-houston-service and tb-gcp-dac (mock) leftover from memory and disk
-* `docker-compose -f docker-compose.experimental.yml down --rmi all`
+*  `docker-compose -f docker-compose.experimental.yml down --rmi all`
 
 ### Get latest tb-houston-service and tb-gcp-dac (mock) update
-* `docker-compose -f docker-compose.experimental.yml pull`
+*  `docker-compose -f docker-compose.experimental.yml pull`
 
 ### Recreate tb-houston-service and tb-gcp-dac (mock) (with initial DataBase setup)
-* `docker-compose -f docker-compose.experimental.yml kill`
-* `docker-compose -f docker-compose.experimental.yml down --rmi all`
-* `docker-compose -f docker-compose.experimental.yml pull`
-* `docker-compose -f docker-compose.experimental.yml up -d`
+*  `docker-compose -f docker-compose.experimental.yml kill`
+*  `docker-compose -f docker-compose.experimental.yml down --rmi all`
+*  `docker-compose -f docker-compose.experimental.yml pull`
+*  `docker-compose -f docker-compose.experimental.yml up -d`
 
 ### Remove all docker images (Save disk space when not running)
-* `docker rmi -f $(docker images -a -q)`
+*  `docker rmi -f $(docker images -a -q)`
 
 # GCP Build commands
 
