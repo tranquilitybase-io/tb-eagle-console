@@ -1,19 +1,19 @@
 import { Component, Input } from '@angular/core';
-import { Application } from '@app/mission-control/applications/applications.model';
-import { Solution } from '../../solutions.model';
+import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { Observable } from 'rxjs';
-import { LayoutService } from '@app/shared/layout/layout.service';
 import { Layout } from '@app/shared/layout/layout.model';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { setSelectedSolution } from '../../solutions.actions';
+import { LayoutService } from '@app/shared/layout/layout.service';
+import { Application } from '../applications.model';
+import { setSelectedSolution } from '@app/mission-control/solutions/solutions.actions';
 
 @Component({
-  selector: 'app-solutions-view-app-grid',
-  templateUrl: './solutions-view-app-grid.component.html',
-  styleUrls: ['./solutions-view-app-grid.component.scss']
+  selector: 'app-applications-grid',
+  templateUrl: './applications-grid.component.html',
+  styleUrls: ['./applications-grid.component.scss']
 })
-export class SolutionsViewAppGridComponent {
+export class ApplicationsGridComponent {
   @Input() solution: Solution;
   layout$: Observable<Layout>;
 

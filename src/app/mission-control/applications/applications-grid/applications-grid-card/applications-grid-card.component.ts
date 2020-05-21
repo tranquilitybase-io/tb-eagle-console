@@ -1,27 +1,24 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Application } from '@app/mission-control/applications/applications.model';
+import { Application } from '../../applications.model';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material';
 import {
-  selectDeployedApp,
   selectInProgressApp,
+  selectDeployedApp,
   selectProgressApp,
   selectIsDeploymentAppReady
-} from '@app/mission-control/solutions/solutions.reducer';
-import {
-  dismissDeploymentAppReadyAlert,
-  startDeployApplication
-} from '@app/mission-control/solutions/solutions.actions';
-import { AppUnderDeploymentComponent } from '@app/shared/snack-bar/app-under-deployment/app-under-deployment.component';
+} from '../../applications.reducer';
 import { AppIsDeployedComponent } from '@app/shared/snack-bar/app-is-deployed/app-is-deployed.component';
+import { AppUnderDeploymentComponent } from '@app/shared/snack-bar/app-under-deployment/app-under-deployment.component';
+import { startDeployApplication, dismissDeploymentAppReadyAlert } from '../../applications.actions';
 
 @Component({
-  selector: 'app-solutions-view-app-grid-card',
-  templateUrl: './solutions-view-app-grid-card.component.html',
-  styleUrls: ['./solutions-view-app-grid-card.component.scss']
+  selector: 'app-applications-grid-card',
+  templateUrl: './applications-grid-card.component.html',
+  styleUrls: ['./applications-grid-card.component.scss']
 })
-export class SolutionsViewAppGridCardComponent implements OnInit {
+export class ApplicationsGridCardComponent implements OnInit {
   @Input() app: Application;
   active = false;
 
