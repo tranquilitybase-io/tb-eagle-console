@@ -1,0 +1,140 @@
+:host {
+  min-height: 100vh;
+}
+
+.mat-sidenav-container {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+}
+
+.mat-sidenav {
+  display: flex;
+  height: 100%;
+  width: var(--drawerWidth);
+  background-color: var(--white);
+  border-bottom-right-radius: var(--radius);
+  position: fixed;
+  top: 4rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 0 1rem;
+}
+
+.mat-sidenav:not(.mat-drawer-opened) {
+  transform: translate3d(0, 0, 0) !important;
+  visibility: visible !important;
+  width: 4.5rem !important;
+  overflow: hidden;
+  padding: 0 0.5rem;
+}
+
+.mainContainer {
+  margin-left: 4.5rem !important;
+}
+
+.section-header {
+  color: var(--dark-grey);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mat-list-item {
+  width: 225px;
+  text-align: left;
+  display: flex;
+  padding: 0.5rem;
+  color: var(--black);
+  text-decoration: none;
+  border-radius: var(--radius);
+
+  .mat-icon,
+  .app-icon {
+    margin-right: 1rem;
+  }
+
+  &.active {
+    background-color: var(--active-grey-background);
+    opacity: 0.9;
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-color: var(--active-grey-background);
+    color: var(--primary-color);
+  }
+}
+
+.name {
+  padding-left: 1rem;
+}
+
+.user-initials {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--transparent-white);
+  border-radius: 50%;
+  text-align: center;
+  font-size: 14px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.spacer {
+  flex: 1 1 auto;
+  display: inline-flex;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.rocket {
+  display: inline;
+  filter: drop-shadow(1px 1px 0 #3d1b3d);
+  margin-left: 20px;
+}
+
+.mat-toolbar-row {
+  box-shadow: inset 0 -1px 1px #3d1b3d;
+  width: 100%;
+}
+
+.mat-toolbar {
+  top: 0;
+  z-index: 20;
+}
+
+.mat-toolbar h1,
+.mat-toolbar-row .mat-icon {
+  text-shadow: 1px 1px 0 #3d1b3d;
+}
+
+h1:hover {
+  filter: drop-shadow(0 0 2px var(--dark-grey));
+}
+
+.mat-sidenav .mat-icon {
+  text-shadow: 1px 1px 1px #c4c4c4;
+}
+
+.miniDrawerBr {
+  margin: 10px 0 10px 0;
+}
+
+.smallDrawer {
+  margin-left: 4.5rem;
+  transition-property: margin-left;
+  transition-duration: 310ms;
+  transition-delay: 60ms;
+}

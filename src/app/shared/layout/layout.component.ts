@@ -5,13 +5,13 @@ import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 
 @Component({
-  selector: 'app-navigation-bar',
-  templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.scss']
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
-export class NavigationBarComponent implements OnInit {
+export class LayoutComponent implements OnInit {
+  isExpanded = true;
   userIsAdmin$: Observable<User>;
-
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
