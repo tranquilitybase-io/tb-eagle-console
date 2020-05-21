@@ -6,6 +6,7 @@ import { selectDeployed, selectInProgress, selectProgress } from '@app/mission-c
 import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
 import { MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-solutions-home-grid-card',
@@ -21,7 +22,7 @@ export class SolutionsHomeGridCardComponent implements OnInit {
   deployed$: Observable<boolean>;
   percentage$: Observable<number>;
 
-  constructor(private store: Store<any>, private snackBar: MatSnackBar) {}
+  constructor(private store: Store<any>, private dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.deploymentInProgress$ = this.store.pipe(select(selectInProgress(this.solution.id.toString())));

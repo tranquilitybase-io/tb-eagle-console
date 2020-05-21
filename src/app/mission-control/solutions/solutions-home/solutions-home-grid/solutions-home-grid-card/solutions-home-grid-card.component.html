@@ -5,9 +5,15 @@
         <button mat-icon-button>
           <mat-icon>star_border</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <a mat-menu-item routerLink="view" [queryParams]="{ id: solution.id, categorySwitch: 'Applications' }">
+            View
+          </a>
+          <a mat-menu-item routerLink="edit" [queryParams]="{ id: solution.id }">Edit</a>
+        </mat-menu>
       </div>
       {{ solution.name }}
     </mat-card-title>
