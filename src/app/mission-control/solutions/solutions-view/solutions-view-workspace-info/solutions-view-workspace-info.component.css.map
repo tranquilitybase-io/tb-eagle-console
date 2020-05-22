@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,KAAK;EACd,MAAM,EAAE,IAAI;CACb",
-    "sources": [
-        "solutions-view-workspace-info.component.scss"
-    ],
-    "names": [],
-    "file": "solutions-view-workspace-info.component.css"
-}

@@ -13,7 +13,6 @@ import { ContinuousIntegrationResolver } from '@app/shared/resolvers/continuous-
 import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver';
 import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
 import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
-import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
 
 const routes: Routes = [
   {
@@ -48,14 +47,6 @@ const routes: Routes = [
     loadChildren: () => import('./solutions-view/solutions-view.module').then(m => m.SolutionsViewModule),
     resolve: {
       solution: SolutionsViewResolver
-    }
-  },
-  {
-    path: 'view/application',
-    loadChildren: () => import('./solutions-details/solutions-details.module').then(m => m.SolutionsDetailsModule),
-    resolve: {
-      // application: ApplicationByIdResolver
-      activator: ActivatorByIdResolver
     }
   }
 ];

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,iBAAiB,CAAC;EAChB,UAAU,EAAE,MAAM;CACnB;;AACD,AACE,mBADiB,CACjB,CAAC,CAAC;EACA,KAAK,EAAE,IAAI;CAIZ;;AANH,AAGI,mBAHe,CACjB,CAAC,CAEC,eAAe,CAAC;EACd,KAAK,EAAE,IAAI;CACZ;;AAGL,AAAA,mBAAmB,CAAC;EAClB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,YAAY;CAC9B",
-    "sources": [
-        "activator-store-dialog-grant-access.component.scss"
-    ],
-    "names": [],
-    "file": "activator-store-dialog-grant-access.component.css"
-}

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,kBAAkB,CAAC;EACjB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,aAAa,EAAE,IAAI;EACnB,MAAM,EAAE,GAAG,CAAC,MAAM,CAAC,kBAAkB;EACrC,SAAS,EAAE,MAAM;EACjB,OAAO,EAAE,MAAM;CAShB;;AAfD,AAQE,kBARgB,CAQhB,SAAS,CAAC;EACR,WAAW,EAAE,IAAI;EACjB,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,WAAW,EAAE,KAAK;CACnB",
-    "sources": [
-        "solutions-view-app-grid.component.scss"
-    ],
-    "names": [],
-    "file": "solutions-view-app-grid.component.css"
-}

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,UAAU;CAC5B;;AAED,AAAA,eAAe,CAAC;EACd,YAAY,EAAE,MAAM;CACrB;;AAED,AAAA,UAAU,CAAC;EACT,eAAe,EAAE,SAAS;EAC1B,KAAK,EAAE,eAAe;EACtB,SAAS,EAAE,QAAQ;CACpB;;AAED,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,eAAe;EACxB,MAAM,EAAE,QAAQ;CACjB",
-    "sources": [
-        "pills.component.scss"
-    ],
-    "names": [],
-    "file": "pills.component.css"
-}
