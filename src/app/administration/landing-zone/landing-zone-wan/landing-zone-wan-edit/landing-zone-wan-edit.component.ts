@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
 import { WanConfiguration } from '../landing-zone-wan.model';
+import { KeyValue } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-landing-zone-wan-edit',
@@ -14,10 +15,18 @@ export class LandingZoneWanEditComponent implements OnInit {
   googleSessionFormGroup: FormGroup;
   onPremiseSessionFormGroup: FormGroup;
   wanConfiguration: WanConfiguration;
+  subnetModeList: KeyValue<string, string>[];
+  bgpRoutingModeList: KeyValue<string, string>[];
+  vpnOnPremiseVendorList: KeyValue<string, string>[];
+  primarySharedSecret: Observable<string>;
+
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.wanConfiguration = this.route.snapshot.data['wanConfiguration'];
+    this.subnetModeList = this.route.snapshot.data['subnetModeList'];
+    this.bgpRoutingModeList = this.route.snapshot.data['bgpRoutingModeList'];
+    this.vpnOnPremiseVendorList = this.route.snapshot.data['vpnOnPremiseVendorList'];
 
     this.vpnFormGroup = this.formBuilder.group({
       projectName: [this.wanConfiguration.vpn.projectName, Validators.required],
@@ -53,5 +62,25 @@ export class LandingZoneWanEditComponent implements OnInit {
       secondaryBgpPeer: [this.wanConfiguration.onPremiseSession.secondaryBgpPeer],
       secondarySharedSecret: [this.wanConfiguration.onPremiseSession.secondarySharedSecret]
     });
+  }
+
+  uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (Math.random() * 16) | 0,
+        v = c == 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
+  generateSharedSecret(fieldName: string) {
+    this.onPremiseSessionFormGroup.controls[fieldName].setValue(this.uuidv4());
+  }
+
+  generatePrimarySharedSecret() {
+    this.onPremiseSessionFormGroup.controls['primarySharedSecret'].setValue(this.uuidv4());
+  }
+
+  generateSecondarySharedSecret() {
+    this.onPremiseSessionFormGroup.controls['secondarySharedSecret'].setValue(this.uuidv4());
   }
 }
