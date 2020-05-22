@@ -90,6 +90,17 @@
     display: flex;
     position: absolute;
     bottom: 1rem;
-    justify-content: flex-end;
+    justify-content: space-around;
+
+    .mat-button-text {
+      display: inline-block;
+      max-width: calc(100% - 16px);
+      white-space: normal;
+      line-height: 1;
+    }
+
+    .mat-icon {
+      margin-right: -8px;
+    }
   }
 }
