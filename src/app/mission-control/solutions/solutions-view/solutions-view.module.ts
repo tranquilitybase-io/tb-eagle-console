@@ -14,6 +14,13 @@ const routes: Routes = [
   {
     path: '',
     component: SolutionsViewComponent
+  },
+  {
+    path: 'application',
+    loadChildren: () =>
+      import('@app/mission-control/applications/applications-view/applications-view.module').then(
+        m => m.ApplicationsViewModule
+      )
   }
 ];
 

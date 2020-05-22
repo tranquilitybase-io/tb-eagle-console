@@ -9,9 +9,9 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <!-- <a mat-menu-item routerLink="/mission-control/solution/details" [queryParams]="{ id: app.activator.id }"
-              >Details</a
-            > -->
+          <a mat-menu-item routerLink="/mission-control/solutions/view/application" [queryParams]="{ id: app.id }">
+            View
+          </a>
         </mat-menu>
       </div>
       {{ app.name }}

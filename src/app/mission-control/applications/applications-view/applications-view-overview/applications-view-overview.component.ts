@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { Activator } from '../../../activator-store/activator-store.model';
-import { ActivatedRoute } from '@angular/router';
-import { Application } from '@app/mission-control/applications/applications.model';
-import { ActivatorStoreService } from '@app/mission-control/activator-store/activator-store.service';
+import { Component, OnInit } from '@angular/core';
+import { Application } from '../../applications.model';
 import { Observable } from 'rxjs';
+import { Activator } from '@app/mission-control/activator-store/activator-store.model';
+import { ActivatedRoute } from '@angular/router';
+import { ActivatorStoreService } from '@app/mission-control/activator-store/activator-store.service';
 
 @Component({
-  selector: 'app-solutions-details-overview',
-  templateUrl: './solutions-details-overview.component.html',
-  styleUrls: ['./solutions-details-overview.component.scss']
+  selector: 'app-applications-view-overview',
+  templateUrl: './applications-view-overview.component.html',
+  styleUrls: ['./applications-view-overview.component.scss']
 })
-export class SolutionsDetailsOverviewComponent {
+export class ApplicationsViewOverviewComponent implements OnInit {
   application: Application;
   activator$: Observable<Activator>;
   activator: Activator;
