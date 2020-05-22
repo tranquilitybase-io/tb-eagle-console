@@ -17,6 +17,7 @@ import { SubnetModeResolver } from './landing-zone-wan-forms/landing-zone-wan-fo
 import { BgpRoutingModeResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/bgp-routing-mode.resolver';
 import { VpnOnPremiseVendorResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/vpn-on-premise-vendor.resolver';
 import { LandingZoneWanViewResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/landing-zone-wan-view.resolver';
+import { LandingZoneWanEditResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/landing-zone-wan-edit.resolver';
 
 const routes: Routes = [
   {
@@ -32,7 +33,13 @@ const routes: Routes = [
   {
     path: 'edit',
     loadChildren: () =>
-      import('./landing-zone-wan-edit/landing-zone-wan-edit.module').then(m => m.LandingZoneWanEditModule)
+      import('./landing-zone-wan-edit/landing-zone-wan-edit.module').then(m => m.LandingZoneWanEditModule),
+    resolve: {
+      subnetModeList: SubnetModeResolver,
+      bgpRoutingModeList: BgpRoutingModeResolver,
+      vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
+      wanConfiguration: LandingZoneWanEditResolver
+    }
   },
   {
     path: 'view',

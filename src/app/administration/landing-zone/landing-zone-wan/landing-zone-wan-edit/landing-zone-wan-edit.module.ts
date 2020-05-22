@@ -24,7 +24,6 @@ import { LandingZoneWanFormsVpnTabComponent } from '../landing-zone-wan-forms/la
 import { LandingZoneWanFormsVpnGoogleTabComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn-google-tab/landing-zone-wan-forms-vpn-google-tab.component';
 import { LandingZoneWanFormsVpnOnPremiseTabComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn-on-premise-tab/landing-zone-wan-forms-vpn-on-premise-tab.component';
 import { LandingZoneWanFormsVpnReviewTabComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn-review-tab/landing-zone-wan-forms-vpn-review-tab.component';
-import { LandingZoneWanFormsVpnComponent } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn.component';
 
 // const routes: Routes = [
 //   {
@@ -46,14 +45,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    LandingZoneWanEditComponent,
-    LandingZoneWanFormsVpnComponent,
-    LandingZoneWanFormsVpnTabComponent,
-    LandingZoneWanFormsVpnGoogleTabComponent,
-    LandingZoneWanFormsVpnOnPremiseTabComponent,
-    LandingZoneWanFormsVpnReviewTabComponent
-  ],
+  declarations: [LandingZoneWanEditComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

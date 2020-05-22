@@ -26,7 +26,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { ConnectionUnderDeploymentComponent } from './snack-bar/connection-under-deployment/connection-under-deployment.component';
 import { ConnectionIsDeployedComponent } from './snack-bar/connection-is-deployed/connection-is-deployed.component';
-import { MatDialogModule, MatMenuModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -62,8 +62,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatDialogModule,
-    MatMenuModule
+    MatDialogModule
   ]
 })
 export class LandingZoneWanHomeModule {}
