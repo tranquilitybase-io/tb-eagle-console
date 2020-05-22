@@ -1,15 +1,4 @@
-import { Activator } from '../activator-store/activator-store.model';
-
-export class Application {
-  solutionId: number;
-  activatorId: number;
-  name: string;
-  description: string;
-  env: string;
-  status: string;
-  lastUpdated: string;
-  activator: Activator;
-}
+import { Application } from '../applications/applications.model';
 
 export class Solution {
   id: number;

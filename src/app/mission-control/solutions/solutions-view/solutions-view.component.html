@@ -19,10 +19,7 @@
       <span class="mat-small">{{ solution.costCentre }}</span>
     </span>
   </p>
-  <app-solutions-view-app-grid
-    [solution]="solution"
-    *ngIf="(current$ | async) !== 'Workspace'"
-  ></app-solutions-view-app-grid>
+  <app-applications-grid [solution]="solution" *ngIf="(current$ | async) !== 'Workspace'"></app-applications-grid>
   <app-solutions-view-workspace-info
     [solution]="solution"
     *ngIf="(current$ | async) === 'Workspace'"
