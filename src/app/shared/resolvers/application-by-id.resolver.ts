@@ -5,10 +5,10 @@ import { ApplicationsService } from '@app/mission-control/applications/applicati
 import { Application } from '@app/mission-control/applications/applications.model';
 
 @Injectable({ providedIn: 'root' })
-export class ApplicationsByActivatorIdResolver implements Resolve<Application[]> {
+export class ApplicationByIdResolver implements Resolve<Application> {
   constructor(private applicationsService: ApplicationsService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Application[]> {
-    return this.applicationsService.getWithQuery({ activatorId: state.root.queryParamMap.get('id') });
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Application> {
+    return this.applicationsService.getByKey(state.root.queryParamMap.get('id'));
   }
 }
