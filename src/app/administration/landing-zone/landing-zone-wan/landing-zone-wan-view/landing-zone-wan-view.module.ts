@@ -16,9 +16,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LandingZoneWanViewComponent } from './landing-zone-wan-view.component';
-import { SubnetModeResolver } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/subnet-mode.resolver';
-import { BgpRoutingModeResolver } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/bgp-routing-mode.resolver';
-import { VpnOnPremiseVendorResolver } from '../landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/vpn-on-premise-vendor.resolver';
 
 const routes: Routes = [
   {
