@@ -28,7 +28,7 @@ import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-
 import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creation/solution-under-creation.component';
 
 import { SharedService } from './shared.service';
-import { DeploymentsService } from '@app/mission-control/activator-store/activator-store-view/deployments.service';
+import { ApplicationsService } from '@app/mission-control/applications/applications.service';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -69,7 +69,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ],
   providers: [
     SharedService,
-    DeploymentsService,
+    ApplicationsService,
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }
   ],
   imports: [

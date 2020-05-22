@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DeploymentsService } from '@app/mission-control/activator-store/activator-store-view/deployments.service';
-import { Application } from '@app/mission-control/solutions/solutions.model';
+import { ApplicationsService } from '@app/mission-control/applications/applications.service';
+import { Application } from '@app/mission-control/applications/applications.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApplicationsByActivatorIdResolver implements Resolve<Application[]> {
-  constructor(private deploymentsService: DeploymentsService) {}
+  constructor(private applicationsService: ApplicationsService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Application[]> {
-    return this.deploymentsService.getWithQuery({ activatorId: state.root.queryParamMap.get('id') });
+    return this.applicationsService.getWithQuery({ activatorId: state.root.queryParamMap.get('id') });
   }
 }

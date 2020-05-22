@@ -10,6 +10,7 @@
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
           <a mat-menu-item routerLink="edit">Edit</a>
+          <a mat-menu-item routerLink="view" [queryParams]="{ id: wanVpn.id }">View</a>
         </mat-menu>
       </div>
       {{ wanVpn.vpn.projectName }}
@@ -72,6 +73,7 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
+    <a mat-button routerLink="view" [queryParams]="{ id: wanVpn.id }">View</a>
     <button
       [disabled]="(deployed$ | async) || (deploymentInProgress$ | async)"
       mat-button
