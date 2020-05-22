@@ -121,7 +121,17 @@ a {
 }
 
 h1:hover {
-  filter: drop-shadow(0 0 2px var(--dark-grey));
+  filter: drop-shadow(0 0 3px var(--dark-grey));
+  cursor: default;
+  transition-property: filter;
+  transition-duration: 500ms;
+  transition-delay: 50ms;
+}
+h1 {
+  filter: drop-shadow(0 0 0px var(--dark-grey));
+  transition-property: filter;
+  transition-duration: 500ms;
+  transition-delay: 50ms;
 }
 
 .mat-sidenav .mat-icon {
