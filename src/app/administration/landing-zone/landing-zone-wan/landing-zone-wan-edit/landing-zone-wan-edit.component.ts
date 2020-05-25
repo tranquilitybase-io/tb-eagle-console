@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WanConfiguration } from '../landing-zone-wan.model';
 import { KeyValue } from '@angular/common';
 import { Observable } from 'rxjs';
+import { updateWanConfiguration } from '../landing-zone-wan.actions';
+import { Store } from '@ngrx/store';
+import { SolutionsState } from '../landing-zone-wan.reducers';
 
 @Component({
   selector: 'app-landing-zone-wan-edit',
@@ -20,7 +23,12 @@ export class LandingZoneWanEditComponent implements OnInit {
   vpnOnPremiseVendorList: KeyValue<string, string>[];
   primarySharedSecret: Observable<string>;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private store: Store<SolutionsState>,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.wanConfiguration = this.route.snapshot.data['wanConfiguration'];
@@ -82,5 +90,14 @@ export class LandingZoneWanEditComponent implements OnInit {
 
   generateSecondarySharedSecret() {
     this.onPremiseSessionFormGroup.controls['secondarySharedSecret'].setValue(this.uuidv4());
+  }
+
+  cancel() {
+    this.router.navigateByUrl('/administration/landing-zone/wan');
+  }
+
+  onSubmit(wanConfiguration) {
+    this.store.dispatch(updateWanConfiguration({ wanConfiguration }));
+    this.router.navigateByUrl('/administration/landing-zone/wan');
   }
 }

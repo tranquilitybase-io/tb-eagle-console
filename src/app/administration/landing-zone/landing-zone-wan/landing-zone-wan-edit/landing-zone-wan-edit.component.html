@@ -215,7 +215,9 @@
       </mat-card>
     </div>
   </form>
-  <div class="step">On Premise Session</div>
+  <div class="step">
+    <div class="session-title">On Premise Session</div>
+  </div>
   <form [formGroup]="onPremiseSessionFormGroup">
     <p>
       <mat-form-field class="half-width" appearance="outline">
@@ -378,3 +380,11 @@
     </div>
   </form>
 </div>
+<footer>
+  <div class="details-footer-container">
+    <button mat-button color="primary" (click)="cancel()"><mat-icon>chevron_left</mat-icon> Cancel</button>
+    <button mat-button color="primary" type="submit" (click)="onSubmit()">
+      Update <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</footer>

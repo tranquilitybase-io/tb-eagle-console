@@ -1,4 +1,5 @@
-header {
+header,
+footer {
   padding: 0.3rem 0.5rem;
   background-color: var(--active-grey-background);
   display: flex;
@@ -18,6 +19,10 @@ header {
       margin: 0.5rem;
     }
   }
+
+  &.details-footer-container {
+    justify-content: space-between;
+  }
 }
 
 .grid-container {
@@ -28,6 +33,10 @@ header {
 
   .step {
     font-weight: 800;
+
+    .session-title {
+      padding-top: 40px;
+    }
   }
 }
 
