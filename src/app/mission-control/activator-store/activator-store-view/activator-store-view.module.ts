@@ -18,13 +18,17 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
+import { ApplicationsByActivatorIdResolver } from '@app/shared/resolvers/applications-by-activator-id.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: ActivatorStoreViewComponent,
     resolve: {
-      application: ApplicationByIdResolver
+      application: ApplicationByIdResolver,
+      activator: ActivatorByIdResolver,
+      applications: ApplicationsByActivatorIdResolver
     }
   }
 ];

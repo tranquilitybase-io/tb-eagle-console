@@ -18,6 +18,8 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(setProgress({ step: 0 }));
     this.activator = this.route.snapshot.data['activator'] as Activator;
+    console.log(this.route.snapshot.data);
+    // throw new Error("ERR");
   }
 
   get properties(): Property[] {
