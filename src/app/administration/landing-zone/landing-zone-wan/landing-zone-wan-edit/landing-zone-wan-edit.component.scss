@@ -1,5 +1,4 @@
-header,
-footer {
+header {
   padding: 0.3rem 0.5rem;
   background-color: var(--active-grey-background);
   display: flex;
@@ -19,10 +18,14 @@ footer {
       margin: 0.5rem;
     }
   }
+}
 
-  &.details-footer-container {
-    justify-content: space-between;
-  }
+footer {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--active-grey-background);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .grid-container {
@@ -40,13 +43,15 @@ footer {
   }
 }
 
+/* google session & on permise */
 .side-by-side {
   display: flex;
   justify-content: space-around;
   margin-top: 2rem;
 
   .mat-card {
-    width: 45%;
+    width: 50%;
+    margin-right: 20px;
   }
 
   p {
@@ -68,11 +73,16 @@ footer {
   }
 }
 
+/* vpn */
 p {
   width: 100%;
 
   .mat-form-field {
     width: 100%;
+
+    &.description {
+      width: 93%;
+    }
 
     &.small-width {
       width: 30%;
@@ -86,7 +96,6 @@ p {
   }
 }
 
-/*on premise*/
 button {
   &.warn {
     border-color: red;
