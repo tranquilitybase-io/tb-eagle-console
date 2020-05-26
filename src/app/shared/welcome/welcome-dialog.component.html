@@ -1,29 +1,40 @@
-<h1 mat-dialog-title class="mcm-msg" *ngIf="!userIsAdmin$">Welcome to Tranquility Base and the Eagle console</h1>
-<h1 mat-dialog-title class="mcm-msg" *ngIf="userIsAdmin$">Welcome, [first name] to the Eagle console</h1>
-<mat-dialog-content class="mat-typography">
-  <p class="mcm-dsc" *ngIf="!userIsAdmin$">
-    Tranquility Base has so far installed a bootstrap Landing Zone that enables Eagle to start up.
-    <br /><br />
-    To complete the basic installation, you will need to <b>complete the minimum Landing Zone requirements</b>.
-  </p>
-  <p class="mcm-dsc" *ngIf="userIsAdmin$">
-    You do not currently belong to a team. In order to join a team, click on the <b>Teams</b> menu to view the available
-    teams and request to join.
-  </p>
-  <p class="mcm-dsc" *ngIf="userIsAdmin$">
-    You belong to the [team name] team. To get started, you can click on the <b>Solutions</b> menu to view your teams
-    solutions and applications.
-  </p>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button class="mcm-link" [mat-dialog-close]="true" cdkFocusInitial>
-    Get started
-    <mat-icon
-      _ngcontent-vvf-c3=""
-      class="mat-icon notranslate material-icons mat-icon-no-color"
-      role="img"
-      aria-hidden="true"
-      >keyboard_arrow_right</mat-icon
-    >
-  </button>
-</mat-dialog-actions>
+<div *ngIf="userIsAdmin$ | async; else nope">
+  <h1 mat-dialog-title class="mcm-msg">Welcome to Tranquility Base and the Eagle console</h1>
+  <mat-dialog-content class="mat-typography">
+    <p class="mcm-dsc">
+      Tranquility Base has so far installed a bootstrap Landing Zone that enables Eagle to start up.
+      <br /><br />
+      To complete the basic installation, you will need to <b>complete the minimum Landing Zone requirements</b>.
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button class="mcm-link" [mat-dialog-close]="true">
+      Get started
+      <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true"
+        >keyboard_arrow_right</mat-icon
+      >
+    </button>
+  </mat-dialog-actions>
+</div>
+
+<ng-template #nope>
+  <h1 mat-dialog-title class="mcm-msg">Welcome, [first name] to the Eagle console</h1>
+  <mat-dialog-content class="mat-typography">
+    <p class="mcm-dsc">
+      You do not currently belong to a team. In order to join a team, click on the <b>Teams</b> menu to view the
+      available teams and request to join.
+    </p>
+    <p class="mcm-dsc">
+      You belong to the [team name] team. To get started, you can click on the <b>Solutions</b> menu to view your teams
+      solutions and applications.
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button class="mcm-link" [mat-dialog-close]="true">
+      Go ahead
+      <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true"
+        >keyboard_arrow_right</mat-icon
+      >
+    </button>
+  </mat-dialog-actions>
+</ng-template>
