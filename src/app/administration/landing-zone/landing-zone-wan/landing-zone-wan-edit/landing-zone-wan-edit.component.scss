@@ -43,6 +43,29 @@ footer {
   }
 }
 
+/* vpn */
+p {
+  width: 100%;
+
+  .mat-form-field {
+    width: 100%;
+
+    &.description {
+      width: 93%;
+    }
+
+    &.small-width {
+      width: 30%;
+      margin-right: 2rem;
+    }
+
+    &.half-width {
+      width: 45%;
+      margin-right: 2rem;
+    }
+  }
+}
+
 /* google session & on permise */
 .side-by-side {
   display: flex;
@@ -59,29 +82,6 @@ footer {
 
     .mat-form-field {
       width: 100%;
-    }
-
-    &.small-width {
-      width: 30%;
-      margin-right: 2rem;
-    }
-
-    &.half-width {
-      width: 45%;
-      margin-right: 2rem;
-    }
-  }
-}
-
-/* vpn */
-p {
-  width: 100%;
-
-  .mat-form-field {
-    width: 100%;
-
-    &.description {
-      width: 93%;
     }
 
     &.small-width {
