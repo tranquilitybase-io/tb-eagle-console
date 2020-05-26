@@ -16,9 +16,6 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
-    if (this.userIsAdmin$) {
-      console.log(this.userIsAdmin$);
-    }
   }
 }
 
@@ -31,9 +28,5 @@ export class WelcomeDialog {
 
   openDialog() {
     const dialogRef = this.dialog.open(WelcomeComponent, { panelClass: 'custom-dialog-container' });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 }
