@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActivatorStoreViewComponent } from './activator-store-view.component';
+import { ActivatorStoreViewOverviewComponent } from './activator-store-view-overview.component';
 
 describe('ActivatorStoreViewComponent', () => {
-  let component: ActivatorStoreViewComponent;
-  let fixture: ComponentFixture<ActivatorStoreViewComponent>;
+  let component: ActivatorStoreViewOverviewComponent;
+  let fixture: ComponentFixture<ActivatorStoreViewOverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreViewComponent]
+      declarations: [ActivatorStoreViewOverviewComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActivatorStoreViewComponent);
+    fixture = TestBed.createComponent(ActivatorStoreViewOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

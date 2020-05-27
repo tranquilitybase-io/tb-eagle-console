@@ -20,6 +20,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
 import { ApplicationsByActivatorIdResolver } from '@app/shared/resolvers/applications-by-activator-id.resolver';
+import { ApplicationsModule } from '@app/mission-control/applications/applications.module';
+import { ApplicationsService } from '@app/mission-control/applications/applications.service';
 
 const routes: Routes = [
   {
@@ -42,9 +44,11 @@ const routes: Routes = [
     ActivatorStoreViewUsersComponent,
     ActivatorStoreViewVersionHistoryComponent
   ],
+  providers: [ApplicationsService],
   imports: [
     CommonModule,
     SharedModule,
+    ApplicationsModule,
     RouterModule.forChild(routes),
     MatButtonModule,
     MatCardModule,
