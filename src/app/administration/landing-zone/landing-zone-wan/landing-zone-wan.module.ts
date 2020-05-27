@@ -33,13 +33,7 @@ const routes: Routes = [
   {
     path: 'edit',
     loadChildren: () =>
-      import('./landing-zone-wan-edit/landing-zone-wan-edit.module').then(m => m.LandingZoneWanEditModule),
-    resolve: {
-      subnetModeList: SubnetModeResolver,
-      bgpRoutingModeList: BgpRoutingModeResolver,
-      vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
-      wanConfiguration: LandingZoneWanVpnByIdResolver
-    }
+      import('./landing-zone-wan-edit/landing-zone-wan-edit.module').then(m => m.LandingZoneWanEditModule)
   },
   {
     path: 'view',

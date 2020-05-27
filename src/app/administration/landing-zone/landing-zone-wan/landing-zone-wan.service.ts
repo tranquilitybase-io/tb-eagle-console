@@ -38,7 +38,6 @@ export class LandingZoneWanService extends EntityCollectionServiceBase<WanConfig
     this.http.put(url, wanConfiguration, { headers }).subscribe(
       (val: WanConfiguration) => {
         console.log('PUT call successful value returned in body', val);
-        this.store.dispatch(startConnectionDeployment({ name: String(val.id) }));
       },
       response => {
         console.log('PUT call in error', response);

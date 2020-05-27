@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WanConfiguration } from '../landing-zone-wan.model';
+import { WanConfiguration } from '../../landing-zone-wan.model';
 import { KeyValue } from '@angular/common';
 import { Observable } from 'rxjs';
-import { updateWanConfiguration } from '../landing-zone-wan.actions';
+import { updateWanConfiguration } from '../../landing-zone-wan.actions';
 import { Store } from '@ngrx/store';
-import { SolutionsState } from '../landing-zone-wan.reducers';
+import { SolutionsState } from '../../landing-zone-wan.reducers';
 
 @Component({
-  selector: 'app-landing-zone-wan-edit',
-  templateUrl: './landing-zone-wan-edit.component.html',
-  styleUrls: ['./landing-zone-wan-edit.component.scss']
+  selector: 'app-landing-zone-wan-edit-vpn',
+  templateUrl: './landing-zone-wan-edit-vpn.component.html',
+  styleUrls: ['./landing-zone-wan-edit-vpn.component.scss']
 })
-export class LandingZoneWanEditComponent implements OnInit {
+export class LandingZoneWanEditVpnComponent implements OnInit {
   vpnFormGroup: FormGroup;
   googleSessionFormGroup: FormGroup;
   onPremiseSessionFormGroup: FormGroup;
