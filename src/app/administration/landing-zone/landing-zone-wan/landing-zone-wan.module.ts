@@ -14,11 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { SubnetModeResolver } from '@app/shared/resolvers/subnet-mode.resolver';
-import { BgpRoutingModeResolver } from '@app/shared/resolvers/bgp-routing-mode.resolver';
-import { VpnOnPremiseVendorResolver } from '@app/shared/resolvers/vpn-on-premise-vendor.resolver';
-import { LandingZoneWanVpnByIdResolver } from '@app/shared/resolvers/landing-zone-wan-vpn-by-id.resolver';
-
 const routes: Routes = [
   {
     path: '',

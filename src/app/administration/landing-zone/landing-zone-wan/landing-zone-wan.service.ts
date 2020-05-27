@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { WanConfiguration } from './landing-zone-wan.model';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { startConnectionDeployment } from './landing-zone-wan.actions';
 
 @Injectable({
   providedIn: 'root'
