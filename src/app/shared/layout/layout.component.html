@@ -61,8 +61,8 @@
         </a>
       </div>
       <mat-divider *ngIf="!isExpanded" class="miniDrawerBr"></mat-divider>
+      <div class="section-header" *ngIf="isExpanded">Administration menu</div>
       <div *ngIf="userIsAdmin$ | async">
-        <div class="section-header" *ngIf="isExpanded">Administration menu</div>
         <a
           mat-list-item
           routerLink="/administration/landing-zone"
@@ -76,16 +76,16 @@
         <a mat-list-item [matTooltip]="!isExpanded ? 'Shared Services' : null" matTooltipPosition="after">
           <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span></a
         >
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
-          <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span></a
-        >
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Teams' : null" matTooltipPosition="after">
-          <mat-icon>group</mat-icon> <span *ngIf="isExpanded"> Teams</span></a
-        >
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
-          <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span></a
-        >
       </div>
+      <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
+        <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span></a
+      >
+      <a mat-list-item [matTooltip]="!isExpanded ? 'Teams' : null" matTooltipPosition="after">
+        <mat-icon>group</mat-icon> <span *ngIf="isExpanded"> Teams</span></a
+      >
+      <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
+        <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span></a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
