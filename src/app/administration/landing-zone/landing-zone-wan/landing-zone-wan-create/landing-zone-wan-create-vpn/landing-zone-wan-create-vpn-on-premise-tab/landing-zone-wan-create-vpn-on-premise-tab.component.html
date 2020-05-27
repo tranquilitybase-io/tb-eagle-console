@@ -29,13 +29,7 @@
         <p>
           <mat-form-field appearance="outline">
             <mat-label>Peer IP Subnet</mat-label>
-            <input
-              matInput
-              type="text"
-              maxlength="50"
-              formControlName="primaryPeerIpSubnet"
-              placeholder="E.g. ..."
-            />
+            <input matInput type="text" maxlength="50" formControlName="primaryPeerIpSubnet" placeholder="E.g. ..." />
           </mat-form-field>
         </p>
         <p>
@@ -74,9 +68,15 @@
               formControlName="primarySharedSecret"
               placeholder="Generate or input manually"
             />
-            <button type="button" mat-icon-button matSuffix (click)="generateSharedSecret('primarySharedSecret')" matTooltip="Generate">
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="generateSharedSecret('primarySharedSecret')"
+              matTooltip="Generate"
+            >
               <mat-icon>autorenew</mat-icon>
-              </button>
+            </button>
           </mat-form-field>
         </p>
       </mat-card-content>
@@ -138,9 +138,15 @@
               formControlName="secondarySharedSecret"
               placeholder="Generate or input manually"
             />
-            <button type="button" mat-icon-button matSuffix (click)="generateSharedSecret('secondarySharedSecret')" matTooltip="Generate">
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="generateSharedSecret('secondarySharedSecret')"
+              matTooltip="Generate"
+            >
               <mat-icon>autorenew</mat-icon>
-              </button>
+            </button>
           </mat-form-field>
         </p>
       </mat-card-content>

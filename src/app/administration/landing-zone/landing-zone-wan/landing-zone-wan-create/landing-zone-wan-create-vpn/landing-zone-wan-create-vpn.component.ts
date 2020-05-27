@@ -6,11 +6,11 @@ import { WanConfiguration } from '../../landing-zone-wan.model';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-landing-zone-wan-forms-vpn',
-  templateUrl: './landing-zone-wan-forms-vpn.component.html',
-  styleUrls: ['./landing-zone-wan-forms-vpn.component.scss']
+  selector: 'app-landing-zone-wan-create-vpn',
+  templateUrl: './landing-zone-wan-create-vpn.component.html',
+  styleUrls: ['./landing-zone-wan-create-vpn.component.scss']
 })
-export class LandingZoneWanFormsVpnComponent implements OnInit {
+export class LandingZoneWanCreateVpnComponent implements OnInit {
   vpnFormGroup: FormGroup;
   googleSessionFormGroup: FormGroup;
   onPremiseSessionFormGroup: FormGroup;
@@ -27,8 +27,8 @@ export class LandingZoneWanFormsVpnComponent implements OnInit {
       haVpnGateway: ['', Validators.required],
       cloudRouterName: ['', Validators.required],
       externalVpnGateway: ['', Validators.required],
-      googleASN: ['', Validators.required],
-      peerASN: ['', Validators.required],
+      googleASN: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]],
+      peerASN: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]],
       bgpInterfaceNetLength: ['', Validators.required]
     });
     this.googleSessionFormGroup = this.formBuilder.group({

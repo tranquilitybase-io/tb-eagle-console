@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingZoneWanFormsVpnComponent } from './landing-zone-wan-forms-vpn.component';
-import { LandingZoneWanFormsVpnReviewTabComponent } from './landing-zone-wan-forms-vpn-review-tab/landing-zone-wan-forms-vpn-review-tab.component';
+import { LandingZoneWanCreateVpnGoogleTabComponent } from './landing-zone-wan-create-vpn-google-tab.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -17,27 +16,16 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { LandingZoneWanFormsVpnTabComponent } from './landing-zone-wan-forms-vpn-tab/landing-zone-wan-forms-vpn-tab.component';
-import { LandingZoneWanFormsVpnGoogleTabComponent } from './landing-zone-wan-forms-vpn-google-tab/landing-zone-wan-forms-vpn-google-tab.component';
-import { LandingZoneWanFormsVpnOnPremiseTabComponent } from './landing-zone-wan-forms-vpn-on-premise-tab/landing-zone-wan-forms-vpn-on-premise-tab.component';
-import { RouterTestingModule } from '@angular/router/testing';
 
-describe('LandingZoneWanFormsVpnComponent', () => {
-  let component: LandingZoneWanFormsVpnComponent;
-  let fixture: ComponentFixture<LandingZoneWanFormsVpnComponent>;
+describe('LandingZoneWanCreateVpnGoogleTabComponent', () => {
+  let component: LandingZoneWanCreateVpnGoogleTabComponent;
+  let fixture: ComponentFixture<LandingZoneWanCreateVpnGoogleTabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        LandingZoneWanFormsVpnComponent,
-        LandingZoneWanFormsVpnGoogleTabComponent,
-        LandingZoneWanFormsVpnOnPremiseTabComponent,
-        LandingZoneWanFormsVpnReviewTabComponent,
-        LandingZoneWanFormsVpnTabComponent
-      ],
+      declarations: [LandingZoneWanCreateVpnGoogleTabComponent],
       imports: [
         ReactiveFormsModule,
-        RouterTestingModule,
         MatButtonModule,
         MatCardModule,
         MatChipsModule,
@@ -55,7 +43,7 @@ describe('LandingZoneWanFormsVpnComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingZoneWanFormsVpnComponent);
+    fixture = TestBed.createComponent(LandingZoneWanCreateVpnGoogleTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

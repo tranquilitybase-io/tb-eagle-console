@@ -1,8 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LandingZoneWanFormsVpnComponent } from './landing-zone-wan-forms-vpn.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { LandingZoneWanCreateVpnComponent } from './landing-zone-wan-create-vpn.component';
+import { LandingZoneWanCreateVpnGoogleTabComponent } from './landing-zone-wan-create-vpn-google-tab/landing-zone-wan-create-vpn-google-tab.component';
+import { LandingZoneWanCreateVpnOnPremiseTabComponent } from './landing-zone-wan-create-vpn-on-premise-tab/landing-zone-wan-create-vpn-on-premise-tab.component';
+import { LandingZoneWanCreateVpnReviewTabComponent } from './landing-zone-wan-create-vpn-review-tab/landing-zone-wan-create-vpn-review-tab.component';
+import { LandingZoneWanCreateVpnTabComponent } from './landing-zone-wan-create-vpn-tab/landing-zone-wan-create-vpn-tab.component';
+
+import { BgpRoutingModeResolver } from '@app/shared/resolvers/bgp-routing-mode.resolver';
+import { SubnetModeResolver } from '@app/shared/resolvers/subnet-mode.resolver';
+import { VpnOnPremiseVendorResolver } from '@app/shared/resolvers/vpn-on-premise-vendor.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -16,20 +25,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
-import { LandingZoneWanFormsVpnTabComponent } from './landing-zone-wan-forms-vpn-tab/landing-zone-wan-forms-vpn-tab.component';
-import { LandingZoneWanFormsVpnGoogleTabComponent } from './landing-zone-wan-forms-vpn-google-tab/landing-zone-wan-forms-vpn-google-tab.component';
-import { LandingZoneWanFormsVpnOnPremiseTabComponent } from './landing-zone-wan-forms-vpn-on-premise-tab/landing-zone-wan-forms-vpn-on-premise-tab.component';
-import { LandingZoneWanFormsVpnReviewTabComponent } from './landing-zone-wan-forms-vpn-review-tab/landing-zone-wan-forms-vpn-review-tab.component';
-
-import { SubnetModeResolver } from '@app/shared/resolvers/subnet-mode.resolver';
-import { BgpRoutingModeResolver } from '@app/shared/resolvers/bgp-routing-mode.resolver';
-import { VpnOnPremiseVendorResolver } from '@app/shared/resolvers/vpn-on-premise-vendor.resolver';
-
 const routes: Routes = [
   {
     path: '',
-    component: LandingZoneWanFormsVpnComponent,
+    component: LandingZoneWanCreateVpnComponent,
     resolve: {
       subnetModeList: SubnetModeResolver,
       bgpRoutingModeList: BgpRoutingModeResolver,
@@ -40,11 +39,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    LandingZoneWanFormsVpnComponent,
-    LandingZoneWanFormsVpnTabComponent,
-    LandingZoneWanFormsVpnGoogleTabComponent,
-    LandingZoneWanFormsVpnOnPremiseTabComponent,
-    LandingZoneWanFormsVpnReviewTabComponent
+    LandingZoneWanCreateVpnComponent,
+    LandingZoneWanCreateVpnGoogleTabComponent,
+    LandingZoneWanCreateVpnOnPremiseTabComponent,
+    LandingZoneWanCreateVpnReviewTabComponent,
+    LandingZoneWanCreateVpnTabComponent
   ],
   imports: [
     CommonModule,
@@ -64,4 +63,4 @@ const routes: Routes = [
     MatTooltipModule
   ]
 })
-export class LandingZoneWanFormsVpnModule {}
+export class LandingZoneWanCreateVpnModule {}

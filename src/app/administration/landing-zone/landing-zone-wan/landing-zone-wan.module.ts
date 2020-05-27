@@ -26,9 +26,9 @@ const routes: Routes = [
       import('./landing-zone-wan-home/landing-zone-wan-home.module').then(m => m.LandingZoneWanHomeModule)
   },
   {
-    path: 'forms',
+    path: 'create',
     loadChildren: () =>
-      import('./landing-zone-wan-forms/landing-zone-wan-forms.module').then(m => m.LandingZoneWanFormsModule)
+      import('./landing-zone-wan-create/landing-zone-wan-create.module').then(m => m.LandingZoneWanCreateModule)
   },
   {
     path: 'edit',

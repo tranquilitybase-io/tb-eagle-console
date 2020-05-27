@@ -11,17 +11,19 @@ const routes: Routes = [
   {
     path: 'vpn',
     loadChildren: () =>
-      import('./landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn.module').then(m => m.LandingZoneWanFormsVpnModule)
+      import('./landing-zone-wan-create-vpn/landing-zone-wan-create-vpn.module').then(
+        m => m.LandingZoneWanCreateVpnModule
+      )
     // },
     // {
     //   path: 'direct',
     //   loadChildren: () =>
-    //     import('./landing-zone-wan-forms-direct/landing-zone-wan-forms-direct.module').then(m => m.LandingZoneWanFormsDirectModule)
+    //     import('./landing-zone-wan-create-direct/landing-zone-wan-create-direct.module').then(m => m.LandingZoneWanCreateDirectModule)
     // },
     // {
     //   path: 'partner',
     //   loadChildren: () =>
-    //     import('./landing-zone-wan-forms-partner/landing-zone-wan-forms-partner.module').then(m => m.LandingZoneWanFormsPartnerModule)
+    //     import('./landing-zone-wan-create-partner/landing-zone-wan-create-partner.module').then(m => m.LandingZoneWanCreatePartnerModule)
   }
 ];
 
@@ -29,4 +31,4 @@ const routes: Routes = [
   declarations: [],
   imports: [CommonModule, RouterModule.forChild(routes)]
 })
-export class LandingZoneWanFormsModule {}
+export class LandingZoneWanCreateModule {}

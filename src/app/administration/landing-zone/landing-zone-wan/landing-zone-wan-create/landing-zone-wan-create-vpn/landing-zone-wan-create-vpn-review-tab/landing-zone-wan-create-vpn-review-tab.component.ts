@@ -2,11 +2,11 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-landing-zone-wan-forms-vpn-review-tab',
-  templateUrl: './landing-zone-wan-forms-vpn-review-tab.component.html',
-  styleUrls: ['./landing-zone-wan-forms-vpn-review-tab.component.scss']
+  selector: 'app-landing-zone-wan-create-vpn-review-tab',
+  templateUrl: './landing-zone-wan-create-vpn-review-tab.component.html',
+  styleUrls: ['./landing-zone-wan-create-vpn-review-tab.component.scss']
 })
-export class LandingZoneWanFormsVpnReviewTabComponent implements OnInit {
+export class LandingZoneWanCreateVpnReviewTabComponent implements OnInit {
   @Input() vpnFormGroup: FormGroup;
   @Input() googleSessionFormGroup: FormGroup;
   @Input() onPremiseSessionFormGroup: FormGroup;

@@ -4,11 +4,11 @@ import { KeyValue } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-landing-zone-wan-forms-vpn-tab',
-  templateUrl: './landing-zone-wan-forms-vpn-tab.component.html',
-  styleUrls: ['./landing-zone-wan-forms-vpn-tab.component.scss']
+  selector: 'app-landing-zone-wan-create-vpn-tab',
+  templateUrl: './landing-zone-wan-create-vpn-tab.component.html',
+  styleUrls: ['./landing-zone-wan-create-vpn-tab.component.scss']
 })
-export class LandingZoneWanFormsVpnTabComponent implements OnInit {
+export class LandingZoneWanCreateVpnTabComponent implements OnInit {
   @Input() formGroup: FormGroup;
 
   subnetModeList: KeyValue<string, string>[];

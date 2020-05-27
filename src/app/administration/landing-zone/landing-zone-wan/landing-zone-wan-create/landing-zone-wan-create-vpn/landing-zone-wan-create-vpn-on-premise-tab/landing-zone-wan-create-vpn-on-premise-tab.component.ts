@@ -5,11 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-landing-zone-wan-forms-vpn-on-premise-tab',
-  templateUrl: './landing-zone-wan-forms-vpn-on-premise-tab.component.html',
-  styleUrls: ['./landing-zone-wan-forms-vpn-on-premise-tab.component.scss']
+  selector: 'app-landing-zone-wan-create-vpn-on-premise-tab',
+  templateUrl: './landing-zone-wan-create-vpn-on-premise-tab.component.html',
+  styleUrls: ['./landing-zone-wan-create-vpn-on-premise-tab.component.scss']
 })
-export class LandingZoneWanFormsVpnOnPremiseTabComponent implements OnInit {
+export class LandingZoneWanCreateVpnOnPremiseTabComponent implements OnInit {
   @Input() formGroup: FormGroup;
 
   vpnOnPremiseVendorList: KeyValue<string, string>[];

@@ -74,7 +74,6 @@
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
     <a mat-button routerLink="view" [queryParams]="{ id: wanVpn.id }">View</a>
-    <!-- <a mat-button routerLink="edit" [queryParams]="{ id: wanVpn.id }">Edit</a> -->
     <button
       [disabled]="(deployed$ | async) || (deploymentInProgress$ | async)"
       mat-button

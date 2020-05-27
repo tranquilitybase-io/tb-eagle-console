@@ -1,8 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingZoneWanFormsVpnReviewTabComponent } from './landing-zone-wan-forms-vpn-review-tab.component';
+import { LandingZoneWanCreateVpnOnPremiseTabComponent } from './landing-zone-wan-create-vpn-on-premise-tab.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+
 import { CdkStepper } from '@angular/cdk/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -17,15 +21,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-describe('LandingZoneWanFormsVpnReviewTabComponent', () => {
-  let component: LandingZoneWanFormsVpnReviewTabComponent;
-  let fixture: ComponentFixture<LandingZoneWanFormsVpnReviewTabComponent>;
+describe('LandingZoneWanCreateVpnOnPremiseTabComponent', () => {
+  let component: LandingZoneWanCreateVpnOnPremiseTabComponent;
+  let fixture: ComponentFixture<LandingZoneWanCreateVpnOnPremiseTabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LandingZoneWanFormsVpnReviewTabComponent],
-      providers: [CdkStepper, ChangeDetectorRef],
+      declarations: [LandingZoneWanCreateVpnOnPremiseTabComponent],
+      providers: [CdkStepper, ChangeDetectorRef, { provide: ActivatedRoute, useValue: { params: of({ id: 123 }) } }],
       imports: [
+        ReactiveFormsModule,
         MatButtonModule,
         MatCardModule,
         MatChipsModule,
@@ -43,7 +48,7 @@ describe('LandingZoneWanFormsVpnReviewTabComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingZoneWanFormsVpnReviewTabComponent);
+    fixture = TestBed.createComponent(LandingZoneWanCreateVpnOnPremiseTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

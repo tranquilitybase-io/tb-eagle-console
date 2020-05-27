@@ -1,9 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingZoneWanFormsVpnGoogleTabComponent } from './landing-zone-wan-forms-vpn-google-tab.component';
+import { LandingZoneWanCreateVpnTabComponent } from './landing-zone-wan-create-vpn-tab.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
+import { ChangeDetectorRef } from '@angular/core';
+import { CdkStepper } from '@angular/cdk/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -17,13 +21,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-describe('LandingZoneWanFormsVpnGoogleTabComponent', () => {
-  let component: LandingZoneWanFormsVpnGoogleTabComponent;
-  let fixture: ComponentFixture<LandingZoneWanFormsVpnGoogleTabComponent>;
+describe('LandingZoneWanCreateVpnTabComponent', () => {
+  let component: LandingZoneWanCreateVpnTabComponent;
+  let fixture: ComponentFixture<LandingZoneWanCreateVpnTabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LandingZoneWanFormsVpnGoogleTabComponent],
+      declarations: [LandingZoneWanCreateVpnTabComponent],
+      providers: [CdkStepper, ChangeDetectorRef, { provide: ActivatedRoute, useValue: { params: of({ id: 123 }) } }],
       imports: [
         ReactiveFormsModule,
         MatButtonModule,
@@ -43,7 +48,7 @@ describe('LandingZoneWanFormsVpnGoogleTabComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingZoneWanFormsVpnGoogleTabComponent);
+    fixture = TestBed.createComponent(LandingZoneWanCreateVpnTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
