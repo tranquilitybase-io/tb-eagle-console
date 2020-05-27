@@ -1,37 +1,43 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingZoneWanViewComponent } from './landing-zone-wan-view.component';
+import { LandingZoneWanViewVpnComponent } from './landing-zone-wan-view-vpn.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatIconModule, MatGridListModule, MatCardModule, MatChipsModule, MatListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
-describe('LandingZoneWanViewComponent', () => {
-  let component: LandingZoneWanViewComponent;
-  let fixture: ComponentFixture<LandingZoneWanViewComponent>;
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+
+describe('LandingZoneWanViewVpnComponent', () => {
+  let component: LandingZoneWanViewVpnComponent;
+  let fixture: ComponentFixture<LandingZoneWanViewVpnComponent>;
   let store: MockStore<any>;
   const initialState = true;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LandingZoneWanViewComponent],
+      declarations: [LandingZoneWanViewVpnComponent],
       imports: [
-        RouterTestingModule,
-        MatIconModule,
-        FormsModule,
-        ReactiveFormsModule,
         BrowserAnimationsModule,
-        MatGridListModule,
+        FormsModule,
         MatCardModule,
         MatChipsModule,
-        MatListModule
+        MatGridListModule,
+        MatIconModule,
+        MatListModule,
+        ReactiveFormsModule,
+        RouterTestingModule
       ],
       providers: [provideMockStore({ initialState })]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingZoneWanViewComponent);
+    fixture = TestBed.createComponent(LandingZoneWanViewVpnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

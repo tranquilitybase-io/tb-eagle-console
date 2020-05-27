@@ -45,8 +45,14 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
       haVpnGateway: [this.wanConfiguration.vpn.haVpnGateway, Validators.required],
       cloudRouterName: [this.wanConfiguration.vpn.cloudRouterName, Validators.required],
       externalVpnGateway: [this.wanConfiguration.vpn.externalVpnGateway, Validators.required],
-      googleASN: [this.wanConfiguration.vpn.googleASN, Validators.required],
-      peerASN: [this.wanConfiguration.vpn.peerASN, Validators.required],
+      googleASN: [
+        this.wanConfiguration.vpn.googleASN,
+        [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]
+      ],
+      peerASN: [
+        this.wanConfiguration.vpn.peerASN,
+        [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]
+      ],
       bgpInterfaceNetLength: [this.wanConfiguration.vpn.bgpInterfaceNetLength, Validators.required]
     });
     this.googleSessionFormGroup = this.formBuilder.group({
