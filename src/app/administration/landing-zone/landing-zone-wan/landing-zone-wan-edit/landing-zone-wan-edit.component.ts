@@ -96,7 +96,24 @@ export class LandingZoneWanEditComponent implements OnInit {
     this.router.navigateByUrl('/administration/landing-zone/wan');
   }
 
-  onSubmit(wanConfiguration) {
+  onSubmit() {
+    const googleASN = Number(this.vpnFormGroup.value['googleASN']);
+    const peerASN = Number(this.vpnFormGroup.value['peerASN']);
+    const wanConfiguration = {
+      id: this.wanConfiguration.id,
+      vpn: {
+        ...this.vpnFormGroup.value,
+        googleASN,
+        peerASN
+      },
+      googleSession: {
+        ...this.googleSessionFormGroup.value
+      },
+      onPremiseSession: {
+        ...this.onPremiseSessionFormGroup.value
+      }
+    } as WanConfiguration;
+
     this.store.dispatch(updateWanConfiguration({ wanConfiguration }));
     this.router.navigateByUrl('/administration/landing-zone/wan');
   }
