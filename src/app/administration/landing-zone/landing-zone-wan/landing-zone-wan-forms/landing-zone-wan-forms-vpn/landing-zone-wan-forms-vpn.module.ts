@@ -22,9 +22,9 @@ import { LandingZoneWanFormsVpnGoogleTabComponent } from './landing-zone-wan-for
 import { LandingZoneWanFormsVpnOnPremiseTabComponent } from './landing-zone-wan-forms-vpn-on-premise-tab/landing-zone-wan-forms-vpn-on-premise-tab.component';
 import { LandingZoneWanFormsVpnReviewTabComponent } from './landing-zone-wan-forms-vpn-review-tab/landing-zone-wan-forms-vpn-review-tab.component';
 
-import { SubnetModeResolver } from './resolvers/subnet-mode.resolver';
-import { BgpRoutingModeResolver } from './resolvers/bgp-routing-mode.resolver';
-import { VpnOnPremiseVendorResolver } from './resolvers/vpn-on-premise-vendor.resolver';
+import { SubnetModeResolver } from '@app/shared/resolvers/subnet-mode.resolver';
+import { BgpRoutingModeResolver } from '@app/shared/resolvers/bgp-routing-mode.resolver';
+import { VpnOnPremiseVendorResolver } from '@app/shared/resolvers/vpn-on-premise-vendor.resolver';
 
 const routes: Routes = [
   {

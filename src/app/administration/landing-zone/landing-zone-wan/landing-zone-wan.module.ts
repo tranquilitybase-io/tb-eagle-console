@@ -13,11 +13,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
-import { SubnetModeResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/subnet-mode.resolver';
-import { BgpRoutingModeResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/bgp-routing-mode.resolver';
-import { VpnOnPremiseVendorResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/vpn-on-premise-vendor.resolver';
-import { LandingZoneWanViewResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/landing-zone-wan-view.resolver';
-import { LandingZoneWanEditResolver } from './landing-zone-wan-forms/landing-zone-wan-forms-vpn/resolvers/landing-zone-wan-edit.resolver';
+
+import { SubnetModeResolver } from '@app/shared/resolvers/subnet-mode.resolver';
+import { BgpRoutingModeResolver } from '@app/shared/resolvers/bgp-routing-mode.resolver';
+import { VpnOnPremiseVendorResolver } from '@app/shared/resolvers/vpn-on-premise-vendor.resolver';
+import { LandingZoneWanVpnByIdResolver } from '@app/shared/resolvers/landing-zone-wan-vpn-by-id.resolver';
 
 const routes: Routes = [
   {
@@ -38,7 +38,7 @@ const routes: Routes = [
       subnetModeList: SubnetModeResolver,
       bgpRoutingModeList: BgpRoutingModeResolver,
       vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
-      wanConfiguration: LandingZoneWanEditResolver
+      wanConfiguration: LandingZoneWanVpnByIdResolver
     }
   },
   {
@@ -49,7 +49,7 @@ const routes: Routes = [
       subnetModeList: SubnetModeResolver,
       bgpRoutingModeList: BgpRoutingModeResolver,
       vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
-      wanConfiguration: LandingZoneWanViewResolver
+      wanConfiguration: LandingZoneWanVpnByIdResolver
     }
   }
 ];

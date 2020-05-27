@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { KeyValue } from '@angular/common';
-import { LandingZoneWanFormsVpnService } from '../landing-zone-wan-forms-vpn.service';
 import { Observable } from 'rxjs';
+
+import { LandingZoneWanFormsVpnService } from '@app/administration/landing-zone/landing-zone-wan/landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn.service';
 
 @Injectable({ providedIn: 'root' })
 export class BgpRoutingModeResolver implements Resolve<KeyValue<string, string>[]> {
