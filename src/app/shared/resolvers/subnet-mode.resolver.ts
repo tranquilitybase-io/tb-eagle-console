@@ -3,11 +3,11 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { KeyValue } from '@angular/common';
 import { Observable } from 'rxjs';
 
-import { LandingZoneWanFormsVpnService } from '@app/administration/landing-zone/landing-zone-wan/landing-zone-wan-forms/landing-zone-wan-forms-vpn/landing-zone-wan-forms-vpn.service';
+import { SharedService } from '../shared.service';
 
 @Injectable({ providedIn: 'root' })
 export class SubnetModeResolver implements Resolve<KeyValue<string, string>[]> {
-  constructor(private service: LandingZoneWanFormsVpnService) {}
+  constructor(private service: SharedService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<KeyValue<string, string>[]> {
     return this.service.getSubnetMode();
