@@ -9,7 +9,8 @@ import {
   createWanConfiguration,
   startConnectionDeployment,
   stopConnectionDeployment,
-  updateConnectionDeploymentProgress
+  updateConnectionDeploymentProgress,
+  updateWanConfiguration
 } from './landing-zone-wan.actions';
 
 function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
@@ -46,6 +47,15 @@ export class LandingZoneWanEffects {
       this.actions$.pipe(
         ofType(createWanConfiguration),
         tap(action => this.langingZoneWanService.createWanConfiguration(action.wanConfiguration))
+      ),
+    { dispatch: false }
+  );
+
+  updateWanConfiguration$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateWanConfiguration),
+        tap(action => this.langingZoneWanService.updateWanConfiguration(action.wanConfiguration))
       ),
     { dispatch: false }
   );

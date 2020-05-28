@@ -55,4 +55,19 @@ export class SharedService {
     const url = `${this.BASE_URL}/keyValues/team/`;
     return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
   }
+
+  getSubnetMode(): Observable<KeyValue<string, string>[]> {
+    const url = `${this.BASE_URL}/keyValues/subnetmode/`;
+    return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
+  }
+
+  getBgpRoutingMode(): Observable<KeyValue<string, string>[]> {
+    const url = `${this.BASE_URL}/keyValues/bgproutingmode/`;
+    return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
+  }
+
+  getVpnOnPremiseVendor(): Observable<KeyValue<string, string>[]> {
+    const url = `${this.BASE_URL}/keyValues/vpnonpremisevendor/`;
+    return this.http.get<KeyValue<string, string>[]>(url).pipe(catchError(this.handleError));
+  }
 }
