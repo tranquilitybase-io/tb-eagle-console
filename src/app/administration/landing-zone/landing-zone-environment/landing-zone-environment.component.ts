@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, of } from 'rxjs';
@@ -8,9 +8,14 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
 
 interface FolderStructureNode {
   id: number;
-  isEnabled: boolean;
+  active: boolean;
   name: string;
   children?: FolderStructureNode[];
+}
+
+interface LanVPC {
+  name: string;
+  environments: string[];
 }
 
 @Component({
@@ -30,22 +35,22 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   folderStructureTreeData: FolderStructureNode[] = [
     {
       id: 1,
-      isEnabled: true,
+      active: true,
       name: 'Applications',
       children: [
         {
           id: 2,
-          isEnabled: true,
+          active: true,
           name: 'Business Unit',
           children: [
             {
               id: 3,
-              isEnabled: true,
+              active: true,
               name: 'Team',
               children: [
                 {
                   id: 4,
-                  isEnabled: true,
+                  active: true,
                   name: 'Solutions'
                 }
               ]
@@ -62,7 +67,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor() {}
 
   //#region ngOnInit
   ngOnInit() {
@@ -150,14 +155,55 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   //#endregion Environment
 
   //#region LAN VPC
+  lanVPCList: LanVPC[] = [
+    {
+      name: 'Development',
+      environments: ['Development']
+    },
+    {
+      name: 'Production',
+      environments: ['Production']
+    }
+  ];
+
+  lanVPCNameList: string[];
+
   setInialLanVPCForm() {
-    this.lanVPCForm = this.formBuilder.group({
-      lanVPC_dev: [['Development']],
-      lanVPC_prod: [['Production']]
+    let lanVPCGroup = {};
+
+    this.lanVPCList.forEach(lanVPC => {
+      lanVPCGroup[lanVPC.name] = new FormControl(lanVPC.environments);
     });
+
+    this.lanVPCForm = new FormGroup(lanVPCGroup);
+    this.lanVPCNameList = this.lanVPCList.map(lanVPC => lanVPC.name);
   }
 
-  onLanVPCSubmit(lanVPC) {
+  addLanVPC(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.lanVPCNameList.push(value.trim());
+      this.lanVPCForm.addControl(value.trim(), new FormControl([]));
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeLanVPC(lanVpcName: string): void {
+    const index = this.lanVPCNameList.indexOf(lanVpcName);
+
+    if (index >= 0) {
+      this.lanVPCNameList.splice(index, 1);
+      this.lanVPCForm.removeControl(lanVpcName);
+    }
+  }
+
+  onLanVPCSubmit() {
     debugger;
     //TODO dispatch store API
     this.isLanVPCEdit = false;
@@ -170,6 +216,16 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   setLanVPCEdit() {
     this.isLanVPCEdit = true;
+  }
+
+  isEnvironmentAvailable(lanVpcName: string, envName: string) {
+    let usedLanVpcEnvList: string[] = [];
+    this.lanVPCNameList.forEach(_lanVpcName => {
+      if (lanVpcName !== _lanVpcName) {
+        usedLanVpcEnvList = [...usedLanVpcEnvList, ...(this.lanVPCForm.value[_lanVpcName] as string[])];
+      }
+    });
+    return !usedLanVpcEnvList.includes(envName);
   }
   //#endregion LAN VPC
 }

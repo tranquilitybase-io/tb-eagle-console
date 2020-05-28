@@ -28,7 +28,7 @@
             <!-- use a disabled button to provide padding for tree leaf -->
             <button mat-icon-button disabled></button>
             <mat-checkbox
-              [checked]="node.isEnabled"
+              [checked]="node.active"
               [disabled]="!isFolderStructureEdit"
               (change)="toggleFolderStructureItem(node)"
             >
@@ -46,7 +46,7 @@
                 </mat-icon>
               </button>
               <mat-checkbox
-                [checked]="node.isEnabled"
+                [checked]="node.active"
                 [disabled]="!isFolderStructureEdit"
                 (change)="toggleFolderStructureItem(node)"
               >
@@ -119,7 +119,7 @@
       </mat-action-row>
     </mat-expansion-panel>
 
-    <form [formGroup]="lanVPCForm" (ngSubmit)="onLanVPCSubmit(lanVPCForm.value)">
+    <form [formGroup]="lanVPCForm" (ngSubmit)="onLanVPCSubmit()">
       <mat-expansion-panel expanded (closed)="onLanVPCCancel()">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -130,17 +130,39 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <mat-form-field>
-          <mat-label>Environments connected to Development VPC</mat-label>
-          <mat-select [disabled]="!isLanVPCEdit" formControlName="lanVPC_dev" multiple>
-            <mat-option *ngFor="let item of environmentList$ | async" [value]="item">{{ item }}</mat-option>
-          </mat-select>
+        <mat-form-field class="lan-vpc-names" *ngIf="isLanVPCEdit">
+          <mat-chip-list #chipList aria-label="Available LAN VPC names">
+            <mat-chip
+              *ngFor="let item of lanVPCNameList"
+              color="accent"
+              selectable="true"
+              [removable]="isLanVPCEdit"
+              (removed)="removeLanVPC(item)"
+            >
+              {{ item }}
+              <mat-icon matChipRemove *ngIf="isLanVPCEdit">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="List of Available LAN VPC names"
+              [readonly]="!isLanVPCEdit"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addLanVPC($event)"
+            />
+          </mat-chip-list>
         </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Environments connected to Production VPC</mat-label>
-          <mat-select [disabled]="!isLanVPCEdit" formControlName="lanVPC_prod" multiple>
-            <mat-option *ngFor="let item of environmentList$ | async" [value]="item">{{ item }}</mat-option>
+        <mat-form-field *ngFor="let lanVPC of lanVPCNameList">
+          <mat-label>Environments connected to {{ lanVPC }} VPC</mat-label>
+          <mat-select [disabled]="!isLanVPCEdit" [formControlName]="lanVPC" multiple>
+            <mat-option
+              *ngFor="let item of environmentList$ | async"
+              [disabled]="!isEnvironmentAvailable(lanVPC, item)"
+              [value]="item"
+            >
+              {{ item }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 

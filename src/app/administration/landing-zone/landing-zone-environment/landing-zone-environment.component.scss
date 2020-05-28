@@ -33,6 +33,10 @@ main {
 
   .mat-form-field {
     width: 100%;
+
+    &.lan-vpc-names {
+      margin-bottom: 2rem;
+    }
   }
 
   .mat-tree {
