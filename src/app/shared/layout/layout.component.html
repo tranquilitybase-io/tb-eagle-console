@@ -1,96 +1,98 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <button mat-icon-button (click)="isExpanded = !isExpanded">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <h1><img src="assets/icons/tb_rocket.svg" class="rocket" alt="TB_logo" /> Tranquility Base</h1>
-    <span class="menu-spacer"></span>
-    <div class="row">
-      <welcome></welcome>
-      <button mat-button matTooltip="Search" aria-label="Search"><mat-icon>search</mat-icon></button>
-      <button mat-button matTooltip="Add" aria-label="Add"><mat-icon>add</mat-icon></button>
-      <span class="spacer"></span>
-      <button mat-button matTooltip="Your messages" aria-label="Your messages">
-        <mat-icon>question_answer</mat-icon>
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="isExpanded = !isExpanded">
+        <mat-icon>menu</mat-icon>
       </button>
-      <button mat-button matTooltip="Share" aria-label="Share"><mat-icon>share</mat-icon></button>
-      <button mat-button matTooltip="Your notifications" aria-label="Your notifications">
-        <mat-icon>notifications</mat-icon>
-      </button>
-      <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps"><mat-icon>apps</mat-icon></a>
-      <a
-        routerlink="/login"
-        routerlinkactive="active"
-        ng-reflect-router-link="/login"
-        ng-reflect-router-link-active="active"
-        href="/login"
-        matTooltip="Your account"
-        aria-label="Your account"
-        ><span class="user-initials">RM</span></a
-      >
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
+      <h1><img src="assets/icons/tb_rocket.svg" class="rocket" alt="TB_logo" /> Tranquility Base</h1>
+      <span class="menu-spacer"></span>
+      <div class="row">
+        <welcome></welcome>
+        <button mat-button matTooltip="Search" aria-label="Search"><mat-icon>search</mat-icon></button>
+        <button mat-button matTooltip="Add" aria-label="Add"><mat-icon>add</mat-icon></button>
+        <span class="spacer"></span>
+        <button mat-button matTooltip="Your messages" aria-label="Your messages">
+          <mat-icon>question_answer</mat-icon>
+        </button>
+        <button mat-button matTooltip="Share" aria-label="Share"><mat-icon>share</mat-icon></button>
+        <button mat-button matTooltip="Your notifications" aria-label="Your notifications">
+          <mat-icon>notifications</mat-icon>
+        </button>
+        <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps"><mat-icon>apps</mat-icon></a>
+        <a
+          routerlink="/login"
+          routerlinkactive="active"
+          ng-reflect-router-link="/login"
+          ng-reflect-router-link-active="active"
+          href="/login"
+          matTooltip="Your account"
+          aria-label="Your account"
+          ><span class="user-initials">RM</span></a
+        >
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-<mat-sidenav-container autosize>
-  <mat-sidenav mode="side" [opened]="isExpanded">
-    <mat-nav-list>
-      <div>
-        <div class="section-header" *ngIf="isExpanded">Mission control</div>
-        <a
-          mat-list-item
-          routerLink="/mission-control/solutions"
-          [queryParams]="{ groupSwitch: 'Favourites' }"
-          routerLinkActive="active"
-          [matTooltip]="!isExpanded ? 'Solutions' : null"
-          matTooltipPosition="after"
+  <mat-sidenav-container autosize>
+    <mat-sidenav mode="side" [opened]="isExpanded">
+      <mat-nav-list>
+        <div>
+          <div class="section-header" *ngIf="isExpanded">Mission control</div>
+          <a
+            mat-list-item
+            routerLink="/mission-control/solutions"
+            [queryParams]="{ groupSwitch: 'Favourites' }"
+            routerLinkActive="active"
+            [matTooltip]="!isExpanded ? 'Solutions' : null"
+            matTooltipPosition="after"
+          >
+            <mat-icon>filter_none</mat-icon>
+            <span *ngIf="isExpanded"> Solutions</span>
+          </a>
+          <a
+            mat-list-item
+            routerLink="/mission-control/activator-store"
+            [queryParams]="{ categorySwitch: 'Category' }"
+            routerLinkActive="active"
+            [matTooltip]="!isExpanded ? 'Activator store' : null"
+            matTooltipPosition="after"
+          >
+            <mat-icon>storefront</mat-icon>
+            <span *ngIf="isExpanded"> Activator store</span>
+          </a>
+        </div>
+        <mat-divider *ngIf="!isExpanded" class="miniDrawerBr"></mat-divider>
+        <div class="section-header" *ngIf="isExpanded">Administration menu</div>
+        <div *ngIf="userIsAdmin$ | async">
+          <a
+            mat-list-item
+            routerLink="/administration/landing-zone"
+            routerLinkActive="active"
+            [matTooltip]="!isExpanded ? 'Landing Zone' : null"
+            matTooltipPosition="after"
+          >
+            <mat-icon>account_tree</mat-icon>
+            <span *ngIf="isExpanded"> Landing Zone</span>
+          </a>
+          <a mat-list-item [matTooltip]="!isExpanded ? 'Shared Services' : null" matTooltipPosition="after">
+            <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span></a
+          >
+        </div>
+        <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
+          <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span></a
         >
-          <mat-icon>filter_none</mat-icon>
-          <span *ngIf="isExpanded"> Solutions</span>
-        </a>
-        <a
-          mat-list-item
-          routerLink="/mission-control/activator-store"
-          [queryParams]="{ categorySwitch: 'Category' }"
-          routerLinkActive="active"
-          [matTooltip]="!isExpanded ? 'Activator store' : null"
-          matTooltipPosition="after"
+        <a mat-list-item [matTooltip]="!isExpanded ? 'Teams' : null" matTooltipPosition="after">
+          <mat-icon>group</mat-icon> <span *ngIf="isExpanded"> Teams</span></a
         >
-          <mat-icon>storefront</mat-icon>
-          <span *ngIf="isExpanded"> Activator store</span>
-        </a>
+        <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
+          <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span></a
+        >
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content-container" [ngClass]="isExpanded == false ? 'smallDrawer' : null">
+        <router-outlet></router-outlet>
       </div>
-      <mat-divider *ngIf="!isExpanded" class="miniDrawerBr"></mat-divider>
-      <div class="section-header" *ngIf="isExpanded">Administration menu</div>
-      <div *ngIf="userIsAdmin$ | async">
-        <a
-          mat-list-item
-          routerLink="/administration/landing-zone"
-          routerLinkActive="active"
-          [matTooltip]="!isExpanded ? 'Landing Zone' : null"
-          matTooltipPosition="after"
-        >
-          <mat-icon>account_tree</mat-icon>
-          <span *ngIf="isExpanded"> Landing Zone</span>
-        </a>
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Shared Services' : null" matTooltipPosition="after">
-          <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span></a
-        >
-      </div>
-      <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
-        <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span></a
-      >
-      <a mat-list-item [matTooltip]="!isExpanded ? 'Teams' : null" matTooltipPosition="after">
-        <mat-icon>group</mat-icon> <span *ngIf="isExpanded"> Teams</span></a
-      >
-      <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
-        <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span></a
-      >
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div [ngClass]="isExpanded == false ? 'smallDrawer' : null" style="height: 89vh">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
