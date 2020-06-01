@@ -2,7 +2,6 @@
   <h1 mat-dialog-title class="mcm-msg">Welcome to <b class="red-reader">Tranquility Base</b> and the Eagle Console</h1>
   <mat-dialog-content class="mat-typography">
     <p class="mcm-dsc">
-      <b class="red-reader">{{ Name }}</b>
       Tranquility Base has so far installed a bootstrap Landing Zone that enables Eagle to start up.
       <br /><br />
       To complete the basic installation, you will need to <b>complete the minimum Landing Zone requirements</b>.
@@ -18,9 +17,7 @@
 
 <ng-template #dev>
   <ng-container *ngIf="!userIsAdmin$ | async; else noTeam">
-    <h1 mat-dialog-title class="mcm-msg">
-      Welcome, <b class="red-reader">{{ Name }}</b> to the Eagle Console
-    </h1>
+    <h1 mat-dialog-title class="mcm-msg">Welcome, <b class="red-reader">userName</b> to the Eagle Console</h1>
     <mat-dialog-content class="mat-typography">
       <p class="mcm-dsc">
         You belong to the <b class="red-reader">[team name]</b> team. To get started, you can click on the
