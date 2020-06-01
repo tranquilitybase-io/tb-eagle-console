@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplicationsViewBillingComponent } from './applications-view-billing.component';
+import { ActivatorStoreViewBillingComponent } from './activator-store-view-billing.component';
 
-describe('ApplicationsViewBillingComponent', () => {
-  let component: ApplicationsViewBillingComponent;
-  let fixture: ComponentFixture<ApplicationsViewBillingComponent>;
+describe('ActivatorStoreViewBillingComponent', () => {
+  let component: ActivatorStoreViewBillingComponent;
+  let fixture: ComponentFixture<ActivatorStoreViewBillingComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationsViewBillingComponent]
+      declarations: [ActivatorStoreViewBillingComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplicationsViewBillingComponent);
+    fixture = TestBed.createComponent(ActivatorStoreViewBillingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplicationsViewAuditHistoryComponent } from './applications-view-audit-history.component';
+import { ActivatorStoreViewAuditHistoryComponent } from './activator-store-view-audit-history.component';
 
-describe('ApplicationsViewAuditHistoryComponent', () => {
-  let component: ApplicationsViewAuditHistoryComponent;
-  let fixture: ComponentFixture<ApplicationsViewAuditHistoryComponent>;
+describe('ActivatorStoreViewAuditHistoryComponent', () => {
+  let component: ActivatorStoreViewAuditHistoryComponent;
+  let fixture: ComponentFixture<ActivatorStoreViewAuditHistoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationsViewAuditHistoryComponent]
+      declarations: [ActivatorStoreViewAuditHistoryComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplicationsViewAuditHistoryComponent);
+    fixture = TestBed.createComponent(ActivatorStoreViewAuditHistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

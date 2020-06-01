@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplicationsViewVersionHistoryComponent } from './applications-view-version-history.component';
+import { ActivatorStoreViewVersionHistoryComponent } from './activator-store-view-version-history.component';
 
-describe('ApplicationsViewVersionHistoryComponent', () => {
-  let component: ApplicationsViewVersionHistoryComponent;
-  let fixture: ComponentFixture<ApplicationsViewVersionHistoryComponent>;
+describe('ActivatorStoreViewVersionHistoryComponent', () => {
+  let component: ActivatorStoreViewVersionHistoryComponent;
+  let fixture: ComponentFixture<ActivatorStoreViewVersionHistoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationsViewVersionHistoryComponent]
+      declarations: [ActivatorStoreViewVersionHistoryComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplicationsViewVersionHistoryComponent);
+    fixture = TestBed.createComponent(ActivatorStoreViewVersionHistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

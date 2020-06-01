@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplicationsViewUsersComponent } from './applications-view-users.component';
+import { ActivatorStoreViewUsersComponent } from './activator-store-view-users.component';
 
-describe('ApplicationsViewUsersComponent', () => {
-  let component: ApplicationsViewUsersComponent;
-  let fixture: ComponentFixture<ApplicationsViewUsersComponent>;
+describe('ActivatorStoreViewUsersComponent', () => {
+  let component: ActivatorStoreViewUsersComponent;
+  let fixture: ComponentFixture<ActivatorStoreViewUsersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationsViewUsersComponent]
+      declarations: [ActivatorStoreViewUsersComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplicationsViewUsersComponent);
+    fixture = TestBed.createComponent(ActivatorStoreViewUsersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
