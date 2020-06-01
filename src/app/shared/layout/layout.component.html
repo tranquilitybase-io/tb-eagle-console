@@ -90,7 +90,7 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div class="content-container" [ngClass]="isExpanded == false ? 'smallDrawer' : null">
+      <div [ngClass]="isExpanded == false ? 'smallDrawer' : null">
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
