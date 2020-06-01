@@ -1,0 +1,199 @@
+<header>
+  <div>
+    <a mat-button color="primary" routerLink="/administration/landing-zone/wan">
+      <mat-icon>chevron_left</mat-icon> Back
+    </a>
+  </div>
+  <div>
+    <span class="title">WAN</span>
+    <span class="vertical-divider"></span>
+    <span>VPN</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">Landing Zone</span>
+  </div>
+</header>
+<div class="grid-container">
+  <mat-grid-list cols="5" rowHeight="700px" gutterSize="10px">
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
+      <mat-grid-tile-header>{{ wanConfiguration.vpn.projectName }}</mat-grid-tile-header>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Description
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ wanConfiguration.vpn.description }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="vpn-card-content">
+          <mat-list dense class="description-list">
+            <mat-list-item>
+              <div class="mat-body-1">Subnet Mode</div>
+              <mat-chip-list>
+                <mat-chip>{{ wanConfiguration.vpn.subnetMode }}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-list-item>
+              <div class="mat-body-1">BGP Routing Mode</div>
+              <mat-chip-list>
+                <mat-chip>{{ wanConfiguration.vpn.bgpRoutingMode }}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-list-item>
+              <div class="mat-body-1">HA VPN Gateway</div>
+              <mat-chip-list>
+                <mat-chip>{{ wanConfiguration.vpn.haVpnGateway }}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-list-item>
+              <div class="mat-body-1">Cloud Router Name</div>
+              <mat-chip-list>
+                <mat-chip>{{ wanConfiguration.vpn.cloudRouterName }}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-list-item>
+              <div class="mat-body-1">External VPN Gateway</div>
+              <mat-chip-list>
+                <mat-chip>{{ wanConfiguration.vpn.externalVpnGateway }}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-list-item>
+              <div class="mat-body-1">Google ASN</div>
+              <mat-chip-list>
+                <mat-chip>{{ wanConfiguration.vpn.googleASN }}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-list-item>
+              <div class="mat-body-1">Peer ASN</div>
+              <mat-chip-list>
+                <mat-chip>{{ wanConfiguration.vpn.peerASN }}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+            <mat-list-item>
+              <div class="mat-body-1">BGP interface netmask length</div>
+              <mat-chip-list>
+                <mat-chip>{{ wanConfiguration.vpn.bgpInterfaceNetLength }}</mat-chip>
+              </mat-chip-list>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="1" class="google-session-tile">
+      <mat-grid-tile-header>Google session</mat-grid-tile-header>
+      <mat-card class="google-session-card primary">
+        <mat-card-header>
+          <mat-card-title>
+            Primary
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="google-session-card-content">
+          <div class="mat-h4">
+            Region
+          </div>
+          <mat-chip-list>
+            <mat-chip>{{ wanConfiguration.googleSession.primaryRegion }}</mat-chip>
+          </mat-chip-list>
+          <div class="mat-h4">
+            Subnet Name
+          </div>
+          <mat-chip-list>
+            <mat-chip>{{ wanConfiguration.googleSession.primarySubnetName }}</mat-chip>
+          </mat-chip-list>
+          <div class="mat-h4">
+            GCP VPC subnet
+          </div>
+          <mat-chip-list>
+            <mat-chip>{{ wanConfiguration.googleSession.primaryGcpVpcSubnet }}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="google-session-card secondary">
+        <mat-card-header>
+          <mat-card-title>
+            Secondary
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="google-session-card-content">
+          <div class="mat-h4">
+            Region
+          </div>
+          <mat-chip-list>
+            <mat-chip>{{ wanConfiguration.googleSession.secondaryRegion }}</mat-chip>
+          </mat-chip-list>
+          <div class="mat-h4">
+            Subnet Name
+          </div>
+          <mat-chip-list>
+            <mat-chip>{{ wanConfiguration.googleSession.secondarySubnetName }}</mat-chip>
+          </mat-chip-list>
+          <div class="mat-h4">
+            GCP VPC subnet
+          </div>
+          <mat-chip-list>
+            <mat-chip>{{ wanConfiguration.googleSession.secondaryGcpVpcSubnet }}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="3" [rowspan]="1">
+      <mat-grid-tile-header>On Premise Session</mat-grid-tile-header>
+
+      <mat-card class="on-premise-card">
+        <mat-card-header>
+          <mat-card-subtitle>
+            <mat-list dense class="description-list">
+              <mat-list-item>
+                <div class="mat-body-1">Vendor</div>
+                <mat-chip-list>
+                  <mat-chip selected>{{ wanConfiguration.onPremiseSession.vendor }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="on-premise-card-content">
+          <div class="table-header">
+            <div class="col"></div>
+            <div class="col">Primary</div>
+            <div class="col">Secondary</div>
+          </div>
+          <div class="table-row">
+            <div class="col">Peer IP</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.primaryPeerIp }}</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.secondaryPeerIp }}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="table-row">
+            <div class="col">Peer IP subnet</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.primaryPeerIpSubnet }}</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.secondaryPeerIpSubnet }}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="table-row">
+            <div class="col">VPN Tunnel</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.primaryVpnTunnel }}</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.secondaryVpnTunnel }}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="table-row">
+            <div class="col">BGP Peer</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.primaryBgpPeer }}</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.secondaryBgpPeer }}</div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="table-row">
+            <div class="col">Shared Secret</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.primarySharedSecret }}</div>
+            <div class="col">{{ wanConfiguration.onPremiseSession.secondarySharedSecret }}</div>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

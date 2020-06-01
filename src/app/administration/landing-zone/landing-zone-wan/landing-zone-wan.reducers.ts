@@ -6,7 +6,8 @@ import {
   updateConnectionDeploymentProgress,
   startConnectionDeployment,
   stopConnectionDeployment,
-  dismissDeploymentConnectionReadyAlert
+  dismissDeploymentConnectionReadyAlert,
+  updateWanConfiguration
 } from './landing-zone-wan.actions';
 
 export const intialState = {
@@ -23,7 +24,8 @@ export const landingZoneWanReducer = createReducer(
   on(startConnectionDeployment, state => ({ ...state, progress: 0, inProgress: true })),
   on(stopConnectionDeployment, state => ({ ...state, inProgress: false, deployed: true })),
   on(updateConnectionDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
-  on(dismissDeploymentConnectionReadyAlert, state => ({ ...state, isConnectionDeploymentReady: false }))
+  on(dismissDeploymentConnectionReadyAlert, state => ({ ...state, isConnectionDeploymentReady: false })),
+  on(updateWanConfiguration, (state, { wanConfiguration }) => ({ ...state, selectedConnection: wanConfiguration }))
 );
 
 export default function reducer(state, action) {
