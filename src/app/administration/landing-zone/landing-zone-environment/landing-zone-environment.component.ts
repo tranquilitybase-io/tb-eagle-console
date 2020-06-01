@@ -14,6 +14,7 @@ interface FolderStructureNode {
 }
 
 interface LanVPC {
+  id?: number;
   name: string;
   environments: string[];
 }
@@ -218,7 +219,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     this.isLanVPCEdit = true;
   }
 
-  isEnvironmentAvailable(lanVpcName: string, envName: string) {
+  isEnvironmentAvailable(envName: string, lanVpcName?: string) {
     let usedLanVpcEnvList: string[] = [];
     this.lanVPCNameList.forEach(_lanVpcName => {
       if (lanVpcName !== _lanVpcName) {

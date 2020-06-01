@@ -91,9 +91,14 @@
             selectable="true"
             [removable]="isEnvironmentEdit"
             (removed)="removeEnvironment(item)"
+            [matTooltip]="
+              isEnvironmentEdit && !isEnvironmentAvailable(item)
+                ? 'Is selected for a LAN VPC and can NOT be removed'
+                : ''
+            "
           >
             {{ item }}
-            <mat-icon matChipRemove *ngIf="isEnvironmentEdit">cancel</mat-icon>
+            <mat-icon matChipRemove *ngIf="isEnvironmentEdit && isEnvironmentAvailable(item)">cancel</mat-icon>
           </mat-chip>
           <input
             placeholder="List of Available Environments"
@@ -158,7 +163,7 @@
           <mat-select [disabled]="!isLanVPCEdit" [formControlName]="lanVPC" multiple>
             <mat-option
               *ngFor="let item of environmentList$ | async"
-              [disabled]="!isEnvironmentAvailable(lanVPC, item)"
+              [disabled]="!isEnvironmentAvailable(item, lanVPC)"
               [value]="item"
             >
               {{ item }}

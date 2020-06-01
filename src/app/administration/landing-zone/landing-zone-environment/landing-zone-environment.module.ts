@@ -13,6 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatSelectModule,
+    MatTooltipModule,
     MatTreeModule
   ]
 })
