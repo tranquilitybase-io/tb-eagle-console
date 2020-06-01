@@ -3,6 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { SubnetModeResolver } from '@app/shared/resolvers/subnet-mode.resolver';
+import { BgpRoutingModeResolver } from '@app/shared/resolvers/bgp-routing-mode.resolver';
+import { VpnOnPremiseVendorResolver } from '@app/shared/resolvers/vpn-on-premise-vendor.resolver';
+import { LandingZoneWanVpnByIdResolver } from '@app/shared/resolvers/landing-zone-wan-vpn-by-id.resolver';
+
+import { LandingZoneWanEditVpnComponent } from './landing-zone-wan-edit-vpn.component';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -18,15 +25,19 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [
   {
-    path: 'vpn',
-    loadChildren: () =>
-      import('./landing-zone-wan-view-vpn/landing-zone-wan-view-vpn.module').then(m => m.LandingZoneWanViewVpnModule)
-  },
-  { path: '**', redirectTo: '/404' }
+    path: '',
+    component: LandingZoneWanEditVpnComponent,
+    resolve: {
+      subnetModeList: SubnetModeResolver,
+      bgpRoutingModeList: BgpRoutingModeResolver,
+      vpnOnPremiseVendorList: VpnOnPremiseVendorResolver,
+      wanConfiguration: LandingZoneWanVpnByIdResolver
+    }
+  }
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [LandingZoneWanEditVpnComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -45,4 +56,4 @@ const routes: Routes = [
     MatTooltipModule
   ]
 })
-export class LandingZoneWanViewModule {}
+export class LandingZoneWanEditVpnModule {}
