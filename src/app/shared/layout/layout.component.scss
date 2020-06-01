@@ -10,15 +10,14 @@
 
 .mat-sidenav {
   display: flex;
-  height: 100%;
   width: var(--drawerWidth);
   background-color: var(--white);
   border-bottom-right-radius: var(--radius);
-  position: fixed;
-  top: 4rem;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  // position: fixed;
+  // top: 4rem;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
   z-index: 20;
   padding: 0 1rem;
 }
@@ -29,6 +28,10 @@
   width: 4.5rem !important;
   overflow: hidden;
   padding: 0 0.5rem;
+}
+
+.mat-sidenav-content {
+  height: calc(100vh - var(--toolbarHeight));
 }
 
 .mainContainer {
@@ -108,11 +111,13 @@ a {
 .mat-toolbar-row {
   box-shadow: inset 0 -1px 1px #3d1b3d;
   width: 100%;
+  height: var(--toolbarHeight);
 }
 
 .mat-toolbar {
   top: 0;
   z-index: 20;
+  height: var(--toolbarHeight);
 }
 
 .mat-toolbar h1,
@@ -121,7 +126,17 @@ a {
 }
 
 h1:hover {
-  filter: drop-shadow(0 0 2px var(--dark-grey));
+  filter: drop-shadow(0 0 3px var(--dark-grey));
+  cursor: default;
+  transition-property: filter;
+  transition-duration: 500ms;
+  transition-delay: 50ms;
+}
+h1 {
+  filter: drop-shadow(0 0 0px var(--dark-grey));
+  transition-property: filter;
+  transition-duration: 500ms;
+  transition-delay: 50ms;
 }
 
 .mat-sidenav .mat-icon {
