@@ -6,8 +6,8 @@ import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 
 @Component({
-  selector: 'welcome-dialog',
-  templateUrl: 'welcome-dialog.component.html',
+  selector: 'welcome',
+  templateUrl: 'welcome.component.html',
   styleUrls: ['welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit {
@@ -17,17 +17,5 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
-  }
-}
-
-@Component({
-  selector: 'welcome',
-  templateUrl: 'welcome.component.html'
-})
-export class WelcomeDialog {
-  constructor(public dialog: MatDialog) {}
-
-  openDialog() {
-    const dialogRef = this.dialog.open(WelcomeComponent, { panelClass: 'custom-dialog-container' });
   }
 }

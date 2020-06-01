@@ -1,1 +1,50 @@
-<button mat-button (click)="openDialog()"><mat-icon>tab</mat-icon></button>
+<ng-container *ngIf="userIsAdmin$ | async; else dev">
+  <h1 mat-dialog-title class="mcm-msg">Welcome to <b class="red-reader">Tranquility Base</b> and the Eagle Console</h1>
+  <mat-dialog-content class="mat-typography">
+    <p class="mcm-dsc">
+      Tranquility Base has so far installed a bootstrap Landing Zone that enables Eagle to start up.
+      <br /><br />
+      To complete the basic installation, you will need to <b>complete the minimum Landing Zone requirements</b>.
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button class="mcm-link" [mat-dialog-close]="true">
+      Get started
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</ng-container>
+
+<ng-template #dev>
+  <ng-container *ngIf="!userIsAdmin$ | async; else noTeam">
+    <h1 mat-dialog-title class="mcm-msg">Welcome, <b class="red-reader">userName</b> to the Eagle Console</h1>
+    <mat-dialog-content class="mat-typography">
+      <p class="mcm-dsc">
+        You belong to the <b class="red-reader">[team name]</b> team. To get started, you can click on the
+        <b>Solutions</b> menu to view your teams solutions and applications.
+      </p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button class="mcm-link" [mat-dialog-close]="true">
+        <mat-icon>filter_none</mat-icon> &nbsp;Solutions <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </mat-dialog-actions>
+  </ng-container>
+</ng-template>
+
+<ng-template #noTeam>
+  <ng-container>
+    <h1 mat-dialog-title class="mcm-msg">Welcome, <b class="red-reader">[first name]</b> to the Eagle Console</h1>
+    <mat-dialog-content class="mat-typography">
+      <p class="mcm-dsc">
+        You do not currently belong to a team. In order to join a team, go to the <b>Teams</b> menu to view the
+        available teams and request to join.
+      </p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button class="mcm-link" [mat-dialog-close]="true">
+        <mat-icon>group</mat-icon> &nbsp;Teams <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </mat-dialog-actions>
+  </ng-container>
+</ng-template>

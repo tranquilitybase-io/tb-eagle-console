@@ -38,7 +38,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
-import { WelcomeComponent, WelcomeDialog } from './welcome/welcome.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -62,18 +62,14 @@ import { WelcomeComponent, WelcomeDialog } from './welcome/welcome.component';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     SwitchesComponent,
-
-    WelcomeComponent,
-    WelcomeDialog
+    WelcomeComponent
   ],
   entryComponents: [
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-
-    WelcomeComponent,
-    WelcomeDialog
+    WelcomeComponent
   ],
   providers: [
     SharedService,
