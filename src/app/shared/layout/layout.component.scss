@@ -115,9 +115,11 @@ a {
   height: var(--toolbarHeight);
 }
 
-.mat-toolbar h1,
-.mat-toolbar-row .mat-icon {
-  text-shadow: 1px 1px 0 #3d1b3d;
+h1 {
+  filter: drop-shadow(0 0 0 var(--dark-grey));
+  transition-property: filter;
+  transition-duration: 500ms;
+  transition-delay: 50ms;
 }
 
 h1:hover {
@@ -128,11 +130,9 @@ h1:hover {
   transition-delay: 50ms;
 }
 
-h1 {
-  filter: drop-shadow(0 0 0px var(--dark-grey));
-  transition-property: filter;
-  transition-duration: 500ms;
-  transition-delay: 50ms;
+.mat-toolbar h1,
+.mat-toolbar-row .mat-icon {
+  text-shadow: 1px 1px 0 #3d1b3d;
 }
 
 .mat-sidenav .mat-icon {
