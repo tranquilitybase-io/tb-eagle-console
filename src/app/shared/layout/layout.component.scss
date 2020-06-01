@@ -13,11 +13,6 @@
   width: var(--drawerWidth);
   background-color: var(--white);
   border-bottom-right-radius: var(--radius);
-  // position: fixed;
-  // top: 4rem;
-  // bottom: 0;
-  // left: 0;
-  // right: 0;
   z-index: 20;
   padding: 0 1rem;
 }
@@ -132,6 +127,7 @@ h1:hover {
   transition-duration: 500ms;
   transition-delay: 50ms;
 }
+
 h1 {
   filter: drop-shadow(0 0 0px var(--dark-grey));
   transition-property: filter;
