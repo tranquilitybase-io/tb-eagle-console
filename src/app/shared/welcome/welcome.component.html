@@ -17,7 +17,9 @@
 
 <ng-template #dev>
   <ng-container *ngIf="!userIsAdmin$ | async; else noTeam">
-    <h1 mat-dialog-title class="mcm-msg">Welcome, <b class="red-reader">userName</b> to the Eagle Console</h1>
+    <h1 mat-dialog-title class="mcm-msg">
+      Welcome, <b class="red-reader">{{ userIsAdmin$ }}</b> to the Eagle Console
+    </h1>
     <mat-dialog-content class="mat-typography">
       <p class="mcm-dsc">
         You belong to the <b class="red-reader">[team name]</b> team. To get started, you can click on the
@@ -34,7 +36,9 @@
 
 <ng-template #noTeam>
   <ng-container>
-    <h1 mat-dialog-title class="mcm-msg">Welcome, <b class="red-reader">[first name]</b> to the Eagle Console</h1>
+    <h1 mat-dialog-title class="mcm-msg">
+      Welcome, <b class="red-reader">{{ User }}</b> to the Eagle Console
+    </h1>
     <mat-dialog-content class="mat-typography">
       <p class="mcm-dsc">
         You do not currently belong to a team. In order to join a team, go to the <b>Teams</b> menu to view the

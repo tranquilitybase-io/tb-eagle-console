@@ -16,7 +16,9 @@ export class LayoutComponent implements OnInit {
   userIsAdmin$: Observable<User>;
 
   constructor(private store: Store<any>, public dialog: MatDialog) {
-    this.dialog.open(WelcomeComponent, { panelClass: 'custom-dialog-container' });
+    setTimeout(() => {
+      this.dialog.open(WelcomeComponent, { panelClass: 'custom-dialog-container' });
+    }, 400);
   }
 
   ngOnInit() {

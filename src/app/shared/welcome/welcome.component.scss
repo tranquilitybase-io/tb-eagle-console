@@ -10,6 +10,7 @@
 
 .mcm-msg {
   font-weight: 600;
+  user-select: none;
   font-size: 30px;
   color: var(--light-grey);
   text-shadow: 1px 1px 1px #3d1b3d;
@@ -17,6 +18,7 @@
 
 .mcm-dsc {
   line-height: 25px;
+  user-select: none;
   text-align: justify;
   text-justify: inter-word;
   width: 35%;
