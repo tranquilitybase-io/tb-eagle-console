@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
     MatCardModule,
     MatChipsModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatIconModule
   ]
 })
 export class ActivatorStoreViewModule {}
