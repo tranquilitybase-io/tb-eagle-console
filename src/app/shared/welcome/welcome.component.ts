@@ -12,6 +12,8 @@ import { selectUserIsAdmin } from '@app/login/login.reducer';
 })
 export class WelcomeComponent implements OnInit {
   userIsAdmin$: Observable<User>;
+  user: string = 'Jon';
+  teams: string[] = ['Devs', 'EC-users'];
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
