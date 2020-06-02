@@ -9,6 +9,7 @@ header {
     border-left: 1px solid var(--grey);
     margin-left: 0.5rem;
     padding-left: 0.5rem;
+    padding-top: 0.3rem;
     font-size: 1.25rem;
     font-weight: 800;
   }
@@ -19,12 +20,12 @@ header {
 
   padding: {
     top: 1.5rem;
-    left: 2rem;
+    left: 0.5rem;
     right: 2rem;
     bottom: 1rem;
   }
 
-  background-color: var(--whitish);
+  background-color: var(--active-grey-background);
 }
 
 .alert {
