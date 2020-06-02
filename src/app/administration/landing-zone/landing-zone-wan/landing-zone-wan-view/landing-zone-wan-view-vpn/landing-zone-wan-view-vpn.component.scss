@@ -26,6 +26,14 @@ header {
   padding-right: 20px;
 }
 
+footer {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--active-grey-background);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .mat-chip {
   font-size: 12px;
   padding: 0.2rem 0.5rem;

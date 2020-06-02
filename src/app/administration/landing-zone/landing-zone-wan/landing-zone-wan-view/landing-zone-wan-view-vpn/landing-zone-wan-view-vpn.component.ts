@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WanConfiguration } from '../../landing-zone-wan.model';
 
 @Component({
@@ -10,9 +10,13 @@ import { WanConfiguration } from '../../landing-zone-wan.model';
 export class LandingZoneWanViewVpnComponent implements OnInit {
   wanConfiguration: WanConfiguration;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.wanConfiguration = this.route.snapshot.data['wanConfiguration'];
+  }
+
+  cancel() {
+    this.router.navigateByUrl('/administration/landing-zone/wan');
   }
 }
