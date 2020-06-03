@@ -15,17 +15,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { LandingZoneWanViewComponent } from './landing-zone-wan-view.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: LandingZoneWanViewComponent
-  }
+    path: 'vpn',
+    loadChildren: () =>
+      import('./landing-zone-wan-view-vpn/landing-zone-wan-view-vpn.module').then(m => m.LandingZoneWanViewVpnModule)
+  },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
-  declarations: [LandingZoneWanViewComponent],
+  declarations: [],
   imports: [
     CommonModule,
     ReactiveFormsModule,
