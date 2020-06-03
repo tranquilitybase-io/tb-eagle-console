@@ -1,4 +1,4 @@
-.tile-header mat-grid-tile-header {
+.tile-header .mat-grid-tile-header {
   margin: 0 2rem;
 }
 
@@ -31,7 +31,8 @@
 
 .configuration-grid-tile {
   background-color: #f9f9f9;
-  mat-card {
+
+  .mat-card {
     background-color: #f9f9f9;
   }
 }
@@ -40,12 +41,15 @@
   background-color: #f9f9f9;
   margin-top: 1rem;
   padding-top: 0.5rem;
+
   .mat-body-1 {
     width: 8rem;
   }
+
   .mat-chip.sensitivity {
     color: white;
     background-color: var(--dark-grey-2);
+
     &.red {
       background-color: var(--red);
     }
