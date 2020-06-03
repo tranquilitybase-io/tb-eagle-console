@@ -18,7 +18,7 @@
 <ng-template #dev>
   <ng-container *ngIf="!userIsAdmin$ && teams.length == 0 | async; else noTeam">
     <h1 mat-dialog-title class="mcm-msg">
-      Welcome, <b class="red-reader">{{ user }}</b> to the Eagle Console
+      Welcome, <b class="red-reader">{{ selectUser$ | async }}</b> to the Eagle Console
     </h1>
     <mat-dialog-content class="mat-typography">
       <p class="mcm-dsc">
@@ -37,7 +37,7 @@
 <ng-template #noTeam>
   <ng-container>
     <h1 mat-dialog-title class="mcm-msg">
-      Welcome, <b class="red-reader">{{ user }}</b> to the Eagle Console
+      Welcome, <b class="red-reader">{{ selectUser$ | async }}</b> to the Eagle Console
     </h1>
     <mat-dialog-content class="mat-typography">
       <p class="mcm-dsc">

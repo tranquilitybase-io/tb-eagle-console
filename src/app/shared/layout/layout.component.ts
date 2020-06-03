@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '@app/login/login.model';
 import { Store, select } from '@ngrx/store';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsAdmin, selectUserName } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 
@@ -14,6 +14,7 @@ import { WelcomeComponent } from '../welcome/welcome.component';
 export class LayoutComponent implements OnInit {
   isExpanded = true;
   userIsAdmin$: Observable<User>;
+  selectUser$: Observable<User>;
 
   constructor(private store: Store<any>, public dialog: MatDialog) {
     setTimeout(() => {
@@ -23,5 +24,6 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.selectUser$ = this.store.pipe(select(selectUserName));
   }
 }
