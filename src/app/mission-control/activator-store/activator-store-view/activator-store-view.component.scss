@@ -44,6 +44,11 @@
   }
 }
 
+.deployment-options {
+  grid-column: 2/3;
+  grid-row: 1/4;
+}
+
 .activ-content {
   display: grid;
   padding: 1rem 2rem;
@@ -53,11 +58,6 @@
 
   .deployments {
     grid-column: 1/3;
-  }
-
-  .deployment-options {
-    grid-column: 2/3;
-    grid-row: 1/4;
   }
 }
 
@@ -123,14 +123,15 @@
   min-width: 100%;
   position: absolute;
   top: 3rem;
-  left: 0rem;
-  right: 0rem;
-  bottom: 0rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .configuration-grid-tile {
   background-color: #f9f9f9;
-  mat-card {
+
+  .mat-card {
     background-color: #f9f9f9;
   }
 }
@@ -139,12 +140,15 @@
   background-color: #f9f9f9;
   margin-top: 1rem;
   padding-top: 0.5rem;
+
   .mat-body-1 {
     width: 8rem;
   }
+
   .mat-chip.sensitivity {
     color: white;
     background-color: var(--dark-grey-2);
+
     &.red {
       background-color: var(--red);
     }
@@ -169,16 +173,13 @@ a {
   cursor: default;
   min-height: 32px;
   height: 1px;
-
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   transform: translateZ(0);
-
   font-size: 14px;
   font-weight: 500;
-
   margin: 4px;
 }
 
