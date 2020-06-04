@@ -39,6 +39,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ],
   exports: [
     AlertComponent,

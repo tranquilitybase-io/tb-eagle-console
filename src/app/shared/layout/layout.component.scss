@@ -77,7 +77,12 @@
   border: 2px solid var(--transparent-white);
   border-radius: 50%;
   text-align: center;
-  font-size: 14px;
+  background-color: #6f3070;
+  font-size: 17px;
+  text-shadow: 1px 1px 0 #3d1b3d;
+  box-shadow: 1px 1px 0 #3d1b3d;
+  font-family: monospace;
+  font-weight: bold;
   margin-left: 16px;
   margin-right: 16px;
 }

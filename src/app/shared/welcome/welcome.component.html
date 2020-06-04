@@ -7,8 +7,15 @@
       To complete the basic installation, you will need to <b>complete the minimum Landing Zone requirements</b>.
     </p>
   </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button mat-button class="mcm-link" [mat-dialog-close]="true">
+  <mat-dialog-actions>
+    <mat-checkbox [(ngModel)]="showWelcome$">Check if you don't want to see this screen again.</mat-checkbox>
+    <button
+      mat-button
+      routerLink="/administration/landing-zone"
+      routerLinkActive="active"
+      class="mcm-link"
+      [mat-dialog-close]="true"
+    >
       Get started
       <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
@@ -26,8 +33,15 @@
         available teams and request to join.
       </p>
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button class="mcm-link" [mat-dialog-close]="true">
+    <mat-dialog-actions>
+      <mat-checkbox [(ngModel)]="showWelcome$">Check if you don't want to see this screen again.</mat-checkbox>
+      <button
+        mat-button
+        routerLink="/administration/teams"
+        routerLinkActive="active"
+        class="mcm-link"
+        [mat-dialog-close]="true"
+      >
         <mat-icon>group</mat-icon> &nbsp;Teams <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </mat-dialog-actions>
@@ -48,8 +62,15 @@
         >. To get started, you can click on the <b>Solutions</b> menu to view your teams solutions and applications.
       </p>
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button class="mcm-link" [mat-dialog-close]="true">
+    <mat-dialog-actions>
+      <mat-checkbox [(ngModel)]="showWelcome$">Check if you don't want to see this screen again.</mat-checkbox>
+      <button
+        mat-button
+        routerLink="/mission-control/solutions"
+        [queryParams]="{ groupSwitch: 'Favourites' }"
+        class="mcm-link"
+        [mat-dialog-close]="true"
+      >
         <mat-icon>filter_none</mat-icon> &nbsp;Solutions <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </mat-dialog-actions>
