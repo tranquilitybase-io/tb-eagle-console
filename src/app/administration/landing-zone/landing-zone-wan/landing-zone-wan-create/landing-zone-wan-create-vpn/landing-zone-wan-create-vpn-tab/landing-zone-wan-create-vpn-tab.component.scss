@@ -4,6 +4,10 @@ p {
   .mat-form-field {
     width: 100%;
 
+    &.description {
+      width: 93.5%;
+    }
+
     &.small-width {
       width: 30%;
       margin-right: 2rem;
@@ -27,4 +31,9 @@ p {
   margin-left: -24px;
   margin-right: -24px;
   margin-bottom: -24px;
+}
+
+.icon-size {
+  font-size: 15px;
+  padding-top: 7px;
 }

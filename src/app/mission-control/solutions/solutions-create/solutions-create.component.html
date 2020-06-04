@@ -45,14 +45,18 @@
         />
       </mat-form-field>
     </p>
-
-    <div class="solution-footer-container solution-details-footer-container">
+    <div class="solution-details-footer-container">
+      <div>
+        <button mat-button color="primary">
+          <mat-icon class="icon-size">cancel</mat-icon>
+          Cancel
+        </button>
+      </div>
       <button mat-button color="primary" (click)="toggleSolutionPage()">
         Continue <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </div>
   </div>
-
   <div class="solution-workspace-container" *ngIf="onPartTwo">
     <p>
       <mat-form-field appearance="outline">
@@ -83,8 +87,7 @@
         </mat-list-option>
       </mat-selection-list>
     </p>
-
-    <div class="solution-footer-container">
+    <div class="solution-workspace-footer-container">
       <button mat-button color="primary" (click)="toggleSolutionPage()">
         <mat-icon>keyboard_arrow_left</mat-icon> Back to details
       </button>

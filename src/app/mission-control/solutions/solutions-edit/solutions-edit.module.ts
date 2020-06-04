@@ -33,7 +33,8 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ]
 })
 export class SolutionsViewEditModule {}

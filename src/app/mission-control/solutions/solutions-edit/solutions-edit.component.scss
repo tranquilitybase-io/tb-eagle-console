@@ -118,22 +118,17 @@ main {
 
 .footer-container {
   display: flex;
-  flex-direction: row;
-  height: 5rem;
-  width: 100%;
-  align-items: center;
+  padding: 0.3rem 0.5rem;
+  background-color: var(--active-grey-background);
   justify-content: space-between;
-  align-self: flex-end;
-  margin-top: auto;
-  margin-bottom: 2rem;
-  float: right;
+  align-items: center;
+  bottom: 0;
+  margin-left: -51.5px;
+  margin-right: -51.5px;
+  margin-top: inherit;
+}
 
-  &.details-footer-container {
-    justify-content: flex-end;
-  }
-
-  button {
-    font-weight: 600;
-    font-size: 16px;
-  }
+.icon-size {
+  font-size: 15px;
+  padding-top: 7px;
 }

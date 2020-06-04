@@ -24,7 +24,7 @@
     </mat-form-field>
   </p>
   <p>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="description">
       <mat-label>Description</mat-label>
       <textarea
         matInput
@@ -106,8 +106,13 @@
   </p>
 </form>
 <footer class="footer">
-  <div></div>
-  <div class="btn-position right" fxFlexAlign="end">
+  <div>
+    <button mat-button color="primary" matStepperNext>
+      <mat-icon class="icon-size">cancel</mat-icon>
+      Cancel
+    </button>
+  </div>
+  <div>
     <button mat-button color="primary" matStepperNext>
       Next
       <mat-icon>chevron_right</mat-icon>
