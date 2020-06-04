@@ -1,0 +1,167 @@
+<form [formGroup]="formGroup">
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Vendor</mat-label>
+      <mat-select required formControlName="vendor">
+        <mat-option *ngFor="let item of vpnOnPremiseVendorList" [value]="item.key">{{ item.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <div class="side-by-side">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Primary</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Peer IP</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              maxlength="50"
+              formControlName="primaryPeerIp"
+              placeholder="E.g. 209.119.81.228..."
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Peer IP Subnet</mat-label>
+            <input matInput type="text" maxlength="50" formControlName="primaryPeerIpSubnet" placeholder="E.g. ..." />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>VPN Tunnel</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              maxlength="50"
+              formControlName="primaryVpnTunnel"
+              placeholder="E.g. tunnel-tranquilitybase-0..."
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>BGP Peer</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              maxlength="50"
+              formControlName="primaryBgpPeer"
+              placeholder="E.g. tunnel-tranquilitybase-0..."
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Shared Secret</mat-label>
+            <input
+              matInput
+              type="text"
+              maxlength="50"
+              formControlName="primarySharedSecret"
+              placeholder="Generate or input manually"
+            />
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="generateSharedSecret('primarySharedSecret')"
+              matTooltip="Generate"
+            >
+              <mat-icon>autorenew</mat-icon>
+            </button>
+          </mat-form-field>
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Secondary</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Peer IP</mat-label>
+            <input
+              matInput
+              type="text"
+              maxlength="50"
+              formControlName="secondaryPeerIp"
+              placeholder="E.g. 209.119.81.228..."
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Peer IP Subnet</mat-label>
+            <input matInput type="text" maxlength="50" formControlName="secondaryPeerIpSubnet" placeholder="E.g. ..." />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>VPN Tunnel</mat-label>
+            <input
+              matInput
+              type="text"
+              maxlength="50"
+              formControlName="secondaryVpnTunnel"
+              placeholder="E.g. tunnel-tranquilitybase-0..."
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>BGP Peer</mat-label>
+            <input
+              matInput
+              type="text"
+              maxlength="50"
+              formControlName="secondaryBgpPeer"
+              placeholder="E.g. tunnel-tranquilitybase-0..."
+            />
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Shared Secret</mat-label>
+            <input
+              matInput
+              type="text"
+              maxlength="50"
+              formControlName="secondarySharedSecret"
+              placeholder="Generate or input manually"
+            />
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="generateSharedSecret('secondarySharedSecret')"
+              matTooltip="Generate"
+            >
+              <mat-icon>autorenew</mat-icon>
+            </button>
+          </mat-form-field>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="app-stepper-action left">
+    <button mat-button color="primary" matStepperPrevious>
+      <mat-icon>chevron_left</mat-icon>
+      Back
+    </button>
+  </div>
+  <div class="app-stepper-action right">
+    <button mat-button color="primary" matStepperNext>
+      Next
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</form>

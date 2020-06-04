@@ -27,6 +27,7 @@
   --radius: 0.3rem;
   --mainWidth: 100%;
   --drawerWidth: 14.5rem;
+  --toolbarHeight: 4rem;
 }
 
 @font-face {
@@ -49,12 +50,12 @@
 @import './styles/material';
 
 html {
-  height: 100%;
+  height: 100vh;
   width: 100%;
 }
 
 body {
-  height: 100%;
+  height: 100vh;
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

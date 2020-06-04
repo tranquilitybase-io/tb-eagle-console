@@ -2,10 +2,14 @@
   padding: 1rem 2rem;
 }
 
-// .tile-header {
-//   margin: 0 2rem;
-// }
-
 .mat-tab-header {
   margin: 0 2rem;
+}
+
+.mat-tab-header {
+  display: none;
+}
+
+body {
+  display: none;
 }
