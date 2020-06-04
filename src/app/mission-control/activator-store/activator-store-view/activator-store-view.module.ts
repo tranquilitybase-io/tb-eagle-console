@@ -57,7 +57,8 @@ const routes: Routes = [
     MatGridListModule,
     MatListModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ]
 })
 export class ActivatorStoreViewModule {}
