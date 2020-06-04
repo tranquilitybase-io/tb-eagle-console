@@ -16,10 +16,6 @@
             <a mat-menu-item routerLink="/mission-control/activator-store/view" [queryParams]="{ id: activator.id }"
               >View</a
             >
-            <a mat-menu-item routerLink="/mission-control/activator-store/details" [queryParams]="{ id: activator.id }"
-              >Details</a
-            >
-
             <button mat-menu-item *ngIf="isLocked && !(userIsAdmin$ | async)" (click)="requestAccess()">
               Request Access
             </button>

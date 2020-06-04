@@ -9,13 +9,16 @@ header {
   background-color: var(--active-grey-background);
   display: flex;
   align-items: center;
+
   span {
     font-family: 'SF Pro Display';
     font-style: normal;
     font-size: 20px;
+
     &.title {
       font-weight: 800;
     }
+
     &.vertical-divider {
       border-left: 1px solid var(--grey);
       margin: 0.5rem;
@@ -23,12 +26,7 @@ header {
   }
 }
 
-footer {
-  z-index: 0;
-  height: 4.5rem;
-  bottom: 0;
-  position: fixed;
-  width: 100%;
-  background-color: var(--active-grey-background);
-  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.12);
+.icon-size {
+  font-size: 15px;
+  padding-top: 5px;
 }
