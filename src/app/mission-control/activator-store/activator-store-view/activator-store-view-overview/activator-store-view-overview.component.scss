@@ -7,12 +7,10 @@
 }
 
 .activ-back-btn {
-  color: var(--black);
   text-decoration: none;
   font-weight: normal;
 
   &.left::before {
-    border-color: var(--black);
     margin-right: 0.5rem;
   }
 }
