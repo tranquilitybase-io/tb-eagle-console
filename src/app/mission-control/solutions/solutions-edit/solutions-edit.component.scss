@@ -79,23 +79,8 @@ main {
 /* Workspace view */
 
 .workspace-container {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2rem;
-  width: 90%;
-  height: calc(100vh - 11rem);
   display: flex;
-  flex-direction: column;
-  justify-content: left;
-
-  p {
-    width: 100%;
-
-    .mat-form-field {
-      width: 30%;
-      margin: 1rem;
-    }
-  }
+  flex-direction: row;
 }
 
 .environment-container {
@@ -131,4 +116,9 @@ main {
 .icon-size {
   font-size: 15px;
   padding-top: 7px;
+}
+
+.part-title {
+  font-weight: 500;
+  font-size: 1.1rem;
 }

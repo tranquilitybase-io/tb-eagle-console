@@ -12,6 +12,7 @@
   </div>
   <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
     <div class="details-container">
+      <div class="part-title">Details</div>
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Name</mat-label>
@@ -62,34 +63,38 @@
           />
         </mat-form-field>
       </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>CI (Continuous intergration service)</mat-label>
-          <mat-select required [disabled]="disableEdit" formControlName="ci">
-            <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Source Control</mat-label>
-          <mat-select required [disabled]="disableEdit" formControlName="sourceControl">
-            <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>CD (Continuous deployment)</mat-label>
-          <mat-select required [disabled]="disableEdit" formControlName="cd">
-            <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-      <p>
+      <div class="part-title">Workspace</div>
+      <div class="workspace-container">
+        <p>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>CI (Continuous intergration service)</mat-label>
+            <mat-select required [disabled]="disableEdit" formControlName="ci">
+              <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>Source Control</mat-label>
+            <mat-select required [disabled]="disableEdit" formControlName="sourceControl">
+              <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>CD (Continuous deployment)</mat-label>
+            <mat-select required [disabled]="disableEdit" formControlName="cd">
+              <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+      </div>
+      <mat-card>
         <span class="mat-subheading-1">Available environments</span>
-        <mat-selection-list [disabled]="disableEdit" formControlName="environments">
+        <mat-divider></mat-divider>
+        <mat-selection-list formControlName="environments">
           <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
             {{ item.value }}
           </mat-list-option>
         </mat-selection-list>
-      </p>
+      </mat-card>
 
       <div class="footer-container">
         <button mat-button color="primary" (click)="cancel()">

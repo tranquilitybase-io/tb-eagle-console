@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule, MatCardModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -34,7 +35,9 @@ const routes: Routes = [
     MatInputModule,
     MatListModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule,
+    MatCardModule
   ]
 })
 export class SolutionsViewEditModule {}

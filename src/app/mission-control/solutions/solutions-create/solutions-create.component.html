@@ -79,14 +79,15 @@
       </mat-form-field>
     </p>
 
-    <p>
+    <mat-card>
       <span class="mat-subheading-1">Available environments</span>
+      <mat-divider></mat-divider>
       <mat-selection-list formControlName="environments">
         <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
           {{ item.value }}
         </mat-list-option>
       </mat-selection-list>
-    </p>
+    </mat-card>
     <div class="solution-workspace-footer-container">
       <button mat-button color="primary" (click)="toggleSolutionPage()">
         <mat-icon>keyboard_arrow_left</mat-icon> Back to details
