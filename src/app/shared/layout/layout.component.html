@@ -78,9 +78,17 @@
         <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
           <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span></a
         >
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Teams' : null" matTooltipPosition="after">
-          <mat-icon>group</mat-icon> <span *ngIf="isExpanded"> Teams</span></a
+        <a
+          mat-list-item
+          routerLink="/administration/teams"
+          [queryParams]="{ groupSwitch: 'Actives' }"
+          routerLinkActive="active"
+          [matTooltip]="!isExpanded ? 'Teams' : null"
+          matTooltipPosition="after"
         >
+          <mat-icon>group</mat-icon>
+          <span *ngIf="isExpanded"> Teams</span>
+        </a>
         <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
           <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span></a
         >
