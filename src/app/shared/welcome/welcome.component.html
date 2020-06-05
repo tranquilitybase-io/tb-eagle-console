@@ -8,7 +8,9 @@
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <mat-checkbox [(ngModel)]="showWelcome$">Check if you don't want to see this screen again.</mat-checkbox>
+    <mat-checkbox [(ngModel)]="!showWelcome$"
+      >{{ showWelcome$ | async }} Check if you don't want to see this screen again.</mat-checkbox
+    >
     <button
       mat-button
       routerLink="/administration/landing-zone"
@@ -23,7 +25,7 @@
 </ng-container>
 
 <ng-template #dev>
-  <ng-container *ngIf="!userIsAdmin$ && teams.length == 0 | async; else noTeam">
+  <ng-container *ngIf="!userTeams$ | async; else inTeam">
     <h1 mat-dialog-title class="mcm-msg">
       Welcome, <b class="red-reader">{{ selectUser$ | async }}</b> to the Eagle Console
     </h1>
@@ -34,7 +36,9 @@
       </p>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <mat-checkbox [(ngModel)]="showWelcome$">Check if you don't want to see this screen again.</mat-checkbox>
+      <mat-checkbox [(ngModel)]="!showWelcome$"
+        >{{ showWelcome$ | async }} Check if you don't want to see this screen again.</mat-checkbox
+      >
       <button
         mat-button
         routerLink="/administration/teams"
@@ -48,7 +52,7 @@
   </ng-container>
 </ng-template>
 
-<ng-template #noTeam>
+<ng-template #inTeam>
   <ng-container>
     <h1 mat-dialog-title class="mcm-msg">
       Welcome, <b class="red-reader">{{ selectUser$ | async }}</b> to the Eagle Console
@@ -56,14 +60,16 @@
     <mat-dialog-content class="mat-typography">
       <p class="mcm-dsc">
         You belong to the following teams:
-        <span *ngFor="let team of teams; last as last"
-          ><b class="red-reader">{{ team }}</b
-          ><span *ngIf="!last">, </span></span
-        >. To get started, you can click on the <b>Solutions</b> menu to view your teams solutions and applications.
+        <span *ngFor="let team of userTeams$ | async; last as last">
+          <b class="red-reader">{{ team }}</b>
+          <span *ngIf="!last">, </span></span
+        >. To get started, you can click on the <b>Solutions</b> menu to view your teams' solutions and applications.
       </p>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <mat-checkbox [(ngModel)]="showWelcome$">Check if you don't want to see this screen again.</mat-checkbox>
+      <mat-checkbox [(ngModel)]="!showWelcome$"
+        >{{ showWelcome$ | async }} Check if you don't want to see this screen again.</mat-checkbox
+      >
       <button
         mat-button
         routerLink="/mission-control/solutions"

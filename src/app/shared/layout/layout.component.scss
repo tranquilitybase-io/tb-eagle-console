@@ -71,25 +71,16 @@
 }
 
 .user-initials {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--transparent-white);
+  border: 2px solid var(--white);
   border-radius: 50%;
+  padding: 3px;
   text-align: center;
   background-color: #6f3070;
   font-size: 17px;
   text-shadow: 1px 1px 0 #3d1b3d;
-  box-shadow: 1px 1px 0 #3d1b3d;
+  box-shadow: 1px 1px 0 #3d1b3d, inset 1px 1px 0 #3d1b3d;
   font-family: monospace;
   font-weight: bold;
-  margin-left: 16px;
-  margin-right: 16px;
-}
-
-a {
-  color: var(--white);
-  text-decoration: none;
 }
 
 .spacer {
