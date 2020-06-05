@@ -8,11 +8,11 @@
   border: none;
   outline: none;
   color: var(--primary-color);
-  text-decoration: underline;
   font-family: SF Pro Display;
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .step {
@@ -28,4 +28,9 @@
 
 .badge {
   margin: 0 0.5rem;
+}
+
+.icon-size {
+  padding-top: 8px;
+  font-size: 15px;
 }
