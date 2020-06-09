@@ -134,6 +134,9 @@
       <mat-error *ngIf="f.bgpInterfaceNetLength.errors?.required">
         BGP interface netmask length is <strong>required</strong>
       </mat-error>
+      <mat-error *ngIf="f.bgpInterfaceNetLength.hasError('pattern')">
+        Please enter netmask in valid format e.g. "/30"
+      </mat-error>
     </mat-form-field>
   </p>
   <div class="app-stepper-action right">

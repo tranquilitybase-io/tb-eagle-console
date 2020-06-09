@@ -29,7 +29,7 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
       externalVpnGateway: ['', Validators.required],
       googleASN: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]],
       peerASN: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]],
-      bgpInterfaceNetLength: ['', Validators.required]
+      bgpInterfaceNetLength: ['', [Validators.required, Validators.pattern('/+([0-9])+([0-9])')]]
     });
     this.googleSessionFormGroup = this.formBuilder.group({
       primaryRegion: ['', Validators.required],
