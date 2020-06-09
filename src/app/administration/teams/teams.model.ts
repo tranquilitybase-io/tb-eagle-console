@@ -1,8 +1,13 @@
+import { BusinessUnit } from '@app/shared/shared.model';
+
 export class Team {
   id?: number;
   name: string;
   description: string;
-  businessUnitId: number;
   isFavourite: boolean;
   isActive: boolean;
+  lastUpdated: string;
+  userCount: number;
+  businessUnitId: number;
+  businessUnit: BusinessUnit;
 }

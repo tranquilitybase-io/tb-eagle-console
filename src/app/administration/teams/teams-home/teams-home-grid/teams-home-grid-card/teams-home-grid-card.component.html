@@ -9,10 +9,12 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <a mat-menu-item routerLink="view" [queryParams]="{ id: team.id, categorySwitch: 'Applications' }">
+          <a mat-menu-item routerLink="view" [queryParams]="{ id: team.id, categorySwitch: 'TeamMembers' }">
             View
           </a>
-          <a mat-menu-item routerLink="edit" [queryParams]="{ id: team.id }">Edit</a>
+          <a mat-menu-item routerLink="edit" [queryParams]="{ id: team.id }">
+            Edit
+          </a>
         </mat-menu>
       </div>
       {{ team.name }}
@@ -25,19 +27,19 @@
       <mat-list-item>
         <div class="mat-body">Business Unit</div>
         <mat-chip-list>
-          <mat-chip> Business Unit Name </mat-chip>
+          <mat-chip> {{ team.businessUnit.name }} </mat-chip>
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
         <div class="mat-body">Users</div>
         <mat-chip-list>
-          <mat-chip>1</mat-chip>
+          <mat-chip>{{ team.userCount }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
         <div class="mat-body">Last updated</div>
         <mat-chip-list>
-          <mat-chip>Last Updated date</mat-chip>
+          <mat-chip>{{ lastUpdated | date }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
     </mat-list>
@@ -50,10 +52,10 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
-    <a mat-button routerLink="view" [queryParams]="{ id: team.id, categorySwitch: 'Applications' }">
+    <a mat-button routerLink="view" [queryParams]="{ id: team.id, categorySwitch: 'TeamMembers' }">
       View
     </a>
-    <a mat-button routerLink="edit" [queryParams]="{ id: team.id, categorySwitch: 'Applications' }">
+    <a mat-button routerLink="edit" [queryParams]="{ id: team.id }">
       Edit
     </a>
   </mat-card-actions>

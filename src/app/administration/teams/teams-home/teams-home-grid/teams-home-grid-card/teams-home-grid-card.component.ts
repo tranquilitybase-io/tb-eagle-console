@@ -24,4 +24,8 @@ export class TeamsHomeGridCardComponent implements OnInit {
   onMouseLeave() {
     this.active = false;
   }
+
+  get lastUpdated(): Date {
+    return new Date(this.team.lastUpdated || null);
+  }
 }
