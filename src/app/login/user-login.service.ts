@@ -42,7 +42,7 @@ export class UserLoginService {
   updateShowWelcome(userId: number, showWelcome: boolean): void {
     const url = `${this.BASE_URL}/user/${userId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.put(url, { showWelcome }, { headers }).subscribe(
+    this.http.put(url, { id: userId, showWelcome }, { headers }).subscribe(
       (val: boolean) => {
         console.log('PUT call successful value returned in body', val);
       },

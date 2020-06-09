@@ -22,17 +22,15 @@ export class WelcomeComponent implements OnInit {
   selectUser$: Observable<User>;
   showWelcome$: Observable<User>;
   userTeams$: Observable<User>;
-
   userId: number;
+
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
-
     this.selectUser$ = this.store.pipe(select(selectUserName));
     this.userTeams$ = this.store.pipe(select(selectUserTeams));
     this.store.pipe(select(selectUserId)).subscribe(userId => (this.userId = userId));
-    this.store.pipe(select(selectShowWelcome)).subscribe(showWelcome => (this.showWelcome$ = showWelcome));
   }
 
   setShowWelcome(showWelcome: boolean) {
