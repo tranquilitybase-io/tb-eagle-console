@@ -1,5 +1,5 @@
 .mat-dialog-content {
-  font-family: 'SF Pro Display';
+  font-family: 'SF Pro Display', monospace;
   height: 70vh;
   width: 70vw;
 }
@@ -11,7 +11,7 @@
 .mcm-msg {
   font-weight: 600;
   user-select: none;
-  font-size: 30px;
+  font-size: 30;
   color: var(--light-grey);
   text-shadow: 1px 1px 1px #3d1b3d;
 }
@@ -59,13 +59,14 @@
   background-color: #fff;
   opacity: 0.9;
   filter: drop-shadow(3px 3px 3px #3d1b3d);
-  transform: translateY(0px) scale(1);
+  transform: translateY(0) scale(1);
   transition-property: filter, transform;
   transition-duration: 200ms;
   transition-delay: 5ms;
   animation: bthGlow 3s linear 0s infinite normal;
   justify-content: flex-end;
 }
+
 .mcm-link:hover {
   filter: drop-shadow(6px 6px 6px #3d1b3d);
   transform: translateY(-2px) scale(1.1);
@@ -76,18 +77,22 @@
 
 @keyframes bthGlow {
   0% {
-    box-shadow: inset -1px 0px 1px var(--red), inset 1px 0px 1px #ffffff;
+    box-shadow: inset -1px 0 1px var(--red), inset 1px 0 1px #fff;
   }
+
   25% {
-    box-shadow: inset 0px -1px 1px var(--red), inset 0px 1px 1px #ffffff;
+    box-shadow: inset 0 -1px 1px var(--red), inset 0 1px 1px #fff;
   }
+
   50% {
-    box-shadow: inset 1px 0px 1px var(--red), inset -1px 0px 1px #ffffff;
+    box-shadow: inset 1px 0 1px var(--red), inset -1px 0 1px #fff;
   }
+
   75% {
-    box-shadow: inset 0px 1px 1px var(--red), inset 0px -1px 1px #ffffff;
+    box-shadow: inset 0 1px 1px var(--red), inset 0 -1px 1px #fff;
   }
+
   100% {
-    box-shadow: inset -1px 0px 1px var(--red), inset 1px 0px 1px #ffffff;
+    box-shadow: inset -1px 0 1px var(--red), inset 1px 0 1px #fff;
   }
 }
