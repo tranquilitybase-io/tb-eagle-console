@@ -107,20 +107,32 @@
     <mat-form-field class="half-width" appearance="outline">
       <mat-label>Google ASN</mat-label>
       <input matInput required type="text" maxlength="50" formControlName="googleASN" placeholder="65001" />
-      <mat-error *ngIf="f.googleASN.errors?.required">Google ASN is <strong>required</strong> </mat-error>
+      <mat-error *ngIf="f.googleASN.errors?.required"> Google ASN is <strong>required</strong> </mat-error>
+      <mat-error *ngIf="f.googleASN.hasError('minlength')">
+        It must have at least 4 digits
+      </mat-error>
+      <mat-error *ngIf="f.googleASN.hasError('pattern')">
+        It may contain only numbers
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="half-width" appearance="outline">
       <mat-label>Peer ASN</mat-label>
       <input matInput required type="text" maxlength="50" formControlName="peerASN" placeholder="65002" />
       <mat-error *ngIf="f.peerASN.errors?.required"> Peer ASN is <strong>required</strong> </mat-error>
+      <mat-error *ngIf="f.peerASN.hasError('minlength')">
+        It must have at least 4 digits
+      </mat-error>
+      <mat-error *ngIf="f.peerASN.hasError('pattern')">
+        It may contain only numbers
+      </mat-error>
     </mat-form-field>
   </p>
   <p>
     <mat-form-field class="half-width" appearance="outline">
       <mat-label>BGP interface netmask length</mat-label>
       <input matInput required type="text" maxlength="50" formControlName="bgpInterfaceNetLength" placeholder="/30" />
-      <mat-error *ngIf="f.bgpInterfaceNetLength.errors?.required"
-        >BGP interface netmask length is <strong>required</strong>
+      <mat-error *ngIf="f.bgpInterfaceNetLength.errors?.required">
+        BGP interface netmask length is <strong>required</strong>
       </mat-error>
     </mat-form-field>
   </p>
