@@ -8,14 +8,13 @@
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <mat-checkbox [(ngModel)]="!showWelcome$"
-      >{{ showWelcome$ | async }} Check if you don't want to see this screen again.</mat-checkbox
-    >
+    <mat-checkbox [(ngModel)]="checkWelcome">Check if you don't want to see this screen again.</mat-checkbox>
     <button
       mat-button
       routerLink="/administration/landing-zone"
       routerLinkActive="active"
       class="mcm-link"
+      (click)="setShowWelcome(!checkWelcome)"
       [mat-dialog-close]="true"
     >
       Get started
@@ -36,14 +35,13 @@
       </p>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <mat-checkbox [(ngModel)]="!showWelcome$"
-        >{{ showWelcome$ | async }} Check if you don't want to see this screen again.</mat-checkbox
-      >
+      <mat-checkbox [(ngModel)]="checkWelcome">Check if you don't want to see this screen again.</mat-checkbox>
       <button
         mat-button
         routerLink="/administration/teams"
         routerLinkActive="active"
         class="mcm-link"
+        (click)="setShowWelcome(!checkWelcome)"
         [mat-dialog-close]="true"
       >
         <mat-icon>group</mat-icon> &nbsp;Teams <mat-icon>keyboard_arrow_right</mat-icon>
@@ -67,14 +65,13 @@
       </p>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <mat-checkbox [(ngModel)]="!showWelcome$"
-        >{{ showWelcome$ | async }} Check if you don't want to see this screen again.</mat-checkbox
-      >
+      <mat-checkbox [(ngModel)]="checkWelcome">Check if you don't want to see this screen again.</mat-checkbox>
       <button
         mat-button
-        routerLink="/mission-control/solutions"
-        [queryParams]="{ groupSwitch: 'Favourites' }"
+        routerLink="/administration/teams"
+        routerLinkActive="active"
         class="mcm-link"
+        (click)="setShowWelcome(!checkWelcome)"
         [mat-dialog-close]="true"
       >
         <mat-icon>filter_none</mat-icon> &nbsp;Solutions <mat-icon>keyboard_arrow_right</mat-icon>

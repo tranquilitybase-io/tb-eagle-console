@@ -38,4 +38,21 @@ export class UserLoginService {
   loginFailure(): void {
     this.router.navigateByUrl('/login');
   }
+
+  updateShowWelcome(userId: number, showWelcome: boolean): void {
+    const url = `${this.BASE_URL}/user/${userId}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.put(url, { showWelcome }, { headers }).subscribe(
+      (val: boolean) => {
+        console.log('PUT call successful value returned in body', val);
+      },
+      response => {
+        console.log('PUT call in error', response);
+      },
+      () => {
+        console.log('The PUT observable is now completed.');
+      }
+    );
+    console.log(showWelcome + ' put');
+  }
 }

@@ -32,3 +32,4 @@ export const selectUserInitials = createSelector(
   ({ user }) => user && user.firstName[0] + user.lastName[0]
 );
 export const selectShowWelcome = createSelector(selectFeature, ({ user }) => user && user.showWelcome);
+export const selectUserId = createSelector(selectFeature, ({ user }) => user && user.id);
