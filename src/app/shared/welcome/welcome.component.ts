@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '@app/login/login.model';
-import { Store, select } from '@ngrx/store';
-import {
-  selectUserIsAdmin,
-  selectUserName,
-  selectShowWelcome,
-  selectUserTeams,
-  selectUserId
-} from '@app/login/login.reducer';
+import { select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { selectUserIsAdmin, selectUserName, selectUserTeams, selectUserId } from '@app/login/login.reducer';
 import { updateShowWelcome } from '@app/login/login.actions';
 
 @Component({
