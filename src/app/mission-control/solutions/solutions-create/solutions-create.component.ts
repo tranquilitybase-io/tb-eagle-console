@@ -54,6 +54,10 @@ export class SolutionsCreateComponent implements OnInit {
     });
   }
 
+  get f() {
+    return this.solutionForm.controls;
+  }
+
   toggleSolutionPage() {
     this.onPartTwo = !this.onPartTwo;
 
