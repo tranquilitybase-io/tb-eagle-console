@@ -46,8 +46,8 @@
               formControlName="primaryGcpVpcSubnet"
               placeholder="E.g 10.0.1.0/24..."
             />
-            <mat-error *ngIf="f.primaryGcpVpcSubnet.errors?.required"
-              >GCP VPC subnet is <strong>required</strong>
+            <mat-error *ngIf="f.primaryGcpVpcSubnet.errors?.required">
+              GCP VPC subnet is <strong>required</strong>
             </mat-error>
             <mat-error *ngIf="f.primaryGcpVpcSubnet.hasError('pattern')">
               Please enter GCP VPC subnet in format e.g. "10.0.1.0/24..."

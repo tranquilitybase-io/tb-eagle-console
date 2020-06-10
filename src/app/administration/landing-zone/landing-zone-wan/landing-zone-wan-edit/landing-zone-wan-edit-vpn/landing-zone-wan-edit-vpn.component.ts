@@ -53,29 +53,80 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
         this.wanConfiguration.vpn.peerASN,
         [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]
       ],
-      bgpInterfaceNetLength: [this.wanConfiguration.vpn.bgpInterfaceNetLength, Validators.required]
+      bgpInterfaceNetLength: [
+        this.wanConfiguration.vpn.bgpInterfaceNetLength,
+        [Validators.required, Validators.pattern('/+([0-9])+([0-9])')]
+      ]
     });
     this.googleSessionFormGroup = this.formBuilder.group({
       primaryRegion: [this.wanConfiguration.googleSession.primaryRegion, Validators.required],
       primarySubnetName: [this.wanConfiguration.googleSession.primarySubnetName, Validators.required],
-      primaryGcpVpcSubnet: [this.wanConfiguration.googleSession.primaryGcpVpcSubnet, Validators.required],
+      primaryGcpVpcSubnet: [
+        this.wanConfiguration.googleSession.primaryGcpVpcSubnet,
+        [
+          Validators.required,
+          Validators.pattern(
+            '^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(?:(/[0-9][0-9])|/[0-9])|((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$'
+          )
+        ]
+      ],
       secondaryRegion: [this.wanConfiguration.googleSession.secondaryRegion],
       secondarySubnetName: [this.wanConfiguration.googleSession.secondarySubnetName],
-      secondaryGcpVpcSubnet: [this.wanConfiguration.googleSession.primaryGcpVpcSubnet]
+      secondaryGcpVpcSubnet: [
+        this.wanConfiguration.googleSession.secondaryGcpVpcSubnet,
+        Validators.pattern(
+          '^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(?:(/[0-9][0-9])|/[0-9])|((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$'
+        )
+      ]
     });
     this.onPremiseSessionFormGroup = this.formBuilder.group({
       vendor: [this.wanConfiguration.onPremiseSession.vendor, Validators.required],
-      primaryPeerIp: [this.wanConfiguration.onPremiseSession.primaryPeerIp, Validators.required],
-      primaryPeerIpSubnet: [this.wanConfiguration.onPremiseSession.primaryPeerIpSubnet],
+      primaryPeerIp: [
+        this.wanConfiguration.onPremiseSession.primaryPeerIp,
+        [
+          Validators.required,
+          Validators.pattern(
+            '^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(?:(/[0-9][0-9])|/[0-9])|((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$'
+          )
+        ]
+      ],
+      primaryPeerIpSubnet: [
+        this.wanConfiguration.onPremiseSession.primaryPeerIpSubnet,
+        Validators.pattern(
+          '^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(?:(/[0-9][0-9])|/[0-9])|((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$'
+        )
+      ],
       primaryVpnTunnel: [this.wanConfiguration.onPremiseSession.primaryVpnTunnel, Validators.required],
       primaryBgpPeer: [this.wanConfiguration.onPremiseSession.primaryBgpPeer, Validators.required],
       primarySharedSecret: [this.wanConfiguration.onPremiseSession.primarySharedSecret],
-      secondaryPeerIp: [this.wanConfiguration.onPremiseSession.secondaryPeerIp],
-      secondaryPeerIpSubnet: [this.wanConfiguration.onPremiseSession.secondaryPeerIpSubnet],
+      secondaryPeerIp: [
+        this.wanConfiguration.onPremiseSession.secondaryPeerIp,
+        Validators.pattern(
+          '^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(?:(/[0-9][0-9])|/[0-9])|((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$'
+        )
+      ],
+      secondaryPeerIpSubnet: [
+        this.wanConfiguration.onPremiseSession.secondaryPeerIpSubnet,
+        Validators.pattern(
+          '^((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))(?:(/[0-9][0-9])|/[0-9])|((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$'
+        )
+      ],
       secondaryVpnTunnel: [this.wanConfiguration.onPremiseSession.secondaryVpnTunnel],
       secondaryBgpPeer: [this.wanConfiguration.onPremiseSession.secondaryBgpPeer],
       secondarySharedSecret: [this.wanConfiguration.onPremiseSession.secondarySharedSecret]
     });
+  }
+
+  get vpnF() {
+    return this.vpnFormGroup.controls;
+  }
+
+  get googleF() {
+    return this.googleSessionFormGroup.controls;
+  }
+
+  get premiseF() {
+    return this.onPremiseSessionFormGroup.controls;
   }
 
   uuidv4() {
