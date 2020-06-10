@@ -16,7 +16,7 @@
               formControlName="primaryRegion"
               placeholder="Type region here..."
             />
-            <mat-error *ngIf="f.primaryRegion.errors?.required">Region is <strong>required</strong> </mat-error>
+            <mat-error *ngIf="f.primaryRegion.errors?.required"> Region is <strong>required</strong> </mat-error>
           </mat-form-field>
         </p>
         <p>
@@ -48,6 +48,9 @@
             />
             <mat-error *ngIf="f.primaryGcpVpcSubnet.errors?.required"
               >GCP VPC subnet is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="f.primaryGcpVpcSubnet.hasError('pattern')">
+              Please enter GCP VPC subnet in format e.g. "10.0.1.0/24..."
             </mat-error>
           </mat-form-field>
         </p>
@@ -92,6 +95,9 @@
               formControlName="secondaryGcpVpcSubnet"
               placeholder="E.g 10.0.2.0/24..."
             />
+            <mat-error *ngIf="f.secondaryGcpVpcSubnet.hasError('pattern')">
+              Please enter GCP VPC subnet in format e.g. "10.0.1.0/24..."
+            </mat-error>
           </mat-form-field>
         </p>
       </mat-card-content>

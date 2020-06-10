@@ -26,14 +26,26 @@
               placeholder="E.g. 209.119.81.228..."
             />
             <mat-error *ngIf="f.primaryPeerIp.errors?.required"> Peer IP is <strong>required</strong> </mat-error>
+            <mat-error *ngIf="f.primaryPeerIp.hasError('pattern')">
+              Please enter peer IP in format e.g. "209.119.81.228..."
+            </mat-error>
           </mat-form-field>
         </p>
         <p>
           <mat-form-field appearance="outline">
             <mat-label>Peer IP Subnet</mat-label>
-            <input matInput type="text" maxlength="50" formControlName="primaryPeerIpSubnet" placeholder="E.g. ..." />
+            <input
+              matInput
+              type="text"
+              maxlength="50"
+              formControlName="primaryPeerIpSubnet"
+              placeholder="E.g. 10.0.1.0/24..."
+            />
             <mat-error *ngIf="f.primaryPeerIpSubnet.errors?.required">
               Peer IP subnet is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="f.primaryPeerIpSubnet.hasError('pattern')">
+              Please enter peer IP subnet in format e.g. "10.0.1.0/24..."
             </mat-error>
           </mat-form-field>
         </p>
@@ -103,12 +115,24 @@
               formControlName="secondaryPeerIp"
               placeholder="E.g. 209.119.81.228..."
             />
+            <mat-error *ngIf="f.secondaryPeerIp.hasError('pattern')">
+              Please enter peer IP in format e.g. "209.119.81.228..."
+            </mat-error>
           </mat-form-field>
         </p>
         <p>
           <mat-form-field appearance="outline">
             <mat-label>Peer IP Subnet</mat-label>
-            <input matInput type="text" maxlength="50" formControlName="secondaryPeerIpSubnet" placeholder="E.g. ..." />
+            <input
+              matInput
+              type="text"
+              maxlength="50"
+              formControlName="secondaryPeerIpSubnet"
+              placeholder="E.g. 10.0.1.0/24..."
+            />
+            <mat-error *ngIf="f.secondaryPeerIpSubnet.hasError('pattern')">
+              Please enter peer IP subnet in format e.g. "10.0.1.0/24..."
+            </mat-error>
           </mat-form-field>
         </p>
         <p>

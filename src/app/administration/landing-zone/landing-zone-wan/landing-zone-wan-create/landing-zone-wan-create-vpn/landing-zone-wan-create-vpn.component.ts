@@ -34,20 +34,56 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
     this.googleSessionFormGroup = this.formBuilder.group({
       primaryRegion: ['', Validators.required],
       primarySubnetName: ['', Validators.required],
-      primaryGcpVpcSubnet: ['', Validators.required],
+      primaryGcpVpcSubnet: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|([0-9]|[1-9][0-9]|1[0-9]{2}|/([0-9])+([0-9]))$'
+          )
+        ]
+      ],
       secondaryRegion: [''],
       secondarySubnetName: [''],
-      secondaryGcpVpcSubnet: ['']
+      secondaryGcpVpcSubnet: [
+        '',
+        Validators.pattern(
+          '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|([0-9]|[1-9][0-9]|1[0-9]{2}|/([0-9])+([0-9]))$'
+        )
+      ]
     });
     this.onPremiseSessionFormGroup = this.formBuilder.group({
       vendor: ['', Validators.required],
-      primaryPeerIp: ['', Validators.required],
-      primaryPeerIpSubnet: [''],
+      primaryPeerIp: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|([0-9]|[1-9][0-9]|1[0-9]{2}|/([0-9])+([0-9]))$'
+          )
+        ]
+      ],
+      primaryPeerIpSubnet: [
+        '',
+        Validators.pattern(
+          '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|([0-9]|[1-9][0-9]|1[0-9]{2}|/([0-9])+([0-9]))$'
+        )
+      ],
       primaryVpnTunnel: ['', Validators.required],
       primaryBgpPeer: ['', Validators.required],
       primarySharedSecret: [''],
-      secondaryPeerIp: [''],
-      secondaryPeerIpSubnet: [''],
+      secondaryPeerIp: [
+        '',
+        Validators.pattern(
+          '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|([0-9]|[1-9][0-9]|1[0-9]{2}|/([0-9])+([0-9]))$'
+        )
+      ],
+      secondaryPeerIpSubnet: [
+        '',
+        Validators.pattern(
+          '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]).){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|([0-9]|[1-9][0-9]|1[0-9]{2}|/([0-9])+([0-9]))$'
+        )
+      ],
       secondaryVpnTunnel: [''],
       secondaryBgpPeer: [''],
       secondarySharedSecret: ['']
