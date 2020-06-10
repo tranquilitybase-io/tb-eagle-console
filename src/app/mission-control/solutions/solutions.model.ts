@@ -9,7 +9,7 @@ export class Solution {
   ci: string;
   cd: string;
   sourceControl: string;
-  environments: string[];
+  environments: number[];
   active: boolean;
   favourite: boolean;
   deploymentStatus: string;
