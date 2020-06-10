@@ -80,7 +80,7 @@
         <mat-select required formControlName="cd">
           <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
         </mat-select>
-        <mat-error *ngIf="f.cd.errors?.required"> Contmuous deployment is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="f.cd.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
 
