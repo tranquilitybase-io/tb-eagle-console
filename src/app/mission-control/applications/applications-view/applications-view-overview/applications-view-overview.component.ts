@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Application } from '../../applications.model';
-import { Observable } from 'rxjs';
 import { Activator } from '@app/mission-control/activator-store/activator-store.model';
 import { ActivatedRoute } from '@angular/router';
-import { ActivatorStoreService } from '@app/mission-control/activator-store/activator-store.service';
 
 @Component({
   selector: 'app-applications-view-overview',
@@ -12,15 +10,15 @@ import { ActivatorStoreService } from '@app/mission-control/activator-store/acti
 })
 export class ApplicationsViewOverviewComponent implements OnInit {
   application: Application;
-  activator$: Observable<Activator>;
-  activator: Activator;
 
-  constructor(private route: ActivatedRoute, private activatorStoreService: ActivatorStoreService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.application = this.route.snapshot.data['application'] as Application;
-    this.activator$ = this.activatorStoreService.getByKey(this.application.activatorId);
-    this.activator$.subscribe(activator => (this.activator = activator));
+  }
+
+  get activator(): Activator {
+    return this.application ? this.application.activator : ({} as Activator);
   }
 
   get sensitivityColor(): string {
