@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,10 +6,12 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './landing-zone-wan-create-vpn-google-tab.component.html',
   styleUrls: ['./landing-zone-wan-create-vpn-google-tab.component.scss']
 })
-export class LandingZoneWanCreateVpnGoogleTabComponent implements OnInit {
+export class LandingZoneWanCreateVpnGoogleTabComponent {
   @Input() formGroup: FormGroup;
 
   constructor() {}
 
-  ngOnInit() {}
+  get f() {
+    return this.formGroup.controls;
+  }
 }
