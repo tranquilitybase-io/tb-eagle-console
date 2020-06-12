@@ -20,6 +20,7 @@ import { PropertiesComponent } from './properties/properties.component';
 import { SearchComponent } from './search/search.component';
 import { SearchPillComponent } from './search-pill/search-pill.component';
 import { SwitchesComponent } from './switches/switches.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
@@ -31,6 +32,8 @@ import { SharedService } from './shared.service';
 import { ApplicationsService } from '@app/mission-control/applications/applications.service';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -59,33 +62,37 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchPillComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    WelcomeComponent
   ],
   entryComponents: [
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     SolutionCreatedComponent,
-    SolutionUnderCreationComponent
+    SolutionUnderCreationComponent,
+    WelcomeComponent
   ],
   providers: [
     SharedService,
     ApplicationsService,
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }
   ],
+  bootstrap: [WelcomeComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([]),
     HttpClientModule,
     FormsModule,
     MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
     MatIconModule,
     MatListModule,
     MatMenuModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule,
-    MatIconModule
+    MatTooltipModule
   ],
   exports: [
     AlertComponent,
@@ -101,6 +108,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     InputComponent,
     LayoutComponent,
     LoaderComponent,
+    MatDialogModule,
     PaginationComponent,
     PillsComponent,
     ProgressComponent,

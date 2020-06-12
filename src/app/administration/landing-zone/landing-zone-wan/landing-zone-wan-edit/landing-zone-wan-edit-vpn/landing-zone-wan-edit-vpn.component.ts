@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { updateWanConfiguration } from '../../landing-zone-wan.actions';
 import { Store } from '@ngrx/store';
 import { SolutionsState } from '../../landing-zone-wan.reducers';
+import { ValidatorPattern } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-landing-zone-wan-edit-vpn',
@@ -47,35 +48,68 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
       externalVpnGateway: [this.wanConfiguration.vpn.externalVpnGateway, Validators.required],
       googleASN: [
         this.wanConfiguration.vpn.googleASN,
-        [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]
+        [Validators.required, Validators.pattern(ValidatorPattern.NUMBERS_ONLY), Validators.minLength(4)]
       ],
       peerASN: [
         this.wanConfiguration.vpn.peerASN,
-        [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]
+        [Validators.required, Validators.pattern(ValidatorPattern.NUMBERS_ONLY), Validators.minLength(4)]
       ],
-      bgpInterfaceNetLength: [this.wanConfiguration.vpn.bgpInterfaceNetLength, Validators.required]
+      bgpInterfaceNetLength: [
+        this.wanConfiguration.vpn.bgpInterfaceNetLength,
+        [Validators.required, Validators.pattern(ValidatorPattern.NETMASK)]
+      ]
     });
     this.googleSessionFormGroup = this.formBuilder.group({
       primaryRegion: [this.wanConfiguration.googleSession.primaryRegion, Validators.required],
       primarySubnetName: [this.wanConfiguration.googleSession.primarySubnetName, Validators.required],
-      primaryGcpVpcSubnet: [this.wanConfiguration.googleSession.primaryGcpVpcSubnet, Validators.required],
+      primaryGcpVpcSubnet: [
+        this.wanConfiguration.googleSession.primaryGcpVpcSubnet,
+        [Validators.required, Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)]
+      ],
       secondaryRegion: [this.wanConfiguration.googleSession.secondaryRegion],
       secondarySubnetName: [this.wanConfiguration.googleSession.secondarySubnetName],
-      secondaryGcpVpcSubnet: [this.wanConfiguration.googleSession.primaryGcpVpcSubnet]
+      secondaryGcpVpcSubnet: [
+        this.wanConfiguration.googleSession.secondaryGcpVpcSubnet,
+        Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)
+      ]
     });
     this.onPremiseSessionFormGroup = this.formBuilder.group({
       vendor: [this.wanConfiguration.onPremiseSession.vendor, Validators.required],
-      primaryPeerIp: [this.wanConfiguration.onPremiseSession.primaryPeerIp, Validators.required],
-      primaryPeerIpSubnet: [this.wanConfiguration.onPremiseSession.primaryPeerIpSubnet],
+      primaryPeerIp: [
+        this.wanConfiguration.onPremiseSession.primaryPeerIp,
+        [Validators.required, Validators.pattern(ValidatorPattern.IP_ADDRESS)]
+      ],
+      primaryPeerIpSubnet: [
+        this.wanConfiguration.onPremiseSession.primaryPeerIpSubnet,
+        Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)
+      ],
       primaryVpnTunnel: [this.wanConfiguration.onPremiseSession.primaryVpnTunnel, Validators.required],
       primaryBgpPeer: [this.wanConfiguration.onPremiseSession.primaryBgpPeer, Validators.required],
       primarySharedSecret: [this.wanConfiguration.onPremiseSession.primarySharedSecret],
-      secondaryPeerIp: [this.wanConfiguration.onPremiseSession.secondaryPeerIp],
-      secondaryPeerIpSubnet: [this.wanConfiguration.onPremiseSession.secondaryPeerIpSubnet],
+      secondaryPeerIp: [
+        this.wanConfiguration.onPremiseSession.secondaryPeerIp,
+        Validators.pattern(ValidatorPattern.IP_ADDRESS)
+      ],
+      secondaryPeerIpSubnet: [
+        this.wanConfiguration.onPremiseSession.secondaryPeerIpSubnet,
+        Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)
+      ],
       secondaryVpnTunnel: [this.wanConfiguration.onPremiseSession.secondaryVpnTunnel],
       secondaryBgpPeer: [this.wanConfiguration.onPremiseSession.secondaryBgpPeer],
       secondarySharedSecret: [this.wanConfiguration.onPremiseSession.secondarySharedSecret]
     });
+  }
+
+  get vpnF() {
+    return this.vpnFormGroup.controls;
+  }
+
+  get googleF() {
+    return this.googleSessionFormGroup.controls;
+  }
+
+  get premiseF() {
+    return this.onPremiseSessionFormGroup.controls;
   }
 
   uuidv4() {
