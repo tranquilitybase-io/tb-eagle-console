@@ -2,57 +2,85 @@
   <app-breadcrumbs [cancelActive]="true" [steps]="['Create new solution']"> </app-breadcrumbs>
   <app-progress [steps]="['Details', 'Workspace']" [current]="screenNum"> </app-progress>
 </header>
-<form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
-  <div class="solution-details-container" *ngIf="!onPartTwo">
-    <p>
-      <mat-form-field class="small-width" appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput required type="text" maxlength="50" formControlName="name" placeholder="E.g. project name..." />
-      </mat-form-field>
-    </p>
 
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Description</mat-label>
-        <textarea
-          matInput
-          required
-          #desctext
-          maxlength="200"
-          formControlName="description"
-          placeholder="Type your description here..."
-        ></textarea>
-        <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
-      </mat-form-field>
-    </p>
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>VPN</ng-template>
 
-    <p>
-      <mat-form-field class="small-width" appearance="outline">
-        <mat-label>Business unit</mat-label>
-        <mat-select required formControlName="businessUnit">
-          <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="small-width" appearance="outline">
-        <mat-label>Cost centre</mat-label>
-        <input
-          matInput
-          required
-          type="text"
-          maxlength="50"
-          formControlName="costCentre"
-          placeholder="XXX-123-456-YYY"
-        />
-      </mat-form-field>
-    </p>
+    <!-- <app-landing-zone-wan-create-vpn-tab [formGroup]="vpnFormGroup"></app-landing-zone-wan-create-vpn-tab> -->
+    <div class="solution-details-container" *ngIf="!onPartTwo">
+      <p>
+        <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            required
+            type="text"
+            maxlength="50"
+            formControlName="name"
+            placeholder="E.g. project name..."
+          />
+        </mat-form-field>
+      </p>
 
-    <div class="solution-footer-container solution-details-footer-container">
-      <button mat-button color="primary" (click)="toggleSolutionPage()">
-        Continue <mat-icon>keyboard_arrow_right</mat-icon>
-      </button>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            required
+            #desctext
+            maxlength="200"
+            formControlName="description"
+            placeholder="Type your description here..."
+          ></textarea>
+          <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Business unit</mat-label>
+          <mat-select required formControlName="businessUnit">
+            <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Cost centre</mat-label>
+          <input
+            matInput
+            required
+            type="text"
+            maxlength="50"
+            formControlName="costCentre"
+            placeholder="XXX-123-456-YYY"
+          />
+        </mat-form-field>
+      </p>
+
+      <div class="solution-footer-container solution-details-footer-container">
+        <button mat-button color="primary" (click)="toggleSolutionPage()">
+          Continue <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
     </div>
-  </div>
+  </mat-step>
 
+  <!-- <mat-step [stepControl]="googleSessionFormGroup">
+    <ng-template matStepLabel>Google session</ng-template>
+    <app-landing-zone-wan-create-vpn-google-tab
+      [formGroup]="googleSessionFormGroup"
+    ></app-landing-zone-wan-create-vpn-google-tab>
+  </mat-step>
+  <mat-step [stepControl]="onPremiseSessionFormGroup">
+    <ng-template matStepLabel>On premise session</ng-template>
+    <app-landing-zone-wan-create-vpn-on-premise-tab
+      [formGroup]="onPremiseSessionFormGroup"
+    ></app-landing-zone-wan-create-vpn-on-premise-tab>
+  </mat-step> -->
+</mat-horizontal-stepper>
+
+<form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
   <div class="solution-workspace-container" *ngIf="onPartTwo">
     <p>
       <mat-form-field appearance="outline">

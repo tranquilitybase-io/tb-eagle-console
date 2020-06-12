@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule
   ]
 })
 export class SolutionsCreateModule {}
