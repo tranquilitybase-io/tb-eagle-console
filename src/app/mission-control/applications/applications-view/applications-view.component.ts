@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Application } from '../applications.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-applications-view',
@@ -6,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./applications-view.component.scss']
 })
 export class ApplicationsViewComponent implements OnInit {
-  constructor() {}
+  application: Application;
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.application = this.route.snapshot.data['application'] as Application;
+  }
 }
