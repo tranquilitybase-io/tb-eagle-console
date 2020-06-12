@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { updateSolution } from '../solutions.actions';
 import { Solution } from '../solutions.model';
+import { Environment } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-solutions-edit',
@@ -42,6 +43,8 @@ export class SolutionsEditComponent implements OnInit {
     this.environmentList = this.route.snapshot.data['environmentList'];
     this.solution = this.route.snapshot.data['solution'];
 
+    const environmentIdList = (this.solution.environments as Environment[]).map(env => env.id);
+
     this.solutionForm = this.formBuilder.group({
       id: this.solution.id,
       name: [this.solution.name],
@@ -51,8 +54,12 @@ export class SolutionsEditComponent implements OnInit {
       ci: [this.solution.ci],
       cd: [this.solution.cd],
       sourceControl: [this.solution.sourceControl],
-      environments: [this.solution.environments]
+      environments: [environmentIdList]
     });
+  }
+
+  get f() {
+    return this.solutionForm.controls;
   }
 
   cancel() {

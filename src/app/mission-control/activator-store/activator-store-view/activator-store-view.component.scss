@@ -1,3 +1,58 @@
-:host {
+.activ-sub-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--light-grey);
   padding: 1rem 2rem;
+  font-weight: 600;
+
+  .activ-back-btn {
+    color: var(--black);
+    text-decoration: none;
+    font-weight: normal;
+
+    &.left::before {
+      border-color: var(--black);
+      margin-right: 0.5rem;
+    }
+  }
+
+  .time-badge,
+  .tier {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+
+    .tier-icon {
+      --line: 0.1rem solid var(--black);
+
+      width: 1.5rem;
+      height: 1rem;
+      position: relative;
+      border: var(--line);
+      border-radius: 20%;
+      margin-right: 0.5rem;
+
+      &::after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        top: 30%;
+        left: 0;
+        right: 0;
+        border-top: var(--line);
+      }
+    }
+  }
+}
+
+.mat-tab-group {
+  margin: 0 1.5rem;
+}
+
+.button-select {
+  display: flex;
+  position: relative;
+  bottom: 0;
+  padding: 0.5rem 2rem;
+  justify-content: flex-end;
 }
