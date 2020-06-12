@@ -63,3 +63,10 @@ body {
 .mat-tab-body-wrapper {
   padding-top: 1rem;
 }
+
+.custom-dialog-container .mat-dialog-container {
+  background-image: url('src/assets/images/login-backdrop-fill.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 15px;
+}
