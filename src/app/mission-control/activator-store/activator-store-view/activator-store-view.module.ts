@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -54,6 +55,7 @@ const routes: Routes = [
     MatCardModule,
     MatChipsModule,
     MatGridListModule,
+    MatIconModule,
     MatListModule,
     MatTabsModule
   ]

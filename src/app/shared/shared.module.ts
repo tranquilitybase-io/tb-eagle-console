@@ -37,6 +37,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -59,19 +62,22 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchPillComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    WelcomeComponent
   ],
   entryComponents: [
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     SolutionCreatedComponent,
-    SolutionUnderCreationComponent
+    SolutionUnderCreationComponent,
+    WelcomeComponent
   ],
   providers: [
     SharedService,
     ApplicationsService,
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }
   ],
+  bootstrap: [WelcomeComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([]),
@@ -84,7 +90,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
   exports: [
     AlertComponent,
@@ -108,7 +116,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    MatDialogModule
   ]
 })
 export class SharedModule {}
