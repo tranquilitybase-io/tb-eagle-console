@@ -12,7 +12,6 @@
       />
       <mat-error *ngIf="f.projectName.errors?.required"> Project name is <strong>required</strong> </mat-error>
     </mat-form-field>
-
     <mat-form-field class="half-width" appearance="outline">
       <mat-label>VPC Network Name</mat-label>
       <input
@@ -135,7 +134,7 @@
         BGP interface netmask length is <strong>required</strong>
       </mat-error>
       <mat-error *ngIf="f.bgpInterfaceNetLength.hasError('pattern')">
-        Please enter netmask in valid format e.g. "/30"
+        Please enter a valid netmask: from "/1" to "/32"
       </mat-error>
     </mat-form-field>
   </p>
