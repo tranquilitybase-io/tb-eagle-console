@@ -1,7 +1,8 @@
 import { Application } from '../applications/applications.model';
+import { Team, Environment } from '@app/shared/shared.model';
 
 export class Solution {
-  id: number;
+  id?: number;
   name: string;
   description: string;
   businessUnit: string;
@@ -9,11 +10,12 @@ export class Solution {
   ci: string;
   cd: string;
   sourceControl: string;
-  environments: number[];
-  active: boolean;
+  environments: number[] | Environment[];
+  isActive: boolean;
   favourite: boolean;
   deploymentStatus: string;
-  applications: Array<Application>;
-  teams: number;
+  applications: Application[];
+  teamId: number;
+  team: Team;
   lastUpdated: string;
 }
