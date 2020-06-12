@@ -22,6 +22,7 @@
             placeholder="name"
             name="name"
           />
+          <mat-error *ngIf="f.name.errors?.required"> Name is <strong>required</strong> </mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -37,6 +38,7 @@
             placeholder="Type your description here..."
           ></textarea>
           <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+          <mat-error *ngIf="f.description.errors?.required"> Description is <strong>required</strong> </mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -45,6 +47,7 @@
           <mat-select required [disabled]="disableEdit" formControlName="businessUnit">
             <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="f.businessUnit.errors?.required"> Business unit is <strong>required</strong> </mat-error>
         </mat-form-field>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Cost centre</mat-label>
@@ -57,6 +60,7 @@
             formControlName="costCentre"
             placeholder="XXX-123-456-YYY"
           />
+          <mat-error *ngIf="f.costCentre.errors?.required"> Cost centre is <strong>required</strong> </mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -65,18 +69,23 @@
           <mat-select required [disabled]="disableEdit" formControlName="ci">
             <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="f.ci.errors?.required">
+            Continuous integration service is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Source Control</mat-label>
           <mat-select required [disabled]="disableEdit" formControlName="sourceControl">
             <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="f.sourceControl.errors?.required"> Source control is <strong>required</strong> </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>CD (Continuous deployment)</mat-label>
           <mat-select required [disabled]="disableEdit" formControlName="cd">
             <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="f.cd.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
         </mat-form-field>
       </p>
       <p>

@@ -58,6 +58,10 @@ export class SolutionsEditComponent implements OnInit {
     });
   }
 
+  get f() {
+    return this.solutionForm.controls;
+  }
+
   cancel() {
     this.router.navigateByUrl('/mission-control/solutions');
   }
