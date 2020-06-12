@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from './login.model';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,7 @@ export class UserLoginService {
 
   loginSuccess(user: User): void {
     if (user.isAdmin) this.router.navigateByUrl('/administration/landing-zone');
-    // else if(user.teams.length == 0) this.router.navigateByUrl('/administration/teams');
+    else if (!user.teams.length) this.router.navigateByUrl('/administration/teams');
     else this.router.navigateByUrl('/mission-control/solutions');
   }
 
@@ -42,7 +41,7 @@ export class UserLoginService {
   updateShowWelcome(userId: number, showWelcome: boolean): void {
     const url = `${this.BASE_URL}/user/${userId}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.put(url, { id: userId, showWelcome }, { headers }).subscribe(
+    this.http.put(url, { showWelcome }, { headers }).subscribe(
       (val: boolean) => {
         console.log('PUT call successful value returned in body', val);
       },
