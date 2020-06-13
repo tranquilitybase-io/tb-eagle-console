@@ -1,0 +1,51 @@
+<mat-grid-list cols="5" rowHeight="400px" class="activ-view-info">
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <mat-grid-tile-header>Metadata</mat-grid-tile-header>
+    <mat-grid-list class="internal-mat-grid" cols="2" rowHeight="444px">
+      <mat-grid-tile [colspan]="2" [rowspan]="3">
+        <mat-card class="activ-dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Description
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>{{ activator.name }} - {{ activator.description }}</div>
+            <mat-list dense class="description-list">
+              <mat-list-item *ngFor="let property of properties">
+                <div class="mat-body-1">{{ property.name }}</div>
+
+                <div
+                  *ngIf="property.name !== 'Supported regions'; else isArray"
+                  class="mat-chip-alternative font-weight-bold"
+                >
+                  {{ property.value }}
+                </div>
+                <ng-template #isArray>
+                  <div *ngFor="let val of property.value" class="mat-chip-alternative font-weight-bold">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1" class="configuration-grid-tile">
+    <mat-grid-tile-header>Configuration</mat-grid-tile-header>
+    <mat-grid-list class="internal-mat-grid" cols="1" rowHeight="70px">
+      <mat-card class="activ-dashboard-card">
+        <mat-card-content class="dashboard-card-content">
+          <mat-list dense class="description-list">
+            <mat-list-item *ngFor="let property of deploymentOptions">
+              <div class="mat-body-1">{{ property.name }}</div>
+              <div *ngFor="let val of property.value" class="mat-chip-alternative font-weight-bold">{{ val }}</div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-list>
+  </mat-grid-tile>
+</mat-grid-list>

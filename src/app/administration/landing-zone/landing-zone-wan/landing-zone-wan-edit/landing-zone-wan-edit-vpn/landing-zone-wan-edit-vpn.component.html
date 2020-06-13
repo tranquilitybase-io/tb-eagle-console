@@ -26,6 +26,7 @@
           formControlName="projectName"
           placeholder="E.g. project name..."
         />
+        <mat-error *ngIf="vpnF.projectName.errors?.required"> Project name is <strong>required</strong> </mat-error>
       </mat-form-field>
       <mat-form-field class="half-width" appearance="outline">
         <mat-label>VPC Network Name</mat-label>
@@ -37,6 +38,7 @@
           formControlName="vpcName"
           placeholder="Generate network name"
         />
+        <mat-error *ngIf="vpnF.vpcName.errors?.required"> VPC network name is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
     <p>
@@ -51,6 +53,7 @@
           placeholder="Type your description here..."
         ></textarea>
         <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+        <mat-error *ngIf="vpnF.description.errors?.required"> Description is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
     <p>
@@ -59,12 +62,18 @@
         <mat-select required formControlName="subnetMode">
           <mat-option *ngFor="let item of subnetModeList" [value]="item.key">{{ item.value }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="vpnF.subnetMode.errors?.required">
+          Selection of subnet mode is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="half-width" appearance="outline">
         <mat-label>BGP Routing Mode</mat-label>
         <mat-select required formControlName="bgpRoutingMode">
           <mat-option *ngFor="let item of bgpRoutingModeList" [value]="item.key">{{ item.value }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="vpnF.bgpRoutingMode.errors?.required">
+          Selection of BGP routing mode is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
     </p>
     <p>
@@ -78,6 +87,7 @@
           formControlName="haVpnGateway"
           placeholder="ha-vpn-gw-tranquilitybase"
         />
+        <mat-error *ngIf="vpnF.haVpnGateway.errors?.required"> HA VPN Gateway is <strong>required</strong> </mat-error>
       </mat-form-field>
       <mat-form-field class="half-width" appearance="outline">
         <mat-label>Cloud Router Name</mat-label>
@@ -89,6 +99,9 @@
           formControlName="cloudRouterName"
           placeholder="tranquilitybase-router-tranquilitybase"
         />
+        <mat-error *ngIf="vpnF.cloudRouterName.errors?.required">
+          Cloud router name is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
     </p>
     <p>
@@ -102,22 +115,45 @@
           formControlName="externalVpnGateway"
           placeholder="tranquilitybase-peer-gw"
         />
+        <mat-error *ngIf="vpnF.externalVpnGateway.errors?.required">
+          External VPN gateway is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field class="half-width" appearance="outline">
         <mat-label>Google ASN</mat-label>
         <input matInput required type="text" maxlength="50" formControlName="googleASN" placeholder="65001" />
+        <mat-error *ngIf="vpnF.googleASN.errors?.required"> Google ASN is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="vpnF.googleASN.hasError('minlength')">
+          It must have at least 4 digits
+        </mat-error>
+        <mat-error *ngIf="vpnF.googleASN.hasError('pattern')">
+          It may contain only numbers
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="half-width" appearance="outline">
         <mat-label>Peer ASN</mat-label>
         <input matInput required type="text" maxlength="50" formControlName="peerASN" placeholder="65002" />
+        <mat-error *ngIf="vpnF.peerASN.errors?.required"> Peer ASN is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="vpnF.peerASN.hasError('minlength')">
+          It must have at least 4 digits
+        </mat-error>
+        <mat-error *ngIf="vpnF.peerASN.hasError('pattern')">
+          It may contain only numbers
+        </mat-error>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field class="half-width" appearance="outline">
         <mat-label>BGP interface netmask length</mat-label>
         <input matInput required type="text" maxlength="50" formControlName="bgpInterfaceNetLength" placeholder="/30" />
+        <mat-error *ngIf="vpnF.bgpInterfaceNetLength.errors?.required">
+          BGP interface netmask length is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="vpnF.bgpInterfaceNetLength.hasError('pattern')">
+          Please enter netmask in valid format e.g. "/30"
+        </mat-error>
       </mat-form-field>
     </p>
   </form>
@@ -140,6 +176,9 @@
                 formControlName="primaryRegion"
                 placeholder="Type region here..."
               />
+              <mat-error *ngIf="googleF.primaryRegion.errors?.required">
+                Region is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -153,6 +192,9 @@
                 formControlName="primarySubnetName"
                 placeholder="Type subnet name here..."
               />
+              <mat-error *ngIf="googleF.primarySubnetName.errors?.required"
+                >Subnet name is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -166,6 +208,12 @@
                 formControlName="primaryGcpVpcSubnet"
                 placeholder="E.g 10.0.1.0/24..."
               />
+              <mat-error *ngIf="googleF.primaryGcpVpcSubnet.errors?.required">
+                GCP VPC subnet is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="googleF.primaryGcpVpcSubnet.hasError('pattern')">
+                Please enter GCP VPC subnet in format e.g. "10.0.1.0/24..."
+              </mat-error>
             </mat-form-field>
           </p>
         </mat-card-content>
@@ -209,6 +257,9 @@
                 formControlName="secondaryGcpVpcSubnet"
                 placeholder="E.g 10.0.2.0/24..."
               />
+              <mat-error *ngIf="googleF.secondaryGcpVpcSubnet.hasError('pattern')">
+                Please enter GCP VPC subnet in format e.g. "10.0.1.0/24..."
+              </mat-error>
             </mat-form-field>
           </p>
         </mat-card-content>
@@ -225,6 +276,7 @@
         <mat-select required formControlName="vendor">
           <mat-option *ngFor="let item of vpnOnPremiseVendorList" [value]="item.key">{{ item.value }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="premiseF.vendor.errors?.required"> Vendor is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
     <div class="side-by-side">
@@ -244,12 +296,24 @@
                 formControlName="primaryPeerIp"
                 placeholder="E.g. 209.119.81.228..."
               />
+              <mat-error *ngIf="premiseF.primaryPeerIp.errors?.required">
+                Peer IP is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="premiseF.primaryPeerIp.hasError('pattern')">
+                Please enter peer IP in format e.g. "209.119.81.228..."
+              </mat-error>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field appearance="outline">
               <mat-label>Peer IP Subnet</mat-label>
               <input matInput type="text" maxlength="50" formControlName="primaryPeerIpSubnet" placeholder="E.g. ..." />
+              <mat-error *ngIf="premiseF.primaryPeerIpSubnet.errors?.required">
+                Peer IP subnet is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="premiseF.primaryPeerIpSubnet.hasError('pattern')">
+                Please enter peer IP subnet in format e.g. "10.0.1.0/24..."
+              </mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -263,6 +327,9 @@
                 formControlName="primaryVpnTunnel"
                 placeholder="E.g. tunnel-tranquilitybase-0..."
               />
+              <mat-error *ngIf="premiseF.primaryVpnTunnel.errors?.required">
+                VPN tunnel is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -276,6 +343,9 @@
                 formControlName="primaryBgpPeer"
                 placeholder="E.g. tunnel-tranquilitybase-0..."
               />
+              <mat-error *ngIf="premiseF.primaryBgpPeer.errors?.required">
+                BGP peer is <strong>required</strong>
+              </mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -316,6 +386,9 @@
                 formControlName="secondaryPeerIp"
                 placeholder="E.g. 209.119.81.228..."
               />
+              <mat-error *ngIf="premiseF.secondaryPeerIp.hasError('pattern')">
+                Please enter peer IP in format e.g. "209.119.81.228..."
+              </mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -328,6 +401,9 @@
                 formControlName="secondaryPeerIpSubnet"
                 placeholder="E.g. ..."
               />
+              <mat-error *ngIf="premiseF.secondaryPeerIpSubnet.hasError('pattern')">
+                Please enter peer IP subnet in format e.g. "10.0.1.0/24..."
+              </mat-error>
             </mat-form-field>
           </p>
           <p>

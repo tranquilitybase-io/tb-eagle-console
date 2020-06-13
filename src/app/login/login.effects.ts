@@ -6,6 +6,7 @@ import * as LoginActions from './login.actions';
 
 import { UserLoginService } from './user-login.service';
 import { of } from 'rxjs';
+import { updateShowWelcome } from './login.actions';
 
 @Injectable()
 export class LoginEffects {
@@ -37,6 +38,15 @@ export class LoginEffects {
       this.actions$.pipe(
         ofType(LoginActions.loginFailure),
         tap(() => this.LoginService.loginFailure())
+      ),
+    { dispatch: false }
+  );
+
+  updateShowWelcome$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateShowWelcome),
+        tap(action => this.LoginService.updateShowWelcome(action.userId, action.showWelcome))
       ),
     { dispatch: false }
   );
