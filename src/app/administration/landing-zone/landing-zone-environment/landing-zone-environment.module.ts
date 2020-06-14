@@ -9,6 +9,7 @@ import reducer, { featureKey } from './landing-zone-environment.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { LandingZoneEnvironmentEffects } from './landing-zone-environment.effects';
 
+import { EnvironmentListDataResolver } from '@app/shared/resolvers/environment-list-data.resolver';
 import { FolderStructureTreeDataResolver } from '@app/shared/resolvers/folder-structure-tree-data.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -28,6 +29,7 @@ const routes: Routes = [
     path: '',
     component: LandingZoneEnvironmentComponent,
     resolve: {
+      environmentListData: EnvironmentListDataResolver,
       folderStructureTreeData: FolderStructureTreeDataResolver
     }
   }

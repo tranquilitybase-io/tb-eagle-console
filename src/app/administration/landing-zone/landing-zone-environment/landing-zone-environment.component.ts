@@ -6,8 +6,12 @@ import { Observable, of } from 'rxjs';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Store, select } from '@ngrx/store';
-import { selectFolderStructureTreeData, EnvironmentState } from './landing-zone-environment.reducer';
-import { storeFolderStructureTreeData } from './landing-zone-environment.actions';
+import {
+  selectFolderStructureTreeData,
+  EnvironmentState,
+  selectEnvironmentListData
+} from './landing-zone-environment.reducer';
+import { storeFolderStructureTreeData, storeEnvironmentListData } from './landing-zone-environment.actions';
 import { FolderStructureNode, LanVPC, Environment } from './landing-zone-environment.model';
 
 @Component({
@@ -26,13 +30,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   folderStructureTreeData: FolderStructureNode[];
   folderStructureTreeControl = new NestedTreeControl<FolderStructureNode>(node => node.children);
 
-  storedEnvironmentList: Environment[] = [
-    { id: 1, isActive: true, name: 'Development' },
-    { id: 2, isActive: true, name: 'Production' },
-    { id: 3, isActive: true, name: 'UAT' },
-    { id: 4, isActive: true, name: 'Staging' },
-    { id: 5, isActive: true, name: 'PoC' }
-  ];
+  environmentListData: Environment[];
   environmentList$: Observable<Environment[]>;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -40,19 +38,25 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   constructor(private store: Store<EnvironmentState>) {
     this.store.pipe(select(selectFolderStructureTreeData)).subscribe(folderStructureTreeData => {
       this.folderStructureTreeData = folderStructureTreeData;
+      this.setInitialFolderStructureForm();
+    });
+    this.environmentList$ = this.store.pipe(select(selectEnvironmentListData));
+    this.environmentList$.subscribe(environmentListData => {
+      this.environmentListData = environmentListData;
+      this.setInitialEnvironmentForm();
     });
   }
 
   //#region ngOnInit
   ngOnInit() {
-    this.setIntialFolderStructureForm();
-    this.setIntialEnvironmentForm();
-    this.setIntialLanVPCForm();
+    this.setInitialFolderStructureForm();
+    this.setInitialEnvironmentForm();
+    this.setInitialLanVPCForm();
   }
   //#endregion ngOnInit
 
   //#region Folder Structure
-  setIntialFolderStructureForm() {
+  setInitialFolderStructureForm() {
     const data = JSON.parse(JSON.stringify(this.folderStructureTreeData));
     this.folderStructureDataSource.data = data;
     this.folderStructureTreeControl.dataNodes = data;
@@ -66,7 +70,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   }
 
   cancelFolderStructure() {
-    this.setIntialFolderStructureForm();
+    this.setInitialFolderStructureForm();
     this.isFolderStructureEdit = false;
   }
 
@@ -82,15 +86,13 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   //#endregion Folder Structure
 
   //#region Environment
-  setIntialEnvironmentForm() {
-    this.environmentList = [...this.storedEnvironmentList];
-
-    this.environmentList$ = of(this.environmentList);
+  setInitialEnvironmentForm() {
+    this.environmentList = [...this.environmentListData];
   }
 
   saveEnvironmentList() {
-    debugger;
-    //TODO dispatch store API
+    const environmentListData = this.environmentList;
+    this.store.dispatch(storeEnvironmentListData({ environmentListData }));
     this.isEnvironmentEdit = false;
   }
 
@@ -117,7 +119,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   }
 
   cancelEnvironmentEdit() {
-    this.setIntialEnvironmentForm();
+    this.setInitialEnvironmentForm();
     this.isEnvironmentEdit = false;
   }
 
@@ -142,7 +144,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   lanVPCNameList: string[];
 
-  setIntialLanVPCForm() {
+  setInitialLanVPCForm() {
     let lanVPCGroup = {};
 
     this.lanVPCList.forEach(lanVPC => {
@@ -184,7 +186,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   }
 
   onLanVPCCancel() {
-    this.setIntialLanVPCForm();
+    this.setInitialLanVPCForm();
     this.isLanVPCEdit = false;
   }
 
