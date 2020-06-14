@@ -1,22 +1,29 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
-import { setFolderStructureTreeData, setEnvironmentListData } from './landing-zone-environment.actions';
-import { FolderStructureNode, Environment } from './landing-zone-environment.model';
+import {
+  setFolderStructureTreeData,
+  setEnvironmentListData,
+  setLanVPCListData
+} from './landing-zone-environment.actions';
+import { FolderStructureNode, Environment, LanVPC } from './landing-zone-environment.model';
 
 export const intialState = {
   environmentListData: [],
-  folderStructureTreeData: [{}]
+  folderStructureTreeData: [{}],
+  lanVPCListData: []
 };
 
 export interface EnvironmentState {
   environmentListData: Environment[];
   folderStructureTreeData: FolderStructureNode[];
+  lanVPCListData: LanVPC[];
 }
 export const featureKey = 'landing-zone-environment';
 
 export const landingZoneEnvironmentReducer = createReducer(
   intialState,
   on(setEnvironmentListData, (state, { environmentListData }) => ({ ...state, environmentListData })),
-  on(setFolderStructureTreeData, (state, { folderStructureTreeData }) => ({ ...state, folderStructureTreeData }))
+  on(setFolderStructureTreeData, (state, { folderStructureTreeData }) => ({ ...state, folderStructureTreeData })),
+  on(setLanVPCListData, (state, { lanVPCListData }) => ({ ...state, lanVPCListData }))
 );
 
 export default function reducer(state, action) {
@@ -30,4 +37,7 @@ export const selectEnvironmentListData = createSelector(selectFeature, state =>
 );
 export const selectFolderStructureTreeData = createSelector(selectFeature, state =>
   state ? state.folderStructureTreeData : ([] as FolderStructureNode[])
+);
+export const selectLanVPCListData = createSelector(selectFeature, state =>
+  state ? state.lanVPCListData : ([] as LanVPC[])
 );

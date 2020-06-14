@@ -11,6 +11,7 @@ import { LandingZoneEnvironmentEffects } from './landing-zone-environment.effect
 
 import { EnvironmentListDataResolver } from '@app/shared/resolvers/environment-list-data.resolver';
 import { FolderStructureTreeDataResolver } from '@app/shared/resolvers/folder-structure-tree-data.resolver';
+import { LanVPCListDataResolver } from '@app/shared/resolvers/lan-vpc-list-data.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -30,7 +31,8 @@ const routes: Routes = [
     component: LandingZoneEnvironmentComponent,
     resolve: {
       environmentListData: EnvironmentListDataResolver,
-      folderStructureTreeData: FolderStructureTreeDataResolver
+      folderStructureTreeData: FolderStructureTreeDataResolver,
+      lanVPCListData: LanVPCListDataResolver
     }
   }
 ];

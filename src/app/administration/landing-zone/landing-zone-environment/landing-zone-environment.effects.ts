@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 import { LandingZoneEnvironmentService } from './landing-zone-environment.service';
-import { storeFolderStructureTreeData, storeEnvironmentListData } from './landing-zone-environment.actions';
+import {
+  storeFolderStructureTreeData,
+  storeEnvironmentListData,
+  storeLanVPCListData
+} from './landing-zone-environment.actions';
 
 @Injectable()
 export class LandingZoneEnvironmentEffects {
@@ -22,6 +26,15 @@ export class LandingZoneEnvironmentEffects {
       this.actions$.pipe(
         ofType(storeEnvironmentListData),
         tap(action => this.landingZoneEnvironmentService.postEnvironmentListData(action.environmentListData))
+      ),
+    { dispatch: false }
+  );
+
+  storeLanVPCListData$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(storeLanVPCListData),
+        tap(action => this.landingZoneEnvironmentService.postLanVPCListData(action.lanVPCListData))
       ),
     { dispatch: false }
   );

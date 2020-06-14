@@ -3,9 +3,13 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Store } from '@ngrx/store';
 import { throwError, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { setFolderStructureTreeData, setEnvironmentListData } from './landing-zone-environment.actions';
+import {
+  setFolderStructureTreeData,
+  setEnvironmentListData,
+  setLanVPCListData
+} from './landing-zone-environment.actions';
 import { EnvironmentState } from './landing-zone-environment.reducer';
-import { FolderStructureNode, Environment } from './landing-zone-environment.model';
+import { FolderStructureNode, Environment, LanVPC } from './landing-zone-environment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +55,24 @@ export class LandingZoneEnvironmentService {
     console.log(folderStructureTreeData + ' posted');
   }
 
+  postLanVPCListData(lanVPCListData: LanVPC[]): void {
+    const url = `${this.BASE_URL}/lzmetadataLanVpc/?readActiveOnly=true&bulkDelete=true`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(url, lanVPCListData, { headers }).subscribe(
+      (val: LanVPC[]) => {
+        console.log('POST call successful value returned in body', val);
+        this.store.dispatch(setLanVPCListData({ lanVPCListData: val }));
+      },
+      response => {
+        console.log('POST call in error', response);
+      },
+      () => {
+        console.log('The POST observable is now completed.');
+      }
+    );
+    console.log(lanVPCListData + ' posted');
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -76,6 +98,14 @@ export class LandingZoneEnvironmentService {
     const url = `${this.BASE_URL}/lzmetadataFolderStructure/`;
     return this.http.get<FolderStructureNode[]>(url).pipe(
       tap(folderStructureTreeData => this.store.dispatch(setFolderStructureTreeData({ folderStructureTreeData }))),
+      catchError(this.handleError)
+    );
+  }
+
+  getLanVPCListData(): Observable<LanVPC[]> {
+    const url = `${this.BASE_URL}/lzmetadataLanVpc/?readActiveOnly=true`;
+    return this.http.get<LanVPC[]>(url).pipe(
+      tap(lanVPCListData => this.store.dispatch(setLanVPCListData({ lanVPCListData }))),
       catchError(this.handleError)
     );
   }
