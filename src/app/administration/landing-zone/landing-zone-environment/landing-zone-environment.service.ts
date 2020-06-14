@@ -10,6 +10,7 @@ import {
 } from './landing-zone-environment.actions';
 import { EnvironmentState } from './landing-zone-environment.reducer';
 import { FolderStructureNode, Environment, LanVPC } from './landing-zone-environment.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ import { FolderStructureNode, Environment, LanVPC } from './landing-zone-environ
 export class LandingZoneEnvironmentService {
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  constructor(private store: Store<EnvironmentState>, private http: HttpClient) {}
+  constructor(private router: Router, private store: Store<EnvironmentState>, private http: HttpClient) {}
 
   postEnvironmentListData(environmentListData: Environment[]): void {
     const url = `${this.BASE_URL}/lzmetadataEnv/?readActiveOnly=true&bulkDelete=true`;
@@ -71,6 +72,24 @@ export class LandingZoneEnvironmentService {
       }
     );
     console.log(lanVPCListData + ' posted');
+  }
+
+  lzEnvironmentDeployment(): void {
+    const url = `${this.BASE_URL}/lzEnvironmentDeployment/`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(url, null, { headers }).subscribe(
+      val => {
+        console.log('POST call successful value returned in body', val);
+      },
+      response => {
+        console.log('POST call in error', response);
+      },
+      () => {
+        console.log('The POST observable is now completed.');
+        this.router.navigateByUrl('/administration/landing-zone');
+      }
+    );
+    console.log('lzEnvironmentDeployment' + ' posted');
   }
 
   private handleError(error: HttpErrorResponse) {

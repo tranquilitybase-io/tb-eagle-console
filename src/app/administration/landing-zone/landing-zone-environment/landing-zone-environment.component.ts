@@ -18,6 +18,9 @@ import {
   storeLanVPCListData
 } from './landing-zone-environment.actions';
 import { FolderStructureNode, LanVPC, Environment } from './landing-zone-environment.model';
+import { LandingZoneDialogDeployEnvComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env/landing-zone-dialog-deploy-env.component';
+import { MatDialog } from '@angular/material';
+import { LandingZoneService } from '../landing-zone.service';
 
 @Component({
   selector: 'app-landing-zone-environment',
@@ -41,9 +44,19 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   lanVPCListData: LanVPC[];
   lanVPCNameList: string[];
 
+  readOnly: boolean;
+
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor(private store: Store<EnvironmentState>) {
+  //#region Constructor
+  constructor(
+    private store: Store<EnvironmentState>,
+    private dialog: MatDialog,
+    private landingZoneService: LandingZoneService
+  ) {
+    landingZoneService.getAll().subscribe(lzProgressItems => {
+      this.readOnly = lzProgressItems.some(item => item.label === 'Environment' && item.completed);
+    });
     this.store.pipe(select(selectFolderStructureTreeData)).subscribe(folderStructureTreeData => {
       this.folderStructureTreeData = folderStructureTreeData;
       this.setInitialFolderStructureForm();
@@ -58,6 +71,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
       this.setInitialLanVPCForm();
     });
   }
+  //#endregion Constructor
 
   //#region ngOnInit
   ngOnInit() {}
@@ -201,4 +215,10 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     return !usedLanVpcEnvList.includes(envId);
   }
   //#endregion LAN VPC
+
+  //#region Deploy
+  deploy() {
+    this.dialog.open(LandingZoneDialogDeployEnvComponent, { disableClose: true, autoFocus: false });
+  }
+  //#endregion Deploy
 }

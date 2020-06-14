@@ -11,7 +11,11 @@
 </header>
 <main>
   <mat-accordion>
-    <mat-expansion-panel (closed)="cancelFolderStructure()" (opened)="folderStructureTreeControl.expandAll()">
+    <mat-expansion-panel
+      (closed)="cancelFolderStructure()"
+      (opened)="folderStructureTreeControl.expandAll()"
+      [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
           Folder Structure
@@ -61,7 +65,13 @@
       </mat-tree>
 
       <mat-action-row>
-        <button *ngIf="!isFolderStructureEdit" mat-button color="primary" (click)="setFolderStructureEdit()">
+        <button
+          [disabled]="readOnly"
+          *ngIf="!isFolderStructureEdit"
+          mat-button
+          color="primary"
+          (click)="setFolderStructureEdit()"
+        >
           Edit
         </button>
         <button *ngIf="isFolderStructureEdit" mat-button (click)="cancelFolderStructure()">
@@ -73,7 +83,10 @@
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel (closed)="cancelEnvironmentEdit()">
+    <mat-expansion-panel
+      (closed)="cancelEnvironmentEdit()"
+      [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
           Available Environments
@@ -113,7 +126,13 @@
       </mat-form-field>
 
       <mat-action-row>
-        <button *ngIf="!isEnvironmentEdit" mat-button color="primary" (click)="setEnvironmentEdit()">
+        <button
+          [disabled]="readOnly"
+          *ngIf="!isEnvironmentEdit"
+          mat-button
+          color="primary"
+          (click)="setEnvironmentEdit()"
+        >
           Edit
         </button>
         <button *ngIf="isEnvironmentEdit" mat-button (click)="cancelEnvironmentEdit()">
@@ -126,7 +145,11 @@
     </mat-expansion-panel>
 
     <form [formGroup]="lanVPCForm" (ngSubmit)="onLanVPCSubmit()">
-      <mat-expansion-panel expanded (closed)="onLanVPCCancel()">
+      <mat-expansion-panel
+        expanded
+        (closed)="onLanVPCCancel()"
+        [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"
+      >
         <mat-expansion-panel-header>
           <mat-panel-title>
             LAN VPC
@@ -173,7 +196,14 @@
         </mat-form-field>
 
         <mat-action-row>
-          <button *ngIf="!isLanVPCEdit" mat-button type="button" color="primary" (click)="setLanVPCEdit()">
+          <button
+            [disabled]="readOnly"
+            *ngIf="!isLanVPCEdit"
+            mat-button
+            type="button"
+            color="primary"
+            (click)="setLanVPCEdit()"
+          >
             Edit
           </button>
           <button *ngIf="isLanVPCEdit" mat-button type="button" (click)="onLanVPCCancel()">
@@ -186,4 +216,11 @@
       </mat-expansion-panel>
     </form>
   </mat-accordion>
+  <div class="lz-environment-action right">
+    <button [disabled]="readOnly" mat-button type="button" color="primary" (click)="deploy()">
+      Deploy
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
 </main>
+<footer [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"></footer>

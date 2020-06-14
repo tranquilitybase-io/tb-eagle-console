@@ -30,3 +30,5 @@ export const storeLanVPCListData = createAction(
   '[landing-zone-environment] storeLanVPCListData',
   props<{ lanVPCListData: LanVPC[] }>()
 );
+
+export const lzEnvironmentDeployment = createAction('[landing-zone-environment] lzEnvironmentDeployment');

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LandingZoneEnvironmentComponent } from './landing-zone-environment.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LandingZoneDialogModule } from '../landing-zone-dialog/landing-zone-dialog.module';
+import { LandingZoneEnvironmentComponent } from './landing-zone-environment.component';
 
 import { StoreModule } from '@ngrx/store';
 import reducer, { featureKey } from './landing-zone-environment.reducer';
@@ -41,6 +42,7 @@ const routes: Routes = [
   declarations: [LandingZoneEnvironmentComponent],
   imports: [
     CommonModule,
+    LandingZoneDialogModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
     EffectsModule.forFeature([LandingZoneEnvironmentEffects]),
