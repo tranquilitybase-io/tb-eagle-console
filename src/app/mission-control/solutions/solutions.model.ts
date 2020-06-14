@@ -13,7 +13,7 @@ export class Solution {
   sourceControl: string;
   environments: number[] | Environment[];
   isActive: boolean;
-  favourite: boolean;
+  isFavourite: boolean;
   deploymentStatus: string;
   applications: Application[];
   teamId: number;
