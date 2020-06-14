@@ -4,6 +4,13 @@ import { LandingZoneEnvironmentComponent } from './landing-zone-environment.comp
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { StoreModule } from '@ngrx/store';
+import reducer, { featureKey } from './landing-zone-environment.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { LandingZoneEnvironmentEffects } from './landing-zone-environment.effects';
+
+import { FolderStructureTreeDataResolver } from '@app/shared/resolvers/folder-structure-tree-data.resolver';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -19,7 +26,10 @@ import { MatTreeModule } from '@angular/material/tree';
 const routes: Routes = [
   {
     path: '',
-    component: LandingZoneEnvironmentComponent
+    component: LandingZoneEnvironmentComponent,
+    resolve: {
+      folderStructureTreeData: FolderStructureTreeDataResolver
+    }
   }
 ];
 
@@ -28,6 +38,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    StoreModule.forFeature(featureKey, reducer),
+    EffectsModule.forFeature([LandingZoneEnvironmentEffects]),
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,

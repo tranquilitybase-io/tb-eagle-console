@@ -5,19 +5,10 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, of } from 'rxjs';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
-
-interface FolderStructureNode {
-  id: number;
-  active: boolean;
-  name: string;
-  children?: FolderStructureNode[];
-}
-
-interface LanVPC {
-  id?: number;
-  name: string;
-  environments: string[];
-}
+import { Store, select } from '@ngrx/store';
+import { selectFolderStructureTreeData, EnvironmentState } from './landing-zone-environment.reducer';
+import { storeFolderStructureTreeData } from './landing-zone-environment.actions';
+import { FolderStructureNode, LanVPC } from './landing-zone-environment.model';
 
 @Component({
   selector: 'app-landing-zone-environment',
@@ -33,34 +24,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   isEnvironmentListSaved = false;
 
   folderStructureDataSource = new MatTreeNestedDataSource<FolderStructureNode>();
-  folderStructureTreeData: FolderStructureNode[] = [
-    {
-      id: 1,
-      active: true,
-      name: 'Applications',
-      children: [
-        {
-          id: 2,
-          active: true,
-          name: 'Business Unit',
-          children: [
-            {
-              id: 3,
-              active: true,
-              name: 'Team',
-              children: [
-                {
-                  id: 4,
-                  active: true,
-                  name: 'Solutions'
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ];
+  folderStructureTreeData: FolderStructureNode[];
   folderStructureTreeControl = new NestedTreeControl<FolderStructureNode>(node => node.children);
 
   storedEnvironmentList = ['Development', 'UAT', 'Staging', 'PoC', 'Production'];
@@ -68,18 +32,22 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor() {}
+  constructor(private store: Store<EnvironmentState>) {
+    this.store.pipe(select(selectFolderStructureTreeData)).subscribe(folderStructureTreeData => {
+      this.folderStructureTreeData = folderStructureTreeData;
+    });
+  }
 
   //#region ngOnInit
   ngOnInit() {
-    this.setInialFolderStructureForm();
-    this.setInialEnvironmentForm();
-    this.setInialLanVPCForm();
+    this.setIntialFolderStructureForm();
+    this.setIntialEnvironmentForm();
+    this.setIntialLanVPCForm();
   }
   //#endregion ngOnInit
 
   //#region Folder Structure
-  setInialFolderStructureForm() {
+  setIntialFolderStructureForm() {
     const data = JSON.parse(JSON.stringify(this.folderStructureTreeData));
     this.folderStructureDataSource.data = data;
     this.folderStructureTreeControl.dataNodes = data;
@@ -87,14 +55,13 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   }
 
   saveFolderStructure() {
-    console.log(this.folderStructureDataSource.data);
-    debugger;
-    //TODO dispatch store API
+    const folderStructureTreeData = this.folderStructureDataSource.data;
+    this.store.dispatch(storeFolderStructureTreeData({ folderStructureTreeData }));
     this.isFolderStructureEdit = false;
   }
 
   cancelFolderStructure() {
-    this.setInialFolderStructureForm();
+    this.setIntialFolderStructureForm();
     this.isFolderStructureEdit = false;
   }
 
@@ -105,12 +72,12 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   folderStructureHasChild = (_: number, node: FolderStructureNode) => !!node.children && node.children.length > 0;
 
   toggleFolderStructureItem(node) {
-    node.isEnabled = !node.isEnabled;
+    node.isActive = !node.isActive;
   }
   //#endregion Folder Structure
 
   //#region Environment
-  setInialEnvironmentForm() {
+  setIntialEnvironmentForm() {
     if (!this.isEnvironmentListSaved) this.environmentList = [...this.storedEnvironmentList];
 
     this.environmentList$ = of(this.environmentList);
@@ -146,7 +113,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   }
 
   cancelEnvironmentEdit() {
-    this.setInialEnvironmentForm();
+    this.setIntialEnvironmentForm();
     this.isEnvironmentEdit = false;
   }
 
@@ -169,7 +136,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   lanVPCNameList: string[];
 
-  setInialLanVPCForm() {
+  setIntialLanVPCForm() {
     let lanVPCGroup = {};
 
     this.lanVPCList.forEach(lanVPC => {
@@ -211,7 +178,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   }
 
   onLanVPCCancel() {
-    this.setInialLanVPCForm();
+    this.setIntialLanVPCForm();
     this.isLanVPCEdit = false;
   }
 
