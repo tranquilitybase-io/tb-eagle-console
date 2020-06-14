@@ -8,7 +8,7 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Store, select } from '@ngrx/store';
 import { selectFolderStructureTreeData, EnvironmentState } from './landing-zone-environment.reducer';
 import { storeFolderStructureTreeData } from './landing-zone-environment.actions';
-import { FolderStructureNode, LanVPC } from './landing-zone-environment.model';
+import { FolderStructureNode, LanVPC, Environment } from './landing-zone-environment.model';
 
 @Component({
   selector: 'app-landing-zone-environment',
@@ -17,18 +17,23 @@ import { FolderStructureNode, LanVPC } from './landing-zone-environment.model';
 })
 export class LandingZoneEnvironmentComponent implements OnInit {
   lanVPCForm: FormGroup;
-  environmentList: String[];
+  environmentList: Environment[];
   isFolderStructureEdit = false;
   isEnvironmentEdit = false;
   isLanVPCEdit = false;
-  isEnvironmentListSaved = false;
 
   folderStructureDataSource = new MatTreeNestedDataSource<FolderStructureNode>();
   folderStructureTreeData: FolderStructureNode[];
   folderStructureTreeControl = new NestedTreeControl<FolderStructureNode>(node => node.children);
 
-  storedEnvironmentList = ['Development', 'UAT', 'Staging', 'PoC', 'Production'];
-  environmentList$: Observable<String[]>;
+  storedEnvironmentList: Environment[] = [
+    { id: 1, isActive: true, name: 'Development' },
+    { id: 2, isActive: true, name: 'Production' },
+    { id: 3, isActive: true, name: 'UAT' },
+    { id: 4, isActive: true, name: 'Staging' },
+    { id: 5, isActive: true, name: 'PoC' }
+  ];
+  environmentList$: Observable<Environment[]>;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -78,7 +83,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   //#region Environment
   setIntialEnvironmentForm() {
-    if (!this.isEnvironmentListSaved) this.environmentList = [...this.storedEnvironmentList];
+    this.environmentList = [...this.storedEnvironmentList];
 
     this.environmentList$ = of(this.environmentList);
   }
@@ -86,7 +91,6 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   saveEnvironmentList() {
     debugger;
     //TODO dispatch store API
-    this.isEnvironmentListSaved = true;
     this.isEnvironmentEdit = false;
   }
 
@@ -95,7 +99,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     const value = event.value;
 
     if ((value || '').trim()) {
-      this.environmentList.push(value.trim());
+      this.environmentList.push({ id: 0, isActive: true, name: value.trim() });
     }
 
     // Reset the input value
@@ -104,7 +108,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     }
   }
 
-  removeEnvironment(environment: String): void {
+  removeEnvironment(environment: Environment): void {
     const index = this.environmentList.indexOf(environment);
 
     if (index >= 0) {
@@ -126,11 +130,13 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   lanVPCList: LanVPC[] = [
     {
       name: 'Development',
-      environments: ['Development']
+      isActive: true,
+      environments: [{ id: 1, isActive: true, name: 'Development' }]
     },
     {
       name: 'Production',
-      environments: ['Production']
+      isActive: true,
+      environments: [{ id: 2, isActive: true, name: 'Production' }]
     }
   ];
 
@@ -140,7 +146,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     let lanVPCGroup = {};
 
     this.lanVPCList.forEach(lanVPC => {
-      lanVPCGroup[lanVPC.name] = new FormControl(lanVPC.environments);
+      lanVPCGroup[lanVPC.name] = new FormControl((lanVPC.environments as Environment[]).map(env => env.id));
     });
 
     this.lanVPCForm = new FormGroup(lanVPCGroup);
@@ -186,14 +192,14 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     this.isLanVPCEdit = true;
   }
 
-  isEnvironmentAvailable(envName: string, lanVpcName?: string) {
-    let usedLanVpcEnvList: string[] = [];
+  isEnvironmentAvailable(envId: number, lanVpcName?: string) {
+    let usedLanVpcEnvList: number[] = [];
     this.lanVPCNameList.forEach(_lanVpcName => {
       if (lanVpcName !== _lanVpcName) {
-        usedLanVpcEnvList = [...usedLanVpcEnvList, ...(this.lanVPCForm.value[_lanVpcName] as string[])];
+        usedLanVpcEnvList = [...usedLanVpcEnvList, ...(this.lanVPCForm.value[_lanVpcName] as number[])];
       }
     });
-    return !usedLanVpcEnvList.includes(envName);
+    return !usedLanVpcEnvList.includes(envId);
   }
   //#endregion LAN VPC
 }

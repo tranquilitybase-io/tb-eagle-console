@@ -5,8 +5,15 @@ export interface FolderStructureNode {
   children?: FolderStructureNode[];
 }
 
+export class Environment {
+  id: number;
+  isActive: boolean;
+  name: string;
+}
+
 export interface LanVPC {
   id?: number;
+  isActive: boolean;
   name: string;
-  environments: string[];
+  environments: number[] | Environment[];
 }

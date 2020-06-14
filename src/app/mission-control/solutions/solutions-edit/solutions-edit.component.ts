@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { updateSolution } from '../solutions.actions';
 import { Solution } from '../solutions.model';
-import { Environment } from '@app/shared/shared.model';
+import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
 
 @Component({
   selector: 'app-solutions-edit',

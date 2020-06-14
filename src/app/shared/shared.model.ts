@@ -15,12 +15,6 @@ export class Team {
   lastUpdated: string;
 }
 
-export class Environment {
-  id?: number;
-  name: string;
-  isActive: boolean;
-}
-
 const decimalByte = '([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])';
 const decimalNetmask = '([1-9]|[12][0-9]|3[0-2])';
 
