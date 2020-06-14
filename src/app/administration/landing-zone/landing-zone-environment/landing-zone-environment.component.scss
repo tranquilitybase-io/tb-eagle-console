@@ -9,13 +9,16 @@ header {
   background-color: var(--active-grey-background);
   display: flex;
   align-items: center;
+
   span {
-    font-family: 'SF Pro Display';
+    font-family: 'SF Pro Display', Roboto, 'Helvetica Neue', sans-serif;
     font-style: normal;
     font-size: 20px;
+
     &.title {
       font-weight: 800;
     }
+
     &.vertical-divider {
       border-left: 1px solid var(--grey);
       margin: 0.5rem;
@@ -61,5 +64,5 @@ footer {
   position: fixed;
   width: 100%;
   background-color: var(--active-grey-background);
-  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.12);
 }
