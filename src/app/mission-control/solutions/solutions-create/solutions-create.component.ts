@@ -26,6 +26,7 @@ export class SolutionsCreateComponent implements OnInit {
   environmentList: KeyValue<string, string>[];
 
   solutionForm: FormGroup;
+  workspaceForm: FormGroup;
 
   constructor(
     private store: Store<SolutionsState>,
@@ -46,7 +47,11 @@ export class SolutionsCreateComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       businessUnit: ['', Validators.required],
-      costCentre: ['', Validators.required],
+      costCentre: ['', Validators.required]
+    });
+
+    this.workspaceForm = this.formBuilder.group({
+      // id: 0,
       ci: ['', Validators.required],
       cd: ['', Validators.required],
       sourceControl: ['', Validators.required],
