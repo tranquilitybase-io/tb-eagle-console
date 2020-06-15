@@ -17,16 +17,23 @@
         <mat-icon>notifications</mat-icon>
       </button>
       <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps"><mat-icon>apps</mat-icon></a>
-      <a
-        routerlink="/login"
-        routerlinkactive="active"
-        ng-reflect-router-link="/login"
-        ng-reflect-router-link-active="active"
-        href="/login"
-        matTooltip="Your account"
-        aria-label="Your account"
-        ><span class="user-initials">RM</span></a
+      <a mat-button [matMenuTriggerFor]="menu" matTooltip="Your account" aria-label="Your account"
+        ><span class="user-initials">{{ userInitials$ | async }}</span></a
       >
+      <mat-menu #menu="matMenu" xPosition="before">
+        <a mat-menu-item> <mat-icon>account_circle</mat-icon>Account </a>
+        <a mat-menu-item> <mat-icon>help</mat-icon>Help me </a>
+        <a
+          mat-menu-item
+          routerlink="/login"
+          href="/login"
+          routerlinkactive="active"
+          ng-reflect-router-link="/login"
+          ng-reflect-router-link-active="active"
+        >
+          <mat-icon>run_circle</mat-icon>Log out
+        </a>
+      </mat-menu>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -60,8 +67,8 @@
         </a>
       </div>
       <mat-divider *ngIf="!isExpanded" class="miniDrawerBr"></mat-divider>
+      <div class="section-header" *ngIf="isExpanded">Administration menu</div>
       <div *ngIf="userIsAdmin$ | async">
-        <div class="section-header" *ngIf="isExpanded">Administration menu</div>
         <a
           mat-list-item
           routerLink="/administration/landing-zone"
@@ -75,20 +82,20 @@
         <a mat-list-item [matTooltip]="!isExpanded ? 'Shared Services' : null" matTooltipPosition="after">
           <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span></a
         >
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
-          <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span></a
-        >
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Teams' : null" matTooltipPosition="after">
-          <mat-icon>group</mat-icon> <span *ngIf="isExpanded"> Teams</span></a
-        >
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
-          <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span></a
-        >
       </div>
+      <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
+        <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span></a
+      >
+      <a mat-list-item [matTooltip]="!isExpanded ? 'Teams' : null" matTooltipPosition="after">
+        <mat-icon>group</mat-icon> <span *ngIf="isExpanded"> Teams</span></a
+      >
+      <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
+        <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span></a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div [ngClass]="isExpanded == false ? 'smallDrawer' : null" style="height: 89vh">
+    <div [ngClass]="isExpanded == false ? 'smallDrawer' : null">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

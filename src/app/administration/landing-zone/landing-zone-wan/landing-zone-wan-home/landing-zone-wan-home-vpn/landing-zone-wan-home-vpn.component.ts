@@ -29,6 +29,6 @@ export class LandingZoneWanHomeVpnComponent implements OnInit {
   }
 
   createNewConnection() {
-    this.router.navigateByUrl(`/administration/landing-zone/wan/forms/vpn`);
+    this.router.navigateByUrl(`/administration/landing-zone/wan/create/vpn`);
   }
 }

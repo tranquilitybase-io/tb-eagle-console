@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { WanConfiguration } from './landing-zone-wan.model';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
@@ -30,5 +29,23 @@ export class LandingZoneWanService extends EntityCollectionServiceBase<WanConfig
       }
     );
     console.log(wanConfiguration + ' posted');
+  }
+
+  updateWanConfiguration(wanConfiguration: WanConfiguration): void {
+    const url = `${this.BASE_URL}/landingzonewan/${wanConfiguration.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.put(url, wanConfiguration, { headers }).subscribe(
+      (val: WanConfiguration) => {
+        console.log('PUT call successful value returned in body', val);
+      },
+      response => {
+        console.log('PUT call in error', response);
+      },
+      () => {
+        console.log('The PUT observable is now completed.');
+        this.getAll();
+      }
+    );
+    console.log(wanConfiguration + ' put');
   }
 }

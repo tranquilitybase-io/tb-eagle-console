@@ -1,89 +1,49 @@
-<div class="app">
-  <div class="activ-sub-header">
-    <a
-      class="button text-only left activ-back-btn"
-      routerLink="/mission-control/activator-store"
-      [queryParams]="{ categorySwitch: 'All' }"
-    >
-      Back
-    </a>
-    <div class="app-name separated">{{ activator.name }}</div>
-    <div class="separated">
-      <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
-        {{ activator.status }}
-      </div>
-    </div>
-    <div class="badge grey time-badge">
-      <div>{{ lastUpdated | date: 'hh:mma' }}</div>
-      <div class="separated">{{ lastUpdated | date: 'dd MMM yyyy' }}</div>
-    </div>
-    <div class="separated tier">
-      <div class="tier-icon"></div>
-      Eagle tier 2 subscription
+<div class="activ-sub-header">
+  <a
+    class="button text-only left activ-back-btn"
+    routerLink="/mission-control/activator-store"
+    [queryParams]="{ categorySwitch: 'Category' }"
+  >
+    Back
+  </a>
+  <div class="app-name separated">{{ activator.name }}</div>
+  <div class="separated">
+    <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
+      {{ activator.status }}
     </div>
   </div>
-
-  <mat-grid-list cols="5" rowHeight="400px" class="activ-view-info">
-    <mat-grid-tile [colspan]="3" [rowspan]="1">
-      <mat-grid-tile-header>Metadata</mat-grid-tile-header>
-      <mat-grid-list class="internalMatGrid" cols="2" rowHeight="444px">
-        <mat-grid-tile [colspan]="2" [rowspan]="3">
-          <mat-card class="activ-dashboard-card">
-            <mat-card-header>
-              <mat-card-title>
-                Description
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="dashboard-card-content">
-              <div>{{ activator.name }} - {{ activator.description }}</div>
-              <mat-list dense class="description-list">
-                <mat-list-item *ngFor="let property of properties">
-                  <div class="mat-body-1">{{ property.name }}</div>
-
-                  <div
-                    *ngIf="property.name !== 'Supported regions'; else isArray"
-                    class="mat-chip-alternative font-weight-bold"
-                  >
-                    {{ property.value }}
-                  </div>
-                  <ng-template #isArray>
-                    <div *ngFor="let val of property.value" class="mat-chip-alternative font-weight-bold">
-                      {{ val }}
-                    </div>
-                  </ng-template>
-                </mat-list-item>
-              </mat-list>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="1" class="configuration-grid-tile">
-      <mat-grid-tile-header>Configuration</mat-grid-tile-header>
-      <mat-grid-list class="internalMatGrid" cols="1" rowHeight="70px">
-        <mat-card class="activ-dashboard-card">
-          <mat-card-content class="dashboard-card-content">
-            <mat-list dense class="description-list">
-              <mat-list-item *ngFor="let property of deploymentOptions">
-                <div class="mat-body-1">{{ property.name }}</div>
-                <div *ngFor="let val of property.value" class="mat-chip-alternative font-weight-bold">{{ val }}</div>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-list>
-    </mat-grid-tile>
-  </mat-grid-list>
-
-  <div class="activ-content">
-    <div class="deployments">
-      <app-deployments></app-deployments>
-    </div>
+  <div class="badge grey time-badge">
+    <div>{{ lastUpdated | date: 'hh:mma' }}</div>
+    <div class="separated">{{ lastUpdated | date: 'dd MMM yyyy' }}</div>
+  </div>
+  <div class="separated tier">
+    <div class="tier-icon"></div>
+    Eagle tier 2 subscription
   </div>
 </div>
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Overview">
+    <app-activator-store-view-overview></app-activator-store-view-overview>
+  </mat-tab>
+  <mat-tab label="Deployments">
+    <app-applications-deployments></app-applications-deployments>
+  </mat-tab>
+  <mat-tab label="Audit history">
+    <app-activator-store-view-audit-history></app-activator-store-view-audit-history>
+  </mat-tab>
+  <mat-tab label="Version history">
+    <app-activator-store-view-version-history></app-activator-store-view-version-history>
+  </mat-tab>
+  <mat-tab label="Users">
+    <app-activator-store-view-users></app-activator-store-view-users>
+  </mat-tab>
+  <mat-tab label="Billing">
+    <app-activator-store-view-billing></app-activator-store-view-billing>
+  </mat-tab>
+</mat-tab-group>
 
-<div class="activ-deployment-footer">
-  <a routerLink="/mission-control/activator-store/create-app" queryParamsHandling="preserve" class="button text-only">
-    Select for application
+<div class="button-select">
+  <a mat-button color="primary" routerLink="/mission-control/activator-store/create-app" queryParamsHandling="preserve">
+    Add to Solution <mat-icon>keyboard_arrow_right</mat-icon>
   </a>
 </div>

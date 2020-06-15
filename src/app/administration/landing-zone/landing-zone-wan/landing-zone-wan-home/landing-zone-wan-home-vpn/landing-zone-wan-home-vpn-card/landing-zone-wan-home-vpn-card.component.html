@@ -5,9 +5,13 @@
         <button mat-icon-button>
           <mat-icon>star_border</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <a mat-menu-item routerLink="edit/vpn" [queryParams]="{ id: wanVpn.id }">Edit</a>
+          <a mat-menu-item routerLink="view/vpn" [queryParams]="{ id: wanVpn.id }">View</a>
+        </mat-menu>
       </div>
       {{ wanVpn.vpn.projectName }}
     </mat-card-title>
@@ -69,6 +73,7 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
+    <a mat-button routerLink="view/vpn" [queryParams]="{ id: wanVpn.id }">View</a>
     <button
       [disabled]="(deployed$ | async) || (deploymentInProgress$ | async)"
       mat-button

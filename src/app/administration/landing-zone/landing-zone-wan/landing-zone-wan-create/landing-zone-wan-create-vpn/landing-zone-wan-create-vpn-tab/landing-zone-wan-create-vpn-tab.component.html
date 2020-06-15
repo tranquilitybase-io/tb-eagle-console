@@ -1,0 +1,147 @@
+<form [formGroup]="formGroup">
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Project Name</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="projectName"
+        placeholder="E.g. project name..."
+      />
+      <mat-error *ngIf="f.projectName.errors?.required"> Project name is <strong>required</strong> </mat-error>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>VPC Network Name</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="vpcName"
+        placeholder="Generate network name"
+      />
+      <mat-error *ngIf="f.vpcName.errors?.required"> VPC network name is <strong>required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        required
+        #desctext
+        maxlength="200"
+        formControlName="description"
+        placeholder="Type your description here..."
+      ></textarea>
+      <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+      <mat-error *ngIf="f.description.errors?.required"> Description is <strong>required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Subnet Mode</mat-label>
+      <mat-select required formControlName="subnetMode">
+        <mat-option *ngFor="let item of subnetModeList" [value]="item.key">{{ item.value }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="f.subnetMode.errors?.required">
+        Selection of subnet mode is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>BGP Routing Mode</mat-label>
+      <mat-select required formControlName="bgpRoutingMode">
+        <mat-option *ngFor="let item of bgpRoutingModeList" [value]="item.key">{{ item.value }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="f.bgpRoutingMode.errors?.required">
+        Selection of BGP routing mode is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>HA VPN Gateway</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="haVpnGateway"
+        placeholder="ha-vpn-gw-tranquilitybase"
+      />
+      <mat-error *ngIf="f.haVpnGateway.errors?.required"> HA VPN Gateway is <strong>required</strong> </mat-error>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Cloud Router Name</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="cloudRouterName"
+        placeholder="tranquilitybase-router-tranquilitybase"
+      />
+      <mat-error *ngIf="f.cloudRouterName.errors?.required"> Cloud router name is <strong>required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>External VPN Gateway</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        maxlength="50"
+        formControlName="externalVpnGateway"
+        placeholder="tranquilitybase-peer-gw"
+      />
+      <mat-error *ngIf="f.externalVpnGateway.errors?.required">
+        External VPN gateway is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Google ASN</mat-label>
+      <input matInput required type="text" maxlength="50" formControlName="googleASN" placeholder="65001" />
+      <mat-error *ngIf="f.googleASN.errors?.required"> Google ASN is <strong>required</strong> </mat-error>
+      <mat-error *ngIf="f.googleASN.hasError('minlength')">
+        It must have at least 4 digits
+      </mat-error>
+      <mat-error *ngIf="f.googleASN.hasError('pattern')">
+        It may contain only numbers
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Peer ASN</mat-label>
+      <input matInput required type="text" maxlength="50" formControlName="peerASN" placeholder="65002" />
+      <mat-error *ngIf="f.peerASN.errors?.required"> Peer ASN is <strong>required</strong> </mat-error>
+      <mat-error *ngIf="f.peerASN.hasError('minlength')">
+        It must have at least 4 digits
+      </mat-error>
+      <mat-error *ngIf="f.peerASN.hasError('pattern')">
+        It may contain only numbers
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>BGP interface netmask length</mat-label>
+      <input matInput required type="text" maxlength="50" formControlName="bgpInterfaceNetLength" placeholder="/30" />
+      <mat-error *ngIf="f.bgpInterfaceNetLength.errors?.required">
+        BGP interface netmask length is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="f.bgpInterfaceNetLength.hasError('pattern')">
+        Please enter a valid netmask: from "/1" to "/32"
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <div class="app-stepper-action right">
+    <button mat-button color="primary" matStepperNext>
+      Next
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</form>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Solution } from '../../solutions.model';
+import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
 
 @Component({
   selector: 'app-solutions-view-workspace-info',
@@ -12,4 +13,8 @@ export class SolutionsViewWorkspaceInfoComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  get environments(): string[] {
+    return (this.solution.environments as Environment[]).map((env: Environment) => env.name);
+  }
 }

@@ -1,7 +1,6 @@
-import { map, tap, switchMap, mergeMap } from 'rxjs/operators';
-
 import { Injectable, NgZone } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { map, tap, switchMap, mergeMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { SolutionsService } from './solutions.service';
 import range from '@app/shared/utils/range';
@@ -12,13 +11,7 @@ import {
   updateSolution,
   startDeployment,
   updateDeploymentProgress,
-  stopDeployment,
-  startDeployApplication,
-  stopDeploymentApp,
-  updateDeploymentProgressApp,
-  startSolutionDeployment,
-  stopSolutionDeployment,
-  updateSolutionDeploymentProgress
+  stopDeployment
 } from './solutions.actions';
 
 function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
@@ -77,7 +70,7 @@ export class SolutionEffects {
     { dispatch: false }
   );
 
-  deployments$ = createEffect(() =>
+  startDeployment$ = createEffect(() =>
     this.zone.runOutsideAngular(() =>
       this.actions$.pipe(
         ofType(startDeployment),
@@ -87,40 +80,6 @@ export class SolutionEffects {
           emitRangeDelayed(range(0, 100, 2), 300).pipe(
             tap(console.log),
             map(progress => (progress >= 100 ? stopDeployment({ name }) : updateDeploymentProgress({ name, progress })))
-          )
-        )
-      )
-    )
-  );
-
-  startSolutionDeployment$ = createEffect(() =>
-    this.zone.runOutsideAngular(() =>
-      this.actions$.pipe(
-        ofType(startSolutionDeployment),
-        // This part of code mocks up deployment process
-        mergeMap(({ name }) =>
-          emitRangeDelayed(range(0, 100, 2), 300).pipe(
-            tap(console.log),
-            map(progress =>
-              progress >= 100 ? stopSolutionDeployment({ name }) : updateSolutionDeploymentProgress({ name, progress })
-            )
-          )
-        )
-      )
-    )
-  );
-
-  deploymentsApp$ = createEffect(() =>
-    this.zone.runOutsideAngular(() =>
-      this.actions$.pipe(
-        ofType(startDeployApplication),
-        // This part of code mocks up deployment process
-        mergeMap(({ name }) =>
-          emitRangeDelayed(range(0, 100, 2), 300).pipe(
-            tap(console.log),
-            map(progressApp =>
-              progressApp >= 100 ? stopDeploymentApp({ name }) : updateDeploymentProgressApp({ name, progressApp })
-            )
           )
         )
       )

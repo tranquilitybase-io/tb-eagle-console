@@ -20,7 +20,6 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
     this.http.post(url, solution, { headers }).subscribe(
       (val: Solution) => {
         console.log('POST call successful value returned in body', val);
-        this.store.dispatch(startDeployment({ name: String(val.id) }));
       },
       response => {
         console.log('POST call in error', response);
@@ -57,7 +56,6 @@ export class SolutionsService extends EntityCollectionServiceBase<Solution> {
     this.http.put(url, solution, { headers }).subscribe(
       (val: Solution) => {
         console.log('PUT call successful value returned in body', val);
-        this.store.dispatch(startDeployment({ name: String(val.id) }));
       },
       response => {
         console.log('PUT call in error', response);

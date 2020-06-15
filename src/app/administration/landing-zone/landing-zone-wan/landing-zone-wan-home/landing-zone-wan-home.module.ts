@@ -9,6 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -18,7 +19,7 @@ import { LandingZoneWanHomePartnerComponent } from './landing-zone-wan-home-part
 import { LandingZoneWanHomeVpnComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn.component';
 import { LandingZoneWanHomeVpnCardComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn-card/landing-zone-wan-home-vpn-card.component';
 
-import reducer, { featureKey } from '../landing-zone-wan.reducers';
+import reducer, { featureKey } from '../landing-zone-wan.reducer';
 import { LandingZoneWanEffects } from '../landing-zone-wan.effects';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -35,13 +36,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    ConnectionIsDeployedComponent,
+    ConnectionUnderDeploymentComponent,
     LandingZoneWanHomeComponent,
     LandingZoneWanHomeDirectComponent,
     LandingZoneWanHomePartnerComponent,
-    LandingZoneWanHomeVpnComponent,
     LandingZoneWanHomeVpnCardComponent,
-    ConnectionUnderDeploymentComponent,
-    ConnectionIsDeployedComponent
+    LandingZoneWanHomeVpnComponent
   ],
   entryComponents: [ConnectionUnderDeploymentComponent, ConnectionIsDeployedComponent],
   providers: [{ provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }],
@@ -56,6 +57,7 @@ const routes: Routes = [
     MatGridListModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatTabsModule

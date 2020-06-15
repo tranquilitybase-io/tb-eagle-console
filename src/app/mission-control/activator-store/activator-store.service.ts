@@ -3,10 +3,10 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/login/login.model';
-import { Application } from '../solutions/solutions.model';
-import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { setActivatorsByCategoryData, setActivatorsCount } from './activator-store.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +15,14 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   private BASE_URL = `${globalThis.location.origin}/api`;
 
   constructor(
+    private route: ActivatedRoute,
     serviceElementsFactory: EntityCollectionServiceElementsFactory,
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
   ) {
     super('Activator', serviceElementsFactory);
   }
 
-  private postSuccess = val => {
+  private postSuccess = (val: Activator) => {
     console.log('POST call successful value returned in body', val);
   };
 
@@ -32,7 +32,9 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
 
   private postCompleted = () => {
     console.log('The POST observable is now completed.');
-    this.getAll();
+    this.getByCategory(this.route.snapshot.queryParams.categorySwitch).subscribe((activators: Activator[]) => {
+      this.store.dispatch(setActivatorsCount({ activatorsCount: activators.length }));
+    });
   };
 
   setDeprecated(id: number) {
@@ -80,26 +82,6 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     console.log(`Access requested to activator ${id} by user ${user.id}`);
   }
 
-  createApplication(application: Application): void {
-    const url = `${this.BASE_URL}/application/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, { ...application, solutionId: Number(application.solutionId) }, { headers }).subscribe(
-      val => {
-        console.log('POST call successful value returned in body', val);
-      },
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
-        console.log('The POST observable is now completed.');
-        this.router.navigateByUrl(
-          `/mission-control/solutions/view?id=${application.solutionId}&categorySwitch=Applications`
-        );
-      }
-    );
-    console.log(application + ' created.');
-  }
-
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -128,6 +110,11 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const url = `${this.BASE_URL}/activators/`;
     return this.http
       .get<Activator[]>(url, { params })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        tap(activatorsByCategoryData => {
+          this.store.dispatch(setActivatorsByCategoryData({ activatorsByCategoryData }));
+        }),
+        catchError(this.handleError)
+      );
   }
 }

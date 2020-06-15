@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
-import { Routes, RouterModule } from '@angular/router';
-import { ActivatorStoreViewComponent } from './activator-store-view.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
+import { ApplicationByIdResolver } from '@app/shared/resolvers/application-by-id.resolver';
 import { ApplicationsByActivatorIdResolver } from '@app/shared/resolvers/applications-by-activator-id.resolver';
-import { DeploymentsComponent } from './deployments/deployments.component';
-import { StoreModule } from '@ngrx/store';
-import reducer, { featureKey } from './view.reducer';
-import { EffectsModule } from '@ngrx/effects';
-import { ViewEffects } from './view.effects';
-import { DeploymentsService } from './deployments.service';
 
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatGridListModule } from '@angular/material/grid-list';
+import { ActivatorStoreViewAuditHistoryComponent } from './activator-store-view-audit-history/activator-store-view-audit-history.component';
+import { ActivatorStoreViewBillingComponent } from './activator-store-view-billing/activator-store-view-billing.component';
+import { ActivatorStoreViewComponent } from './activator-store-view.component';
+import { ActivatorStoreViewOverviewComponent } from './activator-store-view-overview/activator-store-view-overview.component';
+import { ActivatorStoreViewUsersComponent } from './activator-store-view-users/activator-store-view-users.component';
+import { ActivatorStoreViewVersionHistoryComponent } from './activator-store-view-version-history/activator-store-view-version-history.component';
+import { ApplicationsModule } from '@app/mission-control/applications/applications.module';
+import { ApplicationsService } from '@app/mission-control/applications/applications.service';
+
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
-
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const routes: Routes = [
   {
@@ -29,29 +30,34 @@ const routes: Routes = [
     component: ActivatorStoreViewComponent,
     resolve: {
       activator: ActivatorByIdResolver,
+      application: ApplicationByIdResolver,
       applications: ApplicationsByActivatorIdResolver
     }
   }
 ];
 
 @NgModule({
-  declarations: [ActivatorStoreViewComponent, DeploymentsComponent],
-  providers: [DeploymentsService],
+  declarations: [
+    ActivatorStoreViewAuditHistoryComponent,
+    ActivatorStoreViewBillingComponent,
+    ActivatorStoreViewComponent,
+    ActivatorStoreViewOverviewComponent,
+    ActivatorStoreViewUsersComponent,
+    ActivatorStoreViewVersionHistoryComponent
+  ],
+  providers: [ApplicationsService],
   imports: [
     CommonModule,
     SharedModule,
+    ApplicationsModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([ViewEffects]),
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatGridListModule,
+    MatButtonModule,
     MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
+    MatChipsModule,
+    MatGridListModule,
+    MatIconModule,
     MatListModule,
-    MatChipsModule
+    MatTabsModule
   ]
 })
 export class ActivatorStoreViewModule {}

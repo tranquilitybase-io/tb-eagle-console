@@ -2,14 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ActivatorStoreService } from './activator-store.service';
 import { tap, first } from 'rxjs/operators';
-import {
-  setDeprecated,
-  setLocked,
-  denyAccess,
-  grantAccess,
-  requestAccess,
-  createApplication
-} from './activator-store.actions';
+import { setDeprecated, setLocked, denyAccess, grantAccess, requestAccess } from './activator-store.actions';
 import { Store, select } from '@ngrx/store';
 import { selectUser } from '@app/login/login.reducer';
 import { User } from '@app/login/login.model';
@@ -63,17 +56,6 @@ export class ActivatorStoreEffects {
             .pipe(select(selectUser))
             .pipe(first())
             .subscribe((user: User) => this.service.requestAccess(id, user));
-        })
-      ),
-    { dispatch: false }
-  );
-
-  createApplication$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(createApplication),
-        tap(action => {
-          this.service.createApplication(action.application);
         })
       ),
     { dispatch: false }

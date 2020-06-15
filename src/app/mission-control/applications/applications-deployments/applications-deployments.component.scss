@@ -1,0 +1,52 @@
+.activ-dpl-head-desc {
+  background-color: var(--active-grey-background);
+  display: flex;
+  padding: 0.5rem 0.3rem;
+  font-size: 0.875rem;
+
+  app-icon {
+    margin: 0 1rem;
+  }
+
+  .activ-dpl-head-title {
+    flex: auto;
+  }
+}
+
+.mat-elevation-z8 {
+  margin: 1rem;
+  margin-top: 0;
+}
+
+tbody tr td {
+  padding: 0.5rem 0.3rem;
+  border-bottom: 1px solid var(--active-grey-background);
+}
+
+.notes {
+  display: flex;
+  align-items: center;
+}
+
+.notes-text {
+  flex: auto;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 20%;
+}
