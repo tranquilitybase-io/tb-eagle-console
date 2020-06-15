@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as WanActions from '../../landing-zone-wan.actions';
 import { WanConfiguration } from '../../landing-zone-wan.model';
 import { Router } from '@angular/router';
+import { ValidatorPattern } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-landing-zone-wan-create-vpn',
@@ -27,27 +28,30 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
       haVpnGateway: ['', Validators.required],
       cloudRouterName: ['', Validators.required],
       externalVpnGateway: ['', Validators.required],
-      googleASN: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]],
-      peerASN: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(4)]],
-      bgpInterfaceNetLength: ['', Validators.required]
+      googleASN: [
+        '',
+        [Validators.required, Validators.pattern(ValidatorPattern.NUMBERS_ONLY), Validators.minLength(4)]
+      ],
+      peerASN: ['', [Validators.required, Validators.pattern(ValidatorPattern.NUMBERS_ONLY), Validators.minLength(4)]],
+      bgpInterfaceNetLength: ['', [Validators.required, Validators.pattern(ValidatorPattern.NETMASK)]]
     });
     this.googleSessionFormGroup = this.formBuilder.group({
       primaryRegion: ['', Validators.required],
       primarySubnetName: ['', Validators.required],
-      primaryGcpVpcSubnet: ['', Validators.required],
+      primaryGcpVpcSubnet: ['', [Validators.required, Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)]],
       secondaryRegion: [''],
       secondarySubnetName: [''],
-      secondaryGcpVpcSubnet: ['']
+      secondaryGcpVpcSubnet: ['', Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)]
     });
     this.onPremiseSessionFormGroup = this.formBuilder.group({
       vendor: ['', Validators.required],
-      primaryPeerIp: ['', Validators.required],
-      primaryPeerIpSubnet: [''],
+      primaryPeerIp: ['', [Validators.required, Validators.pattern(ValidatorPattern.IP_ADDRESS)]],
+      primaryPeerIpSubnet: ['', Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)],
       primaryVpnTunnel: ['', Validators.required],
       primaryBgpPeer: ['', Validators.required],
       primarySharedSecret: [''],
-      secondaryPeerIp: [''],
-      secondaryPeerIpSubnet: [''],
+      secondaryPeerIp: ['', Validators.pattern(ValidatorPattern.IP_ADDRESS)],
+      secondaryPeerIpSubnet: ['', Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)],
       secondaryVpnTunnel: [''],
       secondaryBgpPeer: [''],
       secondarySharedSecret: ['']

@@ -35,7 +35,6 @@ export class LoginFormPaneComponent implements OnInit {
 
   onSubmit($event: Event) {
     this.store.dispatch(loginActions.login({ username: this.userName, password: this.userPassword }));
-
     this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
 
     $event.preventDefault();

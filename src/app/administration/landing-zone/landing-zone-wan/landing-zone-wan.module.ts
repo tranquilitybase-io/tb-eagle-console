@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { LandingZoneWanEffects } from './landing-zone-wan.effects';
-import reducer, { featureKey } from './landing-zone-wan.reducers';
+import reducer, { featureKey } from './landing-zone-wan.reducer';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';

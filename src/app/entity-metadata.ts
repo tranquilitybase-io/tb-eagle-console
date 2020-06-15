@@ -28,15 +28,15 @@ const entityMetadata: EntityMetadataMap = {
   Solution: {
     filterFn: (solutions: Solution[], filter: string) => {
       if (filter === 'Favourites') {
-        return solutions.filter(solution => solution.favourite === true);
+        return solutions.filter(solution => solution.isFavourite);
       }
 
       if (filter === 'Active') {
-        return solutions.filter(solution => solution.active === true);
+        return solutions.filter(solution => solution.isActive);
       }
 
       if (filter === 'Archived') {
-        return solutions.filter(solution => solution.active === false);
+        return solutions.filter(solution => !solution.isActive);
       }
 
       return solutions;

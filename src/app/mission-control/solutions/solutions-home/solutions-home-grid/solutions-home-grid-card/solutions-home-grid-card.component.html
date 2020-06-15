@@ -29,15 +29,15 @@
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
-        <div class="mat-body">Teams</div>
+        <div class="mat-body">Team</div>
         <mat-chip-list>
-          <mat-chip>{{ solution.teams }}</mat-chip>
+          <mat-chip>{{ solution.team ? solution.team.name : 'N/A' }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
         <div class="mat-body">Last updated</div>
         <mat-chip-list>
-          <mat-chip>{{ solution.lastUpdated | date: 'dd MMM yyyy' }}</mat-chip>
+          <mat-chip>{{ solution.lastUpdated | date }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
     </mat-list>

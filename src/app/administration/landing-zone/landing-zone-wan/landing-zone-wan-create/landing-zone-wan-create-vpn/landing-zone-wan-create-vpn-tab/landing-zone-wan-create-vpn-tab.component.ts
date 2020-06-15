@@ -15,6 +15,9 @@ export class LandingZoneWanCreateVpnTabComponent implements OnInit {
   bgpRoutingModeList: KeyValue<string, string>[];
 
   constructor(private route: ActivatedRoute) {}
+  get f() {
+    return this.formGroup.controls;
+  }
 
   ngOnInit() {
     this.subnetModeList = this.route.snapshot.data['subnetModeList'];

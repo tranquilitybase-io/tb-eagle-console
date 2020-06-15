@@ -8,7 +8,7 @@ import {
   selectDeployed,
   selectProgress,
   selectIsDeploymentReady
-} from '@app/administration/landing-zone/landing-zone-wan/landing-zone-wan.reducers';
+} from '@app/administration/landing-zone/landing-zone-wan/landing-zone-wan.reducer';
 import {
   startConnectionDeployment,
   dismissDeploymentConnectionReadyAlert
