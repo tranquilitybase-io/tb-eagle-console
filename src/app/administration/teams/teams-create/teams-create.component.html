@@ -1,0 +1,21 @@
+<header>
+  <div>
+    <a mat-button color="primary" routerLink="/administration/teams"> Cancel </a>
+  </div>
+  <div>
+    <span class="vertical-divider"></span>
+    <span class="title">Create new team</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">Team</span>
+  </div>
+</header>
+<main>
+  <form [formGroup]="teamForm">
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required type="text" maxlength="30" formControlName="name" placeholder="E.g. team name..." />
+      </mat-form-field>
+    </p>
+  </form>
+</main>
