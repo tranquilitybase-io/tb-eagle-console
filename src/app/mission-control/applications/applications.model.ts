@@ -9,5 +9,7 @@ export class Application {
   env: string;
   status: string;
   lastUpdated: string;
+  isFavourite: boolean;
+  isActive: boolean;
   activator: Activator;
 }

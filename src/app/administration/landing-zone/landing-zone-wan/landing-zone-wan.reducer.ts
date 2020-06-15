@@ -14,7 +14,7 @@ export const intialState = {
   wanConfiguration: [{}]
 };
 
-export interface SolutionsState {
+export interface WanState {
   wanConfiguration: WanConfiguration[];
 }
 export const featureKey = 'landing-zone-wan';

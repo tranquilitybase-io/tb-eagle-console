@@ -7,6 +7,7 @@ import { ActivatorStoreService } from '../../activator-store.service';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setActivatorsCount } from '../../activator-store.actions';
+import { selectActivatorsByCategoryData } from '../../activator-store.reducer';
 
 @Component({
   selector: 'app-activator-store-home-grid',
@@ -28,9 +29,9 @@ export class ActivatorStoreHomeGridComponent implements OnInit {
 
   ngOnInit() {
     const categorySwitch = this.route.snapshot.queryParams.categorySwitch;
-    this.activators$ = this.activatorStoreService.getByCategory(categorySwitch);
-    this.activators$.subscribe((activators: Activator[]) => {
+    this.activatorStoreService.getByCategory(categorySwitch).subscribe((activators: Activator[]) => {
       this.store.dispatch(setActivatorsCount({ activatorsCount: activators.length }));
     });
+    this.activators$ = this.store.select(selectActivatorsByCategoryData);
   }
 }

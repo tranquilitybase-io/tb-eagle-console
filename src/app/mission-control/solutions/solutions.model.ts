@@ -1,5 +1,6 @@
 import { Application } from '../applications/applications.model';
-import { Team, Environment } from '@app/shared/shared.model';
+import { Team } from '@app/shared/shared.model';
+import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
 
 export class Solution {
   id?: number;
@@ -12,7 +13,7 @@ export class Solution {
   sourceControl: string;
   environments: number[] | Environment[];
   isActive: boolean;
-  favourite: boolean;
+  isFavourite: boolean;
   deploymentStatus: string;
   applications: Application[];
   teamId: number;

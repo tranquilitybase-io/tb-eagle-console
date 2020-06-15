@@ -19,7 +19,7 @@ import { LandingZoneWanHomePartnerComponent } from './landing-zone-wan-home-part
 import { LandingZoneWanHomeVpnComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn.component';
 import { LandingZoneWanHomeVpnCardComponent } from './landing-zone-wan-home-vpn/landing-zone-wan-home-vpn-card/landing-zone-wan-home-vpn-card.component';
 
-import reducer, { featureKey } from '../landing-zone-wan.reducers';
+import reducer, { featureKey } from '../landing-zone-wan.reducer';
 import { LandingZoneWanEffects } from '../landing-zone-wan.effects';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';

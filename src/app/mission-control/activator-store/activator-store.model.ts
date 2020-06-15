@@ -25,6 +25,8 @@ export interface Activator {
   envs: string[];
   platforms: string[];
   lastUpdated: string;
+  isFavourite: boolean;
+  isActive: boolean;
   description: string;
   userCapacity: number;
   serverCapacity: number;

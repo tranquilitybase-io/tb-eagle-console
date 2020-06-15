@@ -4,7 +4,9 @@ import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-st
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { setActivatorsByCategoryData, setActivatorsCount } from './activator-store.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +14,15 @@ import { catchError } from 'rxjs/operators';
 export class ActivatorStoreService extends EntityCollectionServiceBase<Activator> {
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
+  constructor(
+    private route: ActivatedRoute,
+    serviceElementsFactory: EntityCollectionServiceElementsFactory,
+    private http: HttpClient
+  ) {
     super('Activator', serviceElementsFactory);
   }
 
-  private postSuccess = val => {
+  private postSuccess = (val: Activator) => {
     console.log('POST call successful value returned in body', val);
   };
 
@@ -26,7 +32,9 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
 
   private postCompleted = () => {
     console.log('The POST observable is now completed.');
-    this.getAll();
+    this.getByCategory(this.route.snapshot.queryParams.categorySwitch).subscribe((activators: Activator[]) => {
+      this.store.dispatch(setActivatorsCount({ activatorsCount: activators.length }));
+    });
   };
 
   setDeprecated(id: number) {
@@ -102,6 +110,11 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const url = `${this.BASE_URL}/activators/`;
     return this.http
       .get<Activator[]>(url, { params })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        tap(activatorsByCategoryData => {
+          this.store.dispatch(setActivatorsByCategoryData({ activatorsByCategoryData }));
+        }),
+        catchError(this.handleError)
+      );
   }
 }

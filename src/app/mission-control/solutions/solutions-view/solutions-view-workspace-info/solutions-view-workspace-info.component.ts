@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Solution } from '../../solutions.model';
-import { Environment } from '@app/shared/shared.model';
+import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
 
 @Component({
   selector: 'app-solutions-view-workspace-info',

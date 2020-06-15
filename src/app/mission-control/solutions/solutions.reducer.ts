@@ -33,7 +33,7 @@ export const solutionsReducer = createReducer(
   on(setSolutions, (state, action) => {
     const filter = action.filter;
     if (filter === 'Favourites') {
-      state.solutions = action.solutions.filter(solution => solution.favourite);
+      state.solutions = action.solutions.filter(solution => solution.isFavourite);
       state.visibilityFilter = action.filter;
     }
     if (filter === 'Active') {

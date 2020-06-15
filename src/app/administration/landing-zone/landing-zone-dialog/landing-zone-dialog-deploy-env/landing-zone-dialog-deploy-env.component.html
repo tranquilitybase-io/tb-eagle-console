@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Landing Zone Deploy Environment</h1>
+<div mat-dialog-content>
+  <p>You are about to deploy the environment configuration.</p>
+  <p>After this action you will not be able to edit the environment setup.</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="cancel()">Continue editing</button>
+  <button mat-raised-button (click)="confirm()" cdkFocusInitial color="primary">Confirm deployment</button>
+</div>

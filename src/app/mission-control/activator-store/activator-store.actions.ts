@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Activator } from './activator-store.model';
 
 export const setCategoriesCount = createAction(
   '[ActivatorStore] set-categories-count',
@@ -20,3 +21,8 @@ export const grantAccess = createAction(
   props<{ activatorId: number; teamId: string }>()
 );
 export const requestAccess = createAction('[ActivatorStore] request-access', props<{ id: number }>());
+
+export const setActivatorsByCategoryData = createAction(
+  '[ActivatorStore] setActivatorsByCategoryData',
+  props<{ activatorsByCategoryData: Activator[] }>()
+);
