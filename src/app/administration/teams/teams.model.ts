@@ -2,12 +2,12 @@ import { BusinessUnit } from '@app/shared/shared.model';
 
 export class Team {
   id?: number;
-  name: string;
+  businessUnit: BusinessUnit;
+  businessUnitId: number;
   description: string;
   isFavourite: boolean;
   isActive: boolean;
   lastUpdated: string;
+  name: string;
   userCount: number;
-  businessUnitId: number;
-  businessUnit: BusinessUnit;
 }

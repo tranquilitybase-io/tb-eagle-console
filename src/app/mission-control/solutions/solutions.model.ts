@@ -1,5 +1,5 @@
 import { Application } from '../applications/applications.model';
-import { Team } from '@app/shared/shared.model';
+import { Team } from '@app/administration/teams/teams.model';
 import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
 
 export class Solution {

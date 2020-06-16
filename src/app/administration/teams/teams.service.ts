@@ -13,7 +13,7 @@ export class TeamsService extends EntityCollectionServiceBase<Team> {
 
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  createTeam(team: Team): void {
+  postTeamData(team: Team): void {
     const url = `${this.BASE_URL}/team/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(url, team, { headers }).subscribe(

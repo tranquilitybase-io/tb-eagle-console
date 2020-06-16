@@ -4,6 +4,7 @@ import { KeyValue } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '@app/login/login.model';
+import { storeTeamData } from '../teams.actions';
 
 @Component({
   selector: 'app-teams-create',
@@ -42,8 +43,7 @@ export class TeamsCreateComponent implements OnInit {
 
   onSubmit(teamData) {
     if (this.teamForm.valid) {
-      debugger;
-      // this.store.dispatch(postTeamData({ teamData }));
+      this.store.dispatch(storeTeamData({ teamData }));
       this.router.navigateByUrl('/administration/teams');
     } else {
       this.teamForm.markAllAsTouched();

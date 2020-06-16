@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import reducer, { featureKey } from './teams.reducer';
+import { TeamsEffects } from './teams.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 const routes: Routes = [
   {
@@ -15,6 +19,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forChild(routes)]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    StoreModule.forFeature(featureKey, reducer),
+    EffectsModule.forFeature([TeamsEffects])
+  ]
 })
 export class TeamsModule {}

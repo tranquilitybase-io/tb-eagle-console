@@ -1,4 +1,4 @@
-import { Team } from '@app/shared/shared.model';
+import { Team } from '@app/administration/teams/teams.model';
 
 export interface User {
   id?: number;
@@ -7,5 +7,5 @@ export interface User {
   email: string;
   isAdmin: boolean;
   showWelcome: boolean;
-  teams: Team[];
+  teams: string[] | Team[];
 }
