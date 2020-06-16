@@ -5,18 +5,18 @@
   right: 1px;
   bottom: 1px;
   border-radius: 10px;
-  padding: 0px;
+  padding: 0;
 
   &:hover {
-    box-shadow: 0px 2px 1px -1px var(--primary-color), 0px 1px 1px 0px var(--primary-color),
-      0px 1px 3px 0px var(--primary-color);
+    box-shadow: 0 2px 1px -1px var(--primary-color), 0 1px 1px 0px var(--primary-color),
+      0 1px 3px 0 var(--primary-color);
   }
 
   .mat-card-header {
     padding: 0.3rem;
     text-align: center;
     background-color: var(--active-grey-background);
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0 0;
 
     &.is-deployed {
       background: #c2e6cd;
@@ -29,6 +29,7 @@
     .card-actions-bar {
       display: flex;
       justify-content: flex-end;
+
       .mat-icon-button {
         width: 30px;
         height: 30px;
@@ -43,6 +44,7 @@
     &.spinner {
       display: flex;
       justify-content: center;
+
       .mat-body {
         position: absolute;
         display: flex;
@@ -52,20 +54,25 @@
 
     .description-list .mat-list-item {
       height: 2rem;
+
       @media (max-width: 1542px) {
         height: 3rem;
       }
+
       .mat-body {
         width: 8rem;
       }
+
       .mat-chip {
         font-size: 12px;
         padding: 0.2rem 0.5rem;
         min-height: 1.5rem;
         border-radius: 0.2rem;
+
         &.sensitivity {
           color: white;
           background-color: var(--dark-grey-2);
+
           &.red {
             background-color: var(--red);
           }
@@ -79,9 +86,11 @@
     display: flex;
     position: absolute;
     bottom: 0.7rem;
+
     > div {
       padding: 0 0.5rem;
     }
+
     .mat-caption {
       max-height: 80px;
       line-height: 1rem;
