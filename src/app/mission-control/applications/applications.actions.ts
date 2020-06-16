@@ -6,7 +6,10 @@ export const createApplication = createAction(
   props<{ application: Application }>()
 );
 
-export const startDeployApplication = createAction('[Applications Deploy] Start Deployment', props<{ name: string }>());
+export const startDeployApplication = createAction(
+  '[Applications Deploy] Start Deployment',
+  props<{ id: number; name: string }>()
+);
 export const updateDeploymentProgressApp = createAction(
   '[Applications Deploy] Update Deployment Progress',
   props<{ name: string; progressApp: number }>()
