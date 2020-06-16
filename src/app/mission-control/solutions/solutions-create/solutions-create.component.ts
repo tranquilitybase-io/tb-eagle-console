@@ -62,13 +62,17 @@ export class SolutionsCreateComponent implements OnInit {
     return this.solutionForm.controls;
   }
 
+  get w() {
+    return this.workspaceForm.controls;
+  }
+
   toggleSolutionPage() {
     this.onPartTwo = !this.onPartTwo;
-
     this.screenNum = this.screenNum == 0 ? (this.screenNum = 1) : (this.screenNum = 0);
   }
 
-  onSubmit(solution) {
+  onSubmit() {
+    let solution = Object.assign(this.solutionForm.value, this.workspaceForm.value);
     this.store.dispatch(createSolution({ solution }));
     this.router.navigateByUrl('/mission-control/solutions');
   }

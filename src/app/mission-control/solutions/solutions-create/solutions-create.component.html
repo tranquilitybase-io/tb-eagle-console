@@ -73,7 +73,7 @@
 
   <mat-step [stepControl]="workspaceForm">
     <ng-template matStepLabel>Workspace</ng-template>
-    <form [formGroup]="workspaceForm" (ngSubmit)="onSubmit(solutionForm.value)">
+    <form [formGroup]="workspaceForm" (ngSubmit)="onSubmit()">
       <div class="solution-workspace-container">
         <p>
           <mat-form-field appearance="outline">
@@ -81,22 +81,25 @@
             <mat-select required formControlName="ci">
               <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
             </mat-select>
+            <mat-error *ngIf="w.ci.errors?.required">
+              Continuous integration service is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Source Control</mat-label>
             <mat-select required formControlName="sourceControl">
               <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
             </mat-select>
-            <!-- <mat-error *ngIf="f.sourceControl.errors?.required">
+            <mat-error *ngIf="w.sourceControl.errors?.required">
               Source control is <strong>required</strong>
-            </mat-error> -->
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CD (Continuous deployment)</mat-label>
             <mat-select required formControlName="cd">
               <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
             </mat-select>
-            <mat-error *ngIf="f.cd.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
+            <mat-error *ngIf="w.cd.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
           </mat-form-field>
         </p>
 
