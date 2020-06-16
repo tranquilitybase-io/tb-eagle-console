@@ -87,9 +87,9 @@
             <mat-select required formControlName="sourceControl">
               <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
             </mat-select>
-            <mat-error *ngIf="f.sourceControl.errors?.required">
+            <!-- <mat-error *ngIf="f.sourceControl.errors?.required">
               Source control is <strong>required</strong>
-            </mat-error>
+            </mat-error> -->
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CD (Continuous deployment)</mat-label>
