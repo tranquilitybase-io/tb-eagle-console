@@ -26,23 +26,27 @@ export class TeamsCreateComponent implements OnInit {
 
   ngOnInit() {
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
-    //TODO this.users = this.route.snapshot.data['users'];
 
     this.teamForm = this.formBuilder.group({
       id: 0,
+      isActive: true,
       name: ['', Validators.required],
       description: ['', Validators.required],
       businessUnitId: ['', Validators.required]
     });
-
-    this.teamMembersForm = this.formBuilder.group({
-      //TODO
-    });
   }
 
-  onSubmit(team) {
-    debugger;
-    //TODO this.store.dispatch(createTeam({ team }));
-    this.router.navigateByUrl('/administration/teams');
+  get f() {
+    return this.teamForm.controls;
+  }
+
+  onSubmit(teamData) {
+    if (this.teamForm.valid) {
+      debugger;
+      // this.store.dispatch(postTeamData({ teamData }));
+      this.router.navigateByUrl('/administration/teams');
+    } else {
+      this.teamForm.markAllAsTouched();
+    }
   }
 }

@@ -10,12 +10,44 @@
   </div>
 </header>
 <main>
-  <form [formGroup]="teamForm">
+  <form [formGroup]="teamForm" (ngSubmit)="onSubmit(teamForm.value)">
     <p>
       <mat-form-field class="small-width" appearance="outline">
         <mat-label>Name</mat-label>
         <input matInput required type="text" maxlength="30" formControlName="name" placeholder="E.g. team name..." />
+        <mat-error *ngIf="f.name.errors?.required"> Name is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          required
+          #desctext
+          maxlength="200"
+          formControlName="description"
+          placeholder="Type your description here..."
+        ></textarea>
+        <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+        <mat-error *ngIf="f.description.errors?.required"> Description is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Business unit</mat-label>
+        <mat-select required formControlName="businessUnitId">
+          <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.businessUnitId.errors?.required"> Business unit is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <div class="lz-environment-action right">
+      <button mat-button color="primary">
+        Create Team
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
   </form>
 </main>
+<footer></footer>
