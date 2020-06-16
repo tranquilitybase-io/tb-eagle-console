@@ -19,11 +19,12 @@ export class SolutionsCreateComponent implements OnInit {
   solutionDescription: string = '';
   solutionBU: string = '';
 
+  businessUnitList: KeyValue<string, string>[];
   cdList: KeyValue<string, string>[];
   ciList: KeyValue<string, string>[];
-  businessUnitList: KeyValue<string, string>[];
-  sourceControlList: KeyValue<string, string>[];
   environmentList: KeyValue<string, string>[];
+  sourceControlList: KeyValue<string, string>[];
+  teamList: KeyValue<string, string>[];
 
   solutionForm: FormGroup;
 
@@ -35,17 +36,19 @@ export class SolutionsCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.cdList = this.route.snapshot.data['cdList'];
     this.ciList = this.route.snapshot.data['ciList'];
-    this.businessUnitList = this.route.snapshot.data['businessUnitList'];
-    this.sourceControlList = this.route.snapshot.data['sourceControlList'];
     this.environmentList = this.route.snapshot.data['environmentList'];
+    this.sourceControlList = this.route.snapshot.data['sourceControlList'];
+    this.teamList = this.route.snapshot.data['teamList'];
 
     this.solutionForm = this.formBuilder.group({
       id: 0,
       name: ['', Validators.required],
       description: ['', Validators.required],
       businessUnit: ['', Validators.required],
+      teamId: ['', Validators.required],
       costCentre: ['', Validators.required],
       ci: ['', Validators.required],
       cd: ['', Validators.required],

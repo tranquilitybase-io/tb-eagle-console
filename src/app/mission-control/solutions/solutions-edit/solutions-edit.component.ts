@@ -22,11 +22,12 @@ export class SolutionsEditComponent implements OnInit {
   solutionDescription: string = '';
   solutionBU: string = '';
 
+  businessUnitList: KeyValue<string, string>[];
   cdList: KeyValue<string, string>[];
   ciList: KeyValue<string, string>[];
-  businessUnitList: KeyValue<string, string>[];
-  sourceControlList: KeyValue<string, string>[];
   environmentList: KeyValue<string, string>[];
+  sourceControlList: KeyValue<string, string>[];
+  teamList: KeyValue<string, string>[];
 
   constructor(
     private store: Store<SolutionsState>,
@@ -36,11 +37,12 @@ export class SolutionsEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.cdList = this.route.snapshot.data['cdList'];
     this.ciList = this.route.snapshot.data['ciList'];
-    this.businessUnitList = this.route.snapshot.data['businessUnitList'];
-    this.sourceControlList = this.route.snapshot.data['sourceControlList'];
     this.environmentList = this.route.snapshot.data['environmentList'];
+    this.sourceControlList = this.route.snapshot.data['sourceControlList'];
+    this.teamList = this.route.snapshot.data['teamList'];
     this.solution = this.route.snapshot.data['solution'];
 
     const environmentIdList = (this.solution.environments as Environment[]).map(env => env.id);
@@ -50,6 +52,7 @@ export class SolutionsEditComponent implements OnInit {
       name: [this.solution.name],
       description: [this.solution.description],
       businessUnit: [this.solution.businessUnit],
+      teamId: [this.solution.teamId],
       costCentre: [this.solution.costCentre],
       ci: [this.solution.ci],
       cd: [this.solution.cd],
