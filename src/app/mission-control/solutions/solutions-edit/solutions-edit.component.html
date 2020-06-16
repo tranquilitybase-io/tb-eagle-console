@@ -50,6 +50,13 @@
           <mat-error *ngIf="f.businessUnit.errors?.required"> Business unit is <strong>required</strong> </mat-error>
         </mat-form-field>
         <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Team</mat-label>
+          <mat-select required formControlName="teamId">
+            <mat-option *ngFor="let item of teamList" [value]="item.key"> {{ item.value }} </mat-option>
+          </mat-select>
+          <mat-error *ngIf="f.teamId.errors?.required"> Team is <strong>required</strong> </mat-error>
+        </mat-form-field>
+        <mat-form-field class="small-width" appearance="outline">
           <mat-label>Cost centre</mat-label>
           <input
             matInput

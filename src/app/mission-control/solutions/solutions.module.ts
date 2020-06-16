@@ -21,33 +21,15 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    loadChildren: () => import('./solutions-create/solutions-create.module').then(m => m.SolutionsCreateModule),
-    resolve: {
-      businessUnitList: BusinessUnitResolver,
-      cdList: ContinuousDeploymentResolver,
-      ciList: ContinuousIntegrationResolver,
-      environmentList: EnvironmentResolver,
-      sourceControlList: SourceControlResolver
-    }
+    loadChildren: () => import('./solutions-create/solutions-create.module').then(m => m.SolutionsCreateModule)
   },
   {
     path: 'edit',
-    loadChildren: () => import('./solutions-edit/solutions-edit.module').then(m => m.SolutionsViewEditModule),
-    resolve: {
-      businessUnitList: BusinessUnitResolver,
-      cdList: ContinuousDeploymentResolver,
-      ciList: ContinuousIntegrationResolver,
-      environmentList: EnvironmentResolver,
-      sourceControlList: SourceControlResolver,
-      solution: SolutionsViewResolver
-    }
+    loadChildren: () => import('./solutions-edit/solutions-edit.module').then(m => m.SolutionsViewEditModule)
   },
   {
     path: 'view',
-    loadChildren: () => import('./solutions-view/solutions-view.module').then(m => m.SolutionsViewModule),
-    resolve: {
-      solution: SolutionsViewResolver
-    }
+    loadChildren: () => import('./solutions-view/solutions-view.module').then(m => m.SolutionsViewModule)
   }
 ];
 
