@@ -33,15 +33,15 @@ export const solutionsReducer = createReducer(
   on(setSolutions, (state, action) => {
     const filter = action.filter;
     if (filter === 'Favourites') {
-      state.solutions = action.solutions.filter(solution => solution.favourite === true);
+      state.solutions = action.solutions.filter(solution => solution.isFavourite);
       state.visibilityFilter = action.filter;
     }
     if (filter === 'Active') {
-      state.solutions = action.solutions.filter(solution => solution.active === true);
+      state.solutions = action.solutions.filter(solution => solution.isActive);
       state.visibilityFilter = action.filter;
     }
     if (filter === 'Archived') {
-      state.solutions = action.solutions.filter(solution => solution.active === false);
+      state.solutions = action.solutions.filter(solution => !solution.isActive);
       state.visibilityFilter = action.filter;
     }
 

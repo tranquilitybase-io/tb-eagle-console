@@ -51,12 +51,15 @@ export class SolutionsCreateComponent implements OnInit {
     });
 
     this.workspaceForm = this.formBuilder.group({
-      // id: 0,
       ci: ['', Validators.required],
       cd: ['', Validators.required],
       sourceControl: ['', Validators.required],
       environments: ['']
     });
+  }
+
+  get f() {
+    return this.solutionForm.controls;
   }
 
   toggleSolutionPage() {

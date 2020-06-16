@@ -25,3 +25,11 @@ export const selectFeature = state => state[loginFeatureKey];
 export const selectIsAuthenticated = createSelector(selectFeature, ({ isAuthenticated }) => isAuthenticated);
 export const selectUser = createSelector(selectFeature, ({ user }) => user);
 export const selectUserIsAdmin = createSelector(selectFeature, ({ user }) => user && user.isAdmin);
+export const selectUserName = createSelector(selectFeature, ({ user }) => user && user.firstName);
+export const selectUserTeams = createSelector(selectFeature, ({ user }) => user && user.teams);
+export const selectUserInitials = createSelector(
+  selectFeature,
+  ({ user }) => user && user.firstName[0] + user.lastName[0]
+);
+export const selectShowWelcome = createSelector(selectFeature, ({ user }) => user && user.showWelcome);
+export const selectUserId = createSelector(selectFeature, ({ user }) => user && user.id);

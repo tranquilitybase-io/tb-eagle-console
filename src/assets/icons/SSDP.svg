@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 461.37 341">
+  <title>key-point-graphic-2</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g>
+      <path d="M135.1,263.2A64.44,64.44,0,0,1,186.29,200c-.12-1.84-.19-3.72-.19-5.59,0-45.07,26-87.78,81-87.78,45.33,0,61.48,26.11,74.08,54.71a40.17,40.17,0,0,1,26.23-9.7,40.87,40.87,0,0,1,40,47.86,64.39,64.39,0,0,1,54,63.73c0,35.65-28.68,64.54-64,64.54H199.14c-35.37,0-64-28.89-64-64.54" fill="#fff" fill-rule="evenodd"/>
+      <path d="M232.31,281.79a45.78,45.78,0,0,1-45.6,46H45.6a46,46,0,0,1-7.17-91.33A29.1,29.1,0,0,1,66.9,202.33a28.61,28.61,0,0,1,18.68,6.9c9-20.37,20.47-39,52.75-39,39.13,0,57.67,30.41,57.67,62.5,0,1.33-.05,2.67-.14,4a45.88,45.88,0,0,1,36.45,45" fill="#fff" fill-rule="evenodd"/>
+      <circle cx="232.31" cy="135.52" r="122.26" fill="none" stroke="#fc3f2b" stroke-miterlimit="10" stroke-width="11.34"/>
+      <circle cx="232.31" cy="135.52" r="92.8" fill="none" stroke="#fc3f2b" stroke-miterlimit="10" stroke-width="11.34"/>
+      <polyline points="144.96 297.61 232.31 74.55 335.39 297.61" fill="none" stroke="#440a44" stroke-linecap="round" stroke-linejoin="round" stroke-width="11.34"/>
+      <path d="M354.58,135.52A122.26,122.26,0,0,1,232.31,257.78" fill="none" stroke="#fc3f2b" stroke-miterlimit="10" stroke-width="11.34"/>
+      <path d="M325.11,135.52a92.8,92.8,0,0,1-92.8,92.8" fill="none" stroke="#fc3f2b" stroke-miterlimit="10" stroke-width="11.34"/>
+    </g>
+  </g>
+</svg>

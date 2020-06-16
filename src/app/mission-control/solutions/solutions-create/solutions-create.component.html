@@ -1,6 +1,5 @@
 <header>
   <app-breadcrumbs [cancelActive]="true" [steps]="['Create new solution']"> </app-breadcrumbs>
-  <!-- <app-progress [steps]="['Details', 'Workspace']" [current]="screenNum"> </app-progress> -->
 </header>
 
 <mat-horizontal-stepper [linear]="true" #stepper>
@@ -16,10 +15,11 @@
               matInput
               required
               type="text"
-              maxlength="50"
+              maxlength="30"
               formControlName="name"
               placeholder="E.g. project name..."
             />
+            <mat-error *ngIf="f.name.errors?.required"> Name is <strong>required</strong> </mat-error>
           </mat-form-field>
         </p>
 
@@ -35,6 +35,7 @@
               placeholder="Type your description here..."
             ></textarea>
             <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+            <mat-error *ngIf="f.description.errors?.required"> Description is <strong>required</strong> </mat-error>
           </mat-form-field>
         </p>
 
@@ -44,6 +45,7 @@
             <mat-select required formControlName="businessUnit">
               <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
             </mat-select>
+            <mat-error *ngIf="f.businessUnit.errors?.required"> Business unit is <strong>required</strong> </mat-error>
           </mat-form-field>
           <mat-form-field class="small-width" appearance="outline">
             <mat-label>Cost centre</mat-label>
@@ -55,6 +57,7 @@
               formControlName="costCentre"
               placeholder="XXX-123-456-YYY"
             />
+            <mat-error *ngIf="f.costCentre.errors?.required"> Cost centre is <strong>required</strong> </mat-error>
           </mat-form-field>
         </p>
 
@@ -84,12 +87,16 @@
             <mat-select required formControlName="sourceControl">
               <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
             </mat-select>
+            <mat-error *ngIf="f.sourceControl.errors?.required">
+              Source control is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>CD (Continuous deployment)</mat-label>
             <mat-select required formControlName="cd">
               <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
             </mat-select>
+            <mat-error *ngIf="f.cd.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
           </mat-form-field>
         </p>
 
@@ -110,10 +117,5 @@
         </div>
       </div>
     </form>
-
-    <!-- <app-landing-zone-wan-create-vpn-review-tab
-      (onSubmit)="submit()"
-      (ngSubmit)="onSubmit(solutionForm.value)"
-    ></app-landing-zone-wan-create-vpn-review-tab> -->
   </mat-step>
 </mat-horizontal-stepper>
