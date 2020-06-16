@@ -19,11 +19,7 @@ export class SolutionsHomeComponent implements OnInit {
   solutions$: Observable<Solution[]>;
   active = false;
 
-  values = [
-    { name: 'Favourites', count: 4 },
-    { name: 'Active', count: 4 },
-    { name: 'Archived', count: 3 }
-  ];
+  values = [{ name: 'Favourites' }, { name: 'Actives' }, { name: 'Archived' }];
 
   current$: Observable<string>;
 
