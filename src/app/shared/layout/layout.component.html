@@ -80,18 +80,26 @@
           <span *ngIf="isExpanded"> Landing Zone</span>
         </a>
         <a mat-list-item [matTooltip]="!isExpanded ? 'Shared Services' : null" matTooltipPosition="after">
-          <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span></a
-        >
+          <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span>
+        </a>
       </div>
       <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
-        <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span></a
+        <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span>
+      </a>
+      <a
+        mat-list-item
+        routerLink="/administration/teams"
+        [queryParams]="{ groupSwitch: 'Actives' }"
+        routerLinkActive="active"
+        [matTooltip]="!isExpanded ? 'Teams' : null"
+        matTooltipPosition="after"
       >
-      <a mat-list-item [matTooltip]="!isExpanded ? 'Teams' : null" matTooltipPosition="after">
-        <mat-icon>group</mat-icon> <span *ngIf="isExpanded"> Teams</span></a
-      >
+        <mat-icon>group</mat-icon>
+        <span *ngIf="isExpanded"> Teams</span>
+      </a>
       <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
-        <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span></a
-      >
+        <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
