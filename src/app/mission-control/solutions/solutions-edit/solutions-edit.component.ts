@@ -51,7 +51,7 @@ export class SolutionsEditComponent implements OnInit {
       id: this.solution.id,
       name: [this.solution.name],
       description: [this.solution.description],
-      businessUnit: [this.solution.businessUnit],
+      businessUnitId: [this.solution.businessUnitId],
       teamId: [this.solution.teamId],
       costCentre: [this.solution.costCentre],
       ci: [this.solution.ci],
