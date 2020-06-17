@@ -61,7 +61,7 @@ export class ApplicationsGridCardComponent implements OnInit {
 
   deploy() {
     this.snackBar.openFromComponent(AppUnderDeploymentComponent);
-    this.store.dispatch(startDeployApplication({ name: this.app.name }));
+    this.store.dispatch(startDeployApplication({ id: this.app.id, name: this.app.name }));
   }
 
   get lastUpdated(): Date {

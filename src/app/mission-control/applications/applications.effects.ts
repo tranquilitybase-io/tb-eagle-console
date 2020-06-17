@@ -61,6 +61,7 @@ export class ApplicationsEffects {
     this.zone.runOutsideAngular(() =>
       this.actions$.pipe(
         ofType(startDeployApplication),
+        tap(action => this.service.deployApplication(Number(action.id))),
         // This part of code mocks up deployment process
         mergeMap(({ name }) =>
           emitRangeDelayed(range(0, 100, 2), 300).pipe(

@@ -37,4 +37,21 @@ export class ApplicationsService extends EntityCollectionServiceBase<Application
     );
     console.log(application + ' created.');
   }
+
+  deployApplication(id: number): void {
+    const url = `${this.BASE_URL}/applicationDeployment/`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(url, { id }, { headers }).subscribe(
+      (val: Application) => {
+        console.log('POST call successful value returned in body', val);
+      },
+      response => {
+        console.log('POST call in error', response);
+      },
+      () => {
+        console.log('The POST observable is now completed.');
+      }
+    );
+    console.log(`Application ${id} is been deployed`);
+  }
 }
