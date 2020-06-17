@@ -31,10 +31,10 @@
     <p>
       <mat-form-field class="small-width" appearance="outline">
         <mat-label>Business unit</mat-label>
-        <mat-select required formControlName="businessUnit">
+        <mat-select required formControlName="businessUnitId">
           <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
         </mat-select>
-        <mat-error *ngIf="f.businessUnit.errors?.required"> Business unit is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="f.businessUnitId.errors?.required"> Business unit is <strong>required</strong> </mat-error>
       </mat-form-field>
       <mat-form-field class="small-width" appearance="outline">
         <mat-label>Team</mat-label>
