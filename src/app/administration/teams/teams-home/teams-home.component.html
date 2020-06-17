@@ -1,0 +1,12 @@
+<header>
+  <div class="title">
+    <h1>
+      <span class="vertical-divider"></span>
+      Teams
+    </h1>
+  </div>
+</header>
+<div>
+  <app-teams-select [values]="values" (onSelection)="setFilter($event)"></app-teams-select>
+</div>
+<app-teams-home-grid [teams$]="teams$"></app-teams-home-grid>
