@@ -47,7 +47,7 @@ export class SolutionsCreateComponent implements OnInit {
       id: 0,
       name: ['', Validators.required],
       description: ['', Validators.required],
-      businessUnit: ['', Validators.required],
+      businessUnitId: ['', Validators.required],
       teamId: ['', Validators.required],
       costCentre: ['', Validators.required],
       ci: ['', Validators.required],
