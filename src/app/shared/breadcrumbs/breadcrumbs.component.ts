@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class BreadcrumbsComponent {
   @Input() cancelActive = false;
-  @Input() steps: string[];
+  @Input() steps: object[];
   @Input() isActive = false;
 }
