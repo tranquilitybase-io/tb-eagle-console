@@ -46,6 +46,6 @@ export class TeamsService extends EntityCollectionServiceBase<Team> {
         this.getAll();
       }
     );
-    console.log(team + ' posted');
+    console.log(team + ' put');
   }
 }

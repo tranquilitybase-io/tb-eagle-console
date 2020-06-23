@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BusinessUnitResolver } from '@app/shared/resolvers/business-unit.resolver';
+import { TeamByIdResolver } from '@app/shared/resolvers/team-by-id.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +18,8 @@ const routes: Routes = [
     path: '',
     component: TeamsEditComponent,
     resolve: {
-      businessUnitList: BusinessUnitResolver
+      businessUnitList: BusinessUnitResolver,
+      team: TeamByIdResolver
     }
   }
 ];

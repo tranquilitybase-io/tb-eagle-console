@@ -14,7 +14,6 @@ import { KeyValue } from '@angular/common';
 export class TeamsEditComponent implements OnInit {
   teamData: Team;
   teamForm: FormGroup;
-  teamMembersForm: FormGroup;
   businessUnitList: KeyValue<string, string>[];
 
   constructor(
@@ -28,10 +27,10 @@ export class TeamsEditComponent implements OnInit {
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.teamForm = this.formBuilder.group({
       id: this.teamData.id,
-      name: [this.teamData.name],
-      isActive: [this.teamData.isActive],
-      description: [this.teamData.description],
-      businessUnitId: [this.teamData.businessUnitId]
+      name: this.teamData.name,
+      isActive: this.teamData.isActive,
+      description: this.teamData.description,
+      businessUnitId: this.teamData.businessUnitId
     });
   }
 
