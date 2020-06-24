@@ -18,7 +18,7 @@ export class UsersHomeGridComponent {
     this.layout$ = this.layoutService.layoutObserver$;
   }
 
-  // createNewTeam() {
-  //   this.router.navigate(['create'], { relativeTo: this.route });
-  // }
+  createNewUser() {
+    this.router.navigate(['create'], { relativeTo: this.route });
+  }
 }

@@ -9,5 +9,9 @@
         <mat-icon>add</mat-icon>Create new user
       </button>
     </mat-grid-tile>
+
+    <mat-grid-tile *ngFor="let user of users$ | async" colspan="1" rowspan="1">
+      <app-users-home-grid-card class="user-grid-card" [user]="user"></app-users-home-grid-card>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>

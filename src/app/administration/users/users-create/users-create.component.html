@@ -1,0 +1,29 @@
+<header>
+  <div>
+    <a mat-button color="primary" routerLink="/administration/users"> Cancel </a>
+  </div>
+  <div>
+    <span class="vertical-divider"></span>
+    <span class="title">Create new user</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">User</span>
+  </div>
+</header>
+<main>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required type="text" maxlength="30" formControlName="name" placeholder="E.g. user name..." />
+        <mat-error *ngIf="f.name.errors?.required"> Name is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <div class="lz-environment-action right">
+      <button mat-button color="primary">
+        Create User
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </form>
+</main>
+<footer></footer>
