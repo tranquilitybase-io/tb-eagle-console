@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
+import { UsersHomeGridComponent } from './users-home-grid/users-home-grid.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UsersHomeComponent],
+  declarations: [UsersHomeComponent, UsersHomeGridComponent],
   imports: [
     CommonModule,
     SharedModule,
