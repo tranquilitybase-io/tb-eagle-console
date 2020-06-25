@@ -1,6 +1,6 @@
 import { createReducer } from '@ngrx/store';
-import { User } from './users.model';
-// import { User } from '@app/login/login.model';
+// import { User } from './users.model';
+import { User } from '@app/login/login.model';
 import { initialState } from '@app/login/login.reducer';
 
 export interface EnvironmentState {
