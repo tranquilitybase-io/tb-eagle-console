@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { User } from '../users.model';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ValidatorPattern } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-users-create',
@@ -27,7 +28,7 @@ export class UsersCreateComponent implements OnInit {
       isActive: true,
       name: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required]
+      email: ['', [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]]
     });
   }
 

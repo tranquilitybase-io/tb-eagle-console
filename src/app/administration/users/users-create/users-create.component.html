@@ -29,7 +29,7 @@
           formControlName="lastName"
           placeholder="E.g. user surname..."
         />
-        <mat-error *ngIf="f.name.errors?.required"> Last name is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="f.lastName.errors?.required"> Last name is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
     <p>
@@ -43,7 +43,10 @@
           formControlName="email"
           placeholder="E.g. user@xyz.com..."
         />
-        <mat-error *ngIf="f.name.errors?.required"> E-mail address name is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="f.email.errors?.required"> E-mail address name is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="f.email.hasError('pattern')">
+          Please enter valid e-mail in format e.g. "user@xyz.com"
+        </mat-error>
       </mat-form-field>
     </p>
     <div class="lz-environment-action right">
