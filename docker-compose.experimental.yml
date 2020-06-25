@@ -9,7 +9,7 @@ services:
       - 3100:3100
 
   mysql57:
-    image: gcr.io/tranquility-base-images/tb-houston-mysql57:experimental
+    image: gcr.io/tranquility-base-images/tb-db:integration
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
