@@ -25,7 +25,9 @@ export class UsersCreateComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       id: 0,
       isActive: true,
-      name: ['', Validators.required]
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required]
     });
   }
 

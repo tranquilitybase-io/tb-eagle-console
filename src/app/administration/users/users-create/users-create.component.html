@@ -13,9 +13,37 @@
   <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
     <p>
       <mat-form-field class="small-width" appearance="outline">
-        <mat-label>Name</mat-label>
+        <mat-label>First name</mat-label>
         <input matInput required type="text" maxlength="30" formControlName="name" placeholder="E.g. user name..." />
-        <mat-error *ngIf="f.name.errors?.required"> Name is <strong>required</strong> </mat-error>
+        <mat-error *ngIf="f.name.errors?.required"> First name is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input
+          matInput
+          required
+          type="text"
+          maxlength="30"
+          formControlName="lastName"
+          placeholder="E.g. user surname..."
+        />
+        <mat-error *ngIf="f.name.errors?.required"> Last name is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input
+          matInput
+          required
+          type="text"
+          maxlength="30"
+          formControlName="email"
+          placeholder="E.g. user@xyz.com..."
+        />
+        <mat-error *ngIf="f.name.errors?.required"> E-mail address name is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
     <div class="lz-environment-action right">
