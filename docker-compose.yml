@@ -1,6 +1,13 @@
 version: '3.1'
 
 services:
+  gcp-dac:
+    image: gcr.io/tranquility-base-images/tb-gcp-dac:integration
+    environment:
+      HOUSTON_SERVICE_URL: 'houston-service:3000'
+    ports:
+      - 3100:3100
+
   mysql57:
     image: gcr.io/tranquility-base-images/tb-db:integration
     command: --default-authentication-plugin=mysql_native_password
@@ -20,13 +27,15 @@ services:
       SQLALCHEMY_DATABASE_URI: 'mysql+mysqlconnector://eagle-user:eagle-user-secret-pw@mysql57/eagle_db'
       SQLALCHEMY_ECHO: 'False'
       SQLALCHEMY_TRACK_MODIFICATIONS: 'False'
+      GCP_DAC_URL: 'gcp-dac:3100'
     depends_on:
       - mysql57
+      - gcp-dac
     ports:
       - 3000:3000
 
   eagle-console:
-    image: gcr.io/tranquility-base-images/tb-eagle-console:dev
+    image: gcr.io/tranquility-base-images/tb-eagle-console:integration
     restart: always
     environment:
       PROXY_TARGET: 'http://houston-service:3000'
