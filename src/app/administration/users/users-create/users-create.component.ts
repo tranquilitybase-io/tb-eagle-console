@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { storeUserData } from '../users.actions';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { User } from '../users.model';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ValidatorPattern } from '@app/shared/shared.model';
+import { User } from '@app/login/login.model';
 
 @Component({
   selector: 'app-users-create',

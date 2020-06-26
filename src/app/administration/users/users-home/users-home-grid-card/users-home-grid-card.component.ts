@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { User } from '../../users.model';
+import { User } from '@app/login/login.model';
 
 @Component({
   selector: 'app-users-home-grid-card',

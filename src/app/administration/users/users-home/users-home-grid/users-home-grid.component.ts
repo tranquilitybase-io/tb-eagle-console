@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Layout } from '@app/shared/layout/layout.model';
 import { LayoutService } from '@app/shared/layout/layout.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '../../users.model';
+import { User } from '@app/login/login.model';
 
 @Component({
   selector: 'app-users-home-grid',
