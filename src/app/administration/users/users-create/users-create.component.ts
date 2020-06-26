@@ -13,7 +13,7 @@ import { User } from '@app/login/login.model';
 })
 export class UsersCreateComponent implements OnInit {
   userForm: FormGroup;
-  users: User[];
+  users: User;
 
   constructor(
     private store: Store<any>,
