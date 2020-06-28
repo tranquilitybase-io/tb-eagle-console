@@ -13,6 +13,7 @@ import { ContinuousIntegrationResolver } from '@app/shared/resolvers/continuous-
 import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver';
 import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
 import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
+import { SharedModule } from '@app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -39,7 +40,8 @@ const routes: Routes = [
     CommonModule,
     StoreModule.forFeature(solutionFeatureKey, reducer),
     EffectsModule.forFeature([SolutionEffects]),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class SolutionsModule {}

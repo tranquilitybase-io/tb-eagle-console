@@ -1,5 +1,14 @@
 <header>
-  <app-breadcrumbs [steps]="[solution.name, solution.description]" [isActive]="solution.isActive"> </app-breadcrumbs>
+  <app-breadcrumbs
+    [steps]="[
+      { name: solution.name, link: '/mission-control/solutions' },
+      {
+        name: solution.description
+      }
+    ]"
+    [isActive]="solution.isActive"
+  >
+  </app-breadcrumbs>
 </header>
 <div>
   <app-solutions-view-select

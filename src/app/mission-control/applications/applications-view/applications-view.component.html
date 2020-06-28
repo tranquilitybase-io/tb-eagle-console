@@ -9,14 +9,27 @@
       <mat-icon>chevron_left</mat-icon> Back
     </a>
   </div>
-  <div>
-    <span class="title">View</span>
-    <span class="vertical-divider"></span>
-    <span>Applications</span>
-    <span class="vertical-divider"></span>
-    <span class="subtitle">Solutions</span>
-  </div>
+
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Solutions',
+        link: '/mission-control/solutions'
+      },
+      {
+        name: 'Applications',
+        link: '/mission-control/solutions/view',
+        id: application.id
+      },
+      {
+        name: 'View'
+      }
+    ]"
+    [isActive]="application.isActive"
+  >
+  </app-breadcrumbs>
 </header>
+
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Overview">
     <app-applications-view-overview></app-applications-view-overview>

@@ -2,12 +2,29 @@
   <div>
     <a mat-button color="primary" routerLink="/administration/landing-zone/wan"> Cancel </a>
   </div>
-  <div>
-    <span class="vertical-divider"></span>
-    <span class="title">Create new connection</span>
-    <span class="vertical-divider"></span>
-    <span class="subtitle">VPN</span>
-  </div>
+
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Landing Zone',
+        link: '/administration/landing-zone'
+      },
+      {
+        name: 'WAN',
+        link: '/administration/landing-zone/wan'
+      },
+      {
+        name: 'Create new connection'
+      }
+    ]"
+  >
+    <!-- <app-breadcrumbs [steps]="[{ 
+      name:'VPN', 
+      link:'/mission-control/solutions'
+    },{ 
+      name:'Create new connection'
+    }]"> -->
+  </app-breadcrumbs>
 </header>
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="vpnFormGroup">

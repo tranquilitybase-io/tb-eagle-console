@@ -1,5 +1,17 @@
 <header>
-  <app-breadcrumbs [cancelActive]="true" [steps]="['Create new solution']"> </app-breadcrumbs>
+  <app-breadcrumbs
+    [cancelActive]="true"
+    [steps]="[
+      {
+        name: 'Solutions',
+        link: '/mission-control/solutions'
+      },
+      {
+        name: 'Create new solution'
+      }
+    ]"
+  >
+  </app-breadcrumbs>
   <app-progress [steps]="['Details', 'Workspace']" [current]="screenNum"> </app-progress>
 </header>
 <form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
