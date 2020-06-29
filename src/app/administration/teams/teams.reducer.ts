@@ -8,7 +8,7 @@ export const intialState = {
   lanVPCListData: []
 };
 
-export interface EnvironmentState {
+export interface TeamState {
   teamData: Team[];
 }
 export const featureKey = 'teams';

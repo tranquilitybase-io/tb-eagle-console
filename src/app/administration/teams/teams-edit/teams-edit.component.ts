@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Team } from '../teams.model';
 import { updateTeamData } from '../teams.actions';
 import { KeyValue } from '@angular/common';
+import { User } from '@app/login/login.model';
 
 @Component({
   selector: 'app-teams-edit',
@@ -12,9 +13,10 @@ import { KeyValue } from '@angular/common';
   styleUrls: ['./teams-edit.component.scss']
 })
 export class TeamsEditComponent implements OnInit {
-  teamData: Team;
+  team: Team;
   teamForm: FormGroup;
   businessUnitList: KeyValue<string, string>[];
+  users: User[];
 
   constructor(
     private store: Store<any>,
@@ -25,12 +27,12 @@ export class TeamsEditComponent implements OnInit {
 
   ngOnInit() {
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
+    this.team = this.route.snapshot.data['team'] as Team;
     this.teamForm = this.formBuilder.group({
-      id: this.teamData.id,
-      name: this.teamData.name,
-      isActive: this.teamData.isActive,
-      description: this.teamData.description,
-      businessUnitId: this.teamData.businessUnitId
+      id: this.team.id,
+      name: [this.team.name, Validators.required],
+      description: [this.team.description, Validators.required],
+      businessUnitId: [this.team.businessUnitId, Validators.required]
     });
   }
 
