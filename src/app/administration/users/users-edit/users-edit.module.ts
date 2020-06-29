@@ -8,12 +8,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { UsersEditComponent } from './users-edit.component';
+import { UserByIdResolver } from '@app/shared/resolvers/user-by-id.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: UsersEditComponent
-    // TODO: add resolver!!!
+    component: UsersEditComponent,
+    resolve: {
+      user: UserByIdResolver
+    }
   }
 ];
 

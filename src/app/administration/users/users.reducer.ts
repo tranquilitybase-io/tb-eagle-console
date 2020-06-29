@@ -1,15 +1,18 @@
-import { createReducer } from '@ngrx/store';
-// import { User } from './users.model';
+import { createReducer, on } from '@ngrx/store';
 import { User } from '@app/login/login.model';
 import { initialState } from '@app/login/login.reducer';
+import { updateUserData } from './users.actions';
 
-export interface EnvironmentState {
+export interface UsersState {
   users: User[];
 }
 
 export const featureKey = 'users';
 
-export const usersReducer = createReducer(initialState);
+export const usersReducer = createReducer(
+  initialState,
+  on(updateUserData, (state, { userData }) => ({ ...state, updateUserData: userData }))
+);
 
 export const reducer = (state, action) => {
   return usersReducer(state, action);

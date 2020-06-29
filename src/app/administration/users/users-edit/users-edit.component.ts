@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '@app/login/login.model';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { storeUserData } from '../users.actions';
 import { ValidatorPattern } from '@app/shared/shared.model';
+import { updateUserData } from '../users.actions';
 
 @Component({
   selector: 'app-users-edit',
@@ -23,6 +23,8 @@ export class UsersEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.user = this.route.snapshot.data['user'] as User;
+
     this.userForm = this.formBuilder.group({
       id: this.user.id,
       isActive: true,
@@ -36,12 +38,13 @@ export class UsersEditComponent implements OnInit {
     return this.userForm.controls;
   }
 
-  // onSubmit(userData) {
-  //   if (this.userForm.valid) {
-  //     this.store.dispatch(storeUserData({ userData }));
-  //     this.router.navigateByUrl('/administration/users');
-  //   } else {
-  //     this.userForm.markAllAsTouched();
-  //   }
-  // }
+  onSubmit(userData) {
+    if (this.userForm.valid) {
+      this.store.dispatch(updateUserData({ userData }));
+      // this.userForm.value
+      this.router.navigateByUrl('/administration/users');
+    } else {
+      this.userForm.markAllAsTouched();
+    }
+  }
 }
