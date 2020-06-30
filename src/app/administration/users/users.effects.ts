@@ -17,10 +17,12 @@ export class UsersEffects {
     { dispatch: false }
   );
 
-  updateUserData$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(updateUserData),
-      tap(action => this.usersService.updateUserData(action.userData))
-    )
+  updateUserData$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateUserData),
+        tap(action => this.usersService.updateUserData(action.userData))
+      ),
+    { dispatch: false }
   );
 }
