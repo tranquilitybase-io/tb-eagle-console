@@ -1,0 +1,41 @@
+<header>
+  <div>
+    <a mat-button color="primary" routerLink="/administration/users"> Cancel </a>
+  </div>
+  <div>
+    <span class="vertical-divider"></span>
+    <span class="title">View User</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">User</span>
+  </div>
+</header>
+
+<mat-card class="user-view-card">
+  <mat-card-header>
+    <mat-card-title>
+      User details
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="user-view-card-content">
+    <mat-list dense class="description-list">
+      <mat-list-item>
+        <div class="mat-body-1">First name</div>
+        <mat-chip-list>
+          <mat-chip>{{ user.firstName }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body-1">Last name</div>
+        <mat-chip-list>
+          <mat-chip>{{ user.lastName }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body-1">E-mail address</div>
+        <mat-chip-list>
+          <mat-chip>{{ user.email }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

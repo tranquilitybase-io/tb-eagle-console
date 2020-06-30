@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'edit',
     loadChildren: () => import('./users-edit/users-edit.module').then(m => m.UsersEditModule)
+  },
+  {
+    path: 'view',
+    loadChildren: () => import('./users-view/users-view.module').then(m => m.UsersViewModule)
   }
 ];
 
