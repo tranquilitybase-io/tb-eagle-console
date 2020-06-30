@@ -14,8 +14,15 @@
     <p>
       <mat-form-field class="small-width" appearance="outline">
         <mat-label>First name</mat-label>
-        <input matInput required type="text" maxlength="30" formControlName="name" placeholder="E.g. user name..." />
-        <mat-error *ngIf="f.name.errors?.required"> First name is <strong>required</strong> </mat-error>
+        <input
+          matInput
+          required
+          type="text"
+          maxlength="30"
+          formControlName="firstName"
+          placeholder="E.g. user name..."
+        />
+        <mat-error *ngIf="f.firstName.errors?.required"> First name is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
     <p>

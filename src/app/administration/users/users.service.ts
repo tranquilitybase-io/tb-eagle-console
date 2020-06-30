@@ -32,7 +32,7 @@ export class UsersService extends EntityCollectionServiceBase<User> {
   }
 
   updateUserData(user: User): void {
-    const url = `${this.BASE_URL}/user/`;
+    const url = `${this.BASE_URL}/user/${user.id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.put(url, user, { headers }).subscribe(
       (val: User) => {

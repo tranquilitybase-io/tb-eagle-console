@@ -27,8 +27,8 @@ export class UsersEditComponent implements OnInit {
 
     this.userForm = this.formBuilder.group({
       id: this.user.id,
-      isActive: true,
-      name: [this.user.firstName, Validators.required],
+      isAdmin: true,
+      firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
       email: [this.user.email, [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]]
     });
@@ -41,7 +41,6 @@ export class UsersEditComponent implements OnInit {
   onSubmit(userData) {
     if (this.userForm.valid) {
       this.store.dispatch(updateUserData({ userData }));
-      // this.userForm.value
       this.router.navigateByUrl('/administration/users');
     } else {
       this.userForm.markAllAsTouched();
