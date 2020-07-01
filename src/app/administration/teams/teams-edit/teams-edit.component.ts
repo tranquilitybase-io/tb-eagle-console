@@ -13,7 +13,7 @@ import { User } from '@app/login/login.model';
   styleUrls: ['./teams-edit.component.scss']
 })
 export class TeamsEditComponent implements OnInit {
-  team: Team;
+  teamData: Team;
   teamForm: FormGroup;
   businessUnitList: KeyValue<string, string>[];
   users: User[];
@@ -27,13 +27,17 @@ export class TeamsEditComponent implements OnInit {
 
   ngOnInit() {
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
-    this.team = this.route.snapshot.data['team'] as Team;
+    this.teamData = this.route.snapshot.data['team'] as Team;
     this.teamForm = this.formBuilder.group({
-      id: this.team.id,
-      name: [this.team.name, Validators.required],
-      description: [this.team.description, Validators.required],
-      businessUnitId: [this.team.businessUnitId, Validators.required]
+      id: this.teamData.id,
+      name: [this.teamData.name, Validators.required],
+      description: [this.teamData.description, Validators.required],
+      businessUnitId: [this.teamData.businessUnitId, Validators.required]
     });
+  }
+
+  get f() {
+    return this.teamForm.controls;
   }
 
   onSubmit(teamData) {
