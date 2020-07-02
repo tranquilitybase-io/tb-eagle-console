@@ -14,11 +14,14 @@ const routes: Routes = [
   {
     path: 'create',
     loadChildren: () => import('./teams-create/teams-create.module').then(m => m.TeamsCreateModule)
+  },
+  {
+    path: 'edit',
+    loadChildren: () => import('./teams-edit/teams-edit.module').then(m => m.TeamsEditModule)
   }
 ];
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
