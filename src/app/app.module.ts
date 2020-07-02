@@ -12,7 +12,6 @@ import entityConfig from './entity-metadata';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './guards/auth-guard.service';
-import { AdminGuardService } from './guards/admin-guard.service';
 import { LoginComponent } from './login/login/login.component';
 import { LoginModule } from './login/login.module';
 import { LayoutComponent } from './shared/layout/layout.component';
@@ -38,8 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'administration',
-        loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule),
-        canActivate: [AdminGuardService]
+        loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule)
       }
     ]
   }
@@ -66,11 +64,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     }),
     BrowserAnimationsModule
   ],
-  providers: [
-    AuthGuardService,
-    AdminGuardService,
-    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }
-  ],
+  providers: [AuthGuardService, { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

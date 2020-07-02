@@ -30,4 +30,22 @@ export class TeamsService extends EntityCollectionServiceBase<Team> {
     );
     console.log(team + ' posted');
   }
+
+  updateTeamData(team: Team): void {
+    const url = `${this.BASE_URL}/team/${team.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.put(url, team, { headers }).subscribe(
+      (val: Team) => {
+        console.log('PUT call successful value returned in body', val);
+      },
+      response => {
+        console.log('PUT call in error', response);
+      },
+      () => {
+        console.log('The PUT observable is now completed.');
+        this.getAll();
+      }
+    );
+    console.log(team + ' put');
+  }
 }
