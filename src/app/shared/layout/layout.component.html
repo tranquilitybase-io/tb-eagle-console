@@ -6,8 +6,12 @@
     <h1><img src="assets/icons/tb_rocket.svg" class="rocket" alt="TB_logo" /> Tranquility Base</h1>
     <span class="menu-spacer"></span>
     <div class="row">
-      <button mat-button matTooltip="Search" aria-label="Search"><mat-icon>search</mat-icon></button>
-      <button mat-button matTooltip="Add" aria-label="Add"><mat-icon>add</mat-icon></button>
+      <button mat-button matTooltip="Search" aria-label="Search">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-button matTooltip="Add" aria-label="Add">
+        <mat-icon>add</mat-icon>
+      </button>
       <span class="spacer"></span>
       <a
         mat-button
@@ -21,11 +25,20 @@
       <button mat-button matTooltip="Your messages" aria-label="Your messages">
         <mat-icon>question_answer</mat-icon>
       </button>
-      <button mat-button matTooltip="Share" aria-label="Share"><mat-icon>share</mat-icon></button>
-      <button mat-button matTooltip="Your notifications" aria-label="Your notifications">
-        <mat-icon>notifications</mat-icon>
+      <button mat-button matTooltip="Share" aria-label="Share">
+        <mat-icon>share</mat-icon>
       </button>
-      <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps"><mat-icon>apps</mat-icon></a>
+
+      <a mat-button matTooltip="Your notifications" aria-label="Your notifications" [matMenuTriggerFor]="note">
+        <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+      </a>
+      <!-- TODO: change mat menu to sth else (?), add list *ngIf -->
+      <mat-menu #note="matMenu" xPosition="before">
+        <app-notifications></app-notifications>
+      </mat-menu>
+      <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps">
+        <mat-icon>apps</mat-icon>
+      </a>
       <a mat-button [matMenuTriggerFor]="menu" matTooltip="Your account" aria-label="Your account"
         ><span class="user-initials">{{ userInitials$ | async }}</span></a
       >

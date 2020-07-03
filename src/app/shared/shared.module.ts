@@ -39,7 +39,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { MatCheckboxModule } from '@angular/material';
+import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { MatCheckboxModule } from '@angular/material';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     SwitchesComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    NotificationsComponent
   ],
   entryComponents: [
     AppIsDeployedComponent,
@@ -92,7 +94,8 @@ import { MatCheckboxModule } from '@angular/material';
     MatToolbarModule,
     MatTooltipModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatBadgeModule
   ],
   exports: [
     AlertComponent,
@@ -117,7 +120,8 @@ import { MatCheckboxModule } from '@angular/material';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     SwitchesComponent,
-    MatDialogModule
+    MatDialogModule,
+    MatBadgeModule
   ]
 })
 export class SharedModule {}
