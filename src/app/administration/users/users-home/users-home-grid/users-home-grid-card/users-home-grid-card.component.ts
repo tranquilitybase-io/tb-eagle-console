@@ -24,4 +24,8 @@ export class UsersHomeGridCardComponent implements OnInit {
   onMouseLeave() {
     this.active = false;
   }
+
+  get name(): string {
+    return `${this.user.lastName}, ${this.user.firstName}`;
+  }
 }

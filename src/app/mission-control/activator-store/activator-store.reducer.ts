@@ -19,9 +19,9 @@ const innerReducer = createReducer(
   on(setProgress, (state, { step }) => ({ ...state, step }))
 );
 
-export const reducer = (state, action) => {
+export default function reducer(state, action) {
   return innerReducer(state, action);
-};
+}
 
 export const selectFeature = state => state[featureKey];
 export const selectProgress = createSelector(selectFeature, ({ step }) => step);

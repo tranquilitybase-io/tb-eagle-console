@@ -6,7 +6,7 @@ import {
   dismissDeploymentAppReadyAlert
 } from './applications.actions';
 
-export const featureKey = 'activator-store';
+export const featureKey = 'application';
 
 const initialState = {};
 const innerReducer = createReducer(
@@ -17,7 +17,7 @@ const innerReducer = createReducer(
   on(dismissDeploymentAppReadyAlert, state => ({ ...state, isDeploymentAppReady: false }))
 );
 
-export const reducer = (state, action) => {
+export default function reducer(state, action) {
   if ([startDeployApplication.type, updateDeploymentProgressApp.type, stopDeploymentApp.type].includes(action.type)) {
     return {
       ...state,
@@ -26,7 +26,7 @@ export const reducer = (state, action) => {
     };
   }
   return innerReducer(state, action);
-};
+}
 
 export const selectFeature = state => state[featureKey];
 

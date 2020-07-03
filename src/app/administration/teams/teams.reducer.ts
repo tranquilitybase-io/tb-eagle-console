@@ -1,22 +1,11 @@
-import { Team } from './teams.model';
-import { createReducer, on } from '@ngrx/store';
-import { updateTeamData } from './teams.actions';
+import { createReducer } from '@ngrx/store';
 
-export const initialState = {
-  environmentListData: [],
-  folderStructureTreeData: [{}],
-  lanVPCListData: []
-};
+export const initialState = {};
 
-export interface EnvironmentState {
-  teamData: Team[];
-}
+export interface TeamsState {}
 export const featureKey = 'teams';
 
-export const teamsReducer = createReducer(
-  initialState,
-  on(updateTeamData, (state, { teamData }) => ({ ...state, selectedTeam: teamData }))
-);
+export const teamsReducer = createReducer(initialState);
 
 export default function reducer(state, action) {
   return teamsReducer(state, action);

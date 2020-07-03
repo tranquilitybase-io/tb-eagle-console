@@ -9,7 +9,7 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <a mat-menu-item routerLink="view" [queryParams]="{ id: user.id, categorySwitch: 'UserMembers' }">
+          <a mat-menu-item routerLink="view" [queryParams]="{ id: user.id }">
             View
           </a>
           <a mat-menu-item routerLink="edit" [queryParams]="{ id: user.id }">
@@ -17,7 +17,7 @@
           </a>
         </mat-menu>
       </div>
-      {{ user.name }}
+      {{ name }}
     </mat-card-title>
   </mat-card-header>
 
@@ -44,4 +44,12 @@
       </mat-list-item>
     </mat-list>
   </mat-card-content>
+  <mat-card-actions *ngIf="active">
+    <a mat-menu-item routerLink="view" [queryParams]="{ id: user.id }">
+      View
+    </a>
+    <a mat-menu-item routerLink="edit" [queryParams]="{ id: user.id }">
+      Edit
+    </a>
+  </mat-card-actions>
 </mat-card>

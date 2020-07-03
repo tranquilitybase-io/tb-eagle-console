@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { featureKey, usersReducer } from './users.reducer';
+import reducer, { featureKey } from './users.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UsersEffects } from './users.effects';
 
@@ -30,7 +30,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature(featureKey, usersReducer),
+    StoreModule.forFeature(featureKey, reducer),
     EffectsModule.forFeature([UsersEffects])
   ]
 })

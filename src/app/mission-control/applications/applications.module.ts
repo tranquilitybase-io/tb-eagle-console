@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { featureKey, reducer } from './applications.reducer';
+import reducer, { featureKey } from './applications.reducer';
 import { ApplicationsEffects } from './applications.effects';
 
 import { ApplicationsDeploymentsComponent } from './applications-deployments/applications-deployments.component';

@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { UserByIdResolver } from '@app/shared/resolvers/user-by-id.resolver';
+import { UsersViewComponent } from './users-view.component';
+
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
-import { UsersViewComponent } from './users-view.component';
-import { UserByIdResolver } from '@app/shared/resolvers/user-by-id.resolver';
-import { MatCardModule, MatListModule, MatChipsModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -28,12 +32,12 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatSelectModule,
-    MatCardModule,
     MatListModule,
-    MatChipsModule
+    MatSelectModule
   ]
 })
 export class UsersViewModule {}
