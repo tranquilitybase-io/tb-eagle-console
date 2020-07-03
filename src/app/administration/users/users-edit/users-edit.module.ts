@@ -1,31 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TeamsEditComponent } from './teams-edit.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { BusinessUnitResolver } from '@app/shared/resolvers/business-unit.resolver';
-import { TeamByIdResolver } from '@app/shared/resolvers/team-by-id.resolver';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { UsersEditComponent } from './users-edit.component';
+import { UserByIdResolver } from '@app/shared/resolvers/user-by-id.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: TeamsEditComponent,
+    component: UsersEditComponent,
     resolve: {
-      businessUnitList: BusinessUnitResolver,
-      team: TeamByIdResolver
+      user: UserByIdResolver
     }
   }
 ];
 
 @NgModule({
-  declarations: [TeamsEditComponent],
+  declarations: [UsersEditComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -38,4 +34,4 @@ const routes: Routes = [
     MatSelectModule
   ]
 })
-export class TeamsEditModule {}
+export class UsersEditModule {}

@@ -13,4 +13,5 @@ export class ValidatorPattern {
   public static readonly NETMASK = `^/${decimalNetmask}$`;
   public static readonly IP_ADDRESS = `^(${decimalByte}\\.){3}${decimalByte}$`;
   public static readonly IP_ADDRESS_NETMASK = `^(${decimalByte}\\.){3}${decimalByte}/${decimalNetmask}$`;
+  public static readonly EMAIL = `^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`;
 }
