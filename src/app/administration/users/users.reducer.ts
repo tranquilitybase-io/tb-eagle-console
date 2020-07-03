@@ -2,13 +2,13 @@ import { createReducer } from '@ngrx/store';
 
 export const initialState = {};
 
-export interface TeamsState {}
-export const featureKey = 'teams';
+export interface UsersState {}
+export const featureKey = 'users';
 
-export const teamsReducer = createReducer(initialState);
+export const usersReducer = createReducer(initialState);
 
 export default function reducer(state, action) {
-  return teamsReducer(state, action);
+  return usersReducer(state, action);
 }
 
 export const selectFeature = state => state[featureKey];

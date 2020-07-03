@@ -1,41 +1,43 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TeamsEditComponent } from './teams-edit.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { BusinessUnitResolver } from '@app/shared/resolvers/business-unit.resolver';
-import { TeamByIdResolver } from '@app/shared/resolvers/team-by-id.resolver';
+import { UserByIdResolver } from '@app/shared/resolvers/user-by-id.resolver';
+import { UsersViewComponent } from './users-view.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   {
     path: '',
-    component: TeamsEditComponent,
+    component: UsersViewComponent,
     resolve: {
-      businessUnitList: BusinessUnitResolver,
-      team: TeamByIdResolver
+      user: UserByIdResolver
     }
   }
 ];
 
 @NgModule({
-  declarations: [TeamsEditComponent],
+  declarations: [UsersViewComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
+    MatListModule,
     MatSelectModule
   ]
 })
-export class TeamsEditModule {}
+export class UsersViewModule {}

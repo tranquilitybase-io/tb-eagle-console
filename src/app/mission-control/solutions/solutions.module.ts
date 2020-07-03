@@ -7,13 +7,6 @@ import { EffectsModule } from '@ngrx/effects';
 import reducer, { solutionFeatureKey } from './solutions.reducer';
 import { SolutionEffects } from './solutions.effects';
 
-import { BusinessUnitResolver } from '@app/shared/resolvers/business-unit.resolver';
-import { ContinuousDeploymentResolver } from '@app/shared/resolvers/continuous-deployment.resolver';
-import { ContinuousIntegrationResolver } from '@app/shared/resolvers/continuous-integration.resolver';
-import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver';
-import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
-import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
-
 const routes: Routes = [
   {
     path: '',
