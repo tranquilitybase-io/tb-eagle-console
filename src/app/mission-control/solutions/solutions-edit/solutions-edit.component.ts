@@ -55,9 +55,9 @@ export class SolutionsEditComponent implements OnInit {
       businessUnitId: [this.solution.businessUnitId],
       teamId: [this.solution.teamId],
       costCentre: [this.solution.costCentre],
-      ci: [this.solution.ci],
-      cd: [this.solution.cd],
-      sourceControl: [this.solution.sourceControl],
+      ciId: [this.solution.ciId],
+      cdId: [this.solution.cdId],
+      sourceControlId: [this.solution.sourceControlId],
       environments: [environmentIdList]
     });
   }
