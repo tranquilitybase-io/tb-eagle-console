@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-header [class.is-deployed]="deployed$ | async">
+  <mat-card-header [class.is-deployed]="isDeploymentStateSuccess || (deployed$ | async)">
     <mat-card-title>
       <div class="sol-card-actions-bar">
         <button mat-icon-button>
@@ -78,13 +78,15 @@
     <a mat-stroked-button routerLink="/mission-control/solutions/view/application" [queryParams]="{ id: app.id }">
       View
     </a>
-    <button
-      [disabled]="(deployed$ | async) || (deploymentInProgressApp$ | async)"
-      mat-button
-      color="primary"
-      (click)="deploy()"
-    >
-      Deploy <mat-icon>chevron_right</mat-icon>
-    </button>
+    <div [matTooltip]="!isSolutionDeployed ? 'The solution is not deployed' : ''">
+      <button
+        [disabled]="!isSolutionDeployed || (deployed$ | async) || (deploymentInProgressApp$ | async)"
+        mat-button
+        color="primary"
+        (click)="deploy()"
+      >
+        Deploy <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>

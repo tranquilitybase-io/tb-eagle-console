@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { updateSolution } from '../solutions.actions';
 import { Solution } from '../solutions.model';
 import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
+import { DeploymentState } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-solutions-edit',
@@ -76,10 +77,10 @@ export class SolutionsEditComponent implements OnInit {
 
   get disableEdit(): boolean {
     return (
-      this.solution.deploymentStatus === 'SUCCESS' ||
-      this.solution.deploymentStatus === 'STARTED' ||
-      this.solution.deploymentStatus === 'PENDING' ||
-      this.solution.deploymentStatus === 'RETRY'
+      this.solution.deploymentState === DeploymentState.Success ||
+      this.solution.deploymentState === DeploymentState.Started ||
+      this.solution.deploymentState === DeploymentState.Pending ||
+      this.solution.deploymentState === DeploymentState.Retry
     );
   }
 }

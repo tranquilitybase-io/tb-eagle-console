@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-header [class.is-deployed]="deployed$ | async">
+  <mat-card-header [class.is-deployed]="isDeploymentStateSuccess || (deployed$ | async)">
     <mat-card-title>
       <div class="card-actions-bar">
         <button mat-icon-button>
@@ -66,7 +66,7 @@
       View
     </a>
     <button
-      [disabled]="(deployed$ | async) || (deploymentInProgress$ | async)"
+      [disabled]="isDeploymentStateSuccess || (deployed$ | async) || (deploymentInProgress$ | async)"
       mat-button
       color="primary"
       (click)="deploy(); clicked = true"
