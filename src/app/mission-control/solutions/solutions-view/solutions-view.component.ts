@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Solution } from '../solutions.model';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { DeploymentState } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-solutions-view',
@@ -24,5 +25,9 @@ export class SolutionsViewComponent implements OnInit {
   ngOnInit() {
     this.solution = this.route.snapshot.data['solution'];
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
+  }
+
+  get isSolutionDeployed(): boolean {
+    return this.solution.deploymentState === DeploymentState.Success;
   }
 }

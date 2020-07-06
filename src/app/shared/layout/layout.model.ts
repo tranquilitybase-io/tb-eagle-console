@@ -4,4 +4,6 @@ export interface Layout {
   activatorGridItemHeight: string;
   applicationGridItemHeight: string;
   solutionGridItemHeight: string;
+  teamGridItemHeight: string;
+  userGridItemHeight: string;
 }
