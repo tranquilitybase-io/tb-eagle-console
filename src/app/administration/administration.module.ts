@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdministrationComponent } from './administration.component';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminGuardService } from '@app/guards/admin-guard.service';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
       },
       {
         path: 'landing-zone',
-        loadChildren: () => import('./landing-zone/landing-zone.module').then(m => m.LandingZoneModule)
+        loadChildren: () => import('./landing-zone/landing-zone.module').then(m => m.LandingZoneModule),
+        canActivate: [AdminGuardService]
         // },
         // {
         //   path: 'shared-services',
@@ -32,6 +34,10 @@ const routes: Routes = [
         // {
         //   path: 'settings',
         //   loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
       }
     ]
   }
@@ -39,6 +45,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AdministrationComponent],
+  providers: [AdminGuardService],
   imports: [CommonModule, RouterModule.forChild(routes)]
 })
 export class AdministrationModule {}

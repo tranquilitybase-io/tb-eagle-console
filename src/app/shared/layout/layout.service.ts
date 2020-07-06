@@ -20,7 +20,8 @@ export class LayoutService {
               activatorGridItemHeight: '730px',
               applicationGridItemHeight: '600px',
               solutionGridItemHeight: '470px',
-              teamGridItemHeight: '470px'
+              teamGridItemHeight: '470px',
+              userGridItemHeight: '470px'
             };
           case breakpoints[Breakpoints.Medium]:
             return {
@@ -29,7 +30,8 @@ export class LayoutService {
               activatorGridItemHeight: '630px',
               applicationGridItemHeight: '550px',
               solutionGridItemHeight: '430px',
-              teamGridItemHeight: '430px'
+              teamGridItemHeight: '430px',
+              userGridItemHeight: '430px'
             };
           case breakpoints[Breakpoints.Large]:
             return {
@@ -38,7 +40,8 @@ export class LayoutService {
               activatorGridItemHeight: '530px',
               applicationGridItemHeight: '500px',
               solutionGridItemHeight: '390px',
-              teamGridItemHeight: '390px'
+              teamGridItemHeight: '390px',
+              userGridItemHeight: '390px'
             };
           case breakpoints[Breakpoints.XLarge]:
             return {
@@ -47,7 +50,8 @@ export class LayoutService {
               activatorGridItemHeight: '430px',
               applicationGridItemHeight: '500px',
               solutionGridItemHeight: '350px',
-              teamGridItemHeight: '350px'
+              teamGridItemHeight: '350px',
+              userGridItemHeight: '350px'
             };
           default:
             return {
@@ -56,7 +60,8 @@ export class LayoutService {
               activatorGridItemHeight: '550px',
               applicationGridItemHeight: '600px',
               solutionGridItemHeight: '510px',
-              teamGridItemHeight: '510px'
+              teamGridItemHeight: '510px',
+              userGridItemHeight: '510px'
             };
         }
       })
