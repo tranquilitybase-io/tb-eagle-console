@@ -4,7 +4,9 @@ import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-st
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { setActivatorsByCategoryData, setActivatorsCount } from './activator-store.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +14,15 @@ import { catchError } from 'rxjs/operators';
 export class ActivatorStoreService extends EntityCollectionServiceBase<Activator> {
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
+  constructor(
+    private route: ActivatedRoute,
+    serviceElementsFactory: EntityCollectionServiceElementsFactory,
+    private http: HttpClient
+  ) {
     super('Activator', serviceElementsFactory);
   }
 
-  private postSuccess = val => {
+  private postSuccess = (val: Activator) => {
     console.log('POST call successful value returned in body', val);
   };
 
@@ -26,14 +32,16 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
 
   private postCompleted = () => {
     console.log('The POST observable is now completed.');
-    this.getAll();
+    this.getByCategory(this.route.snapshot.queryParams.categorySwitch).subscribe((activators: Activator[]) => {
+      this.store.dispatch(setActivatorsCount({ activatorsCount: activators.length }));
+    });
   };
 
   setDeprecated(id: number) {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id, status: 'Deprecated', accessRequestedBy: 0 }, { headers })
+      .post(url, { id, status: 'Deprecated', accessRequestedById: 0 }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Deprecated status set to activator: ' + id);
   }
@@ -42,7 +50,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id, status: 'Locked', accessRequestedBy: 0 }, { headers })
+      .post(url, { id, status: 'Locked', accessRequestedById: 0 }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Locked status set to activator: ' + id);
   }
@@ -51,7 +59,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id: activatorId, status: 'Locked', accessRequestedBy: 0 }, { headers })
+      .post(url, { id: activatorId, status: 'Locked', accessRequestedById: 0 }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Locked status set to activator: ' + activatorId);
   }
@@ -60,7 +68,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id: activatorId, status: 'Available', accessRequestedBy: 0 }, { headers })
+      .post(url, { id: activatorId, status: 'Available', accessRequestedById: 0 }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log('Available status set to activator: ' + activatorId);
   }
@@ -69,7 +77,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post(url, { id, accessRequestedBy: user.id }, { headers })
+      .post(url, { id, accessRequestedById: user.id }, { headers })
       .subscribe(this.postSuccess, this.postError, this.postCompleted);
     console.log(`Access requested to activator ${id} by user ${user.id}`);
   }
@@ -102,6 +110,11 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const url = `${this.BASE_URL}/activators/`;
     return this.http
       .get<Activator[]>(url, { params })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        tap(activatorsByCategoryData => {
+          this.store.dispatch(setActivatorsByCategoryData({ activatorsByCategoryData }));
+        }),
+        catchError(this.handleError)
+      );
   }
 }

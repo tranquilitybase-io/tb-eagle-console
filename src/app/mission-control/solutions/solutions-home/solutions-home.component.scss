@@ -3,26 +3,20 @@
 }
 
 header {
-  .title {
-    border-left: 1px solid var(--grey);
-    margin-left: 0.5rem;
-    padding-left: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 800;
-  }
-
-  display: flex;
-  text-align: center;
-  font-family: 'SF Pro Display';
-
-  padding: {
-    top: 1.5rem;
-    left: 2rem;
-    right: 2rem;
-    bottom: 1rem;
-  }
-
+  padding: 0 2rem;
   background-color: var(--active-grey-background);
+  .title {
+    display: flex;
+    align-items: center;
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      .vertical-divider {
+        border-left: 1px solid var(--grey);
+        margin: 0.5rem;
+      }
+    }
+  }
 }
 
 app-breadcrumbs {

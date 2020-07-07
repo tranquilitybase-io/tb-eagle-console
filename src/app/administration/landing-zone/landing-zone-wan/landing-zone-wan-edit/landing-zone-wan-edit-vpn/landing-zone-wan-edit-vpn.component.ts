@@ -6,7 +6,7 @@ import { KeyValue } from '@angular/common';
 import { Observable } from 'rxjs';
 import { updateWanConfiguration } from '../../landing-zone-wan.actions';
 import { Store } from '@ngrx/store';
-import { SolutionsState } from '../../landing-zone-wan.reducers';
+import { WanState } from '../../landing-zone-wan.reducer';
 import { ValidatorPattern } from '@app/shared/shared.model';
 
 @Component({
@@ -27,7 +27,7 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private store: Store<SolutionsState>,
+    private store: Store<WanState>,
     private router: Router
   ) {}
 

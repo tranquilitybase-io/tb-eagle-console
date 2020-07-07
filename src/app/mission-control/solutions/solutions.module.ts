@@ -7,13 +7,6 @@ import { EffectsModule } from '@ngrx/effects';
 import reducer, { solutionFeatureKey } from './solutions.reducer';
 import { SolutionEffects } from './solutions.effects';
 
-import { BusinessUnitResolver } from '@app/shared/resolvers/business-unit.resolver';
-import { ContinuousDeploymentResolver } from '@app/shared/resolvers/continuous-deployment.resolver';
-import { ContinuousIntegrationResolver } from '@app/shared/resolvers/continuous-integration.resolver';
-import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver';
-import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
-import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
-
 const routes: Routes = [
   {
     path: '',
@@ -21,33 +14,15 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    loadChildren: () => import('./solutions-create/solutions-create.module').then(m => m.SolutionsCreateModule),
-    resolve: {
-      businessUnitList: BusinessUnitResolver,
-      cdList: ContinuousDeploymentResolver,
-      ciList: ContinuousIntegrationResolver,
-      environmentList: EnvironmentResolver,
-      sourceControlList: SourceControlResolver
-    }
+    loadChildren: () => import('./solutions-create/solutions-create.module').then(m => m.SolutionsCreateModule)
   },
   {
     path: 'edit',
-    loadChildren: () => import('./solutions-edit/solutions-edit.module').then(m => m.SolutionsViewEditModule),
-    resolve: {
-      businessUnitList: BusinessUnitResolver,
-      cdList: ContinuousDeploymentResolver,
-      ciList: ContinuousIntegrationResolver,
-      environmentList: EnvironmentResolver,
-      sourceControlList: SourceControlResolver,
-      solution: SolutionsViewResolver
-    }
+    loadChildren: () => import('./solutions-edit/solutions-edit.module').then(m => m.SolutionsViewEditModule)
   },
   {
     path: 'view',
-    loadChildren: () => import('./solutions-view/solutions-view.module').then(m => m.SolutionsViewModule),
-    resolve: {
-      solution: SolutionsViewResolver
-    }
+    loadChildren: () => import('./solutions-view/solutions-view.module').then(m => m.SolutionsViewModule)
   }
 ];
 

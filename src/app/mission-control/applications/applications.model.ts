@@ -1,4 +1,5 @@
 import { Activator } from '../activator-store/activator-store.model';
+import { DeploymentState } from '@app/shared/shared.model';
 
 export class Application {
   id: number;
@@ -9,5 +10,8 @@ export class Application {
   env: string;
   status: string;
   lastUpdated: string;
+  isFavourite: boolean;
+  isActive: boolean;
   activator: Activator;
+  deploymentState: DeploymentState;
 }

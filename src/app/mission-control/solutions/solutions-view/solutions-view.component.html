@@ -7,7 +7,7 @@
 <div>
   <app-solutions-view-select
     [values]="values"
-    [enableDeployAll]="solution.applications.length"
+    [enableDeployAll]="isSolutionDeployed && solution.applications.length"
   ></app-solutions-view-select>
 </div>
 
@@ -15,7 +15,11 @@
   <p class="details-sol-view">
     <span class="mat-body-strong">
       Business Unit:
-      <span class="mat-small">{{ solution.businessUnit }}</span>
+      <span class="mat-small">{{ solution.businessUnit.name }}</span>
+    </span>
+    <span class="mat-body-strong">
+      Team:
+      <span class="mat-small">{{ solution.team.name }}</span>
     </span>
     <span class="mat-body-strong">
       Cost Centre:

@@ -28,7 +28,8 @@
   }
 }
 
-.app-stepper-action {
+.app-stepper-action,
+.lz-environment-action {
   z-index: 1;
   position: fixed;
   bottom: 1rem;

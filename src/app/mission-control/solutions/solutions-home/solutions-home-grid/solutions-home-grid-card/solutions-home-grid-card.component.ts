@@ -7,6 +7,7 @@ import { startDeployment } from '@app/mission-control/solutions/solutions.action
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
 import { MatSnackBar } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
+import { DeploymentState } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-solutions-home-grid-card',
@@ -44,5 +45,9 @@ export class SolutionsHomeGridCardComponent implements OnInit {
   deploy() {
     this.snackBar.openFromComponent(SolutionUnderCreationComponent);
     this.store.dispatch(startDeployment({ name: String(this.solution.id) }));
+  }
+
+  get isDeploymentStateSuccess(): boolean {
+    return this.solution.deploymentState === DeploymentState.Success;
   }
 }

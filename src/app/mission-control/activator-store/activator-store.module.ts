@@ -5,7 +5,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { Routes, RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import { featureKey, reducer } from './activator-store.reducer';
+import reducer, { featureKey } from './activator-store.reducer';
 import { ActivatorStoreEffects } from './activator-store.effects';
 import { ActivatorStoreComponent } from './activator-store.component';
 

@@ -1,0 +1,54 @@
+header {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--active-grey-background);
+  display: flex;
+  align-items: center;
+
+  span {
+    font-family: 'SF Pro Display', Roboto, 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-size: 20px;
+
+    &.title {
+      font-weight: 800;
+    }
+
+    &.vertical-divider {
+      border-left: 1px solid var(--grey);
+      margin: 0.5rem;
+    }
+  }
+}
+
+.user-view-card {
+  position: flex;
+  top: 2rem;
+  left: 0;
+  right: 0;
+  bottom: 2rem;
+  border: none;
+  box-shadow: none;
+
+  .user-view-card-content {
+    a {
+      margin-left: 5px;
+    }
+
+    .description-list {
+      background-color: #f9f9f9;
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      max-width: 40%;
+
+      .mat-body-1 {
+        width: 10rem;
+      }
+
+      .mat-chip.sensitivity {
+        color: white;
+        background-color: var(--dark-grey-2);
+      }
+    }
+  }
+}

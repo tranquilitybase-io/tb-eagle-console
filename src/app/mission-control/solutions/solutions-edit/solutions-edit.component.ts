@@ -7,7 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { updateSolution } from '../solutions.actions';
 import { Solution } from '../solutions.model';
-import { Environment } from '@app/shared/shared.model';
+import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
+import { DeploymentState } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-solutions-edit',
@@ -22,11 +23,12 @@ export class SolutionsEditComponent implements OnInit {
   solutionDescription: string = '';
   solutionBU: string = '';
 
+  businessUnitList: KeyValue<string, string>[];
   cdList: KeyValue<string, string>[];
   ciList: KeyValue<string, string>[];
-  businessUnitList: KeyValue<string, string>[];
-  sourceControlList: KeyValue<string, string>[];
   environmentList: KeyValue<string, string>[];
+  sourceControlList: KeyValue<string, string>[];
+  teamList: KeyValue<string, string>[];
 
   constructor(
     private store: Store<SolutionsState>,
@@ -36,11 +38,12 @@ export class SolutionsEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.cdList = this.route.snapshot.data['cdList'];
     this.ciList = this.route.snapshot.data['ciList'];
-    this.businessUnitList = this.route.snapshot.data['businessUnitList'];
-    this.sourceControlList = this.route.snapshot.data['sourceControlList'];
     this.environmentList = this.route.snapshot.data['environmentList'];
+    this.sourceControlList = this.route.snapshot.data['sourceControlList'];
+    this.teamList = this.route.snapshot.data['teamList'];
     this.solution = this.route.snapshot.data['solution'];
 
     const environmentIdList = (this.solution.environments as Environment[]).map(env => env.id);
@@ -49,11 +52,12 @@ export class SolutionsEditComponent implements OnInit {
       id: this.solution.id,
       name: [this.solution.name],
       description: [this.solution.description],
-      businessUnit: [this.solution.businessUnit],
+      businessUnitId: [this.solution.businessUnitId],
+      teamId: [this.solution.teamId],
       costCentre: [this.solution.costCentre],
-      ci: [this.solution.ci],
-      cd: [this.solution.cd],
-      sourceControl: [this.solution.sourceControl],
+      ciId: [this.solution.ciId],
+      cdId: [this.solution.cdId],
+      sourceControlId: [this.solution.sourceControlId],
       environments: [environmentIdList]
     });
   }
@@ -73,10 +77,10 @@ export class SolutionsEditComponent implements OnInit {
 
   get disableEdit(): boolean {
     return (
-      this.solution.deploymentStatus === 'SUCCESS' ||
-      this.solution.deploymentStatus === 'STARTED' ||
-      this.solution.deploymentStatus === 'PENDING' ||
-      this.solution.deploymentStatus === 'RETRY'
+      this.solution.deploymentState === DeploymentState.Success ||
+      this.solution.deploymentState === DeploymentState.Started ||
+      this.solution.deploymentState === DeploymentState.Pending ||
+      this.solution.deploymentState === DeploymentState.Retry
     );
   }
 }

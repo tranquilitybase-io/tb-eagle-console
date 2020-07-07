@@ -12,6 +12,7 @@ import {
 import { AppIsDeployedComponent } from '@app/shared/snack-bar/app-is-deployed/app-is-deployed.component';
 import { AppUnderDeploymentComponent } from '@app/shared/snack-bar/app-under-deployment/app-under-deployment.component';
 import { startDeployApplication, dismissDeploymentAppReadyAlert } from '../../applications.actions';
+import { DeploymentState } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-applications-grid-card',
@@ -20,6 +21,7 @@ import { startDeployApplication, dismissDeploymentAppReadyAlert } from '../../ap
 })
 export class ApplicationsGridCardComponent implements OnInit {
   @Input() app: Application;
+  @Input() isSolutionDeployed: boolean;
   active = false;
 
   deploymentInProgressApp$: Observable<boolean>;
@@ -61,10 +63,14 @@ export class ApplicationsGridCardComponent implements OnInit {
 
   deploy() {
     this.snackBar.openFromComponent(AppUnderDeploymentComponent);
-    this.store.dispatch(startDeployApplication({ name: this.app.name }));
+    this.store.dispatch(startDeployApplication({ id: this.app.id, name: this.app.name }));
   }
 
   get lastUpdated(): Date {
     return new Date(this.app.lastUpdated || null);
+  }
+
+  get isDeploymentStateSuccess(): boolean {
+    return this.app.deploymentState === DeploymentState.Success;
   }
 }

@@ -6,6 +6,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { BusinessUnitResolver } from '@app/shared/resolvers/business-unit.resolver';
+import { ContinuousDeploymentResolver } from '@app/shared/resolvers/continuous-deployment.resolver';
+import { ContinuousIntegrationResolver } from '@app/shared/resolvers/continuous-integration.resolver';
+import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver';
+import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
+import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
+import { TeamResolver } from '@app/shared/resolvers/team.resolver';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,7 +25,16 @@ import { MatDividerModule, MatCardModule } from '@angular/material';
 const routes: Routes = [
   {
     path: '',
-    component: SolutionsEditComponent
+    component: SolutionsEditComponent,
+    resolve: {
+      businessUnitList: BusinessUnitResolver,
+      cdList: ContinuousDeploymentResolver,
+      ciList: ContinuousIntegrationResolver,
+      environmentList: EnvironmentResolver,
+      solution: SolutionsViewResolver,
+      sourceControlList: SourceControlResolver,
+      teamList: TeamResolver
+    }
   }
 ];
 
