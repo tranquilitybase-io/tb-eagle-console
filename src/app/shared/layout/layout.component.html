@@ -68,7 +68,7 @@
         <a
           mat-list-item
           routerLink="/mission-control/solutions"
-          [queryParams]="{ groupSwitch: 'Favourites' }"
+          [queryParams]="{ groupSwitch: 'Actives' }"
           routerLinkActive="active"
           [matTooltip]="!isExpanded ? 'Solutions' : null"
           matTooltipPosition="after"
@@ -105,7 +105,14 @@
           <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span>
         </a>
       </div>
-      <a mat-list-item [matTooltip]="!isExpanded ? 'Users' : null" matTooltipPosition="after">
+      <a
+        mat-list-item
+        routerLink="/administration/users"
+        [queryParams]="{ groupSwitch: 'Actives' }"
+        routerLinkActive="active"
+        [matTooltip]="!isExpanded ? 'Users' : null"
+        matTooltipPosition="after"
+      >
         <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span>
       </a>
       <a

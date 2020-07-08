@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { LayoutService } from '@app/shared/layout/layout.service';
 import { Application } from '../applications.model';
 import { setSelectedSolution } from '@app/mission-control/solutions/solutions.actions';
+import { DeploymentState } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-applications-grid',
@@ -23,6 +24,10 @@ export class ApplicationsGridComponent {
 
   get apps(): Array<Application> {
     return this.solution.applications;
+  }
+
+  get isSolutionDeployed(): boolean {
+    return this.solution.deploymentState === DeploymentState.Success;
   }
 
   createNewApplication() {

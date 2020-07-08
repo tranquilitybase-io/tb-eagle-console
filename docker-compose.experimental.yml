@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   gcp-dac:
-    image: gcr.io/tranquility-base-images/tb-gcp-dac:experimental
+    image: gcr.io/tranquility-base-images/tb-gcp-dac:mock
     environment:
       HOUSTON_SERVICE_URL: 'houston-service:3000'
     ports:

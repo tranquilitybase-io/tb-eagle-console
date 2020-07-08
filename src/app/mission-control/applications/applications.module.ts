@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { featureKey, reducer } from './applications.reducer';
+import reducer, { featureKey } from './applications.reducer';
 import { ApplicationsEffects } from './applications.effects';
 
 import { ApplicationsDeploymentsComponent } from './applications-deployments/applications-deployments.component';
@@ -23,6 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [ApplicationsDeploymentsComponent, ApplicationsGridComponent, ApplicationsGridCardComponent],
@@ -43,7 +44,8 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   exports: [ApplicationsDeploymentsComponent, ApplicationsGridComponent]
 })

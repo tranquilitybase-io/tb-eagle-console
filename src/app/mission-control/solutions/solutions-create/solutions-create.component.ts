@@ -50,9 +50,9 @@ export class SolutionsCreateComponent implements OnInit {
       businessUnitId: ['', Validators.required],
       teamId: ['', Validators.required],
       costCentre: ['', Validators.required],
-      ci: ['', Validators.required],
-      cd: ['', Validators.required],
-      sourceControl: ['', Validators.required],
+      ciId: ['', Validators.required],
+      cdId: ['', Validators.required],
+      sourceControlId: ['', Validators.required],
       environments: ['']
     });
   }
