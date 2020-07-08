@@ -26,7 +26,7 @@
     </mat-form-field>
   </p>
   <p>
-    <mat-form-field appearance="outline" class="description">
+    <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
       <textarea
         matInput
@@ -138,18 +138,10 @@
       </mat-error>
     </mat-form-field>
   </p>
-</form>
-<footer class="footer">
-  <div>
-    <button mat-button color="primary" matStepperNext>
-      <mat-icon class="icon-size">cancel</mat-icon>
-      Cancel
-    </button>
-  </div>
-  <div>
+  <div class="app-stepper-action right">
     <button mat-button color="primary" matStepperNext>
       Next
       <mat-icon>chevron_right</mat-icon>
     </button>
   </div>
-</footer>
+</form>

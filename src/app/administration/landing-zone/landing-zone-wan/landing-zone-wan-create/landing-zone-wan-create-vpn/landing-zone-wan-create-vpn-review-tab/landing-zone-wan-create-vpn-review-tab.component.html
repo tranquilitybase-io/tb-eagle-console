@@ -181,14 +181,13 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
-<footer class="footer">
-  <div>
-    <button mat-button color="primary" matStepperPrevious>
-      <mat-icon>chevron_left</mat-icon>
-      Back
-    </button>
-  </div>
-  <div>
-    <button mat-button color="primary" (click)="submit()">Submit</button>
-  </div>
-</footer>
+
+<div class="app-stepper-action left">
+  <button mat-button color="primary" matStepperPrevious>
+    <mat-icon>chevron_left</mat-icon>
+    Back
+  </button>
+</div>
+<div class="app-stepper-action right">
+  <button mat-button color="primary" (click)="submit()">Submit</button>
+</div>

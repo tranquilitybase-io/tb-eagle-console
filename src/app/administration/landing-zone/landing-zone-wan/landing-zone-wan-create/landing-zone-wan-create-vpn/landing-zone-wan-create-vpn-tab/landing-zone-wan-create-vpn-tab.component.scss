@@ -1,39 +1,15 @@
 p {
   width: 100%;
-
   .mat-form-field {
     width: 100%;
-
-    &.description {
-      width: 93.5%;
-    }
 
     &.small-width {
       width: 30%;
       margin-right: 2rem;
     }
-
     &.half-width {
       width: 45%;
       margin-right: 2rem;
     }
   }
-}
-
-.footer {
-  display: flex;
-  padding: 0.3rem 0.5rem;
-  padding-top: auto;
-  background-color: var(--active-grey-background);
-  justify-content: space-between;
-  align-items: center;
-  bottom: 0;
-  margin-left: -24px;
-  margin-right: -24px;
-  margin-bottom: -24px;
-}
-
-.icon-size {
-  font-size: 15px;
-  padding-top: 7px;
 }
