@@ -16,7 +16,7 @@ export class LandingZoneWanViewVpnComponent implements OnInit {
     this.wanConfiguration = this.route.snapshot.data['wanConfiguration'];
   }
 
-  cancel() {
+  back() {
     this.router.navigateByUrl('/administration/landing-zone/wan');
   }
 }

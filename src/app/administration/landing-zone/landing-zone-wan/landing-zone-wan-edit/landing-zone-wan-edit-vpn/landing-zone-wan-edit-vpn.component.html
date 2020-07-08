@@ -457,9 +457,16 @@
     </div>
   </form>
 </div>
-<footer>
-  <button mat-button color="primary" (click)="cancel()"><mat-icon class="icon-size">cancel</mat-icon> Cancel</button>
+
+<div class="app-bottom-action left">
+  <button mat-button color="primary" (click)="cancel()">
+    <mat-icon class="app-cancel-icon">cancel</mat-icon>
+    Cancel
+  </button>
+</div>
+<div class="app-bottom-action right">
   <button mat-button color="primary" type="submit" (click)="onSubmit()">
     Update <mat-icon>chevron_right</mat-icon>
   </button>
-</footer>
+</div>
+<div class="app-bottom-background"></div>

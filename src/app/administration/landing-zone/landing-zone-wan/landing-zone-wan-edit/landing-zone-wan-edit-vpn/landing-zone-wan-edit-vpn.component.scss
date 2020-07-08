@@ -20,19 +20,12 @@ header {
   }
 }
 
-footer {
-  padding: 0.3rem 0.5rem;
-  background-color: var(--active-grey-background);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .grid-container {
   padding-top: 24px;
   padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 5rem;
 
   .step {
     font-weight: 800;
@@ -104,9 +97,4 @@ button {
 
 .shared-secret {
   margin-left: 3rem;
-}
-
-.icon-size {
-  padding-top: 7px;
-  font-size: 15px;
 }

@@ -13,7 +13,7 @@
     <span class="subtitle">Landing Zone</span>
   </div>
 </header>
-<div class="grid-container">
+<main>
   <mat-grid-list cols="5" rowHeight="700px" gutterSize="10px">
     <mat-grid-tile [colspan]="3" [rowspan]="1">
       <mat-grid-tile-header>{{ wanConfiguration.vpn.projectName }}</mat-grid-tile-header>
@@ -197,7 +197,12 @@
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
+</main>
+
+<div class="app-bottom-action left">
+  <button mat-button color="primary" (click)="back()">
+    <mat-icon>chevron_left</mat-icon>
+    Back
+  </button>
 </div>
-<footer>
-  <button mat-button color="primary" (click)="cancel()"><mat-icon>chevron_left</mat-icon>Back</button>
-</footer>
+<div class="app-bottom-background"></div>
