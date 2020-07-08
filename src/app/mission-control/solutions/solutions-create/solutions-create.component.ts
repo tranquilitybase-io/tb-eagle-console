@@ -27,6 +27,7 @@ export class SolutionsCreateComponent implements OnInit {
   teamList: KeyValue<string, string>[];
 
   solutionForm: FormGroup;
+  workspaceForm: FormGroup;
 
   constructor(
     private store: Store<SolutionsState>,
@@ -49,7 +50,10 @@ export class SolutionsCreateComponent implements OnInit {
       description: ['', Validators.required],
       businessUnitId: ['', Validators.required],
       teamId: ['', Validators.required],
-      costCentre: ['', Validators.required],
+      costCentre: ['', Validators.required]
+    });
+
+    this.workspaceForm = this.formBuilder.group({
       ciId: ['', Validators.required],
       cdId: ['', Validators.required],
       sourceControlId: ['', Validators.required],
@@ -61,13 +65,17 @@ export class SolutionsCreateComponent implements OnInit {
     return this.solutionForm.controls;
   }
 
+  get w() {
+    return this.workspaceForm.controls;
+  }
+
   toggleSolutionPage() {
     this.onPartTwo = !this.onPartTwo;
-
     this.screenNum = this.screenNum == 0 ? (this.screenNum = 1) : (this.screenNum = 0);
   }
 
-  onSubmit(solution) {
+  onSubmit() {
+    let solution = Object.assign(this.solutionForm.value, this.workspaceForm.value);
     this.store.dispatch(createSolution({ solution }));
     this.router.navigateByUrl('/mission-control/solutions');
   }
