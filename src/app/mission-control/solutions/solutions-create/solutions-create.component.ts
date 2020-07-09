@@ -12,21 +12,14 @@ import { createSolution } from '../solutions.actions';
   styleUrls: ['./solutions-create.component.scss']
 })
 export class SolutionsCreateComponent implements OnInit {
-  onPartTwo: boolean = false;
-  screenNum: number = 0;
+  businessUnitList: KeyValue<number, string>[];
+  cdList: KeyValue<number, string>[];
+  ciList: KeyValue<number, string>[];
+  environmentList: KeyValue<number, string>[];
+  sourceControlList: KeyValue<number, string>[];
+  teamList: KeyValue<number, string>[];
 
-  solutionName: string = '';
-  solutionDescription: string = '';
-  solutionBU: string = '';
-
-  businessUnitList: KeyValue<string, string>[];
-  cdList: KeyValue<string, string>[];
-  ciList: KeyValue<string, string>[];
-  environmentList: KeyValue<string, string>[];
-  sourceControlList: KeyValue<string, string>[];
-  teamList: KeyValue<string, string>[];
-
-  solutionForm: FormGroup;
+  detailsForm: FormGroup;
   workspaceForm: FormGroup;
 
   constructor(
@@ -44,7 +37,7 @@ export class SolutionsCreateComponent implements OnInit {
     this.sourceControlList = this.route.snapshot.data['sourceControlList'];
     this.teamList = this.route.snapshot.data['teamList'];
 
-    this.solutionForm = this.formBuilder.group({
+    this.detailsForm = this.formBuilder.group({
       id: 0,
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -57,26 +50,73 @@ export class SolutionsCreateComponent implements OnInit {
       ciId: ['', Validators.required],
       cdId: ['', Validators.required],
       sourceControlId: ['', Validators.required],
-      environments: ['']
+      environments: [[]]
     });
   }
 
   get f() {
-    return this.solutionForm.controls;
+    return this.detailsForm.controls;
   }
 
   get w() {
     return this.workspaceForm.controls;
   }
 
-  toggleSolutionPage() {
-    this.onPartTwo = !this.onPartTwo;
-    this.screenNum = this.screenNum == 0 ? (this.screenNum = 1) : (this.screenNum = 0);
+  onSubmit() {
+    if (this.detailsForm.valid && this.workspaceForm.valid) {
+      let solution = Object.assign(this.detailsForm.value, this.workspaceForm.value);
+      this.store.dispatch(createSolution({ solution }));
+      this.router.navigateByUrl('/mission-control/solutions');
+    } else {
+      this.detailsForm.markAllAsTouched();
+      this.workspaceForm.markAllAsTouched();
+    }
   }
 
-  onSubmit() {
-    let solution = Object.assign(this.solutionForm.value, this.workspaceForm.value);
-    this.store.dispatch(createSolution({ solution }));
-    this.router.navigateByUrl('/mission-control/solutions');
+  get name(): string {
+    return this.detailsForm.get('name').value;
+  }
+
+  get description(): string {
+    return this.detailsForm.get('description').value;
+  }
+
+  get costCentre(): string {
+    return this.detailsForm.get('costCentre').value;
+  }
+
+  get businessUnit(): string {
+    return this.detailsForm.get('businessUnitId').value
+      ? this.businessUnitList.find(x => x.key === this.detailsForm.get('businessUnitId').value).value
+      : '';
+  }
+
+  get team(): string {
+    return this.detailsForm.get('teamId').value
+      ? this.teamList.find(x => x.key === this.detailsForm.get('teamId').value).value
+      : '';
+  }
+
+  get ci(): string {
+    return this.workspaceForm.get('ciId').value
+      ? this.ciList.find(x => x.key === this.workspaceForm.get('ciId').value).value
+      : '';
+  }
+
+  get cd(): string {
+    return this.workspaceForm.get('cdId').value
+      ? this.cdList.find(x => x.key === this.workspaceForm.get('cdId').value).value
+      : '';
+  }
+
+  get sourceControl(): string {
+    return this.workspaceForm.get('sourceControlId').value
+      ? this.sourceControlList.find(x => x.key === this.workspaceForm.get('sourceControlId').value).value
+      : '';
+  }
+
+  get environments(): string[] {
+    const envIds = this.workspaceForm.get('environments').value as number[];
+    return this.environmentList.filter(x => envIds.some(id => id === x.key)).map(x => x.value);
   }
 }

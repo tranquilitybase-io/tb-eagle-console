@@ -1,13 +1,25 @@
 <header>
-  <app-breadcrumbs [cancelActive]="true" [steps]="['Create new solution']"> </app-breadcrumbs>
+  <div>
+    <a mat-button color="primary" routerLink="/mission-control/solutions">
+      <mat-icon class="app-cancel-icon">cancel</mat-icon>
+      Cancel
+    </a>
+  </div>
+
+  <div>
+    <span class="vertical-divider"></span>
+    <span class="title">Create new solution</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">Solutions</span>
+  </div>
 </header>
 
 <mat-horizontal-stepper [linear]="true" #stepper>
-  <mat-step [stepControl]="solutionForm">
+  <mat-step [stepControl]="detailsForm">
     <ng-template matStepLabel>Details</ng-template>
 
-    <form [formGroup]="solutionForm">
-      <div class="solution-details-container" *ngIf="!onPartTwo">
+    <form [formGroup]="detailsForm">
+      <div class="solution-details-container">
         <p>
           <mat-form-field class="small-width" appearance="outline">
             <mat-label>Name</mat-label>
@@ -69,12 +81,11 @@
             <mat-error *ngIf="f.costCentre.errors?.required"> Cost centre is <strong>required</strong> </mat-error>
           </mat-form-field>
         </p>
-
-        <div class="solution-footer-container solution-details-footer-container">
-          <button color="primary" mat-button matStepperNext>Next</button>
-          <!-- <button mat-button color="primary" (click)="toggleSolutionPage()">
-            Continue <mat-icon>keyboard_arrow_right</mat-icon>
-          </button> -->
+        <div class="app-bottom-action right">
+          <button color="primary" mat-button matStepperNext>
+            Next
+            <mat-icon>chevron_right</mat-icon>
+          </button>
         </div>
       </div>
     </form>
@@ -82,7 +93,7 @@
 
   <mat-step [stepControl]="workspaceForm">
     <ng-template matStepLabel>Workspace</ng-template>
-    <form [formGroup]="workspaceForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="workspaceForm">
       <div class="solution-workspace-container">
         <p>
           <mat-form-field appearance="outline">
@@ -124,13 +135,105 @@
           </mat-card>
         </p>
 
-        <div class="solution-footer-container">
-          <button mat-button color="primary" (click)="toggleSolutionPage()">
-            <mat-icon>keyboard_arrow_left</mat-icon> Back to details
+        <div class="app-bottom-action left">
+          <button mat-button color="primary" matStepperPrevious>
+            <mat-icon>chevron_left</mat-icon>
+            Back
           </button>
-          <button mat-button color="primary" type="submit">Continue <mat-icon>keyboard_arrow_right</mat-icon></button>
+        </div>
+        <div class="app-bottom-action right">
+          <button mat-button color="primary" matStepperNext>
+            Next
+            <mat-icon>chevron_right</mat-icon>
+          </button>
         </div>
       </div>
     </form>
   </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Review</ng-template>
+    <mat-grid-list cols="5" rowHeight="700px" gutterSize="10px">
+      <mat-grid-tile [colspan]="3" [rowspan]="1">
+        <mat-grid-tile-header>Details</mat-grid-tile-header>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              {{ name }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ description }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="description-card-content">
+            <mat-list dense class="description-list">
+              <mat-list-item>
+                <div class="mat-body-1">Business Unit</div>
+                <mat-chip-list>
+                  <mat-chip>{{ businessUnit }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Team</div>
+                <mat-chip-list>
+                  <mat-chip>{{ team }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Cost centre</div>
+                <mat-chip-list>
+                  <mat-chip>{{ costCentre }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="2" [rowspan]="1" class="workspace-tile">
+        <mat-grid-tile-header>Workspace</mat-grid-tile-header>
+        <mat-card class="workspace-card primary">
+          <mat-card-content class="workspace-card-content">
+            <div class="mat-h4">
+              CI (Continuous intergration service)
+            </div>
+            <mat-chip-list>
+              <mat-chip>{{ ci }}</mat-chip>
+            </mat-chip-list>
+            <div class="mat-h4">
+              Source Control
+            </div>
+            <mat-chip-list>
+              <mat-chip>{{ sourceControl }}</mat-chip>
+            </mat-chip-list>
+            <div class="mat-h4">
+              CD (Continuous deployment)
+            </div>
+            <mat-chip-list>
+              <mat-chip>{{ cd }}</mat-chip>
+            </mat-chip-list>
+            <div class="mat-h4">
+              Available environments
+            </div>
+            <mat-chip-list>
+              <mat-chip *ngFor="let item of environments">{{ item }}</mat-chip>
+            </mat-chip-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="app-bottom-action left">
+      <button mat-button color="primary" matStepperPrevious>
+        <mat-icon>chevron_left</mat-icon>
+        Back
+      </button>
+    </div>
+    <div class="app-bottom-action right">
+      <button mat-button color="primary" (click)="onSubmit()">
+        Submit
+      </button>
+    </div>
+  </mat-step>
 </mat-horizontal-stepper>
+<div class="app-bottom-background"></div>

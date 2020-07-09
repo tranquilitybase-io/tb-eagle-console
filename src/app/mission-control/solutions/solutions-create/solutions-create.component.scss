@@ -1,16 +1,23 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 header {
-  padding: {
-    top: 1.5rem;
-    left: 2rem;
-    right: 2rem;
-  }
+  padding: 0.3rem 0.5rem;
   background-color: var(--active-grey-background);
+  display: flex;
+  align-items: center;
+
+  span {
+    font-family: 'SF Pro Display', Roboto, 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-size: 20px;
+
+    &.title {
+      font-weight: 800;
+    }
+
+    &.vertical-divider {
+      border-left: 1px solid var(--grey);
+      margin: 0.5rem;
+    }
+  }
 }
 
 .solution-details-container {
@@ -26,6 +33,7 @@ header {
 
   p {
     width: 100%;
+
     .mat-form-field {
       width: 100%;
 
@@ -35,18 +43,6 @@ header {
       }
     }
   }
-}
-
-main {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-content: left;
 }
 
 /* Workspace view */
@@ -63,6 +59,7 @@ main {
 
   p {
     width: 100%;
+
     .mat-form-field {
       width: 30%;
       margin: 1rem;
@@ -70,37 +67,66 @@ main {
   }
 }
 
-.environment-container {
-  display: flex;
-  flex-direction: row;
+.mat-form-field {
+  font-size: 14px;
 }
 
-.workspace-form-container {
-  display: flex;
-  flex-direction: row;
-  flex-flow: row;
-  align-content: left;
-  justify-content: left;
-  align-self: flex-end;
-  margin-bottom: 2rem;
-  p {
-    width: 100%;
+.mat-grid-tile {
+  &.workspace-tile {
+    background-color: var(--active-grey-background);
   }
 }
 
-.solution-details-footer-container,
-.solution-workspace-footer-container {
-  display: flex;
-  padding: 0.3rem 0.5rem;
-  background-color: var(--active-grey-background);
-  justify-content: space-between;
-  align-items: center;
-  bottom: 0;
-  margin-left: -51.5px;
-  margin-right: -51.5px;
-  margin-top: inherit;
+.mat-chip {
+  font-size: 12px;
+  padding: 0.2rem 0.5rem;
+  min-height: 1.5rem;
+  border-radius: 0.2rem;
 }
 
-.mat-form-field {
-  font-size: 14px;
+.mat-grid-list {
+  margin-bottom: 1rem;
+
+  .mat-card {
+    height: 80%;
+    width: 95%;
+
+    &.workspace-card {
+      position: absolute;
+      height: 40%;
+      width: 90%;
+      background-color: var(--active-grey-background);
+
+      &.primary {
+        top: 52px;
+      }
+
+      &.secondary {
+        top: 366px;
+      }
+    }
+
+    .mat-card-content {
+      &.description-card-content {
+        .mat-list {
+          background-color: var(--active-grey-background);
+          padding: 1rem 0;
+
+          .mat-body-1 {
+            width: 16rem;
+          }
+        }
+      }
+
+      &.workspace-card-content {
+        .mat-h4 {
+          margin: 8px 0 8px;
+        }
+      }
+    }
+  }
+}
+
+.mat-stepper-horizontal {
+  margin-bottom: 5rem;
 }

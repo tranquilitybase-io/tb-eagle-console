@@ -1,9 +1,3 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 header {
   .title {
     border-left: 1px solid var(--grey);
@@ -31,7 +25,6 @@ header {
 .alert {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3rem;
   width: 90%;
   text-align: center;
   padding-top: 0.5rem;
@@ -39,22 +32,15 @@ header {
   background-color: #ffe0b2;
 }
 
-.details-container {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  height: calc(100vh - 11rem);
+main {
+  padding: 3rem;
+  margin-bottom: 5rem;
 
   p {
     width: 100%;
 
     .mat-form-field {
       width: 100%;
-      font-size: 14px;
 
       &.small-width {
         width: 30%;
@@ -62,55 +48,6 @@ header {
       }
     }
   }
-}
-
-main {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-content: left;
-}
-
-/* Workspace view */
-
-.workspace-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.environment-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.workspace-form-container {
-  display: flex;
-  flex-direction: row;
-  align-content: left;
-  justify-content: left;
-  align-self: flex-end;
-  margin-bottom: 2rem;
-
-  p {
-    width: 100%;
-  }
-}
-
-.footer-container {
-  display: flex;
-  padding: 0.3rem 0.5rem;
-  background-color: var(--active-grey-background);
-  justify-content: space-between;
-  align-items: center;
-  bottom: 0;
-  margin-left: -51.5px;
-  margin-right: -51.5px;
-  margin-top: inherit;
 }
 
 .part-title {
