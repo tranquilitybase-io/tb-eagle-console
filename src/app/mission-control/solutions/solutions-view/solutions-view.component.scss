@@ -21,11 +21,11 @@ header {
   font-family: SF Pro Display;
   padding: {
     top: 1.5rem;
-    left: 2rem;
+    left: 0.5rem;
     right: 2rem;
     bottom: 1rem;
   }
-  background-color: var(--whitish);
+  background-color: var(--active-grey-background);
 }
 
 app-breadcrumbs {

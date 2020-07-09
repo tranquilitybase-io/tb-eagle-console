@@ -45,10 +45,10 @@
     </mat-list>
   </mat-card-content>
   <mat-card-actions *ngIf="active">
-    <a mat-menu-item routerLink="view" [queryParams]="{ id: user.id }">
+    <a mat-button routerLink="view" [queryParams]="{ id: user.id }">
       View
     </a>
-    <a mat-menu-item routerLink="edit" [queryParams]="{ id: user.id }">
+    <a mat-button routerLink="edit" [queryParams]="{ id: user.id }">
       Edit
     </a>
   </mat-card-actions>

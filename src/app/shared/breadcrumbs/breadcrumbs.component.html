@@ -1,4 +1,7 @@
-<button class="cancel-btn" *ngIf="cancelActive">Cancel</button>
+<button class="cancel-btn" *ngIf="cancelActive">
+  <mat-icon class="app-cancel-icon">cancel</mat-icon>
+  Cancel
+</button>
 <div class="step" *ngFor="let step of steps">
   {{ step }}
 </div>

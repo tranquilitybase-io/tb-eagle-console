@@ -26,27 +26,6 @@ form {
   }
 }
 
-.footer-container {
-  display: flex;
-  flex-direction: row;
-  height: 5rem;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  align-self: flex-end;
-  margin-top: auto;
-
-  &.details-footer-container {
-    justify-content: flex-end;
-  }
-
-  button {
-    font-weight: 600;
-    font-family: 'SF Pro Display';
-    font-size: 16px;
-  }
-}
-
 .mat-form-field {
   font-size: 14px;
 }

@@ -172,4 +172,8 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
   }
 }
 
+.mat-button {
+  font-size: 16px;
+}
+
 @include mix-app-theme($material-custom-theme);
