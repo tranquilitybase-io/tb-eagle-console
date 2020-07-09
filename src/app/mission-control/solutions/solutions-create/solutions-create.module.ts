@@ -14,11 +14,16 @@ import { SourceControlResolver } from '@app/shared/resolvers/source-control.reso
 import { TeamResolver } from '@app/shared/resolvers/team.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const routes: Routes = [
   {
@@ -44,11 +49,16 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatDividerModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule
   ]
 })
 export class SolutionsCreateModule {}

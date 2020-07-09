@@ -10,6 +10,7 @@ import { ActivatorStoreEffects } from './activator-store.effects';
 import { ActivatorStoreComponent } from './activator-store.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -46,7 +47,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
     EffectsModule.forFeature([ActivatorStoreEffects]),
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class ActivatorStoreModule {}

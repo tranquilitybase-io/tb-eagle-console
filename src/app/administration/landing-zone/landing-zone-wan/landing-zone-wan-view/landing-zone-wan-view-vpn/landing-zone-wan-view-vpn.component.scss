@@ -20,10 +20,19 @@ header {
   }
 }
 
-.grid-container {
+main {
   padding-top: 24px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 5rem;
+}
+
+footer {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--active-grey-background);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .mat-chip {

@@ -16,10 +16,6 @@
             <a mat-menu-item routerLink="/mission-control/activator-store/view" [queryParams]="{ id: activator.id }"
               >View</a
             >
-            <a mat-menu-item routerLink="/mission-control/activator-store/details" [queryParams]="{ id: activator.id }"
-              >Details</a
-            >
-
             <button mat-menu-item *ngIf="isLocked && !(userIsAdmin$ | async)" (click)="requestAccess()">
               Request Access
             </button>
@@ -45,11 +41,7 @@
     <mat-card-subtitle>{{ activator.category }}</mat-card-subtitle>
   </mat-card-header>
 
-  <mat-card-content
-    routerLink="/mission-control/activator-store/details"
-    [queryParams]="{ id: activator.id }"
-    title="Details"
-  >
+  <mat-card-content>
     <div class="mat-body-strong">Details</div>
     <mat-list dense class="description-list">
       <mat-list-item>
@@ -94,7 +86,7 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
-    <a mat-stroked-button routerLink="/mission-control/activator-store/view" [queryParams]="{ id: activator.id }">
+    <a mat-button routerLink="/mission-control/activator-store/view" [queryParams]="{ id: activator.id }">
       View
     </a>
     <a

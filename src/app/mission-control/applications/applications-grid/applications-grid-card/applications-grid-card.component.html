@@ -75,7 +75,7 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
-    <a mat-stroked-button routerLink="/mission-control/solutions/view/application" [queryParams]="{ id: app.id }">
+    <a mat-button routerLink="/mission-control/solutions/view/application" [queryParams]="{ id: app.id }">
       View
     </a>
     <div [matTooltip]="!isSolutionDeployed ? 'The solution is not deployed' : ''">
@@ -85,7 +85,8 @@
         color="primary"
         (click)="deploy()"
       >
-        Deploy <mat-icon>chevron_right</mat-icon>
+        Deploy
+        <mat-icon>chevron_right</mat-icon>
       </button>
     </div>
   </mat-card-actions>
