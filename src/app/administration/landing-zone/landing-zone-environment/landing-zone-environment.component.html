@@ -216,11 +216,12 @@
       </mat-expansion-panel>
     </form>
   </mat-accordion>
-  <div class="app-bottom-action right">
-    <button [disabled]="readOnly" mat-button type="button" color="primary" (click)="deploy()">
-      Deploy
-      <mat-icon>chevron_right</mat-icon>
-    </button>
-  </div>
 </main>
-<footer [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"></footer>
+
+<div class="app-bottom-action right">
+  <button [disabled]="readOnly" mat-button type="button" color="primary" (click)="deploy()">
+    Deploy
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>
+<div class="app-bottom-background" [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"></div>
