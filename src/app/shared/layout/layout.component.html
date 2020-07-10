@@ -30,8 +30,9 @@
       </button>
 
       <a mat-button matTooltip="Your notifications" aria-label="Your notifications" [matMenuTriggerFor]="note">
-        <mat-icon matBadge="15" matBadgeColor="warn">notifications</mat-icon>
+        <mat-icon matBadge="{{ notificationCounter }}" matBadgeColor="warn">notifications</mat-icon>
       </a>
+
       <!-- TODO: change mat menu to sth else (?), add list *ngIf -->
       <mat-menu #note="matMenu" xPosition="before">
         <app-notifications></app-notifications>

@@ -16,8 +16,7 @@ export class LayoutComponent implements OnInit {
   userIsAdmin$: Observable<User>;
   showWelcome$: Observable<User>;
   userInitials$: Observable<User>;
-  showNotification: boolean;
-  notificationList: Array<string>;
+
   constructor(private store: Store<any>, public dialog: MatDialog) {}
 
   ngOnInit() {
@@ -36,9 +35,13 @@ export class LayoutComponent implements OnInit {
         }, 400);
       }
     });
+    this.updateNotificationsCount();
   }
 
-  openNotification(state: boolean) {
-    this.showNotification = true;
+  notificationCounter = 0;
+
+  updateNotificationsCount() {
+    // TODO: observable
+    this.notificationCounter = 10;
   }
 }
