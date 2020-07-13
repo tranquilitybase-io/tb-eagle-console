@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotificationData } from './notifications.model';
 import { tap, catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subscription, interval } from 'rxjs';
 import { setNotificationData } from './notifications.actions';
 import { Store } from '@ngrx/store';
 import { NotificationState } from './notifications.reducer';
@@ -12,6 +12,13 @@ import { NotificationState } from './notifications.reducer';
   providedIn: 'root'
 })
 export class NotificationsService {
+  notificationUpdate: Subscription;
+  constructor(private router: Router, private http: HttpClient, private store: Store<NotificationState>) {
+    this.notificationUpdate = interval(8000).subscribe(() => {
+      this.getNotificationData();
+    });
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -25,10 +32,10 @@ export class NotificationsService {
     return throwError('Something bad happened; please try again later.');
   }
 
-  constructor(private router: Router, private http: HttpClient, private store: Store<NotificationState>) {}
   private BASE_URL = `${globalThis.location.origin}/api`;
   getNotificationData(): Observable<NotificationData[]> {
     const url = `${this.BASE_URL}/notifications`;
+
     return this.http.get<NotificationData[]>(url).pipe(
       tap(notification => this.store.dispatch(setNotificationData({ notification }))),
       catchError(this.handleError)

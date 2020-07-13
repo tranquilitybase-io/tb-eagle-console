@@ -19,11 +19,9 @@
             <button mat-menu-item *ngIf="isLocked && !(userIsAdmin$ | async)" (click)="requestAccess()">
               Request Access
             </button>
-            <!-- TO DO: when clicked notification goes to ADMIN -->
             <button mat-menu-item *ngIf="isLocked && (userIsAdmin$ | async)" (click)="grantAccess()">
               Grant Access
             </button>
-            <!-- TO DO: look into activator-store-dialog-grant-access! -->
             <button mat-menu-item *ngIf="isAvailable && (userIsAdmin$ | async)" (click)="setLocked()">
               Lock
             </button>
