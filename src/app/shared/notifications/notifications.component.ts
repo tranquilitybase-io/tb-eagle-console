@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NotificationData } from './notifications.model';
 
 @Component({
   selector: 'app-notifications',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent implements OnInit {
+  @Input() notifications$: Observable<NotificationData[]>;
+
   constructor() {}
 
   ngOnInit() {}

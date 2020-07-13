@@ -147,3 +147,11 @@ h1:hover {
   transition-duration: 310ms;
   transition-delay: 60ms;
 }
+
+::ng-deep .notifications {
+  min-width: fit-content !important;
+
+  .mat-menu-item {
+    display: flex;
+  }
+}

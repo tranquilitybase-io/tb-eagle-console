@@ -33,9 +33,8 @@
         <mat-icon matBadge="{{ notificationCounter }}" matBadgeColor="warn">notifications</mat-icon>
       </a>
 
-      <!-- TODO: change mat menu to sth else (?), add list *ngIf -->
-      <mat-menu #note="matMenu" xPosition="before">
-        <app-notifications></app-notifications>
+      <mat-menu #note="matMenu" xPosition="before" class="notifications">
+        <app-notifications [notifications$]="notifications$"></app-notifications>
       </mat-menu>
       <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps">
         <mat-icon>apps</mat-icon>

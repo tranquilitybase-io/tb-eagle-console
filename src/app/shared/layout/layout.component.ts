@@ -5,6 +5,8 @@ import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
+import { NotificationsService } from '../notifications/notifications.service';
+import { NotificationData } from '../notifications/notifications.model';
 
 @Component({
   selector: 'app-layout',
@@ -16,8 +18,14 @@ export class LayoutComponent implements OnInit {
   userIsAdmin$: Observable<User>;
   showWelcome$: Observable<User>;
   userInitials$: Observable<User>;
+  notifications$: Observable<NotificationData[]>; // name is notificationData because of already existing Notification interface
+  // and this is custom for app notifications.
 
-  constructor(private store: Store<any>, public dialog: MatDialog) {}
+  constructor(
+    private store: Store<any>,
+    public dialog: MatDialog,
+    private notificationsService: NotificationsService
+  ) {}
 
   ngOnInit() {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
@@ -36,6 +44,7 @@ export class LayoutComponent implements OnInit {
       }
     });
     this.updateNotificationsCount();
+    this.notificationsService.getNotificationData();
   }
 
   notificationCounter = 0;
