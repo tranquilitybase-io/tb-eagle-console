@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'edit',
     loadChildren: () => import('./teams-edit/teams-edit.module').then(m => m.TeamsEditModule)
+  },
+  {
+    path: 'view',
+    loadChildren: () => import('./teams-view/teams-view.module').then(m => m.TeamsViewModule)
   }
 ];
 
