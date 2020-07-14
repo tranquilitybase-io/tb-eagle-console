@@ -5,6 +5,13 @@ export class BusinessUnit {
   isActive: boolean;
 }
 
+export class Role {
+  id: number;
+  name: string;
+  description: string;
+  cloudIdentityGroup: string;
+}
+
 export enum DeploymentState {
   Pending = 'PENDING',
   Started = 'STARTED',

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { TeamMembersModule } from '@app/administration/team-members/team-members.module';
 
 import { TeamsViewComponent } from './teams-view.component';
 import { TeamsViewOverviewComponent } from './teams-view-overview/teams-view-overview.component';
-import { TeamsViewTeamMembersComponent } from './teams-view-team-members/teams-view-team-members.component';
 
 import { TeamByIdResolver } from '@app/shared/resolvers/team-by-id.resolver';
+import { TeamMembersByTeamIdResolver } from '@app/shared/resolvers/team-members-by-team-id.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -21,15 +22,17 @@ const routes: Routes = [
     path: '',
     component: TeamsViewComponent,
     resolve: {
-      team: TeamByIdResolver
+      team: TeamByIdResolver,
+      teamMembers: TeamMembersByTeamIdResolver
     }
   }
 ];
 
 @NgModule({
-  declarations: [TeamsViewComponent, TeamsViewOverviewComponent, TeamsViewTeamMembersComponent],
+  declarations: [TeamsViewComponent, TeamsViewOverviewComponent],
   imports: [
     CommonModule,
+    TeamMembersModule,
     RouterModule.forChild(routes),
     MatButtonModule,
     MatCardModule,
