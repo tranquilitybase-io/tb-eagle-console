@@ -27,7 +27,6 @@ export class UsersEditComponent implements OnInit {
 
     this.userForm = this.formBuilder.group({
       id: this.user.id,
-      isAdmin: true,
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
       email: [this.user.email, [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]]
