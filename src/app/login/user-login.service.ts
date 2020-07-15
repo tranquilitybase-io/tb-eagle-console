@@ -34,7 +34,7 @@ export class UserLoginService {
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${id_token}`);
 
-    return this.http.post<User>(url, null, { headers });
+    return this.http.post<User>(url, {}, { headers });
   }
 
   loginSuccess(user: User): void {
