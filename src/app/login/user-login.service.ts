@@ -44,6 +44,7 @@ export class UserLoginService {
   }
 
   loginFailure(): void {
+    globalThis.gapi.auth2.getAuthInstance().signOut();
     this.router.navigateByUrl('/login');
   }
 

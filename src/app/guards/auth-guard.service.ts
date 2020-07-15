@@ -13,6 +13,7 @@ export class AuthGuardService implements CanActivate {
   canActivate() {
     return this.store.pipe(select(selectIsAuthenticated)).pipe(
       map(isAuthenticated => {
+        if (!isAuthenticated && globalThis.gapi) globalThis.gapi.auth2.getAuthInstance().signOut();
         return isAuthenticated || this.router.parseUrl('/login');
       })
     );

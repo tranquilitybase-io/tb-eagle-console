@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -17,7 +18,7 @@ export class LayoutComponent implements OnInit {
   showWelcome$: Observable<User>;
   userInitials$: Observable<User>;
 
-  constructor(private store: Store<any>, public dialog: MatDialog) {}
+  constructor(private store: Store<any>, public dialog: MatDialog, private router: Router) {}
 
   ngOnInit() {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
@@ -35,5 +36,10 @@ export class LayoutComponent implements OnInit {
         }, 400);
       }
     });
+  }
+
+  logout() {
+    globalThis.gapi.auth2.getAuthInstance().signOut();
+    this.router.navigateByUrl('/login');
   }
 }

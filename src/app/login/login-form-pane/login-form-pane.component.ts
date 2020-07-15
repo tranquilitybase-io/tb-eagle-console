@@ -35,15 +35,11 @@ export class LoginFormPaneComponent implements OnInit, AfterViewInit {
     this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
   }
 
-  onSubmit($event: Event) {
+  onSubmit() {
     this.store.dispatch(loginActions.login({ username: this.userName, password: this.userPassword }));
-    // this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
-
-    // $event.preventDefault();
   }
 
   onGoogleSuccess(googleUser) {
-    console.log(googleUser.getAuthResponse().id_token);
     this.store.dispatch(loginActions.googleLogin({ id_token: googleUser.getAuthResponse().id_token }));
   }
 
