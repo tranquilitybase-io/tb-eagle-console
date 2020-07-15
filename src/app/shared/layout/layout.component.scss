@@ -149,9 +149,5 @@ h1:hover {
 }
 
 ::ng-deep .notifications {
-  min-width: fit-content !important;
-
-  .mat-menu-item {
-    display: flex;
-  }
+  min-width: 350px !important;
 }

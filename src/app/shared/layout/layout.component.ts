@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { NotificationsService } from '../notifications/notifications.service';
 import { NotificationData } from '../notifications/notifications.model';
+import { notificationsReducer } from '../notifications/notifications.reducer';
 
 @Component({
   selector: 'app-layout',
@@ -44,13 +45,12 @@ export class LayoutComponent implements OnInit {
       }
     });
     this.updateNotificationsCount();
-    this.notificationsService.getNotificationData();
+    // this.notificationsService.getNotificationData();
   }
 
   notificationCounter = 0;
 
   updateNotificationsCount() {
-    // TODO: observable
     this.notificationCounter = 10;
   }
 }
