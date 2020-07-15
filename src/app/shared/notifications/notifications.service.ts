@@ -15,7 +15,7 @@ export class NotificationsService {
   notificationUpdate: Subscription;
   constructor(private router: Router, private http: HttpClient, private store: Store<NotificationState>) {
     this.notificationUpdate = interval(8000).subscribe(() => {
-      this.getNotificationData();
+      this.getNotificationData().subscribe();
     });
   }
 
@@ -34,7 +34,7 @@ export class NotificationsService {
 
   private BASE_URL = `${globalThis.location.origin}/api`;
   getNotificationData(): Observable<NotificationData[]> {
-    const url = `${this.BASE_URL}/notifications`;
+    const url = `${this.BASE_URL}/notifications/`;
 
     return this.http.get<NotificationData[]>(url).pipe(
       tap(notification => this.store.dispatch(setNotificationData({ notification }))),
