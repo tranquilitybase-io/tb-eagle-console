@@ -28,6 +28,15 @@ export class UserLoginService {
     return this.http.post<User>(url, params, { headers });
   }
 
+  googleLogin(id_token: string): Observable<User> {
+    const url = `${this.BASE_URL}/login`;
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${id_token}`);
+
+    return this.http.post<User>(url, null, { headers });
+  }
+
   loginSuccess(user: User): void {
     if (user.isAdmin) this.router.navigateByUrl('/administration/landing-zone');
     else if (!user.teams.length) this.router.navigateByUrl('/administration/teams');

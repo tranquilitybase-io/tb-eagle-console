@@ -7,6 +7,8 @@ export const loginSuccess = createAction('[login-form-pane component] login-succ
 
 export const loginFailure = createAction('[login-form-pane component] login-failure');
 
+export const googleLogin = createAction('[login-form-pane component] googleLogin', props<{ id_token: string }>());
+
 export const updateShowWelcome = createAction(
   '[login-form-pane component] login-update-show-welcome',
   props<{ userId: number; showWelcome: boolean }>()

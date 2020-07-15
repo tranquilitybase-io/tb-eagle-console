@@ -24,6 +24,18 @@ export class LoginEffects {
     )
   );
 
+  googleLogin$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(LoginActions.googleLogin),
+      exhaustMap(action =>
+        this.LoginService.googleLogin(action.id_token).pipe(
+          map(user => LoginActions.loginSuccess({ user })),
+          catchError(error => of(LoginActions.loginFailure()))
+        )
+      )
+    )
+  );
+
   loginSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
