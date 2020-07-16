@@ -13,7 +13,12 @@ export class AdminGuardService implements CanActivate {
   canActivate() {
     return this.store.pipe(select(selectUserIsAdmin)).pipe(
       map(isAdmin => {
-        if (!isAdmin && globalThis.gapi) globalThis.gapi.auth2.getAuthInstance().signOut();
+        if (!isAdmin) {
+          if (globalThis.gapi && globalThis.gapi.auth2) {
+            globalThis.gapi.auth2.getAuthInstance().signOut();
+            localStorage.clear();
+          }
+        }
         return isAdmin || this.router.parseUrl('/login');
       })
     );

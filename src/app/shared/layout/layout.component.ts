@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '@app/login/login.model';
 import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,9 +13,9 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
   isExpanded = true;
-  userIsAdmin$: Observable<User>;
-  showWelcome$: Observable<User>;
-  userInitials$: Observable<User>;
+  userIsAdmin$: Observable<boolean>;
+  userInitials$: Observable<string>;
+  showWelcome$: Observable<boolean>;
 
   constructor(private store: Store<any>, public dialog: MatDialog, private router: Router) {}
 
@@ -39,7 +38,10 @@ export class LayoutComponent implements OnInit {
   }
 
   logout() {
-    globalThis.gapi.auth2.getAuthInstance().signOut();
-    this.router.navigateByUrl('/login');
+    if (globalThis.gapi && globalThis.gapi.auth2) {
+      globalThis.gapi.auth2.getAuthInstance().signOut();
+    }
+    localStorage.clear();
+    setTimeout(() => this.router.navigateByUrl('/login'), 200);
   }
 }

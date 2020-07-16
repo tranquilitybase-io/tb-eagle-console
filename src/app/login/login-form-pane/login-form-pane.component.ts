@@ -40,7 +40,8 @@ export class LoginFormPaneComponent implements OnInit, AfterViewInit {
   }
 
   onGoogleSuccess(googleUser) {
-    this.store.dispatch(loginActions.googleLogin({ id_token: googleUser.getAuthResponse().id_token }));
+    localStorage.setItem('id_token', googleUser.getAuthResponse().id_token);
+    document.getElementById('google-login-success').click();
   }
 
   googleLoginInit() {
@@ -50,7 +51,7 @@ export class LoginFormPaneComponent implements OnInit, AfterViewInit {
       height: 50,
       longtitle: true,
       theme: 'dark',
-      onsuccess: googleUser => this.onGoogleSuccess(googleUser)
+      onsuccess: this.onGoogleSuccess
       // 'onfailure': onFailure
     });
   }

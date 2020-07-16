@@ -1,5 +1,6 @@
 import { Action, createReducer, on, createSelector } from '@ngrx/store';
 import { loginSuccess, loginFailure } from './login.actions';
+import { User } from './login.model';
 
 export const loginFeatureKey = 'login-reducer';
 
@@ -13,8 +14,15 @@ export const initialState: State = {
 
 const loginReducer = createReducer(
   initialState,
-  on(loginSuccess, (state, { user }) => ({ ...state, user, isAuthenticated: true })),
-  on(loginFailure, state => ({ ...state, user: undefined, isAuthenticated: false }))
+  on(loginSuccess, (state, { user }) => {
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('isAuthenticated', 'True');
+    return state;
+  }),
+  on(loginFailure, state => {
+    localStorage.clear();
+    return state;
+  })
 );
 
 export function reducer(state: State, action: Action) {
@@ -22,14 +30,29 @@ export function reducer(state: State, action: Action) {
 }
 
 export const selectFeature = state => state[loginFeatureKey];
-export const selectIsAuthenticated = createSelector(selectFeature, ({ isAuthenticated }) => isAuthenticated);
-export const selectUser = createSelector(selectFeature, ({ user }) => user);
-export const selectUserIsAdmin = createSelector(selectFeature, ({ user }) => user && user.isAdmin);
-export const selectUserName = createSelector(selectFeature, ({ user }) => user && user.firstName);
-export const selectUserTeams = createSelector(selectFeature, ({ user }) => user && user.teams);
-export const selectUserInitials = createSelector(
+export const selectIsAuthenticated = createSelector(
   selectFeature,
-  ({ user }) => user && user.firstName[0] + user.lastName[0]
+  () => localStorage.getItem('isAuthenticated') === 'True'
 );
-export const selectShowWelcome = createSelector(selectFeature, ({ user }) => user && user.showWelcome);
-export const selectUserId = createSelector(selectFeature, ({ user }) => user && user.id);
+export const selectUser = createSelector(selectFeature, () => JSON.parse(localStorage.getItem('user')) as User);
+export const selectUserIsAdmin = createSelector(
+  selectFeature,
+  () => (JSON.parse(localStorage.getItem('user')) as User).isAdmin
+);
+export const selectUserName = createSelector(
+  selectFeature,
+  () => (JSON.parse(localStorage.getItem('user')) as User).firstName
+);
+export const selectUserTeams = createSelector(
+  selectFeature,
+  () => (JSON.parse(localStorage.getItem('user')) as User).teams as string[]
+);
+export const selectUserInitials = createSelector(selectFeature, () => {
+  const user = JSON.parse(localStorage.getItem('user')) as User;
+  return user.firstName[0] + user.lastName[0];
+});
+export const selectShowWelcome = createSelector(
+  selectFeature,
+  () => (JSON.parse(localStorage.getItem('user')) as User).showWelcome
+);
+export const selectUserId = createSelector(selectFeature, () => (JSON.parse(localStorage.getItem('user')) as User).id);
