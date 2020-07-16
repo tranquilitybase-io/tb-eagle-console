@@ -17,7 +17,7 @@ const loginReducer = createReducer(
   on(loginSuccess, (state, { user }) => {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('isAuthenticated', 'True');
-    return state;
+    return { ...state, user, isAuthenticated: true };
   }),
   on(loginFailure, state => {
     localStorage.clear();
@@ -32,7 +32,7 @@ export function reducer(state: State, action: Action) {
 export const selectFeature = state => state[loginFeatureKey];
 export const selectIsAuthenticated = createSelector(
   selectFeature,
-  () => localStorage.getItem('isAuthenticated') === 'True'
+  ({ isAuthenticated }) => isAuthenticated || localStorage.getItem('isAuthenticated') === 'True'
 );
 export const selectUser = createSelector(selectFeature, () => JSON.parse(localStorage.getItem('user')) as User);
 export const selectUserIsAdmin = createSelector(
