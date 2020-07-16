@@ -6,8 +6,12 @@ import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/l
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { NotificationsService } from '../notifications/notifications.service';
-import { NotificationData } from '../notifications/notifications.model';
-import { notificationsReducer } from '../notifications/notifications.reducer';
+import { NotificationData, NotificationMetaData } from '../notifications/notifications.model';
+import {
+  notificationsReducer,
+  selectNotificationMetaData,
+  selectNotificationData
+} from '../notifications/notifications.reducer';
 
 @Component({
   selector: 'app-layout',
@@ -19,16 +23,18 @@ export class LayoutComponent implements OnInit {
   userIsAdmin$: Observable<User>;
   showWelcome$: Observable<User>;
   userInitials$: Observable<User>;
-  notifications$: Observable<NotificationData[]>; // name is notificationData because of already existing Notification interface
-  // and this is custom for app notifications.
+  notifications$: Observable<NotificationData[]>;
+  notificationCount$: Observable<NotificationMetaData[]>;
 
-  constructor(
-    private store: Store<any>,
-    public dialog: MatDialog,
-    private notificationsService: NotificationsService
-  ) {}
+  constructor(private store: Store<any>, public dialog: MatDialog, private notificationsService: NotificationsService) {
+    this.store.pipe(select(selectNotificationMetaData)).subscribe(notificationMetaData => {
+      this.notificationCount$ = notificationMetaData; // ?
+    });
+  }
 
   ngOnInit() {
+    this.notificationCount$ = this.store.pipe(select(selectNotificationMetaData));
+    this.notifications$ = this.store.pipe(select(selectNotificationData));
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.userInitials$ = this.store.pipe(select(selectUserInitials));
     this.showWelcome$ = this.store.pipe(select(selectShowWelcome));
@@ -44,13 +50,5 @@ export class LayoutComponent implements OnInit {
         }, 400);
       }
     });
-    this.updateNotificationsCount();
-    // this.notificationsService.getNotificationData();
-  }
-
-  notificationCounter = 0;
-
-  updateNotificationsCount() {
-    this.notificationCounter = 10;
   }
 }

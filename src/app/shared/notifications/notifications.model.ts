@@ -8,3 +8,7 @@ export interface NotificationData {
   message: string;
   toUserId: number;
 }
+
+export interface NotificationMetaData {
+  count: number;
+}

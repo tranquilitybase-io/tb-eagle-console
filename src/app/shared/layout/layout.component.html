@@ -30,7 +30,7 @@
       </button>
 
       <a mat-button matTooltip="Your notifications" aria-label="Your notifications" [matMenuTriggerFor]="note">
-        <mat-icon matBadge="{{ notificationCounter }}" matBadgeColor="warn">notifications</mat-icon>
+        <mat-icon matBadge="{{ notificationCount$ }}" matBadgeColor="warn">notifications</mat-icon>
       </a>
 
       <mat-menu #note="matMenu" xPosition="before" class="notifications">

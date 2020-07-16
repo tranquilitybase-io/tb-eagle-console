@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NotificationData } from './notifications.model';
+import { NotificationData, NotificationMetaData } from './notifications.model';
 import { tap, catchError } from 'rxjs/operators';
 import { Observable, throwError, Subscription, interval } from 'rxjs';
-import { setNotificationData } from './notifications.actions';
+import { setNotificationData, setNotificationMetaData } from './notifications.actions';
 import { Store } from '@ngrx/store';
 import { NotificationState } from './notifications.reducer';
 
@@ -16,6 +16,7 @@ export class NotificationsService {
   constructor(private router: Router, private http: HttpClient, private store: Store<NotificationState>) {
     this.notificationUpdate = interval(8000).subscribe(() => {
       this.getNotificationData().subscribe();
+      this.getNotificationMetaData().subscribe();
     });
   }
 
@@ -38,6 +39,15 @@ export class NotificationsService {
 
     return this.http.get<NotificationData[]>(url).pipe(
       tap(notification => this.store.dispatch(setNotificationData({ notification }))),
+      catchError(this.handleError)
+    );
+  }
+
+  getNotificationMetaData(): Observable<NotificationMetaData[]> {
+    const url = `${this.BASE_URL}/notificationsMeta/`;
+
+    return this.http.get<NotificationMetaData[]>(url).pipe(
+      tap(notificationCount => this.store.dispatch(setNotificationMetaData({ notificationCount }))),
       catchError(this.handleError)
     );
   }
