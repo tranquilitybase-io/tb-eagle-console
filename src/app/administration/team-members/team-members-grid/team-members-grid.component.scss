@@ -4,10 +4,6 @@
   padding: 0.5rem 0.3rem;
   font-size: 0.875rem;
 
-  app-icon {
-    margin: 0 1rem;
-  }
-
   .head-title {
     flex: auto;
   }
@@ -16,6 +12,11 @@
 .mat-elevation-z8 {
   margin: 1rem;
   margin-top: 0;
+}
+
+td,
+th {
+  width: 20%;
 }
 
 tbody tr td {
@@ -44,11 +45,6 @@ table {
 .mat-form-field {
   font-size: 14px;
   width: 100%;
-}
-
-td,
-th {
-  width: 20%;
 }
 
 .add-new-btn {
