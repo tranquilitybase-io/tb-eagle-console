@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TeamMembersGridComponent } from './team-members-grid/team-members-grid.component';
-import { TeamMembersViewComponent } from './team-members-view/team-members-view.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,7 +12,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  declarations: [TeamMembersGridComponent, TeamMembersViewComponent],
+  declarations: [TeamMembersGridComponent],
   imports: [
     CommonModule,
     MatButtonModule,
