@@ -22,6 +22,11 @@ const routes: Routes = [
   {
     path: 'view',
     loadChildren: () => import('./teams-view/teams-view.module').then(m => m.TeamsViewModule)
+  },
+  {
+    path: 'create-team-member',
+    loadChildren: () =>
+      import('../team-members/team-members-create/team-members-create.module').then(m => m.TeamMembersCreateModule)
   }
 ];
 
