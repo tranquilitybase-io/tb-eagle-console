@@ -25,7 +25,6 @@ export class UsersCreateComponent implements OnInit {
   ngOnInit() {
     this.userForm = this.formBuilder.group({
       id: 0,
-      isAdmin: true,
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]]
