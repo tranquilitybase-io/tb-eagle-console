@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Activator } from '../../activator-store.model';
+import { Activator, ActivatorCI } from '../../activator-store.model';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setProgress } from '../../activator-store.actions';
@@ -46,6 +46,10 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
     ];
   }
 
+  get ci() {
+    return (this.activator.ci as ActivatorCI[]).map(ci => ci.value);
+  }
+
   get deploymentOptions(): Property[] {
     return [
       {
@@ -66,7 +70,7 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
       },
       {
         name: 'CI (Continious integration)',
-        value: this.activator.ci
+        value: this.ci
       },
       {
         name: 'CD (Continious deployment)',

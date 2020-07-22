@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Activator } from '@app/mission-control/activator-store/activator-store.model';
 import { Observable } from 'rxjs';
-import { User } from '@app/login/login.model';
 import { KeyValue } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,7 +19,7 @@ import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/a
 export class ActivatorStoreHomeGridCardComponent implements OnInit {
   @Input() activator: Activator;
   active = false;
-  userIsAdmin$: Observable<User>;
+  userIsAdmin$: Observable<boolean>;
 
   private statusColorMap: Map<string, string>;
   private teamList: KeyValue<string, string>[];

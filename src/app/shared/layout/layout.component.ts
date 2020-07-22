@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '@app/login/login.model';
 import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,6 +11,7 @@ import {
   selectNotificationMetaData,
   selectNotificationData
 } from '../notifications/notifications.reducer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -20,13 +20,18 @@ import {
 })
 export class LayoutComponent implements OnInit {
   isExpanded = true;
-  userIsAdmin$: Observable<User>;
-  showWelcome$: Observable<User>;
-  userInitials$: Observable<User>;
-  notifications$: Observable<NotificationData[]>;
   notificationCount$: Observable<NotificationMetaData[]>;
+  notifications$: Observable<NotificationData[]>;
+  showWelcome$: Observable<boolean>;
+  userInitials$: Observable<string>;
+  userIsAdmin$: Observable<boolean>;
 
-  constructor(private store: Store<any>, public dialog: MatDialog, private notificationsService: NotificationsService) {
+  constructor(
+    private store: Store<any>,
+    public dialog: MatDialog,
+    private router: Router,
+    private notificationsService: NotificationsService
+  ) {
     this.store.pipe(select(selectNotificationMetaData)).subscribe(notificationMetaData => {
       this.notificationCount$ = notificationMetaData; // ?
     });
@@ -50,5 +55,13 @@ export class LayoutComponent implements OnInit {
         }, 400);
       }
     });
+  }
+
+  logout() {
+    if (globalThis.gapi && globalThis.gapi.auth2) {
+      globalThis.gapi.auth2.getAuthInstance().signOut();
+    }
+    localStorage.clear();
+    setTimeout(() => this.router.navigateByUrl('/login'), 200);
   }
 }

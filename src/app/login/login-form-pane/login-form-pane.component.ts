@@ -1,6 +1,6 @@
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { UserLoginService } from '@app/login/user-login.service';
 import * as loginActions from '../login.actions';
 import { State, selectIsAuthenticated } from '../login.reducer';
@@ -11,7 +11,7 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: './login-form-pane.component.html',
   styleUrls: ['./login-form-pane.component.scss']
 })
-export class LoginFormPaneComponent implements OnInit {
+export class LoginFormPaneComponent implements OnInit, AfterViewInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   pwdFormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
   userName: string;
@@ -31,12 +31,32 @@ export class LoginFormPaneComponent implements OnInit {
 
   constructor(private uls: UserLoginService, private store: Store<State>) {}
 
-  ngOnInit() {}
-
-  onSubmit($event: Event) {
-    this.store.dispatch(loginActions.login({ username: this.userName, password: this.userPassword }));
+  ngOnInit() {
     this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
+  }
 
-    $event.preventDefault();
+  onSubmit() {
+    this.store.dispatch(loginActions.login({ username: this.userName, password: this.userPassword }));
+  }
+
+  onGoogleSuccess(googleUser) {
+    localStorage.setItem('id_token', googleUser.getAuthResponse().id_token);
+    document.getElementById('google-login-success').click();
+  }
+
+  googleLoginInit() {
+    globalThis.gapi.signin2.render('my-signin2', {
+      scope: 'profile email',
+      width: 240,
+      height: 50,
+      longtitle: true,
+      theme: 'dark',
+      onsuccess: this.onGoogleSuccess
+      // 'onfailure': onFailure
+    });
+  }
+
+  ngAfterViewInit() {
+    this.googleLoginInit();
   }
 }

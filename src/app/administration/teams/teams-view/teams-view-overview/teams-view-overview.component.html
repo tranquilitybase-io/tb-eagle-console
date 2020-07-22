@@ -1,0 +1,45 @@
+<mat-grid-list cols="5" rowHeight="400px">
+  <mat-grid-tile [colspan]="5" [rowspan]="1">
+    <mat-grid-tile-header>Team details</mat-grid-tile-header>
+    <mat-grid-list class="internal-mat-grid" cols="2" rowHeight="400px">
+      <mat-grid-tile [colspan]="2" [rowspan]="3">
+        <mat-card class="dashboard-card">
+          <mat-card-content class="dashboard-card-content">
+            <mat-list dense class="description-list">
+              <mat-list-item>
+                <div class="mat-body-1">Name</div>
+                <mat-chip-list>
+                  <mat-chip>{{ team.name }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Description</div>
+                <mat-chip-list>
+                  <mat-chip>{{ team.description }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Business unit</div>
+                <mat-chip-list>
+                  <mat-chip>{{ team.businessUnit.name }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Users</div>
+                <mat-chip-list>
+                  <mat-chip>{{ team.userCount }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Last updated</div>
+                <mat-chip-list>
+                  <mat-chip>{{ team.lastUpdated | date }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-grid-tile>
+</mat-grid-list>

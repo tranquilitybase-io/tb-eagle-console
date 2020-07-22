@@ -24,7 +24,7 @@
 </ng-container>
 
 <ng-template #dev>
-  <ng-container *ngIf="!userTeams$ | async; else inTeam">
+  <ng-container *ngIf="!(userTeams$ | async).length; else inTeam">
     <h1 mat-dialog-title class="mcm-msg">
       Welcome, <b class="red-reader">{{ selectUser$ | async }}</b> to the Eagle Console
     </h1>

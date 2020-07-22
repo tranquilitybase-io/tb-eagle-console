@@ -13,10 +13,9 @@ import { updateShowWelcome } from '@app/login/login.actions';
 })
 export class WelcomeComponent implements OnInit {
   checkWelcome = false;
-  userIsAdmin$: Observable<User>;
-  selectUser$: Observable<User>;
-  showWelcome$: Observable<User>;
-  userTeams$: Observable<User>;
+  userIsAdmin$: Observable<boolean>;
+  selectUser$: Observable<string>;
+  userTeams$: Observable<string[]>;
   userId: number;
 
   constructor(private store: Store<any>) {}

@@ -17,13 +17,15 @@ export class UserLoginService {
     this.isAuthenticated = setLogin;
   }
 
-  login(userName, userPassword): Observable<User> {
+  login(username: string, password: string): Observable<User> {
     const url = `${this.BASE_URL}/login`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const params = {
-      username: userName,
-      password: userPassword
-    };
+    const params = { username, password };
+
+    const id_token = localStorage.getItem('id_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: id_token ? `Bearer ${id_token}` : ''
+    });
 
     return this.http.post<User>(url, params, { headers });
   }
@@ -35,7 +37,11 @@ export class UserLoginService {
   }
 
   loginFailure(): void {
-    this.router.navigateByUrl('/login');
+    if (globalThis.gapi && globalThis.gapi.auth2) {
+      globalThis.gapi.auth2.getAuthInstance().signOut();
+    }
+    localStorage.clear();
+    setTimeout(() => this.router.navigateByUrl('/login'), 200);
   }
 
   updateShowWelcome(userId: number, showWelcome: boolean): void {

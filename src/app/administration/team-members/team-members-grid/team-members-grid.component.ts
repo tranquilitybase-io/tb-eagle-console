@@ -1,31 +1,36 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Application } from '../applications.model';
+import { TeamMember } from '../team-members.model';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
-  selector: 'app-applications-deployments',
-  templateUrl: './applications-deployments.component.html',
-  styleUrls: ['./applications-deployments.component.scss']
+  selector: 'app-team-members-grid',
+  templateUrl: './team-members-grid.component.html',
+  styleUrls: ['./team-members-grid.component.scss']
 })
-export class ApplicationsDeploymentsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'env', 'status', 'description'];
-  dataSource: MatTableDataSource<Application>;
+export class TeamMembersGridComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'isActive', 'isTeamAdmin', 'role', 'userInfo'];
+  dataSource: MatTableDataSource<{}>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-
   constructor(private route: ActivatedRoute) {
     this.dataSource = new MatTableDataSource([]);
   }
 
   ngOnInit() {
-    const applications = this.route.snapshot.data['applications'] as Application[];
-    this.dataSource = new MatTableDataSource(applications);
+    const teamMembers = this.route.snapshot.data['teamMembers'] as TeamMember[];
+    const teamMembersDataSource = teamMembers.map(tm => ({
+      ...tm,
+      roleInfo: `${tm.role.name}/${tm.role.cloudIdentityGroup}`,
+      userInfo: `${tm.user.firstName} ${tm.user.lastName} <${tm.user.email}>`
+    }));
+    this.dataSource = new MatTableDataSource(teamMembersDataSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

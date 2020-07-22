@@ -14,6 +14,11 @@ export interface Resource {
   ipAddress: string;
 }
 
+export interface ActivatorCI {
+  id: number;
+  value: string;
+}
+
 export interface Activator {
   id: number;
   name: string;
@@ -31,7 +36,7 @@ export interface Activator {
   userCapacity: number;
   serverCapacity: number;
   regions: string[];
-  ci: string[];
+  ci: string[] | ActivatorCI[];
   cd: string[];
   hosting: string[];
   apiManagement: string[];

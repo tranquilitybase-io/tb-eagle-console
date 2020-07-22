@@ -45,16 +45,7 @@
       <mat-menu #menu="matMenu" xPosition="before">
         <a mat-menu-item> <mat-icon>account_circle</mat-icon>Account </a>
         <a mat-menu-item> <mat-icon>help</mat-icon>Help me </a>
-        <a
-          mat-menu-item
-          routerlink="/login"
-          href="/login"
-          routerlinkactive="active"
-          ng-reflect-router-link="/login"
-          ng-reflect-router-link-active="active"
-        >
-          <mat-icon>run_circle</mat-icon>Log out
-        </a>
+        <button mat-menu-item (click)="logout()"><mat-icon>run_circle</mat-icon>Log out</button>
       </mat-menu>
     </div>
   </mat-toolbar-row>
