@@ -9,15 +9,17 @@ import {
   dismissDeploymentReadyAlert,
   setSelectedSolution,
   discardSelectedSolution,
-  updateSolution
+  updateSolution,
+  setSolutionDeploymentsData
 } from './solutions.actions';
-import { Solution } from './solutions.model';
+import { Solution, SolutionDeployment } from './solutions.model';
 
 export const intialState = {
   solutions: [{}],
   visibilityFilter: 'Favourites',
   dismissAlmostReady: false,
-  isDeploymentReady: false
+  isDeploymentReady: false,
+  solutionDeploymentsData: []
 };
 
 export interface SolutionsState {
@@ -25,6 +27,7 @@ export interface SolutionsState {
   visibilityFilter: string;
   dismissAlmostReady: boolean;
   isDeploymentReady: boolean;
+  solutionDeploymentsData: SolutionDeployment[];
 }
 export const solutionFeatureKey = 'solution-landing';
 
@@ -54,7 +57,13 @@ export const solutionsReducer = createReducer(
   on(updateDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
   on(dismissDeploymentReadyAlert, state => ({ ...state, isDeploymentReady: false })),
   on(dismissAlmostReadyAlert, state => ({ ...state, dismissAlmostReady: true })),
-  on(updateSolution, (state, { solution }) => ({ ...state, selectedSolution: solution }))
+  on(updateSolution, (state, { solution }) => ({ ...state, selectedSolution: solution })),
+  on(setSolutionDeploymentsData, (state, { solutionDeploymentsData }) => {
+    if (JSON.stringify(solutionDeploymentsData) !== JSON.stringify(state.solutionDeploymentsData)) {
+      return { ...state, solutionDeploymentsData };
+    }
+    return state;
+  })
 );
 
 export default function reducer(state, action) {
@@ -86,4 +95,9 @@ export const selectIsAlmostReady = createSelector(
 export const selectSelectedSolution = createSelector(selectFeature, state => state && state['selectedSolution']);
 export const selectIsSelectedSolution = createSelector(selectFeature, state =>
   Boolean(state && state['selectedSolution'])
+);
+
+export const selectSolutionDeploymentsData = createSelector(
+  selectFeature,
+  state => state && state.solutionDeploymentsData
 );

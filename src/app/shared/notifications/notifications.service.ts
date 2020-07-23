@@ -2,18 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Notification, NotificationsMeta } from './notifications.model';
-import { tap, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { setNotificationsData, setNotificationsMetaData } from './notifications.actions';
+import { setNotificationsData } from './notifications.actions';
 import { Store } from '@ngrx/store';
 import { NotificationState } from './notifications.reducer';
+import { SolutionsService } from '@app/mission-control/solutions/solutions.service';
+import { setSolutionDeploymentsData } from '@app/mission-control/solutions/solutions.actions';
+import { ApplicationsService } from '@app/mission-control/applications/applications.service';
+import { setApplicationDeploymentsData } from '@app/mission-control/applications/applications.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
   notificationUpdate: any;
-  constructor(private router: Router, private http: HttpClient, private store: Store<NotificationState>) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private store: Store<NotificationState>,
+    private solutionsService: SolutionsService,
+    private applicationsService: ApplicationsService
+  ) {}
 
   pollingInitAll() {
     this.notificationUpdate = setInterval(() => {
@@ -23,6 +33,20 @@ export class NotificationsService {
       // this.getNotificationMetaData().subscribe(notificationsMetaData =>
       //   this.store.dispatch(setNotificationsMetaData({ notificationsMetaData }))
       // );
+      if (this.router.url.includes('/mission-control/solutions')) {
+        this.solutionsService
+          .getDeployments()
+          .subscribe(solutionDeploymentsData =>
+            this.store.dispatch(setSolutionDeploymentsData({ solutionDeploymentsData }))
+          );
+        if (this.router.url.includes('/mission-control/solutions/view')) {
+          this.applicationsService
+            .getDeployments()
+            .subscribe(applicationDeploymentsData =>
+              this.store.dispatch(setApplicationDeploymentsData({ applicationDeploymentsData }))
+            );
+        }
+      }
     }, 8000);
   }
 

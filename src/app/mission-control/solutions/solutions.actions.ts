@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Solution } from './solutions.model';
+import { Solution, SolutionDeployment } from './solutions.model';
 
 export const setSolutions = createAction(
   'setSolutions [Solutions]',
@@ -21,3 +21,8 @@ export const dismissAlmostReadyAlert = createAction('[solutions-creation] Stop s
 export const dismissDeploymentReadyAlert = createAction('[solutions-creation] Stop showing off deployment ready alert');
 
 export const updateSolution = createAction('[solutions-edit] update-solution', props<{ solution: Solution }>());
+
+export const setSolutionDeploymentsData = createAction(
+  '[Solutions] setSolutionDeploymentsData',
+  props<{ solutionDeploymentsData: SolutionDeployment[] }>()
+);

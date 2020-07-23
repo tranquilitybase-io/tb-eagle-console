@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Solution } from '../solutions.model';
 import { Observable } from 'rxjs';
 import { SolutionsService } from '../solutions.service';
-import { SolutionsState, selectIsDeploymentReady } from '../solutions.reducer';
+import { SolutionsState, selectIsDeploymentReady, selectSolutionDeploymentsData } from '../solutions.reducer';
 import { Store, select } from '@ngrx/store';
 import { dismissDeploymentReadyAlert } from '../solutions.actions';
 import { MatSnackBar } from '@angular/material';
@@ -45,6 +45,9 @@ export class SolutionsHomeComponent implements OnInit {
             this.store.dispatch(dismissDeploymentReadyAlert());
           });
       }
+    });
+    this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
+      this.solutionsService.getAll();
     });
   }
 

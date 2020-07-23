@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Application } from './applications.model';
+import { Application, ApplicationDeployment } from './applications.model';
 
 export const createApplication = createAction(
   '[Applications] create-application',
@@ -17,4 +17,9 @@ export const updateDeploymentProgressApp = createAction(
 export const stopDeploymentApp = createAction('[Applications Deploy] Stop Deployment', props<{ name: string }>());
 export const dismissDeploymentAppReadyAlert = createAction(
   '[Applications Deploy] Stop showing off deployment ready alert'
+);
+
+export const setApplicationDeploymentsData = createAction(
+  '[Applications Deploy] setApplicationDeploymentsData',
+  props<{ applicationDeploymentsData: ApplicationDeployment[] }>()
 );
