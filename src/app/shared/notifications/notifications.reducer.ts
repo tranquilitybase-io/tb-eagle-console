@@ -1,29 +1,29 @@
-import { NotificationData, NotificationMetaData } from './notifications.model';
-import { setNotificationData, setNotificationMetaData } from './notifications.actions';
+import { Notification, NotificationsMeta } from './notifications.model';
+import { setNotificationsData, setNotificationsMetaData } from './notifications.actions';
 import { on, createReducer, createSelector } from '@ngrx/store';
 
 export const intialState = {
-  notification: [],
-  notificationCount: []
+  notificationsData: [],
+  notificationsMetaData: { count: 0 }
 };
 
 export interface NotificationState {
-  notification: NotificationData[];
-  notificationCount: NotificationMetaData[];
+  notificationsData: Notification[];
+  notificationsMetaData: NotificationsMeta;
 }
 export const featureKey = 'notifications';
 export const selectFeature = state => state[featureKey];
 
 export const notificationsReducer = createReducer(
   intialState,
-  on(setNotificationData, (state, { notification }) => ({ ...state, notification })),
-  on(setNotificationMetaData, (state, { notificationCount }) => ({ ...state, notificationCount }))
+  on(setNotificationsData, (state, { notificationsData }) => ({ ...state, notificationsData })),
+  on(setNotificationsMetaData, (state, { notificationsMetaData }) => ({ ...state, notificationsMetaData }))
 );
 
 export const selectNotificationData = createSelector(selectFeature, state =>
-  state ? state.notification : ([] as NotificationData[])
+  state ? state.notificationsData : ([] as Notification[])
 );
 
 export const selectNotificationMetaData = createSelector(selectFeature, state =>
-  state ? state.notificationCount : ([] as NotificationMetaData[])
+  state ? state.setNotificationsMetaData : ({} as NotificationsMeta)
 );

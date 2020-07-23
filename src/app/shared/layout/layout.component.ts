@@ -5,12 +5,8 @@ import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/l
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { NotificationsService } from '../notifications/notifications.service';
-import { NotificationData, NotificationMetaData } from '../notifications/notifications.model';
-import {
-  notificationsReducer,
-  selectNotificationMetaData,
-  selectNotificationData
-} from '../notifications/notifications.reducer';
+import { Notification, NotificationsMeta } from '../notifications/notifications.model';
+import { selectNotificationMetaData, selectNotificationData } from '../notifications/notifications.reducer';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,8 +16,8 @@ import { Router } from '@angular/router';
 })
 export class LayoutComponent implements OnInit {
   isExpanded = true;
-  notificationCount$: Observable<NotificationMetaData[]>;
-  notifications$: Observable<NotificationData[]>;
+  notificationMetaData$: Observable<NotificationsMeta>;
+  notifications$: Observable<Notification[]>;
   showWelcome$: Observable<boolean>;
   userInitials$: Observable<string>;
   userIsAdmin$: Observable<boolean>;
@@ -30,15 +26,12 @@ export class LayoutComponent implements OnInit {
     private store: Store<any>,
     public dialog: MatDialog,
     private router: Router,
-    private notificationsService: NotificationsService
-  ) {
-    this.store.pipe(select(selectNotificationMetaData)).subscribe(notificationMetaData => {
-      this.notificationCount$ = notificationMetaData; // ?
-    });
-  }
+    private notificationService: NotificationsService
+  ) {}
 
   ngOnInit() {
-    this.notificationCount$ = this.store.pipe(select(selectNotificationMetaData));
+    this.notificationService.pollingInitAll();
+    this.notificationMetaData$ = this.store.pipe(select(selectNotificationMetaData));
     this.notifications$ = this.store.pipe(select(selectNotificationData));
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.userInitials$ = this.store.pipe(select(selectUserInitials));
@@ -62,6 +55,7 @@ export class LayoutComponent implements OnInit {
       globalThis.gapi.auth2.getAuthInstance().signOut();
     }
     localStorage.clear();
+    this.notificationService.pollingKillAll();
     setTimeout(() => this.router.navigateByUrl('/login'), 200);
   }
 }

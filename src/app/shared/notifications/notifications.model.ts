@@ -1,4 +1,4 @@
-export interface NotificationData {
+export interface Notification {
   activatorId: number;
   fromUserId: number;
   id: number;
@@ -9,6 +9,6 @@ export interface NotificationData {
   toUserId: number;
 }
 
-export interface NotificationMetaData {
+export interface NotificationsMeta {
   count: number;
 }

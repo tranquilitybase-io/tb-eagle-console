@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NotificationData, NotificationMetaData } from './notifications.model';
+import { Notification, NotificationsMeta } from './notifications.model';
 import { tap, catchError } from 'rxjs/operators';
-import { Observable, throwError, Subscription, interval } from 'rxjs';
-import { setNotificationData, setNotificationMetaData } from './notifications.actions';
+import { Observable, throwError } from 'rxjs';
+import { setNotificationsData, setNotificationsMetaData } from './notifications.actions';
 import { Store } from '@ngrx/store';
 import { NotificationState } from './notifications.reducer';
 
@@ -12,12 +12,22 @@ import { NotificationState } from './notifications.reducer';
   providedIn: 'root'
 })
 export class NotificationsService {
-  notificationUpdate: Subscription;
-  constructor(private router: Router, private http: HttpClient, private store: Store<NotificationState>) {
-    this.notificationUpdate = interval(8000).subscribe(() => {
-      this.getNotificationData().subscribe();
-      this.getNotificationMetaData().subscribe();
-    });
+  notificationUpdate: any;
+  constructor(private router: Router, private http: HttpClient, private store: Store<NotificationState>) {}
+
+  pollingInitAll() {
+    this.notificationUpdate = setInterval(() => {
+      this.getNotificationData().subscribe(notificationsData =>
+        this.store.dispatch(setNotificationsData({ notificationsData }))
+      );
+      // this.getNotificationMetaData().subscribe(notificationsMetaData =>
+      //   this.store.dispatch(setNotificationsMetaData({ notificationsMetaData }))
+      // );
+    }, 8000);
+  }
+
+  pollingKillAll() {
+    clearInterval(this.notificationUpdate);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -34,21 +44,15 @@ export class NotificationsService {
   }
 
   private BASE_URL = `${globalThis.location.origin}/api`;
-  getNotificationData(): Observable<NotificationData[]> {
+  getNotificationData(): Observable<Notification[]> {
     const url = `${this.BASE_URL}/notifications/`;
 
-    return this.http.get<NotificationData[]>(url).pipe(
-      tap(notification => this.store.dispatch(setNotificationData({ notification }))),
-      catchError(this.handleError)
-    );
+    return this.http.get<Notification[]>(url).pipe(catchError(this.handleError));
   }
 
-  getNotificationMetaData(): Observable<NotificationMetaData[]> {
+  getNotificationMetaData(): Observable<NotificationsMeta> {
     const url = `${this.BASE_URL}/notificationsMeta/`;
 
-    return this.http.get<NotificationMetaData[]>(url).pipe(
-      tap(notificationCount => this.store.dispatch(setNotificationMetaData({ notificationCount }))),
-      catchError(this.handleError)
-    );
+    return this.http.get<NotificationsMeta>(url).pipe(catchError(this.handleError));
   }
 }

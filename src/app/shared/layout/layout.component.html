@@ -9,10 +9,13 @@
       <button mat-button matTooltip="Search" aria-label="Search">
         <mat-icon>search</mat-icon>
       </button>
+
       <button mat-button matTooltip="Add" aria-label="Add">
         <mat-icon>add</mat-icon>
       </button>
+
       <span class="spacer"></span>
+
       <a
         mat-button
         matTooltip="TB channel"
@@ -22,26 +25,31 @@
       >
         <img src="assets/icons/slack.svg" height="24" width="24" alt="Slack" />
       </a>
+
       <button mat-button matTooltip="Your messages" aria-label="Your messages">
         <mat-icon>question_answer</mat-icon>
       </button>
+
       <button mat-button matTooltip="Share" aria-label="Share">
         <mat-icon>share</mat-icon>
       </button>
 
       <a mat-button matTooltip="Your notifications" aria-label="Your notifications" [matMenuTriggerFor]="note">
-        <mat-icon matBadge="{{ notificationCount$ }}" matBadgeColor="warn">notifications</mat-icon>
+        <mat-icon [matBadge]="(notificationMetaData$ | async).count || ''" matBadgeColor="warn">
+          notifications
+        </mat-icon>
       </a>
-
-      <mat-menu #note="matMenu" xPosition="before" class="notifications">
+      <mat-menu *ngIf="(notificationMetaData$ | async).count" #note="matMenu" xPosition="before" class="notifications">
         <app-notifications [notifications$]="notifications$"></app-notifications>
       </mat-menu>
+
       <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps">
         <mat-icon>apps</mat-icon>
       </a>
-      <a mat-button [matMenuTriggerFor]="menu" matTooltip="Your account" aria-label="Your account"
-        ><span class="user-initials">{{ userInitials$ | async }}</span></a
-      >
+
+      <a mat-button [matMenuTriggerFor]="menu" matTooltip="Your account" aria-label="Your account">
+        <span class="user-initials">{{ userInitials$ | async }}</span>
+      </a>
       <mat-menu #menu="matMenu" xPosition="before">
         <a mat-menu-item> <mat-icon>account_circle</mat-icon>Account </a>
         <a mat-menu-item> <mat-icon>help</mat-icon>Help me </a>
