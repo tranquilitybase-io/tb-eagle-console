@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-header [class.is-deployed]="isDeploymentStateSuccess || (deployed$ | async)">
+  <mat-card-header [ngClass]="{ 'is-success': isDeploymentStateSuccess, 'is-failure': isDeploymentStateFailure }">
     <mat-card-title>
       <div class="card-actions-bar">
         <button mat-icon-button>
@@ -19,7 +19,7 @@
     </mat-card-title>
   </mat-card-header>
 
-  <mat-card-content *ngIf="!(deploymentInProgress$ | async)">
+  <mat-card-content *ngIf="!isDeploymentInProgress">
     <div class="mat-body-strong">Details</div>
     <mat-list dense class="description-list">
       <mat-list-item>
@@ -43,16 +43,9 @@
     </mat-list>
   </mat-card-content>
 
-  <mat-card-content *ngIf="deploymentInProgress$ | async" class="spinner">
+  <mat-card-content *ngIf="isDeploymentInProgress" class="spinner">
     <div class="mat-body">Deployment</div>
-    <mat-progress-spinner
-      color="primary"
-      mode="indeterminate"
-      diameter="150"
-      strokeWidth="5"
-      [value]="percentage$ | async"
-    >
-    </mat-progress-spinner>
+    <mat-progress-spinner color="primary" mode="indeterminate" diameter="150" strokeWidth="5"> </mat-progress-spinner>
   </mat-card-content>
 
   <mat-card-footer *ngIf="!active">
@@ -66,7 +59,7 @@
       View
     </a>
     <button
-      [disabled]="isDeploymentStateSuccess || (deployed$ | async) || (deploymentInProgress$ | async)"
+      [disabled]="isDeploymentStateSuccess || isDeploymentInProgress"
       mat-button
       color="primary"
       (click)="deploy(); clicked = true"
