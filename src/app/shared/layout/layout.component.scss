@@ -148,6 +148,6 @@ h1:hover {
   transition-delay: 60ms;
 }
 
-::ng-deep .notifications {
-  min-width: 350px !important;
+.notifications {
+  min-width: 350px;
 }
