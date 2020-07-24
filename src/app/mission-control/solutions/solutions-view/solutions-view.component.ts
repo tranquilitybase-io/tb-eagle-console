@@ -7,6 +7,7 @@ import { DeploymentState } from '@app/shared/shared.model';
 import { SolutionsService } from '../solutions.service';
 import { Store, select } from '@ngrx/store';
 import { selectSolutionDeploymentsData } from '../solutions.reducer';
+import { selectApplicationDeploymentsData } from '@app/mission-control/applications/applications.reducer';
 
 @Component({
   selector: 'app-solutions-view',
@@ -30,12 +31,13 @@ export class SolutionsViewComponent implements OnInit {
     this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
       this.updateSolutionData();
     });
-    // this.store.pipe(select(selectApplicationDeploymentsData)).subscribe(() => {
-    //   this.updateSolutionData();
-    // });
+    this.store.pipe(select(selectApplicationDeploymentsData)).subscribe(() => {
+      this.updateSolutionData();
+    });
   }
 
   updateSolutionData() {
+    console.log(this.route.snapshot.queryParamMap.get('id'));
     this.solutionsService.getByKey(this.route.snapshot.queryParamMap.get('id')).subscribe(solution => {
       this.solution = solution;
     });

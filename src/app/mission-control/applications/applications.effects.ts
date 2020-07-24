@@ -1,77 +1,30 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap, mergeMap, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
 import { ApplicationsService } from './applications.service';
-import range from '@app/shared/utils/range';
-import {
-  createApplication,
-  stopDeploymentApp,
-  startDeployApplication,
-  updateDeploymentProgressApp
-} from './applications.actions';
-
-function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
-  return new Observable(observer => {
-    let i = 0;
-
-    function tick() {
-      console.log(i, values[i]);
-
-      if (i < values.length) {
-        observer.next(values[i]);
-
-        if (i === values.length - 1) {
-          observer.complete();
-
-          return;
-        }
-
-        i++;
-        setTimeout(tick, delay);
-      }
-    }
-
-    tick();
-  });
-}
+import { createApplication, startDeployment } from './applications.actions';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class ApplicationsEffects {
-  constructor(
-    private store: Store<any>,
-    private actions$: Actions,
-    private service: ApplicationsService,
-    private zone: NgZone
-  ) {}
+  constructor(private actions$: Actions, private service: ApplicationsService) {}
 
   createApplication$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(createApplication),
-        tap(action => {
-          this.service.createApplication(action.application);
+        tap(({ application }) => {
+          this.service.createApplication(application);
         })
       ),
     { dispatch: false }
   );
 
-  deploymentsApp$ = createEffect(() =>
-    this.zone.runOutsideAngular(() =>
+  startDeployment$ = createEffect(
+    () =>
       this.actions$.pipe(
-        ofType(startDeployApplication),
-        tap(action => this.service.deployApplication(Number(action.id))),
-        // This part of code mocks up deployment process
-        mergeMap(({ name }) =>
-          emitRangeDelayed(range(0, 100, 2), 300).pipe(
-            tap(console.log),
-            map(progressApp =>
-              progressApp >= 100 ? stopDeploymentApp({ name }) : updateDeploymentProgressApp({ name, progressApp })
-            )
-          )
-        )
-      )
-    )
+        ofType(startDeployment),
+        tap(({ id }) => this.service.deployApplication(id))
+      ),
+    { dispatch: false }
   );
 }

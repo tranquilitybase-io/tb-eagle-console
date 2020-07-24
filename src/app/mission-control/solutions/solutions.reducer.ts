@@ -9,7 +9,6 @@ import {
 import { Solution, SolutionDeployment } from './solutions.model';
 
 export const intialState = {
-  solutions: [],
   dismissAlmostReady: false,
   isDeploymentReady: false,
   solutionDeploymentsData: [],
@@ -21,7 +20,6 @@ export interface SolutionsState {
   isDeploymentReady: boolean;
   selectedSolution: Solution;
   solutionDeploymentsData: SolutionDeployment[];
-  solutions: Solution[];
 }
 export const solutionFeatureKey = 'solutions';
 
@@ -43,7 +41,6 @@ export default function reducer(state, action) {
 }
 
 export const selectFeature = state => state[solutionFeatureKey];
-export const selectVisibleSolutions = createSelector(selectFeature, ({ solutions }) => solutions);
 export const selectSelectedSolution = createSelector(selectFeature, state => state && state.selectedSolution);
 export const selectIsSelectedSolution = createSelector(selectFeature, state =>
   Boolean(state && state.selectedSolution)
