@@ -15,3 +15,8 @@ export class Application {
   activator: Activator;
   deploymentState: DeploymentState;
 }
+
+export class ApplicationDeployment {
+  id?: number;
+  deploymentState: DeploymentState;
+}

@@ -18,8 +18,12 @@
     background-color: var(--active-grey-background);
     border-radius: 10px 10px 0px 0px;
 
-    &.is-deployed {
+    &.is-success {
       background: #c2e6cd;
+    }
+
+    &.is-failure {
+      background: #e6c2c2;
     }
 
     .mat-card-subtitle {

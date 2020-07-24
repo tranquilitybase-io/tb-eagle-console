@@ -32,7 +32,6 @@ import { SharedService } from './shared.service';
 import { ApplicationsService } from '@app/mission-control/applications/applications.service';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -40,6 +39,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     SwitchesComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    NotificationsComponent
   ],
   entryComponents: [
     AppIsDeployedComponent,
@@ -92,7 +94,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatBadgeModule
   ],
   exports: [
     AlertComponent,
@@ -117,7 +122,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    MatDialogModule,
+    MatBadgeModule
   ]
 })
 export class SharedModule {}

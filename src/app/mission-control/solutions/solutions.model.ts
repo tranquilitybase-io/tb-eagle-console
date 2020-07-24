@@ -30,3 +30,8 @@ export class Solution {
   team: Team;
   lastUpdated: string;
 }
+
+export class SolutionDeployment {
+  id?: number;
+  deploymentState: DeploymentState;
+}

@@ -1,13 +1,10 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Solution } from '@app/mission-control/solutions/solutions.model';
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import { selectDeployed, selectInProgress, selectProgress } from '@app/mission-control/solutions/solutions.reducer';
-import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
-import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
-import { MatSnackBar } from '@angular/material';
-import { MatDialog } from '@angular/material/dialog';
 import { DeploymentState } from '@app/shared/shared.model';
+import { MatSnackBar } from '@angular/material';
+import { Solution } from '@app/mission-control/solutions/solutions.model';
+import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
+import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-solutions-home-grid-card',
@@ -19,18 +16,9 @@ export class SolutionsHomeGridCardComponent implements OnInit {
 
   active = false;
 
-  deploymentInProgress$: Observable<boolean>;
-  deployed$: Observable<boolean>;
-  percentage$: Observable<number>;
+  constructor(private store: Store<any>, private snackBar: MatSnackBar) {}
 
-  constructor(private store: Store<any>, private dialog: MatDialog, private snackBar: MatSnackBar) {}
-
-  ngOnInit() {
-    this.deploymentInProgress$ = this.store.pipe(select(selectInProgress(this.solution.id.toString())));
-    this.deployed$ = this.store.pipe(select(selectDeployed(this.solution.id.toString())));
-
-    this.percentage$ = this.store.pipe(select(selectProgress(this.solution.id.toString())));
-  }
+  ngOnInit() {}
 
   @HostListener('mouseover')
   onMouseOver() {
@@ -44,10 +32,22 @@ export class SolutionsHomeGridCardComponent implements OnInit {
 
   deploy() {
     this.snackBar.openFromComponent(SolutionUnderCreationComponent);
-    this.store.dispatch(startDeployment({ name: String(this.solution.id) }));
+    this.store.dispatch(startDeployment({ id: this.solution.id }));
+  }
+
+  get isDeploymentInProgress() {
+    return (
+      this.solution.deploymentState === DeploymentState.Pending ||
+      this.solution.deploymentState === DeploymentState.Started ||
+      this.solution.deploymentState === DeploymentState.Retry
+    );
   }
 
   get isDeploymentStateSuccess(): boolean {
     return this.solution.deploymentState === DeploymentState.Success;
+  }
+
+  get isDeploymentStateFailure(): boolean {
+    return this.solution.deploymentState === DeploymentState.Failure;
   }
 }
