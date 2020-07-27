@@ -5,6 +5,7 @@ import { Application, ApplicationDeployment } from './applications.model';
 import { Router } from '@angular/router';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { setApplicationDeploymentsData } from './applications.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,7 @@ export class ApplicationsService extends EntityCollectionServiceBase<Application
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(url, { id }, { headers }).subscribe(
       (val: Application) => {
+        this.store.dispatch(setApplicationDeploymentsData({ applicationDeploymentsData: null }));
         console.log('POST call successful value returned in body', val);
       },
       response => {
