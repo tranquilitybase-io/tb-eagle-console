@@ -10,7 +10,11 @@
       </button>
     </mat-grid-tile>
     <mat-grid-tile *ngFor="let app of apps" colspan="1" rowspan="1">
-      <app-applications-grid-card class="application-grid-card" [app]="app"></app-applications-grid-card>
+      <app-applications-grid-card
+        class="application-grid-card"
+        [app]="app"
+        [isSolutionDeployed]="isSolutionDeployed"
+      ></app-applications-grid-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

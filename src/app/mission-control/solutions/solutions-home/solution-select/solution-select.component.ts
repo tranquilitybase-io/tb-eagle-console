@@ -20,7 +20,7 @@ export class SolutionSelectComponent implements OnInit {
   ngOnInit() {
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
 
-    this.onGroupSwitch(this.route.snapshot.queryParams.categorySwitch || 'Favourites');
+    this.onGroupSwitch(this.route.snapshot.queryParams.categorySwitch || 'Actives');
   }
 
   onGroupSwitch(value: string) {

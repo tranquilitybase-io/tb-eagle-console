@@ -12,111 +12,228 @@
     ]"
   >
   </app-breadcrumbs>
-  <app-progress [steps]="['Details', 'Workspace']" [current]="screenNum"> </app-progress>
 </header>
-<form [formGroup]="solutionForm" (ngSubmit)="onSubmit(solutionForm.value)">
-  <div class="solution-details-container" *ngIf="!onPartTwo">
-    <p>
-      <mat-form-field class="small-width" appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput required type="text" maxlength="30" formControlName="name" placeholder="E.g. project name..." />
-        <mat-error *ngIf="f.name.errors?.required"> Name is <strong>required</strong> </mat-error>
-      </mat-form-field>
-    </p>
 
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Description</mat-label>
-        <textarea
-          matInput
-          required
-          #desctext
-          maxlength="200"
-          formControlName="description"
-          placeholder="Type your description here..."
-        ></textarea>
-        <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
-        <mat-error *ngIf="f.description.errors?.required"> Description is <strong>required</strong> </mat-error>
-      </mat-form-field>
-    </p>
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="detailsForm">
+    <ng-template matStepLabel>Details</ng-template>
 
-    <p>
-      <mat-form-field class="small-width" appearance="outline">
-        <mat-label>Business unit</mat-label>
-        <mat-select required formControlName="businessUnitId">
-          <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
-        </mat-select>
-        <mat-error *ngIf="f.businessUnitId.errors?.required"> Business unit is <strong>required</strong> </mat-error>
-      </mat-form-field>
-      <mat-form-field class="small-width" appearance="outline">
-        <mat-label>Team</mat-label>
-        <mat-select required formControlName="teamId">
-          <mat-option *ngFor="let item of teamList" [value]="item.key"> {{ item.value }} </mat-option>
-        </mat-select>
-        <mat-error *ngIf="f.teamId.errors?.required"> Team is <strong>required</strong> </mat-error>
-      </mat-form-field>
-      <mat-form-field class="small-width" appearance="outline">
-        <mat-label>Cost centre</mat-label>
-        <input
-          matInput
-          required
-          type="text"
-          maxlength="50"
-          formControlName="costCentre"
-          placeholder="XXX-123-456-YYY"
-        />
-        <mat-error *ngIf="f.costCentre.errors?.required"> Cost centre is <strong>required</strong> </mat-error>
-      </mat-form-field>
-    </p>
+    <form [formGroup]="detailsForm">
+      <div class="solution-details-container">
+        <p>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              maxlength="30"
+              formControlName="name"
+              placeholder="E.g. project name..."
+            />
+            <mat-error *ngIf="f.name.errors?.required"> Name is <strong>required</strong> </mat-error>
+          </mat-form-field>
+        </p>
 
-    <div class="solution-footer-container solution-details-footer-container">
-      <button mat-button color="primary" (click)="toggleSolutionPage()">
-        Continue <mat-icon>keyboard_arrow_right</mat-icon>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              required
+              #desctext
+              maxlength="200"
+              formControlName="description"
+              placeholder="Type your description here..."
+            ></textarea>
+            <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+            <mat-error *ngIf="f.description.errors?.required"> Description is <strong>required</strong> </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>Business unit</mat-label>
+            <mat-select required formControlName="businessUnitId">
+              <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.businessUnitId.errors?.required">
+              Business unit is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>Team</mat-label>
+            <mat-select required formControlName="teamId">
+              <mat-option *ngFor="let item of teamList" [value]="item.key"> {{ item.value }} </mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.teamId.errors?.required"> Team is <strong>required</strong> </mat-error>
+          </mat-form-field>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>Cost centre</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              maxlength="50"
+              formControlName="costCentre"
+              placeholder="XXX-123-456-YYY"
+            />
+            <mat-error *ngIf="f.costCentre.errors?.required"> Cost centre is <strong>required</strong> </mat-error>
+          </mat-form-field>
+        </p>
+        <div class="app-bottom-action right">
+          <button color="primary" mat-button matStepperNext>
+            Next
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="workspaceForm">
+    <ng-template matStepLabel>Workspace</ng-template>
+    <form [formGroup]="workspaceForm">
+      <div class="solution-workspace-container">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>CI (Continuous intergration service)</mat-label>
+            <mat-select required formControlName="ciId">
+              <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.ciId.errors?.required">
+              Continuous integration service is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Source Control</mat-label>
+            <mat-select required formControlName="sourceControlId">
+              <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.sourceControlId.errors?.required">
+              Source control is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CD (Continuous deployment)</mat-label>
+            <mat-select required formControlName="cdId">
+              <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.cdId.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-card>
+            <span class="mat-subheading-1">Available environments</span>
+            <mat-divider></mat-divider>
+            <mat-selection-list formControlName="environments">
+              <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
+                {{ item.value }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card>
+        </p>
+
+        <div class="app-bottom-action left">
+          <button mat-button color="primary" matStepperPrevious>
+            <mat-icon>chevron_left</mat-icon>
+            Back
+          </button>
+        </div>
+        <div class="app-bottom-action right">
+          <button mat-button color="primary" matStepperNext>
+            Next
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Review</ng-template>
+    <mat-grid-list cols="5" rowHeight="700px" gutterSize="10px">
+      <mat-grid-tile [colspan]="3" [rowspan]="1">
+        <mat-grid-tile-header>Details</mat-grid-tile-header>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              {{ name }}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ description }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="description-card-content">
+            <mat-list dense class="description-list">
+              <mat-list-item>
+                <div class="mat-body-1">Business Unit</div>
+                <mat-chip-list>
+                  <mat-chip>{{ businessUnit }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Team</div>
+                <mat-chip-list>
+                  <mat-chip>{{ team }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Cost centre</div>
+                <mat-chip-list>
+                  <mat-chip>{{ costCentre }}</mat-chip>
+                </mat-chip-list>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="2" [rowspan]="1" class="workspace-tile">
+        <mat-grid-tile-header>Workspace</mat-grid-tile-header>
+        <mat-card class="workspace-card primary">
+          <mat-card-content class="workspace-card-content">
+            <div class="mat-h4">
+              CI (Continuous intergration service)
+            </div>
+            <mat-chip-list>
+              <mat-chip>{{ ci }}</mat-chip>
+            </mat-chip-list>
+            <div class="mat-h4">
+              Source Control
+            </div>
+            <mat-chip-list>
+              <mat-chip>{{ sourceControl }}</mat-chip>
+            </mat-chip-list>
+            <div class="mat-h4">
+              CD (Continuous deployment)
+            </div>
+            <mat-chip-list>
+              <mat-chip>{{ cd }}</mat-chip>
+            </mat-chip-list>
+            <div class="mat-h4">
+              Available environments
+            </div>
+            <mat-chip-list>
+              <mat-chip *ngFor="let item of environments">{{ item }}</mat-chip>
+            </mat-chip-list>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="app-bottom-action left">
+      <button mat-button color="primary" matStepperPrevious>
+        <mat-icon>chevron_left</mat-icon>
+        Back
       </button>
     </div>
-  </div>
-
-  <div class="solution-workspace-container" *ngIf="onPartTwo">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>CI (Continuous intergration service)</mat-label>
-        <mat-select required formControlName="ci">
-          <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="f.ci.errors?.required">
-          Continuous integration service is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Source Control</mat-label>
-        <mat-select required formControlName="sourceControl">
-          <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="f.sourceControl.errors?.required"> Source control is <strong>required</strong> </mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>CD (Continuous deployment)</mat-label>
-        <mat-select required formControlName="cd">
-          <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="f.cd.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
-      </mat-form-field>
-    </p>
-
-    <p>
-      <span class="mat-subheading-1">Available environments</span>
-      <mat-selection-list formControlName="environments">
-        <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
-          {{ item.value }}
-        </mat-list-option>
-      </mat-selection-list>
-    </p>
-
-    <div class="solution-footer-container">
-      <button mat-button color="primary" (click)="toggleSolutionPage()">
-        <mat-icon>keyboard_arrow_left</mat-icon> Back to details
+    <div class="app-bottom-action right">
+      <button mat-button color="primary" (click)="onSubmit()">
+        Submit
       </button>
-      <button mat-button color="primary" type="submit">Continue <mat-icon>keyboard_arrow_right</mat-icon></button>
     </div>
-  </div>
-</form>
+  </mat-step>
+</mat-horizontal-stepper>
+<div class="app-bottom-background"></div>

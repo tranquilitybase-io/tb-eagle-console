@@ -18,13 +18,13 @@
       [mat-dialog-close]="true"
     >
       Get started
-      <mat-icon>keyboard_arrow_right</mat-icon>
+      <mat-icon>chevron_right</mat-icon>
     </button>
   </mat-dialog-actions>
 </ng-container>
 
 <ng-template #dev>
-  <ng-container *ngIf="!userTeams$ | async; else inTeam">
+  <ng-container *ngIf="!(userTeams$ | async).length; else inTeam">
     <h1 mat-dialog-title class="mcm-msg">
       Welcome, <b class="red-reader">{{ selectUser$ | async }}</b> to the Eagle Console
     </h1>
@@ -39,12 +39,13 @@
       <button
         mat-button
         routerLink="/administration/teams"
+        [queryParams]="{ groupSwitch: 'Actives' }"
         routerLinkActive="active"
         class="mcm-link"
         (click)="setShowWelcome(!checkWelcome)"
         [mat-dialog-close]="true"
       >
-        <mat-icon>group</mat-icon> &nbsp;Teams <mat-icon>keyboard_arrow_right</mat-icon>
+        <mat-icon>group</mat-icon> &nbsp;Teams <mat-icon>chevron_right</mat-icon>
       </button>
     </mat-dialog-actions>
   </ng-container>
@@ -69,12 +70,13 @@
       <button
         mat-button
         routerLink="/mission-control/solutions"
+        [queryParams]="{ groupSwitch: 'Actives' }"
         routerLinkActive="active"
         class="mcm-link"
         (click)="setShowWelcome(!checkWelcome)"
         [mat-dialog-close]="true"
       >
-        <mat-icon>filter_none</mat-icon> &nbsp;Solutions <mat-icon>keyboard_arrow_right</mat-icon>
+        <mat-icon>filter_none</mat-icon> &nbsp;Solutions <mat-icon>chevron_right</mat-icon>
       </button>
     </mat-dialog-actions>
   </ng-container>

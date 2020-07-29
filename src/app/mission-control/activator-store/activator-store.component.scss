@@ -5,15 +5,13 @@
 }
 
 header {
-  padding: {
-    top: 1.5rem;
-    left: 2rem;
-    right: 2rem;
-  }
+  padding: 1.5rem 2rem 2rem 0;
   background-color: var(--active-grey-background);
+
   .create-new-app-title {
     display: flex;
     align-items: center;
+
     .title {
       border-left: 1px solid var(--grey);
       margin-left: 0.5rem;
@@ -25,7 +23,27 @@ header {
 }
 
 .sub-header {
-  background-color: var(--light-grey);
-  padding: 1rem 2rem;
-  font-weight: 600;
+  background-color: var(--active-grey-background);
+
+  .vertical-divider {
+    border-left: 1px solid var(--grey);
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .sub-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  display: flex;
+  text-align: center;
+  font-family: 'SF Pro Display', Arial, Helvetica, sans-serif;
+
+  padding: {
+    top: 1.5rem;
+    left: 2rem;
+    right: 2rem;
+    bottom: 1rem;
+  }
 }

@@ -11,6 +11,7 @@ import { SolutionsViewSelectComponent } from './solutions-view-select/solutions-
 import { SolutionsViewWorkspaceInfoComponent } from './solutions-view-workspace-info/solutions-view-workspace-info.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -31,6 +32,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [SolutionsViewComponent, SolutionsViewSelectComponent, SolutionsViewWorkspaceInfoComponent],
-  imports: [CommonModule, SharedModule, ApplicationsModule, RouterModule.forChild(routes), MatButtonModule]
+  imports: [
+    CommonModule,
+    SharedModule,
+    ApplicationsModule,
+    RouterModule.forChild(routes),
+    MatButtonModule,
+    MatIconModule
+  ]
 })
 export class SolutionsViewModule {}

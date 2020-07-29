@@ -1,10 +1,13 @@
 <header>
   <div>
-    <a mat-button color="primary" routerLink="/administration/users"> Cancel </a>
+    <a mat-button color="primary" routerLink="/administration/users">
+      <mat-icon class="app-cancel-icon">cancel</mat-icon>
+      Cancel
+    </a>
   </div>
   <div>
     <span class="vertical-divider"></span>
-    <span class="title">Create new user</span>
+    <span class="title">Edit</span>
     <span class="vertical-divider"></span>
     <span class="subtitle">User</span>
   </div>
@@ -56,7 +59,7 @@
         </mat-error>
       </mat-form-field>
     </p>
-    <div class="lz-environment-action right">
+    <div class="app-bottom-action right">
       <button mat-button color="primary">
         Update User
         <mat-icon>chevron_right</mat-icon>
@@ -64,4 +67,4 @@
     </div>
   </form>
 </main>
-<footer></footer>
+<div class="app-bottom-background"></div>

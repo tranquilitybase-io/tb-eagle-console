@@ -1,0 +1,55 @@
+<header>
+  <div>
+    <a mat-button color="primary" routerLink="/administration/teams">
+      <mat-icon class="app-cancel-icon">cancel</mat-icon>
+      Cancel
+    </a>
+  </div>
+  <div>
+    <span class="vertical-divider"></span>
+    <span class="title">Create new team member</span>
+    <span class="vertical-divider"></span>
+    <span class="subtitle">Team</span>
+  </div>
+</header>
+
+<main>
+  <form [formGroup]="teamMemberForm" (ngSubmit)="onSubmit(teamMemberForm.value)">
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Team</mat-label>
+        <mat-select required formControlName="teamId">
+          <!-- <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option> -->
+          <mat-option value="Development"> Development </mat-option>
+          <mat-option value="Administration"> Administration </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.businessUnitId.errors?.required"> Team is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>User</mat-label>
+        <mat-select required formControlName="userId">
+          <!-- <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option> -->
+        </mat-select>
+        <mat-error *ngIf="f.businessUnitId.errors?.required"> User is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select required formControlName="roleId">
+          <!-- <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option> -->
+        </mat-select>
+        <mat-error *ngIf="f.businessUnitId.errors?.required"> Role is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <div class="app-bottom-action right">
+      <button mat-button color="primary">
+        Create Team
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </form>
+</main>
+<div class="app-bottom-background"></div>

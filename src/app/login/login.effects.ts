@@ -15,8 +15,8 @@ export class LoginEffects {
   loginUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LoginActions.login),
-      exhaustMap(action =>
-        this.LoginService.login(action.username, action.password).pipe(
+      exhaustMap(({ username, password }) =>
+        this.LoginService.login(username, password).pipe(
           map(user => LoginActions.loginSuccess({ user })),
           catchError(error => of(LoginActions.loginFailure()))
         )

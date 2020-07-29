@@ -46,9 +46,11 @@
     </div>
 
     <button mat-button type="submit" color="primary" class="login-btn">
-      Log in <mat-icon>keyboard_arrow_right</mat-icon>
+      Log in <mat-icon>chevron_right</mat-icon>
     </button>
   </form>
+  <div id="google-login-success" (click)="onSubmit()"></div>
+  <div id="my-signin2"></div>
 
   <div class="login-options-container">
     <a class="login-options" href="/login">Forgot email or password?</a><br />

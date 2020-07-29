@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { Application } from '../applications.model';
 
@@ -14,7 +13,6 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./applications-deployments.component.scss']
 })
 export class ApplicationsDeploymentsComponent implements OnInit {
-  deployments$: Observable<Application[]>;
   displayedColumns: string[] = ['id', 'name', 'env', 'status', 'description'];
   dataSource: MatTableDataSource<Application>;
 

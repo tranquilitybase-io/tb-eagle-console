@@ -1,14 +1,9 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 header {
   .title {
     border-left: 1px solid var(--grey);
     margin-left: 0.5rem;
     padding-left: 0.5rem;
+    padding-top: 0.3rem;
     font-size: 1.25rem;
     font-weight: 800;
   }
@@ -19,18 +14,17 @@ header {
 
   padding: {
     top: 1.5rem;
-    left: 2rem;
+    left: 0.5rem;
     right: 2rem;
     bottom: 1rem;
   }
 
-  background-color: var(--whitish);
+  background-color: var(--active-grey-background);
 }
 
 .alert {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3rem;
   width: 90%;
   text-align: center;
   padding-top: 0.5rem;
@@ -38,22 +32,15 @@ header {
   background-color: #ffe0b2;
 }
 
-.details-container {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  height: calc(100vh - 11rem);
+main {
+  padding: 3rem;
+  margin-bottom: 5rem;
 
   p {
     width: 100%;
 
     .mat-form-field {
       width: 100%;
-      font-size: 14px;
 
       &.small-width {
         width: 30%;
@@ -63,76 +50,7 @@ header {
   }
 }
 
-main {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-content: left;
-}
-
-/* Workspace view */
-
-.workspace-container {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2rem;
-  width: 90%;
-  height: calc(100vh - 11rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-
-  p {
-    width: 100%;
-
-    .mat-form-field {
-      width: 30%;
-      margin: 1rem;
-    }
-  }
-}
-
-.environment-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.workspace-form-container {
-  display: flex;
-  flex-direction: row;
-  align-content: left;
-  justify-content: left;
-  align-self: flex-end;
-  margin-bottom: 2rem;
-
-  p {
-    width: 100%;
-  }
-}
-
-.footer-container {
-  display: flex;
-  flex-direction: row;
-  height: 5rem;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  align-self: flex-end;
-  margin-top: auto;
-  margin-bottom: 2rem;
-  float: right;
-
-  &.details-footer-container {
-    justify-content: flex-end;
-  }
-
-  button {
-    font-weight: 600;
-    font-size: 16px;
-  }
+.part-title {
+  font-weight: 500;
+  font-size: 1.1rem;
 }
