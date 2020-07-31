@@ -1,13 +1,17 @@
 <header>
-  <div>
-    <a mat-button color="primary" routerLink="/administration/landing-zone"> <mat-icon>chevron_left</mat-icon> Back </a>
-  </div>
-  <div>
-    <span class="vertical-divider"></span>
-    <span class="title">Environment</span>
-    <span class="vertical-divider"></span>
-    <span class="subtitle">Landing Zone</span>
-  </div>
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Landing-zone',
+        link: '/administration/landing-zone'
+      },
+      {
+        name: 'Environment',
+        link: '/administration/landing-zone'
+      }
+    ]"
+  >
+  </app-breadcrumbs>
 </header>
 <main>
   <mat-accordion>
