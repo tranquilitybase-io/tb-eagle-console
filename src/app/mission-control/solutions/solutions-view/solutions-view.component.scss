@@ -20,8 +20,10 @@ header {
   text-align: center;
   font-family: SF Pro Display;
   padding: {
+    top: 0.2rem;
     left: 1.5rem;
-    right: 2rem;
+    right: 1.5rem;
+    bottom: 0.2rem;
   }
   background-color: var(--active-grey-background);
 }

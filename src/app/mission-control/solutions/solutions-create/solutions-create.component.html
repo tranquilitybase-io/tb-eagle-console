@@ -1,17 +1,5 @@
 <header>
-  <app-breadcrumbs
-    [cancelActive]="true"
-    [steps]="[
-      {
-        name: 'Solutions',
-        link: '/mission-control/solutions'
-      },
-      {
-        name: 'Create new solution'
-      }
-    ]"
-  >
-  </app-breadcrumbs>
+  <app-breadcrumbs [title]="'Create new solution'"> </app-breadcrumbs>
 </header>
 
 <mat-horizontal-stepper [linear]="true" #stepper>
