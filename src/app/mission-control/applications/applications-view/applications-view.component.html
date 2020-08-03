@@ -1,5 +1,5 @@
 <header>
-  <div>
+  <!-- <div>
     <a
       mat-button
       color="primary"
@@ -8,7 +8,7 @@
     >
       <mat-icon>chevron_left</mat-icon> Back
     </a>
-  </div>
+  </div> -->
 
   <app-breadcrumbs
     [steps]="[
@@ -22,7 +22,7 @@
         id: application.id
       },
       {
-        name: 'View'
+        name: application.name
       }
     ]"
     [isActive]="application.isActive"

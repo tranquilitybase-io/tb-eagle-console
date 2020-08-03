@@ -5,13 +5,13 @@
 <div class="step" *ngFor="let step of steps">
   <div *ngIf="!step.link && !step.id; else link">
     <p [ngStyle]="{ 'font-weight': 'bold' }" mat-menu-item>
-      {{ step.name }}
+      {{ step.name | titlecase }}
     </p>
   </div>
 
   <ng-template #link>
-    <a mat-menu-item routerLink="{{ step.link }}" [queryParams]="{ id: step.id }">
-      {{ step.name }}
+    <a mat-menu-item routerLink="{{ '//' + step.link }}" [queryParams]="{ id: step.id }">
+      {{ step.name | titlecase }}
     </a>
   </ng-template>
 </div>
