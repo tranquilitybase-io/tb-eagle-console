@@ -1,11 +1,5 @@
 <header>
-  <div>
-    <a mat-button color="primary" routerLink="/mission-control/solutions">
-      <mat-icon class="app-cancel-icon">cancel</mat-icon>
-      Cancel
-    </a>
-  </div>
-  <div class="title">Solution in edit mode</div>
+  <app-breadcrumbs [title]="'Edit solution'"> </app-breadcrumbs>
 </header>
 <main>
   <div class="alert" *ngIf="disableEdit">
