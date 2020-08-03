@@ -1,11 +1,4 @@
 <header>
-  <div>
-    <a mat-button color="primary" routerLink="/administration/landing-zone/wan">
-      <mat-icon class="app-cancel-icon">cancel</mat-icon>
-      Cancel
-    </a>
-  </div>
-
   <app-breadcrumbs
     [steps]="[
       {
@@ -21,12 +14,6 @@
       }
     ]"
   >
-    <!-- <app-breadcrumbs [steps]="[{ 
-      name:'VPN', 
-      link:'/mission-control/solutions'
-    },{ 
-      name:'Create new connection'
-    }]"> -->
   </app-breadcrumbs>
 </header>
 <mat-horizontal-stepper [linear]="true" #stepper>

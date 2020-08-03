@@ -27,6 +27,7 @@
   &:not(:first-of-type) {
     &::before {
       --arrow-width: 2px;
+
       content: '';
       display: block;
       transform: rotate(45deg);
