@@ -1,13 +1,6 @@
-<div class="activ-sub-header">
-  <a
-    class="button text-only left activ-back-btn"
-    routerLink="/mission-control/activator-store"
-    [queryParams]="{ categorySwitch: 'Category' }"
-  >
-    Back
-  </a>
-  <div class="app-name separated">{{ activator.name }}</div>
-  <div class="separated">
+<header class="activ-sub-header">
+  <app-breadcrumbs [title]="activator.name"> </app-breadcrumbs>
+  <div>
     <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
       {{ activator.status }}
     </div>
@@ -20,7 +13,7 @@
     <div class="tier-icon"></div>
     Eagle tier 2 subscription
   </div>
-</div>
+</header>
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Overview">
     <app-activator-store-view-overview></app-activator-store-view-overview>

@@ -1,15 +1,4 @@
 <header>
-  <!-- <div>
-    <a
-      mat-button
-      color="primary"
-      routerLink="/mission-control/solutions/view"
-      [queryParams]="{ id: application.solutionId, categorySwitch: 'Applications' }"
-    >
-      <mat-icon>chevron_left</mat-icon> Back
-    </a>
-  </div> -->
-
   <app-breadcrumbs
     [steps]="[
       {
@@ -19,7 +8,7 @@
       {
         name: 'Applications',
         link: '/mission-control/solutions/view',
-        id: application.id
+        id: application.solutionId
       },
       {
         name: application.name
