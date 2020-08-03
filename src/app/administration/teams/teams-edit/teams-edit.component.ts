@@ -40,6 +40,10 @@ export class TeamsEditComponent implements OnInit {
     return this.teamForm.controls;
   }
 
+  cancel() {
+    this.router.navigateByUrl('/administration/teams');
+  }
+
   onSubmit(teamData) {
     this.store.dispatch(updateTeamData({ teamData }));
     this.router.navigateByUrl('/administration/teams');

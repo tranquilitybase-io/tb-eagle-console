@@ -1,16 +1,16 @@
 <header>
-  <div>
-    <a mat-button color="primary" routerLink="/administration/teams">
-      <mat-icon class="app-cancel-icon">cancel</mat-icon>
-      Cancel
-    </a>
-  </div>
-  <div>
-    <span class="vertical-divider"></span>
-    <span class="title">Create new team</span>
-    <span class="vertical-divider"></span>
-    <span class="subtitle">Team</span>
-  </div>
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Teams',
+        link: '/administration/teams'
+      },
+      {
+        name: 'Create new Team'
+      }
+    ]"
+  >
+  </app-breadcrumbs>
 </header>
 <main>
   <form [formGroup]="teamForm" (ngSubmit)="onSubmit(teamForm.value)">
@@ -45,6 +45,12 @@
         <mat-error *ngIf="f.businessUnitId.errors?.required"> Business unit is <strong>required</strong> </mat-error>
       </mat-form-field>
     </p>
+    <div class="app-bottom-action left">
+      <button mat-button color="primary" (click)="cancel()">
+        <mat-icon class="app-cancel-icon">cancel</mat-icon>
+        Cancel
+      </button>
+    </div>
     <div class="app-bottom-action right">
       <button mat-button color="primary">
         Create Team
