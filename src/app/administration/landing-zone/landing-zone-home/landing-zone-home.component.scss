@@ -5,13 +5,13 @@
 }
 
 header {
-  padding: 0.3rem 0.5rem;
+  padding: 0;
   background-color: var(--active-grey-background);
 
   .mat-expansion-panel {
+    padding: 0;
     box-shadow: unset;
     background: unset;
-
     .title {
       font-size: 1.25rem;
       font-weight: 500;
