@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Notification, NotificationsMeta } from './notifications.model';
 import { catchError } from 'rxjs/operators';
@@ -71,7 +71,15 @@ export class NotificationsService {
   getNotificationData(): Observable<Notification[]> {
     const url = `${this.BASE_URL}/notifications/`;
 
-    return this.http.get<Notification[]>(url).pipe(catchError(this.handleError));
+    const id_token = localStorage.getItem('id_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: id_token ? `Bearer ${id_token}` : ''
+    });
+
+    return this.http
+      .get<Notification[]>(url, { headers })
+      .pipe(catchError(this.handleError));
   }
 
   getNotificationMetaData(): Observable<NotificationsMeta> {
