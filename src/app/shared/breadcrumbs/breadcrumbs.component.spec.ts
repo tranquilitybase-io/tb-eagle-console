@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -7,10 +7,13 @@ describe('BreadcrumbsComponent', () => {
   let component: BreadcrumbsComponent;
   let fixture: ComponentFixture<BreadcrumbsComponent>;
 
+  let mockLocation: { pathname: '/solutions/view/application' };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbsComponent],
-      imports: [MatIconModule]
+      imports: [MatIconModule, RouterTestingModule]
+      // providers: [BreadcrumbsComponent, { provide: Location, useValue: mockLocation}]
     }).compileComponents();
   }));
 
@@ -20,7 +23,7 @@ describe('BreadcrumbsComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
