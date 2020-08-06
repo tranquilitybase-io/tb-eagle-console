@@ -6,7 +6,7 @@
         link: '/mission-control/solutions'
       },
       {
-        name: 'Applications',
+        name: (solution$ | async).name,
         link: '/mission-control/solutions/view',
         id: application.solutionId
       },
