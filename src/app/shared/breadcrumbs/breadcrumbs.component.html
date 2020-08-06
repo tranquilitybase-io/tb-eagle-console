@@ -3,7 +3,7 @@
   Cancel
 </button>
 <div class="step" *ngFor="let step of steps; last as lastElement">
-  <div *ngIf="!step.link && !step.id; else link">
+  <div *ngIf="(!step.link && !step.id) || lastElement; else link">
     <p [ngStyle]="lastElement ? { 'font-weight': 'bold' } : {}" mat-menu-item>
       {{ step.name | titlecase }}
     </p>
