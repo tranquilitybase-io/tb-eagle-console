@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { BreadcrumbStep } from './breadcrumbs.component.model';
 import { Router, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { updateBreadcrumbs } from './breadcrumbs.component.actions';
+import { updateBreadcrumbs, cutBreadcrumbsFrom } from './breadcrumbs.component.actions';
 import { selectBreadcrumbs } from './breadcrumbs.component.reducer';
 
 @Component({
@@ -13,6 +13,7 @@ import { selectBreadcrumbs } from './breadcrumbs.component.reducer';
 export class BreadcrumbsComponent implements OnInit, OnChanges {
   @Input() cancelActive = false;
   @Input() steps: BreadcrumbStep[] = [];
+  private _steps: BreadcrumbStep[] = [];
   @Input() isActive = false;
   /**
    * title - last breadcrumb step text.
@@ -28,20 +29,24 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // If steps are not explicitly given in Input, read from url.
-    if (!this.steps.length || this.titleStepCreated) {
-      this.getBreadcrubsFromUrl();
-
+    if (this.shouldGetBreadcrumbsFromURL()) {
       // If title was updated synchronously (before onInit), move it to the last position.
-      if (this.titleStepCreated) {
-        this.moveTitleToLastPosition();
+      if (this.isTitleCreatedBeforeOnInit()) {
+        this.steps = this.steps.concat(this.getBreadcrubsFromUrl());
+        this.synchronousTitleHandler();
+      } else {
+        this.steps = this.getBreadcrubsFromUrl();
       }
     }
 
     // WIP
-    this.store.dispatch(updateBreadcrumbs({ steps: this.steps }));
+    // TODO: store breadcrumbs to localstorage
+    // TODO: handle page refresh (currently does not initiate breadcrumbs from url on a template where steps!=null)
+    this.store.dispatch(cutBreadcrumbsFrom({ urlSegment: this.steps[this.steps.length - 1].parentUrl }));
+    this.store.dispatch(updateBreadcrumbs({ breadcrumbsSteps: this.steps }));
     this.store.select(selectBreadcrumbs).subscribe(s => {
       console.log(s);
-      // this.steps = s.steps
+      this.steps = s;
     });
   }
 
@@ -56,7 +61,18 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
     }
   }
 
-  getBreadcrubsFromUrl() {
+  /**
+   * True if steps are not given through html template, or if title was created synchronously.
+   */
+  shouldGetBreadcrumbsFromURL(): boolean {
+    return !this.steps.length || this.titleStepCreated;
+  }
+
+  isTitleCreatedBeforeOnInit(): boolean {
+    return this.titleStepCreated;
+  }
+
+  getBreadcrubsFromUrl(): BreadcrumbStep[] {
     // Get URL segments
     let tree = this.route.parseUrl(location.pathname);
     let segments = tree.root.children[PRIMARY_OUTLET].segments;
@@ -65,28 +81,30 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
     let currentPath = segments.shift().path;
 
     //  Map URL segments into breadcrumb steps
-    this.steps = this.steps.concat(
-      segments.map(
-        (segment: UrlSegment): BreadcrumbStep => {
-          currentPath += '/' + segment.path;
-          return {
-            name: segment.path.replace('-', ' '),
-            urlSegment: segment.path,
-            link: currentPath
-          };
-        }
-      )
+    return segments.map(
+      (segment: UrlSegment): BreadcrumbStep => {
+        let parentSegment = currentPath;
+        currentPath += '/' + segment.path;
+        return {
+          name: segment.path.replace('-', ' '),
+          parentUrl: parentSegment,
+          link: currentPath
+        };
+      }
     );
   }
 
-  moveTitleToLastPosition() {
+  /**
+   * Takes title step from first position and replaces last step with it.
+   */
+  synchronousTitleHandler(): void {
     let titleStep = this.steps.shift();
-    this.steps.pop();
-    this.steps.push(titleStep);
+    let currentLast = this.steps.pop();
+    this.steps.push({ ...titleStep, parentUrl: currentLast.parentUrl });
   }
 
-  setTitleAsLastStep() {
-    this.steps.pop();
-    this.steps.push({ name: this.title, urlSegment: '' });
+  setTitleAsLastStep(): void {
+    let currentLast = this.steps.pop();
+    this.steps.push({ name: this.title, parentUrl: currentLast ? currentLast.parentUrl : '' });
   }
 }
