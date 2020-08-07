@@ -19,6 +19,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { BreadcrumbsURLs } from '@app/shared/breadcrumbs/breadcrumbs.component.model';
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
     component: ApplicationsViewComponent,
     resolve: {
       application: ApplicationByIdResolver
+    },
+    data: {
+      breadcrumbURL: BreadcrumbsURLs.APPLICATIONS_VIEW
     }
   }
 ];

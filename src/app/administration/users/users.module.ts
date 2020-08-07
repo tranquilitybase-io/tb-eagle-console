@@ -5,23 +5,36 @@ import { StoreModule } from '@ngrx/store';
 import reducer, { featureKey } from './users.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UsersEffects } from './users.effects';
+import { BreadcrumbsURLs } from '@app/shared/breadcrumbs/breadcrumbs.component.model';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./users-home/users-home.module').then(m => m.UsersHomeModule)
+    loadChildren: () => import('./users-home/users-home.module').then(m => m.UsersHomeModule),
+    data: {
+      breadcrumbURL: BreadcrumbsURLs.USERS_HOME
+    }
   },
   {
     path: 'create',
-    loadChildren: () => import('./users-create/users-create.module').then(m => m.UsersCreateModule)
+    loadChildren: () => import('./users-create/users-create.module').then(m => m.UsersCreateModule),
+    data: {
+      breadcrumbURL: BreadcrumbsURLs.USERS_CREATE
+    }
   },
   {
     path: 'edit',
-    loadChildren: () => import('./users-edit/users-edit.module').then(m => m.UsersEditModule)
+    loadChildren: () => import('./users-edit/users-edit.module').then(m => m.UsersEditModule),
+    data: {
+      breadcrumbURL: BreadcrumbsURLs.USERS_EDIT
+    }
   },
   {
     path: 'view',
-    loadChildren: () => import('./users-view/users-view.module').then(m => m.UsersViewModule)
+    loadChildren: () => import('./users-view/users-view.module').then(m => m.UsersViewModule),
+    data: {
+      breadcrumbURL: BreadcrumbsURLs.USERS_VIEW
+    }
   }
 ];
 

@@ -1,17 +1,17 @@
-import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { BreadcrumbStep } from './breadcrumbs.component.model';
-import { Router, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { updateBreadcrumbs, cutBreadcrumbsFrom } from './breadcrumbs.component.actions';
 import { selectBreadcrumbs } from './breadcrumbs.component.reducer';
-import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss']
 })
-export class BreadcrumbsComponent implements OnInit, OnChanges, OnDestroy {
+export class BreadcrumbsComponent implements OnInit, OnChanges {
   @Input() cancelActive = false;
   @Input() steps: BreadcrumbStep[] = [];
   @Input() isActive = false;
@@ -24,33 +24,37 @@ export class BreadcrumbsComponent implements OnInit, OnChanges, OnDestroy {
   @Input() title: string = '';
 
   private titleStepCreated: boolean = false;
-  private _subscription: Subscription = null;
 
-  constructor(private route: Router, private store: Store<any>) {}
+  constructor(private store: Store<any>, private activateRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // If steps are not explicitly given in Input, read from url.
-    if (this.shouldGetBreadcrumbsFromURL()) {
-      // If title was updated synchronously (before onInit), move it to the last position.
-      if (this.isTitleCreatedBeforeOnInit()) {
-        this.steps = this.steps.concat(this.getBreadcrubsFromUrl());
-        this.synchronousTitleHandler();
-      } else {
-        this.steps = this.getBreadcrubsFromUrl();
+    this.activateRoute.data.pipe(take(1)).subscribe(routerData => {
+      // If steps are not explicitly given in Input, read from url.
+      if (this.shouldGetBreadcrumbsFromURL()) {
+        // If title was updated synchronously (before onInit), move it to the last position.
+        if (this.isTitleCreatedBeforeOnInit()) {
+          this.steps = this.steps.concat(this.getBreadcrubsFromUrl(routerData.breadcrumbURL));
+          this.synchronousTitleHandler();
+        } else {
+          this.steps = this.getBreadcrubsFromUrl(routerData.breadcrumbURL);
+        }
       }
-    }
 
-    // WIP
-    // TODO: store breadcrumbs to localstorage
-    // TODO: handle page refresh (currently does not initiate breadcrumbs from url on a template where steps!=null)
-    this.updateBreadcrumbsStore();
-    this.showStepsFromStore();
+      // WIP
+      // TODO: store breadcrumbs to localstorage
+      // TODO: handle page refresh (currently does not initiate breadcrumbs from url on a template where steps!=null)
+      this.updateBreadcrumbsStore();
+      this.showStepsFromStore();
+    });
   }
 
   private showStepsFromStore() {
-    this._subscription = this.store.select(selectBreadcrumbs).subscribe(s => {
-      this.steps = s;
-    });
+    this.store
+      .select(selectBreadcrumbs)
+      .pipe(take(1))
+      .subscribe(s => {
+        this.steps = s;
+      });
   }
 
   private updateBreadcrumbsStore() {
@@ -69,10 +73,6 @@ export class BreadcrumbsComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    this._subscription.unsubscribe();
-  }
-
   /**
    * True if steps are not given through html template, or if title was created synchronously.
    */
@@ -84,21 +84,20 @@ export class BreadcrumbsComponent implements OnInit, OnChanges, OnDestroy {
     return this.titleStepCreated;
   }
 
-  getBreadcrubsFromUrl(): BreadcrumbStep[] {
+  getBreadcrubsFromUrl(url: string): BreadcrumbStep[] {
     // Get URL segments
-    let tree = this.route.parseUrl(location.pathname);
-    let segments = tree.root.children[PRIMARY_OUTLET].segments;
+    let segments = url.split('/');
 
     // Skip first segment - it's not necessary, and provides invalid link.
-    let currentPath = segments.shift().path;
+    let currentPath = segments.shift();
 
     //  Map URL segments into breadcrumb steps
     return segments.map(
-      (segment: UrlSegment): BreadcrumbStep => {
+      (segment: string): BreadcrumbStep => {
         let parentSegment = currentPath;
-        currentPath += '/' + segment.path;
+        currentPath += '/' + segment;
         return {
-          name: segment.path.replace('-', ' '),
+          name: segment.replace('-', ' '),
           parentUrl: parentSegment,
           link: currentPath
         };

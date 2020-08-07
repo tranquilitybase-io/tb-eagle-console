@@ -15,20 +15,30 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { BreadcrumbsURLs } from '@app/shared/breadcrumbs/breadcrumbs.component.model';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./landing-zone-home/landing-zone-home.module').then(m => m.LandingZoneHomeModule)
+    loadChildren: () => import('./landing-zone-home/landing-zone-home.module').then(m => m.LandingZoneHomeModule),
+    data: {
+      breadcrumbURL: BreadcrumbsURLs.LANDING_ZONE_HOME
+    }
   },
   {
     path: 'wan',
-    loadChildren: () => import('./landing-zone-wan/landing-zone-wan.module').then(m => m.LandingZoneWanModule)
+    loadChildren: () => import('./landing-zone-wan/landing-zone-wan.module').then(m => m.LandingZoneWanModule),
+    data: {
+      breadcrumbURL: BreadcrumbsURLs.LANDING_ZONE_WAN
+    }
   },
   {
     path: 'environment',
     loadChildren: () =>
-      import('./landing-zone-environment/landing-zone-environment.module').then(m => m.LandingZoneEnvironmentModule)
+      import('./landing-zone-environment/landing-zone-environment.module').then(m => m.LandingZoneEnvironmentModule),
+    data: {
+      breadcrumbURL: BreadcrumbsURLs.LANDING_ZONE_ENVIRONMENT
+    }
   }
 ];
 
