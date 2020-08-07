@@ -1,19 +1,19 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { BreadcrumbStep } from './breadcrumbs.component.model';
 import { Router, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { updateBreadcrumbs, cutBreadcrumbsFrom } from './breadcrumbs.component.actions';
 import { selectBreadcrumbs } from './breadcrumbs.component.reducer';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss']
 })
-export class BreadcrumbsComponent implements OnInit, OnChanges {
+export class BreadcrumbsComponent implements OnInit, OnChanges, OnDestroy {
   @Input() cancelActive = false;
   @Input() steps: BreadcrumbStep[] = [];
-  private _steps: BreadcrumbStep[] = [];
   @Input() isActive = false;
   /**
    * title - last breadcrumb step text.
@@ -24,6 +24,7 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
   @Input() title: string = '';
 
   private titleStepCreated: boolean = false;
+  private _subscription: Subscription = null;
 
   constructor(private route: Router, private store: Store<any>) {}
 
@@ -42,12 +43,19 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
     // WIP
     // TODO: store breadcrumbs to localstorage
     // TODO: handle page refresh (currently does not initiate breadcrumbs from url on a template where steps!=null)
-    this.store.dispatch(cutBreadcrumbsFrom({ urlSegment: this.steps[this.steps.length - 1].parentUrl }));
-    this.store.dispatch(updateBreadcrumbs({ breadcrumbsSteps: this.steps }));
-    this.store.select(selectBreadcrumbs).subscribe(s => {
-      console.log(s);
+    this.updateBreadcrumbsStore();
+    this.showStepsFromStore();
+  }
+
+  private showStepsFromStore() {
+    this._subscription = this.store.select(selectBreadcrumbs).subscribe(s => {
       this.steps = s;
     });
+  }
+
+  private updateBreadcrumbsStore() {
+    this.store.dispatch(cutBreadcrumbsFrom({ urlSegment: this.steps[this.steps.length - 1].parentUrl }));
+    this.store.dispatch(updateBreadcrumbs({ breadcrumbsSteps: this.steps }));
   }
 
   /**
@@ -59,6 +67,10 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
       this.setTitleAsLastStep();
       this.titleStepCreated = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
   }
 
   /**
