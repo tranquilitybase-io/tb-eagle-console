@@ -1,16 +1,5 @@
 <header>
-  <app-breadcrumbs
-    [steps]="[
-      {
-        name: 'Users',
-        link: '/administration/users'
-      },
-      {
-        name: 'Create new user'
-      }
-    ]"
-  >
-  </app-breadcrumbs>
+  <app-breadcrumbs [title]="'Create new user'"> </app-breadcrumbs>
 </header>
 <main>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">

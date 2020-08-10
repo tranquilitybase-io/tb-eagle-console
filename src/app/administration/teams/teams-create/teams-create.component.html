@@ -1,16 +1,5 @@
 <header>
-  <app-breadcrumbs
-    [steps]="[
-      {
-        name: 'Teams',
-        link: '/administration/teams'
-      },
-      {
-        name: 'Create new Team'
-      }
-    ]"
-  >
-  </app-breadcrumbs>
+  <app-breadcrumbs [title]="'Create new Team'"> </app-breadcrumbs>
 </header>
 <main>
   <form [formGroup]="teamForm" (ngSubmit)="onSubmit(teamForm.value)">
