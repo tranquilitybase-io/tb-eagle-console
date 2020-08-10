@@ -11,7 +11,6 @@ import { ActivatorStoreComponent } from './activator-store.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { BreadcrumbsURLs } from '@app/shared/breadcrumbs/breadcrumbs.component.model';
 
 const routes: Routes = [
   {
@@ -21,28 +20,19 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./activator-store-home/activator-store-home.module').then(m => m.ActivatorStoreHomeModule),
-        data: {
-          breadcrumbURL: BreadcrumbsURLs.ACTIVATOR_STORE
-        }
+          import('./activator-store-home/activator-store-home.module').then(m => m.ActivatorStoreHomeModule)
       },
       {
         path: 'view',
         loadChildren: () =>
-          import('./activator-store-view/activator-store-view.module').then(m => m.ActivatorStoreViewModule),
-        data: {
-          breadcrumbURL: BreadcrumbsURLs.ACTIVATOR_STORE_VIEW
-        }
+          import('./activator-store-view/activator-store-view.module').then(m => m.ActivatorStoreViewModule)
       },
       {
         path: 'create-app',
         loadChildren: () =>
           import('@app/mission-control/applications/applications-create/applications-create.module.ts').then(
             m => m.ApplicationsCreateModule
-          ),
-        data: {
-          breadcrumbURL: BreadcrumbsURLs.APPLICATIONS_CREATE
-        }
+          )
       }
     ]
   }

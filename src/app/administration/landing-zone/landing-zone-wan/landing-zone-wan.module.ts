@@ -13,7 +13,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
-import { BreadcrumbsURLs } from '@app/shared/breadcrumbs/breadcrumbs.component.model';
 
 const routes: Routes = [
   {
@@ -24,26 +23,17 @@ const routes: Routes = [
   {
     path: 'create',
     loadChildren: () =>
-      import('./landing-zone-wan-create/landing-zone-wan-create.module').then(m => m.LandingZoneWanCreateModule),
-    data: {
-      breadcrumbURL: BreadcrumbsURLs.LANDING_ZONE_WAN_CREATE
-    }
+      import('./landing-zone-wan-create/landing-zone-wan-create.module').then(m => m.LandingZoneWanCreateModule)
   },
   {
     path: 'edit',
     loadChildren: () =>
-      import('./landing-zone-wan-edit/landing-zone-wan-edit.module').then(m => m.LandingZoneWanEditModule),
-    data: {
-      breadcrumbURL: BreadcrumbsURLs.LANDING_ZONE_WAN_EDIT
-    }
+      import('./landing-zone-wan-edit/landing-zone-wan-edit.module').then(m => m.LandingZoneWanEditModule)
   },
   {
     path: 'view',
     loadChildren: () =>
-      import('./landing-zone-wan-view/landing-zone-wan-view.module').then(m => m.LandingZoneWanViewModule),
-    data: {
-      breadcrumbURL: BreadcrumbsURLs.LANDING_ZONE_WAN_VIEW
-    }
+      import('./landing-zone-wan-view/landing-zone-wan-view.module').then(m => m.LandingZoneWanViewModule)
   }
 ];
 
