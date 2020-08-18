@@ -13,7 +13,7 @@ export class SwitchesComponent implements OnInit {
   @Output() switchCallback = new EventEmitter<string>();
 
   ngOnInit(): void {
-    this.current = this.filters.filter(el => el.isActive)[0].name;
+    this.current = this.filters.filter(el => el.defaultActive)[0].name;
   }
 
   onChange(value: SwitchFilter) {

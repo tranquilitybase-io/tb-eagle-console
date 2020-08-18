@@ -14,14 +14,10 @@ import { SwitchFilter } from '@app/shared/switches/switches.model';
 export class TeamsHomeComponent implements OnInit {
   teams$: Observable<Team[]>;
 
-  filterFavouritesLength = 0;
-  filterActivesLenth = 0;
-  filterArchivedLength = 0;
-
   filters: SwitchFilter[] = [
-    { name: 'Favourites', count: 0, isActive: false },
-    { name: 'Actives', count: 0, isActive: true },
-    { name: 'Archived', count: 0, isActive: false }
+    { name: 'Favourites', count: 0, defaultActive: false },
+    { name: 'Actives', count: 0, defaultActive: true },
+    { name: 'Archived', count: 0, defaultActive: false }
   ];
 
   constructor(private teamsService: TeamsService, private route: ActivatedRoute) {
@@ -42,14 +38,14 @@ export class TeamsHomeComponent implements OnInit {
   }
 
   updateNumbering(teams: Team[]) {
-    this.filterFavouritesLength = teams.filter(team => team.isFavourite).length;
-    this.filterActivesLenth = teams.filter(team => team.isActive).length;
-    this.filterArchivedLength = teams.filter(team => !team.isActive).length;
+    let filterFavouritesLength = teams.filter(team => team.isFavourite).length;
+    let filterActivesLenth = teams.filter(team => team.isActive).length;
+    let filterArchivedLength = teams.filter(team => !team.isActive).length;
 
     this.filters = [
-      { name: 'Favourites', count: this.filterFavouritesLength, isActive: false },
-      { name: 'Actives', count: this.filterActivesLenth, isActive: true },
-      { name: 'Archived', count: this.filterArchivedLength, isActive: false }
+      { name: 'Favourites', count: filterFavouritesLength, defaultActive: false },
+      { name: 'Actives', count: filterActivesLenth, defaultActive: true },
+      { name: 'Archived', count: filterArchivedLength, defaultActive: false }
     ];
   }
 }

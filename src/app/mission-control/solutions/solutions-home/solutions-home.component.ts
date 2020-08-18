@@ -16,14 +16,11 @@ import { SwitchFilter } from '@app/shared/switches/switches.model';
 export class SolutionsHomeComponent implements OnInit {
   solutions$: Observable<Solution[]>;
   active = false;
-  filterFavouritesLength = 0;
-  filterActivesLength = 0;
-  filterArchivedLength = 0;
 
   filters: SwitchFilter[] = [
-    { name: 'Favourites', count: 0, isActive: false },
-    { name: 'Actives', count: 0, isActive: true },
-    { name: 'Archived', count: 0, isActive: false }
+    { name: 'Favourites', count: 0, defaultActive: false },
+    { name: 'Actives', count: 0, defaultActive: true },
+    { name: 'Archived', count: 0, defaultActive: false }
   ];
 
   current$: Observable<string>;
@@ -46,14 +43,14 @@ export class SolutionsHomeComponent implements OnInit {
   }
 
   numberingUpdate(solutions: Solution[]) {
-    this.filterFavouritesLength = solutions.filter(solution => solution.isFavourite).length;
-    this.filterActivesLength = solutions.filter(solution => solution.isActive).length;
-    this.filterArchivedLength = solutions.filter(solution => !solution.isActive).length;
+    let filterFavouritesLength = solutions.filter(solution => solution.isFavourite).length;
+    let filterActivesLength = solutions.filter(solution => solution.isActive).length;
+    let filterArchivedLength = solutions.filter(solution => !solution.isActive).length;
 
     this.filters = [
-      { name: 'Favourites', count: this.filterFavouritesLength, isActive: false },
-      { name: 'Actives', count: this.filterActivesLength, isActive: true },
-      { name: 'Archived', count: this.filterArchivedLength, isActive: false }
+      { name: 'Favourites', count: filterFavouritesLength, defaultActive: false },
+      { name: 'Actives', count: filterActivesLength, defaultActive: true },
+      { name: 'Archived', count: filterArchivedLength, defaultActive: false }
     ];
   }
 

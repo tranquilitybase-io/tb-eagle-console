@@ -9,7 +9,7 @@
     <button
       class="switch-button"
       *ngFor="let filter of filters"
-      (click)="onChange(filter); filter.isActive = true"
+      (click)="onChange(filter)"
       value="{{ filter.name }}"
       [class.active]="filter.name === current"
     >
