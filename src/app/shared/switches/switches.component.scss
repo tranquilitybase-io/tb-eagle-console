@@ -1,25 +1,20 @@
-:host {
-  display: flex;
-  background-color: var(--active-grey-background);
-  padding: 0.2rem;
-  border-radius: var(--radius);
-}
+.filters-row {
+  .filters {
+    .count {
+      color: var(--grey);
+    }
 
-.switch-button {
-  flex: auto;
-  background: none;
-  border: none;
-  outline: none;
-  font-size: 0.875rem;
-  padding: 0.4rem 2rem 0.6rem;
-  border-radius: var(--radius);
+    .mat-button-toggle-group {
+      width: 100%;
+      max-width: 60em;
+    }
 
-  &.active {
-    background-color: var(--primary-color);
-    color: var(--white);
+    // .mat-button-toggle {
+    // width: 25%;
+    // }
   }
-}
 
-.count {
-  color: var(--grey);
+  .mat-divider {
+    margin-top: 1.5rem;
+  }
 }

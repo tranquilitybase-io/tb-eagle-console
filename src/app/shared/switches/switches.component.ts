@@ -1,4 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { SwitchFilter } from './switches.model';
 
 @Component({
   selector: 'app-switches',
@@ -7,12 +8,10 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 })
 export class SwitchesComponent {
   @Input() hideCount: boolean;
-  @Input() current: string;
-  @Input() values: { name: string; count: number }[];
-  @Output() onValueChanged = new EventEmitter<string>();
+  @Input() filters: SwitchFilter[];
+  @Output() switchCallback = new EventEmitter<string>();
 
-  onChange(value: { name: string; count: number }) {
-    this.current = value.name;
-    this.onValueChanged.emit(value.name);
+  onChange(value: SwitchFilter) {
+    this.switchCallback.emit(value.name);
   }
 }

@@ -6,6 +6,7 @@ import { SolutionsState, selectSolutionDeploymentsData } from '../solutions.redu
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { SwitchFilter } from '@app/shared/switches/switches.model';
 
 @Component({
   selector: 'app-solutions-home',
@@ -15,8 +16,15 @@ import { map } from 'rxjs/operators';
 export class SolutionsHomeComponent implements OnInit {
   solutions$: Observable<Solution[]>;
   active = false;
+  filterFavouritesLength = 0;
+  filterActivesLength = 0;
+  filterArchivedLength = 0;
 
-  values = [{ name: 'Favourites' }, { name: 'Actives' }, { name: 'Archived' }];
+  filters: SwitchFilter[] = [
+    // { name: 'Favourites', count: 0, isActive: false },
+    // { name: 'Actives', count: 0, isActive: true },
+    // { name: 'Archived', count: 0, isActive: false },
+  ];
 
   current$: Observable<string>;
 
@@ -29,12 +37,24 @@ export class SolutionsHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.solutionsService.getAll();
+    this.solutionsService.getAll().subscribe(this.numberingUpdate);
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
     this.current$.subscribe(event => this.getSolutions(event));
     this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
-      this.solutionsService.getAll();
+      this.solutionsService.getAll().subscribe(this.numberingUpdate);
     });
+  }
+
+  numberingUpdate(solutions: Solution[]) {
+    this.filterFavouritesLength = solutions.filter(solution => solution.isFavourite).length;
+    this.filterActivesLength = solutions.filter(solution => solution.isActive).length;
+    this.filterArchivedLength = solutions.filter(solution => !solution.isActive).length;
+
+    this.filters = [
+      { name: 'Favourites', count: this.filterFavouritesLength, isActive: false },
+      { name: 'Actives', count: this.filterActivesLength, isActive: true },
+      { name: 'Archived', count: this.filterArchivedLength, isActive: false }
+    ];
   }
 
   getSolutions(filter: string) {

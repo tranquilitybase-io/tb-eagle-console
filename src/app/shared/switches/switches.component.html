@@ -1,4 +1,19 @@
-<button class="switch-button" type="button" [class.active]="value.name === current" (click)="onChange(value)" *ngFor="let value of values">
+<!-- <button class="switch-button" type="button" [class.active]="value.name === current" (click)="onChange(value)" *ngFor="let value of values">
   {{ value.name }}
   <span *ngIf="!hideCount" class="count">({{ value.count }})</span>
-</button>
+</button> -->
+
+<div class="filters-row">
+  <div class="filters">
+    <mat-button-toggle-group name="filterSwitches" aria-label="Filter Switches">
+      <mat-button-toggle
+        *ngFor="let filter of filters"
+        (click)="onChange(filter); filter.isActive = true"
+        value="{{ filter.name }}"
+        [checked]="filter.isActive"
+      >
+        {{ filter.name }}<span *ngIf="!hideCount" class="count"> ({{ filter.count }})</span>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

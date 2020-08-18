@@ -7,6 +7,6 @@
   </div>
 </header>
 <div>
-  <app-solution-select [values]="values" (onSelection)="getSolutions($event)"></app-solution-select>
+  <app-solution-select [values]="filters" (onSelection)="getSolutions($event)"></app-solution-select>
 </div>
 <app-solutions-home-grid [solutions$]="solutions$"></app-solutions-home-grid>
