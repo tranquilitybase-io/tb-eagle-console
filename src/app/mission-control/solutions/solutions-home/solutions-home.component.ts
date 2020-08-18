@@ -37,11 +37,11 @@ export class SolutionsHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.solutionsService.getAll().subscribe(this.numberingUpdate);
+    this.solutionsService.getAll().subscribe(this.numberingUpdate.bind(this));
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
     this.current$.subscribe(event => this.getSolutions(event));
     this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
-      this.solutionsService.getAll().subscribe(this.numberingUpdate);
+      this.solutionsService.getAll().subscribe(this.numberingUpdate.bind(this));
     });
   }
 
