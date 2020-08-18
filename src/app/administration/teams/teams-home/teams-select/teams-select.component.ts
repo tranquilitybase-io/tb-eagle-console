@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { SwitchFilter } from '@app/shared/switches/switches.model';
 
 @Component({
   selector: 'app-teams-select',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 export class TeamsSelectComponent implements OnInit {
   current$: Observable<string>;
 
-  @Input('values') values: { name: string; count: number }[];
+  @Input('values') values: SwitchFilter[];
 
   @Output('onSelection') onSelection = new EventEmitter<string>();
 

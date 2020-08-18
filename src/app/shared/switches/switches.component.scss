@@ -1,20 +1,39 @@
-.filters-row {
-  .filters {
-    .count {
-      color: var(--grey);
-    }
+// .filters-row {
+//   .filters {
+//     font-size: 0.875rem;
+//     .count {
+//       color: var(--grey);
+//     }
 
-    .mat-button-toggle-group {
-      width: 100%;
-      max-width: 60em;
-    }
+//     .mat-button-toggle-group {
+//       width: 100%;
+//       max-width: 60em;
+//     }
+//   }
+// }
 
-    // .mat-button-toggle {
-    // width: 25%;
-    // }
+:host {
+  display: flex;
+  background-color: var(--active-grey-background);
+  padding: 0.2rem;
+  border-radius: var(--radius);
+}
+
+.switch-button {
+  flex: auto;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  padding: 0.4rem 2rem 0.6rem;
+  border-radius: var(--radius);
+
+  &.active {
+    background-color: var(--primary-color);
+    color: var(--white);
   }
+}
 
-  .mat-divider {
-    margin-top: 1.5rem;
-  }
+.count {
+  color: var(--grey);
 }

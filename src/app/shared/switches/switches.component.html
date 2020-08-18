@@ -5,15 +5,16 @@
 
 <div class="filters-row">
   <div class="filters">
-    <mat-button-toggle-group name="filterSwitches" aria-label="Filter Switches">
-      <mat-button-toggle
-        *ngFor="let filter of filters"
-        (click)="onChange(filter); filter.isActive = true"
-        value="{{ filter.name }}"
-        [checked]="filter.isActive"
-      >
-        {{ filter.name }}<span *ngIf="!hideCount" class="count"> ({{ filter.count }})</span>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+    <!-- <mat-button-toggle-group name="filterSwitches" aria-label="Filter Switches"> -->
+    <button
+      class="switch-button"
+      *ngFor="let filter of filters"
+      (click)="onChange(filter); filter.isActive = true"
+      value="{{ filter.name }}"
+      [class.active]="filter.name === current"
+    >
+      {{ filter.name }}<span *ngIf="!hideCount" class="count"> ({{ filter.count }})</span>
+    </button>
+    <!-- </mat-button-toggle-group> -->
   </div>
 </div>

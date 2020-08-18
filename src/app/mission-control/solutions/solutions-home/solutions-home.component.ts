@@ -21,9 +21,9 @@ export class SolutionsHomeComponent implements OnInit {
   filterArchivedLength = 0;
 
   filters: SwitchFilter[] = [
-    // { name: 'Favourites', count: 0, isActive: false },
-    // { name: 'Actives', count: 0, isActive: true },
-    // { name: 'Archived', count: 0, isActive: false },
+    { name: 'Favourites', count: 0, isActive: false },
+    { name: 'Actives', count: 0, isActive: true },
+    { name: 'Archived', count: 0, isActive: false }
   ];
 
   current$: Observable<string>;
