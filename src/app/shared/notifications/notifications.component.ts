@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, SimpleChange, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Notification, NotificationsMeta, NotificationType, NotificationTypeId } from './notifications.model';
 import { selectNotificationData, NotificationState } from './notifications.reducer';
 import { Store, select } from '@ngrx/store';
