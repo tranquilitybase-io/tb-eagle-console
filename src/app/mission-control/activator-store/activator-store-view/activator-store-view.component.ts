@@ -13,7 +13,9 @@ export class ActivatorStoreViewComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.activator = this.route.snapshot.data['activator'] as Activator;
+    this.route.data.subscribe(data => {
+      this.activator = data.activator as Activator;
+    });
   }
 
   get lastUpdated(): Date {

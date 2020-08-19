@@ -5,7 +5,7 @@ import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/l
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { NotificationsService } from '../notifications/notifications.service';
-import { Notification, NotificationsMeta } from '../notifications/notifications.model';
+import { NotificationsMeta } from '../notifications/notifications.model';
 import { selectNotificationMetaData, selectNotificationData } from '../notifications/notifications.reducer';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
 export class LayoutComponent implements OnInit {
   isExpanded = true;
   notificationMetaData$: Observable<NotificationsMeta>;
-  notifications$: Observable<Notification[]>;
   showWelcome$: Observable<boolean>;
   userInitials$: Observable<string>;
   userIsAdmin$: Observable<boolean>;
@@ -32,7 +31,6 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
     this.notificationService.pollingInitAll();
     this.notificationMetaData$ = this.store.pipe(select(selectNotificationMetaData));
-    this.notifications$ = this.store.pipe(select(selectNotificationData));
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.userInitials$ = this.store.pipe(select(selectUserInitials));
     this.showWelcome$ = this.store.pipe(select(selectShowWelcome));

@@ -41,6 +41,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     MatTooltipModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatBadgeModule
+    MatBadgeModule,
+    NotificationsModule
   ],
   exports: [
     AlertComponent,

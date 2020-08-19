@@ -28,7 +28,8 @@ const routes: Routes = [
     component: ActivatorStoreViewComponent,
     resolve: {
       activator: ActivatorByIdResolver
-    }
+    },
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   }
 ];
 
