@@ -21,17 +21,17 @@ export class SolutionSelectComponent implements OnInit {
   ngOnInit() {
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
 
-    this.onGroupSwitch(this.route.snapshot.queryParams.categorySwitch || 'Actives');
+    this.onGroupSwitch(this.route.snapshot.queryParams.groupSwitch || 'Actives');
   }
 
   onGroupSwitch(value: string) {
-    this.router.navigate(['.'], {
-      relativeTo: this.route,
-      queryParamsHandling: 'merge',
-      queryParams: {
-        groupSwitch: value
-      }
-    });
+    // this.router.navigate(['.'], {
+    //   relativeTo: this.route,
+    //   queryParamsHandling: 'preserve',
+    //   queryParams: {
+    //     groupSwitch: value
+    //   }
+    // });
     this.onSelection.emit(value);
   }
 }

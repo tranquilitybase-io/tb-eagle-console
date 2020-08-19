@@ -83,6 +83,7 @@
         <a
           mat-list-item
           routerLink="/mission-control/activator-store"
+          [queryParams]="{ categorySwitch: 'Category' }"
           routerLinkActive="active"
           [matTooltip]="!isExpanded ? 'Activator store' : null"
           matTooltipPosition="after"
@@ -121,6 +122,7 @@
       <a
         mat-list-item
         routerLink="/administration/teams"
+        [queryParams]="{ groupSwitch: 'Actives' }"
         routerLinkActive="active"
         [matTooltip]="!isExpanded ? 'Teams' : null"
         matTooltipPosition="after"

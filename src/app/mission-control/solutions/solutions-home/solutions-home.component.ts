@@ -55,6 +55,6 @@ export class SolutionsHomeComponent implements OnInit {
   }
 
   getSolutions(filter: string) {
-    this.solutionsService.setFilter(filter);
+    filter && this.solutionsService.setFilter(filter);
   }
 }
