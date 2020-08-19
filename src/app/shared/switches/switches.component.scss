@@ -27,6 +27,7 @@
   font-size: 0.875rem;
   padding: 0.4rem 2rem 0.6rem;
   border-radius: var(--radius);
+  cursor: pointer;
 
   &.active {
     background-color: var(--primary-color);
