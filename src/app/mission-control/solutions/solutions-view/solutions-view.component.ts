@@ -20,7 +20,7 @@ export class SolutionsViewComponent implements OnInit {
   solution: Solution = { businessUnit: {}, team: {} } as Solution;
 
   values = [
-    { name: 'Applications', count: 0 },
+    { name: 'Applications', count: 0, defaultActive: true },
     { name: 'Workspace', count: 0 }
   ];
 

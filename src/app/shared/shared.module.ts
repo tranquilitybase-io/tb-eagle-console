@@ -32,6 +32,7 @@ import { SharedService } from './shared.service';
 import { ApplicationsService } from '@app/mission-control/applications/applications.service';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -99,7 +100,8 @@ import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
     MatTooltipModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatButtonToggleModule
   ],
   exports: [
     AlertComponent,

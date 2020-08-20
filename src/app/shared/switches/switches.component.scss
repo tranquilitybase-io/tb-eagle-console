@@ -7,12 +7,7 @@
 
 .switch-button {
   flex: auto;
-  background: none;
-  border: none;
-  outline: none;
   font-size: 0.875rem;
-  padding: 0.4rem 2rem 0.6rem;
-  border-radius: var(--radius);
 
   &.active {
     background-color: var(--primary-color);
