@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SwitchesComponent } from './switches.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('SwitchesComponent', () => {
   let component: SwitchesComponent;
@@ -8,7 +10,15 @@ describe('SwitchesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SwitchesComponent]
+      declarations: [SwitchesComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            queryParamMap: of({ groupSwitch: 'Actives' })
+          }
+        }
+      ]
     }).compileComponents();
   }));
 
