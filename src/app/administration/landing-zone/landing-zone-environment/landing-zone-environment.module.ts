@@ -26,6 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
+import { SharedModule } from '@app/shared/shared.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -58,7 +60,8 @@ const routes: Routes = [
     MatListModule,
     MatSelectModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    SharedModule
   ]
 })
 export class LandingZoneEnvironmentModule {}

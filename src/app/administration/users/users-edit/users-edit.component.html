@@ -1,16 +1,5 @@
 <header>
-  <div>
-    <a mat-button color="primary" routerLink="/administration/users">
-      <mat-icon class="app-cancel-icon">cancel</mat-icon>
-      Cancel
-    </a>
-  </div>
-  <div>
-    <span class="vertical-divider"></span>
-    <span class="title">Edit</span>
-    <span class="vertical-divider"></span>
-    <span class="subtitle">User</span>
-  </div>
+  <app-breadcrumbs [title]="'Edit'"> </app-breadcrumbs>
 </header>
 <main>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
@@ -59,6 +48,12 @@
         </mat-error>
       </mat-form-field>
     </p>
+    <div class="app-bottom-action left">
+      <button mat-button color="primary" (click)="cancel()">
+        <mat-icon class="app-cancel-icon">cancel</mat-icon>
+        Cancel
+      </button>
+    </div>
     <div class="app-bottom-action right">
       <button mat-button color="primary">
         Update User

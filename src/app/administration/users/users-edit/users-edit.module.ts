@@ -10,6 +10,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { UsersEditComponent } from './users-edit.component';
 import { UserByIdResolver } from '@app/shared/resolvers/user-by-id.resolver';
 
+import { SharedModule } from '@app/shared/shared.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -31,7 +33,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    SharedModule
   ]
 })
 export class UsersEditModule {}

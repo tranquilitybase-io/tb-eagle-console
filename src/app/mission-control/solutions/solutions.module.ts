@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import reducer, { solutionFeatureKey } from './solutions.reducer';
 import { SolutionEffects } from './solutions.effects';
+import { SharedModule } from '@app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
     CommonModule,
     StoreModule.forFeature(solutionFeatureKey, reducer),
     EffectsModule.forFeature([SolutionEffects]),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class SolutionsModule {}

@@ -37,6 +37,10 @@ export class UsersEditComponent implements OnInit {
     return this.userForm.controls;
   }
 
+  cancel() {
+    this.router.navigateByUrl('/administration/users');
+  }
+
   onSubmit(userData) {
     if (this.userForm.valid) {
       this.store.dispatch(updateUserData({ userData }));

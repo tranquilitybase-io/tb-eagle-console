@@ -1,28 +1,13 @@
-<div class="activ-sub-header">
+<header class="activ-sub-header">
   <div class="flex-group">
-    <a
-      class="button text-only left activ-back-btn"
-      routerLink="/mission-control/activator-store"
-      [queryParams]="{ categorySwitch: 'Category' }"
-    >
-      Back
-    </a>
-    <div class="app-name separated">{{ activator.name }}</div>
-    <div class="separated">
+    <app-breadcrumbs [title]="activator.name"> </app-breadcrumbs>
+    <div>
       <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
         {{ activator.status }}
       </div>
     </div>
-    <div class="badge grey time-badge">
-      <div>{{ lastUpdated | date: 'hh:mma' }}</div>
-      <div class="separated">{{ lastUpdated | date: 'dd MMM yyyy' }}</div>
-    </div>
-    <div class="separated tier">
-      <div class="tier-icon"></div>
-      Eagle tier 2 subscription
-    </div>
   </div>
-  <div class="flex-group buttons">
+  <div class="flex-group">
     <button
       mat-raised-button
       color="primary"
@@ -69,7 +54,7 @@
       Undeprecate
     </button>
   </div>
-</div>
+</header>
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Overview">
     <app-activator-store-view-overview></app-activator-store-view-overview>

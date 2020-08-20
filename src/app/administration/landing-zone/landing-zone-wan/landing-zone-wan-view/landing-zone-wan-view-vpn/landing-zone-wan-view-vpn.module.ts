@@ -23,6 +23,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { SharedModule } from '@app/shared/shared.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -53,7 +55,8 @@ const routes: Routes = [
     MatListModule,
     MatSelectModule,
     MatStepperModule,
-    MatTooltipModule
+    MatTooltipModule,
+    SharedModule
   ]
 })
 export class LandingZoneWanViewVpnModule {}

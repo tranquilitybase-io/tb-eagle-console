@@ -41,6 +41,10 @@ export class TeamsCreateComponent implements OnInit {
     return this.teamForm.controls;
   }
 
+  cancel() {
+    this.router.navigateByUrl('/administration/teams');
+  }
+
   onSubmit(teamData) {
     if (this.teamForm.valid) {
       this.store.dispatch(storeTeamData({ teamData }));

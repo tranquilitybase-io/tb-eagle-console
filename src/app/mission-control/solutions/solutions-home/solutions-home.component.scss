@@ -3,23 +3,8 @@
 }
 
 header {
-  padding: 0 2rem;
+  padding: 0.2rem 1.5rem;
   background-color: var(--active-grey-background);
-
-  .title {
-    display: flex;
-    align-items: center;
-
-    h1 {
-      font-size: 1.25rem;
-      font-weight: 800;
-
-      .vertical-divider {
-        border-left: 1px solid var(--grey);
-        margin: 0.5rem;
-      }
-    }
-  }
 }
 
 app-breadcrumbs {

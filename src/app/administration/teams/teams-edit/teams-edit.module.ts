@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
+import { SharedModule } from '@app/shared/shared.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -35,7 +37,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    SharedModule
   ]
 })
 export class TeamsEditModule {}

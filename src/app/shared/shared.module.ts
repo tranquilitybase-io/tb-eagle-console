@@ -41,6 +41,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
   imports: [
     CommonModule,
     RouterModule.forChild([]),
+    BreadcrumbsModule,
     HttpClientModule,
     FormsModule,
     MatButtonModule,

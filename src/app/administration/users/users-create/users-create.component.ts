@@ -35,6 +35,10 @@ export class UsersCreateComponent implements OnInit {
     return this.userForm.controls;
   }
 
+  cancel() {
+    this.router.navigateByUrl('/administration/users');
+  }
+
   onSubmit(userData) {
     if (this.userForm.valid) {
       this.store.dispatch(storeUserData({ userData }));
