@@ -25,13 +25,13 @@ export class SolutionSelectComponent implements OnInit {
   }
 
   onGroupSwitch(value: string) {
-    // this.router.navigate(['.'], {
-    //   relativeTo: this.route,
-    //   queryParamsHandling: 'preserve',
-    //   queryParams: {
-    //     groupSwitch: value
-    //   }
-    // });
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
+      queryParamsHandling: 'merge',
+      queryParams: {
+        groupSwitch: value
+      }
+    });
     this.onSelection.emit(value);
   }
 }
