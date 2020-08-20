@@ -5,9 +5,10 @@ import { KeyValue } from '@angular/common';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
 import { Activator } from '../activator-store.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { setDeprecated, setLocked, requestAccess } from '@app/mission-control/activator-store/activator-store.actions';
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { ActivatorStoreService } from '@app/mission-control/activator-store/activator-store.service';
 
 @Component({
   selector: 'app-activator-store-view',
@@ -20,15 +21,25 @@ export class ActivatorStoreViewComponent implements OnInit {
 
   private teamList: KeyValue<string, string>[];
 
-  constructor(private dialog: MatDialog, private store: Store<any>, private route: ActivatedRoute) {}
+  constructor(
+    private dialog: MatDialog,
+    private store: Store<any>,
+    private route: ActivatedRoute,
+    private activatorStoreService: ActivatorStoreService,
+    private state: RouterStateSnapshot
+  ) {}
 
   ngOnInit() {
-    /*
     this.route.data.subscribe(data => {
       this.activator = data.activator as Activator;
     });
-    */
-    this.activator = this.route.snapshot.data['activator'] as Activator;
+    /*
+     * TODO
+     * Make sure policy flow works correctly -> after action data should be fetched again
+     * Make sure data is fetched after query param chagne (clicking notification again from activator view )
+     */
+
+    //this.activator = this.route.snapshot.data['activator'] as Activator;
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
   }
