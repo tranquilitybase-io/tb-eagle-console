@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SwitchesComponent } from './switches.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of } from 'rxjs';
 
 describe('SwitchesComponent', () => {
@@ -15,7 +15,7 @@ describe('SwitchesComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            queryParamMap: of({ groupSwitch: 'Actives' })
+            queryParamMap: of(convertToParamMap({ groupSwitch: 'Actives' }))
           }
         }
       ]
@@ -25,6 +25,7 @@ describe('SwitchesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SwitchesComponent);
     component = fixture.componentInstance;
+    component.paramSwitch = 'groupSwitch';
     fixture.detectChanges();
   });
 
