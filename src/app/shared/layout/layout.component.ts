@@ -58,4 +58,8 @@ export class LayoutComponent implements OnInit {
     this.notificationService.pollingKillAll();
     setTimeout(() => this.router.navigateByUrl('/login'), 200);
   }
+
+  isLinkActive(url: string): boolean {
+    return this.router.url.includes(url);
+  }
 }
