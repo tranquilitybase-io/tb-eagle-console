@@ -34,18 +34,18 @@ export class SolutionsHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.solutionsService.getAll().subscribe(this.numberingUpdate.bind(this));
+    this.solutionsService.getAll().subscribe(solutions => this.numberingUpdate(solutions));
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
     this.current$.subscribe(event => this.getSolutions(event));
     this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
-      this.solutionsService.getAll().subscribe(this.numberingUpdate.bind(this));
+      this.solutionsService.getAll().subscribe(solutions => this.numberingUpdate(solutions));
     });
   }
 
   numberingUpdate(solutions: Solution[]) {
-    let filterFavouritesLength = solutions.filter(solution => solution.isFavourite).length;
-    let filterActivesLength = solutions.filter(solution => solution.isActive).length;
-    let filterArchivedLength = solutions.filter(solution => !solution.isActive).length;
+    const filterFavouritesLength = solutions.filter(solution => solution.isFavourite).length;
+    const filterActivesLength = solutions.filter(solution => solution.isActive).length;
+    const filterArchivedLength = solutions.filter(solution => !solution.isActive).length;
 
     this.filters = [
       { name: 'Favourites', count: filterFavouritesLength, defaultActive: false },

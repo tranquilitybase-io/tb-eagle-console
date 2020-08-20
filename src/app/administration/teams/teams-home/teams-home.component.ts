@@ -25,7 +25,7 @@ export class TeamsHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.teamsService.getAll().subscribe(this.updateNumbering.bind(this));
+    this.teamsService.getAll().subscribe(teams => this.updateNumbering(teams));
 
     const current$: Observable<string> = this.route.queryParamMap.pipe(
       map(queryParams => queryParams.get('groupSwitch'))
@@ -38,9 +38,9 @@ export class TeamsHomeComponent implements OnInit {
   }
 
   updateNumbering(teams: Team[]) {
-    let filterFavouritesLength = teams.filter(team => team.isFavourite).length;
-    let filterActivesLenth = teams.filter(team => team.isActive).length;
-    let filterArchivedLength = teams.filter(team => !team.isActive).length;
+    const filterFavouritesLength = teams.filter(team => team.isFavourite).length;
+    const filterActivesLenth = teams.filter(team => team.isActive).length;
+    const filterArchivedLength = teams.filter(team => !team.isActive).length;
 
     this.filters = [
       { name: 'Favourites', count: filterFavouritesLength, defaultActive: false },
