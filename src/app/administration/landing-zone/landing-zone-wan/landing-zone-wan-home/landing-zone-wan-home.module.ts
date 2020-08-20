@@ -26,6 +26,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { ConnectionUnderDeploymentComponent } from './snack-bar/connection-under-deployment/connection-under-deployment.component';
 import { ConnectionIsDeployedComponent } from './snack-bar/connection-is-deployed/connection-is-deployed.component';
+import { SharedModule } from '@app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -60,7 +61,8 @@ const routes: Routes = [
     MatMenuModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    SharedModule
   ]
 })
 export class LandingZoneWanHomeModule {}

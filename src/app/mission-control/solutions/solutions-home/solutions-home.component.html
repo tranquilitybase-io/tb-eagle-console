@@ -1,10 +1,5 @@
 <header>
-  <div class="title">
-    <h1>
-      <span class="vertical-divider"></span>
-      Solutions
-    </h1>
-  </div>
+  <app-breadcrumbs></app-breadcrumbs>
 </header>
 <div>
   <app-solution-select [values]="filters" (onSelection)="getSolutions($event)"></app-solution-select>

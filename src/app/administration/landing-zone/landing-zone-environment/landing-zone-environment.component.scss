@@ -5,25 +5,8 @@
 }
 
 header {
-  padding: 0.3rem 0.5rem;
+  padding: 0.2rem 1.5rem;
   background-color: var(--active-grey-background);
-  display: flex;
-  align-items: center;
-
-  span {
-    font-family: 'SF Pro Display', Roboto, 'Helvetica Neue', sans-serif;
-    font-style: normal;
-    font-size: 20px;
-
-    &.title {
-      font-weight: 800;
-    }
-
-    &.vertical-divider {
-      border-left: 1px solid var(--grey);
-      margin: 0.5rem;
-    }
-  }
 }
 
 main {
