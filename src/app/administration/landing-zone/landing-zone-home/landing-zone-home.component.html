@@ -2,12 +2,7 @@
   <mat-accordion>
     <mat-expansion-panel expanded>
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          <div class="title">
-            <span class="vertical-divider"></span>
-            Landing Zone
-          </div>
-        </mat-panel-title>
+        <app-breadcrumbs> </app-breadcrumbs>
       </mat-expansion-panel-header>
       <div class="setup-progress" *ngIf="progressItems$ | async">
         <h2>Setup Progress</h2>

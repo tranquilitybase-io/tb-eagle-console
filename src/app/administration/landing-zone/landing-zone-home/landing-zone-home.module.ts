@@ -17,6 +17,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { LandingZoneHomeGridComponent } from './landing-zone-home-grid/landing-zone-home-grid.component';
 
+import { SharedModule } from '@app/shared/shared.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -39,7 +41,8 @@ const routes: Routes = [
     MatIconModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatStepperModule
+    MatStepperModule,
+    SharedModule
   ],
   providers: [
     {

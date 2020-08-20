@@ -1,17 +1,5 @@
 <header>
-  <div>
-    <a mat-button color="primary" routerLink="/mission-control/solutions">
-      <mat-icon class="app-cancel-icon">cancel</mat-icon>
-      Cancel
-    </a>
-  </div>
-
-  <div>
-    <span class="vertical-divider"></span>
-    <span class="title">Create new solution</span>
-    <span class="vertical-divider"></span>
-    <span class="subtitle">Solutions</span>
-  </div>
+  <app-breadcrumbs [title]="'Create new solution'"> </app-breadcrumbs>
 </header>
 
 <mat-horizontal-stepper [linear]="true" #stepper>
