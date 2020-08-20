@@ -1,22 +1,28 @@
 <header>
-  <div>
-    <a
-      mat-button
-      color="primary"
-      routerLink="/mission-control/solutions/view"
-      [queryParams]="{ id: application.solutionId, categorySwitch: 'Applications' }"
-    >
-      <mat-icon>chevron_left</mat-icon> Back
-    </a>
-  </div>
-  <div>
-    <span class="title">View</span>
-    <span class="vertical-divider"></span>
-    <span>Applications</span>
-    <span class="vertical-divider"></span>
-    <span class="subtitle">Solutions</span>
-  </div>
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Solutions',
+        link: '/mission-control/solutions',
+        parentUrl: 'mission-control'
+      },
+      {
+        name: (solution$ | async).name,
+        link: '/mission-control/solutions/view',
+        id: application.solutionId,
+        parentUrl: 'mission-control/solutions'
+      },
+      {
+        link: '/mission-control/solutions/view',
+        name: application.name,
+        parentUrl: 'mission-control/solutions/view'
+      }
+    ]"
+    [isActive]="application.isActive"
+  >
+  </app-breadcrumbs>
 </header>
+
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Overview">
     <app-applications-view-overview></app-applications-view-overview>

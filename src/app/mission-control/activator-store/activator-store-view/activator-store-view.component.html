@@ -1,26 +1,60 @@
-<div class="activ-sub-header">
-  <a
-    class="button text-only left activ-back-btn"
-    routerLink="/mission-control/activator-store"
-    [queryParams]="{ categorySwitch: 'Category' }"
-  >
-    Back
-  </a>
-  <div class="app-name separated">{{ activator.name }}</div>
-  <div class="separated">
-    <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
-      {{ activator.status }}
+<header class="activ-sub-header">
+  <div class="flex-group">
+    <app-breadcrumbs [title]="activator.name"> </app-breadcrumbs>
+    <div>
+      <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
+        {{ activator.status }}
+      </div>
     </div>
   </div>
-  <div class="badge grey time-badge">
-    <div>{{ lastUpdated | date: 'hh:mma' }}</div>
-    <div class="separated">{{ lastUpdated | date: 'dd MMM yyyy' }}</div>
+  <div class="flex-group">
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isLocked && !(userIsAdmin$ | async)"
+      (click)="requestAccess()"
+      class="button-policy"
+    >
+      Request Access
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isLocked && (userIsAdmin$ | async)"
+      (click)="grantAccess()"
+      class="button-policy"
+    >
+      Grant Access
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isAvailable && (userIsAdmin$ | async)"
+      (click)="setLocked()"
+      class="button-policy"
+    >
+      Lock
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="(isAvailable || isLocked) && (userIsAdmin$ | async)"
+      (click)="setDeprecated()"
+      class="button-policy"
+    >
+      Deprecate
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isDeprecated && (userIsAdmin$ | async)"
+      (click)="setLocked()"
+      class="button-policy"
+    >
+      Undeprecate
+    </button>
   </div>
-  <div class="separated tier">
-    <div class="tier-icon"></div>
-    Eagle tier 2 subscription
-  </div>
-</div>
+</header>
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Overview">
     <app-activator-store-view-overview></app-activator-store-view-overview>

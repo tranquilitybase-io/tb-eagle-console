@@ -4,6 +4,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
+import { TeamResolver } from '@app/shared/resolvers/team.resolver';
 
 import { ActivatorStoreViewAuditHistoryComponent } from './activator-store-view-audit-history/activator-store-view-audit-history.component';
 import { ActivatorStoreViewBillingComponent } from './activator-store-view-billing/activator-store-view-billing.component';
@@ -21,13 +22,17 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { ActivatorStoreDialogModule } from '../activator-store-dialog/activator-store-dialog.module';
 
 const routes: Routes = [
   {
     path: '',
     component: ActivatorStoreViewComponent,
     resolve: {
-      activator: ActivatorByIdResolver
+      activator: ActivatorByIdResolver,
+      teamList: TeamResolver
     },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   }
@@ -48,13 +53,15 @@ const routes: Routes = [
     SharedModule,
     ApplicationsModule,
     RouterModule.forChild(routes),
+    MatDialogModule,
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    ActivatorStoreDialogModule
   ]
 })
 export class ActivatorStoreViewModule {}

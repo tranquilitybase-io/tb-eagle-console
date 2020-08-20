@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { KeyValue } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-zone-wan-create-vpn-tab',
@@ -14,9 +14,13 @@ export class LandingZoneWanCreateVpnTabComponent implements OnInit {
   subnetModeList: KeyValue<string, string>[];
   bgpRoutingModeList: KeyValue<string, string>[];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
   get f() {
     return this.formGroup.controls;
+  }
+
+  cancel() {
+    this.router.navigateByUrl('/administration/landing-zone/wan');
   }
 
   ngOnInit() {

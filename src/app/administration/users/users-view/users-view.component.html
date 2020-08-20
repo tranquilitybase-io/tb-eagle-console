@@ -1,16 +1,5 @@
 <header>
-  <div>
-    <a mat-button color="primary" routerLink="/administration/users">
-      <mat-icon>chevron_left</mat-icon>
-      Back
-    </a>
-  </div>
-  <div>
-    <span class="vertical-divider"></span>
-    <span class="title">View User</span>
-    <span class="vertical-divider"></span>
-    <span class="subtitle">User</span>
-  </div>
+  <app-breadcrumbs [title]="'View User'"> </app-breadcrumbs>
 </header>
 
 <mat-card class="user-view-card">

@@ -16,14 +16,33 @@
 }
 
 .step {
-  border-left: 1px solid var(--grey);
-  margin-left: 0.5rem;
-  padding-left: 0.5rem;
   font-size: 1.25rem;
+  display: flex;
+  align-items: center;
 
   &:first-of-type {
     font-weight: 800;
   }
+
+  &:not(:first-of-type) {
+    &::before {
+      --arrow-width: 2px;
+
+      content: '';
+      display: block;
+      transform: rotate(45deg);
+      width: 0.5em;
+      height: 0.5em;
+      border-top: var(--arrow-width) solid var(--primary-color);
+      border-right: var(--arrow-width) solid var(--primary-color);
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 .badge {
