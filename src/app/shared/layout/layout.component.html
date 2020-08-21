@@ -69,9 +69,9 @@
           mat-list-item
           routerLink="/mission-control/solutions"
           [queryParams]="{ groupSwitch: 'Actives' }"
-          routerLinkActive="active"
           [matTooltip]="!isExpanded ? 'Solutions' : null"
           matTooltipPosition="after"
+          [class.active]="isLinkActive('/mission-control/solutions')"
         >
           <mat-icon>filter_none</mat-icon>
           <span *ngIf="isExpanded"> Solutions</span>
@@ -80,7 +80,7 @@
           mat-list-item
           routerLink="/mission-control/activator-store"
           [queryParams]="{ categorySwitch: 'Category' }"
-          routerLinkActive="active"
+          [class.active]="isLinkActive('/mission-control/activator-store')"
           [matTooltip]="!isExpanded ? 'Activator store' : null"
           matTooltipPosition="after"
         >
@@ -94,7 +94,7 @@
         <a
           mat-list-item
           routerLink="/administration/landing-zone"
-          routerLinkActive="active"
+          [class.active]="isLinkActive('/administration/landing-zone')"
           [matTooltip]="!isExpanded ? 'Landing Zone' : null"
           matTooltipPosition="after"
         >
@@ -109,7 +109,7 @@
         mat-list-item
         routerLink="/administration/users"
         [queryParams]="{ groupSwitch: 'Actives' }"
-        routerLinkActive="active"
+        [class.active]="isLinkActive('/administration/users')"
         [matTooltip]="!isExpanded ? 'Users' : null"
         matTooltipPosition="after"
       >
@@ -119,7 +119,7 @@
         mat-list-item
         routerLink="/administration/teams"
         [queryParams]="{ groupSwitch: 'Actives' }"
-        routerLinkActive="active"
+        [class.active]="isLinkActive('/administration/teams')"
         [matTooltip]="!isExpanded ? 'Teams' : null"
         matTooltipPosition="after"
       >

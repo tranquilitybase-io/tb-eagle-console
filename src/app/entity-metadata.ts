@@ -31,7 +31,7 @@ const entityMetadata: EntityMetadataMap = {
         return solutions.filter(solution => solution.isFavourite);
       }
 
-      if (filter === 'Active') {
+      if (filter === 'Actives') {
         return solutions.filter(solution => solution.isActive);
       }
 

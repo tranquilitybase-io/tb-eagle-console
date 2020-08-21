@@ -13,7 +13,7 @@ export class ActivatorStoreDialogMissingSolutionsComponent implements OnInit {
   ngOnInit() {}
 
   activateArchived() {
-    this.router.navigateByUrl(`/mission-control/solutions?categorySwitch=Archived`);
+    this.router.navigateByUrl(`/mission-control/solutions?groupSwitch=Archived`);
     this.dialogRef.close();
   }
 

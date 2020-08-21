@@ -1,4 +1,14 @@
-<button class="switch-button" type="button" [class.active]="value.name === current" (click)="onChange(value)" *ngFor="let value of values">
-  {{ value.name }}
-  <span *ngIf="!hideCount" class="count">({{ value.count }})</span>
-</button>
+<div class="filters-row">
+  <div class="filters">
+    <button
+      mat-button
+      class="switch-button"
+      *ngFor="let filter of filters"
+      (click)="onChange(filter)"
+      value="{{ filter.name }}"
+      [class.active]="filter.name === current"
+    >
+      {{ filter.name }}<span *ngIf="!hideCount" class="count"> ({{ filter.count }})</span>
+    </button>
+  </div>
+</div>

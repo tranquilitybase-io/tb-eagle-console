@@ -2,6 +2,6 @@
   <app-breadcrumbs> </app-breadcrumbs>
 </header>
 <div>
-  <app-teams-select [values]="values" (onSelection)="setFilter($event)"></app-teams-select>
+  <app-teams-select [values]="filters" (onSelection)="setFilter($event)"></app-teams-select>
 </div>
 <app-teams-home-grid [teams$]="teams$"></app-teams-home-grid>
