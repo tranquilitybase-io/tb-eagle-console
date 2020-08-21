@@ -1,6 +1,39 @@
-<header>
-  <app-breadcrumbs></app-breadcrumbs>
-</header>
+<div *ngIf="isSelectedSolution$ | async; else standardHeader">
+  <header>
+    <app-breadcrumbs
+      [steps]="[
+        {
+          name: 'Solutions'
+        },
+        {
+          name: 'Test'
+        },
+        {
+          name: 'Create new application'
+        },
+        {
+          name: 'Activator Store'
+        }
+      ]"
+    ></app-breadcrumbs>
+  </header>
+</div>
+<ng-template #standardHeader>
+  <header>
+    <app-breadcrumbs></app-breadcrumbs>
+  </header>
+</ng-template>
+
+<mat-horizontal-stepper *ngIf="isSelectedSolution$ | async" [linear]="true" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Activator selection</ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Application details</ng-template>
+    <!-- <app-applications-create #appCreate></app-applications-create> -->
+  </mat-step>
+</mat-horizontal-stepper>
+
 <div class="controls-activator-home">
   <div class="switches-activator-home">
     <button

@@ -1,13 +1,1 @@
-<header *ngIf="isSelectedSolution$ | async">
-  <div class="create-new-app-title">
-    <button mat-button color="primary" (click)="cancel()">
-      <mat-icon class="app-cancel-icon">cancel</mat-icon>
-      Cancel
-    </button>
-    <div class="title">
-      Create new application
-    </div>
-  </div>
-  <app-progress [steps]="['Select activator', 'Input app details']" [current]="progress$ | async"> </app-progress>
-</header>
 <router-outlet></router-outlet>

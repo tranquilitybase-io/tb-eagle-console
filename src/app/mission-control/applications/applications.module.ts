@@ -24,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [ApplicationsDeploymentsComponent, ApplicationsGridComponent, ApplicationsGridCardComponent],
@@ -45,7 +46,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatStepperModule
   ],
   exports: [ApplicationsDeploymentsComponent, ApplicationsGridComponent]
 })

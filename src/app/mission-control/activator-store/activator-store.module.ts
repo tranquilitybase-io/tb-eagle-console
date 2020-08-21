@@ -11,11 +11,14 @@ import { ActivatorStoreComponent } from './activator-store.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material';
+import { ActivatorStoreGuard } from '@app/guards/activator-store-guard';
 
 const routes: Routes = [
   {
     path: '',
     component: ActivatorStoreComponent,
+    canDeactivate: [ActivatorStoreGuard],
     children: [
       {
         path: '',
@@ -48,7 +51,8 @@ const routes: Routes = [
     StoreModule.forFeature(featureKey, reducer),
     EffectsModule.forFeature([ActivatorStoreEffects]),
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatStepperModule
   ]
 })
 export class ActivatorStoreModule {}
