@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material';
 import { ActivatorStoreGuard } from '@app/guards/activator-store-guard';
+import { ActivatorStoreDialogModule } from './activator-store-dialog/activator-store-dialog.module';
 
 const routes: Routes = [
   {

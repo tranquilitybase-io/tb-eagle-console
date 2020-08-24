@@ -43,6 +43,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
+import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 
 @NgModule({
   declarations: [
@@ -67,14 +68,16 @@ import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    YesNoDialogComponent
   ],
   entryComponents: [
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    YesNoDialogComponent
   ],
   providers: [
     SharedService,

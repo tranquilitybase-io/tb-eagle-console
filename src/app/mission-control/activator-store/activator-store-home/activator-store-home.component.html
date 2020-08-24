@@ -3,16 +3,16 @@
     <app-breadcrumbs
       [steps]="[
         {
-          name: 'Solutions'
+          name: 'Solutions',
+          link: '/mission-control/solutions'
         },
         {
-          name: 'Test'
+          name: (selectedSolution$ | async).name,
+          link: '/mission-control/solutions/view',
+          id: (selectedSolution$ | async).id
         },
         {
           name: 'Create new application'
-        },
-        {
-          name: 'Activator Store'
         }
       ]"
     ></app-breadcrumbs>
@@ -25,13 +25,27 @@
 </ng-template>
 
 <mat-horizontal-stepper *ngIf="isSelectedSolution$ | async" [linear]="true" #stepper>
-  <mat-step>
+  <mat-step [completed]="false" state="done">
     <ng-template matStepLabel>Activator selection</ng-template>
   </mat-step>
-  <mat-step>
+  <mat-step [completed]="false" [editable]="false">
     <ng-template matStepLabel>Application details</ng-template>
     <!-- <app-applications-create #appCreate></app-applications-create> -->
   </mat-step>
+  <mat-step [completed]="false" [editable]="false">
+    <ng-template matStepLabel>Review</ng-template>
+    <!-- <app-applications-create #appCreate></app-applications-create> -->
+  </mat-step>
+
+  <ng-template matStepperIcon="edit">
+    <mat-icon>file_copy</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="done">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="app-progress-item">
+    <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+  </ng-template>
 </mat-horizontal-stepper>
 
 <div class="controls-activator-home">

@@ -7,8 +7,9 @@ import { map } from 'rxjs/operators';
 import { selectCategoriesCount, selectActivatorsCount } from '../activator-store.reducer';
 
 import { selectProgress } from '../activator-store.reducer';
-import { selectIsSelectedSolution } from '../../solutions/solutions.reducer';
+import { selectIsSelectedSolution, selectSelectedSolution } from '../../solutions/solutions.reducer';
 import { discardSelectedSolution } from '../../solutions/solutions.actions';
+import { Solution } from '@app/mission-control/solutions/solutions.model';
 
 @Component({
   selector: 'app-activator-store-home',
@@ -24,6 +25,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
   progress$: Observable<number>;
   isSelectedSolution$: Observable<boolean>;
+  selectedSolution$: Observable<Solution>;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
 
@@ -38,6 +40,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
     this.progress$ = this.store.pipe(select(selectProgress));
     this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
+    this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
   }
 
   onSwitch(categorySwitch: string) {

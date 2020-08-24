@@ -1,7 +1,143 @@
 <header>
-  <app-breadcrumbs></app-breadcrumbs>
+  <app-breadcrumbs *ngIf="!(isSelectedSolution$ | async); else solutionSelectedBreadcrmbs"> </app-breadcrumbs>
+  <ng-template #solutionSelectedBreadcrmbs>
+    <app-breadcrumbs
+      [steps]="[
+        {
+          name: 'Solutions',
+          link: '/mission-control/solutions'
+        },
+        {
+          name: selectedSolutionName,
+          link: '/mission-control/solutions/view',
+          id: (isSelectedSolution$ | async).id
+        },
+        {
+          name: 'Create new application',
+          link: '/mission-control/activator-store'
+        },
+        {
+          name: selectedActivatorName,
+          link: '/mission-control/activator-store'
+        },
+        {
+          name: 'Application details'
+        }
+      ]"
+    ></app-breadcrumbs>
+  </ng-template>
 </header>
-<form [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm.value)">
+
+<!-- Stepper -->
+<mat-horizontal-stepper *ngIf="isSelectedSolution$ | async" [linear]="true" #stepper>
+  <mat-step
+    [editable]="false"
+    [completed]="true"
+    state="done"
+    (click)="onNavigateStepperBack()"
+    [routerLink]="'/mission-control/activator-store'"
+  >
+    <ng-template matStepLabel><div (click)="onNavigateStepperBack()">Activator selection</div></ng-template>
+  </mat-step>
+  <mat-step [editable]="true" [stepControl]="applicationForm">
+    <ng-template matStepLabel>Application details</ng-template>
+
+    <form *ngIf="isSelectedSolution$ | async" [formGroup]="applicationForm">
+      <app-alert
+        class="app-alert"
+        text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."
+      ></app-alert>
+
+      <p>
+        <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Solution</mat-label>
+          <mat-select required formControlName="solutionId">
+            <mat-option *ngFor="let item of availableSolutions" [value]="item.key"> {{ item.value }} </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isFieldValid('solutionId')"> Solution is <strong>required</strong> </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="small-width" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            required
+            type="text"
+            maxlength="50"
+            formControlName="name"
+            placeholder="E.g. project name..."
+          />
+          <mat-error *ngIf="isFieldValid('name')"> Name is <strong>required</strong> </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            required
+            #desctext
+            maxlength="200"
+            formControlName="description"
+            placeholder="Type your description here..."
+          ></textarea>
+          <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
+          <mat-error *ngIf="isFieldValid('description')"> Description is <strong>required</strong> </mat-error>
+        </mat-form-field>
+      </p>
+      <div class="app-bottom-action right">
+        <button mat-button color="primary" type="button" matStepperNext>
+          Review your new application
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </form>
+    <div class="app-bottom-action left">
+      <button
+        mat-button
+        color="primary"
+        type="button"
+        routerLink="/mission-control/activator-store/view"
+        queryParamsHandling="preserve"
+      >
+        <mat-icon>chevron_left</mat-icon>
+        Review activator
+      </button>
+    </div>
+  </mat-step>
+  <mat-step [completed]="false" [editable]="false">
+    <ng-template matStepLabel>Review</ng-template>
+    <div>
+      test
+      <div class="app-bottom-action left">
+        <button mat-button matStepperPrevious color="primary" type="button">
+          <mat-icon>chevron_left</mat-icon>
+          Review application details
+        </button>
+      </div>
+      <div class="app-bottom-action right">
+        <button mat-button color="primary" type="submit" (click)="onSubmit(applicationForm.value)">
+          Add to Solution
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-step>
+  <!-- Icons override -->
+  <ng-template matStepperIcon="edit">
+    <mat-icon>file_copy</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="done">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="app-progress-item">
+    <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+  </ng-template>
+</mat-horizontal-stepper>
+
+<form *ngIf="!(isSelectedSolution$ | async)" [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm.value)">
   <app-alert
     class="app-alert"
     text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."
@@ -48,7 +184,7 @@
   </div>
 </form>
 
-<div class="app-bottom-action left">
+<div class="app-bottom-action left" *ngIf="!(isSelectedSolution$ | async)">
   <button
     mat-button
     color="primary"

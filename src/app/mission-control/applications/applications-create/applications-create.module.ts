@@ -11,11 +11,12 @@ import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.res
 import { ActiveSolutionsResolver } from '@app/shared/resolvers/active-solutions.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatStepperModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ApplicationsCreateReviewComponent } from './applications-create-review/applications-create-review.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ApplicationsCreateComponent],
+  declarations: [ApplicationsCreateComponent, ApplicationsCreateReviewComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -42,7 +43,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule
   ]
 })
 export class ApplicationsCreateModule {}
