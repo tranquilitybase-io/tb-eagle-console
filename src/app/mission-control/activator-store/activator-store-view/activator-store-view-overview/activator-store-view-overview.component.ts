@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Activator, ActivatorCI } from '../../activator-store.model';
+import { concatMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setProgress } from '../../activator-store.actions';
 import { Property } from '@app/shared/properties/properties.component';
+import { ActivatorStoreService } from '@app/mission-control/activator-store/activator-store.service';
 
 @Component({
   selector: 'app-activator-store-view-overview',
@@ -11,15 +13,23 @@ import { Property } from '@app/shared/properties/properties.component';
   styleUrls: ['./activator-store-view-overview.component.scss']
 })
 export class ActivatorStoreViewOverviewComponent implements OnInit {
-  activator: Activator;
+  activator: Activator = {} as Activator;
 
-  constructor(private route: ActivatedRoute, private store: Store<any>) {}
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store<any>,
+    private activatorStoreService: ActivatorStoreService
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(setProgress({ step: 0 }));
-    this.route.data.subscribe(data => {
-      this.activator = data.activator as Activator;
-    });
+    this.route.queryParams
+      .pipe(
+        concatMap(params => {
+          return this.activatorStoreService.getByKey(params['id']);
+        })
+      )
+      .subscribe(activator => (this.activator = activator as Activator));
   }
 
   get properties(): Property[] {
