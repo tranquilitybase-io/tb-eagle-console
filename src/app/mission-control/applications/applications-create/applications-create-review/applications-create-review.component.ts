@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Activator } from '@app/mission-control/activator-store/activator-store.model';
+import { Solution } from '@app/mission-control/solutions/solutions.model';
 
 @Component({
   selector: 'app-applications-create-review',
@@ -8,7 +10,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class ApplicationsCreateReviewComponent implements OnInit {
   @Input() applicationFormGroup: FormGroup;
-  @Input() activatorName: string;
+  @Input() activator: Activator;
+  @Input() solution: Solution;
   @Output() onSubmit = new EventEmitter();
 
   constructor() {}
@@ -38,11 +41,4 @@ export class ApplicationsCreateReviewComponent implements OnInit {
   get activatorId(): string {
     return this.applicationFormGroup.get('activatorId').value;
   }
-
-  // solutionId: ['', Validators.required],
-  //     name: ['', Validators.required],
-  //     description: ['', Validators.required],
-  //     env: 'DEV',
-  //     status: 'Inactive',
-  //     activatorId: activator.id
 }

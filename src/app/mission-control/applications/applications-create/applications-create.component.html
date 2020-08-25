@@ -1,5 +1,9 @@
 <header>
-  <app-breadcrumbs *ngIf="!(isSelectedSolution$ | async); else solutionSelectedBreadcrmbs"> </app-breadcrumbs>
+  <app-breadcrumbs
+    *ngIf="!(selectedSolution$ | async); else solutionSelectedBreadcrmbs"
+    [title]="selectedActivator.name"
+  >
+  </app-breadcrumbs>
   <ng-template #solutionSelectedBreadcrmbs>
     <app-breadcrumbs
       [steps]="[
@@ -10,14 +14,14 @@
         {
           name: selectedSolutionName,
           link: '/mission-control/solutions/view',
-          id: (isSelectedSolution$ | async).id
+          id: (selectedSolution$ | async).id
         },
         {
           name: 'Create new application',
           link: '/mission-control/activator-store'
         },
         {
-          name: selectedActivatorName,
+          name: selectedActivator.name,
           link: '/mission-control/activator-store/view',
           id: applicationForm.get('activatorId').value
         },
@@ -29,7 +33,7 @@
   </ng-template>
 </header>
 
-<mat-horizontal-stepper *ngIf="isSelectedSolution$ | async" [linear]="true" #stepper>
+<mat-horizontal-stepper *ngIf="selectedSolution$ | async" [linear]="true" #stepper>
   <mat-step
     [editable]="false"
     [completed]="true"
@@ -39,15 +43,15 @@
   >
     <ng-template matStepLabel><div (click)="onNavigateStepperBack()">Activator selection</div></ng-template>
   </mat-step>
+
   <mat-step [editable]="true" [stepControl]="applicationForm">
     <ng-template matStepLabel>Application details</ng-template>
 
-    <form *ngIf="isSelectedSolution$ | async" [formGroup]="applicationForm">
+    <form *ngIf="selectedSolution$ | async" [formGroup]="applicationForm">
       <app-alert
         class="app-alert"
         text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."
       ></app-alert>
-
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Solution</mat-label>
@@ -71,7 +75,6 @@
           <mat-error *ngIf="isFieldValid('name')"> Name is <strong>required</strong> </mat-error>
         </mat-form-field>
       </p>
-
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
@@ -107,12 +110,14 @@
       </button>
     </div>
   </mat-step>
+
   <mat-step [completed]="false" [editable]="false">
     <ng-template matStepLabel>Review</ng-template>
     <div>
       <app-applications-create-review
         [applicationFormGroup]="applicationForm"
-        [activatorName]="selectedActivatorName"
+        [activator]="selectedActivator"
+        [solution]="selectedSolution$ | async"
       ></app-applications-create-review>
       <div class="app-bottom-action left">
         <button mat-button matStepperPrevious color="primary" type="button">
@@ -128,6 +133,7 @@
       </div>
     </div>
   </mat-step>
+
   <!-- Icons override -->
   <ng-template matStepperIcon="edit">
     <mat-icon>file_copy</mat-icon>
@@ -140,7 +146,9 @@
   </ng-template>
 </mat-horizontal-stepper>
 
-<form *ngIf="!(isSelectedSolution$ | async)" [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm.value)">
+<!-- No Solution selected variant below -->
+
+<form *ngIf="!(selectedSolution$ | async)" [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm.value)">
   <app-alert
     class="app-alert"
     text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."
@@ -187,7 +195,7 @@
   </div>
 </form>
 
-<div class="app-bottom-action left" *ngIf="!(isSelectedSolution$ | async)">
+<div class="app-bottom-action left" *ngIf="!(selectedSolution$ | async)">
   <button
     mat-button
     color="primary"

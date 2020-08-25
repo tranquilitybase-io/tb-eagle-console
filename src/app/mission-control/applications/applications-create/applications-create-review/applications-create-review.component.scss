@@ -1,29 +1,31 @@
-.mat-chip {
-  font-size: 12px;
-  padding: 0.2rem 0.5rem;
-  min-height: 1.5rem;
-  border-radius: 0.2rem;
+.tile-header .mat-grid-tile-header {
+  margin: 0 2rem;
 }
 
-.mat-grid-tile {
+mat-grid-list {
+  height: 600px;
+}
+
+mat-card {
   position: absolute;
-}
-.mat-grid-list {
-  margin-bottom: 1rem;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+  background-color: var(--active-grey-background);
+  border-radius: 16px;
 
-  .mat-card {
-    height: 80%;
-    width: 95%;
+  mat-card-content {
+    a {
+      margin-left: 5px;
+    }
 
-    .mat-card-content {
-      &.vpn-card-content {
-        .mat-list {
-          background-color: var(--active-grey-background);
-          padding: 1rem 0;
-          .mat-body-1 {
-            width: 16rem;
-          }
-        }
+    .card-details-list {
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+
+      .mat-body-1 {
+        width: 8rem;
       }
     }
   }

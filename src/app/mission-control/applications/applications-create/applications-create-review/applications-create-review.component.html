@@ -1,69 +1,104 @@
-<mat-grid-list cols="5" rowHeight="700px">
-  <mat-grid-tile [colspan]="3" [rowspan]="1">
-    <mat-grid-tile-header>Metadata</mat-grid-tile-header>
-    <mat-grid-list class="internal-mat-grid" cols="2" rowHeight="95px">
-      <mat-grid-tile [colspan]="2" [rowspan]="3">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Description
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <mat-list dense class="description-list">
-              <mat-list-item>
-                <div class="mat-body-1">Name</div>
-                <mat-chip-list>
-                  <mat-chip>{{ solutionName }}</mat-chip>
-                </mat-chip-list>
-              </mat-list-item>
-              <mat-list-item>
-                <div class="mat-body-1">Description</div>
-                <mat-chip-list>
-                  <mat-chip>{{ solutionDescription }}</mat-chip>
-                </mat-chip-list>
-              </mat-list-item>
-              <mat-list-item>
-                <div class="mat-body-1">Status</div>
-                <mat-chip-list>
-                  <mat-chip>{{ solutionStatus }}</mat-chip>
-                </mat-chip-list>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="1" class="configuration-grid-tile">
-    <mat-grid-tile-header>Configuration</mat-grid-tile-header>
-    <mat-grid-list class="internal-mat-grid" cols="1" rowHeight="110px">
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Activator
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div>{{ activatorName }}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Environments
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
+<mat-grid-list cols="4" rowHeight="fit" gutterSize="16px">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card class="app-dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Application details
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <mat-list dense class="card-details-list">
+          <mat-list-item>
+            <div class="mat-body-1">Name</div>
             <mat-chip-list>
-              <mat-chip>{{ solutionEnv }}</mat-chip>
+              <mat-chip>{{ solutionName }}</mat-chip>
             </mat-chip-list>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="mat-body-1">Description</div>
+            <mat-chip-list>
+              <mat-chip>{{ solutionDescription }}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="mat-body-1">Status</div>
+            <mat-chip-list>
+              <mat-chip>{{ solutionStatus }}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card class="app-dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Activator
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <mat-list dense class="card-details-list">
+          <mat-list-item>
+            <div class="mat-body-1">Name</div>
+            <mat-chip-list>
+              <mat-chip>{{ activator.name }}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="mat-body-1">Description</div>
+            <mat-chip-list>
+              <mat-chip>{{ activator.description }}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card class="app-dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Environment
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <mat-chip-list>
+          <mat-chip>{{ solutionEnv }}</mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card class="app-dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Solution
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+        <mat-list dense class="card-details-list">
+          <mat-list-item>
+            <div class="mat-body-1">Name</div>
+            <mat-chip-list>
+              <mat-chip>{{ solution.name }}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="mat-body-1">Description</div>
+            <mat-chip-list>
+              <mat-chip>{{ solution.description }}</mat-chip>
+            </mat-chip-list>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

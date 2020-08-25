@@ -23,9 +23,9 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   applicationForm: FormGroup;
   availableSolutions: KeyValue<string, string>[];
 
-  isSelectedSolution$: Observable<Solution>;
+  selectedSolution$: Observable<Solution>;
   selectedSolutionName: string;
-  selectedActivatorName: string;
+  selectedActivator: Activator;
 
   @ViewChild('stepper', { static: false })
   stepper: MatStepper;
@@ -40,7 +40,8 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.store.dispatch(setProgress({ step: 1 }));
-    const activator = this.route.snapshot.data['activator'] as Activator;
+    this.selectedActivator = this.route.snapshot.data['activator'] as Activator;
+
     const availableSolutions = this.route.snapshot.data['availableSolutions'] as Solution[];
     this.availableSolutions = availableSolutions.map(solution => ({ key: String(solution.id), value: solution.name }));
 
@@ -50,11 +51,10 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
       description: ['', Validators.required],
       env: 'DEV',
       status: 'Inactive',
-      activatorId: activator.id
+      activatorId: this.selectedActivator.id
     });
 
-    this.selectedActivatorName = activator.name;
-    this.isSelectedSolution$ = this.store.pipe(select(selectSelectedSolution));
+    this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
 
     this.store.pipe(select(selectSelectedSolution)).subscribe((solution: Solution) => {
       if (solution) {

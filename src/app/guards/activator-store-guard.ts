@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { selectIsSelectedSolution } from '../mission-control/solutions/solutions.reducer';
-import { map, take, concatMap, tap, mergeMap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { ActivatorStoreComponent } from '@app/mission-control/activator-store/activator-store.component';
 import { MatDialog } from '@angular/material';
 import { YesNoDialogComponent } from '@app/shared/dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 import { discardSelectedSolution } from '@app/mission-control/solutions/solutions.actions';
-import { Observable, Observer, of, iif } from 'rxjs';
-import { isBoolean } from 'util';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ import { isBoolean } from 'util';
 export class ActivatorStoreGuard implements CanDeactivate<ActivatorStoreComponent> {
   constructor(private store: Store<any>, private dialogService: MatDialog) {}
 
-  canDeactivate() {
+  canDeactivate(): Observable<boolean> {
     return this.store.pipe(select(selectIsSelectedSolution)).pipe(
       mergeMap(isSolutionSelected => {
         if (isSolutionSelected) {
@@ -34,8 +33,8 @@ export class ActivatorStoreGuard implements CanDeactivate<ActivatorStoreComponen
               map(dialogResult => {
                 if (dialogResult) {
                   this.store.dispatch(discardSelectedSolution());
-                  return of(true);
-                } else return of(false);
+                  return true;
+                } else return false;
               })
             );
         } else return of(true);
