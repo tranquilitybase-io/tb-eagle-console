@@ -71,7 +71,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    setTimeout(() => (this.stepper.selectedIndex = 1));
+    this.stepper && setTimeout(() => (this.stepper.selectedIndex = 1));
   }
 
   isFieldValid(field: string) {

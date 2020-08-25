@@ -18,7 +18,8 @@
         },
         {
           name: selectedActivatorName,
-          link: '/mission-control/activator-store'
+          link: '/mission-control/activator-store/view',
+          id: applicationForm.get('activatorId').value
         },
         {
           name: 'Application details'
@@ -28,7 +29,6 @@
   </ng-template>
 </header>
 
-<!-- Stepper -->
 <mat-horizontal-stepper *ngIf="isSelectedSolution$ | async" [linear]="true" #stepper>
   <mat-step
     [editable]="false"
@@ -110,7 +110,10 @@
   <mat-step [completed]="false" [editable]="false">
     <ng-template matStepLabel>Review</ng-template>
     <div>
-      test
+      <app-applications-create-review
+        [applicationFormGroup]="applicationForm"
+        [activatorName]="selectedActivatorName"
+      ></app-applications-create-review>
       <div class="app-bottom-action left">
         <button mat-button matStepperPrevious color="primary" type="button">
           <mat-icon>chevron_left</mat-icon>

@@ -1,0 +1,30 @@
+.mat-chip {
+  font-size: 12px;
+  padding: 0.2rem 0.5rem;
+  min-height: 1.5rem;
+  border-radius: 0.2rem;
+}
+
+.mat-grid-tile {
+  position: absolute;
+}
+.mat-grid-list {
+  margin-bottom: 1rem;
+
+  .mat-card {
+    height: 80%;
+    width: 95%;
+
+    .mat-card-content {
+      &.vpn-card-content {
+        .mat-list {
+          background-color: var(--active-grey-background);
+          padding: 1rem 0;
+          .mat-body-1 {
+            width: 16rem;
+          }
+        }
+      }
+    }
+  }
+}

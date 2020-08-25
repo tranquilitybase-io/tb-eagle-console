@@ -11,7 +11,14 @@ import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.res
 import { ActiveSolutionsResolver } from '@app/shared/resolvers/active-solutions.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatStepperModule } from '@angular/material';
+import {
+  MatDialogModule,
+  MatStepperModule,
+  MatListModule,
+  MatGridListModule,
+  MatCardModule,
+  MatChipsModule
+} from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -39,10 +46,14 @@ const routes: Routes = [
     ReactiveFormsModule,
     ActivatorStoreDialogModule,
     MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatSelectModule,
     MatStepperModule
   ]
