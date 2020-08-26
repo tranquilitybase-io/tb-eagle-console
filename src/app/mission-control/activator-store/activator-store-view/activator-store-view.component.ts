@@ -15,6 +15,7 @@ import {
 } from '@app/mission-control/activator-store/activator-store.actions';
 import { selectActivatorData } from '../activator-store.reducer';
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { ActivatorStoreService } from '../activator-store.service';
 
 @Component({
   selector: 'app-activator-store-view',
@@ -27,7 +28,12 @@ export class ActivatorStoreViewComponent implements OnInit {
   userIsAdmin$: Observable<boolean>;
   private teamList: KeyValue<string, string>[];
 
-  constructor(private dialog: MatDialog, private store: Store<any>, private route: ActivatedRoute) {
+  constructor(
+    private dialog: MatDialog,
+    private store: Store<any>,
+    private route: ActivatedRoute,
+    private activatorStoreService: ActivatorStoreService
+  ) {
     this.activator$ = this.store.pipe(select(selectActivatorData));
   }
 
@@ -40,6 +46,16 @@ export class ActivatorStoreViewComponent implements OnInit {
 
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
+
+    this.route.queryParams
+      .pipe(
+        switchMap(params => {
+          return this.activatorStoreService.getByKey(params['id']);
+        })
+      )
+      .subscribe(activator => {
+        this.store.dispatch(storeActivatorData({ activatorData: activator }));
+      });
   }
 
   get lastUpdated(): Date {
