@@ -1,101 +1,95 @@
-<mat-grid-list cols="4" rowHeight="fit" gutterSize="16px">
-  <mat-grid-tile [colspan]="2" [rowspan]="1">
-    <mat-card class="app-dashboard-card">
+<mat-grid-list [cols]="columnsAmount" [ngStyle]="{ height: calculatedHeight }" rowHeight="fit" gutterSize="16px">
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-card>
       <mat-card-header>
         <mat-card-title>
           Application details
         </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ applicationName }}</p>
+        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content class="dashboard-card-content">
+      <mat-card-content>
         <mat-list dense class="card-details-list">
           <mat-list-item>
-            <div class="mat-body-1">Name</div>
-            <mat-chip-list>
-              <mat-chip>{{ solutionName }}</mat-chip>
-            </mat-chip-list>
-          </mat-list-item>
-
-          <mat-list-item>
-            <div class="mat-body-1">Description</div>
-            <mat-chip-list>
-              <mat-chip>{{ solutionDescription }}</mat-chip>
-            </mat-chip-list>
-          </mat-list-item>
-
-          <mat-list-item>
-            <div class="mat-body-1">Status</div>
-            <mat-chip-list>
-              <mat-chip>{{ solutionStatus }}</mat-chip>
-            </mat-chip-list>
+            <div class="card-detail-label">Description</div>
+            <p matInput readonly="true">{{ applicationDescription }}</p>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="2" [rowspan]="1">
-    <mat-card class="app-dashboard-card">
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-card>
       <mat-card-header>
         <mat-card-title>
-          Activator
+          <div>Activator</div>
+          <mat-chip class="card-title-chip" [color]="activatorStatusColor" selected>{{ activator.status }}</mat-chip>
         </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ activator.name }}</p>
+        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content class="dashboard-card-content">
+      <mat-card-content>
         <mat-list dense class="card-details-list">
           <mat-list-item>
-            <div class="mat-body-1">Name</div>
-            <mat-chip-list>
-              <mat-chip>{{ activator.name }}</mat-chip>
-            </mat-chip-list>
+            <div class="card-detail-label">Description</div>
+            <p>{{ activator.description }}</p>
           </mat-list-item>
 
           <mat-list-item>
-            <div class="mat-body-1">Description</div>
-            <mat-chip-list>
-              <mat-chip>{{ activator.description }}</mat-chip>
-            </mat-chip-list>
+            <div class="card-detail-label">Data sensitivity</div>
+            <mat-chip [color]="sensitivityColor" selected>{{ activator.sensitivity }}</mat-chip>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Type</div>
+            <mat-chip>{{ activator.type }}</mat-chip>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Environment</div>
+            <mat-chip>{{ applicationEnv }}</mat-chip>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="2" [rowspan]="1">
-    <mat-card class="app-dashboard-card">
-      <mat-card-header>
-        <mat-card-title>
-          Environment
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="dashboard-card-content">
-        <mat-chip-list>
-          <mat-chip>{{ solutionEnv }}</mat-chip>
-        </mat-chip-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-
-  <mat-grid-tile [colspan]="2" [rowspan]="1">
-    <mat-card class="app-dashboard-card">
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-card>
       <mat-card-header>
         <mat-card-title>
           Solution
+          <mat-chip *ngIf="solution.isActive" class="card-title-chip" [color]="solutionIsActiveColor" selected
+            >Active</mat-chip
+          >
         </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ solution.name }}</p>
+        </mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content class="dashboard-card-content">
+      <mat-card-content>
         <mat-list dense class="card-details-list">
           <mat-list-item>
-            <div class="mat-body-1">Name</div>
-            <mat-chip-list>
-              <mat-chip>{{ solution.name }}</mat-chip>
-            </mat-chip-list>
+            <div class="card-detail-label">Description</div>
+            <p matInput readonly="true">{{ solution.description }}</p>
           </mat-list-item>
 
           <mat-list-item>
-            <div class="mat-body-1">Description</div>
-            <mat-chip-list>
-              <mat-chip>{{ solution.description }}</mat-chip>
-            </mat-chip-list>
+            <div class="card-detail-label">Business Unit</div>
+            <p matInput readonly="true">{{ solution.businessUnit.name }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Team</div>
+            <p matInput readonly="true">{{ solution.team.name }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Cost Centre</div>
+            <p matInput readonly="true">{{ solution.costCentre }}</p>
           </mat-list-item>
         </mat-list>
       </mat-card-content>

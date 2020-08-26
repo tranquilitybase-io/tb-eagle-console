@@ -2,30 +2,57 @@
   margin: 0 2rem;
 }
 
-mat-grid-list {
-  height: 600px;
+.mat-chip {
+  margin-top: 2px;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
 }
 
-mat-card {
+.mat-list-base[dense] .mat-list-item {
+  height: fit-content;
+}
+
+.mat-card-subtitle {
+  margin-left: 15px;
+  color: black;
+  font-size: 18px;
+}
+.card-title-chip {
+  margin-top: -6px;
+}
+
+.mat-card {
   position: absolute;
-  top: 1rem;
-  left: 0;
-  right: 0;
-  bottom: 1rem;
+
+  width: 100%;
+  height: 98%;
+  box-sizing: border-box;
   background-color: var(--active-grey-background);
   border-radius: 16px;
 
-  mat-card-content {
+  .mat-card-header .mat-card-title {
+    margin-top: 12px;
+    margin-left: 15px;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title-spacing {
+    margin-top: 25px;
+  }
+
+  .mat-card-content {
     a {
       margin-left: 5px;
     }
 
     .card-details-list {
-      margin-top: 1rem;
       padding-top: 0.5rem;
 
-      .mat-body-1 {
-        width: 8rem;
+      .card-detail-label {
+        min-width: 6rem;
       }
     }
   }
