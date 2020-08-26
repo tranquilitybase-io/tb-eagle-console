@@ -13,7 +13,7 @@ import { ActivatorStoreService } from '@app/mission-control/activator-store/acti
   styleUrls: ['./activator-store-view-overview.component.scss']
 })
 export class ActivatorStoreViewOverviewComponent implements OnInit {
-  activator: Activator = {} as Activator;
+  activator: Activator = { sensitivity: '' } as Activator;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,7 +59,7 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
   }
 
   get ci() {
-    return (this.activator.ci as ActivatorCI[]).map(ci => ci.value);
+    return ((this.activator.ci || []) as ActivatorCI[]).map(ci => ci.value);
   }
 
   get deploymentOptions(): Property[] {

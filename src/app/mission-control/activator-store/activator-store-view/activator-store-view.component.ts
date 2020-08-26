@@ -7,9 +7,14 @@ import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
 import { Activator } from '../activator-store.model';
 import { ActivatedRoute } from '@angular/router';
-import { setDeprecated, setLocked, requestAccess } from '@app/mission-control/activator-store/activator-store.actions';
+import {
+  setDeprecated,
+  setLocked,
+  requestAccess,
+  storeActivatorData
+} from '@app/mission-control/activator-store/activator-store.actions';
+import { selectActivatorData } from '../activator-store.reducer';
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
-import { ActivatorStoreService } from '@app/mission-control/activator-store/activator-store.service';
 
 @Component({
   selector: 'app-activator-store-view',
@@ -18,26 +23,20 @@ import { ActivatorStoreService } from '@app/mission-control/activator-store/acti
 })
 export class ActivatorStoreViewComponent implements OnInit {
   activator: Activator = {} as Activator;
+  activator$: Observable<Activator>;
   userIsAdmin$: Observable<boolean>;
   private teamList: KeyValue<string, string>[];
 
-  constructor(
-    private dialog: MatDialog,
-    private store: Store<any>,
-    private route: ActivatedRoute,
-    private activatorStoreService: ActivatorStoreService
-  ) {}
+  constructor(private dialog: MatDialog, private store: Store<any>, private route: ActivatedRoute) {
+    this.activator$ = this.store.pipe(select(selectActivatorData));
+  }
 
   ngOnInit() {
-    this.route.queryParams
-      .pipe(
-        switchMap(params => {
-          return this.activatorStoreService.getByKey(params['id']);
-        })
-      )
-      .subscribe(activator => {
-        this.activator = activator as Activator;
-      });
+    this.activator = this.route.snapshot.data['activator'] as Activator;
+    this.store.dispatch(storeActivatorData({ activatorData: this.activator }));
+    this.activator$.subscribe(activatorData => {
+      this.activator = activatorData;
+    });
 
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
