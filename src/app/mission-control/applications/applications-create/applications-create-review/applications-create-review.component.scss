@@ -18,13 +18,13 @@
   color: black;
   font-size: 18px;
 }
+
 .card-title-chip {
   margin-top: -6px;
 }
 
 .mat-card {
   position: absolute;
-
   width: 100%;
   height: 98%;
   box-sizing: border-box;
@@ -34,7 +34,6 @@
   .mat-card-header .mat-card-title {
     margin-top: 12px;
     margin-left: 15px;
-
     display: flex;
     justify-content: space-between;
   }
