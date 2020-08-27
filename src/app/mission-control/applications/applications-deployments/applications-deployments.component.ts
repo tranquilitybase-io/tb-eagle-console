@@ -24,10 +24,7 @@ export class ApplicationsDeploymentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    let applications = [] as Application[];
-    this.route.data.subscribe(data => {
-      applications = data.applications as Application[];
-    });
+    const applications = this.route.snapshot.data['applications'] as Application[];
     this.dataSource = new MatTableDataSource(applications);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
