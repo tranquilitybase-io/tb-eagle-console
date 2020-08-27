@@ -21,6 +21,10 @@
           link: '/mission-control/activator-store'
         },
         {
+          name: 'Activator Store',
+          link: '/mission-control/activator-store'
+        },
+        {
           name: selectedActivator.name,
           link: '/mission-control/activator-store/view',
           id: applicationForm.get('activatorId').value
@@ -113,24 +117,22 @@
 
   <mat-step [completed]="false" [editable]="false">
     <ng-template matStepLabel>Review</ng-template>
-    <div>
-      <app-applications-create-review
-        [applicationFormGroup]="applicationForm"
-        [activator]="selectedActivator"
-        [solution]="selectedSolution$ | async"
-      ></app-applications-create-review>
-      <div class="app-bottom-action left">
-        <button mat-button matStepperPrevious color="primary" type="button">
-          <mat-icon>chevron_left</mat-icon>
-          Review application details
-        </button>
-      </div>
-      <div class="app-bottom-action right">
-        <button mat-button color="primary" type="submit" (click)="onSubmit(applicationForm.value)">
-          Create application
-          <mat-icon>chevron_right</mat-icon>
-        </button>
-      </div>
+    <app-applications-create-review
+      [applicationFormGroup]="applicationForm"
+      [activator]="selectedActivator"
+      [solution]="selectedSolution$ | async"
+    ></app-applications-create-review>
+    <div class="app-bottom-action left">
+      <button mat-button matStepperPrevious color="primary" type="button">
+        <mat-icon>chevron_left</mat-icon>
+        Review application details
+      </button>
+    </div>
+    <div class="app-bottom-action right">
+      <button mat-button color="primary" type="submit" (click)="onSubmit(applicationForm.value)">
+        Create application
+        <mat-icon>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
 

@@ -15,8 +15,12 @@ export class ApplicationsCreateReviewComponent implements OnInit {
   @Output() onSubmit = new EventEmitter();
 
   private statusColorMap: Map<string, string>;
+  private wideColumnsAmount: number = 5;
+  private responsiveWidth: number = 1150;
+  respoWidthEnabled: boolean = false;
   columnsAmount: number;
   calculatedHeight: string;
+  calculatedInternalGridHeight: string;
   constructor() {}
 
   ngOnInit() {
@@ -24,8 +28,10 @@ export class ApplicationsCreateReviewComponent implements OnInit {
       ['available', 'accent'],
       ['deprecated', 'warn']
     ]);
-    this.columnsAmount = window.innerWidth <= 1150 ? 1 : 3;
-    this.calculatedHeight = window.innerWidth <= 1150 ? '1000px' : '400px';
+    this.columnsAmount = window.innerWidth <= this.responsiveWidth ? 1 : this.wideColumnsAmount;
+    this.calculatedHeight = window.innerWidth <= this.responsiveWidth ? '1200px' : '700px';
+    this.calculatedInternalGridHeight = window.innerWidth <= this.responsiveWidth ? '600px' : '600px';
+    this.respoWidthEnabled = window.innerWidth <= this.responsiveWidth ? true : false;
   }
 
   get applicationId(): string {
@@ -66,7 +72,9 @@ export class ApplicationsCreateReviewComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize($event) {
-    this.columnsAmount = $event.target.innerWidth <= 1150 ? 1 : 3;
-    this.calculatedHeight = window.innerWidth <= 1150 ? '1000px' : '400px';
+    this.columnsAmount = $event.target.innerWidth <= this.responsiveWidth ? 1 : this.wideColumnsAmount;
+    this.calculatedHeight = $event.target.innerWidth <= this.responsiveWidth ? '1200px' : '700px';
+    this.calculatedInternalGridHeight = $event.target.innerWidth <= this.responsiveWidth ? '600px' : '600px';
+    this.respoWidthEnabled = $event.target.innerWidth <= this.responsiveWidth ? true : false;
   }
 }

@@ -28,8 +28,9 @@
   width: 100%;
   height: 98%;
   box-sizing: border-box;
-  background-color: var(--active-grey-background);
-  border-radius: 16px;
+  // border-radius: 16px;
+  border: none;
+  box-shadow: none;
 
   .mat-card-header .mat-card-title {
     margin-top: 12px;
@@ -43,6 +44,8 @@
   }
 
   .mat-card-content {
+    background-color: var(--active-grey-background);
+    padding-bottom: 4px;
     a {
       margin-left: 5px;
     }
@@ -55,4 +58,18 @@
       }
     }
   }
+}
+
+.internal-mat-grid {
+  min-width: 100%;
+  // min-height: 100%;
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.not-internal-card {
+  top: 3rem;
 }
