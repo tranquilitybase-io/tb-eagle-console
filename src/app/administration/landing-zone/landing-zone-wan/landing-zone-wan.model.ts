@@ -12,7 +12,7 @@ export class WanVpnConfiguration {
   bgpInterfaceNetLength: string;
 }
 
-export class WanGoogleSessionConfiguration {
+export class WanGoogleEndpointConfiguration {
   primaryRegion: string;
   primarySubnetName: string;
   primaryGcpVpcSubnet: string;
@@ -21,7 +21,7 @@ export class WanGoogleSessionConfiguration {
   secondaryGcpVpcSubnet: string;
 }
 
-export class WanOnPremiseConfiguration {
+export class WanRemoteEndpointConfiguration {
   vendor: string;
   primaryPeerIp: string;
   primaryPeerIpSubnet: string;
@@ -37,8 +37,8 @@ export class WanOnPremiseConfiguration {
 
 export class WanConfiguration {
   vpn: WanVpnConfiguration;
-  googleSession: WanGoogleSessionConfiguration;
-  onPremiseSession: WanOnPremiseConfiguration;
+  googleEndpoint: WanGoogleEndpointConfiguration;
+  remoteEndpoint: WanRemoteEndpointConfiguration;
 
   id: number;
   lastUpdated: string;

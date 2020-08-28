@@ -60,43 +60,43 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
       ]
     });
     this.googleSessionFormGroup = this.formBuilder.group({
-      primaryRegion: [this.wanConfiguration.googleSession.primaryRegion, Validators.required],
-      primarySubnetName: [this.wanConfiguration.googleSession.primarySubnetName, Validators.required],
+      primaryRegion: [this.wanConfiguration.googleEndpoint.primaryRegion, Validators.required],
+      primarySubnetName: [this.wanConfiguration.googleEndpoint.primarySubnetName, Validators.required],
       primaryGcpVpcSubnet: [
-        this.wanConfiguration.googleSession.primaryGcpVpcSubnet,
+        this.wanConfiguration.googleEndpoint.primaryGcpVpcSubnet,
         [Validators.required, Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)]
       ],
-      secondaryRegion: [this.wanConfiguration.googleSession.secondaryRegion],
-      secondarySubnetName: [this.wanConfiguration.googleSession.secondarySubnetName],
+      secondaryRegion: [this.wanConfiguration.googleEndpoint.secondaryRegion],
+      secondarySubnetName: [this.wanConfiguration.googleEndpoint.secondarySubnetName],
       secondaryGcpVpcSubnet: [
-        this.wanConfiguration.googleSession.secondaryGcpVpcSubnet,
+        this.wanConfiguration.googleEndpoint.secondaryGcpVpcSubnet,
         Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)
       ]
     });
     this.onPremiseSessionFormGroup = this.formBuilder.group({
-      vendor: [this.wanConfiguration.onPremiseSession.vendor, Validators.required],
+      vendor: [this.wanConfiguration.remoteEndpoint.vendor, Validators.required],
       primaryPeerIp: [
-        this.wanConfiguration.onPremiseSession.primaryPeerIp,
+        this.wanConfiguration.remoteEndpoint.primaryPeerIp,
         [Validators.required, Validators.pattern(ValidatorPattern.IP_ADDRESS)]
       ],
       primaryPeerIpSubnet: [
-        this.wanConfiguration.onPremiseSession.primaryPeerIpSubnet,
+        this.wanConfiguration.remoteEndpoint.primaryPeerIpSubnet,
         Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)
       ],
-      primaryVpnTunnel: [this.wanConfiguration.onPremiseSession.primaryVpnTunnel, Validators.required],
-      primaryBgpPeer: [this.wanConfiguration.onPremiseSession.primaryBgpPeer, Validators.required],
-      primarySharedSecret: [this.wanConfiguration.onPremiseSession.primarySharedSecret],
+      primaryVpnTunnel: [this.wanConfiguration.remoteEndpoint.primaryVpnTunnel, Validators.required],
+      primaryBgpPeer: [this.wanConfiguration.remoteEndpoint.primaryBgpPeer, Validators.required],
+      primarySharedSecret: [this.wanConfiguration.remoteEndpoint.primarySharedSecret],
       secondaryPeerIp: [
-        this.wanConfiguration.onPremiseSession.secondaryPeerIp,
+        this.wanConfiguration.remoteEndpoint.secondaryPeerIp,
         Validators.pattern(ValidatorPattern.IP_ADDRESS)
       ],
       secondaryPeerIpSubnet: [
-        this.wanConfiguration.onPremiseSession.secondaryPeerIpSubnet,
+        this.wanConfiguration.remoteEndpoint.secondaryPeerIpSubnet,
         Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)
       ],
-      secondaryVpnTunnel: [this.wanConfiguration.onPremiseSession.secondaryVpnTunnel],
-      secondaryBgpPeer: [this.wanConfiguration.onPremiseSession.secondaryBgpPeer],
-      secondarySharedSecret: [this.wanConfiguration.onPremiseSession.secondarySharedSecret]
+      secondaryVpnTunnel: [this.wanConfiguration.remoteEndpoint.secondaryVpnTunnel],
+      secondaryBgpPeer: [this.wanConfiguration.remoteEndpoint.secondaryBgpPeer],
+      secondarySharedSecret: [this.wanConfiguration.remoteEndpoint.secondarySharedSecret]
     });
   }
 
@@ -146,10 +146,10 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
         googleASN,
         peerASN
       },
-      googleSession: {
+      googleEndpoint: {
         ...this.googleSessionFormGroup.value
       },
-      onPremiseSession: {
+      remoteEndpoint: {
         ...this.onPremiseSessionFormGroup.value
       }
     } as WanConfiguration;
