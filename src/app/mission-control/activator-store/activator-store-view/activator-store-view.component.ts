@@ -1,6 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { KeyValue } from '@angular/common';
+import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { MatDialog } from '@angular/material/dialog';
 import { Activator } from '../activator-store.model';
 import { ActivatedRoute } from '@angular/router';
+import {
+  setDeprecated,
+  setLocked,
+  requestAccess,
+  storeActivatorData
+} from '@app/mission-control/activator-store/activator-store.actions';
+import { selectActivatorData } from '../activator-store.reducer';
+import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { ActivatorStoreService } from '../activator-store.service';
 
 @Component({
   selector: 'app-activator-store-view',
@@ -8,15 +23,77 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./activator-store-view.component.scss']
 })
 export class ActivatorStoreViewComponent implements OnInit {
-  activator: Activator;
+  activator: Activator = {} as Activator;
+  activator$: Observable<Activator>;
+  userIsAdmin$: Observable<boolean>;
+  private teamList: KeyValue<string, string>[];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private dialog: MatDialog,
+    private store: Store<any>,
+    private route: ActivatedRoute,
+    private activatorStoreService: ActivatorStoreService
+  ) {
+    this.activator$ = this.store.pipe(select(selectActivatorData));
+  }
 
   ngOnInit() {
     this.activator = this.route.snapshot.data['activator'] as Activator;
+    this.store.dispatch(storeActivatorData({ activatorData: this.activator }));
+    this.activator$.subscribe(activatorData => {
+      this.activator = activatorData;
+    });
+
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.teamList = this.route.snapshot.data['teamList'];
+
+    this.route.queryParams
+      .pipe(
+        switchMap(params => {
+          return this.activatorStoreService.getByKey(params['id']);
+        })
+      )
+      .subscribe(activator => {
+        this.store.dispatch(storeActivatorData({ activatorData: activator }));
+      });
   }
 
   get lastUpdated(): Date {
     return new Date(this.activator.lastUpdated || null);
+  }
+
+  get isAvailable(): boolean {
+    return String(this.activator.status).toLowerCase() === 'available';
+  }
+
+  get isLocked(): boolean {
+    return String(this.activator.status).toLowerCase() === 'locked';
+  }
+
+  get isDeprecated(): boolean {
+    return String(this.activator.status).toLowerCase() === 'deprecated';
+  }
+
+  setDeprecated() {
+    this.store.dispatch(setDeprecated({ id: this.activator.id }));
+  }
+
+  setLocked() {
+    this.store.dispatch(setLocked({ id: this.activator.id }));
+  }
+
+  grantAccess() {
+    this.dialog.open(ActivatorStoreDialogGrantAccessComponent, {
+      autoFocus: false,
+      data: {
+        activatorId: this.activator.id,
+        teamList: this.teamList,
+        accessRequestedBy: this.activator.accessRequestedBy
+      }
+    });
+  }
+
+  requestAccess() {
+    this.store.dispatch(requestAccess({ id: this.activator.id }));
   }
 }

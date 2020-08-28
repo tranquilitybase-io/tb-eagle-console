@@ -42,6 +42,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationsModule } from './notifications/notifications.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 
 @NgModule({
@@ -88,8 +89,12 @@ import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
     BreadcrumbsModule,
     HttpClientModule,
     FormsModule,
+    MatBadgeModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCheckboxModule,
+    MatCheckboxModule,
+    MatDialogModule,
     MatDialogModule,
     MatIconModule,
     MatListModule,
@@ -98,10 +103,7 @@ import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatDialogModule,
-    MatCheckboxModule,
-    MatBadgeModule,
-    MatButtonToggleModule
+    NotificationsModule
   ],
   exports: [
     AlertComponent,

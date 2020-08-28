@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Notification, NotificationsMeta } from './notifications.model';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { setNotificationsData } from './notifications.actions';
+import { setNotificationsData, setNotificationsMetaData } from './notifications.actions';
 import { Store } from '@ngrx/store';
 import { NotificationState } from './notifications.reducer';
 import { SolutionsService } from '@app/mission-control/solutions/solutions.service';
@@ -27,12 +27,12 @@ export class NotificationsService {
 
   pollingInitAll() {
     this.notificationUpdate = setInterval(() => {
-      this.getNotificationData().subscribe(notificationsData =>
-        this.store.dispatch(setNotificationsData({ notificationsData }))
+      this.getNotificationData().subscribe(notificationsData => {
+        this.store.dispatch(setNotificationsData({ notificationsData }));
+      });
+      this.getNotificationMetaData().subscribe(notificationsMetaData =>
+        this.store.dispatch(setNotificationsMetaData({ notificationsMetaData }))
       );
-      // this.getNotificationMetaData().subscribe(notificationsMetaData =>
-      //   this.store.dispatch(setNotificationsMetaData({ notificationsMetaData }))
-      // );
       if (this.router.url.includes('/mission-control/solutions')) {
         this.solutionsService
           .getDeployments()
@@ -71,12 +71,28 @@ export class NotificationsService {
   getNotificationData(): Observable<Notification[]> {
     const url = `${this.BASE_URL}/notifications/`;
 
-    return this.http.get<Notification[]>(url).pipe(catchError(this.handleError));
+    const id_token = localStorage.getItem('id_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: id_token ? `Bearer ${id_token}` : ''
+    });
+
+    return this.http
+      .get<Notification[]>(url, { headers })
+      .pipe(catchError(this.handleError));
   }
 
   getNotificationMetaData(): Observable<NotificationsMeta> {
     const url = `${this.BASE_URL}/notificationsMeta/`;
 
-    return this.http.get<NotificationsMeta>(url).pipe(catchError(this.handleError));
+    const id_token = localStorage.getItem('id_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: id_token ? `Bearer ${id_token}` : ''
+    });
+
+    return this.http
+      .get<NotificationsMeta>(url, { headers })
+      .pipe(catchError(this.handleError));
   }
 }

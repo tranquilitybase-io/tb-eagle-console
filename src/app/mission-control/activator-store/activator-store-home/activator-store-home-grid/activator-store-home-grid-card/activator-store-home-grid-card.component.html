@@ -88,6 +88,7 @@
       View
     </a>
     <a
+      *ngIf="!(userIsAdmin$ | async)"
       mat-button
       color="primary"
       routerLink="/mission-control/activator-store/create-app"

@@ -34,20 +34,15 @@
         <mat-icon>share</mat-icon>
       </button>
 
-      <a mat-button matTooltip="Your notifications" aria-label="Your notifications">
-        <mat-icon [matBadge]="(notificationMetaData$ | async).count || ''" matBadgeColor="warn">
-          notifications
-        </mat-icon>
-      </a>
-      <!-- 
       <a mat-button matTooltip="Your notifications" aria-label="Your notifications" [matMenuTriggerFor]="note">
         <mat-icon [matBadge]="(notificationMetaData$ | async).count || ''" matBadgeColor="warn">
           notifications
         </mat-icon>
       </a>
-      <mat-menu *ngIf="(notificationMetaData$ | async).count" #note="matMenu" xPosition="before" class="notifications">
-        <app-notifications [notifications$]="notifications$"></app-notifications>
-      </mat-menu> -->
+
+      <mat-menu #note="matMenu" xPosition="before" class="notifications">
+        <app-notifications></app-notifications>
+      </mat-menu>
 
       <a mat-button [routerLink]="'/apps'" matTooltip="More apps" aria-label="Apps">
         <mat-icon>apps</mat-icon>
