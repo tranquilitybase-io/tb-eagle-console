@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Activator, ActivatorCI } from '../../activator-store.model';
+import { Activator, ActivatorCI, ActivatorEnv } from '../../activator-store.model';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setProgress } from '../../activator-store.actions';
 import { Property } from '@app/shared/properties/properties.component';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-activator-store-view-overview',
@@ -25,11 +26,12 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
       {
         name: 'Data sensitivity',
         value: this.activator.sensitivity,
-        class: this.activator.sensitivity.toLowerCase() === 'restricted' ? 'red' : 'dark-grey'
+        class:
+          this.activator.sensitivity && this.activator.sensitivity.toLowerCase() === 'restricted' ? 'red' : 'dark-grey'
       },
       {
         name: 'Category',
-        value: this.activator.category
+        value: this.activator.activatorMetadata.category
       },
       {
         name: 'User capacity',
@@ -46,8 +48,10 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
     ];
   }
 
-  get ci() {
-    return (this.activator.ci as ActivatorCI[]).map(ci => ci.value);
+  get envs() {
+    return this.activator.envs.map(env => {
+      return { value: env.name };
+    });
   }
 
   get deploymentOptions(): Property[] {
@@ -62,15 +66,15 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
       },
       {
         name: 'Cloud Platform',
-        value: this.activator.platforms
+        value: this.activator.activatorMetadata.platforms
       },
       {
         name: 'Environment',
-        value: this.activator.envs
+        value: this.envs
       },
       {
         name: 'CI (Continious integration)',
-        value: this.ci
+        value: this.activator.ci
       },
       {
         name: 'CD (Continious deployment)',
@@ -78,7 +82,7 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
       },
       {
         name: 'Source control',
-        value: this.activator.sourceControl
+        value: [this.activator.sourceControl]
       }
     ];
   }

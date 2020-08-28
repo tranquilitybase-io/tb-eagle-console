@@ -1,6 +1,6 @@
 <header class="activ-sub-header">
   <app-breadcrumbs [title]="activator.name"> </app-breadcrumbs>
-  <div>
+  <div *ngIf="activator.status">
     <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
       {{ activator.status }}
     </div>

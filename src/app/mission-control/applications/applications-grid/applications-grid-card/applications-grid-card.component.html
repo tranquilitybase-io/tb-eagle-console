@@ -16,7 +16,7 @@
       </div>
       {{ app.name }}
     </mat-card-title>
-    <mat-card-subtitle>{{ app.activator.type }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ app.activator.activatorMetadata.type.value }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content *ngIf="!isDeploymentInProgress">
@@ -37,14 +37,16 @@
       <mat-list-item>
         <div class="mat-body">Category</div>
         <mat-chip-list>
-          <mat-chip>{{ app.activator.category }}</mat-chip>
+          <mat-chip>{{ app.activator.activatorMetadata.category }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
         <div class="mat-body">Cloud platform</div>
         <mat-chip-list>
-          <mat-chip>{{ app.activator.platforms[0] }}</mat-chip>
-          <mat-chip *ngIf="app.activator.platforms.length > 1">+{{ app.activator.platforms.length - 1 }}</mat-chip>
+          <mat-chip>{{ app.activator.activatorMetadata.platforms[0].value }}</mat-chip>
+          <mat-chip *ngIf="app.activator.activatorMetadata.platforms.length > 1"
+            >+{{ app.activator.activatorMetadata.platforms.length - 1 }}</mat-chip
+          >
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
