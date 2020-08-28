@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Activator, ActivatorCI } from '../../activator-store.model';
-import { concatMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { setProgress, storeActivatorData } from '../../activator-store.actions';
@@ -29,15 +28,6 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(setProgress({ step: 0 }));
-
-    this.route.queryParams
-      .pipe(
-        concatMap(params => {
-          return this.activatorStoreService.getByKey(params['id']);
-        })
-      )
-      .subscribe(activator => (this.activator = activator as Activator));
-
     this.activator = this.route.snapshot.data['activator'] as Activator;
     this.store.dispatch(storeActivatorData({ activatorData: this.activator }));
     this.activator$.subscribe(activatorData => {
