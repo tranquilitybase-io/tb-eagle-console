@@ -1,5 +1,6 @@
 .activ-sub-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: var(--active-grey-background);
   padding: 0.2rem 1.5rem;
@@ -41,6 +42,18 @@
         right: 0;
         border-top: var(--line);
       }
+    }
+  }
+
+  .flex-group {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .button-policy {
+    &:not(:last-of-type) {
+      margin-right: 10px;
     }
   }
 }

@@ -42,6 +42,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { NotificationsModule } from './notifications/notifications.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 
@@ -91,8 +92,12 @@ import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-
     BreadcrumbsModule,
     HttpClientModule,
     FormsModule,
+    MatBadgeModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCheckboxModule,
+    MatCheckboxModule,
+    MatDialogModule,
     MatDialogModule,
     MatIconModule,
     MatListModule,
@@ -101,10 +106,7 @@ import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatDialogModule,
-    MatCheckboxModule,
-    MatBadgeModule,
-    MatButtonToggleModule
+    NotificationsModule
   ],
   exports: [
     AlertComponent,

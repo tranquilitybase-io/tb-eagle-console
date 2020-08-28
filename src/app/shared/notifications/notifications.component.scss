@@ -1,8 +1,33 @@
 .wrapper {
-  padding: 10px;
-  background-color: var(--active-grey-background);
+  width: 280px;
 
   .content {
+    max-height: 300px;
     display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .list-item {
+    width: 100%;
+    padding: 0;
+  }
+
+  .link {
+    padding: 5px 10px;
+    height: auto;
+    line-height: 25px;
+    white-space: initial;
+    overflow: initial;
+  }
+
+  .info-text {
+    padding: 5px 10px;
   }
 }
