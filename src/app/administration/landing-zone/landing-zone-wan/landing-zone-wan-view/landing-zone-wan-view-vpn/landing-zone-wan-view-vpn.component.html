@@ -99,19 +99,19 @@
             Region
           </div>
           <mat-chip-list>
-            <mat-chip>{{ wanConfiguration.googleSession.primaryRegion }}</mat-chip>
+            <mat-chip>{{ wanConfiguration.googleEndpoint.primaryRegion }}</mat-chip>
           </mat-chip-list>
           <div class="mat-h4">
             Subnet Name
           </div>
           <mat-chip-list>
-            <mat-chip>{{ wanConfiguration.googleSession.primarySubnetName }}</mat-chip>
+            <mat-chip>{{ wanConfiguration.googleEndpoint.primarySubnetName }}</mat-chip>
           </mat-chip-list>
           <div class="mat-h4">
             GCP VPC subnet
           </div>
           <mat-chip-list>
-            <mat-chip>{{ wanConfiguration.googleSession.primaryGcpVpcSubnet }}</mat-chip>
+            <mat-chip>{{ wanConfiguration.googleEndpoint.primaryGcpVpcSubnet }}</mat-chip>
           </mat-chip-list>
         </mat-card-content>
       </mat-card>
@@ -127,19 +127,19 @@
             Region
           </div>
           <mat-chip-list>
-            <mat-chip>{{ wanConfiguration.googleSession.secondaryRegion }}</mat-chip>
+            <mat-chip>{{ wanConfiguration.googleEndpoint.secondaryRegion }}</mat-chip>
           </mat-chip-list>
           <div class="mat-h4">
             Subnet Name
           </div>
           <mat-chip-list>
-            <mat-chip>{{ wanConfiguration.googleSession.secondarySubnetName }}</mat-chip>
+            <mat-chip>{{ wanConfiguration.googleEndpoint.secondarySubnetName }}</mat-chip>
           </mat-chip-list>
           <div class="mat-h4">
             GCP VPC subnet
           </div>
           <mat-chip-list>
-            <mat-chip>{{ wanConfiguration.googleSession.secondaryGcpVpcSubnet }}</mat-chip>
+            <mat-chip>{{ wanConfiguration.googleEndpoint.secondaryGcpVpcSubnet }}</mat-chip>
           </mat-chip-list>
         </mat-card-content>
       </mat-card>
@@ -155,7 +155,7 @@
               <mat-list-item>
                 <div class="mat-body-1">Vendor</div>
                 <mat-chip-list>
-                  <mat-chip selected>{{ wanConfiguration.onPremiseSession.vendor }}</mat-chip>
+                  <mat-chip selected>{{ wanConfiguration.remoteEndpoint.vendor }}</mat-chip>
                 </mat-chip-list>
               </mat-list-item>
             </mat-list>
@@ -169,32 +169,32 @@
           </div>
           <div class="table-row">
             <div class="col">Peer IP</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.primaryPeerIp }}</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.secondaryPeerIp }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.primaryPeerIp }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.secondaryPeerIp }}</div>
           </div>
           <mat-divider></mat-divider>
           <div class="table-row">
             <div class="col">Peer IP subnet</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.primaryPeerIpSubnet }}</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.secondaryPeerIpSubnet }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.primaryPeerIpSubnet }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.secondaryPeerIpSubnet }}</div>
           </div>
           <mat-divider></mat-divider>
           <div class="table-row">
             <div class="col">VPN Tunnel</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.primaryVpnTunnel }}</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.secondaryVpnTunnel }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.primaryVpnTunnel }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.secondaryVpnTunnel }}</div>
           </div>
           <mat-divider></mat-divider>
           <div class="table-row">
             <div class="col">BGP Peer</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.primaryBgpPeer }}</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.secondaryBgpPeer }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.primaryBgpPeer }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.secondaryBgpPeer }}</div>
           </div>
           <mat-divider></mat-divider>
           <div class="table-row">
             <div class="col">Shared Secret</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.primarySharedSecret }}</div>
-            <div class="col">{{ wanConfiguration.onPremiseSession.secondarySharedSecret }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.primarySharedSecret }}</div>
+            <div class="col">{{ wanConfiguration.remoteEndpoint.secondarySharedSecret }}</div>
           </div>
           <mat-divider></mat-divider>
         </mat-card-content>

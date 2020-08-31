@@ -21,24 +21,24 @@
     <ng-template matStepLabel>VPN</ng-template>
     <app-landing-zone-wan-create-vpn-tab [formGroup]="vpnFormGroup"></app-landing-zone-wan-create-vpn-tab>
   </mat-step>
-  <mat-step [stepControl]="googleSessionFormGroup">
-    <ng-template matStepLabel>Google session</ng-template>
+  <mat-step [stepControl]="googleEndpointFormGroup">
+    <ng-template matStepLabel>Google Endopint</ng-template>
     <app-landing-zone-wan-create-vpn-google-tab
-      [formGroup]="googleSessionFormGroup"
+      [formGroup]="googleEndpointFormGroup"
     ></app-landing-zone-wan-create-vpn-google-tab>
   </mat-step>
-  <mat-step [stepControl]="onPremiseSessionFormGroup">
-    <ng-template matStepLabel>On premise session</ng-template>
+  <mat-step [stepControl]="remoteEndpointFormGroup">
+    <ng-template matStepLabel>Remote Endopint</ng-template>
     <app-landing-zone-wan-create-vpn-on-premise-tab
-      [formGroup]="onPremiseSessionFormGroup"
+      [formGroup]="remoteEndpointFormGroup"
     ></app-landing-zone-wan-create-vpn-on-premise-tab>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Review</ng-template>
     <app-landing-zone-wan-create-vpn-review-tab
       [vpnFormGroup]="vpnFormGroup"
-      [googleSessionFormGroup]="googleSessionFormGroup"
-      [onPremiseSessionFormGroup]="onPremiseSessionFormGroup"
+      [googleEndpointFormGroup]="googleEndpointFormGroup"
+      [remoteEndpointFormGroup]="remoteEndpointFormGroup"
       (onSubmit)="submit()"
     ></app-landing-zone-wan-create-vpn-review-tab>
   </mat-step>
