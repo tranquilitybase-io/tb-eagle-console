@@ -5,17 +5,19 @@ import { switchMap } from 'rxjs/operators';
 import { KeyValue } from '@angular/common';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
-import { Activator } from '../activator-store.model';
 import { ActivatedRoute } from '@angular/router';
+import { selectIsSelectedSolution, selectSelectedSolution } from '@app/mission-control/solutions/solutions.reducer';
+import { selectActivatorData } from '../activator-store.reducer';
 import {
   setDeprecated,
   setLocked,
   requestAccess,
   storeActivatorData
 } from '@app/mission-control/activator-store/activator-store.actions';
-import { selectActivatorData } from '../activator-store.reducer';
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
 import { ActivatorStoreService } from '../activator-store.service';
+import { Activator } from '../activator-store.model';
+import { Solution } from '@app/mission-control/solutions/solutions.model';
 
 @Component({
   selector: 'app-activator-store-view',
@@ -27,6 +29,10 @@ export class ActivatorStoreViewComponent implements OnInit {
   activator$: Observable<Activator>;
   userIsAdmin$: Observable<boolean>;
   private teamList: KeyValue<string, string>[];
+
+  isSelectedSolution$: Observable<boolean>;
+  selectedSolution$: Observable<Solution>;
+  selectedActivatorName: string;
 
   constructor(
     private dialog: MatDialog,
@@ -45,7 +51,10 @@ export class ActivatorStoreViewComponent implements OnInit {
     });
 
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
+    this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
     this.teamList = this.route.snapshot.data['teamList'];
+    this.selectedActivatorName = this.activator.name;
 
     this.route.queryParams
       .pipe(
