@@ -8,8 +8,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class LandingZoneWanCreateVpnReviewTabComponent implements OnInit {
   @Input() vpnFormGroup: FormGroup;
-  @Input() googleSessionFormGroup: FormGroup;
-  @Input() onPremiseSessionFormGroup: FormGroup;
+  @Input() googleEndpointFormGroup: FormGroup;
+  @Input() remoteEndpointFormGroup: FormGroup;
 
   @Output() onSubmit = new EventEmitter();
 
@@ -57,72 +57,72 @@ export class LandingZoneWanCreateVpnReviewTabComponent implements OnInit {
     return this.vpnFormGroup.get('bgpInterfaceNetLength').value;
   }
 
-  get googlePrimaryRegion(): string {
-    return this.googleSessionFormGroup.get('primaryRegion').value;
+  get googleEndpointPrimaryRegion(): string {
+    return this.googleEndpointFormGroup.get('primaryRegion').value;
   }
 
-  get googlePrimarySubnetName(): string {
-    return this.googleSessionFormGroup.get('primarySubnetName').value;
+  get googleEndpointPrimarySubnetName(): string {
+    return this.googleEndpointFormGroup.get('primarySubnetName').value;
   }
 
-  get googlePrimaryGcpVpcSubnet(): string {
-    return this.googleSessionFormGroup.get('primaryGcpVpcSubnet').value;
+  get googleEndpointPrimaryGcpVpcSubnet(): string {
+    return this.googleEndpointFormGroup.get('primaryGcpVpcSubnet').value;
   }
 
-  get googleSecondaryRegion(): string {
-    return this.googleSessionFormGroup.get('secondaryRegion').value;
+  get googleEndpointSecondaryRegion(): string {
+    return this.googleEndpointFormGroup.get('secondaryRegion').value;
   }
 
-  get googleSecondarySubnetName(): string {
-    return this.googleSessionFormGroup.get('secondarySubnetName').value;
+  get googleEndpointSecondarySubnetName(): string {
+    return this.googleEndpointFormGroup.get('secondarySubnetName').value;
   }
 
-  get googleSecondaryGcpVpcSubnet(): string {
-    return this.googleSessionFormGroup.get('secondaryGcpVpcSubnet').value;
+  get googleEndpointSecondaryGcpVpcSubnet(): string {
+    return this.googleEndpointFormGroup.get('secondaryGcpVpcSubnet').value;
   }
 
-  get onPremiseVendor(): string {
-    return this.onPremiseSessionFormGroup.get('vendor').value;
+  get remoteEndpointVendor(): string {
+    return this.remoteEndpointFormGroup.get('vendor').value;
   }
 
-  get onPremisePrimaryPeerIp(): string {
-    return this.onPremiseSessionFormGroup.get('primaryPeerIp').value;
+  get remoteEndpointPrimaryPeerIp(): string {
+    return this.remoteEndpointFormGroup.get('primaryPeerIp').value;
   }
 
-  get onPremisePrimaryPeerIpSubnet(): string {
-    return this.onPremiseSessionFormGroup.get('primaryPeerIpSubnet').value;
+  get remoteEndpointPrimaryPeerIpSubnet(): string {
+    return this.remoteEndpointFormGroup.get('primaryPeerIpSubnet').value;
   }
 
-  get onPremisePrimaryVpnTunnel(): string {
-    return this.onPremiseSessionFormGroup.get('primaryVpnTunnel').value;
+  get remoteEndpointPrimaryVpnTunnel(): string {
+    return this.remoteEndpointFormGroup.get('primaryVpnTunnel').value;
   }
 
-  get onPremisePrimaryBgpPeer(): string {
-    return this.onPremiseSessionFormGroup.get('primaryBgpPeer').value;
+  get remoteEndpointPrimaryBgpPeer(): string {
+    return this.remoteEndpointFormGroup.get('primaryBgpPeer').value;
   }
 
-  get onPremisePrimarySharedSecret(): string {
-    return this.onPremiseSessionFormGroup.get('primarySharedSecret').value;
+  get remoteEndpointPrimarySharedSecret(): string {
+    return this.remoteEndpointFormGroup.get('primarySharedSecret').value;
   }
 
-  get onPremiseSecondaryPeerIp(): string {
-    return this.onPremiseSessionFormGroup.get('secondaryPeerIp').value;
+  get remoteEndpointSecondaryPeerIp(): string {
+    return this.remoteEndpointFormGroup.get('secondaryPeerIp').value;
   }
 
-  get onPremiseSecondaryPeerIpSubnet(): string {
-    return this.onPremiseSessionFormGroup.get('secondaryPeerIpSubnet').value;
+  get remoteEndpointSecondaryPeerIpSubnet(): string {
+    return this.remoteEndpointFormGroup.get('secondaryPeerIpSubnet').value;
   }
 
-  get onPremiseSecondaryVpnTunnel(): string {
-    return this.onPremiseSessionFormGroup.get('secondaryVpnTunnel').value;
+  get remoteEndpointSecondaryVpnTunnel(): string {
+    return this.remoteEndpointFormGroup.get('secondaryVpnTunnel').value;
   }
 
-  get onPremiseSecondaryBgpPeer(): string {
-    return this.onPremiseSessionFormGroup.get('secondaryBgpPeer').value;
+  get remoteEndpointSecondaryBgpPeer(): string {
+    return this.remoteEndpointFormGroup.get('secondaryBgpPeer').value;
   }
 
-  get onPremiseSecondarySharedSecret(): string {
-    return this.onPremiseSessionFormGroup.get('secondarySharedSecret').value;
+  get remoteEndpointSecondarySharedSecret(): string {
+    return this.remoteEndpointFormGroup.get('secondarySharedSecret').value;
   }
 
   submit() {

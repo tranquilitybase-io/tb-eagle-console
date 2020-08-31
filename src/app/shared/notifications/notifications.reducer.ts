@@ -20,10 +20,14 @@ export const notificationsReducer = createReducer(
   on(setNotificationsMetaData, (state, { notificationsMetaData }) => ({ ...state, notificationsMetaData }))
 );
 
+export default function reducer(state, action) {
+  return notificationsReducer(state, action);
+}
+
 export const selectNotificationData = createSelector(selectFeature, state =>
   state ? state.notificationsData : ([] as Notification[])
 );
 
 export const selectNotificationMetaData = createSelector(selectFeature, state =>
-  state ? state.setNotificationsMetaData : ({} as NotificationsMeta)
+  state ? state.notificationsMetaData : ({} as NotificationsMeta)
 );

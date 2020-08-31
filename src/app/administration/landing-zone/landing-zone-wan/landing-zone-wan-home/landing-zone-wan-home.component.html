@@ -1,5 +1,16 @@
 <header>
-  <app-breadcrumbs> </app-breadcrumbs>
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Landing Zone',
+        link: '/administration/landing-zone'
+      },
+      {
+        name: 'WAN',
+        allCaps: true
+      }
+    ]"
+  ></app-breadcrumbs>
 </header>
 <div class="tab-background"></div>
 <main>

@@ -26,3 +26,8 @@ export const setActivatorsByCategoryData = createAction(
   '[ActivatorStore] setActivatorsByCategoryData',
   props<{ activatorsByCategoryData: Activator[] }>()
 );
+
+export const storeActivatorData = createAction(
+  '[ActivatorStore] storeActivatorData',
+  props<{ activatorData: Activator }>()
+);

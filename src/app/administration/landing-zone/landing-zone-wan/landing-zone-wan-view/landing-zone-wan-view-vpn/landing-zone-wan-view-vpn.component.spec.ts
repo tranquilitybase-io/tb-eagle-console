@@ -57,7 +57,7 @@ describe('LandingZoneWanViewVpnComponent', () => {
         peerASN: 'feffa',
         bgpInterfaceNetLength: 'dasd'
       },
-      googleSession: {
+      googleEndpoint: {
         primaryRegion: 'csda',
         primarySubnetName: 'csda',
         primaryGcpVpcSubnet: 'csda',
@@ -65,7 +65,7 @@ describe('LandingZoneWanViewVpnComponent', () => {
         secondaryGcpVpcSubnet: 'csda',
         secondarySubnetName: 'csda'
       },
-      onPremiseSession: {
+      remoteEndpoint: {
         vendor: 'csda',
         primaryVpnTunnel: 'csda',
         secondaryVpnTunnel: 'csda',

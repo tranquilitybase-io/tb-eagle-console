@@ -13,8 +13,8 @@ import { ValidatorPattern } from '@app/shared/shared.model';
 })
 export class LandingZoneWanCreateVpnComponent implements OnInit {
   vpnFormGroup: FormGroup;
-  googleSessionFormGroup: FormGroup;
-  onPremiseSessionFormGroup: FormGroup;
+  googleEndpointFormGroup: FormGroup;
+  remoteEndpointFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private store: Store<any>) {}
 
@@ -35,7 +35,7 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
       peerASN: ['', [Validators.required, Validators.pattern(ValidatorPattern.NUMBERS_ONLY), Validators.minLength(4)]],
       bgpInterfaceNetLength: ['', [Validators.required, Validators.pattern(ValidatorPattern.NETMASK)]]
     });
-    this.googleSessionFormGroup = this.formBuilder.group({
+    this.googleEndpointFormGroup = this.formBuilder.group({
       primaryRegion: ['', Validators.required],
       primarySubnetName: ['', Validators.required],
       primaryGcpVpcSubnet: ['', [Validators.required, Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)]],
@@ -43,7 +43,7 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
       secondarySubnetName: [''],
       secondaryGcpVpcSubnet: ['', Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)]
     });
-    this.onPremiseSessionFormGroup = this.formBuilder.group({
+    this.remoteEndpointFormGroup = this.formBuilder.group({
       vendor: ['', Validators.required],
       primaryPeerIp: ['', [Validators.required, Validators.pattern(ValidatorPattern.IP_ADDRESS)]],
       primaryPeerIpSubnet: ['', Validators.pattern(ValidatorPattern.IP_ADDRESS_NETMASK)],
@@ -67,11 +67,11 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
         googleASN,
         peerASN
       },
-      googleSession: {
-        ...this.googleSessionFormGroup.value
+      googleEndpoint: {
+        ...this.googleEndpointFormGroup.value
       },
-      onPremiseSession: {
-        ...this.onPremiseSessionFormGroup.value
+      remoteEndpoint: {
+        ...this.remoteEndpointFormGroup.value
       }
     } as WanConfiguration;
 
