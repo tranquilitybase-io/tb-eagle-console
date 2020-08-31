@@ -1,14 +1,20 @@
 <div class="wrapper">
   <div class="content">
-    {{ notificationData }}
+    <ul class="list" *ngIf="notificationData.length > 0">
+      <ng-container *ngFor="let notification of notificationData">
+        <li class="list-item">
+          <a
+            mat-menu-item
+            routerLink="{{ '//' + notification.link.routerLink }}"
+            [queryParams]="{ id: notification.link.id }"
+            class="link"
+          >
+            {{ notification.message }}
+          </a>
+        </li>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </ul>
+    <p class="info-text" *ngIf="notificationData.length === 0">No new notifications</p>
   </div>
-  <!-- *ngIf="isGranted && !(userIsAdmin$ | async)" -->
-
-  <!-- <div *ngIf="!isGranted && !(userIsAdmin$ | async)">
-    Your access has been denied.
-  </div>
-
-  <div *ngIf=" (userIsAdmin$ | async)">
-    User request acces to activator.
-  </div> -->
 </div>

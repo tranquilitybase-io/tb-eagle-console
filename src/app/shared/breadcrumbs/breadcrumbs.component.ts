@@ -14,9 +14,10 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
   /**
    * title - should only be used if steps are not used. It is used to replace the default value of last step.
    */
-  @Input() title: string = '';
+  @Input() title = '';
 
-  private isTitleUpdated: boolean = false;
+  private titleCurrent = '';
+  private isTitleUpdated = false;
 
   constructor(private route: Router) {}
 
@@ -54,9 +55,10 @@ export class BreadcrumbsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.title && !this.isTitleUpdated) {
+    if (this.title && (!this.isTitleUpdated || this.titleCurrent !== this.title)) {
       this.steps.pop();
       this.steps.push({ name: this.title });
+      this.titleCurrent = this.title;
       this.isTitleUpdated = true;
     }
   }

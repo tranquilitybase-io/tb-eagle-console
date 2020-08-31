@@ -5,7 +5,13 @@
     gutterSize="24px"
   >
     <mat-grid-tile colspan="1" rowspan="1">
-      <button mat-stroked-button class="create-new-button" color="primary" (click)="createNewApplication()">
+      <button
+        [disabled]="userIsAdmin$ | async"
+        mat-stroked-button
+        class="create-new-button"
+        color="primary"
+        (click)="createNewApplication()"
+      >
         <mat-icon>add</mat-icon>Create new application
       </button>
     </mat-grid-tile>

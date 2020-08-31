@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { setActivatorsByCategoryData, setActivatorsCount } from './activator-store.actions';
+import { setActivatorsByCategoryData, setActivatorsCount, storeActivatorData } from './activator-store.actions';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
@@ -22,8 +22,9 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     super('Activator', serviceElementsFactory);
   }
 
-  private postSuccess = (val: Activator) => {
-    console.log('POST call successful value returned in body', val);
+  private postSuccess = (activatorData: Activator) => {
+    this.store.dispatch(storeActivatorData({ activatorData }));
+    console.log('POST call successful value returned in body', activatorData);
   };
 
   private postError = err => {

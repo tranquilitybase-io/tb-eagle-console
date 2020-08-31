@@ -1,17 +1,83 @@
 <header class="activ-sub-header">
-  <app-breadcrumbs [title]="activator.name"> </app-breadcrumbs>
+  <app-breadcrumbs *ngIf="!(isSelectedSolution$ | async); else solutionSelectedBreadcrmbs" [title]="activator.name">
+  </app-breadcrumbs>
+  <ng-template #solutionSelectedBreadcrmbs>
+    <app-breadcrumbs
+      [steps]="[
+        {
+          name: 'Solutions',
+          link: '/mission-control/solutions'
+        },
+        {
+          name: (selectedSolution$ | async).name,
+          link: '/mission-control/solutions/view',
+          id: (selectedSolution$ | async).id
+        },
+        {
+          name: 'Create new application',
+          link: '/mission-control/activator-store'
+        },
+        {
+          name: 'Activator Store',
+          link: '/mission-control/activator-store'
+        },
+        {
+          name: selectedActivatorName
+        }
+      ]"
+    ></app-breadcrumbs>
+  </ng-template>
   <div>
     <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
       {{ activator.status }}
     </div>
   </div>
-  <div class="badge grey time-badge">
-    <div>{{ lastUpdated | date: 'hh:mma' }}</div>
-    <div class="separated">{{ lastUpdated | date: 'dd MMM yyyy' }}</div>
-  </div>
-  <div class="separated tier">
-    <div class="tier-icon"></div>
-    Eagle tier 2 subscription
+  <div class="flex-group">
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isLocked && !(userIsAdmin$ | async)"
+      (click)="requestAccess()"
+      class="button-policy"
+    >
+      Request Access
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isLocked && (userIsAdmin$ | async)"
+      (click)="grantAccess()"
+      class="button-policy"
+    >
+      Grant Access
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isAvailable && (userIsAdmin$ | async)"
+      (click)="setLocked()"
+      class="button-policy"
+    >
+      Lock
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="(isAvailable || isLocked) && (userIsAdmin$ | async)"
+      (click)="setDeprecated()"
+      class="button-policy"
+    >
+      Deprecate
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isDeprecated && (userIsAdmin$ | async)"
+      (click)="setLocked()"
+      class="button-policy"
+    >
+      Undeprecate
+    </button>
   </div>
 </header>
 <mat-tab-group mat-stretch-tabs>
@@ -35,10 +101,17 @@
   </mat-tab>
 </mat-tab-group>
 
-<div class="app-bottom-action right">
-  <a mat-button color="primary" routerLink="/mission-control/activator-store/create-app" queryParamsHandling="preserve">
-    Add to Solution
-    <mat-icon>chevron_right</mat-icon>
-  </a>
+<div *ngIf="!(userIsAdmin$ | async)">
+  <div class="app-bottom-action right">
+    <a
+      mat-button
+      color="primary"
+      routerLink="/mission-control/activator-store/create-app"
+      queryParamsHandling="preserve"
+    >
+      Add to Solution
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+  </div>
+  <div class="app-bottom-background"></div>
 </div>
-<div class="app-bottom-background"></div>

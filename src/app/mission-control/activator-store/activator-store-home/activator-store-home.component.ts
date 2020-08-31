@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { setProgress } from '../activator-store.actions';
 import { map } from 'rxjs/operators';
 import { selectCategoriesCount, selectActivatorsCount } from '../activator-store.reducer';
+
+import { selectProgress } from '../activator-store.reducer';
+import { selectIsSelectedSolution, selectSelectedSolution } from '../../solutions/solutions.reducer';
+import { discardSelectedSolution } from '../../solutions/solutions.actions';
+import { Solution } from '@app/mission-control/solutions/solutions.model';
 
 @Component({
   selector: 'app-activator-store-home',
@@ -18,6 +23,10 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
   categories = ['Web applications'];
 
+  progress$: Observable<number>;
+  isSelectedSolution$: Observable<boolean>;
+  selectedSolution$: Observable<Solution>;
+
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
 
   ngOnInit() {
@@ -28,6 +37,10 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
     this.categoriesCount$ = this.store.pipe(select(selectCategoriesCount));
     this.activatorsCount$ = this.store.pipe(select(selectActivatorsCount));
+
+    this.progress$ = this.store.pipe(select(selectProgress));
+    this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
+    this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
   }
 
   onSwitch(categorySwitch: string) {
@@ -36,5 +49,10 @@ export class ActivatorStoreHomeComponent implements OnInit {
       queryParamsHandling: 'merge',
       queryParams: { categorySwitch }
     });
+  }
+
+  cancel() {
+    this.store.dispatch(discardSelectedSolution());
+    this.router.navigateByUrl('/mission-control/solutions');
   }
 }
