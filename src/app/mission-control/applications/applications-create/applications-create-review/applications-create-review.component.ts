@@ -68,6 +68,19 @@ export class ApplicationsCreateReviewComponent implements OnInit {
     return this.solution.isActive === true ? 'accent' : '';
   }
 
+  get activatorDescription(): string {
+    return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.description;
+  }
+
+  get activatorType(): string {
+    return (
+      this.activator &&
+      this.activator.activatorMetadata &&
+      this.activator.activatorMetadata.type &&
+      this.activator.activatorMetadata.type.value
+    );
+  }
+
   get rightColumnWidth$(): Observable<number> {
     return this.layout$.pipe(
       map(layout => {

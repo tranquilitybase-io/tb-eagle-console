@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>
       <div class="card-header">
-        <mat-chip [color]="statusColor" selected>{{ activator.status }}</mat-chip>
+        <mat-chip *ngIf="activator.status" [color]="statusColor" selected>{{ activator.status }}</mat-chip>
         <mat-chip color="warn" selected *ngIf="activator.accessRequestedBy">Access Requested</mat-chip>
 
         <div class="card-actions-bar">
@@ -42,30 +42,32 @@
   <mat-card-content>
     <div class="mat-body-strong">Details</div>
     <mat-list dense class="description-list">
-      <mat-list-item>
+      <mat-list-item *ngIf="activator.sensitivity">
         <div class="mat-body">Data sensitivity</div>
         <mat-chip-list>
           <mat-chip [color]="sensitivityColor" selected>{{ activator.sensitivity }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="activator.activatorMetadata.type">
         <div class="mat-body">Type</div>
         <mat-chip-list>
-          <mat-chip>{{ activator.type }}</mat-chip>
+          <mat-chip>{{ activator.activatorMetadata.type.value }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="activator.envs.length">
         <div class="mat-body">Environments</div>
         <mat-chip-list>
-          <mat-chip>{{ activator.envs[0] }}</mat-chip>
+          <mat-chip>{{ activator.envs[0].name }}</mat-chip>
           <mat-chip *ngIf="activator.envs.length > 1">+{{ activator.envs.length - 1 }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="activator.activatorMetadata.platforms">
         <div class="mat-body">Cloud platform</div>
         <mat-chip-list>
-          <mat-chip>{{ activator.platforms[0] }}</mat-chip>
-          <mat-chip *ngIf="activator.platforms.length > 1">+{{ activator.platforms.length - 1 }}</mat-chip>
+          <mat-chip>{{ activator.activatorMetadata.platforms[0].value }}</mat-chip>
+          <mat-chip *ngIf="activator.activatorMetadata.platforms.length > 1"
+            >+{{ activator.activatorMetadata.platforms.length - 1 }}</mat-chip
+          >
         </mat-chip-list>
       </mat-list-item>
       <mat-list-item>
@@ -80,7 +82,7 @@
   <mat-card-footer *ngIf="!active">
     <div>
       <div class="mat-body-strong">Description</div>
-      <div class="mat-caption">{{ activator.description }}</div>
+      <div class="mat-caption">{{ activator.activatorMetadata.description }}</div>
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">

@@ -27,7 +27,7 @@
       ]"
     ></app-breadcrumbs>
   </ng-template>
-  <div>
+  <div *ngIf="activator.status">
     <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
       {{ activator.status }}
     </div>
