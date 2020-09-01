@@ -1,55 +1,48 @@
-<mat-grid-list [cols]="5" [ngStyle]="{ height: calculatedHeight }" rowHeight="fit">
-  <mat-grid-tile [colspan]="respoWidthEnabled ? 5 : 3" [rowspan]="respoWidthEnabled ? 1 : 2">
+<mat-grid-list [cols]="5" [ngStyle]="{ height: (layout$ | async).applicationCreationReviewGridHeight }" rowHeight="fit">
+  <mat-grid-tile [colspan]="(layout$ | async).applicationCreationReviewLeftColumnSpan">
     <mat-grid-tile-header>Solution</mat-grid-tile-header>
-    <mat-grid-list
-      class="internal-mat-grid"
-      [cols]="1"
-      [ngStyle]="{ height: calculatedInternalGridHeight }"
-      rowHeight="fit"
-    >
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>
-              {{ solution.name }}
-              <mat-chip *ngIf="solution.isActive" class="card-title-chip" [color]="solutionIsActiveColor" selected
-                >Active</mat-chip
-              >
-            </mat-card-title>
-            <mat-card-subtitle>
-              <p>{{ solution.description }}</p>
-            </mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-list dense class="card-details-list">
-              <mat-list-item>
-                <div class="card-detail-label">Business Unit</div>
-                <p matInput readonly="true">{{ solution.businessUnit.name }}</p>
-              </mat-list-item>
+    <mat-card class="review-card">
+      <mat-card-header>
+        <mat-card-title>
+          {{ solution.name }}
+          <mat-chip *ngIf="solution.isActive" class="card-title-chip" [color]="solutionIsActiveColor" selected>
+            Active
+          </mat-chip>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ solution.description }}</p>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list dense class="card-details-list">
+          <mat-list-item>
+            <div class="card-detail-label">Business Unit</div>
+            <p matInput readonly="true">{{ solution.businessUnit.name }}</p>
+          </mat-list-item>
 
-              <mat-list-item>
-                <div class="card-detail-label">Team</div>
-                <p matInput readonly="true">{{ solution.team.name }}</p>
-              </mat-list-item>
+          <mat-list-item>
+            <div class="card-detail-label">Team</div>
+            <p matInput readonly="true">{{ solution.team.name }}</p>
+          </mat-list-item>
 
-              <mat-list-item>
-                <div class="card-detail-label">Cost Centre</div>
-                <p matInput readonly="true">{{ solution.costCentre }}</p>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+          <mat-list-item>
+            <div class="card-detail-label">Cost Centre</div>
+            <p matInput readonly="true">{{ solution.costCentre }}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="respoWidthEnabled ? 5 : 2" [rowspan]="respoWidthEnabled ? 1 : 2">
+  <mat-grid-tile [colspan]="rightColumnWidth$ | async">
     <mat-grid-tile-header>Activator</mat-grid-tile-header>
-    <mat-card class="not-internal-card">
+    <mat-card class="review-card">
       <mat-card-header>
         <mat-card-title>
           <div>{{ activator.name }}</div>
-          <mat-chip class="card-title-chip" [color]="activatorStatusColor" selected>{{ activator.status }}</mat-chip>
+          <mat-chip class="card-title-chip" [color]="activatorStatusColor" selected>
+            {{ activator.status }}
+          </mat-chip>
         </mat-card-title>
         <mat-card-subtitle>
           <p>{{ activatorDescription }}</p>
@@ -59,7 +52,9 @@
         <mat-list dense class="card-details-list">
           <mat-list-item>
             <div class="card-detail-label">Data sensitivity</div>
-            <mat-chip [color]="sensitivityColor" selected>{{ activator.sensitivity }}</mat-chip>
+            <mat-chip [color]="sensitivityColor" selected>
+              {{ activator.sensitivity }}
+            </mat-chip>
           </mat-list-item>
 
           <mat-list-item>
@@ -75,26 +70,17 @@
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="respoWidthEnabled ? 5 : 3" [rowspan]="respoWidthEnabled ? 1 : 2">
+  <mat-grid-tile [colspan]="(layout$ | async).applicationCreationReviewLeftColumnSpan">
     <mat-grid-tile-header>Application</mat-grid-tile-header>
-    <mat-grid-list
-      class="internal-mat-grid"
-      [cols]="1"
-      [ngStyle]="{ height: calculatedInternalGridHeight }"
-      rowHeight="fit"
-    >
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>
-              {{ applicationName }}
-            </mat-card-title>
-            <mat-card-subtitle>
-              <p>{{ applicationDescription }}</p>
-            </mat-card-subtitle>
-          </mat-card-header>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <mat-card class="review-card">
+      <mat-card-header>
+        <mat-card-title>
+          {{ applicationName }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ applicationDescription }}</p>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
