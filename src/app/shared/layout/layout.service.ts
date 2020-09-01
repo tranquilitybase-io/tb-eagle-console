@@ -19,6 +19,9 @@ export class LayoutService {
               landingZoneGridItemHeight: '180px',
               activatorGridItemHeight: '730px',
               applicationGridItemHeight: '600px',
+              applicationCreationReviewGridHeight: '1200px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewLeftColumnSpan: 5,
               solutionGridItemHeight: '470px',
               teamGridItemHeight: '470px',
               userGridItemHeight: '470px'
@@ -29,6 +32,9 @@ export class LayoutService {
               landingZoneGridItemHeight: '150px',
               activatorGridItemHeight: '630px',
               applicationGridItemHeight: '550px',
+              applicationCreationReviewGridHeight: '1200px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewLeftColumnSpan: 5,
               solutionGridItemHeight: '430px',
               teamGridItemHeight: '430px',
               userGridItemHeight: '430px'
@@ -39,6 +45,9 @@ export class LayoutService {
               landingZoneGridItemHeight: '150px',
               activatorGridItemHeight: '530px',
               applicationGridItemHeight: '500px',
+              applicationCreationReviewGridHeight: '700px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewLeftColumnSpan: 3,
               solutionGridItemHeight: '390px',
               teamGridItemHeight: '390px',
               userGridItemHeight: '390px'
@@ -49,6 +58,9 @@ export class LayoutService {
               landingZoneGridItemHeight: '150px',
               activatorGridItemHeight: '430px',
               applicationGridItemHeight: '500px',
+              applicationCreationReviewGridHeight: '700px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewLeftColumnSpan: 3,
               solutionGridItemHeight: '350px',
               teamGridItemHeight: '350px',
               userGridItemHeight: '350px'
@@ -59,6 +71,9 @@ export class LayoutService {
               landingZoneGridItemHeight: '210px',
               activatorGridItemHeight: '550px',
               applicationGridItemHeight: '600px',
+              applicationCreationReviewGridHeight: '700px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewLeftColumnSpan: 3,
               solutionGridItemHeight: '510px',
               teamGridItemHeight: '510px',
               userGridItemHeight: '510px'
