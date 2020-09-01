@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Activator } from '@app/mission-control/activator-store/activator-store.model';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
