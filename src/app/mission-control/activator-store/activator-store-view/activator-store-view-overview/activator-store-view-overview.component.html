@@ -10,7 +10,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>{{ activator.name }} - {{ activator.description }}</div>
+            <div>{{ activator.name }} - {{ activator.activatorMetadata.description }}</div>
             <mat-list dense class="description-list">
               <mat-list-item *ngFor="let property of properties">
                 <div class="mat-body-1">{{ property.name }}</div>
@@ -41,7 +41,9 @@
           <mat-list dense class="description-list">
             <mat-list-item *ngFor="let property of deploymentOptions">
               <div class="mat-body-1">{{ property.name }}</div>
-              <div *ngFor="let val of property.value" class="mat-chip-alternative font-weight-bold">{{ val }}</div>
+              <div *ngFor="let val of property.value" class="mat-chip-alternative font-weight-bold">
+                {{ val !== null ? val.value : '' }}
+              </div>
             </mat-list-item>
           </mat-list>
         </mat-card-content>

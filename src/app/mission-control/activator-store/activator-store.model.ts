@@ -5,13 +5,31 @@ export interface ActivatorsMetadata {
   count: number;
 }
 
-export interface ActivatorCategory {
+export interface ActivatorMetadata {
+  activatorLink: string;
   category: string;
+  description: string;
+  id: number;
+  lastUpdated: string;
+  name: string;
+  platforms: ActivatorPlatform[];
+  type: ActivatorType;
+  typeId: number;
+  variables: any[];
 }
 
-export interface Resource {
-  name: string;
-  ipAddress: string;
+export interface ActivatorPlatform {
+  id: number;
+  value: string;
+}
+
+export interface ActivatorType {
+  id: number;
+  value: string;
+}
+
+export interface ActivatorCategory {
+  category: string;
 }
 
 export interface ActivatorCI {
@@ -19,33 +37,58 @@ export interface ActivatorCI {
   value: string;
 }
 
-export interface Activator {
+export interface ActivatorCD {
   id: number;
-  name: string;
-  type: string;
-  status: string;
-  accessRequestedBy: User;
-  sensitivity: string;
-  category: string;
-  envs: string[];
-  platforms: string[];
-  lastUpdated: string;
-  isFavourite: boolean;
+  value: string;
+}
+
+export interface ActivatorEnv {
+  id: number;
   isActive: boolean;
+  name: string;
+}
+
+export interface ActivatorSourceControl {
+  id: number;
+  value: string;
+}
+
+export interface ActivatorBusinessUnit {
   description: string;
-  userCapacity: number;
-  serverCapacity: number;
-  regions: string[];
-  ci: string[] | ActivatorCI[];
-  cd: string[];
-  hosting: string[];
+  id: number;
+  isActive: boolean;
+  name: string;
+}
+
+export interface Activator {
+  // description: string;
+  // platforms: string[];
+  // type: string;
+  // category: string;
+  accessRequestedBy: User;
+  activatorMetadata: ActivatorMetadata;
   apiManagement: string[];
-  sourceControl: string[];
-  businessUnity: string;
+  billing: string;
+  businessUnit: ActivatorBusinessUnit;
+  businessUnitId: number;
+  cd: string[] | ActivatorCD[]; //new
+  ci: string[] | ActivatorCI[];
+  envs: ActivatorEnv[]; //new
+  hosting: string[];
+  id: number;
+  isActive: boolean;
+  isFavourite: boolean;
+  lastUpdated: string;
+  name: string;
+  regions: string[];
+  sensitivity: string;
+  serverCapacity: number;
+  sourceControl: ActivatorSourceControl; //new
+  sourceControlId: number; //new
+  status: string;
   technologyOwner: string;
   technologyOwnerEmail: string;
-  billing: string;
-  resources: Resource[];
+  userCapacity: number;
 }
 
 export interface ActivatorStoreGrantAccessDialogData {

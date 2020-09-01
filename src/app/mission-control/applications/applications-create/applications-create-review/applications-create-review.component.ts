@@ -70,6 +70,19 @@ export class ApplicationsCreateReviewComponent implements OnInit {
     return this.solution.isActive === true ? 'accent' : '';
   }
 
+  get activatorDescription(): string {
+    return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.description;
+  }
+
+  get activatorType(): string {
+    return (
+      this.activator &&
+      this.activator.activatorMetadata &&
+      this.activator.activatorMetadata.type &&
+      this.activator.activatorMetadata.type.value
+    );
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize($event) {
     this.columnsAmount = $event.target.innerWidth <= this.responsiveWidth ? 1 : this.wideColumnsAmount;

@@ -48,7 +48,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ activator.businessUnity }}</div>
+            <div class="mat-body-2">{{ activator.businessUnit.name }}</div>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
@@ -114,7 +114,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip>{{ activator.category }}</mat-chip>
+              <mat-chip>{{ activator.activatorMetadata.category }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -128,7 +128,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip *ngFor="let env of activator.envs">{{ env }}</mat-chip>
+              <mat-chip *ngFor="let env of activator.envs">{{ env.name }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -142,7 +142,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip *ngFor="let platform of activator.platforms">{{ platform }}</mat-chip>
+              <mat-chip *ngFor="let platform of activator.activatorMetadata.platforms">{{ platform.value }}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
         </mat-card>
@@ -156,7 +156,7 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
-              <mat-chip *ngFor="let resource of activator.resources">
+              <mat-chip *ngFor="let resource of application.resources">
                 {{ resource.name }} | <a href="#">{{ resource.ipAddress }}</a>
               </mat-chip>
             </mat-chip-list>

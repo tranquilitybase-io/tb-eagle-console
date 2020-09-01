@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Activator, ActivatorCI } from '../../activator-store.model';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Activator, ActivatorCI } from '../../activator-store.model';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { setProgress, storeActivatorData } from '../../activator-store.actions';
@@ -49,11 +49,12 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
       {
         name: 'Data sensitivity',
         value: this.activator.sensitivity,
-        class: this.activator.sensitivity.toLowerCase() === 'restricted' ? 'red' : 'dark-grey'
+        class:
+          this.activator.sensitivity && this.activator.sensitivity.toLowerCase() === 'restricted' ? 'red' : 'dark-grey'
       },
       {
         name: 'Category',
-        value: this.activator.category
+        value: this.activator.activatorMetadata.category
       },
       {
         name: 'User capacity',
@@ -68,6 +69,12 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
         value: this.activator.regions
       }
     ];
+  }
+
+  get envs() {
+    return this.activator.envs.map(env => {
+      return { value: env.name };
+    });
   }
 
   get ci() {
@@ -86,15 +93,15 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
       },
       {
         name: 'Cloud Platform',
-        value: this.activator.platforms
+        value: this.activator.activatorMetadata.platforms
       },
       {
         name: 'Environment',
-        value: this.activator.envs
+        value: this.envs
       },
       {
         name: 'CI (Continious integration)',
-        value: this.ci
+        value: this.activator.ci
       },
       {
         name: 'CD (Continious deployment)',
@@ -102,7 +109,7 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
       },
       {
         name: 'Source control',
-        value: this.activator.sourceControl
+        value: [this.activator.sourceControl]
       }
     ];
   }
