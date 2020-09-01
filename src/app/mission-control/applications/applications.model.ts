@@ -1,6 +1,11 @@
 import { Activator } from '../activator-store/activator-store.model';
 import { DeploymentState } from '@app/shared/shared.model';
 
+export interface Resource {
+  name: string;
+  ipAddress: string;
+}
+
 export class Application {
   id: number;
   solutionId: number;
@@ -14,6 +19,7 @@ export class Application {
   isActive: boolean;
   activator: Activator;
   deploymentState: DeploymentState;
+  resources: Resource[];
 }
 
 export class ApplicationDeployment {

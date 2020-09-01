@@ -32,11 +32,6 @@ export interface ActivatorCategory {
   category: string;
 }
 
-export interface Resource {
-  name: string;
-  ipAddress: string;
-}
-
 export interface ActivatorCI {
   id: number;
   value: string;
@@ -86,7 +81,6 @@ export interface Activator {
   lastUpdated: string;
   name: string;
   regions: string[];
-  resources: Resource[];
   sensitivity: string;
   serverCapacity: number;
   sourceControl: ActivatorSourceControl; //new
