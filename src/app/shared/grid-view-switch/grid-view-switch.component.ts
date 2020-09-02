@@ -41,12 +41,14 @@ export class GridViewSwitchComponent implements OnInit {
 
   buttonActivnessColor(optionName): Observable<string> {
     return this.current$.pipe(
-      map(currentOption => (currentOption.option === optionName ? this.activeColor : this.inactiveColor))
+      map(currentOption =>
+        currentOption && currentOption.option === optionName ? this.activeColor : this.inactiveColor
+      )
     );
   }
 
   buttonActivnessState(optionName): Observable<boolean> {
-    return this.current$.pipe(map(currentOption => currentOption.option === optionName));
+    return this.current$.pipe(map(currentOption => currentOption && currentOption.option === optionName));
   }
 
   onOptionClick(name: GridViewSwitchOptionsEnum) {

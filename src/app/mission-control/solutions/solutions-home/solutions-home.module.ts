@@ -17,6 +17,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { SolutionsHomeListComponent } from './solutions-home-list/solutions-home-list.component';
+import { MatFormFieldModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -30,7 +32,8 @@ const routes: Routes = [
     SolutionSelectComponent,
     SolutionsHomeComponent,
     SolutionsHomeGridCardComponent,
-    SolutionsHomeGridComponent
+    SolutionsHomeGridComponent,
+    SolutionsHomeListComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +47,10 @@ const routes: Routes = [
     MatListModule,
     MatProgressSpinnerModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule
   ]
 })
 export class SolutionsHomeModule {}
