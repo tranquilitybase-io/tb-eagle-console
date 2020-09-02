@@ -50,3 +50,10 @@ td,
 th {
   width: 1%;
 }
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30ch;
+}

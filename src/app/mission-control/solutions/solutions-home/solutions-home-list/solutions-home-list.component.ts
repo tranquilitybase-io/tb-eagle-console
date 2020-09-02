@@ -14,7 +14,7 @@ export class SolutionsHomeListComponent implements OnInit {
   @Input() solutions$: Observable<Solution[]>;
   layout$: Observable<Layout>;
 
-  displayedColumns: string[] = ['id', 'name', 'status', 'appCount', 'team', 'lastUpdated', 'description'];
+  displayedColumns: string[] = ['id', 'name', 'status', 'appCount', 'team', 'lastUpdated', 'description', 'actions'];
   dataSource: MatTableDataSource<Solution>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;

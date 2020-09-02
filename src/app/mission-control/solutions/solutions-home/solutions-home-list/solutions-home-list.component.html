@@ -48,7 +48,22 @@
     <!-- Description Column -->
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.description }}</td>
+      <td mat-cell class="truncate-text" *matCellDef="let row" [style.color]="row.color">{{ row.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+      <td mat-cell class="truncate-text" *matCellDef="let row" [style.color]="row.color">
+        <a mat-icon-button routerLink="view" [queryParams]="{ id: row.id, categorySwitch: 'Applications' }">
+          <mat-icon aria-hidden="false" aria-label="View solution icon">remove_red_eye</mat-icon>
+        </a>
+        <a mat-icon-button routerLink="edit" [queryParams]="{ id: row.id }">
+          <mat-icon aria-hidden="false" aria-label="Edit solution icon">edit</mat-icon>
+        </a>
+        <a mat-icon-button>
+          <mat-icon aria-hidden="false" aria-label="Deploy solution icon">send</mat-icon>
+        </a>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
