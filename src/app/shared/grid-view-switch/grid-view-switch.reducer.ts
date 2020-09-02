@@ -36,7 +36,6 @@ export const gridViewSwitchReducer = createReducer(
   on(setGridViewOption, (state, { viewOption }) => {
     let optionIndex = state.gridViewSwitchOptions.findIndex(vO => vO.viewName === viewOption.viewName);
     state.gridViewSwitchOptions[optionIndex] = viewOption;
-    console.log(viewOption);
     return { ...state, gridViewSwitchOptions: [...state.gridViewSwitchOptions] };
   })
 );

@@ -3,12 +3,9 @@
 }
 
 .option {
-  display: flex;
-  border: none;
-  background: none;
-  outline: none;
-  padding: 0.2rem 0.5rem 0.1rem;
-  align-items: center;
+  border-radius: 4px;
+  padding-top: 0.2rem;
+  background-color: var(--active-grey-background);
 
   &.active {
     background-color: var(--primary-color);
