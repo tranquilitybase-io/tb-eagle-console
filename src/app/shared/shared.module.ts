@@ -45,6 +45,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { NotificationsModule } from './notifications/notifications.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
+import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-
     BreadcrumbsModule,
     HttpClientModule,
     FormsModule,
+    GridViewSwitchModule,
     MatBadgeModule,
     MatButtonModule,
     MatButtonToggleModule,

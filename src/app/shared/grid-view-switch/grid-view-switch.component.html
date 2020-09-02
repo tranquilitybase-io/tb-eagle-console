@@ -2,7 +2,8 @@
   *ngFor="let option of options"
   type="button"
   class="option"
-  [class.active]="isActive(option.name)"
-  (click)="onOptionClick(option.name)">
-  <app-icon [icon]="option.icon" [color]="getColorForOption(option.name)"></app-icon>
+  [class.active]="buttonActivnessState(option.name) | async"
+  (click)="onOptionClick(option.name)"
+>
+  <app-icon [icon]="option.icon" [color]="buttonActivnessColor(option.name) | async"></app-icon>
 </button>

@@ -2,6 +2,16 @@
   <app-breadcrumbs></app-breadcrumbs>
 </header>
 <div>
-  <app-solution-select [values]="filters" (onSelection)="getSolutions($event)"></app-solution-select>
+  <app-solution-select
+    [gridViewName]="gridViewOptionsName"
+    [values]="filters"
+    (onSelection)="getSolutions($event)"
+  ></app-solution-select>
 </div>
-<app-solutions-home-grid [solutions$]="solutions$"></app-solutions-home-grid>
+<app-solutions-home-grid
+  *ngIf="isGridViewEnabled$ | async; else listView"
+  [solutions$]="solutions$"
+></app-solutions-home-grid>
+<ng-template #listView>
+  test
+</ng-template>

@@ -1,41 +1,63 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import getCustomProperty from '@app/shared/utils/getCustomProperty';
-
-export type GridViewOption = 'grid' | 'row';
+import { GridViewSwitchViewsNames, GridViewSwitchOptionsEnum, GridViewSwitchModel } from './grid-view-switch.model';
+import { Store, select } from '@ngrx/store';
+import { Subscription, Observable } from 'rxjs';
+import { selectGridViewSwitchOptions } from './grid-view-switch.reducer';
+import { setGridViewOption } from './grid-view-switch.actions';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-grid-view-switch',
   templateUrl: './grid-view-switch.component.html',
   styleUrls: ['./grid-view-switch.component.scss']
 })
-export class GridViewSwitchComponent {
-  activeColor = getCustomProperty('--white');
-  inactiveColor = getCustomProperty('--dark-grey');
+export class GridViewSwitchComponent implements OnInit {
+  @Input() readonly gridViewName: GridViewSwitchViewsNames;
 
-  options = [
+  readonly activeColor = getCustomProperty('--white');
+  readonly inactiveColor = getCustomProperty('--dark-grey');
+
+  readonly options = [
     {
-      name: 'grid',
+      name: GridViewSwitchOptionsEnum.grid,
       icon: '3x3grid'
     },
     {
-      name: 'row',
+      name: GridViewSwitchOptionsEnum.row,
       icon: 'row_view'
     }
   ];
 
-  @Input() current: GridViewOption = 'grid';
-  @Output() onViewChange = new EventEmitter<GridViewOption>();
+  current$: Observable<GridViewSwitchModel>;
 
-  isActive(name: GridViewOption): boolean {
-    return this.current === name;
+  @Output() onViewChange = new EventEmitter<GridViewSwitchOptionsEnum>();
+
+  constructor(private store: Store<any>) {}
+
+  ngOnInit() {
+    this.current$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewName));
   }
 
-  getColorForOption(name: GridViewOption): string {
-    return this.isActive(name) ? this.activeColor : this.inactiveColor;
+  buttonActivnessColor(optionName): Observable<string> {
+    return this.current$.pipe(
+      map(currentOption => (currentOption.option === optionName ? this.activeColor : this.inactiveColor))
+    );
   }
 
-  onOptionClick(name: GridViewOption) {
-    this.current = name;
+  buttonActivnessState(optionName): Observable<boolean> {
+    return this.current$.pipe(map(currentOption => currentOption.option === optionName));
+  }
+
+  onOptionClick(name: GridViewSwitchOptionsEnum) {
+    this.store.dispatch(
+      setGridViewOption({
+        viewOption: {
+          viewName: this.gridViewName,
+          option: name
+        }
+      })
+    );
     this.onViewChange.emit(name);
   }
 }
