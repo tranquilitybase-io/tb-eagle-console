@@ -1,9 +1,12 @@
-<!-- <mat-form-field>
+<div class="actions-top-bar">
+  <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Development" />
-  </mat-form-field> -->
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Solution" />
+  </mat-form-field>
+  <button mat-button class="action-button" (click)="createNewSolution()">+ Create new solution</button>
+</div>
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
     <div class="activ-dpl-head-desc">
       <div class="activ-dpl-head-title">Application</div>
       <app-icon icon="expand_arrow" [size]="10"></app-icon>
@@ -18,7 +21,7 @@
     <!-- Solution Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Solution</th>
-      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      <td mat-cell class="mat-cell-left-aligned" *matCellDef="let row">{{ row.name }}</td>
     </ng-container>
 
     <!-- Status Column -->
@@ -48,7 +51,9 @@
     <!-- Description Column -->
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-      <td mat-cell class="truncate-text" *matCellDef="let row" [style.color]="row.color">{{ row.description }}</td>
+      <td mat-cell title="{{ row.description }}" class="truncate-text" *matCellDef="let row" [style.color]="row.color">
+        {{ row.description }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -60,9 +65,13 @@
         <a mat-icon-button routerLink="edit" [queryParams]="{ id: row.id }">
           <mat-icon aria-hidden="false" aria-label="Edit solution icon">edit</mat-icon>
         </a>
-        <a mat-icon-button>
+        <button
+          [disabled]="isDeploymentStateSuccess(row.deploymentState) || isDeploymentInProgress(row.deploymentState)"
+          (click)="deployAction(row.id)"
+          mat-icon-button
+        >
           <mat-icon aria-hidden="false" aria-label="Deploy solution icon">send</mat-icon>
-        </a>
+        </button>
       </td>
     </ng-container>
 

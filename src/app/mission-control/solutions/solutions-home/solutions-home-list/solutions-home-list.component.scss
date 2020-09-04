@@ -57,3 +57,27 @@ th {
   text-overflow: ellipsis;
   max-width: 30ch;
 }
+
+.mat-header-cell {
+  text-align: center;
+  justify-content: flex-end;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content: flex-end;
+}
+
+.mat-cell-left-aligned {
+  text-align: left;
+  justify-content: flex-end;
+}
+
+.actions-top-bar {
+  display: flex;
+  margin: 1rem;
+}
+
+.action-button {
+  min-width: fit-content;
+}

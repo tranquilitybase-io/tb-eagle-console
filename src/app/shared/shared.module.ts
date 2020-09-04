@@ -40,7 +40,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
+import { MatCheckboxModule, MatBadgeModule, MatInputModule } from '@angular/material';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { NotificationsModule } from './notifications/notifications.module';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
@@ -108,7 +108,8 @@ import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
-    NotificationsModule
+    NotificationsModule,
+    MatInputModule
   ],
   exports: [
     AlertComponent,
