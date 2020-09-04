@@ -53,7 +53,6 @@ export class SolutionsHomeListComponent implements OnInit {
   }
 
   deployAction(_id: string) {
-    debugger;
     this.snackBar.openFromComponent(SolutionUnderCreationComponent);
     this.store.dispatch(startDeployment({ id: parseInt(_id) }));
   }
