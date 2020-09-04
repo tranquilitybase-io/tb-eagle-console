@@ -73,6 +73,11 @@ th {
   justify-content: flex-end;
 }
 
+::ng-deep .mat-sort-header-container {
+  justify-content: center;
+  padding-left: 20px;
+}
+
 .actions-top-bar {
   display: flex;
   margin: 1rem;
@@ -80,4 +85,8 @@ th {
 
 .action-button {
   min-width: fit-content;
+}
+
+.mat-row:hover {
+  background-color: var(--active-grey-background);
 }

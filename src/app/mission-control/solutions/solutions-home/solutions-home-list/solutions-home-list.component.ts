@@ -19,7 +19,17 @@ export class SolutionsHomeListComponent implements OnInit {
   @Input() solutions$: Observable<Solution[]>;
   layout$: Observable<Layout>;
 
-  displayedColumns: string[] = ['id', 'name', 'status', 'appCount', 'team', 'lastUpdated', 'description', 'actions'];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'status',
+    'deploymentState',
+    'applications',
+    'team',
+    'lastUpdated',
+    'description',
+    'actions'
+  ];
   dataSource: MatTableDataSource<Solution>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -39,12 +49,14 @@ export class SolutionsHomeListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(solutions);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
+      // this.dataSource.sortingDataAccessor = (data, header) => data[header];
     });
   }
 
-  deployAction(_id: number) {
+  deployAction(_id: string) {
     this.snackBar.openFromComponent(SolutionUnderCreationComponent);
-    this.store.dispatch(startDeployment({ id: _id }));
+    this.store.dispatch(startDeployment({ id: parseInt(_id) }));
   }
 
   isDeploymentInProgress(deploymentState: DeploymentState): boolean {
@@ -70,28 +82,5 @@ export class SolutionsHomeListComponent implements OnInit {
 
   createNewSolution() {
     this.router.navigate(['create'], { relativeTo: this.route });
-  }
-
-  sortData(sort: Sort) {
-    // const data = this.desserts.slice();
-    // if (!sort.active || sort.direction === '') {
-    //   this.sortedData = data;
-    //   return;
-    // }
-    // this.sortedData = data.sort((a, b) => {
-    //   const isAsc = sort.direction === 'asc';
-    //   switch (sort.active) {
-    //     case 'name': return this.compare(a.name, b.name, isAsc);
-    //     case 'calories': return this.compare(a.calories, b.calories, isAsc);
-    //     case 'fat': return this.compare(a.fat, b.fat, isAsc);
-    //     case 'carbs': return this.compare(a.carbs, b.carbs, isAsc);
-    //     case 'protein': return this.compare(a.protein, b.protein, isAsc);
-    //     default: return 0;
-    //   }
-    // });
-  }
-
-  compare(a: number | string, b: number | string, isAsc: boolean) {
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }

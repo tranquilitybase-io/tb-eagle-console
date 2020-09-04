@@ -18,7 +18,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { SolutionsHomeListComponent } from './solutions-home-list/solutions-home-list.component';
-import { MatFormFieldModule, MatPaginatorModule, MatTableModule, MatInputModule } from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatInputModule,
+  MatSortModule,
+  MatTooltipModule
+} from '@angular/material';
 
 const routes: Routes = [
   {
@@ -51,7 +58,9 @@ const routes: Routes = [
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatSortModule,
+    MatTooltipModule
   ]
 })
 export class SolutionsHomeModule {}
