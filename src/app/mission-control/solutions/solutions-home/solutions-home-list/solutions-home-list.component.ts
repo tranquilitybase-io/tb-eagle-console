@@ -6,7 +6,7 @@ import { LayoutService } from '@app/shared/layout/layout.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, Sort } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
-import { startDeployment } from '@app/mission-control/applications/applications.actions';
+import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
 import { DeploymentState } from '@app/shared/shared.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -49,12 +49,11 @@ export class SolutionsHomeListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(solutions);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
-      // this.dataSource.sortingDataAccessor = (data, header) => data[header];
     });
   }
 
   deployAction(_id: string) {
+    debugger;
     this.snackBar.openFromComponent(SolutionUnderCreationComponent);
     this.store.dispatch(startDeployment({ id: parseInt(_id) }));
   }
