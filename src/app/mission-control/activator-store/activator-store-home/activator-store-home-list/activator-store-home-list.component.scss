@@ -1,0 +1,109 @@
+.activ-dpl-head-desc {
+  background-color: var(--active-grey-background);
+  display: flex;
+  padding: 0.5rem 0.3rem;
+  font-size: 0.875rem;
+
+  app-icon {
+    margin: 0 1rem;
+  }
+
+  .activ-dpl-head-title {
+    flex: auto;
+  }
+}
+
+.mat-elevation-z8 {
+  margin: 1rem;
+  margin-top: 0;
+}
+
+tbody tr td {
+  padding: 0.5rem 0.3rem;
+  border-bottom: 1px solid var(--active-grey-background);
+}
+
+.notes {
+  display: flex;
+  align-items: center;
+}
+
+.notes-text {
+  flex: auto;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 1%;
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30ch;
+}
+
+.mat-header-cell {
+  text-align: center;
+  justify-content: flex-end;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content: flex-end;
+}
+
+.mat-cell-left-aligned {
+  text-align: left;
+  justify-content: flex-end;
+}
+
+::ng-deep .mat-sort-header-container {
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.actions-top-bar {
+  display: flex;
+  margin: 1rem;
+}
+
+.action-button {
+  min-width: fit-content;
+}
+
+.mat-row:hover {
+  background-color: var(--active-grey-background);
+}
+
+.deployment-spinner {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type,
+th.mat-header-cell:first-of-type {
+  padding: 0px;
+  padding-left: 0px;
+}

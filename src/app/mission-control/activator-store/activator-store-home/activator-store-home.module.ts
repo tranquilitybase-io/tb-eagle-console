@@ -20,7 +20,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatStepperModule } from '@angular/material';
+import {
+  MatStepperModule,
+  MatFormFieldModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatInputModule,
+  MatSortModule,
+  MatTooltipModule
+} from '@angular/material';
+import { ActivatorStoreHomeListComponent } from './activator-store-home-list/activator-store-home-list.component';
 
 const routes: Routes = [
   {
@@ -37,7 +46,8 @@ const routes: Routes = [
     ActivatorStoreHomeComponent,
     ActivatorStoreHomeGridComponent,
     ActivatorStoreHomeGridCardComponent,
-    ActivatorStoreHomeCategoryGridComponent
+    ActivatorStoreHomeCategoryGridComponent,
+    ActivatorStoreHomeListComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +62,13 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatMenuModule,
-    MatStepperModule
+    MatStepperModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
+    MatTooltipModule
   ]
 })
 export class ActivatorStoreHomeModule {}

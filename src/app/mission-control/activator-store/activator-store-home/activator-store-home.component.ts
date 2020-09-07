@@ -10,6 +10,12 @@ import { selectProgress } from '../activator-store.reducer';
 import { selectIsSelectedSolution, selectSelectedSolution } from '../../solutions/solutions.reducer';
 import { discardSelectedSolution } from '../../solutions/solutions.actions';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
+import {
+  GridViewSwitchViewsNames,
+  GridViewSwitchModel,
+  GridViewSwitchOptionsEnum
+} from '@app/shared/grid-view-switch/grid-view-switch.model';
+import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 
 @Component({
   selector: 'app-activator-store-home',
@@ -27,6 +33,9 @@ export class ActivatorStoreHomeComponent implements OnInit {
   isSelectedSolution$: Observable<boolean>;
   selectedSolution$: Observable<Solution>;
 
+  gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.activatorStore;
+  currentGridViewOption$: Observable<GridViewSwitchModel>;
+
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
 
   ngOnInit() {
@@ -41,6 +50,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
     this.progress$ = this.store.pipe(select(selectProgress));
     this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
     this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
   }
 
   onSwitch(categorySwitch: string) {
@@ -54,5 +64,19 @@ export class ActivatorStoreHomeComponent implements OnInit {
   cancel() {
     this.store.dispatch(discardSelectedSolution());
     this.router.navigateByUrl('/mission-control/solutions');
+  }
+
+  get isGridViewEnabled$(): Observable<boolean> {
+    return this.currentGridViewOption$.pipe(
+      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+    );
+  }
+
+  get isCategorySwitchSelected$(): Observable<boolean> {
+    return this.categorySwitch$.pipe(map(categorySwitch => categorySwitch === 'Category'));
+  }
+
+  get isAllSwitchSelected$(): Observable<boolean> {
+    return this.categorySwitch$.pipe(map(categorySwitch => categorySwitch === 'All'));
   }
 }

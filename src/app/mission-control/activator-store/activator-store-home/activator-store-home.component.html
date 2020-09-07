@@ -30,11 +30,9 @@
   </mat-step>
   <mat-step [completed]="false" [editable]="false">
     <ng-template matStepLabel>Application details</ng-template>
-    <!-- <app-applications-create #appCreate></app-applications-create> -->
   </mat-step>
   <mat-step [completed]="false" [editable]="false">
     <ng-template matStepLabel>Review</ng-template>
-    <!-- <app-applications-create #appCreate></app-applications-create> -->
   </mat-step>
 
   <ng-template matStepperIcon="edit">
@@ -50,16 +48,12 @@
 
 <div class="controls-activator-home">
   <div class="switches-activator-home">
-    <button
-      mat-flat-button
-      [color]="(categorySwitch$ | async) === 'Category' && 'primary'"
-      (click)="onSwitch('Category')"
-    >
+    <button mat-flat-button [color]="(isCategorySwitchSelected$ | async) && 'primary'" (click)="onSwitch('Category')">
       Category
       <span class="count">({{ categoriesCount$ | async }})</span>
     </button>
     <button
-      *ngIf="!((categorySwitch$ | async) === 'All' || (categorySwitch$ | async) === 'Category')"
+      *ngIf="!((isAllSwitchSelected$ | async) || (isCategorySwitchSelected$ | async))"
       mat-flat-button
       color="primary"
     >
@@ -67,31 +61,36 @@
       <span class="count">({{ activatorsCount$ | async }})</span>
     </button>
     <button
-      *ngIf="(categorySwitch$ | async) === 'All' || (categorySwitch$ | async) === 'Category'"
+      *ngIf="(isAllSwitchSelected$ | async) || (isCategorySwitchSelected$ | async)"
       mat-flat-button
-      [color]="(categorySwitch$ | async) === 'All' && 'primary'"
+      [color]="(isAllSwitchSelected$ | async) && 'primary'"
       (click)="onSwitch('All')"
     >
       All
       <span class="count">({{ activatorsCount$ | async }})</span>
     </button>
   </div>
-  <div class="flex-filler" *ngIf="(categorySwitch$ | async) === 'Category'"></div>
+  <div class="flex-filler" *ngIf="isCategorySwitchSelected$ | async"></div>
   <app-pills
     [pills]="['Type', 'Availability', 'Environment']"
     class="separated"
-    *ngIf="(categorySwitch$ | async) !== 'Category'"
+    *ngIf="!(isCategorySwitchSelected$ | async)"
   ></app-pills>
-  <app-search class="separated"></app-search>
-  <app-grid-view-switch class="separated"></app-grid-view-switch>
+  <app-grid-view-switch
+    *ngIf="!(isCategorySwitchSelected$ | async)"
+    [gridViewName]="gridViewOptionsName"
+  ></app-grid-view-switch>
 </div>
 
-<app-activator-store-home-grid
-  *ngIf="(categorySwitch$ | async) !== 'Category'"
-  class="grid-container"
-></app-activator-store-home-grid>
-
-<app-activator-store-home-category-grid
-  *ngIf="(categorySwitch$ | async) === 'Category'"
-  class="grid-container"
-></app-activator-store-home-category-grid>
+<div *ngIf="!(isCategorySwitchSelected$ | async); else categoryGrid">
+  <app-activator-store-home-grid
+    *ngIf="isGridViewEnabled$ | async; else listview"
+    class="grid-container"
+  ></app-activator-store-home-grid>
+  <ng-template #listview>
+    <app-activator-store-home-list></app-activator-store-home-list>
+  </ng-template>
+</div>
+<ng-template #categoryGrid>
+  <app-activator-store-home-category-grid class="grid-container"></app-activator-store-home-category-grid>
+</ng-template>
