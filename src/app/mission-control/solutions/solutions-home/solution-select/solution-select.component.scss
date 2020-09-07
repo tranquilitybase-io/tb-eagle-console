@@ -8,3 +8,9 @@
 .app-pills {
   flex: auto;
 }
+
+.bar-justification {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

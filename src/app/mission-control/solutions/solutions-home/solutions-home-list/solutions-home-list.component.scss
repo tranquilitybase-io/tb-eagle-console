@@ -90,3 +90,13 @@ th {
 .mat-row:hover {
   background-color: var(--active-grey-background);
 }
+
+.deployment-spinner {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}

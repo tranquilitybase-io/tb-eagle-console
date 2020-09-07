@@ -1,7 +1,7 @@
 <div class="actions-top-bar">
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Solution" />
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Solution name or description" />
   </mat-form-field>
   <button mat-button class="action-button" (click)="createNewSolution()">+ Create new solution</button>
 </div>
@@ -66,7 +66,7 @@
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
-      <td mat-cell class="truncate-text" *matCellDef="let row" [style.color]="row.color">
+      <td mat-cell class="nowrap" *matCellDef="let row" [style.color]="row.color">
         <a
           mat-icon-button
           matTooltip="View solution"
@@ -79,12 +79,28 @@
           <mat-icon aria-hidden="false" aria-label="Edit solution icon">edit</mat-icon>
         </a>
         <button
+          [ngStyle]="isDeploymentInProgress(row.deploymentState) ? { height: '15px' } : {}"
           matTooltip="Deploy solution"
           [disabled]="isDeploymentStateSuccess(row.deploymentState) || isDeploymentInProgress(row.deploymentState)"
           (click)="deployAction(row.id)"
           mat-icon-button
         >
-          <mat-icon aria-hidden="false" aria-label="Deploy solution icon">send</mat-icon>
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Deploy solution icon"
+            *ngIf="!isDeploymentInProgress(row.deploymentState); else spinner"
+            >send</mat-icon
+          >
+          <ng-template #spinner>
+            <mat-progress-spinner
+              class="deployment-spinner"
+              color="primary"
+              mode="indeterminate"
+              diameter="20"
+              strokeWidth="3"
+            >
+            </mat-progress-spinner>
+          </ng-template>
         </button>
       </td>
     </ng-container>
