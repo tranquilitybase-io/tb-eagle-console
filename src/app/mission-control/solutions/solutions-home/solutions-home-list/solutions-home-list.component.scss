@@ -14,6 +14,7 @@
 }
 
 .mat-elevation-z8 {
+  overflow: auto;
   margin: 1rem;
   margin-top: 0;
 }
@@ -99,4 +100,11 @@ th {
 
 .nowrap {
   white-space: nowrap;
+}
+
+.mat-chip {
+  font-size: 14px;
+  padding: 0.2rem 0.5rem;
+  min-height: 1.5rem;
+  border-radius: 0.2rem;
 }
