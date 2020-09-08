@@ -18,10 +18,12 @@ import { selectActivatorsByCategoryData } from '../../activator-store.reducer';
 export class ActivatorStoreHomeListComponent implements OnInit {
   activators$: Observable<Activator[]>;
   layout$: Observable<Layout>;
+  private statusColorMap: Map<string, string>;
 
   displayedColumns: string[] = [
     'id',
     'name',
+    'status',
     'category',
     'type',
     'sensitivity',
@@ -44,6 +46,10 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     private activatorStoreService: ActivatorStoreService
   ) {
     this.layout$ = this.layoutService.layoutObserver$;
+    this.statusColorMap = new Map([
+      ['available', 'accent'],
+      ['deprecated', 'warn']
+    ]);
   }
 
   ngOnInit() {
@@ -60,12 +66,20 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
-    this.filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filter: string) {
+    this.filterValue = filter;
     this.dataSource.filter = this.filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  sensitivityColor(sensitivity: string): string {
+    return String(sensitivity).toLowerCase() === 'restricted' ? 'warn' : '';
+  }
+
+  statusColor(status: string): string {
+    return this.statusColorMap.get(String(status).toLowerCase());
   }
 }

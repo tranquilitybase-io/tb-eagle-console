@@ -107,3 +107,14 @@ th.mat-header-cell:first-of-type {
   padding: 0px;
   padding-left: 0px;
 }
+
+.mat-chip {
+  padding: 0.2rem 0.5rem;
+  min-height: 1.5rem;
+  border-radius: 0.2rem;
+}
+
+.mat-chip-list {
+  display: inline-block;
+  width: auto;
+}
