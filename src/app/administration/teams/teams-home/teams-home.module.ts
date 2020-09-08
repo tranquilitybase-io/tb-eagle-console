@@ -15,6 +15,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
+import { TeamsHomeListComponent } from './teams-home-list/teams-home-list.component';
+import {
+  MatFormFieldModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatInputModule,
+  MatSortModule,
+  MatTooltipModule
+} from '@angular/material';
 
 const routes: Routes = [
   {
@@ -24,7 +33,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TeamsHomeComponent, TeamsHomeGridComponent, TeamsHomeGridCardComponent, TeamsSelectComponent],
+  declarations: [
+    TeamsHomeComponent,
+    TeamsHomeGridComponent,
+    TeamsHomeGridCardComponent,
+    TeamsSelectComponent,
+    TeamsHomeListComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -34,9 +49,14 @@ const routes: Routes = [
     MatIconModule,
     MatCardModule,
     MatChipsModule,
-
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
+    MatTooltipModule
   ]
 })
 export class TeamsHomeModule {}

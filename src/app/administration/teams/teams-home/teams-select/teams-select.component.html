@@ -1,4 +1,3 @@
 <app-switches [filters]="values" (switchCallback)="onGroupSwitch($event)" [paramSwitch]="'groupSwitch'"></app-switches>
 <app-pills [pills]="[]" class="separated"></app-pills>
-<app-search class="separated"></app-search>
-<app-grid-view-switch class="separated"></app-grid-view-switch>
+<app-grid-view-switch [gridViewName]="gridViewOptionName"></app-grid-view-switch>
