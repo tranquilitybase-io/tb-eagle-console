@@ -96,7 +96,6 @@ export class SolutionsHomeListComponent implements OnInit {
         return 'primary';
       case DeploymentState.Removed:
       case DeploymentState.Revoked:
-      case undefined:
         return '';
       case DeploymentState.Success:
         return 'accent';

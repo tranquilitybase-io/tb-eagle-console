@@ -38,13 +38,22 @@
       <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.isActive ? 'Active' : 'Inactive' }}</td>
     </ng-container>
 
-    <!-- Status Column -->
+    <!-- Deployment state Column -->
     <ng-container matColumnDef="deploymentState">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Deployment state</th>
       <td mat-cell *matCellDef="let row" [style.color]="row.color">
-        <mat-chip [color]="deploymentStateColor(row.deploymentState)" selected>{{
-          (row.deploymentState ? row.deploymentState : 'Not deployed') | titlecase
-        }}</mat-chip>
+        <mat-chip
+          *ngIf="row.deploymentState; else notDeployed"
+          class="mat-standard-chip"
+          [color]="deploymentStateColor(row.deploymentState)"
+          selected
+          >{{ row.deploymentState | titlecase }}</mat-chip
+        >
+        <ng-template #notDeployed>
+          <mat-chip>
+            Not Deployed
+          </mat-chip>
+        </ng-template>
       </td>
     </ng-container>
 
