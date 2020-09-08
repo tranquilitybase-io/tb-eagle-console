@@ -18,6 +18,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { LandingZoneDialogModule } from './solutions-home-dialog/solutions-home-dialog.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -44,7 +46,8 @@ const routes: Routes = [
     MatListModule,
     MatProgressSpinnerModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    LandingZoneDialogModule
   ]
 })
 export class SolutionsHomeModule {}

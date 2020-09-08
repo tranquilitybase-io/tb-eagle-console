@@ -2,9 +2,9 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { DeploymentState } from '@app/shared/shared.model';
 import { MatSnackBar } from '@angular/material';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
-import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
-import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
 import { Store } from '@ngrx/store';
+import { MatDialog } from '@angular/material';
+import { SolutionsHomeDialogDeployComponent } from '../../solutions-home-dialog/solutions-home-dialog-deploy/solutions-home-dialog-deploy.component';
 
 @Component({
   selector: 'app-solutions-home-grid-card',
@@ -16,7 +16,7 @@ export class SolutionsHomeGridCardComponent implements OnInit {
 
   active = false;
 
-  constructor(private store: Store<any>, private snackBar: MatSnackBar) {}
+  constructor(private store: Store<any>, private snackBar: MatSnackBar, private dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -31,8 +31,7 @@ export class SolutionsHomeGridCardComponent implements OnInit {
   }
 
   deploy() {
-    this.snackBar.openFromComponent(SolutionUnderCreationComponent);
-    this.store.dispatch(startDeployment({ id: this.solution.id }));
+    this.dialog.open(SolutionsHomeDialogDeployComponent, { disableClose: true, autoFocus: false, data: this.solution });
   }
 
   get isDeploymentInProgress() {

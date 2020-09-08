@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Solutions Deploy</h1>
+<div mat-dialog-content>
+  <p>You are about to deploy the {{ solution.name }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="cancel()" color="primary">Cancel</button>
+  <button
+    mat-raised-button
+    (click)="edit()"
+    routerLink="mission-control/solutions/edit"
+    [queryParams]="{ id: solution.id }"
+    color="primary"
+  >
+    Edit
+  </button>
+  <button mat-raised-button (click)="confirm()" color="primary">Deploy</button>
+</div>
