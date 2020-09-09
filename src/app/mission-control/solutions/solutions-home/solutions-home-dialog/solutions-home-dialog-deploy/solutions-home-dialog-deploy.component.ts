@@ -1,12 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
 import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
-
-//import { lzEnvironmentDeployment } from '../../landing-zone-environment/landing-zone-environment.actions';
+import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
 
 @Component({
   selector: 'app-solutions-home-dialog-deploy.component',
@@ -33,5 +32,9 @@ export class SolutionsHomeDialogDeployComponent {
 
   edit() {
     this.dialogRef.close();
+  }
+
+  get environments(): string[] {
+    return (this.solution.environments as Environment[]).map((env: Environment) => env.name);
   }
 }
