@@ -1,25 +1,7 @@
 .mat-elevation-z8 {
   margin: 1rem;
   margin-top: 0;
-}
-
-td,
-th {
-  width: 1%;
-}
-
-tbody tr td {
-  padding: 0.5rem 0.3rem;
-  border-bottom: 1px solid var(--active-grey-background);
-}
-
-.notes {
-  display: flex;
-  align-items: center;
-}
-
-.notes-text {
-  flex: auto;
+  overflow: auto;
 }
 
 .pagination-container {
@@ -29,6 +11,12 @@ tbody tr td {
 
 table {
   width: 100%;
+}
+
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+  padding: 0px 7px 0px 0px;
 }
 
 .mat-form-field {
@@ -42,27 +30,6 @@ table {
   text-overflow: ellipsis;
   max-width: 30ch;
 }
-
-.mat-header-cell {
-  text-align: center;
-  justify-content: flex-end;
-}
-
-.mat-cell {
-  text-align: center;
-  justify-content: flex-end;
-}
-
-.mat-cell-left-aligned {
-  text-align: left;
-  justify-content: flex-end;
-}
-
-::ng-deep .mat-sort-header-container {
-  justify-content: center;
-  padding-left: 20px;
-}
-
 .actions-top-bar {
   display: flex;
   margin: 1rem;
@@ -76,30 +43,12 @@ table {
   background-color: var(--active-grey-background);
 }
 
-.deployment-spinner {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
 .nowrap {
   white-space: nowrap;
-}
-
-td.mat-cell:first-of-type,
-td.mat-footer-cell:first-of-type,
-th.mat-header-cell:first-of-type {
-  padding: 0;
-  padding-left: 0;
 }
 
 .mat-chip {
   padding: 0.2rem 0.5rem;
   min-height: 1.5rem;
   border-radius: 0.2rem;
-}
-
-.mat-chip-list {
-  display: inline-block;
-  width: auto;
 }
