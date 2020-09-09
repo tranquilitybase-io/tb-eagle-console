@@ -118,6 +118,33 @@
         >
           <mat-icon aria-hidden="false" aria-label="Add to solution icon">send</mat-icon>
         </a>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item *ngIf="isLocked(row.status) && !(userIsAdmin$ | async)" (click)="requestAccess(row.id)">
+            Request Access
+          </button>
+          <button mat-menu-item *ngIf="isLocked(row.status) && (userIsAdmin$ | async)" (click)="grantAccess(row)">
+            Grant Access
+          </button>
+          <button mat-menu-item *ngIf="isAvailable(row.status) && (userIsAdmin$ | async)" (click)="setLocked(row.id)">
+            Lock
+          </button>
+          <button
+            mat-menu-item
+            *ngIf="(isAvailable(row.status) || isLocked(row.status)) && (userIsAdmin$ | async)"
+            (click)="setDeprecated(row.id)"
+          >
+            Deprecate
+          </button>
+          <button mat-menu-item *ngIf="isDeprecated(row.status) && (userIsAdmin$ | async)" (click)="setLocked(row.id)">
+            Undeprecate
+          </button>
+          <button mat-menu-item>
+            Mark as favourite
+          </button>
+        </mat-menu>
       </td>
     </ng-container>
 

@@ -2,13 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Layout } from '@app/shared/layout/layout.model';
 import { LayoutService } from '@app/shared/layout/layout.service';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Store } from '@ngrx/store';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { Activator } from '../../activator-store.model';
 import { ActivatorStoreService } from '../../activator-store.service';
-import { setActivatorsCount } from '../../activator-store.actions';
+import { setActivatorsCount, setDeprecated, setLocked, requestAccess } from '../../activator-store.actions';
 import { selectActivatorsByCategoryData } from '../../activator-store.reducer';
+import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { ActivatorStoreDialogGrantAccessComponent } from '../../activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-activator-store-home-list',
@@ -19,6 +22,7 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   activators$: Observable<Activator[]>;
   layout$: Observable<Layout>;
   private statusColorMap: Map<string, string>;
+  private teamList: KeyValue<string, string>[];
 
   displayedColumns: string[] = [
     'id',
@@ -39,11 +43,14 @@ export class ActivatorStoreHomeListComponent implements OnInit {
 
   filterValue: string = '';
 
+  userIsAdmin$: Observable<boolean>;
+
   constructor(
     private layoutService: LayoutService,
     private store: Store<any>,
     private route: ActivatedRoute,
-    private activatorStoreService: ActivatorStoreService
+    private activatorStoreService: ActivatorStoreService,
+    private dialog: MatDialog
   ) {
     this.layout$ = this.layoutService.layoutObserver$;
     this.statusColorMap = new Map([
@@ -64,6 +71,8 @@ export class ActivatorStoreHomeListComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.filter = this.filterValue;
     });
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.teamList = this.route.snapshot.data['teamList'];
   }
 
   applyFilter(filter: string) {
@@ -76,10 +85,45 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   }
 
   sensitivityColor(sensitivity: string): string {
-    return String(sensitivity).toLowerCase() === 'restricted' ? 'warn' : '';
+    return sensitivity.toLowerCase() === 'restricted' ? 'warn' : '';
   }
 
   statusColor(status: string): string {
     return this.statusColorMap.get(String(status).toLowerCase());
+  }
+
+  isAvailable(status: string): boolean {
+    return status.toLowerCase() === 'available';
+  }
+
+  isLocked(status: string): boolean {
+    return status.toLowerCase() === 'locked';
+  }
+
+  isDeprecated(status: string): boolean {
+    return status.toLowerCase() === 'deprecated';
+  }
+
+  setDeprecated(_id: number) {
+    this.store.dispatch(setDeprecated({ id: _id }));
+  }
+
+  setLocked(_id: number) {
+    this.store.dispatch(setLocked({ id: _id }));
+  }
+
+  grantAccess(activator: Activator) {
+    this.dialog.open(ActivatorStoreDialogGrantAccessComponent, {
+      autoFocus: false,
+      data: {
+        activatorId: activator.id,
+        teamList: this.teamList,
+        accessRequestedBy: activator.accessRequestedBy
+      }
+    });
+  }
+
+  requestAccess(_id: number) {
+    this.store.dispatch(requestAccess({ id: _id }));
   }
 }
