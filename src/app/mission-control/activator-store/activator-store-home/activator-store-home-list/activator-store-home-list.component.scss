@@ -1,21 +1,11 @@
-.activ-dpl-head-desc {
-  background-color: var(--active-grey-background);
-  display: flex;
-  padding: 0.5rem 0.3rem;
-  font-size: 0.875rem;
-
-  app-icon {
-    margin: 0 1rem;
-  }
-
-  .activ-dpl-head-title {
-    flex: auto;
-  }
-}
-
 .mat-elevation-z8 {
   margin: 1rem;
   margin-top: 0;
+}
+
+td,
+th {
+  width: 1%;
 }
 
 tbody tr td {
@@ -44,11 +34,6 @@ table {
 .mat-form-field {
   font-size: 14px;
   width: 100%;
-}
-
-td,
-th {
-  width: 1%;
 }
 
 .truncate-text {
@@ -104,8 +89,8 @@ th {
 td.mat-cell:first-of-type,
 td.mat-footer-cell:first-of-type,
 th.mat-header-cell:first-of-type {
-  padding: 0px;
-  padding-left: 0px;
+  padding: 0;
+  padding-left: 0;
 }
 
 .mat-chip {
