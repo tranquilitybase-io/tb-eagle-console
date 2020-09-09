@@ -14,6 +14,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { UsersHomeListComponent } from './users-home-list/users-home-list.component';
+import { UsersHomeSelectComponent } from './users-home-select/users-home-select.component';
+import {
+  MatFormFieldModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatInputModule,
+  MatSortModule,
+  MatTooltipModule
+} from '@angular/material';
 
 const routes: Routes = [
   {
@@ -23,7 +33,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UsersHomeComponent, UsersHomeGridComponent, UsersHomeGridCardComponent],
+  declarations: [
+    UsersHomeComponent,
+    UsersHomeGridComponent,
+    UsersHomeGridCardComponent,
+    UsersHomeListComponent,
+    UsersHomeSelectComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -34,7 +50,13 @@ const routes: Routes = [
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatInputModule,
+    MatSortModule,
+    MatTooltipModule
   ]
 })
 export class UsersHomeModule {}
