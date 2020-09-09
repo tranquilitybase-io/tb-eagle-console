@@ -4,6 +4,11 @@
   margin-top: 0;
 }
 
+td,
+th {
+  width: 1%;
+}
+
 tbody tr td {
   padding: 0.5rem 0.3rem;
   border-bottom: 1px solid var(--active-grey-background);
@@ -30,11 +35,6 @@ table {
 .mat-form-field {
   font-size: 14px;
   width: 100%;
-}
-
-td,
-th {
-  width: 1%;
 }
 
 .truncate-text {
