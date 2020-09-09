@@ -15,11 +15,6 @@
 </div>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
-    <div class="activ-dpl-head-desc">
-      <div class="activ-dpl-head-title">Application</div>
-      <app-icon icon="expand_arrow" [size]="10"></app-icon>
-    </div>
-
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -83,6 +78,7 @@
       </td>
     </ng-container>
 
+    <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell class="nowrap" *matCellDef="let row" [style.color]="row.color">
