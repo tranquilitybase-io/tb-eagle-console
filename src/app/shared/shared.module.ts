@@ -13,6 +13,7 @@ import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoaderComponent } from './loader/loader.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { PillsComponent } from './pills/pills.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -21,6 +22,7 @@ import { SearchComponent } from './search/search.component';
 import { SearchPillComponent } from './search-pill/search-pill.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
@@ -31,21 +33,22 @@ import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creat
 import { SharedService } from './shared.service';
 import { ApplicationsService } from '@app/mission-control/applications/applications.service';
 
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCheckboxModule, MatBadgeModule, MatInputModule } from '@angular/material';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { NotificationsModule } from './notifications/notifications.module';
+
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
-import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @NgModule({
   declarations: [
@@ -94,22 +97,21 @@ import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module
     HttpClientModule,
     FormsModule,
     GridViewSwitchModule,
+    NotificationsModule,
     MatBadgeModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCheckboxModule,
-    MatCheckboxModule,
     MatDialogModule,
     MatDialogModule,
     MatIconModule,
+    MatInputModule,
     MatListModule,
     MatMenuModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule,
-    NotificationsModule,
-    MatInputModule
+    MatTooltipModule
   ],
   exports: [
     AlertComponent,
