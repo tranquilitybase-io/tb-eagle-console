@@ -9,6 +9,7 @@ import { ActivatorStoreHomeCategoryGridComponent } from './activator-store-home-
 
 import { ActivatorStoreHomeGridCardComponent } from './activator-store-home-grid/activator-store-home-grid-card/activator-store-home-grid-card.component';
 import { ActivatorStoreHomeGridComponent } from './activator-store-home-grid/activator-store-home-grid.component';
+import { ActivatorStoreHomeListComponent } from './activator-store-home-list/activator-store-home-list.component';
 
 import { ActivatorStoreDialogModule } from '../activator-store-dialog/activator-store-dialog.module';
 
@@ -16,20 +17,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import {
-  MatStepperModule,
-  MatFormFieldModule,
-  MatPaginatorModule,
-  MatTableModule,
-  MatInputModule,
-  MatSortModule,
-  MatTooltipModule
-} from '@angular/material';
-import { ActivatorStoreHomeListComponent } from './activator-store-home-list/activator-store-home-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [
   {
@@ -58,16 +56,16 @@ const routes: Routes = [
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
+    MatInputModule,
     MatListModule,
     MatMenuModule,
-    MatStepperModule,
-    MatFormFieldModule,
     MatPaginatorModule,
-    MatTableModule,
-    MatInputModule,
     MatSortModule,
+    MatStepperModule,
+    MatTableModule,
     MatTooltipModule
   ]
 })
