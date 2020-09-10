@@ -5,6 +5,13 @@ import { Team } from '../teams.model';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { SwitchFilter } from '@app/shared/switches/switches.model';
+import {
+  GridViewSwitchViewsNames,
+  GridViewSwitchModel,
+  GridViewSwitchOptionsEnum
+} from '@app/shared/grid-view-switch/grid-view-switch.model';
+import { Store, select } from '@ngrx/store';
+import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 
 @Component({
   selector: 'app-teams-home',
@@ -20,7 +27,10 @@ export class TeamsHomeComponent implements OnInit {
     { name: 'Archived', count: 0, defaultActive: false }
   ];
 
-  constructor(private teamsService: TeamsService, private route: ActivatedRoute) {
+  gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teams;
+  currentGridViewOption$: Observable<GridViewSwitchModel>;
+
+  constructor(private teamsService: TeamsService, private route: ActivatedRoute, private store: Store<any>) {
     this.teams$ = teamsService.filteredEntities$;
   }
 
@@ -31,6 +41,8 @@ export class TeamsHomeComponent implements OnInit {
       map(queryParams => queryParams.get('groupSwitch'))
     );
     current$.subscribe(event => this.setFilter(event));
+
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
   }
 
   setFilter(filter: string) {
@@ -47,5 +59,11 @@ export class TeamsHomeComponent implements OnInit {
       { name: 'Actives', count: filterActivesLenth, defaultActive: true },
       { name: 'Archived', count: filterArchivedLength, defaultActive: false }
     ];
+  }
+
+  get isGridViewEnabled$(): Observable<boolean> {
+    return this.currentGridViewOption$.pipe(
+      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+    );
   }
 }
