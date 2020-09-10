@@ -3,16 +3,7 @@
 }
 
 main {
-  margin: 1rem 1.5rem;
-
-  .details-sol-view {
-    padding: 1rem;
-    border-radius: 1.5rem;
-    background-color: var(--whitish);
-    .mat-body-strong {
-      margin-right: 1rem;
-    }
-  }
+  margin: 1rem;
 }
 
 header {
@@ -34,4 +25,28 @@ app-breadcrumbs {
 
 .create-sol-view {
   text-decoration: none;
+}
+
+.action-button {
+  min-width: fit-content;
+  height: 100%;
+}
+
+.mat-chip {
+  border-radius: 4px;
+  padding: 0.9rem;
+  margin-right: 1rem;
+  height: auto;
+}
+
+.mat-basic-chip {
+  background-color: lightgray;
+  border-radius: 4px;
+  outline: none;
+  padding: 0.9rem;
+  margin-right: 1rem;
+}
+
+.solution-actions {
+  display: flex;
 }

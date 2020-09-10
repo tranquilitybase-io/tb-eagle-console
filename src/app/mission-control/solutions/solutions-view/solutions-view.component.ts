@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Solution } from '../solutions.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { DeploymentState } from '@app/shared/shared.model';
 import { SolutionsService } from '../solutions.service';
 import { Store, select } from '@ngrx/store';
 import { selectSolutionDeploymentsData } from '../solutions.reducer';
 import { selectApplicationDeploymentsData } from '@app/mission-control/applications/applications.reducer';
+import { MatSnackBar } from '@angular/material';
+import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
+import { startDeployment } from '../solutions.actions';
 
 @Component({
   selector: 'app-solutions-view',
@@ -24,7 +27,13 @@ export class SolutionsViewComponent implements OnInit {
     { name: 'Workspace', count: 0 }
   ];
 
-  constructor(private solutionsService: SolutionsService, private store: Store<any>, private route: ActivatedRoute) {}
+  constructor(
+    private solutionsService: SolutionsService,
+    private store: Store<any>,
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
@@ -45,5 +54,40 @@ export class SolutionsViewComponent implements OnInit {
 
   get isSolutionDeployed(): boolean {
     return this.solution.deploymentState === DeploymentState.Success;
+  }
+
+  get isDeploymentInProgress() {
+    return (
+      this.solution.deploymentState === DeploymentState.Pending ||
+      this.solution.deploymentState === DeploymentState.Started ||
+      this.solution.deploymentState === DeploymentState.Retry
+    );
+  }
+
+  editSolution(): void {
+    this.router.navigate(['../edit'], { relativeTo: this.route.parent, queryParams: { id: this.solution.id } });
+  }
+
+  deploySolution() {
+    this.snackBar.openFromComponent(SolutionUnderCreationComponent);
+    this.store.dispatch(startDeployment({ id: this.solution.id }));
+  }
+
+  get deploymentStateColor(): string {
+    switch (this.solution.deploymentState) {
+      case DeploymentState.Success:
+        return 'accent';
+      case DeploymentState.Failure:
+        return 'warn';
+      case DeploymentState.Pending:
+      case DeploymentState.Started:
+      case DeploymentState.Retry:
+      default:
+        return 'primary';
+    }
+  }
+
+  get getDeploymentMessage(): string {
+    return 'Deployment ' + this.solution.deploymentState.toLowerCase();
   }
 }

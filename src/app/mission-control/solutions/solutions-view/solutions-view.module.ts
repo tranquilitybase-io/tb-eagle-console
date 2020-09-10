@@ -22,7 +22,9 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatTableModule,
-  MatInputModule
+  MatInputModule,
+  MatTooltipModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { SolutionsViewOverviewComponent } from './solutions-view-overview/solutions-view-overview.component';
 import { SolutionsViewApplicationsComponent } from './solutions-view-applications/solutions-view-applications.component';
@@ -68,7 +70,9 @@ const routes: Routes = [
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SolutionsViewModule {}

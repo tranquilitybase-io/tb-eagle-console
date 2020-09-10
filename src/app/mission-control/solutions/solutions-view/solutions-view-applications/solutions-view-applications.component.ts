@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { Application } from '@app/mission-control/applications/applications.model';
 import { Solution } from '../../solutions.model';
 import { Observable } from 'rxjs';
@@ -7,7 +7,11 @@ import { select, Store } from '@ngrx/store';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { selectSolutionDeploymentsData } from '../../solutions.reducer';
 import { SolutionsService } from '../../solutions.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppUnderDeploymentComponent } from '@app/shared/snack-bar/app-under-deployment/app-under-deployment.component';
+import { startDeployment } from '@app/mission-control/applications/applications.actions';
+import { setSelectedSolution } from '../../solutions.actions';
+import { DeploymentState } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-solutions-view-applications',
@@ -16,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SolutionsViewApplicationsComponent implements OnInit {
   @Input() solution: Solution;
+
   displayedColumns: string[] = [
     'name',
     'activatorName',
@@ -34,7 +39,13 @@ export class SolutionsViewApplicationsComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private store: Store<any>, private solutionsService: SolutionsService, private route: ActivatedRoute) {
+  constructor(
+    private store: Store<any>,
+    private solutionsService: SolutionsService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
+  ) {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
 
@@ -52,10 +63,24 @@ export class SolutionsViewApplicationsComponent implements OnInit {
 
   applyFilter(filter: string) {
     this.filterValue = filter;
-    this.dataSource.filter = filter;
+    this.dataSource.filter = this.filterValue;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  createNewApplication() {
+    this.store.dispatch(setSelectedSolution({ solution: this.solution }));
+    this.router.navigateByUrl('/mission-control/activator-store');
+  }
+
+  deploy(_id: number) {
+    this.snackBar.openFromComponent(AppUnderDeploymentComponent);
+    this.store.dispatch(startDeployment({ id: _id }));
+  }
+
+  get isSolutionDeployed(): boolean {
+    return this.solution.deploymentState === DeploymentState.Success;
   }
 }

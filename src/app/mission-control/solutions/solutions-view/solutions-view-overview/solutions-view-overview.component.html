@@ -1,13 +1,10 @@
-<mat-grid-list [cols]="5" [ngStyle]="{ height: (layout$ | async).applicationCreationReviewGridHeight }" rowHeight="fit">
+<mat-grid-list [cols]="5" [ngStyle]="{ height: (layout$ | async).solutionsViewApplicationsGridHeight }" rowHeight="fit">
   <mat-grid-tile [colspan]="(layout$ | async).applicationCreationReviewLeftColumnSpan">
     <mat-grid-tile-header>Details</mat-grid-tile-header>
     <mat-card class="review-card">
       <mat-card-header>
         <mat-card-title>
           {{ solution.name }}
-          <mat-chip *ngIf="solution.isActive" class="card-title-chip" [color]="solutionIsActiveColor" selected>
-            Active
-          </mat-chip>
         </mat-card-title>
         <mat-card-subtitle>
           <p>{{ solution.description }}</p>
@@ -17,17 +14,32 @@
         <mat-list dense class="card-details-list">
           <mat-list-item>
             <div class="card-detail-label">Business Unit</div>
-            <p matInput readonly="true">{{ solution.businessUnit.name }}</p>
+            <p>{{ solution.businessUnit.name }}</p>
           </mat-list-item>
 
           <mat-list-item>
             <div class="card-detail-label">Team</div>
-            <p matInput readonly="true">{{ solution.team.name }}</p>
+            <p>{{ solution.team.name }}</p>
           </mat-list-item>
 
           <mat-list-item>
             <div class="card-detail-label">Cost Centre</div>
-            <p matInput readonly="true">{{ solution.costCentre }}</p>
+            <p>{{ solution.costCentre }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Applications</div>
+            <p>{{ solution.applications && solution.applications.length }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Team</div>
+            <p>{{ solution.team.name }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Last updated</div>
+            <p>{{ solution.lastUpdated }}</p>
           </mat-list-item>
         </mat-list>
       </mat-card-content>

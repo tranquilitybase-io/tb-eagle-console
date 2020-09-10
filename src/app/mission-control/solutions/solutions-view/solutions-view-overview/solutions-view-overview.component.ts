@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Solution } from '../../solutions.model';
 import { LayoutService } from '@app/shared/layout/layout.service';
 import { Layout } from '@app/shared/layout/layout.model';
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './solutions-view-overview.component.html',
   styleUrls: ['./solutions-view-overview.component.scss']
 })
-export class SolutionsViewOverviewComponent implements OnInit {
+export class SolutionsViewOverviewComponent {
   @Input() solution: Solution;
 
   layout$: Observable<Layout>;
@@ -18,8 +18,6 @@ export class SolutionsViewOverviewComponent implements OnInit {
   constructor(private layoutService: LayoutService) {
     this.layout$ = this.layoutService.layoutObserver$;
   }
-
-  ngOnInit() {}
 
   get solutionIsActiveColor(): string {
     return this.solution.isActive === true ? 'accent' : '';
