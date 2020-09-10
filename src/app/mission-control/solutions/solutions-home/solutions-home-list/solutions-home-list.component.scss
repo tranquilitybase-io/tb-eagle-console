@@ -1,0 +1,63 @@
+.mat-elevation-z8 {
+  overflow: auto;
+  margin: 1rem;
+  margin-top: 0;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+table {
+  width: 100%;
+}
+
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+  padding: 0 7px 0 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30ch;
+}
+
+.actions-top-bar {
+  display: flex;
+  margin: 1rem;
+}
+
+.action-button {
+  min-width: fit-content;
+}
+
+.mat-row:hover {
+  background-color: var(--active-grey-background);
+}
+
+.deployment-spinner {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.mat-chip {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 0.2rem 0.5rem;
+  min-height: 1.5rem;
+  border-radius: 0.2rem;
+}
