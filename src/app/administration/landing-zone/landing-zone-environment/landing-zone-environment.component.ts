@@ -19,6 +19,8 @@ import {
 } from './landing-zone-environment.actions';
 import { FolderStructureNode, LanVPC, Environment } from './landing-zone-environment.model';
 import { LandingZoneDialogDeployEnvComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env/landing-zone-dialog-deploy-env.component';
+import { LandingZoneDialogDeployEnvEnvironmentErrorComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env-environment-error/landing-zone-dialog-deploy-env-environment-error.component';
+
 import { MatDialog } from '@angular/material';
 import { LandingZoneService } from '../landing-zone.service';
 
@@ -214,11 +216,24 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     });
     return !usedLanVpcEnvList.includes(envId);
   }
+
+  isAnyEnvironmentAvailable() {
+    let usedEnvCount: number = 0;
+    const lanVpcFormValue = this.lanVPCForm.value;
+    Object.keys(lanVpcFormValue).forEach(key => {
+      usedEnvCount = usedEnvCount + lanVpcFormValue[key].length;
+    });
+    return this.environmentList.length > usedEnvCount;
+  }
   //#endregion LAN VPC
 
   //#region Deploy
   deploy() {
-    this.dialog.open(LandingZoneDialogDeployEnvComponent, { disableClose: true, autoFocus: false });
+    if (this.isAnyEnvironmentAvailable()) {
+      this.dialog.open(LandingZoneDialogDeployEnvEnvironmentErrorComponent, { disableClose: true, autoFocus: false });
+    } else {
+      this.dialog.open(LandingZoneDialogDeployEnvComponent, { disableClose: true, autoFocus: false });
+    }
   }
   //#endregion Deploy
 }
