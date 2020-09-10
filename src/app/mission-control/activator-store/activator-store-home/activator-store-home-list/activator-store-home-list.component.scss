@@ -1,7 +1,7 @@
 .mat-elevation-z8 {
-  overflow: auto;
   margin: 1rem;
   margin-top: 0;
+  overflow: auto;
 }
 
 .pagination-container {
@@ -44,19 +44,11 @@ th.mat-header-cell {
   background-color: var(--active-grey-background);
 }
 
-.deployment-spinner {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
 .nowrap {
   white-space: nowrap;
 }
 
 .mat-chip {
-  font-size: 14px;
-  font-weight: normal;
   padding: 0.2rem 0.5rem;
   min-height: 1.5rem;
   border-radius: 0.2rem;
