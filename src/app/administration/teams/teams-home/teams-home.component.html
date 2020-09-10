@@ -2,6 +2,13 @@
   <app-breadcrumbs> </app-breadcrumbs>
 </header>
 <div>
-  <app-teams-select [values]="filters" (onSelection)="setFilter($event)"></app-teams-select>
+  <app-teams-select
+    [gridViewOptionName]="gridViewOptionsName"
+    [values]="filters"
+    (onSelection)="setFilter($event)"
+  ></app-teams-select>
 </div>
-<app-teams-home-grid [teams$]="teams$"></app-teams-home-grid>
+<app-teams-home-grid *ngIf="isGridViewEnabled$ | async; else listview" [teams$]="teams$"></app-teams-home-grid>
+<ng-template #listview>
+  <app-teams-home-list [teams$]="teams$"></app-teams-home-list>
+</ng-template>

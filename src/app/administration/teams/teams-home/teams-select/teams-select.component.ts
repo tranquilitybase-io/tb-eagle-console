@@ -13,6 +13,7 @@ export class TeamsSelectComponent implements OnInit {
   current$: Observable<string>;
 
   @Input('values') values: SwitchFilter[];
+  @Input() gridViewOptionName: string;
 
   @Output('onSelection') onSelection = new EventEmitter<string>();
 
