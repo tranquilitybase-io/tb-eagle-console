@@ -1,17 +1,20 @@
 <div class="actions-top-bar">
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Solution name or description" />
+    <input
+      matInput
+      [(ngModel)]="filterValue"
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Ex. Solution name or description"
+    />
+    <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="applyFilter('')">
+      <mat-icon>close</mat-icon>
+    </button>
   </mat-form-field>
   <button mat-button class="action-button" (click)="createNewSolution()">+ Create new solution</button>
 </div>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
-    <div class="activ-dpl-head-desc">
-      <div class="activ-dpl-head-title">Application</div>
-      <app-icon icon="expand_arrow" [size]="10"></app-icon>
-    </div>
-
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -30,11 +33,22 @@
       <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.isActive ? 'Active' : 'Inactive' }}</td>
     </ng-container>
 
-    <!-- Status Column -->
+    <!-- Deployment state Column -->
     <ng-container matColumnDef="deploymentState">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Deployment state</th>
       <td mat-cell *matCellDef="let row" [style.color]="row.color">
-        {{ (row.deploymentState ? row.deploymentState : 'Not deployed') | titlecase }}
+        <mat-chip
+          *ngIf="row.deploymentState; else notDeployed"
+          class="mat-standard-chip"
+          [color]="deploymentStateColor(row.deploymentState)"
+          selected
+          >{{ row.deploymentState | titlecase }}</mat-chip
+        >
+        <ng-template #notDeployed>
+          <mat-chip>
+            Not Deployed
+          </mat-chip>
+        </ng-template>
       </td>
     </ng-container>
 
@@ -46,24 +60,25 @@
 
     <!-- Team Column -->
     <ng-container matColumnDef="team">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Team</th>
+      <th mat-header-cell *matHeaderCellDef>Team</th>
       <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.team.name }}</td>
     </ng-container>
 
     <!-- Last updated Column -->
     <ng-container matColumnDef="lastUpdated">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Last updated</th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.lastUpdated }}</td>
+      <td mat-cell class="nowrap" *matCellDef="let row" [style.color]="row.color">{{ row.lastUpdated }}</td>
     </ng-container>
 
     <!-- Description Column -->
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef>Description</th>
-      <td mat-cell title="{{ row.description }}" class="truncate-text" *matCellDef="let row" [style.color]="row.color">
-        {{ row.description }}
+      <td mat-cell *matCellDef="let row" [style.color]="row.color">
+        <p matTooltip="{{ row.description }}" class="truncate-text">{{ row.description }}</p>
       </td>
     </ng-container>
 
+    <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell class="nowrap" *matCellDef="let row" [style.color]="row.color">

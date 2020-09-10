@@ -1,35 +1,7 @@
-.activ-dpl-head-desc {
-  background-color: var(--active-grey-background);
-  display: flex;
-  padding: 0.5rem 0.3rem;
-  font-size: 0.875rem;
-
-  app-icon {
-    margin: 0 1rem;
-  }
-
-  .activ-dpl-head-title {
-    flex: auto;
-  }
-}
-
 .mat-elevation-z8 {
+  overflow: auto;
   margin: 1rem;
   margin-top: 0;
-}
-
-tbody tr td {
-  padding: 0.5rem 0.3rem;
-  border-bottom: 1px solid var(--active-grey-background);
-}
-
-.notes {
-  display: flex;
-  align-items: center;
-}
-
-.notes-text {
-  flex: auto;
 }
 
 .pagination-container {
@@ -41,14 +13,15 @@ table {
   width: 100%;
 }
 
+td.mat-cell,
+td.mat-footer-cell,
+th.mat-header-cell {
+  padding: 0 7px 0 0;
+}
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
-}
-
-td,
-th {
-  width: 1%;
 }
 
 .truncate-text {
@@ -56,26 +29,6 @@ th {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 30ch;
-}
-
-.mat-header-cell {
-  text-align: center;
-  justify-content: flex-end;
-}
-
-.mat-cell {
-  text-align: center;
-  justify-content: flex-end;
-}
-
-.mat-cell-left-aligned {
-  text-align: left;
-  justify-content: flex-end;
-}
-
-::ng-deep .mat-sort-header-container {
-  justify-content: center;
-  padding-left: 20px;
 }
 
 .actions-top-bar {
@@ -99,4 +52,12 @@ th {
 
 .nowrap {
   white-space: nowrap;
+}
+
+.mat-chip {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 0.2rem 0.5rem;
+  min-height: 1.5rem;
+  border-radius: 0.2rem;
 }

@@ -34,6 +34,8 @@ export class SolutionsHomeListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
+  filterValue: string = '';
+
   constructor(
     private layoutService: LayoutService,
     private store: Store<any>,
@@ -42,6 +44,7 @@ export class SolutionsHomeListComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.layout$ = this.layoutService.layoutObserver$;
+    this.filterValue = '';
   }
 
   ngOnInit() {
@@ -49,6 +52,7 @@ export class SolutionsHomeListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(solutions);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.dataSource.filter = this.filterValue;
     });
   }
 
@@ -69,9 +73,9 @@ export class SolutionsHomeListComponent implements OnInit {
     return deploymentState === DeploymentState.Success;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filter: string) {
+    this.filterValue = filter;
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -80,5 +84,21 @@ export class SolutionsHomeListComponent implements OnInit {
 
   createNewSolution() {
     this.router.navigate(['create'], { relativeTo: this.route });
+  }
+
+  deploymentStateColor(deploymentState: DeploymentState): string {
+    switch (deploymentState) {
+      case DeploymentState.Failure:
+        return 'warn';
+      case DeploymentState.Pending:
+      case DeploymentState.Started:
+      case DeploymentState.Retry:
+        return 'primary';
+      case DeploymentState.Removed:
+      case DeploymentState.Revoked:
+        return '';
+      case DeploymentState.Success:
+        return 'accent';
+    }
   }
 }
