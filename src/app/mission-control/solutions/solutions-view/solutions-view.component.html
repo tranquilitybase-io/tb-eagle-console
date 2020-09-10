@@ -1,7 +1,7 @@
 <header>
   <app-breadcrumbs [title]="solution.name" [isActive]="solution.isActive"> </app-breadcrumbs>
 </header>
-<div>
+<!-- <div>
   <app-solutions-view-select
     [values]="values"
     [enableDeployAll]="isSolutionDeployed && solution.applications.length"
@@ -22,10 +22,19 @@
       Cost Centre:
       <span class="mat-small">{{ solution.costCentre }}</span>
     </span>
-  </p>
-  <app-applications-grid [solution]="solution" *ngIf="(current$ | async) !== 'Workspace'"></app-applications-grid>
-  <app-solutions-view-workspace-info
+  </p> -->
+<!-- <app-applications-grid [solution]="solution" *ngIf="(current$ | async) !== 'Workspace'"></app-applications-grid> -->
+<!-- <app-solutions-view-workspace-info
     [solution]="solution"
     *ngIf="(current$ | async) === 'Workspace'"
   ></app-solutions-view-workspace-info>
-</main>
+</main> -->
+
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Overview">
+    <app-solutions-view-overview [solution]="solution"></app-solutions-view-overview>
+  </mat-tab>
+  <mat-tab label="Applications">
+    <app-solutions-view-applications [solution]="solution"></app-solutions-view-applications>
+  </mat-tab>
+</mat-tab-group>

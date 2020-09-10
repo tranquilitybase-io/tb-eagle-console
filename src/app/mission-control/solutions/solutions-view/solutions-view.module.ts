@@ -11,7 +11,21 @@ import { SolutionsViewSelectComponent } from './solutions-view-select/solutions-
 import { SolutionsViewWorkspaceInfoComponent } from './solutions-view-workspace-info/solutions-view-workspace-info.component';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material';
+import {
+  MatIconModule,
+  MatTabsModule,
+  MatGridListModule,
+  MatCardModule,
+  MatChipsModule,
+  MatListModule,
+  MatFormFieldModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule,
+  MatInputModule
+} from '@angular/material';
+import { SolutionsViewOverviewComponent } from './solutions-view-overview/solutions-view-overview.component';
+import { SolutionsViewApplicationsComponent } from './solutions-view-applications/solutions-view-applications.component';
 
 const routes: Routes = [
   {
@@ -31,14 +45,30 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SolutionsViewComponent, SolutionsViewSelectComponent, SolutionsViewWorkspaceInfoComponent],
+  declarations: [
+    SolutionsViewComponent,
+    SolutionsViewSelectComponent,
+    SolutionsViewWorkspaceInfoComponent,
+    SolutionsViewOverviewComponent,
+    SolutionsViewApplicationsComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
     ApplicationsModule,
     RouterModule.forChild(routes),
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatChipsModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatInputModule
   ]
 })
 export class SolutionsViewModule {}
