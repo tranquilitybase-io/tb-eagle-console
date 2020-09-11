@@ -46,6 +46,9 @@ app-breadcrumbs {
   border-radius: 4px;
   outline: none;
   padding: 0.9rem;
+  height: 1px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .solution-actions {
