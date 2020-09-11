@@ -26,11 +26,6 @@ import { map } from 'rxjs/operators';
 export class SolutionsViewComponent implements OnInit {
   solution: Solution = { businessUnit: {}, team: {} } as Solution;
 
-  values = [
-    { name: 'Applications', count: 0, defaultActive: true },
-    { name: 'Workspace', count: 0 }
-  ];
-
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutionsView;
   currentGridViewOption$: Observable<GridViewSwitchModel>;
 
