@@ -9,6 +9,14 @@ import { selectApplicationDeploymentsData } from '@app/mission-control/applicati
 import { MatSnackBar } from '@angular/material';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
 import { startDeployment } from '../solutions.actions';
+import {
+  GridViewSwitchViewsNames,
+  GridViewSwitchModel,
+  GridViewSwitchOptionsEnum
+} from '@app/shared/grid-view-switch/grid-view-switch.model';
+import { Observable } from 'rxjs';
+import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-solutions-view',
@@ -22,6 +30,9 @@ export class SolutionsViewComponent implements OnInit {
     { name: 'Applications', count: 0, defaultActive: true },
     { name: 'Workspace', count: 0 }
   ];
+
+  gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutionsView;
+  currentGridViewOption$: Observable<GridViewSwitchModel>;
 
   constructor(
     private solutionsService: SolutionsService,
@@ -38,6 +49,7 @@ export class SolutionsViewComponent implements OnInit {
     this.store.pipe(select(selectApplicationDeploymentsData)).subscribe(() => {
       this.updateSolutionData();
     });
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
   }
 
   updateSolutionData() {
@@ -81,5 +93,11 @@ export class SolutionsViewComponent implements OnInit {
 
   get getDeploymentMessage(): string {
     return 'Deployment ' + this.solution.deploymentState.toLowerCase();
+  }
+
+  get isGridViewEnabled$(): Observable<boolean> {
+    return this.currentGridViewOption$.pipe(
+      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+    );
   }
 }

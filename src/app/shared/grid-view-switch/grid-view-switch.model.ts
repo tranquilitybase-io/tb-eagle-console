@@ -1,5 +1,6 @@
 export enum GridViewSwitchViewsNames {
   solutions = 'solutions',
+  solutionsView = 'soutionsView',
   activatorStore = 'activatorStore',
   teams = 'teams',
   users = 'users',

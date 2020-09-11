@@ -2,8 +2,8 @@
   display: block;
 }
 
-main {
-  margin: 1rem;
+.tab-content {
+  margin: 0 1rem;
 }
 
 header {
@@ -54,4 +54,13 @@ app-breadcrumbs {
 .solution-actions {
   display: flex;
   white-space: nowrap;
+}
+
+.align-right {
+  margin-left: auto;
+}
+
+.grid-list-switch-bar {
+  display: flex;
+  padding-bottom: 1rem;
 }

@@ -33,13 +33,24 @@
     </ng-template>
   </div>
 </header>
-<main>
-  <mat-tab-group mat-stretch-tabs>
-    <mat-tab label="Overview">
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Overview">
+    <div class="tab-content">
       <app-solutions-view-overview [solution]="solution"></app-solutions-view-overview>
-    </mat-tab>
-    <mat-tab label="Applications">
-      <app-solutions-view-applications [solution]="solution"></app-solutions-view-applications>
-    </mat-tab>
-  </mat-tab-group>
-</main>
+    </div>
+  </mat-tab>
+  <mat-tab label="Applications">
+    <div class="tab-content">
+      <div class="grid-list-switch-bar">
+        <app-grid-view-switch class="align-right" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+      </div>
+      <app-applications-grid
+        *ngIf="isGridViewEnabled$ | async; else listview"
+        [solution]="solution"
+      ></app-applications-grid>
+      <ng-template #listview>
+        <app-solutions-view-applications [solution]="solution"></app-solutions-view-applications>
+      </ng-template>
+    </div>
+  </mat-tab>
+</mat-tab-group>
