@@ -3,12 +3,12 @@ import { Observable } from 'rxjs';
 import { Solution } from '../../solutions.model';
 import { Layout } from '@app/shared/layout/layout.model';
 import { LayoutService } from '@app/shared/layout/layout.service';
-import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, Sort } from '@angular/material';
-import { Store } from '@ngrx/store';
-import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
-import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { DeploymentState } from '@app/shared/shared.model';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { MatDialog } from '@angular/material';
+import { SolutionsHomeDialogDeployComponent } from '../solutions-home-dialog/solutions-home-dialog-deploy/solutions-home-dialog-deploy.component';
 
 @Component({
   selector: 'app-solutions-home-list',
@@ -37,11 +37,10 @@ export class SolutionsHomeListComponent implements OnInit {
   filterValue: string = '';
 
   constructor(
+    private dialog: MatDialog,
     private layoutService: LayoutService,
-    private store: Store<any>,
-    private snackBar: MatSnackBar,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.layout$ = this.layoutService.layoutObserver$;
     this.filterValue = '';
@@ -56,9 +55,8 @@ export class SolutionsHomeListComponent implements OnInit {
     });
   }
 
-  deployAction(_id: string) {
-    this.snackBar.openFromComponent(SolutionUnderCreationComponent);
-    this.store.dispatch(startDeployment({ id: parseInt(_id) }));
+  deployAction(solution: Solution) {
+    this.dialog.open(SolutionsHomeDialogDeployComponent, { disableClose: true, autoFocus: false, data: solution });
   }
 
   isDeploymentInProgress(deploymentState: DeploymentState): boolean {
