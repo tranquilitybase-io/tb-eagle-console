@@ -7,27 +7,25 @@ import { SolutionSelectComponent } from './solution-select/solution-select.compo
 import { SolutionsHomeComponent } from './solutions-home.component';
 import { SolutionsHomeGridCardComponent } from './solutions-home-grid/solutions-home-grid-card/solutions-home-grid-card.component';
 import { SolutionsHomeGridComponent } from './solutions-home-grid/solutions-home-grid.component';
+import { SolutionsHomeListComponent } from './solutions-home-list/solutions-home-list.component';
+
+import { LandingZoneDialogModule } from './solutions-home-dialog/solutions-home-dialog.module';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
-import { SolutionsHomeListComponent } from './solutions-home-list/solutions-home-list.component';
-import {
-  MatFormFieldModule,
-  MatPaginatorModule,
-  MatTableModule,
-  MatInputModule,
-  MatSortModule,
-  MatTooltipModule
-} from '@angular/material';
-
-import { LandingZoneDialogModule } from './solutions-home-dialog/solutions-home-dialog.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes: Routes = [
   {
@@ -48,21 +46,21 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
+    LandingZoneDialogModule,
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
+    MatDialogModule,
+    MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
-    MatListModule,
-    MatProgressSpinnerModule,
-    MatMenuModule,
-    MatDialogModule,
-    LandingZoneDialogModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    MatTableModule,
     MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatSortModule,
+    MatTableModule,
     MatTooltipModule
   ]
 })

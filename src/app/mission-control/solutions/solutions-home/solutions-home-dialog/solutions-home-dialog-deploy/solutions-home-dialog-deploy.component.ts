@@ -6,6 +6,7 @@ import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
 import { startDeployment } from '@app/mission-control/solutions/solutions.actions';
 import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solutions-home-dialog-deploy.component',
@@ -14,9 +15,10 @@ import { Environment } from '@app/administration/landing-zone/landing-zone-envir
 })
 export class SolutionsHomeDialogDeployComponent {
   constructor(
-    private store: Store<any>,
     private dialogRef: MatDialogRef<SolutionsHomeDialogDeployComponent>,
+    private router: Router,
     private snackBar: MatSnackBar,
+    private store: Store<any>,
     @Inject(MAT_DIALOG_DATA) private solution: Solution
   ) {}
 
@@ -31,6 +33,7 @@ export class SolutionsHomeDialogDeployComponent {
   }
 
   edit() {
+    this.router.navigateByUrl(`/mission-control/solutions/edit?id=${this.solution.id}`);
     this.dialogRef.close();
   }
 
