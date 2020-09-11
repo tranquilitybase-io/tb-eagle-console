@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Deploy {{ solution.name }}</h1>
+<div mat-dialog-content>
+  <div class="content-container">
+    <div class="column-content">
+      <mat-card flex="flex">
+        <div>
+          <span class="mat-body-strong mat-text-medium"> Business Unit: </span>
+          <p class="mat-body-1">{{ solution.businessUnit.name }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium"> Team: </span>
+          <p class="mat-body-1">{{ solution.team.name }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium"> Cost Centre: </span>
+          <p class="mat-body-1">{{ solution.costCentre }}</p>
+        </div>
+      </mat-card>
+    </div>
+    <div class="column-content">
+      <mat-card>
+        <div>
+          <span class="mat-body-strong mat-text-medium">CI (Continuous intergration service):</span>
+          <p class="mat-body-1">{{ solution.ci.value }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Source Control:</span>
+          <p class="mat-body-1">{{ solution.sourceControl.value }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">CD (Continuous deployment):</span>
+          <p class="mat-body-1">{{ solution.cd.value }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Environments:</span>
+          <p *ngFor="let env of environments" class="mat-body-1">{{ env }}</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()" color="primary">Cancel</button>
+  <button
+    mat-button
+    (click)="edit()"
+    routerLink="mission-control/solutions/edit"
+    [queryParams]="{ id: solution.id }"
+    color="primary"
+  >
+    Edit
+  </button>
+  <button mat-raised-button (click)="confirm()" color="primary">Deploy</button>
+</div>

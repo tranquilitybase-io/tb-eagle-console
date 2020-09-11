@@ -97,15 +97,16 @@
           [ngStyle]="isDeploymentInProgress(row.deploymentState) ? { height: '15px' } : {}"
           matTooltip="Deploy solution"
           [disabled]="isDeploymentStateSuccess(row.deploymentState) || isDeploymentInProgress(row.deploymentState)"
-          (click)="deployAction(row.id)"
+          (click)="deployAction(row)"
           mat-icon-button
         >
           <mat-icon
             aria-hidden="false"
             aria-label="Deploy solution icon"
             *ngIf="!isDeploymentInProgress(row.deploymentState); else spinner"
-            >send</mat-icon
           >
+            send
+          </mat-icon>
           <ng-template #spinner>
             <mat-progress-spinner
               class="deployment-spinner"
