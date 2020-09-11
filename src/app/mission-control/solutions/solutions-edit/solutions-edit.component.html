@@ -1,5 +1,21 @@
 <header>
-  <app-breadcrumbs [title]="'Edit solution'"> </app-breadcrumbs>
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Solutions',
+        link: '/mission-control/solutions'
+      },
+      {
+        name: solution.name,
+        link: '/mission-control/solutions/view',
+        id: solution.id
+      },
+      {
+        name: 'Edit'
+      }
+    ]"
+  >
+  </app-breadcrumbs>
 </header>
 <main>
   <div class="alert" *ngIf="disableEdit">
