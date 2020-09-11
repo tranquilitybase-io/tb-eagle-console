@@ -30,13 +30,15 @@ app-breadcrumbs {
 .action-button {
   min-width: fit-content;
   height: 100%;
+  margin-left: 5px;
 }
 
 .mat-chip {
+  font-size: 14px;
   border-radius: 4px;
   padding: 0.9rem;
-  margin-right: 1rem;
-  height: auto;
+  margin: auto;
+  white-space: nowrap;
 }
 
 .mat-basic-chip {
@@ -44,9 +46,9 @@ app-breadcrumbs {
   border-radius: 4px;
   outline: none;
   padding: 0.9rem;
-  margin-right: 1rem;
 }
 
 .solution-actions {
   display: flex;
+  white-space: nowrap;
 }

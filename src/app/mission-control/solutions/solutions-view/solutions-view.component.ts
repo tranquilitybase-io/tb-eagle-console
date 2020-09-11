@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Solution } from '../solutions.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { DeploymentState } from '@app/shared/shared.model';
 import { SolutionsService } from '../solutions.service';
 import { Store, select } from '@ngrx/store';
@@ -18,8 +16,6 @@ import { startDeployment } from '../solutions.actions';
   styleUrls: ['./solutions-view.component.scss']
 })
 export class SolutionsViewComponent implements OnInit {
-  current$: Observable<string>;
-
   solution: Solution = { businessUnit: {}, team: {} } as Solution;
 
   values = [
@@ -36,7 +32,6 @@ export class SolutionsViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
     this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
       this.updateSolutionData();
     });
@@ -79,9 +74,6 @@ export class SolutionsViewComponent implements OnInit {
         return 'accent';
       case DeploymentState.Failure:
         return 'warn';
-      case DeploymentState.Pending:
-      case DeploymentState.Started:
-      case DeploymentState.Retry:
       default:
         return 'primary';
     }

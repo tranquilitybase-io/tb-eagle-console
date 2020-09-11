@@ -83,4 +83,12 @@ export class SolutionsViewApplicationsComponent implements OnInit {
   get isSolutionDeployed(): boolean {
     return this.solution.deploymentState === DeploymentState.Success;
   }
+
+  statusColor(isActive: string): string {
+    return isActive === 'Active' ? 'accent' : '';
+  }
+
+  sensitivityColor(sensitivity: string): string {
+    return String(sensitivity).toLowerCase() === 'restricted' ? 'warn' : '';
+  }
 }
