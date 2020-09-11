@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SolutionsHomeDialogDeployComponent } from './solutions-home-dialog-deploy/solutions-home-dialog-deploy.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   {
@@ -16,6 +17,6 @@ const routes: Routes = [
   declarations: [SolutionsHomeDialogDeployComponent],
   entryComponents: [SolutionsHomeDialogDeployComponent],
   exports: [SolutionsHomeDialogDeployComponent],
-  imports: [CommonModule, MatButtonModule, MatDialogModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatCardModule, RouterModule.forChild(routes)]
 })
 export class LandingZoneDialogModule {}
