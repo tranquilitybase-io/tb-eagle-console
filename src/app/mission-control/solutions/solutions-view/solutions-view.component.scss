@@ -2,17 +2,8 @@
   display: block;
 }
 
-main {
-  margin: 1rem 1.5rem;
-
-  .details-sol-view {
-    padding: 1rem;
-    border-radius: 1.5rem;
-    background-color: var(--whitish);
-    .mat-body-strong {
-      margin-right: 1rem;
-    }
-  }
+.tab-content {
+  margin: 0 1rem;
 }
 
 header {
@@ -34,4 +25,42 @@ app-breadcrumbs {
 
 .create-sol-view {
   text-decoration: none;
+}
+
+.action-button {
+  min-width: fit-content;
+  height: 100%;
+  margin-left: 5px;
+}
+
+.mat-chip {
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 0.9rem;
+  margin: auto;
+  white-space: nowrap;
+}
+
+.mat-basic-chip {
+  background-color: lightgray;
+  border-radius: 4px;
+  outline: none;
+  padding: 0.9rem;
+  height: 1px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.solution-actions {
+  display: flex;
+  white-space: nowrap;
+}
+
+.align-right {
+  margin-left: auto;
+}
+
+.grid-list-switch-bar {
+  display: flex;
+  padding-bottom: 1rem;
 }

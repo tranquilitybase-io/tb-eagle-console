@@ -1,0 +1,88 @@
+<mat-grid-list [cols]="5" [ngStyle]="{ height: (layout$ | async).solutionsViewApplicationsGridHeight }" rowHeight="fit">
+  <mat-grid-tile [colspan]="(layout$ | async).applicationCreationReviewLeftColumnSpan">
+    <mat-grid-tile-header>Details</mat-grid-tile-header>
+    <mat-card class="review-card">
+      <mat-card-header>
+        <mat-card-title>
+          {{ solution.name }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ solution.description }}</p>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list dense class="card-details-list">
+          <mat-list-item>
+            <div class="card-detail-label">Business Unit</div>
+            <p>{{ solution.businessUnit.name }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Team</div>
+            <p>{{ solution.team.name }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Cost Centre</div>
+            <p>{{ solution.costCentre }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Applications</div>
+            <p>{{ solution.applications && solution.applications.length }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Team</div>
+            <p>{{ solution.team.name }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Last updated</div>
+            <p>{{ solution.lastUpdated }}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="rightColumnWidth$ | async">
+    <mat-grid-tile-header>Workspace</mat-grid-tile-header>
+    <mat-card class="review-card" *ngIf="solution.ci">
+      <mat-card-header>
+        <mat-card-title>
+          <div>CI (Continuous intergration service)</div>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ solution.ci.value }}</p>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-header>
+        <mat-card-title>
+          <div>Source Control</div>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ solution.sourceControl.value }}</p>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-header>
+        <mat-card-title>
+          <div>CD (Continuous deployment)</div>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <p>{{ solution.cd.value }}</p>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-header>
+        <mat-card-title>
+          <div>Environments</div>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <mat-chip-list>
+            <mat-chip *ngFor="let env of solution.environments">{{ env.name }}</mat-chip>
+          </mat-chip-list>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

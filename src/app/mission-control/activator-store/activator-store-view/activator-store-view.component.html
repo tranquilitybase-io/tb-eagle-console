@@ -1,36 +1,41 @@
 <header class="activ-sub-header">
-  <app-breadcrumbs *ngIf="!(isSelectedSolution$ | async); else solutionSelectedBreadcrmbs" [title]="activator.name">
-  </app-breadcrumbs>
-  <ng-template #solutionSelectedBreadcrmbs>
-    <app-breadcrumbs
-      [steps]="[
-        {
-          name: 'Solutions',
-          link: '/mission-control/solutions'
-        },
-        {
-          name: (selectedSolution$ | async).name,
-          link: '/mission-control/solutions/view',
-          id: (selectedSolution$ | async).id
-        },
-        {
-          name: 'Create new application',
-          link: '/mission-control/activator-store'
-        },
-        {
-          name: 'Activator Store',
-          link: '/mission-control/activator-store'
-        },
-        {
-          name: selectedActivatorName
-        }
-      ]"
-    ></app-breadcrumbs>
-  </ng-template>
-  <div *ngIf="activator.status">
-    <div class="badge" [class.black]="activator.status == 'Locked'" [class.yellow]="activator.status == 'Deprecated'">
+  <div class="header-left">
+    <app-breadcrumbs *ngIf="!(isSelectedSolution$ | async); else solutionSelectedBreadcrmbs" [title]="activator.name">
+    </app-breadcrumbs>
+    <ng-template #solutionSelectedBreadcrmbs>
+      <app-breadcrumbs
+        [steps]="[
+          {
+            name: 'Solutions',
+            link: '/mission-control/solutions'
+          },
+          {
+            name: (selectedSolution$ | async).name,
+            link: '/mission-control/solutions/view',
+            id: (selectedSolution$ | async).id
+          },
+          {
+            name: 'Provision new activator',
+            link: '/mission-control/activator-store'
+          },
+          {
+            name: 'Activator Store',
+            link: '/mission-control/activator-store'
+          },
+          {
+            name: selectedActivatorName
+          }
+        ]"
+      ></app-breadcrumbs>
+    </ng-template>
+    <p
+      *ngIf="activator.status"
+      class="badge status-badge"
+      [class.primary]="activator.status === 'Locked'"
+      [class.red]="activator.status === 'Deprecated'"
+    >
       {{ activator.status }}
-    </div>
+    </p>
   </div>
   <div class="flex-group">
     <button
