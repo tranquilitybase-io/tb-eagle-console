@@ -46,7 +46,19 @@ export class SolutionsHomeGridCardComponent implements OnInit {
     return this.solution.deploymentState === DeploymentState.Success;
   }
 
-  get isDeploymentStateFailure(): boolean {
-    return this.solution.deploymentState === DeploymentState.Failure;
+  get deploymentStateColor(): string {
+    switch (this.solution.deploymentState) {
+      case DeploymentState.Failure:
+        return 'warn';
+      case DeploymentState.Pending:
+      case DeploymentState.Started:
+      case DeploymentState.Retry:
+        return 'primary';
+      case DeploymentState.Removed:
+      case DeploymentState.Revoked:
+        return '';
+      case DeploymentState.Success:
+        return 'accent';
+    }
   }
 }

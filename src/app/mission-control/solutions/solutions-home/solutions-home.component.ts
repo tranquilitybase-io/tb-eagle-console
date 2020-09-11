@@ -7,6 +7,12 @@ import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { SwitchFilter } from '@app/shared/switches/switches.model';
+import {
+  GridViewSwitchViewsNames,
+  GridViewSwitchModel,
+  GridViewSwitchOptionsEnum
+} from '@app/shared/grid-view-switch/grid-view-switch.model';
+import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 
 @Component({
   selector: 'app-solutions-home',
@@ -25,6 +31,9 @@ export class SolutionsHomeComponent implements OnInit {
 
   current$: Observable<string>;
 
+  gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutions;
+  currentGridViewOption$: Observable<GridViewSwitchModel>;
+
   constructor(
     private solutionsService: SolutionsService,
     private store: Store<SolutionsState>,
@@ -40,6 +49,7 @@ export class SolutionsHomeComponent implements OnInit {
     this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
       this.solutionsService.getAll().subscribe(solutions => this.numberingUpdate(solutions));
     });
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
   }
 
   numberingUpdate(solutions: Solution[]) {
@@ -56,5 +66,11 @@ export class SolutionsHomeComponent implements OnInit {
 
   getSolutions(filter: string) {
     filter && this.solutionsService.setFilter(filter);
+  }
+
+  get isGridViewEnabled$(): Observable<boolean> {
+    return this.currentGridViewOption$.pipe(
+      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+    );
   }
 }
