@@ -12,7 +12,7 @@
           id: (selectedSolution$ | async).id
         },
         {
-          name: 'Create new application'
+          name: 'Provision new activator'
         }
       ]"
     ></app-breadcrumbs>
@@ -26,10 +26,10 @@
 
 <mat-horizontal-stepper *ngIf="isSelectedSolution$ | async" [linear]="true" #stepper>
   <mat-step [completed]="false" state="done">
-    <ng-template matStepLabel>Activator selection</ng-template>
+    <ng-template matStepLabel>Selection</ng-template>
   </mat-step>
   <mat-step [completed]="false" [editable]="false">
-    <ng-template matStepLabel>Application details</ng-template>
+    <ng-template matStepLabel>Details</ng-template>
   </mat-step>
   <mat-step [completed]="false" [editable]="false">
     <ng-template matStepLabel>Review</ng-template>

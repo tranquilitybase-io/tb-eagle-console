@@ -17,7 +17,7 @@
           id: (selectedSolution$ | async).id
         },
         {
-          name: 'Create new application',
+          name: 'Provision new activator',
           link: '/mission-control/activator-store'
         },
         {
@@ -45,7 +45,7 @@
     (click)="onNavigateStepperBack()"
     [routerLink]="'/mission-control/activator-store'"
   >
-    <ng-template matStepLabel><div (click)="onNavigateStepperBack()">Activator selection</div></ng-template>
+    <ng-template matStepLabel><div (click)="onNavigateStepperBack()">Selection</div></ng-template>
   </mat-step>
 
   <mat-step [editable]="true" [stepControl]="applicationForm">
@@ -54,7 +54,7 @@
     <form *ngIf="selectedSolution$ | async" [formGroup]="applicationForm">
       <app-alert
         class="app-alert"
-        text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."
+        text="Please provide the initial details. Users and teams can be added after initial set-up."
       ></app-alert>
       <p>
         <mat-form-field class="small-width" appearance="outline">
@@ -96,7 +96,7 @@
       </p>
       <div class="app-bottom-action right">
         <button mat-button color="primary" type="button" matStepperNext>
-          Review your new application
+          Review
           <mat-icon>chevron_right</mat-icon>
         </button>
       </div>
@@ -153,7 +153,7 @@
 <form *ngIf="!(selectedSolution$ | async)" [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm.value)">
   <app-alert
     class="app-alert"
-    text="Please provide the initial details of your new application. Users and teams can be added after initial set-up."
+    text="Please provide the initial details. Users and teams can be added after initial set-up."
   ></app-alert>
 
   <p>

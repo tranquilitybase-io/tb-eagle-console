@@ -1,31 +1,56 @@
 <header>
   <app-breadcrumbs [title]="solution.name" [isActive]="solution.isActive"> </app-breadcrumbs>
+  <div class="solution-actions">
+    <mat-chip *ngIf="solution.deploymentState; else notDeployedChip" [color]="deploymentStateColor" selected>{{
+      getDeploymentMessage
+    }}</mat-chip>
+    <ng-template #notDeployedChip>
+      <mat-chip mat-basic-chip selected>
+        Never deployed
+      </mat-chip>
+    </ng-template>
+    <button class="action-button" mat-button matTooltip="Mark as favourite">
+      <mat-icon>star_border</mat-icon>
+    </button>
+    <button mat-button class="action-button" (click)="editSolution()" matTooltip="Edit solution">
+      Edit
+    </button>
+    <button
+      *ngIf="!isDeploymentInProgress; else deploymentSpinner"
+      mat-button
+      [disabled]="isSolutionDeployed && solution.applications && solution.applications.length"
+      class="action-button"
+      (click)="deploySolution()"
+      matTooltip="Deploy solution"
+    >
+      Deploy
+    </button>
+    <ng-template #deploymentSpinner>
+      <button mat-button class="action-button">
+        <mat-progress-spinner color="primary" mode="indeterminate" diameter="30" strokeWidth="3">
+        </mat-progress-spinner>
+      </button>
+    </ng-template>
+  </div>
 </header>
-<div>
-  <app-solutions-view-select
-    [values]="values"
-    [enableDeployAll]="isSolutionDeployed && solution.applications.length"
-  ></app-solutions-view-select>
-</div>
-
-<main>
-  <p class="details-sol-view">
-    <span class="mat-body-strong">
-      Business Unit:
-      <span class="mat-small">{{ solution.businessUnit.name }}</span>
-    </span>
-    <span class="mat-body-strong">
-      Team:
-      <span class="mat-small">{{ solution.team.name }}</span>
-    </span>
-    <span class="mat-body-strong">
-      Cost Centre:
-      <span class="mat-small">{{ solution.costCentre }}</span>
-    </span>
-  </p>
-  <app-applications-grid [solution]="solution" *ngIf="(current$ | async) !== 'Workspace'"></app-applications-grid>
-  <app-solutions-view-workspace-info
-    [solution]="solution"
-    *ngIf="(current$ | async) === 'Workspace'"
-  ></app-solutions-view-workspace-info>
-</main>
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Overview">
+    <div class="tab-content">
+      <app-solutions-view-overview [solution]="solution"></app-solutions-view-overview>
+    </div>
+  </mat-tab>
+  <mat-tab label="Activators">
+    <div class="tab-content">
+      <div class="grid-list-switch-bar">
+        <app-grid-view-switch class="align-right" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+      </div>
+      <app-applications-grid
+        *ngIf="isGridViewEnabled$ | async; else listview"
+        [solution]="solution"
+      ></app-applications-grid>
+      <ng-template #listview>
+        <app-solutions-view-applications [solution]="solution"></app-solutions-view-applications>
+      </ng-template>
+    </div>
+  </mat-tab>
+</mat-tab-group>

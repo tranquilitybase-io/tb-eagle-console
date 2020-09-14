@@ -5,7 +5,7 @@ Please check if your PR fulfills the following requirements:
 - [ ] Tested UI/API integration with current master:
   - [ ] Login
   - [ ] "Create New Solution"
-  - [ ] "Create New Application"
+  - [ ] "Provision New Activator"
   - [ ] "Create New WAN VPN"
   - [ ] Dev user is able to request access to a "Locked" Activator
   - [ ] Admin user is able to "Grant Access", "Lock", "Deprecate" and "Undeprecate" an Activator
