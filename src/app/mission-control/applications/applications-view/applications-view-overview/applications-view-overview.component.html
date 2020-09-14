@@ -38,6 +38,9 @@
               </mat-list-item>
             </mat-list>
           </mat-card-content>
+          <a mat-button href="/"
+            >View on GitHub<img src="assets/icons/github.svg" height="24" width="24" alt="GitHub"
+          /></a>
         </mat-card>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="2" [rowspan]="1">
@@ -85,6 +88,15 @@
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <div class="mat-body-2">{{ activator.billing }} <a href="#">View details</a></div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <mat-card class="app-dashboard-card">
+          <mat-card-content class="dashboard-card-content">
+            <a href="/{{ activator.gitRepoUrl || '#' }}" class="custom-link"
+              >View on GitHub<img src="assets/icons/github.svg" height="16" width="16" alt="GitHub" class="link-icon"
+            /></a>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
