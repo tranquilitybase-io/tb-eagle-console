@@ -21,7 +21,6 @@ export class ApplicationsDialogDeployComponent {
   ) {}
 
   cancel() {
-    console.log(this.app);
     this.dialogRef.close();
   }
 
