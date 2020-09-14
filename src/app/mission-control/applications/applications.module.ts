@@ -25,7 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
-
+import { ApplicationsDialogModule } from './applications-dialog/applications-dialog.module';
 @NgModule({
   declarations: [ApplicationsDeploymentsComponent, ApplicationsGridComponent, ApplicationsGridCardComponent],
   imports: [
@@ -47,7 +47,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatSortModule,
     MatTableModule,
     MatTooltipModule,
-    MatStepperModule
+    MatStepperModule,
+    ApplicationsDialogModule
   ],
   exports: [ApplicationsDeploymentsComponent, ApplicationsGridComponent]
 })
