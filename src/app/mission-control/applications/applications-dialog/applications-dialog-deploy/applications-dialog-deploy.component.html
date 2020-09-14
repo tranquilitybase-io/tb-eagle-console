@@ -1,54 +1,43 @@
 <h1 mat-dialog-title>Deploy {{ app.name }}</h1>
 <div mat-dialog-content>
-  <div class="mat-body-strong">Details</div>
-  <mat-list dense class="sol-description-list">
-    <mat-list-item>
-      <div class="mat-body">Activator's name</div>
-      <mat-chip-list>
-        <mat-chip>{{ app.activator.name }}</mat-chip>
-      </mat-chip-list>
-    </mat-list-item>
-    <mat-list-item>
-      <div class="mat-body">Data sensitivity</div>
-      <mat-chip-list>
-        <mat-chip class="sol-sensitivity" [ngClass]="sensitivityColor(app)">{{ app.activator.sensitivity }}</mat-chip>
-      </mat-chip-list>
-    </mat-list-item>
-    <mat-list-item>
-      <div class="mat-body">Category</div>
-      <mat-chip-list>
-        <mat-chip>{{ app.activator.activatorMetadata.category }}</mat-chip>
-      </mat-chip-list>
-    </mat-list-item>
-    <mat-list-item>
-      <div class="mat-body">Cloud platform</div>
-      <mat-chip-list>
-        <mat-chip>{{ app.activator.activatorMetadata.platforms[0].value }}</mat-chip>
-        <mat-chip *ngIf="app.activator.activatorMetadata.platforms.length > 1"
-          >+{{ app.activator.activatorMetadata.platforms.length - 1 }}</mat-chip
-        >
-      </mat-chip-list>
-    </mat-list-item>
-    <mat-list-item>
-      <div class="mat-body-1">Regions</div>
-      <mat-chip-list>
-        <mat-chip>UK</mat-chip>
-        <mat-chip>DB</mat-chip>
-      </mat-chip-list>
-    </mat-list-item>
-    <mat-list-item>
-      <div class="mat-body-1">Business unit</div>
-      <mat-chip-list>
-        <mat-chip>Multi region kubernetes</mat-chip>
-      </mat-chip-list>
-    </mat-list-item>
-    <mat-list-item>
-      <div class="mat-body-1">Environments</div>
-      <mat-chip-list>
-        <mat-chip>Development</mat-chip>
-      </mat-chip-list>
-    </mat-list-item>
-  </mat-list>
+  <div class="content-container">
+    <div class="column-content">
+      <mat-card flex="flex">
+        <div>
+          <span class="mat-body-strong mat-text-medium">Data sensitivity</span>
+          <p class="mat-body-1">{{ app.activator.sensitivity }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Regions</span>
+          <p class="mat-body-1" *ngFor="let region of activator.regions">{{ region }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Business unit</span>
+          <p class="mat-body-1">{{ activator.businessUnit.name }}</p>
+        </div>
+      </mat-card>
+    </div>
+    <div class="column-content">
+      <mat-card>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Activator's name</span>
+          <p class="mat-body-1">{{ app.activator.name }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Category</span>
+          <p class="mat-body-1">{{ app.activator.activatorMetadata.category }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Environments</span>
+          <p class="mat-body-1" *ngFor="let env of activator.envs">{{ env.name }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Cloud platform</span>
+          <p class="mat-body-1" *ngFor="let platform of activator.activatorMetadata.platforms">{{ platform.value }}</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">Cancel</button>
