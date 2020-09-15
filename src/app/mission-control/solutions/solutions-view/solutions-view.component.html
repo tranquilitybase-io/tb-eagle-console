@@ -33,7 +33,7 @@
     </ng-template>
   </div>
 </header>
-<mat-tab-group mat-stretch-tabs>
+<mat-tab-group mat-stretch-tabs [selectedIndex]="selectedTabIndex">
   <mat-tab label="Overview">
     <div class="tab-content">
       <app-solutions-view-overview [solution]="solution"></app-solutions-view-overview>

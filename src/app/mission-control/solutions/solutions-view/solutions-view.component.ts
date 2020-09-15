@@ -29,6 +29,9 @@ export class SolutionsViewComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutionsView;
   currentGridViewOption$: Observable<GridViewSwitchModel>;
 
+  private tabsIndexMap: Map<string, number>;
+  selectedTabIndex: number = 0;
+
   constructor(
     private solutionsService: SolutionsService,
     private store: Store<any>,
@@ -45,6 +48,11 @@ export class SolutionsViewComponent implements OnInit {
       this.updateSolutionData();
     });
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+    this.tabsIndexMap = new Map([
+      ['Overview', 0],
+      ['Activators', 1]
+    ]);
+    this.selectedTabIndex = this.getTabIndex(this.route.snapshot.queryParamMap.get('tab'));
   }
 
   updateSolutionData() {
@@ -94,5 +102,10 @@ export class SolutionsViewComponent implements OnInit {
     return this.currentGridViewOption$.pipe(
       map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
     );
+  }
+
+  getTabIndex(tabName: string) {
+    if (this.tabsIndexMap.get(tabName)) return this.tabsIndexMap.get(tabName);
+    else return 0;
   }
 }
