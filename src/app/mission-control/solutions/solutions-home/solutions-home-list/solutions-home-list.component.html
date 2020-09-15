@@ -82,12 +82,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell class="nowrap" *matCellDef="let row" [style.color]="row.color">
-        <a
-          mat-icon-button
-          matTooltip="View solution"
-          routerLink="view"
-          [queryParams]="{ id: row.id, categorySwitch: 'Applications' }"
-        >
+        <a mat-icon-button matTooltip="View solution" routerLink="view" [queryParams]="{ id: row.id }">
           <mat-icon aria-hidden="false" aria-label="View solution icon">remove_red_eye</mat-icon>
         </a>
         <a mat-icon-button matTooltip="Edit solution" routerLink="edit" [queryParams]="{ id: row.id }">
