@@ -32,9 +32,7 @@ export class ApplicationsService extends EntityCollectionServiceBase<Application
       },
       () => {
         console.log('The POST observable is now completed.');
-        this.router.navigateByUrl(
-          `/mission-control/solutions/view?id=${application.solutionId}&categorySwitch=Applications`
-        );
+        this.router.navigateByUrl(`/mission-control/solutions/view?id=${application.solutionId}&tab=Activators`);
       }
     );
     console.log(application + ' created.');
