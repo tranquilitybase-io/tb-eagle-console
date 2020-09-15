@@ -1,0 +1,28 @@
+.mat-dialog-title {
+  text-align: center;
+  color: #5f2a60;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mat-text-medium {
+  font-size: 18px;
+  color: #5f2a60;
+}
+
+.content-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.column-content {
+  min-height: 100%;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+}
