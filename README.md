@@ -62,13 +62,6 @@ docker-compose pull
 docker-compose up -d
 ```
 
-### Remove all docker images and volumes (Save disk space when not running)
-
-```sh
-docker rmi -f $(docker images -a -q)
-docker volume rm $(docker volume ls -qf dangling=true)
-```
-
 ## Run the server as containers
 
 ### Start tb-houston-service and tb-gcp-dac (mock) detached mode
@@ -110,7 +103,7 @@ docker-compose -f docker-compose.experimental.yml pull
 docker-compose -f docker-compose.experimental.yml up -d
 ```
 
-### Remove all docker images and volumes (Save disk space when not running)
+## Remove all docker images and volumes (Save disk space when not running)
 
 ```sh
 docker rmi -f $(docker images -a -q)
