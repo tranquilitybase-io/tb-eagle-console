@@ -18,7 +18,8 @@
         parentUrl: 'mission-control/solutions/view'
       }
     ]"
-    [isActive]="application.isActive"
+    [badgeText]="application.status"
+    [badgeColorClass]="application.status === 'Active' ? '' : 'dark-grey'"
   >
   </app-breadcrumbs>
 </header>
