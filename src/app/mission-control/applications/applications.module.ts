@@ -6,6 +6,8 @@ import { EffectsModule } from '@ngrx/effects';
 import reducer, { featureKey } from './applications.reducer';
 import { ApplicationsEffects } from './applications.effects';
 
+import { ApplicationsDialogModule } from './applications-dialog/applications-dialog.module';
+
 import { ApplicationsDeploymentsComponent } from './applications-deployments/applications-deployments.component';
 import { ApplicationsGridCardComponent } from './applications-grid/applications-grid-card/applications-grid-card.component';
 import { ApplicationsGridComponent } from './applications-grid/applications-grid.component';
@@ -33,6 +35,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     SharedModule,
     StoreModule.forFeature(featureKey, reducer),
     EffectsModule.forFeature([ApplicationsEffects]),
+    ApplicationsDialogModule,
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
@@ -45,9 +48,9 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    MatStepperModule,
     MatTableModule,
-    MatTooltipModule,
-    MatStepperModule
+    MatTooltipModule
   ],
   exports: [ApplicationsDeploymentsComponent, ApplicationsGridComponent]
 })

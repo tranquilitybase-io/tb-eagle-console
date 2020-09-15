@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Deploy {{ app.name }}</h1>
+<div mat-dialog-content>
+  <div class="content-container">
+    <div class="column-content">
+      <mat-card flex="flex">
+        <div>
+          <span class="mat-body-strong mat-text-medium">Data sensitivity</span>
+          <p class="mat-body-1">{{ app.activator.sensitivity }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Regions</span>
+          <p class="mat-body-1" *ngFor="let region of activator.regions">{{ region }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Business unit</span>
+          <p class="mat-body-1">{{ activator.businessUnit.name }}</p>
+        </div>
+      </mat-card>
+    </div>
+    <div class="column-content">
+      <mat-card>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Activator's name</span>
+          <p class="mat-body-1">{{ app.activator.name }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Category</span>
+          <p class="mat-body-1">{{ app.activator.activatorMetadata.category }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Environments</span>
+          <p class="mat-body-1" *ngFor="let env of activator.envs">{{ env.name }}</p>
+        </div>
+        <div>
+          <span class="mat-body-strong mat-text-medium">Cloud platform</span>
+          <p class="mat-body-1" *ngFor="let platform of activator.activatorMetadata.platforms">{{ platform.value }}</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button (click)="confirm()" cdkFocusInitial color="primary">Confirm deployment</button>
+</div>
