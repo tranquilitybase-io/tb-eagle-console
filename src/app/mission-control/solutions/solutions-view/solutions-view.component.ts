@@ -105,7 +105,6 @@ export class SolutionsViewComponent implements OnInit {
   }
 
   getTabIndex(tabName: string) {
-    if (this.tabsIndexMap.get(tabName)) return this.tabsIndexMap.get(tabName);
-    else return 0;
+    return this.tabsIndexMap.get(tabName) ? this.tabsIndexMap.get(tabName) : 0;
   }
 }
