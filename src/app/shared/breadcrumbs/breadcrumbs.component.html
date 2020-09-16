@@ -5,7 +5,7 @@
 <div class="step" *ngFor="let step of steps; last as lastElement">
   <div *ngIf="!step.link && !step.id; else link">
     <p [ngStyle]="lastElement ? { 'font-weight': 'bold' } : {}" mat-menu-item>
-      {{ step.allCaps ? (step.name | uppercase) : (step.name | titlecase) }}
+      {{ step.name }}
     </p>
   </div>
 
@@ -16,7 +16,7 @@
       routerLink="{{ '//' + step.link }}"
       [queryParams]="{ id: step.id }"
     >
-      {{ step.allCaps ? (step.name | uppercase) : (step.name | titlecase) }}
+      {{ step.name }}
     </a>
   </ng-template>
 </div>

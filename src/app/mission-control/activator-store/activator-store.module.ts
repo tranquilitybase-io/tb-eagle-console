@@ -24,12 +24,30 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./activator-store-home/activator-store-home.module').then(m => m.ActivatorStoreHomeModule)
+          import('./activator-store-home/activator-store-home.module').then(m => m.ActivatorStoreHomeModule),
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Activator Store'
+            }
+          ]
+        }
       },
       {
         path: 'view',
         loadChildren: () =>
-          import('./activator-store-view/activator-store-view.module').then(m => m.ActivatorStoreViewModule)
+          import('./activator-store-view/activator-store-view.module').then(m => m.ActivatorStoreViewModule),
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Activator Store',
+              link: '/mission-control/activator-store'
+            },
+            {
+              name: 'View'
+            }
+          ]
+        }
       },
       {
         path: 'create-app',

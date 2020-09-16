@@ -36,6 +36,17 @@ const routes: Routes = [
       environmentListData: EnvironmentListDataResolver,
       folderStructureTreeData: FolderStructureTreeDataResolver,
       lanVPCListData: LanVPCListDataResolver
+    },
+    data: {
+      breadcrumbsSteps: [
+        {
+          name: 'Landing Zone',
+          link: '/administration/landing-zone'
+        },
+        {
+          name: 'Environment'
+        }
+      ]
     }
   }
 ];
