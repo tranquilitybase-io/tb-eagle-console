@@ -9,8 +9,9 @@ import { Router, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
 })
 export class BreadcrumbsComponent implements OnInit, OnChanges {
   @Input() steps: BreadcrumbStep[] = [];
-  @Input() isActive = false;
   @Input() visibleBreadcrumbsStartIndex: number = 0;
+  @Input() badgeText: string = null;
+  @Input() badgeColorClass: string = null;
   /**
    * title - should only be used if steps are not used. It is used to replace the default value of last step.
    */

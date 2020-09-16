@@ -1,5 +1,5 @@
 <header>
-  <app-breadcrumbs [title]="solution.name" [isActive]="solution.isActive"> </app-breadcrumbs>
+  <app-breadcrumbs [title]="solution.name" [badgeText]="solution.isActive ? 'Active' : ''"> </app-breadcrumbs>
   <div class="solution-actions">
     <mat-chip *ngIf="solution.deploymentState; else notDeployedChip" [color]="deploymentStateColor" selected>{{
       getDeploymentMessage
@@ -33,7 +33,7 @@
     </ng-template>
   </div>
 </header>
-<mat-tab-group mat-stretch-tabs>
+<mat-tab-group mat-stretch-tabs [selectedIndex]="selectedTabIndex">
   <mat-tab label="Overview">
     <div class="tab-content">
       <app-solutions-view-overview [solution]="solution"></app-solutions-view-overview>

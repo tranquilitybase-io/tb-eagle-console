@@ -93,7 +93,7 @@
         >
           <mat-icon aria-hidden="false" aria-label="View application icon">remove_red_eye</mat-icon>
         </a>
-        <button mat-icon-button [disabled]="!isSolutionDeployed" (click)="deploy(row.id)">
+        <button mat-icon-button [disabled]="!isSolutionDeployed" (click)="deploy(row)">
           <mat-icon
             [matTooltip]="isSolutionDeployed ? 'Deploy activator' : 'Solution is not deployed'"
             aria-hidden="false"

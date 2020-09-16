@@ -38,4 +38,4 @@
     </a>
   </ng-template>
 </div>
-<div class="badge" *ngIf="isActive">Active</div>
+<div class="badge" [ngClass]="badgeColorClass ? badgeColorClass : ''" *ngIf="badgeText">{{ badgeText }}</div>
