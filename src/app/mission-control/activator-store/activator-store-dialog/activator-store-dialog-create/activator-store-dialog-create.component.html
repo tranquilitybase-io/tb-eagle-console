@@ -1,0 +1,16 @@
+<form [formGroup]="createActivatorForm">
+  <h1 mat-dialog-title>Create new Activator</h1>
+  <div mat-dialog-content>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>External Repository URL</mat-label>
+        <input matInput required type="text" placeholder="https://github.com/:owner/:repo" formControlName="url" />
+        <mat-error *ngIf="isFieldValid('url')"> URL is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancel()" type="button">Cancel</button>
+    <button mat-raised-button (click)="createActivator()" type="button" color="primary">Create</button>
+  </div>
+</form>

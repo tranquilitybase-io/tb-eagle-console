@@ -1,0 +1,17 @@
+.mat-dialog-title {
+  text-align: center;
+}
+
+.mat-dialog-content {
+  p {
+    width: 100%;
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: space-around;
+}
