@@ -8,9 +8,9 @@ import { Router, UrlSegment, PRIMARY_OUTLET } from '@angular/router';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent implements OnInit, OnChanges {
-  @Input() cancelActive = false;
   @Input() steps: BreadcrumbStep[] = [];
   @Input() isActive = false;
+  @Input() visibleBreadcrumbsStartIndex: number = 0;
   /**
    * title - should only be used if steps are not used. It is used to replace the default value of last step.
    */
