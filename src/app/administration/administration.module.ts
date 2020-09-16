@@ -17,7 +17,14 @@ const routes: Routes = [
       {
         path: 'landing-zone',
         loadChildren: () => import('./landing-zone/landing-zone.module').then(m => m.LandingZoneModule),
-        canActivate: [AdminGuardService]
+        canActivate: [AdminGuardService],
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Landing Zone'
+            }
+          ]
+        }
         // },
         // {
         //   path: 'shared-services',
@@ -29,7 +36,14 @@ const routes: Routes = [
       },
       {
         path: 'teams',
-        loadChildren: () => import('./teams/teams.module').then(m => m.TeamsModule)
+        loadChildren: () => import('./teams/teams.module').then(m => m.TeamsModule),
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Teams'
+            }
+          ]
+        }
         // },
         // {
         //   path: 'settings',
@@ -37,7 +51,14 @@ const routes: Routes = [
       },
       {
         path: 'users',
-        loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+        loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Users'
+            }
+          ]
+        }
       }
     ]
   }

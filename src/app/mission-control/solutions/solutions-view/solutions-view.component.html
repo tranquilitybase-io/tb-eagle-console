@@ -1,5 +1,16 @@
 <header>
-  <app-breadcrumbs [title]="solution.name" [badgeText]="solution.isActive ? 'Active' : ''"> </app-breadcrumbs>
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Solutions',
+        link: '/mission-control/solutions'
+      },
+      {
+        name: solution.name
+      }
+    ]"
+    [badgeText]="solution.isActive ? 'Active' : ''"
+  ></app-breadcrumbs>
   <div class="solution-actions">
     <mat-chip *ngIf="solution.deploymentState; else notDeployedChip" [color]="deploymentStateColor" selected>{{
       getDeploymentMessage

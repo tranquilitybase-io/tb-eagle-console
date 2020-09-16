@@ -7,12 +7,12 @@
   <mat-menu #breadcrumbsMenu="matMenu">
     <div *ngFor="let step of steps | slice: 0:visibleBreadcrumbsStartIndex">
       <button mat-menu-item *ngIf="!step.link && !step.id; else link">
-        {{ step.allCaps ? (step.name | uppercase) : (step.name | titlecase) }}
+        {{ step.name }}
       </button>
 
       <ng-template #link>
         <a mat-menu-item routerLink="{{ '//' + step.link }}" [queryParams]="{ id: step.id }">
-          {{ step.allCaps ? (step.name | uppercase) : (step.name | titlecase) }}
+          {{ step.name }}
         </a>
       </ng-template>
     </div>
@@ -24,7 +24,7 @@
   *ngFor="let step of steps | slice: visibleBreadcrumbsStartIndex; last as lastElement; first as firstElement"
 >
   <button *ngIf="!step.link && !step.id; else link" mat-button [ngStyle]="lastElement ? { 'font-weight': 'bold' } : {}">
-    {{ step.allCaps ? (step.name | uppercase) : (step.name | titlecase) }}
+    {{ step.name }}
   </button>
 
   <ng-template #link>
@@ -34,7 +34,7 @@
       routerLink="{{ '//' + step.link }}"
       [queryParams]="{ id: step.id }"
     >
-      {{ step.allCaps ? (step.name | uppercase) : (step.name | titlecase) }}
+      {{ step.name }}
     </a>
   </ng-template>
 </div>
