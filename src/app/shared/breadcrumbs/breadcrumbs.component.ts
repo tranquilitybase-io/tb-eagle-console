@@ -8,8 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent implements OnInit {
-  @Input() cancelActive = false;
   @Input() steps: BreadcrumbStep[] = [];
+  @Input() visibleBreadcrumbsStartIndex: number = 0;
   @Input() badgeText: string = null;
   @Input() badgeColorClass: string = null;
 
