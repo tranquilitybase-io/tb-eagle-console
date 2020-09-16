@@ -21,14 +21,11 @@
       margin-right: 0.5rem;
     }
   }
-
-  a {
-    border-radius: 4px;
-  }
 }
 
 a,
 button {
+  border-radius: 4px;
   font-size: 14px;
   font-weight: normal;
   padding: 0 8px;
@@ -45,6 +42,7 @@ button {
 
   &::after {
     --arrow-width: 2px;
+
     display: block;
     transform: rotate(45deg);
     width: 0.5em;
