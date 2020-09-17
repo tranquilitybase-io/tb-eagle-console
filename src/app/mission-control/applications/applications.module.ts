@@ -27,9 +27,17 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
+import { ApplicationsDeploymentsListComponent } from './applications-deployments-list/applications-deployments-list.component';
+import { ApplicationsDeploymentsContainerComponent } from './applications-deployments-container/applications-deployments-container.component';
 
 @NgModule({
-  declarations: [ApplicationsDeploymentsComponent, ApplicationsGridComponent, ApplicationsGridCardComponent],
+  declarations: [
+    ApplicationsDeploymentsComponent,
+    ApplicationsGridComponent,
+    ApplicationsGridCardComponent,
+    ApplicationsDeploymentsListComponent,
+    ApplicationsDeploymentsContainerComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -52,6 +60,11 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatTableModule,
     MatTooltipModule
   ],
-  exports: [ApplicationsDeploymentsComponent, ApplicationsGridComponent]
+  exports: [
+    ApplicationsDeploymentsComponent,
+    ApplicationsGridComponent,
+    ApplicationsDeploymentsContainerComponent,
+    ApplicationsDeploymentsListComponent
+  ]
 })
 export class ApplicationsModule {}

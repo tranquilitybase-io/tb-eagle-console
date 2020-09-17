@@ -4,7 +4,9 @@ export enum GridViewSwitchViewsNames {
   activatorStore = 'activatorStore',
   teams = 'teams',
   users = 'users',
-  landingZone = 'landingZone'
+  landingZone = 'landingZone',
+  applicationDeployments = 'applicationDeployments',
+  teamMembers = 'teamMembers'
 }
 
 export enum GridViewSwitchOptionsEnum {

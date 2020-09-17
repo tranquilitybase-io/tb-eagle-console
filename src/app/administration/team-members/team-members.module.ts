@@ -10,9 +10,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { TeamMembersListComponent } from './team-members-list/team-members-list.component';
+import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
-  declarations: [TeamMembersGridComponent],
+  declarations: [TeamMembersGridComponent, TeamMembersListComponent, TeamMembersContainerComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -21,8 +24,9 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    SharedModule
   ],
-  exports: [TeamMembersGridComponent]
+  exports: [TeamMembersGridComponent, TeamMembersListComponent, TeamMembersContainerComponent]
 })
 export class TeamMembersModule {}
