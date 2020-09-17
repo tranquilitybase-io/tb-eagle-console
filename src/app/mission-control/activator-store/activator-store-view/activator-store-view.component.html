@@ -119,16 +119,17 @@
 </mat-tab-group>
 
 <div *ngIf="!(userIsAdmin$ | async)">
-  <div class="app-bottom-action right">
-    <a
-      mat-button
-      color="primary"
-      routerLink="/mission-control/activator-store/create-app"
-      queryParamsHandling="preserve"
-    >
-      Add to Solution
-      <mat-icon>chevron_right</mat-icon>
-    </a>
+  <div class="bottom-bar-background">
+    <div class="app-bottom-action right">
+      <a
+        mat-button
+        color="primary"
+        routerLink="/mission-control/activator-store/create-app"
+        queryParamsHandling="preserve"
+      >
+        Add to Solution
+        <mat-icon>chevron_right</mat-icon>
+      </a>
+    </div>
   </div>
-  <div class="app-bottom-background"></div>
 </div>
