@@ -47,7 +47,11 @@ table {
   width: 100%;
 }
 
-.add-new-btn {
+.actions-top-bar {
   display: flex;
-  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.action-button {
+  min-width: fit-content;
 }

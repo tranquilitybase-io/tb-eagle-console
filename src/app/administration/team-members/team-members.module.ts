@@ -13,9 +13,20 @@ import { MatTableModule } from '@angular/material/table';
 import { TeamMembersListComponent } from './team-members-list/team-members-list.component';
 import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
 import { SharedModule } from '@app/shared/shared.module';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { TeamMembersGridCardComponent } from './team-members-grid-card/team-members-grid-card.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
-  declarations: [TeamMembersGridComponent, TeamMembersListComponent, TeamMembersContainerComponent],
+  declarations: [
+    TeamMembersGridComponent,
+    TeamMembersListComponent,
+    TeamMembersContainerComponent,
+    TeamMembersGridCardComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -25,6 +36,11 @@ import { SharedModule } from '@app/shared/shared.module';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatListModule,
+    MatChipsModule,
     SharedModule
   ],
   exports: [TeamMembersGridComponent, TeamMembersListComponent, TeamMembersContainerComponent]

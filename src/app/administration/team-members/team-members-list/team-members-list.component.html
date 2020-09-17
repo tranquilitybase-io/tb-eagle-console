@@ -1,1 +1,17 @@
-<p>team-members-list works!</p>
+<div class="grid-container solution-grid-container">
+  <mat-grid-list
+    [cols]="(layout$ | async).gridCols"
+    [rowHeight]="(layout$ | async).solutionGridItemHeight"
+    gutterSize="24px"
+  >
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-button class="create-new-button" color="primary" [disabled]="!isUserTeamAdmin">
+        <mat-icon>add</mat-icon>Add new Team Member
+      </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngFor="let teamMember of teamMembers" colspan="1" rowspan="1">
+      <app-team-members-grid-card [teamMember]="teamMember"></app-team-members-grid-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
