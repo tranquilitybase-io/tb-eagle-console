@@ -9,6 +9,8 @@ import { ApplicationsEffects } from './applications.effects';
 import { ApplicationsDialogModule } from './applications-dialog/applications-dialog.module';
 
 import { ApplicationsDeploymentsComponent } from './applications-deployments/applications-deployments.component';
+import { ApplicationsDeploymentsContainerComponent } from './applications-deployments-container/applications-deployments-container.component';
+import { ApplicationsDeploymentsGridComponent } from './applications-deployments-grid/applications-deployments-grid.component';
 import { ApplicationsGridCardComponent } from './applications-grid/applications-grid-card/applications-grid-card.component';
 import { ApplicationsGridComponent } from './applications-grid/applications-grid.component';
 
@@ -29,7 +31,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
-  declarations: [ApplicationsDeploymentsComponent, ApplicationsGridComponent, ApplicationsGridCardComponent],
+  declarations: [
+    ApplicationsDeploymentsComponent,
+    ApplicationsDeploymentsContainerComponent,
+    ApplicationsDeploymentsGridComponent,
+    ApplicationsGridCardComponent,
+    ApplicationsGridComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -52,6 +60,11 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatTableModule,
     MatTooltipModule
   ],
-  exports: [ApplicationsDeploymentsComponent, ApplicationsGridComponent]
+  exports: [
+    ApplicationsDeploymentsComponent,
+    ApplicationsDeploymentsContainerComponent,
+    ApplicationsDeploymentsGridComponent,
+    ApplicationsGridComponent
+  ]
 })
 export class ApplicationsModule {}
