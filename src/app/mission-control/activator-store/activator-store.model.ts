@@ -61,19 +61,15 @@ export interface ActivatorBusinessUnit {
 }
 
 export interface Activator {
-  // description: string;
-  // platforms: string[];
-  // type: string;
-  // category: string;
   accessRequestedBy: User;
   activatorMetadata: ActivatorMetadata;
   apiManagement: string[];
   billing: string;
   businessUnit: ActivatorBusinessUnit;
   businessUnitId: number;
-  cd: string[] | ActivatorCD[]; //new
+  cd: string[] | ActivatorCD[];
   ci: string[] | ActivatorCI[];
-  envs: ActivatorEnv[]; //new
+  envs: ActivatorEnv[];
   hosting: string[];
   id: number;
   isActive: boolean;
@@ -83,8 +79,8 @@ export interface Activator {
   regions: string[];
   sensitivity: string;
   serverCapacity: number;
-  sourceControl: ActivatorSourceControl; //new
-  sourceControlId: number; //new
+  sourceControl: ActivatorSourceControl;
+  sourceControlId: number;
   status: string;
   technologyOwner: string;
   technologyOwnerEmail: string;

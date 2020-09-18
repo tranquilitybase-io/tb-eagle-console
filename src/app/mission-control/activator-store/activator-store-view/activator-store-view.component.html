@@ -49,6 +49,9 @@
       {{ activator.status }}
     </p>
   </div>
+  <div *ngIf="activator.accessRequestedBy">
+    <mat-chip class="badge" color="warn" selected>Access Requested</mat-chip>
+  </div>
   <div class="flex-group">
     <button
       mat-raised-button
