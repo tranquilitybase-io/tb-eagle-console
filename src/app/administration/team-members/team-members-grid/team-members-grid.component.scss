@@ -1,36 +1,7 @@
-.head-desc {
-  background-color: var(--active-grey-background);
-  display: flex;
-  padding: 0.5rem 0.3rem;
-  font-size: 0.875rem;
-
-  .head-title {
-    flex: auto;
-  }
-}
-
 .mat-elevation-z8 {
   margin: 1rem;
   margin-top: 0;
-}
-
-td,
-th {
-  width: 20%;
-}
-
-tbody tr td {
-  padding: 0.5rem 0.3rem;
-  border-bottom: 1px solid var(--active-grey-background);
-}
-
-.notes {
-  display: flex;
-  align-items: center;
-}
-
-.notes-text {
-  flex: auto;
+  overflow: auto;
 }
 
 .pagination-container {
@@ -47,7 +18,15 @@ table {
   width: 100%;
 }
 
-.add-new-btn {
+.actions-top-bar {
   display: flex;
-  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.action-button {
+  min-width: fit-content;
+}
+
+.mat-chip {
+  border-radius: 4px;
 }
