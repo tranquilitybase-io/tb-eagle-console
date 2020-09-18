@@ -1,48 +1,48 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '@app/shared/shared.module';
 
+import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
+import { TeamMembersGridCardComponent } from './team-members-grid-card/team-members-grid-card.component';
 import { TeamMembersGridComponent } from './team-members-grid/team-members-grid.component';
+import { TeamMembersListComponent } from './team-members-list/team-members-list.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { TeamMembersListComponent } from './team-members-list/team-members-list.component';
-import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
-import { SharedModule } from '@app/shared/shared.module';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { TeamMembersGridCardComponent } from './team-members-grid-card/team-members-grid-card.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatListModule } from '@angular/material/list';
-import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
-    TeamMembersGridComponent,
-    TeamMembersListComponent,
     TeamMembersContainerComponent,
-    TeamMembersGridCardComponent
+    TeamMembersGridCardComponent,
+    TeamMembersGridComponent,
+    TeamMembersListComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
+    MatMenuModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatListModule,
-    MatChipsModule,
-    SharedModule
+    MatTableModule
   ],
-  exports: [TeamMembersGridComponent, TeamMembersListComponent, TeamMembersContainerComponent]
+  exports: [TeamMembersContainerComponent, TeamMembersGridComponent, TeamMembersListComponent]
 })
 export class TeamMembersModule {}

@@ -9,6 +9,8 @@ import { ApplicationsEffects } from './applications.effects';
 import { ApplicationsDialogModule } from './applications-dialog/applications-dialog.module';
 
 import { ApplicationsDeploymentsComponent } from './applications-deployments/applications-deployments.component';
+import { ApplicationsDeploymentsContainerComponent } from './applications-deployments-container/applications-deployments-container.component';
+import { ApplicationsDeploymentsGridComponent } from './applications-deployments-grid/applications-deployments-grid.component';
 import { ApplicationsGridCardComponent } from './applications-grid/applications-grid-card/applications-grid-card.component';
 import { ApplicationsGridComponent } from './applications-grid/applications-grid.component';
 
@@ -27,16 +29,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
-import { ApplicationsDeploymentsContainerComponent } from './applications-deployments-container/applications-deployments-container.component';
-import { ApplicationsDeploymentsGridComponent } from './applications-deployments-grid/applications-deployments-grid.component';
 
 @NgModule({
   declarations: [
     ApplicationsDeploymentsComponent,
-    ApplicationsGridComponent,
-    ApplicationsGridCardComponent,
     ApplicationsDeploymentsContainerComponent,
-    ApplicationsDeploymentsGridComponent
+    ApplicationsDeploymentsGridComponent,
+    ApplicationsGridCardComponent,
+    ApplicationsGridComponent
   ],
   imports: [
     CommonModule,
@@ -62,9 +62,9 @@ import { ApplicationsDeploymentsGridComponent } from './applications-deployments
   ],
   exports: [
     ApplicationsDeploymentsComponent,
-    ApplicationsGridComponent,
     ApplicationsDeploymentsContainerComponent,
-    ApplicationsDeploymentsGridComponent
+    ApplicationsDeploymentsGridComponent,
+    ApplicationsGridComponent
   ]
 })
 export class ApplicationsModule {}
