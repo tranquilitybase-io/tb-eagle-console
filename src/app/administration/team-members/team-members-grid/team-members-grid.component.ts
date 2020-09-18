@@ -1,15 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { TeamMember } from '../team-members.model';
-
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { identifierModuleUrl } from '@angular/compiler';
-import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectUserId } from '@app/login/login.reducer';
+import getCustomProperty from '@app/shared/utils/getCustomProperty';
 
 @Component({
   selector: 'app-team-members-grid',
@@ -17,7 +14,7 @@ import { selectUserId } from '@app/login/login.reducer';
   styleUrls: ['./team-members-grid.component.scss']
 })
 export class TeamMembersGridComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'isActive', 'isTeamAdmin', 'role', 'userInfo'];
+  displayedColumns: string[] = ['id', 'isActive', 'isTeamAdmin', 'userInfo'];
   dataSource: MatTableDataSource<{}>;
   isUserTeamAdmin: boolean = false;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -50,5 +47,9 @@ export class TeamMembersGridComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  statusColor(isActive: boolean) {
+    return isActive ? 'primary' : '';
   }
 }

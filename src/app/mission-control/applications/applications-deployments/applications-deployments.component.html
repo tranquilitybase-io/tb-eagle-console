@@ -5,11 +5,6 @@
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
-    <div class="activ-dpl-head-desc">
-      <div class="activ-dpl-head-title">Application</div>
-      <app-icon icon="expand_arrow" [size]="10"></app-icon>
-    </div>
-
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -25,19 +20,33 @@
     <!-- Environment Column -->
     <ng-container matColumnDef="env">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Environment</th>
-      <td mat-cell *matCellDef="let row">{{ row.env }}</td>
+      <td mat-cell *matCellDef="let row">
+        <mat-chip disableRipple>{{ row.env }}</mat-chip>
+      </td>
     </ng-container>
 
     <!-- Status Column -->
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.status }}</td>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color">
+        <mat-chip disableRipple [color]="statusColor(row.status)" selected>{{ row.status }}</mat-chip>
+      </td>
     </ng-container>
 
     <!-- Description Column -->
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
       <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.description }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell class="nowrap" *matCellDef="let row" [style.color]="row.color">
+        <button mat-icon-button (click)="viewApplication(row.id)" matTooltip="View application">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
