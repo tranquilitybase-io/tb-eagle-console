@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
+
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
+import { Activator, ActivatorCategory, ActivatorsMetadata, ActivatorMetadata } from './activator-store.model';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { setActivatorsByCategoryData, setActivatorsCount, storeActivatorData } from './activator-store.actions';
-import { ActivatedRoute } from '@angular/router';
+import {
+  setActivatorsByCategoryData,
+  setActivatorsCount,
+  storeActivatorData,
+  setActivatorMetaData
+} from './activator-store.actions';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +23,8 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   constructor(
     private route: ActivatedRoute,
     serviceElementsFactory: EntityCollectionServiceElementsFactory,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     super('Activator', serviceElementsFactory);
   }
@@ -119,9 +126,21 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       );
   }
 
+  private createActivatorByURLPorstSuccess = (activatorMetaData: ActivatorMetadata) => {
+    /*
+     In next API iteration create activatorByURL will return full activator body !
+     */
+    // this.store.dispatch(storeActivatorData({ activatorData }));
+    this.store.dispatch(setActivatorMetaData({ activatorMetaData }));
+    this.router.navigate(['/mission-control/activator-store/create']);
+    console.log('POST call successful value returned in body', activatorMetaData);
+  };
+
   createActivatorByURL(repoURL: string): void {
     const url = `${this.BASE_URL}/activatorByURL/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, { url: repoURL }, { headers }).subscribe(this.postSuccess, this.postError, this.postCompleted);
+    this.http
+      .post(url, { url: repoURL }, { headers })
+      .subscribe(this.createActivatorByURLPorstSuccess, this.postError, this.postCompleted);
   }
 }
