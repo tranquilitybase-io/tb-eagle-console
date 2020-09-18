@@ -1,7 +1,15 @@
 <header>
   <app-breadcrumbs
     *ngIf="!(selectedSolution$ | async); else solutionSelectedBreadcrmbs"
-    [title]="selectedActivator.name"
+    [steps]="[
+      {
+        name: 'Activator Store',
+        link: '/mission-control/activator-store'
+      },
+      {
+        name: selectedActivator.name
+      }
+    ]"
   >
   </app-breadcrumbs>
   <ng-template #solutionSelectedBreadcrmbs>
@@ -33,6 +41,7 @@
           name: 'Application details'
         }
       ]"
+      [visibleBreadcrumbsStartIndex]="3"
     ></app-breadcrumbs>
   </ng-template>
 </header>
