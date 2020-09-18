@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Application } from '@app/mission-control/applications/applications.model';
 import { Solution } from '../../solutions.model';
 import { Observable } from 'rxjs';
@@ -8,10 +8,9 @@ import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { selectSolutionDeploymentsData } from '../../solutions.reducer';
 import { SolutionsService } from '../../solutions.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppUnderDeploymentComponent } from '@app/shared/snack-bar/app-under-deployment/app-under-deployment.component';
-import { startDeployment } from '@app/mission-control/applications/applications.actions';
 import { setSelectedSolution } from '../../solutions.actions';
 import { DeploymentState } from '@app/shared/shared.model';
+import { ApplicationsDialogDeployComponent } from '@app/mission-control/applications/applications-dialog/applications-dialog-deploy/applications-dialog-deploy.component';
 
 @Component({
   selector: 'app-solutions-view-applications',
@@ -44,7 +43,7 @@ export class SolutionsViewApplicationsComponent implements OnInit {
     private solutionsService: SolutionsService,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private dialog: MatDialog
   ) {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
@@ -75,9 +74,8 @@ export class SolutionsViewApplicationsComponent implements OnInit {
     this.router.navigateByUrl('/mission-control/activator-store');
   }
 
-  deploy(_id: number) {
-    this.snackBar.openFromComponent(AppUnderDeploymentComponent);
-    this.store.dispatch(startDeployment({ id: _id }));
+  deploy(app: Application) {
+    this.dialog.open(ApplicationsDialogDeployComponent, { disableClose: true, autoFocus: false, data: app });
   }
 
   get isSolutionDeployed(): boolean {

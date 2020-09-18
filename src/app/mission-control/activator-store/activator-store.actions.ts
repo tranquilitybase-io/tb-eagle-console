@@ -31,3 +31,5 @@ export const storeActivatorData = createAction(
   '[ActivatorStore] storeActivatorData',
   props<{ activatorData: Activator }>()
 );
+
+export const createActivatorByURL = createAction('[ActivatorStore] createActivatorByURL', props<{ url: string }>());

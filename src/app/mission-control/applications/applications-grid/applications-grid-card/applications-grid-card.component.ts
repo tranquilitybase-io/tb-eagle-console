@@ -1,12 +1,8 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Application } from '../../applications.model';
-import { Store } from '@ngrx/store';
-import { MatSnackBar } from '@angular/material';
-
-import { AppUnderDeploymentComponent } from '@app/shared/snack-bar/app-under-deployment/app-under-deployment.component';
-import { startDeployment } from '../../applications.actions';
 import { DeploymentState } from '@app/shared/shared.model';
-
+import { MatDialog } from '@angular/material';
+import { ApplicationsDialogDeployComponent } from '../../applications-dialog/applications-dialog-deploy/applications-dialog-deploy.component';
 @Component({
   selector: 'app-applications-grid-card',
   templateUrl: './applications-grid-card.component.html',
@@ -17,7 +13,7 @@ export class ApplicationsGridCardComponent implements OnInit {
   @Input() isSolutionDeployed: boolean;
   active = false;
 
-  constructor(private store: Store<any>, private snackBar: MatSnackBar) {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -36,8 +32,7 @@ export class ApplicationsGridCardComponent implements OnInit {
   }
 
   deploy() {
-    this.snackBar.openFromComponent(AppUnderDeploymentComponent);
-    this.store.dispatch(startDeployment({ id: this.app.id }));
+    this.dialog.open(ApplicationsDialogDeployComponent, { disableClose: true, autoFocus: false, data: this.app });
   }
 
   get lastUpdated(): Date {

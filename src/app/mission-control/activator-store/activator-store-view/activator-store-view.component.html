@@ -1,6 +1,17 @@
 <header class="activ-sub-header">
   <div class="header-left">
-    <app-breadcrumbs *ngIf="!(isSelectedSolution$ | async); else solutionSelectedBreadcrmbs" [title]="activator.name">
+    <app-breadcrumbs
+      *ngIf="!(isSelectedSolution$ | async); else solutionSelectedBreadcrmbs"
+      [steps]="[
+        {
+          name: 'Activator Store',
+          link: '/mission-control/activator-store'
+        },
+        {
+          name: selectedActivatorName
+        }
+      ]"
+    >
     </app-breadcrumbs>
     <ng-template #solutionSelectedBreadcrmbs>
       <app-breadcrumbs
@@ -26,6 +37,7 @@
             name: selectedActivatorName
           }
         ]"
+        [visibleBreadcrumbsStartIndex]="2"
       ></app-breadcrumbs>
     </ng-template>
     <p

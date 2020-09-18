@@ -13,15 +13,48 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    loadChildren: () => import('./users-create/users-create.module').then(m => m.UsersCreateModule)
+    loadChildren: () => import('./users-create/users-create.module').then(m => m.UsersCreateModule),
+    data: {
+      breadcrumbsSteps: [
+        {
+          name: 'Users',
+          link: '/administration/users'
+        },
+        {
+          name: 'Create new user'
+        }
+      ]
+    }
   },
   {
     path: 'edit',
-    loadChildren: () => import('./users-edit/users-edit.module').then(m => m.UsersEditModule)
+    loadChildren: () => import('./users-edit/users-edit.module').then(m => m.UsersEditModule),
+    data: {
+      breadcrumbsSteps: [
+        {
+          name: 'Users',
+          link: '/administration/users'
+        },
+        {
+          name: 'Edit'
+        }
+      ]
+    }
   },
   {
     path: 'view',
-    loadChildren: () => import('./users-view/users-view.module').then(m => m.UsersViewModule)
+    loadChildren: () => import('./users-view/users-view.module').then(m => m.UsersViewModule),
+    data: {
+      breadcrumbsSteps: [
+        {
+          name: 'Users',
+          link: '/administration/users'
+        },
+        {
+          name: 'View'
+        }
+      ]
+    }
   }
 ];
 

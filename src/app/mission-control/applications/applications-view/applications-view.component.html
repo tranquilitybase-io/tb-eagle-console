@@ -9,16 +9,15 @@
       {
         name: (solution$ | async) ? (solution$ | async).name : '',
         link: '/mission-control/solutions/view',
-        id: application ? application.solutionId : '',
-        parentUrl: 'mission-control/solutions'
+        id: application ? application.solutionId : ''
       },
       {
         link: '/mission-control/solutions/view',
-        name: application ? application.name : '',
-        parentUrl: 'mission-control/solutions/view'
+        name: application ? application.name : ''
       }
     ]"
-    [isActive]="application.isActive"
+    [badgeText]="application.status"
+    [badgeColorClass]="application.status === 'Active' ? '' : 'dark-grey'"
   >
   </app-breadcrumbs>
 </header>

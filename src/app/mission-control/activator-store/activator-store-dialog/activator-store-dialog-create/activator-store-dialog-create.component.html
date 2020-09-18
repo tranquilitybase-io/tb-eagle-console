@@ -1,0 +1,21 @@
+<form [formGroup]="createActivatorForm">
+  <h1 mat-dialog-title>Create new Activator</h1>
+  <div mat-dialog-content>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>External Repository URL</mat-label>
+        <input matInput required type="url" placeholder="https://github.com/:owner/:activator" formControlName="url" />
+        <mat-error *ngIf="createActivatorForm.controls.url.errors?.required">
+          URL is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="createActivatorForm.controls.url.hasError('pattern')">
+          Please enter URL in format e.g. "https://github.com/:owner/:activator"
+        </mat-error>
+      </mat-form-field>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancel()" type="button">Cancel</button>
+    <button mat-raised-button (click)="createActivator()" type="button" color="primary">Create</button>
+  </div>
+</form>
