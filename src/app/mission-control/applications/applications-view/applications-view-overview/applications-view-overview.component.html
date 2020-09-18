@@ -38,9 +38,6 @@
               </mat-list-item>
             </mat-list>
           </mat-card-content>
-          <a mat-button href="/"
-            >View on GitHub<img src="assets/icons/github.svg" height="24" width="24" alt="GitHub"
-          /></a>
         </mat-card>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="2" [rowspan]="1">
@@ -94,8 +91,8 @@
       <mat-grid-tile [colspan]="2" [rowspan]="1">
         <mat-card class="app-dashboard-card">
           <mat-card-content class="dashboard-card-content">
-            <a href="{{ activator.gitRepoUrl || '#' }}" class="custom-link" target="_blank"
-              >View on GitHub<img src="assets/icons/github.svg" height="16" width="16" alt="GitHub" class="link-icon"
+            <a [href]="activatorLink || '#'" class="custom-link" target="_blank">
+              View on GitHub<img src="assets/icons/github.svg" height="16" width="16" alt="GitHub" class="link-icon"
             /></a>
           </mat-card-content>
         </mat-card>

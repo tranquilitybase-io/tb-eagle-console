@@ -117,4 +117,8 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
   get lastUpdated(): Date {
     return new Date(this.activator.lastUpdated || null);
   }
+
+  get activatorLink(): string {
+    return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.activatorLink;
+  }
 }
