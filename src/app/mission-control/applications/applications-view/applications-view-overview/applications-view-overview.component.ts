@@ -21,6 +21,10 @@ export class ApplicationsViewOverviewComponent implements OnInit {
     return this.application ? this.application.activator : ({} as Activator);
   }
 
+  get activatorLink(): string {
+    return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.activatorLink;
+  }
+
   get sensitivityColor(): string {
     return String(this.activator ? this.activator.sensitivity : '').toLowerCase() === 'restricted'
       ? 'red'
