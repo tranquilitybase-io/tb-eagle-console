@@ -3,7 +3,9 @@
     <mat-card-title>
       <div class="card-header">
         <mat-chip *ngIf="activator.status" [color]="statusColor" selected>{{ activator.status }}</mat-chip>
-        <mat-chip color="warn" selected *ngIf="activator.accessRequestedBy">Access Requested</mat-chip>
+        <mat-chip class="access-requested-badge" color="warn" selected *ngIf="activator.accessRequestedBy"
+          >Access Requested</mat-chip
+        >
 
         <div class="card-actions-bar">
           <button mat-icon-button>

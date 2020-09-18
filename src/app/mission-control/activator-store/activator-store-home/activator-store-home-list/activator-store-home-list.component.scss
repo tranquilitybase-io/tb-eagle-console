@@ -59,3 +59,13 @@ th.mat-header-cell:first-of-type {
   min-height: 1.5rem;
   border-radius: 0.2rem;
 }
+
+.access-requested {
+  background-color: rgb(255, 185, 177);
+}
+
+.action-needed-icon {
+  position: absolute;
+  font-size: 10px;
+  left: 20px;
+}

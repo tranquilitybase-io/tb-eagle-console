@@ -115,8 +115,15 @@
         >
           <mat-icon aria-hidden="false" aria-label="Add to solution icon">send</mat-icon>
         </a>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          [matTooltip]="row.accessRequestedBy && (userIsAdmin$ | async) ? 'Access requested' : ''"
+        >
           <mat-icon>more_vert</mat-icon>
+          <mat-icon *ngIf="actionNeeded(row) && (userIsAdmin$ | async)" color="warn" class="action-needed-icon"
+            >stop_circle</mat-icon
+          >
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
           <button mat-menu-item *ngIf="isLocked(row.status) && !(userIsAdmin$ | async)" (click)="requestAccess(row.id)">
@@ -146,7 +153,11 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr
+      mat-row
+      [class.access-requested]="row.accessRequestedBy && (userIsAdmin$ | async)"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
   </table>
 
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

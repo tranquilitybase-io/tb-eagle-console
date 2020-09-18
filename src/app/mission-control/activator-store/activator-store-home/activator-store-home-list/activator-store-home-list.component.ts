@@ -126,4 +126,8 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   requestAccess(_id: number) {
     this.store.dispatch(requestAccess({ id: _id }));
   }
+
+  actionNeeded(activator: Activator): boolean {
+    if (activator.accessRequestedBy) return true;
+  }
 }
