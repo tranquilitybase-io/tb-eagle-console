@@ -55,6 +55,10 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
     return this.statusColorMap.get(String(this.activator.status).toLowerCase());
   }
 
+  get category(): string {
+    return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.category;
+  }
+
   @HostListener('mouseover')
   onMouseOver() {
     this.active = true;

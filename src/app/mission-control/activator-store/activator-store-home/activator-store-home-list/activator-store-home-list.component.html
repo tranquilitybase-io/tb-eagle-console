@@ -121,12 +121,12 @@
         <button
           mat-icon-button
           [matMenuTriggerFor]="menu"
-          [matTooltip]="row.accessRequestedBy && (userIsAdmin$ | async) ? 'Access requested' : ''"
+          [matTooltip]="row.accessRequestedBy ? 'Access requested' : ''"
         >
           <mat-icon>more_vert</mat-icon>
-          <mat-icon *ngIf="actionNeeded(row) && (userIsAdmin$ | async)" color="warn" class="action-needed-icon"
-            >stop_circle</mat-icon
-          >
+          <mat-icon *ngIf="actionNeeded(row)" color="warn" class="action-needed-icon">
+            stop_circle
+          </mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
           <button mat-menu-item *ngIf="isLocked(row.status) && !(userIsAdmin$ | async)" (click)="requestAccess(row.id)">
