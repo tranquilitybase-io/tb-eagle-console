@@ -48,13 +48,13 @@ export class ActivatorStoreViewComponent implements OnInit {
     this.store.dispatch(storeActivatorData({ activatorData: this.activator }));
     this.activator$.subscribe(activatorData => {
       this.activator = activatorData;
+      this.selectedActivatorName = this.activator.name;
     });
 
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
     this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
     this.teamList = this.route.snapshot.data['teamList'];
-    this.selectedActivatorName = this.activator.name;
 
     this.route.queryParams
       .pipe(
