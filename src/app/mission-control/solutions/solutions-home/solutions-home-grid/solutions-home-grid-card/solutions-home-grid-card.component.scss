@@ -46,14 +46,9 @@
       }
     }
 
-    .description-list .mat-list-item {
+    .description-list .mat-list-item,
+    .mat-grid-tile {
       height: 2rem;
-      @media (max-width: 1542px) {
-        height: 3rem;
-      }
-      .mat-body {
-        width: 8rem;
-      }
       .mat-chip {
         font-size: 12px;
         padding: 0.2rem 0.5rem;
@@ -107,5 +102,20 @@
     .mat-icon {
       margin-right: -8px;
     }
+  }
+}
+
+.column-detail {
+  display: block;
+  margin: auto;
+  margin-left: 0;
+}
+
+.row-detail {
+  margin: auto;
+  margin-left: 0;
+  display: flex;
+  & .mat-body {
+    width: 8rem;
   }
 }
