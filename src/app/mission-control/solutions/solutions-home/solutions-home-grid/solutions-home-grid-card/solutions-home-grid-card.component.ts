@@ -5,6 +5,9 @@ import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material';
 import { SolutionsHomeDialogDeployComponent } from '../../solutions-home-dialog/solutions-home-dialog-deploy/solutions-home-dialog-deploy.component';
+import { LayoutService } from '@app/shared/layout/layout.service';
+import { Layout } from '@app/shared/layout/layout.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-solutions-home-grid-card',
@@ -15,8 +18,16 @@ export class SolutionsHomeGridCardComponent implements OnInit {
   @Input() solution: Solution;
 
   active = false;
+  layout$: Observable<Layout>;
 
-  constructor(private store: Store<any>, private snackBar: MatSnackBar, private dialog: MatDialog) {}
+  constructor(
+    private store: Store<any>,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private layoutService: LayoutService
+  ) {
+    this.layout$ = this.layoutService.layoutObserver$;
+  }
 
   ngOnInit() {}
 
