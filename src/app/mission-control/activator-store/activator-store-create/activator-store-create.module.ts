@@ -33,17 +33,12 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatChipsModule,
-    MatDividerModule,
+    MatStepperModule,
     MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
     MatInputModule,
-    MatListModule,
-    MatSelectModule,
-    MatStepperModule
+    MatIconModule,
+    MatGridListModule,
+    MatButtonModule
   ]
 })
 export class ActivatorStoreCreateModule {}
