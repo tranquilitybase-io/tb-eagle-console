@@ -118,4 +118,10 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
         catchError(this.handleError)
       );
   }
+
+  createActivatorByURL(repoURL: string): void {
+    const url = `${this.BASE_URL}/activatorByURL/`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(url, { url: repoURL }, { headers }).subscribe(this.postSuccess, this.postError, this.postCompleted);
+  }
 }

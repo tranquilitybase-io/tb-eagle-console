@@ -1,0 +1,5 @@
+<app-grid-view-switch class="view-settings-bar" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+<app-applications-deployments *ngIf="!(isGridViewEnabled$ | async); else listview"></app-applications-deployments>
+<ng-template #listview>
+  <app-applications-deployments-grid></app-applications-deployments-grid>
+</ng-template>

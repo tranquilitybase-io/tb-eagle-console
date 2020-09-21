@@ -4,6 +4,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.resolver';
+import { ApplicationsByActivatorIdResolver } from '@app/shared/resolvers/applications-by-activator-id.resolver';
 import { TeamResolver } from '@app/shared/resolvers/team.resolver';
 
 import { ActivatorStoreViewAuditHistoryComponent } from './activator-store-view-audit-history/activator-store-view-audit-history.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
     path: '',
     component: ActivatorStoreViewComponent,
     resolve: {
+      applications: ApplicationsByActivatorIdResolver,
       activator: ActivatorByIdResolver,
       teamList: TeamResolver
     },

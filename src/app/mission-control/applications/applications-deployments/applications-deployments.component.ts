@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Application } from '../applications.model';
 
@@ -13,13 +13,13 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./applications-deployments.component.scss']
 })
 export class ApplicationsDeploymentsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'env', 'status', 'description'];
+  displayedColumns: string[] = ['id', 'name', 'env', 'status', 'description', 'actions'];
   dataSource: MatTableDataSource<Application>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.dataSource = new MatTableDataSource([]);
   }
 
@@ -37,5 +37,13 @@ export class ApplicationsDeploymentsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  viewApplication(id: number) {
+    this.router.navigateByUrl(`/mission-control/solutions/view/application?id=${id}`);
+  }
+
+  statusColor(isActive: string): string {
+    return isActive === 'Active' ? 'accent' : '';
   }
 }

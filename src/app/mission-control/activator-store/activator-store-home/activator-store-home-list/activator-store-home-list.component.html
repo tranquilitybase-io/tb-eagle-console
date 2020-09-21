@@ -11,6 +11,9 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+  <button mat-button class="action-button" (click)="createNewActivator()" *ngIf="userIsAdmin$ | async">
+    + Add new Activator
+  </button>
 </div>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
@@ -115,8 +118,15 @@
         >
           <mat-icon aria-hidden="false" aria-label="Add to solution icon">send</mat-icon>
         </a>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          [matTooltip]="row.accessRequestedBy ? 'Access requested' : ''"
+        >
           <mat-icon>more_vert</mat-icon>
+          <mat-icon *ngIf="actionNeeded(row)" color="warn" class="action-needed-icon">
+            stop_circle
+          </mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
           <button mat-menu-item *ngIf="isLocked(row.status) && !(userIsAdmin$ | async)" (click)="requestAccess(row.id)">
