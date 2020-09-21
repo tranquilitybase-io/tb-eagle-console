@@ -36,6 +36,22 @@
   .mat-card-content {
     padding: 0.7rem 0.5rem 0.7rem 0.5rem;
 
+    .column-detail {
+      display: block;
+      margin: auto;
+      margin-left: 0;
+    }
+
+    .row-detail {
+      margin: auto;
+      margin-left: 0;
+      display: flex;
+
+      & .mat-body {
+        width: 8rem;
+      }
+    }
+
     &.spinner {
       display: flex;
       justify-content: center;
@@ -102,20 +118,5 @@
     .mat-icon {
       margin-right: -8px;
     }
-  }
-}
-
-.column-detail {
-  display: block;
-  margin: auto;
-  margin-left: 0;
-}
-
-.row-detail {
-  margin: auto;
-  margin-left: 0;
-  display: flex;
-  & .mat-body {
-    width: 8rem;
   }
 }
