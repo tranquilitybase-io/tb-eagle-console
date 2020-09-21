@@ -33,6 +33,12 @@
       <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.email }}</td>
     </ng-container>
 
+    <!-- Team count Column -->
+    <ng-container matColumnDef="teamCount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="teamCount">Teams count</th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.teamCount }}</td>
+    </ng-container>
+
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>

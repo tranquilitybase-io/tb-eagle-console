@@ -42,6 +42,12 @@
           <mat-chip>{{ user.email }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body">Teams count</div>
+        <mat-chip-list>
+          <mat-chip>{{ user.teamCount }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
     </mat-list>
   </mat-card-content>
   <mat-card-actions *ngIf="active">

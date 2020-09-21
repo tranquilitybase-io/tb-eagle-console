@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class UsersHomeListComponent implements OnInit {
   @Input() users$: Observable<User[]>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'actions'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'teamCount', 'actions'];
 
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
