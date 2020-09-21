@@ -26,11 +26,6 @@ export class ActivatorStoreCreateComponent implements OnInit {
     this.activatorMetadata.variables.forEach(variable => {
       group[variable.name] = new FormControl(variable.value, [Validators.required]);
     });
-    /*
-    this.variablesForm = this.formBuilder.group({
-      var: ['',Validators.required]
-    })
-    */
     this.variablesForm = new FormGroup(group);
   }
 
