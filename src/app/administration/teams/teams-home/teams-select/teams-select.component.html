@@ -1,3 +1,8 @@
-<app-switches [filters]="values" (switchCallback)="onGroupSwitch($event)" [paramSwitch]="'groupSwitch'"></app-switches>
-<app-pills [pills]="[]" class="separated"></app-pills>
-<app-grid-view-switch [gridViewName]="gridViewOptionName"></app-grid-view-switch>
+<div class="team-select">
+  <app-switches
+    [filters]="values"
+    (switchCallback)="onGroupSwitch($event)"
+    [paramSwitch]="'groupSwitch'"
+  ></app-switches>
+  <app-grid-view-switch [gridViewName]="gridViewOptionName"></app-grid-view-switch>
+</div>
