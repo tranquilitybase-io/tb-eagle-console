@@ -9,7 +9,7 @@
         mat-button
         class="create-new-button"
         color="primary"
-        [disabled]="!isUserTeamAdmin"
+        [disabled]="!isUserTeamAdmin && !(userIsAdmin$ | async)"
         (click)="addNewTeamMember()"
       >
         <mat-icon>add</mat-icon>Add new Team Member

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 
+import { EffectsModule } from '@ngrx/effects';
+import { TeamMembersEffects } from './team-members.effects';
+
 import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
 import { TeamMembersGridCardComponent } from './team-members-grid-card/team-members-grid-card.component';
 import { TeamMembersGridComponent } from './team-members-grid/team-members-grid.component';
@@ -19,8 +22,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { EffectsModule } from '@ngrx/effects';
-import { TeamMembersEffects } from './team-members.effects';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TeamMembersEffects } from './team-members.effects';
   imports: [
     CommonModule,
     SharedModule,
+    EffectsModule.forFeature([TeamMembersEffects]),
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
@@ -43,8 +45,7 @@ import { TeamMembersEffects } from './team-members.effects';
     MatMenuModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule,
-    EffectsModule.forFeature([TeamMembersEffects])
+    MatTableModule
   ],
   exports: [TeamMembersContainerComponent, TeamMembersGridComponent, TeamMembersListComponent]
 })
