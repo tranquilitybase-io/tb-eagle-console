@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { SharedModule } from '@app/shared/shared.module';
+import { MatCheckboxModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -32,7 +34,9 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule,
+    SharedModule
   ]
 })
 export class TeamMembersCreateModule {}

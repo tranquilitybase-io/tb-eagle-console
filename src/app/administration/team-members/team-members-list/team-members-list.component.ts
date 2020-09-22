@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { selectUserId } from '@app/login/login.reducer';
 import { Layout } from '@app/shared/layout/layout.model';
 import { LayoutService } from '@app/shared/layout/layout.service';
@@ -16,7 +16,12 @@ export class TeamMembersListComponent implements OnInit {
   teamMembers: TeamMember[] = [];
   isUserTeamAdmin: boolean = false;
   layout$: Observable<Layout>;
-  constructor(private route: ActivatedRoute, private store: Store<any>, private layout: LayoutService) {
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store<any>,
+    private layout: LayoutService,
+    private router: Router
+  ) {
     this.layout$ = this.layout.layoutObserver$;
   }
 
@@ -27,5 +32,10 @@ export class TeamMembersListComponent implements OnInit {
         this.isUserTeamAdmin = this.teamMembers.find(tM => tM.userId === userId).isTeamAdmin;
       }
     });
+  }
+
+  addNewTeamMember() {
+    let teamId = this.route.snapshot.data['team'].id;
+    this.router.navigateByUrl(`/administration/teams/create-team-member?teamId=${teamId}`);
   }
 }

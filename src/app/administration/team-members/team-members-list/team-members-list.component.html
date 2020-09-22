@@ -5,7 +5,13 @@
     gutterSize="24px"
   >
     <mat-grid-tile colspan="1" rowspan="1">
-      <button mat-button class="create-new-button" color="primary" [disabled]="!isUserTeamAdmin">
+      <button
+        mat-button
+        class="create-new-button"
+        color="primary"
+        [disabled]="!isUserTeamAdmin"
+        (click)="addNewTeamMember()"
+      >
         <mat-icon>add</mat-icon>Add new Team Member
       </button>
     </mat-grid-tile>

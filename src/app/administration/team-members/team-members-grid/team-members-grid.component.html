@@ -3,7 +3,9 @@
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Development" />
   </mat-form-field>
-  <button class="action-button" mat-button [disabled]="!isUserTeamAdmin">Add New Team Member</button>
+  <button class="action-button" mat-button [disabled]="!isUserTeamAdmin" (click)="addNewTeamMember()">
+    Add New Team Member
+  </button>
 </div>
 
 <div class="mat-elevation-z8">

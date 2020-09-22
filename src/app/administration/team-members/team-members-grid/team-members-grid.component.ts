@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TeamMember } from '../team-members.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -19,7 +19,7 @@ export class TeamMembersGridComponent implements OnInit {
   isUserTeamAdmin: boolean = false;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private route: ActivatedRoute, private store: Store<any>) {
+  constructor(private route: ActivatedRoute, private store: Store<any>, private router: Router) {
     this.dataSource = new MatTableDataSource([]);
   }
 
@@ -51,5 +51,10 @@ export class TeamMembersGridComponent implements OnInit {
 
   statusColor(isActive: boolean) {
     return isActive ? 'primary' : '';
+  }
+
+  addNewTeamMember() {
+    let teamId = this.route.snapshot.data['team'].id;
+    this.router.navigateByUrl(`/administration/teams/create-team-member?teamId=${teamId}`);
   }
 }
