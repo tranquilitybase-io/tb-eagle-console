@@ -70,7 +70,9 @@
       <span class="count">({{ activatorsCount$ | async }})</span>
     </button>
   </div>
-  <div class="flex-filler" *ngIf="isCategorySwitchSelected$ | async"></div>
+  <button mat-button class="action-button" (click)="createNewActivator()" *ngIf="userIsAdmin$ | async">
+    + Add new Activator
+  </button>
   <app-pills
     [pills]="['Type', 'Availability', 'Environment']"
     class="separated"
