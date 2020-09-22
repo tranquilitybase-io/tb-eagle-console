@@ -1,9 +1,9 @@
 import { Activator } from './../activator-store.model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { selectActivatorData } from '../activator-store.reducer';
-import { Observable } from 'rxjs';
+import { updateActivator } from '../activator-store.actions';
 
 @Component({
   selector: 'app-solutions-create',
@@ -42,7 +42,13 @@ export class ActivatorStoreCreateComponent implements OnInit {
   }
 
   onStepOneNext() {
-    if (!this.variablesForm.valid) {
+    if (this.variablesForm.valid) {
+      let activator = { ...this.activatorData };
+      activator.activatorMetadata.variables.forEach(variable => {
+        variable.value = this.variablesForm.value[variable.name];
+      });
+      this.store.dispatch(updateActivator({ activatorData: activator }));
+    } else {
       this.variablesForm.markAllAsTouched();
     }
   }

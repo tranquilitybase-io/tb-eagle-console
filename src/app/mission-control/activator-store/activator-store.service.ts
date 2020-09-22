@@ -134,4 +134,19 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       .post(url, { url: repoURL }, { headers })
       .subscribe(this.createActivatorByURLPorstSuccess, this.postError, this.postCompleted);
   }
+
+  private putSuccess = (activatorData: Activator) => {
+    this.store.dispatch(storeActivatorData({ activatorData }));
+    console.log('PUT call successful value returned in body', activatorData);
+  };
+
+  private putError = err => {
+    console.log('PUT call in error', err);
+  };
+
+  updateActivator(activatorData: Activator): void {
+    const url = `${this.BASE_URL}/activator/${activatorData.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.put(url, activatorData, { headers }).subscribe(this.putSuccess, this.putError);
+  }
 }
