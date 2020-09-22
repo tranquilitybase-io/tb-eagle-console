@@ -6,12 +6,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import {
-  setActivatorsByCategoryData,
-  setActivatorsCount,
-  storeActivatorData,
-  setActivatorMetaData
-} from './activator-store.actions';
+import { setActivatorsByCategoryData, setActivatorsCount, storeActivatorData } from './activator-store.actions';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
@@ -126,14 +121,10 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       );
   }
 
-  private createActivatorByURLPorstSuccess = (activatorMetaData: ActivatorMetadata) => {
-    /*
-     In next API iteration create activatorByURL will return full activator body !
-     */
-    // this.store.dispatch(storeActivatorData({ activatorData }));
-    this.store.dispatch(setActivatorMetaData({ activatorMetaData }));
+  private createActivatorByURLPorstSuccess = (activatorData: Activator) => {
+    this.store.dispatch(storeActivatorData({ activatorData }));
     this.router.navigate(['/mission-control/activator-store/create']);
-    console.log('POST call successful value returned in body', activatorMetaData);
+    console.log('POST call successful value returned in body', activatorData);
   };
 
   createActivatorByURL(repoURL: string): void {

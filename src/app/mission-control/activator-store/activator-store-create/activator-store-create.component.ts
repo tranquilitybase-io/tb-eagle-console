@@ -1,8 +1,8 @@
-import { ActivatorMetadata } from './../activator-store.model';
+import { Activator } from './../activator-store.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { selectActivatorMetaData } from '../activator-store.reducer';
+import { selectActivatorData } from '../activator-store.reducer';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,18 +12,17 @@ import { Observable } from 'rxjs';
 })
 export class ActivatorStoreCreateComponent implements OnInit {
   variablesForm: FormGroup;
-  activatorMetadata: ActivatorMetadata;
+  activatorData: Activator;
 
-  constructor(private formBuilder: FormBuilder, private store: Store<any>) {
-    this.store.pipe(select(selectActivatorMetaData)).subscribe(activatorMetadata => {
-      this.activatorMetadata = activatorMetadata;
+  constructor(private store: Store<any>) {
+    this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
+      this.activatorData = activatorData;
     });
   }
 
   ngOnInit() {
-    console.log(this.activatorMetadata);
     let group = {};
-    this.activatorMetadata.variables.forEach(variable => {
+    this.activatorData.activatorMetadata.variables.forEach(variable => {
       group[variable.name] = new FormControl(variable.value, [Validators.required]);
     });
     this.variablesForm = new FormGroup(group);
@@ -42,7 +41,7 @@ export class ActivatorStoreCreateComponent implements OnInit {
     return unslugifiedString.charAt(0).toUpperCase() + unslugifiedString.slice(1);
   }
 
-  onNext() {
+  onStepOneNext() {
     if (!this.variablesForm.valid) {
       this.variablesForm.markAllAsTouched();
     }

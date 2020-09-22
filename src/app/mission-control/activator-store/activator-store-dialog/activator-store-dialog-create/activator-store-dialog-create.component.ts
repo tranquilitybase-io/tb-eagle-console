@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
 import { createActivatorByURL } from '../../activator-store.actions';
+
 @Component({
   selector: 'app-activator-store-dialog-grant-access',
   templateUrl: './activator-store-dialog-create.component.html',
@@ -31,6 +32,12 @@ export class ActivatorStoreDialogCreateComponent implements OnInit {
       this.store.dispatch(createActivatorByURL({ url: this.createActivatorForm.value.url }));
     } else {
       this.createActivatorForm.markAllAsTouched();
+    }
+  }
+
+  closeDialogOnSuccess(activatorMetadata) {
+    if (Object.keys(activatorMetadata).length) {
+      this.dialogRef.close();
     }
   }
 

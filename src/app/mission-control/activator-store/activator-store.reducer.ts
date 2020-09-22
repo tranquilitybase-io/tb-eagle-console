@@ -5,8 +5,7 @@ import {
   setCategoriesCount,
   setActivatorsCount,
   setActivatorsByCategoryData,
-  storeActivatorData,
-  setActivatorMetaData
+  storeActivatorData
 } from './activator-store.actions';
 import { Activator, ActivatorMetadata } from './activator-store.model';
 
@@ -15,8 +14,7 @@ export const featureKey = 'activator-store';
 const initialState = {
   step: 0,
   activatorsByCategoryData: [],
-  activatorData: {} as Activator,
-  activatorMetadata: {} as ActivatorMetadata
+  activatorData: {} as Activator
 };
 const innerReducer = createReducer(
   initialState,
@@ -24,8 +22,7 @@ const innerReducer = createReducer(
   on(setActivatorsCount, (state, { activatorsCount }) => ({ ...state, activatorsCount })),
   on(setCategoriesCount, (state, { categoriesCount }) => ({ ...state, categoriesCount })),
   on(setProgress, (state, { step }) => ({ ...state, step })),
-  on(storeActivatorData, (state, { activatorData }) => ({ ...state, activatorData })),
-  on(setActivatorMetaData, (state, { activatorMetaData }) => ({ ...state, activatorMetaData }))
+  on(storeActivatorData, (state, { activatorData }) => ({ ...state, activatorData }))
 );
 
 export default function reducer(state, action) {
@@ -43,8 +40,4 @@ export const selectActivatorsByCategoryData = createSelector(selectFeature, stat
 export const selectActivatorData = createSelector(
   selectFeature,
   ({ activatorData }) => activatorData || ({} as Activator)
-);
-export const selectActivatorMetaData = createSelector(
-  selectFeature,
-  ({ activatorMetaData }) => activatorMetaData || ({} as ActivatorMetadata)
 );

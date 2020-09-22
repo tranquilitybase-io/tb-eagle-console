@@ -4,27 +4,29 @@
 
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="variablesForm">
-    <ng-template matStepLabel>Step 1 (rename it)</ng-template>
+    <ng-template matStepLabel>Activator Variables</ng-template>
     <form [formGroup]="variablesForm">
       <div class="solution-details-container">
-        <mat-grid-list cols="2" rowHeight="100px">
-          <mat-grid-tile *ngFor="let variable of activatorMetadata.variables" class="tile">
-            <mat-form-field appearance="outline">
-              <mat-label>{{ unSlugify(variable.name) }}</mat-label>
-              <input
-                matInput
-                required
-                type="text"
-                maxlength="30"
-                placeholder=""
-                formControlName="{{ variable.name }}"
-              />
-            </mat-form-field>
-            <mat-error *ngIf="isFieldValid(variable.name)">Value is <strong>required</strong> </mat-error>
+        <mat-grid-list cols="2" rowHeight="130px">
+          <mat-grid-tile *ngFor="let variable of activatorData.activatorMetadata.variables" class="tile">
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>{{ unSlugify(variable.name) }}</mat-label>
+                <input
+                  matInput
+                  required
+                  type="text"
+                  maxlength="30"
+                  placeholder=""
+                  formControlName="{{ variable.name }}"
+                />
+              </mat-form-field>
+              <mat-error *ngIf="isFieldValid(variable.name)">Value is <strong>required</strong> </mat-error>
+            </p>
           </mat-grid-tile>
         </mat-grid-list>
         <div class="app-bottom-action right">
-          <button color="primary" mat-button matStepperNext (click)="onNext()">
+          <button color="primary" mat-button matStepperNext (click)="onStepOneNext()">
             Next
             <mat-icon>chevron_right</mat-icon>
           </button>
