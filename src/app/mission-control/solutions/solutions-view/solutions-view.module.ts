@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ApplicationsModule } from '@app/mission-control/applications/applications.module';
+import { TeamMembersModule } from '@app/administration/team-members/team-members.module';
 
 import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
 
@@ -26,7 +27,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { TeamMembersModule } from '@app/administration/team-members/team-members.module';
 
 const routes: Routes = [
   {
@@ -56,8 +56,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
-    ApplicationsModule,
     RouterModule.forChild(routes),
+    ApplicationsModule,
+    TeamMembersModule,
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
@@ -71,8 +72,7 @@ const routes: Routes = [
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatTooltipModule,
-    TeamMembersModule
+    MatTooltipModule
   ]
 })
 export class SolutionsViewModule {}
