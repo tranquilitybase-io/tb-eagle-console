@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 
+import { EffectsModule } from '@ngrx/effects';
+import { TeamMembersEffects } from './team-members.effects';
+
 import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
 import { TeamMembersGridCardComponent } from './team-members-grid-card/team-members-grid-card.component';
 import { TeamMembersGridComponent } from './team-members-grid/team-members-grid.component';
@@ -30,6 +33,7 @@ import { MatTableModule } from '@angular/material/table';
   imports: [
     CommonModule,
     SharedModule,
+    EffectsModule.forFeature([TeamMembersEffects]),
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
