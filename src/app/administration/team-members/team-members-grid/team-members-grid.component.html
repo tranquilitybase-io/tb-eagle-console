@@ -3,7 +3,12 @@
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Development" />
   </mat-form-field>
-  <button *ngIf="isAddTeamMemberButtonVisible" class="action-button" mat-button [disabled]="!isUserTeamAdmin">
+  <button
+    class="action-button"
+    mat-button
+    [disabled]="!isUserTeamAdmin && !(userIsAdmin$ | async)"
+    (click)="addNewTeamMember()"
+  >
     Add New Team Member
   </button>
 </div>
