@@ -70,12 +70,6 @@
       <span class="count">({{ activatorsCount$ | async }})</span>
     </button>
   </div>
-  <div class="flex-filler" *ngIf="isCategorySwitchSelected$ | async"></div>
-  <app-pills
-    [pills]="['Type', 'Availability', 'Environment']"
-    class="separated"
-    *ngIf="!(isCategorySwitchSelected$ | async)"
-  ></app-pills>
   <app-grid-view-switch
     *ngIf="!(isCategorySwitchSelected$ | async)"
     [gridViewName]="gridViewOptionsName"
