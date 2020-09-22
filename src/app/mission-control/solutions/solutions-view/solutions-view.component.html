@@ -66,7 +66,11 @@
   </mat-tab>
   <mat-tab label="Team members">
     <div class="tab-content">
-      <app-team-members-grid *ngIf="teamMembers$ !== undefined" [_teamMembers]="teamMembers$"></app-team-members-grid>
+      <app-team-members-grid
+        *ngIf="teamMembers$ !== undefined"
+        [_teamMembers]="teamMembers$"
+        [isAddTeamMemberButtonVisible]="false"
+      ></app-team-members-grid>
     </div>
   </mat-tab>
 </mat-tab-group>

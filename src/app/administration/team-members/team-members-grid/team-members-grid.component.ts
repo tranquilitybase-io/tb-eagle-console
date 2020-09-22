@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./team-members-grid.component.scss']
 })
 export class TeamMembersGridComponent implements OnInit {
+  @Input() isAddTeamMemberButtonVisible: boolean = true;
   @Input() _teamMembers?: Observable<TeamMember[]>;
   displayedColumns: string[] = ['id', 'isActive', 'isTeamAdmin', 'userInfo'];
   dataSource: MatTableDataSource<{}>;
