@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeamMember } from '../team-members.model';
 import { MatPaginator } from '@angular/material/paginator';
@@ -14,6 +14,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./team-members-grid.component.scss']
 })
 export class TeamMembersGridComponent implements OnInit {
+  @Input() isAddTeamMemberButtonVisible: boolean = true;
+  @Input() _teamMembers?: Observable<TeamMember[]>;
   displayedColumns: string[] = ['id', 'isActive', 'isTeamAdmin', 'userInfo'];
   dataSource: MatTableDataSource<{}>;
   isUserTeamAdmin = false;
@@ -25,8 +27,18 @@ export class TeamMembersGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    const teamMembers = this.route.snapshot.data['teamMembers'] as TeamMember[];
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    if (this._teamMembers === undefined) {
+      const teamMembers = this.route.snapshot.data['teamMembers'] as TeamMember[];
+      this.initTeamsGrid(teamMembers);
+    } else {
+      this._teamMembers.subscribe(teamMembers => {
+        this.initTeamsGrid(teamMembers);
+      });
+    }
+  }
+
+  initTeamsGrid(teamMembers: TeamMember[]) {
     const teamMembersDataSource = teamMembers.map(tm => ({
       ...tm,
       roleInfo: '',
