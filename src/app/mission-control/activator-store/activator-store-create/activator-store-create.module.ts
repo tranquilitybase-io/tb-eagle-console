@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -17,11 +16,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { ContinuousDeploymentResolver } from '@app/shared/resolvers/continuous-deployment.resolver';
+import { ContinuousIntegrationResolver } from '@app/shared/resolvers/continuous-integration.resolver';
+import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver';
+import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: ActivatorStoreCreateComponent
+    component: ActivatorStoreCreateComponent,
+    resolve: {
+      cdList: ContinuousDeploymentResolver,
+      ciList: ContinuousIntegrationResolver,
+      environmentList: EnvironmentResolver,
+      sourceControlList: SourceControlResolver
+    }
   }
 ];
 
@@ -38,7 +47,11 @@ const routes: Routes = [
     MatInputModule,
     MatIconModule,
     MatGridListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    MatListModule,
+    MatDividerModule,
+    MatCardModule
   ]
 })
 export class ActivatorStoreCreateModule {}

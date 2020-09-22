@@ -34,9 +34,70 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="variablesForm">
-    <ng-template matStepLabel>Step 2 (rename it)</ng-template>
-    <form [formGroup]="variablesForm">
+
+  <mat-step [stepControl]="workspaceForm">
+    <ng-template matStepLabel>Workspace</ng-template>
+    <form [formGroup]="workspaceForm">
+      <div class="solution-workspace-container">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>CI (Continuous intergration service)</mat-label>
+            <mat-select required formControlName="ciId">
+              <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.ciId.errors?.required">
+              Continuous integration service is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Source Control</mat-label>
+            <mat-select required formControlName="sourceControlId">
+              <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.sourceControlId.errors?.required">
+              Source control is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>CD (Continuous deployment)</mat-label>
+            <mat-select required formControlName="cdId">
+              <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.cdId.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-card>
+            <span class="mat-subheading-1">Available environments</span>
+            <mat-divider></mat-divider>
+            <mat-selection-list formControlName="environments">
+              <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
+                {{ item.value }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card>
+        </p>
+
+        <div class="app-bottom-action left">
+          <button mat-button color="primary" matStepperPrevious>
+            <mat-icon>chevron_left</mat-icon>
+            Back
+          </button>
+        </div>
+        <div class="app-bottom-action right">
+          <button mat-button color="primary" matStepperNext (click)="onStepTwoNext()">
+            Next
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Review</ng-template>
+    <form>
       <div class="app-bottom-action right">
         <button mat-button color="primary" (click)="onSubmit()">
           Submit
