@@ -1,22 +1,40 @@
-<button class="cancel-btn" *ngIf="cancelActive">
-  <mat-icon class="app-cancel-icon">cancel</mat-icon>
-  Cancel
-</button>
-<div class="step" *ngFor="let step of steps; last as lastElement">
-  <div *ngIf="!step.link && !step.id; else link">
-    <p [ngStyle]="lastElement ? { 'font-weight': 'bold' } : {}" mat-menu-item>
-      {{ step.allCaps ? (step.name | uppercase) : (step.name | titlecase) }}
-    </p>
+<div *ngIf="visibleBreadcrumbsStartIndex !== 0">
+  <div class="arrow">
+    <button mat-button [matMenuTriggerFor]="breadcrumbsMenu">
+      <mat-icon>more_horiz</mat-icon>
+    </button>
   </div>
+  <mat-menu #breadcrumbsMenu="matMenu">
+    <div *ngFor="let step of steps | slice: 0:visibleBreadcrumbsStartIndex">
+      <button mat-menu-item *ngIf="!step.link && !step.id; else link">
+        {{ step.name }}
+      </button>
+
+      <ng-template #link>
+        <a mat-menu-item routerLink="{{ '//' + step.link }}" [queryParams]="{ id: step.id }">
+          {{ step.name }}
+        </a>
+      </ng-template>
+    </div>
+  </mat-menu>
+</div>
+
+<div
+  class="step"
+  *ngFor="let step of steps | slice: visibleBreadcrumbsStartIndex; last as lastElement; first as firstElement"
+>
+  <button *ngIf="!step.link && !step.id; else link" mat-button [ngStyle]="lastElement ? { 'font-weight': 'bold' } : {}">
+    {{ step.name }}
+  </button>
 
   <ng-template #link>
     <a
       [ngStyle]="lastElement ? { 'font-weight': 'bold' } : {}"
-      mat-menu-item
+      mat-button
       routerLink="{{ '//' + step.link }}"
       [queryParams]="{ id: step.id }"
     >
-      {{ step.allCaps ? (step.name | uppercase) : (step.name | titlecase) }}
+      {{ step.name }}
     </a>
   </ng-template>
 </div>

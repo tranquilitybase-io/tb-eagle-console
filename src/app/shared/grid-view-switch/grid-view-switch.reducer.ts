@@ -31,6 +31,14 @@ const initialState: GridViewSwitchState = {
     {
       viewName: GridViewSwitchViewsNames.solutionsView,
       option: GridViewSwitchOptionsEnum.grid
+    },
+    {
+      viewName: GridViewSwitchViewsNames.applicationDeployments,
+      option: GridViewSwitchOptionsEnum.row
+    },
+    {
+      viewName: GridViewSwitchViewsNames.teamMembers,
+      option: GridViewSwitchOptionsEnum.row
     }
   ]
 };

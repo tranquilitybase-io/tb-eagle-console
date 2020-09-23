@@ -128,6 +128,10 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     this.store.dispatch(requestAccess({ id: _id }));
   }
 
+  actionNeeded(activator: Activator): boolean {
+    if (activator.accessRequestedBy) return true;
+  }
+
   createNewActivator() {
     this.dialog.open(ActivatorStoreDialogCreateComponent, {
       autoFocus: false

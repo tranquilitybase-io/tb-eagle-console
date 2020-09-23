@@ -21,47 +21,71 @@
 
   <mat-card-content *ngIf="!isDeploymentInProgress">
     <div class="mat-body-strong">Details</div>
-    <mat-list dense class="description-list">
-      <mat-list-item>
-        <div class="mat-body">ID</div>
-        <mat-chip-list>
-          <mat-chip>{{ solution.id }}</mat-chip>
-        </mat-chip-list>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="mat-body">Deployment state</div>
-        <mat-chip
-          *ngIf="solution.deploymentState; else notDeployed"
-          class="mat-standard-chip"
-          [color]="deploymentStateColor"
-          selected
-          >{{ solution.deploymentState | titlecase }}</mat-chip
+    <mat-grid-list
+      [cols]="(layout$ | async).gridCols > 3 ? 1 : 2"
+      [rowHeight]="(layout$ | async).gridCols > 3 ? '30px' : '50px'"
+      class="description-list"
+    >
+      <mat-grid-tile>
+        <div
+          [ngClass]="{ 'column-detail': (layout$ | async).gridCols <= 3, 'row-detail': (layout$ | async).gridCols > 3 }"
         >
-        <ng-template #notDeployed>
-          <mat-chip>
-            Not Deployed
-          </mat-chip>
-        </ng-template>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="mat-body">Applications</div>
-        <mat-chip-list>
-          <mat-chip>{{ solution.applications.length }}</mat-chip>
-        </mat-chip-list>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="mat-body">Team</div>
-        <mat-chip-list>
-          <mat-chip>{{ solution.team ? solution.team.name : 'N/A' }}</mat-chip>
-        </mat-chip-list>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="mat-body">Last updated</div>
-        <mat-chip-list>
-          <mat-chip>{{ solution.lastUpdated | date }}</mat-chip>
-        </mat-chip-list>
-      </mat-list-item>
-    </mat-list>
+          <div class="mat-body">ID</div>
+          <mat-chip-list>
+            <mat-chip>{{ solution.id }}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div
+          [ngClass]="{ 'column-detail': (layout$ | async).gridCols <= 3, 'row-detail': (layout$ | async).gridCols > 3 }"
+        >
+          <div class="mat-body">Deployment state</div>
+          <mat-chip
+            *ngIf="solution.deploymentState; else notDeployed"
+            class="mat-standard-chip"
+            [color]="deploymentStateColor"
+            selected
+            >{{ solution.deploymentState | titlecase }}</mat-chip
+          >
+          <ng-template #notDeployed>
+            <mat-chip>
+              Not Deployed
+            </mat-chip>
+          </ng-template>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div
+          [ngClass]="{ 'column-detail': (layout$ | async).gridCols <= 3, 'row-detail': (layout$ | async).gridCols > 3 }"
+        >
+          <div class="mat-body">Applications</div>
+          <mat-chip-list>
+            <mat-chip>{{ solution.applications.length }}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div
+          [ngClass]="{ 'column-detail': (layout$ | async).gridCols <= 3, 'row-detail': (layout$ | async).gridCols > 3 }"
+        >
+          <div class="mat-body">Team</div>
+          <mat-chip-list>
+            <mat-chip>{{ solution.team ? solution.team.name : 'N/A' }}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div
+          [ngClass]="{ 'column-detail': (layout$ | async).gridCols <= 3, 'row-detail': (layout$ | async).gridCols > 3 }"
+        >
+          <div class="mat-body">Last updated</div>
+          <mat-chip-list>
+            <mat-chip>{{ solution.lastUpdated | date }}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-card-content>
 
   <mat-card-content *ngIf="isDeploymentInProgress" class="spinner">

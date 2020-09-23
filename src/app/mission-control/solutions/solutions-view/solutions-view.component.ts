@@ -17,6 +17,8 @@ import {
 import { Observable } from 'rxjs';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { map } from 'rxjs/operators';
+import { TeamMember } from '@app/administration/team-members/team-members.model';
+import { TeamMembersService } from '@app/administration/team-members/team-members.service';
 
 @Component({
   selector: 'app-solutions-view',
@@ -32,12 +34,15 @@ export class SolutionsViewComponent implements OnInit {
   private tabsIndexMap: Map<string, number>;
   selectedTabIndex: number = 0;
 
+  teamMembers$: Observable<TeamMember[]>;
+
   constructor(
     private solutionsService: SolutionsService,
     private store: Store<any>,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private teamMembersService: TeamMembersService
   ) {}
 
   ngOnInit() {
@@ -50,7 +55,8 @@ export class SolutionsViewComponent implements OnInit {
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
     this.tabsIndexMap = new Map([
       ['Overview', 0],
-      ['Activators', 1]
+      ['Activators', 1],
+      ['TeamMembers', 2]
     ]);
     this.selectedTabIndex = this.getTabIndex(this.route.snapshot.queryParamMap.get('tab'));
   }
@@ -59,6 +65,7 @@ export class SolutionsViewComponent implements OnInit {
     console.log(this.route.snapshot.queryParamMap.get('id'));
     this.solutionsService.getByKey(this.route.snapshot.queryParamMap.get('id')).subscribe(solution => {
       this.solution = solution;
+      this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
     });
   }
 

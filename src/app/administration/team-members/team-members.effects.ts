@@ -5,7 +5,7 @@ import { TeamMembersService } from './team-members.service';
 import { createTeamMember } from './team-members.actions';
 
 @Injectable()
-export class ApplicationsEffects {
+export class TeamMembersEffects {
   constructor(private actions$: Actions, private service: TeamMembersService) {}
 
   createTeamMember$ = createEffect(

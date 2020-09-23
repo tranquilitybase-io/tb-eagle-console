@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ApplicationsModule } from '@app/mission-control/applications/applications.module';
+import { TeamMembersModule } from '@app/administration/team-members/team-members.module';
 
 import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
 
@@ -55,8 +56,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
-    ApplicationsModule,
     RouterModule.forChild(routes),
+    ApplicationsModule,
+    TeamMembersModule,
     MatButtonModule,
     MatCardModule,
     MatChipsModule,

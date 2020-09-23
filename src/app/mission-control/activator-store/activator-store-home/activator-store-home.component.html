@@ -73,11 +73,6 @@
   <button mat-button class="action-button" (click)="createNewActivator()" *ngIf="userIsAdmin$ | async">
     + Add new Activator
   </button>
-  <app-pills
-    [pills]="['Type', 'Availability', 'Environment']"
-    class="separated"
-    *ngIf="!(isCategorySwitchSelected$ | async)"
-  ></app-pills>
   <app-grid-view-switch
     *ngIf="!(isCategorySwitchSelected$ | async)"
     [gridViewName]="gridViewOptionsName"

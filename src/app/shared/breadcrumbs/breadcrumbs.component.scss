@@ -1,33 +1,16 @@
 :host {
   display: flex;
   align-items: center;
-}
-
-.cancel-btn {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: var(--primary-color);
-  font-family: SF Pro Display;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
+  flex-wrap: wrap;
 }
 
 .step {
-  font-size: 1.25rem;
   display: flex;
   align-items: center;
-
-  &:first-of-type {
-    font-weight: 800;
-  }
 
   &:not(:first-of-type) {
     &::before {
       --arrow-width: 2px;
-
       content: '';
       display: block;
       transform: rotate(45deg);
@@ -38,18 +21,34 @@
       margin-right: 0.5rem;
     }
   }
-
-  a {
-    border-radius: 4px;
-  }
 }
 
-p {
-  margin-block-start: 0;
-  margin-block-end: 0;
+a,
+button {
   border-radius: 4px;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 0 8px;
+  min-width: auto;
 }
 
 .badge {
   margin: 0 0.5rem;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+
+  &::after {
+    --arrow-width: 2px;
+
+    display: block;
+    transform: rotate(45deg);
+    width: 0.5em;
+    height: 0.5em;
+    border-top: var(--arrow-width) solid var(--primary-color);
+    border-right: var(--arrow-width) solid var(--primary-color);
+    margin-right: 0.5rem;
+  }
 }

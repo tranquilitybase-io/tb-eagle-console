@@ -1,5 +1,5 @@
 <header>
-  <app-breadcrumbs [title]="'View User'"> </app-breadcrumbs>
+  <app-breadcrumbs> </app-breadcrumbs>
 </header>
 
 <mat-card class="user-view-card">
@@ -26,6 +26,12 @@
         <div class="mat-body-1">E-mail address</div>
         <mat-chip-list>
           <mat-chip>{{ user.email }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item *ngIf="user.teamMembers">
+        <div class="mat-body-1">Teams</div>
+        <mat-chip-list *ngFor="let teamMember of user.teamMembers">
+          <mat-chip>{{ teamMember.team.name }}</mat-chip>
         </mat-chip-list>
       </mat-list-item>
     </mat-list>

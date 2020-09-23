@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '@app/login/login.model';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../users.model';
 
 @Component({
   selector: 'app-users-view',

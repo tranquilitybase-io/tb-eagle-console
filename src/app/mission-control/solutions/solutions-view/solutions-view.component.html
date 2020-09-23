@@ -1,5 +1,16 @@
 <header>
-  <app-breadcrumbs [title]="solution.name" [badgeText]="solution.isActive ? 'Active' : ''"> </app-breadcrumbs>
+  <app-breadcrumbs
+    [steps]="[
+      {
+        name: 'Solutions',
+        link: '/mission-control/solutions'
+      },
+      {
+        name: solution.name
+      }
+    ]"
+    [badgeText]="solution.isActive ? 'Active' : ''"
+  ></app-breadcrumbs>
   <div class="solution-actions">
     <mat-chip *ngIf="solution.deploymentState; else notDeployedChip" [color]="deploymentStateColor" selected>{{
       getDeploymentMessage
@@ -51,6 +62,15 @@
       <ng-template #listview>
         <app-solutions-view-applications [solution]="solution"></app-solutions-view-applications>
       </ng-template>
+    </div>
+  </mat-tab>
+  <mat-tab label="Team members">
+    <div class="tab-content">
+      <app-team-members-grid
+        *ngIf="teamMembers$ !== undefined"
+        [_teamMembers]="teamMembers$"
+        [isAddTeamMemberButtonVisible]="false"
+      ></app-team-members-grid>
     </div>
   </mat-tab>
 </mat-tab-group>
