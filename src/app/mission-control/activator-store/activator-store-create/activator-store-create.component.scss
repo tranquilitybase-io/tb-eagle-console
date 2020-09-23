@@ -5,15 +5,18 @@ header {
   align-items: center;
 }
 
-.mat-grid-tile {
-}
-
 .mat-form-field {
   width: 100%;
 }
 
-.solution-details-container {
-  p {
-    width: 80%;
+p {
+  width: 100%;
+  .mat-form-field {
+    width: 100%;
+
+    &.half-width {
+      width: 45%;
+      margin-right: 2rem;
+    }
   }
 }
