@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Activator } from './../activator-store.model';
@@ -13,6 +15,8 @@ import { updateActivator } from '../activator-store.actions';
   styleUrls: ['./activator-store-create.component.scss']
 })
 export class ActivatorStoreCreateComponent implements OnInit {
+  isRegionEdit = false;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   variablesForm: FormGroup;
   workspaceForm: FormGroup;
 
@@ -22,6 +26,7 @@ export class ActivatorStoreCreateComponent implements OnInit {
   ciList: KeyValue<number, string>[];
   environmentList: KeyValue<number, string>[];
   sourceControlList: KeyValue<number, string>[];
+  businessUnitList: KeyValue<string, string>[];
 
   constructor(private store: Store<any>, private formBuilder: FormBuilder, private route: ActivatedRoute) {
     this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
@@ -40,12 +45,15 @@ export class ActivatorStoreCreateComponent implements OnInit {
     this.ciList = this.route.snapshot.data['ciList'];
     this.sourceControlList = this.route.snapshot.data['sourceControlList'];
     this.environmentList = this.route.snapshot.data['environmentList'];
+    this.businessUnitList = this.route.snapshot.data['businessUnitList'];
 
     this.workspaceForm = this.formBuilder.group({
       ciId: ['', Validators.required],
       cdId: ['', Validators.required],
       sourceControlId: ['', Validators.required],
-      environments: [[]]
+      environments: [[], Validators.required],
+      businessUnitId: ['', Validators.required],
+      regions: [[]]
     });
   }
 
@@ -68,11 +76,7 @@ export class ActivatorStoreCreateComponent implements OnInit {
 
   onStepOneNext() {
     if (this.variablesForm.valid) {
-      let activator = { ...this.activatorData };
-      activator.activatorMetadata.variables.forEach(variable => {
-        variable.value = this.variablesForm.value[variable.name];
-      });
-      this.store.dispatch(updateActivator({ activatorData: activator }));
+      // this.store.dispatch(updateActivator({ activatorData: activator }));
     } else {
       this.variablesForm.markAllAsTouched();
     }
@@ -80,12 +84,46 @@ export class ActivatorStoreCreateComponent implements OnInit {
 
   onStepTwoNext() {
     if (this.workspaceForm.valid) {
-      let activator = { ...this.activatorData };
-      this.store.dispatch(updateActivator({ activatorData: activator }));
+      this.store.dispatch(updateActivator({ activatorData: this.parseActivatorFormsValuesToSend() }));
     } else {
       this.workspaceForm.markAllAsTouched();
     }
   }
 
+  private parseActivatorFormsValuesToSend(): Activator {
+    let activator = { ...this.activatorData };
+    activator.activatorMetadata.variables.forEach(variable => {
+      variable.value = this.variablesForm.value[variable.name];
+    });
+    activator.cd = [this.workspaceForm.value.cdId];
+    activator.ci = [this.workspaceForm.value.ciId];
+    activator.sourceControlId = this.workspaceForm.value.sourceControlId;
+    activator.envs = this.workspaceForm.value.environments;
+    activator.businessUnitId = this.workspaceForm.value.businessUnitId;
+    activator.regions = this.workspaceForm.value.regions;
+    return activator;
+  }
+
   onSubmit() {}
+
+  removeRegion(region: string): void {
+    const index = this.workspaceForm.controls.regions.value.indexOf(region);
+    if (index >= 0) {
+      this.workspaceForm.controls.regions.value.splice(index, 1);
+    }
+  }
+
+  addRegion(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.workspaceForm.controls.regions.value.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
 }

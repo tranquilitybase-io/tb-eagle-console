@@ -20,6 +20,8 @@ import { ContinuousDeploymentResolver } from '@app/shared/resolvers/continuous-d
 import { ContinuousIntegrationResolver } from '@app/shared/resolvers/continuous-integration.resolver';
 import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver';
 import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
+import { BusinessUnitResolver } from '@app/shared/resolvers/business-unit.resolver';
+import { MatChipsModule } from '@angular/material/chips';
 
 const routes: Routes = [
   {
@@ -29,7 +31,8 @@ const routes: Routes = [
       cdList: ContinuousDeploymentResolver,
       ciList: ContinuousIntegrationResolver,
       environmentList: EnvironmentResolver,
-      sourceControlList: SourceControlResolver
+      sourceControlList: SourceControlResolver,
+      businessUnitList: BusinessUnitResolver
     }
   }
 ];
@@ -51,7 +54,8 @@ const routes: Routes = [
     MatSelectModule,
     MatListModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatChipsModule
   ]
 })
 export class ActivatorStoreCreateModule {}

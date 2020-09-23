@@ -79,6 +79,46 @@
           </mat-card>
         </p>
 
+        <p>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>Business unit</mat-label>
+            <mat-select required formControlName="businessUnitId">
+              <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.businessUnitId.errors?.required">
+              Business unit is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <mat-chip-list #chipList aria-label="Supported regions">
+              <mat-chip
+                *ngFor="let region of w.regions.value"
+                color="accent"
+                selectable="true"
+                [removable]="true"
+                (removed)="removeRegion(region)"
+              >
+                {{ region }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="List of Available Environments"
+                maxlength="30"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="addRegion($event)"
+              />
+              <mat-error *ngIf="w.regions.errors?.required">
+                At least one region is <strong>required</strong>
+              </mat-error>
+            </mat-chip-list>
+          </mat-form-field>
+        </p>
+
         <div class="app-bottom-action left">
           <button mat-button color="primary" matStepperPrevious>
             <mat-icon>chevron_left</mat-icon>
