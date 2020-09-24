@@ -9,8 +9,7 @@ import { Store, select } from '@ngrx/store';
 import { setActivatorsCount } from '../../activator-store.actions';
 import { selectActivatorsByCategoryData } from '../../activator-store.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
+
 @Component({
   selector: 'app-activator-store-home-grid',
   templateUrl: './activator-store-home-grid.component.html',
@@ -25,8 +24,7 @@ export class ActivatorStoreHomeGridComponent implements OnInit {
     private layoutService: LayoutService,
     private activatorStoreService: ActivatorStoreService,
     private route: ActivatedRoute,
-    private store: Store<any>,
-    private dialog: MatDialog
+    private store: Store<any>
   ) {
     this.layout$ = this.layoutService.layoutObserver$;
   }
@@ -38,11 +36,5 @@ export class ActivatorStoreHomeGridComponent implements OnInit {
     });
     this.activators$ = this.store.select(selectActivatorsByCategoryData);
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
-  }
-
-  createNewActivator() {
-    this.dialog.open(ActivatorStoreDialogCreateComponent, {
-      autoFocus: false
-    });
   }
 }

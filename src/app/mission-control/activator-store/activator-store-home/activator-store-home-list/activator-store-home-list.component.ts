@@ -12,7 +12,6 @@ import { selectActivatorsByCategoryData } from '../../activator-store.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { ActivatorStoreDialogGrantAccessComponent } from '../../activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
 import { KeyValue } from '@angular/common';
-import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
 
 @Component({
   selector: 'app-activator-store-home-list',
@@ -130,11 +129,5 @@ export class ActivatorStoreHomeListComponent implements OnInit {
 
   actionNeeded(activator: Activator): boolean {
     if (activator.accessRequestedBy) return true;
-  }
-
-  createNewActivator() {
-    this.dialog.open(ActivatorStoreDialogCreateComponent, {
-      autoFocus: false
-    });
   }
 }
