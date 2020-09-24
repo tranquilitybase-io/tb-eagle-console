@@ -21,6 +21,7 @@ import { EnvironmentResolver } from '@app/shared/resolvers/environment.resolver'
 import { SourceControlResolver } from '@app/shared/resolvers/source-control.resolver';
 import { BusinessUnitResolver } from '@app/shared/resolvers/business-unit.resolver';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const routes: Routes = [
   {
@@ -53,7 +54,8 @@ const routes: Routes = [
     MatListModule,
     MatDividerModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatGridListModule
   ]
 })
 export class ActivatorStoreCreateModule {}

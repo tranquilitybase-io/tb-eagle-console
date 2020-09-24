@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Activator } from './../activator-store.model';
@@ -28,7 +28,12 @@ export class ActivatorStoreCreateComponent implements OnInit {
   sourceControlList: KeyValue<number, string>[];
   businessUnitList: KeyValue<string, string>[];
 
-  constructor(private store: Store<any>, private formBuilder: FormBuilder, private route: ActivatedRoute) {
+  constructor(
+    private store: Store<any>,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
       this.activatorData = activatorData;
     });
@@ -65,6 +70,10 @@ export class ActivatorStoreCreateComponent implements OnInit {
     return this.workspaceForm.controls;
   }
 
+  /*
+   * Variables step functions
+   */
+
   isFieldValid(field: string) {
     return this.variablesForm.get(field).touched && !this.variablesForm.get(field).valid;
   }
@@ -82,29 +91,9 @@ export class ActivatorStoreCreateComponent implements OnInit {
     }
   }
 
-  onStepTwoNext() {
-    if (this.workspaceForm.valid) {
-      this.store.dispatch(updateActivator({ activatorData: this.parseActivatorFormsValuesToSend() }));
-    } else {
-      this.workspaceForm.markAllAsTouched();
-    }
-  }
-
-  private parseActivatorFormsValuesToSend(): Activator {
-    let activator = { ...this.activatorData };
-    activator.activatorMetadata.variables.forEach(variable => {
-      variable.value = this.variablesForm.value[variable.name];
-    });
-    activator.cd = [this.workspaceForm.value.cdId];
-    activator.ci = [this.workspaceForm.value.ciId];
-    activator.sourceControlId = this.workspaceForm.value.sourceControlId;
-    activator.envs = this.workspaceForm.value.environments;
-    activator.businessUnitId = this.workspaceForm.value.businessUnitId;
-    activator.regions = this.workspaceForm.value.regions;
-    return activator;
-  }
-
-  onSubmit() {}
+  /*
+   * Workspace step functions
+   */
 
   removeRegion(region: string): void {
     const index = this.workspaceForm.controls.regions.value.indexOf(region);
@@ -125,5 +114,35 @@ export class ActivatorStoreCreateComponent implements OnInit {
     if (input) {
       input.value = '';
     }
+  }
+
+  private parseActivatorFormsValuesToSend(): Activator {
+    let activator = { ...this.activatorData };
+    activator.activatorMetadata.variables.forEach(variable => {
+      variable.value = this.variablesForm.value[variable.name];
+    });
+    activator.cd = [this.workspaceForm.value.cdId];
+    activator.ci = [this.workspaceForm.value.ciId];
+    activator.sourceControlId = this.workspaceForm.value.sourceControlId;
+    activator.envs = this.workspaceForm.value.environments;
+    activator.businessUnitId = this.workspaceForm.value.businessUnitId;
+    activator.regions = this.workspaceForm.value.regions;
+    return activator;
+  }
+
+  onStepTwoNext() {
+    if (this.workspaceForm.valid) {
+      this.store.dispatch(updateActivator({ activatorData: this.parseActivatorFormsValuesToSend() }));
+    } else {
+      this.workspaceForm.markAllAsTouched();
+    }
+  }
+
+  /*
+   * Review step functions
+   */
+
+  onSubmit() {
+    this.router.navigate(['/mission-control/activator-store', { queryParams: { categorySwitch: 'All' } }]);
   }
 }

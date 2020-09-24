@@ -59,7 +59,18 @@ const routes: Routes = [
       {
         path: 'create',
         loadChildren: () =>
-          import('./activator-store-create/activator-store-create.module').then(m => m.ActivatorStoreCreateModule)
+          import('./activator-store-create/activator-store-create.module').then(m => m.ActivatorStoreCreateModule),
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Activator Store',
+              link: '/mission-control/activator-store'
+            },
+            {
+              name: 'Create'
+            }
+          ]
+        }
       }
     ]
   }
