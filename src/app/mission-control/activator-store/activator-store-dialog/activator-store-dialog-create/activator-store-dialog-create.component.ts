@@ -1,8 +1,14 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
 import { createActivatorByURL } from '../../activator-store.actions';
+import { selectActivatorDataStatus, Loadable } from '../../activator-store.reducer';
+import { MatSnackBar } from '@angular/material';
+import { ActivatorCreateSuccessComponent } from '@app/shared/snack-bar/activator-create-success/activator-create-success.component';
+import { ActivatorCreateErrorComponent } from '@app/shared/snack-bar/activator-create-error/activator-create-error.component';
+
 @Component({
   selector: 'app-activator-store-dialog-grant-access',
   templateUrl: './activator-store-dialog-create.component.html',
@@ -10,21 +16,26 @@ import { createActivatorByURL } from '../../activator-store.actions';
 })
 export class ActivatorStoreDialogCreateComponent implements OnInit {
   createActivatorForm: FormGroup;
+  createActivatorStatus$: Observable<Loadable>;
 
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<any>,
-    private dialogRef: MatDialogRef<ActivatorStoreDialogCreateComponent>
+    private dialogRef: MatDialogRef<ActivatorStoreDialogCreateComponent>,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
+    this.createActivatorStatus$ = this.store.pipe(select(selectActivatorDataStatus));
+    this.createActivatorStatus$.subscribe(status => {
+      this.handleStatus(status);
+    });
     this.createActivatorForm = this.formBuilder.group({
       url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
     });
   }
 
   createActivator() {
-    console.log(this.createActivatorForm);
     if (this.createActivatorForm.valid) {
       this.store.dispatch(createActivatorByURL({ url: this.createActivatorForm.value.url }));
     } else {
@@ -34,5 +45,13 @@ export class ActivatorStoreDialogCreateComponent implements OnInit {
 
   cancel() {
     this.dialogRef.close();
+  }
+
+  handleStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ActivatorCreateSuccessComponent, { duration: 3000 });
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ActivatorCreateErrorComponent, { duration: 3000 });
+    }
   }
 }
