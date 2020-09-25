@@ -5,7 +5,13 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { setActivatorsByCategoryData, setActivatorsCount, storeActivatorData } from './activator-store.actions';
+import {
+  setActivatorsByCategoryData,
+  setActivatorsCount,
+  storeActivatorData,
+  createActivatorByURLSuccess,
+  createActivatorByURLError
+} from './activator-store.actions';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
@@ -119,9 +125,21 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       );
   }
 
+  private createActivatorByURLSuccess = (activatorData: Activator) => {
+    this.store.dispatch(createActivatorByURLSuccess({ activatorData }));
+    console.log('POST call successful value returned in body', activatorData);
+  };
+
+  private createActivatorByURLError = error => {
+    this.store.dispatch(createActivatorByURLError({ error }));
+    console.log('POST call in error', error);
+  };
+
   createActivatorByURL(repoURL: string): void {
     const url = `${this.BASE_URL}/activatorByURL/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, { url: repoURL }, { headers }).subscribe(this.postSuccess, this.postError, this.postCompleted);
+    this.http
+      .post(url, { url: repoURL }, { headers })
+      .subscribe(this.createActivatorByURLSuccess, this.createActivatorByURLError, this.postCompleted);
   }
 }

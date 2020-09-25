@@ -33,3 +33,11 @@ export const storeActivatorData = createAction(
 );
 
 export const createActivatorByURL = createAction('[ActivatorStore] createActivatorByURL', props<{ url: string }>());
+export const createActivatorByURLSuccess = createAction(
+  '[ActivatorStore] createActivatorByURLSuccess',
+  props<{ activatorData: Activator }>()
+);
+export const createActivatorByURLError = createAction(
+  '[ActivatorStore] createActivatorByURLError',
+  props<{ error: any }>()
+);
