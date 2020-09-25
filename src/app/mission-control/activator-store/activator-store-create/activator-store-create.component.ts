@@ -127,6 +127,8 @@ export class ActivatorStoreCreateComponent implements OnInit {
     activator.envs = this.workspaceForm.value.environments;
     activator.businessUnitId = this.workspaceForm.value.businessUnitId;
     activator.regions = this.workspaceForm.value.regions;
+    // PUT status =  "AVAILABLE" is temporary solution
+    activator.status = 'Available';
     return activator;
   }
 
@@ -143,6 +145,7 @@ export class ActivatorStoreCreateComponent implements OnInit {
    */
 
   onSubmit() {
-    this.router.navigate(['/mission-control/activator-store', { queryParams: { categorySwitch: 'All' } }]);
+    // Call SUBMIT API endpoint and redirect to activator
+    // this.router.navigate(['/mission-control/activator-store/view', { queryParams: { id: this.activatorData.id } }]);
   }
 }
