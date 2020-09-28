@@ -11,6 +11,7 @@ header {
 
 p {
   width: 100%;
+
   .mat-form-field {
     width: 100%;
 
@@ -56,16 +57,13 @@ p {
   cursor: default;
   min-height: 32px;
   height: 1px;
-
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   transform: translateZ(0);
-
   font-size: 14px;
   font-weight: 500;
-
   margin: 4px;
 }
 
