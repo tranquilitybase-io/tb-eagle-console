@@ -12,7 +12,7 @@ import {
   createActivatorByURLSuccess,
   createActivatorByURLError
 } from './activator-store.actions';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,8 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   constructor(
     private route: ActivatedRoute,
     serviceElementsFactory: EntityCollectionServiceElementsFactory,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     super('Activator', serviceElementsFactory);
   }
@@ -141,5 +142,20 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     this.http
       .post(url, { url: repoURL }, { headers })
       .subscribe(this.createActivatorByURLSuccess, this.createActivatorByURLError, this.postCompleted);
+  }
+
+  private putSuccess = (activatorData: Activator) => {
+    this.store.dispatch(storeActivatorData({ activatorData }));
+    console.log('PUT call successful value returned in body', activatorData);
+  };
+
+  private putError = err => {
+    console.log('PUT call in error', err);
+  };
+
+  updateActivator(activatorData: Activator): void {
+    const url = `${this.BASE_URL}/activator/${activatorData.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.put(url, activatorData, { headers }).subscribe(this.putSuccess, this.putError);
   }
 }

@@ -16,6 +16,9 @@ import {
   GridViewSwitchOptionsEnum
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
+import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
+import { MatDialog } from '@angular/material';
+import { selectUserIsAdmin } from '@app/login/login.reducer';
 
 @Component({
   selector: 'app-activator-store-home',
@@ -36,7 +39,14 @@ export class ActivatorStoreHomeComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.activatorStore;
   currentGridViewOption$: Observable<GridViewSwitchModel>;
 
-  constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
+  userIsAdmin$: Observable<boolean>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private store: Store<any>,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(setProgress({ step: 0 }));
@@ -51,6 +61,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
     this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
     this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
 
   onSwitch(categorySwitch: string) {
@@ -64,6 +75,12 @@ export class ActivatorStoreHomeComponent implements OnInit {
   cancel() {
     this.store.dispatch(discardSelectedSolution());
     this.router.navigateByUrl('/mission-control/solutions');
+  }
+
+  createNewActivator() {
+    this.dialog.open(ActivatorStoreDialogCreateComponent, {
+      autoFocus: false
+    });
   }
 
   get isGridViewEnabled$(): Observable<boolean> {

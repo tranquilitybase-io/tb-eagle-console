@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { createActivatorByURL } from '../../activator-store.actions';
-import { selectActivatorDataStatus, Loadable } from '../../activator-store.reducer';
+import { selectActivatorData, selectActivatorDataStatus, Loadable } from '../../activator-store.reducer';
 import { MatSnackBar } from '@angular/material';
 import { ActivatorCreateSuccessComponent } from '@app/shared/snack-bar/activator-create-success/activator-create-success.component';
 import { ActivatorCreateErrorComponent } from '@app/shared/snack-bar/activator-create-error/activator-create-error.component';
@@ -17,13 +17,25 @@ import { ActivatorCreateErrorComponent } from '@app/shared/snack-bar/activator-c
 export class ActivatorStoreDialogCreateComponent implements OnInit {
   createActivatorForm: FormGroup;
   createActivatorStatus$: Observable<Loadable>;
+  activatorId = 0;
+  wasOpened = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<any>,
     private dialogRef: MatDialogRef<ActivatorStoreDialogCreateComponent>,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+    this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
+      if (!this.wasOpened) {
+        this.activatorId = activatorData.id;
+        this.wasOpened = true;
+      }
+      if (activatorData.id && this.activatorId !== activatorData.id) {
+        this.dialogRef.close();
+      }
+    });
+  }
 
   ngOnInit() {
     this.createActivatorStatus$ = this.store.pipe(select(selectActivatorDataStatus));
@@ -40,6 +52,12 @@ export class ActivatorStoreDialogCreateComponent implements OnInit {
       this.store.dispatch(createActivatorByURL({ url: this.createActivatorForm.value.url }));
     } else {
       this.createActivatorForm.markAllAsTouched();
+    }
+  }
+
+  closeDialogOnSuccess(activatorMetadata) {
+    if (Object.keys(activatorMetadata).length) {
+      this.dialogRef.close();
     }
   }
 

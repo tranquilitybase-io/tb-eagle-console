@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Activator } from './activator-store.model';
+import { Activator, ActivatorMetadata } from './activator-store.model';
 
 export const setCategoriesCount = createAction(
   '[ActivatorStore] set-categories-count',
@@ -41,3 +41,5 @@ export const createActivatorByURLError = createAction(
   '[ActivatorStore] createActivatorByURLError',
   props<{ error: any }>()
 );
+
+export const updateActivator = createAction('[ActivatorStore] updateActivator', props<{ activatorData: Activator }>());

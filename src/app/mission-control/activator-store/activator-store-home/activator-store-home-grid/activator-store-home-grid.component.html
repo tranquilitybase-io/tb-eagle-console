@@ -3,12 +3,6 @@
   [rowHeight]="(layout$ | async).activatorGridItemHeight"
   gutterSize="24px"
 >
-  <mat-grid-tile colspan="1" rowspan="1" *ngIf="userIsAdmin$ | async">
-    <button mat-button class="create-new-button" color="primary" (click)="createNewActivator()">
-      <mat-icon>add</mat-icon>Add new Activator
-    </button>
-  </mat-grid-tile>
-
   <mat-grid-tile *ngFor="let activator of activators$ | async" colspan="1" rowspan="1">
     <app-activator-store-home-grid-card
       class="activator-grid-card"

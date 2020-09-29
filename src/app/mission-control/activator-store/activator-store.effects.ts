@@ -8,7 +8,8 @@ import {
   denyAccess,
   grantAccess,
   requestAccess,
-  createActivatorByURL
+  createActivatorByURL,
+  updateActivator
 } from './activator-store.actions';
 import { Store, select } from '@ngrx/store';
 import { selectUser } from '@app/login/login.reducer';
@@ -73,6 +74,15 @@ export class ActivatorStoreEffects {
       this.actions$.pipe(
         ofType(createActivatorByURL),
         tap(({ url }) => this.service.createActivatorByURL(url))
+      ),
+    { dispatch: false }
+  );
+
+  updateActivator$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateActivator),
+        tap(({ activatorData }) => this.service.updateActivator(activatorData))
       ),
     { dispatch: false }
   );
