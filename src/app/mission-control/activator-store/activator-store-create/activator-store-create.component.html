@@ -78,8 +78,8 @@
               <mat-chip
                 *ngFor="let region of w.regions.value"
                 color="accent"
-                selectable="true"
-                [removable]="true"
+                selectable="false"
+                [removable]="false"
                 (removed)="removeRegion(region)"
               >
                 {{ region }}
@@ -87,6 +87,7 @@
               </mat-chip>
               <input
                 placeholder="UK, DB"
+                disabled="true"
                 maxlength="30"
                 [matChipInputFor]="chipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"

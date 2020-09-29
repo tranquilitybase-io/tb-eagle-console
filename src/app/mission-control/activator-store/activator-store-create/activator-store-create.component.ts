@@ -58,7 +58,7 @@ export class ActivatorStoreCreateComponent implements OnInit {
       sourceControlId: ['', Validators.required],
       environments: [[], Validators.required],
       businessUnitId: ['', Validators.required],
-      regions: [[]]
+      regions: [['UK']]
     });
   }
 
