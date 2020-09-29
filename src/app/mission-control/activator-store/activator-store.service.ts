@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Activator, ActivatorCategory, ActivatorsMetadata, ActivatorMetadata } from './activator-store.model';
+import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';

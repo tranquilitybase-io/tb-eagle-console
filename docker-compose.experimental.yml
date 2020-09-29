@@ -22,7 +22,7 @@ services:
       - 3306:3306
 
   houston-service:
-    image: gcr.io/tranquility-base-images/tb-houston-service:review
+    image: gcr.io/tranquility-base-images/tb-houston-service:experimental
     restart: always
     environment:
       SQLALCHEMY_DATABASE_URI: 'mysql+mysqlconnector://eagle-user:eagle-user-secret-pw@tb-db/eagle_db'
