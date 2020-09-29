@@ -7,11 +7,15 @@ import {
   setActivatorsByCategoryData,
   storeActivatorData
 } from './activator-store.actions';
-import { Activator } from './activator-store.model';
+import { Activator, ActivatorMetadata } from './activator-store.model';
 
 export const featureKey = 'activator-store';
 
-const initialState = { step: 0, activatorsByCategoryData: [], activatorData: {} as Activator };
+const initialState = {
+  step: 0,
+  activatorsByCategoryData: [],
+  activatorData: {} as Activator
+};
 const innerReducer = createReducer(
   initialState,
   on(setActivatorsByCategoryData, (state, { activatorsByCategoryData }) => ({ ...state, activatorsByCategoryData })),

@@ -6,7 +6,7 @@ import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { setActivatorsByCategoryData, setActivatorsCount, storeActivatorData } from './activator-store.actions';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,8 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   constructor(
     private route: ActivatedRoute,
     serviceElementsFactory: EntityCollectionServiceElementsFactory,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     super('Activator', serviceElementsFactory);
   }
@@ -119,9 +120,32 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       );
   }
 
+  private createActivatorByURLPorstSuccess = (activatorData: Activator) => {
+    this.store.dispatch(storeActivatorData({ activatorData }));
+    this.router.navigate(['/mission-control/activator-store/create']);
+    console.log('POST call successful value returned in body', activatorData);
+  };
+
   createActivatorByURL(repoURL: string): void {
     const url = `${this.BASE_URL}/activatorByURL/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, { url: repoURL }, { headers }).subscribe(this.postSuccess, this.postError, this.postCompleted);
+    this.http
+      .post(url, { url: repoURL }, { headers })
+      .subscribe(this.createActivatorByURLPorstSuccess, this.postError, this.postCompleted);
+  }
+
+  private putSuccess = (activatorData: Activator) => {
+    this.store.dispatch(storeActivatorData({ activatorData }));
+    console.log('PUT call successful value returned in body', activatorData);
+  };
+
+  private putError = err => {
+    console.log('PUT call in error', err);
+  };
+
+  updateActivator(activatorData: Activator): void {
+    const url = `${this.BASE_URL}/activator/${activatorData.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.put(url, activatorData, { headers }).subscribe(this.putSuccess, this.putError);
   }
 }
