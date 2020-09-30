@@ -1,0 +1,240 @@
+<header>
+  <app-breadcrumbs [title]="'Create new Activator'"> </app-breadcrumbs>
+</header>
+
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="variablesForm">
+    <ng-template matStepLabel>Activator Variables</ng-template>
+    <form [formGroup]="variablesForm">
+      <div class="solution-details-container">
+        <p>
+          <ng-container *ngFor="let variable of activatorData.activatorMetadata.variables">
+            <mat-form-field class="half-width" appearance="outline">
+              <mat-label>{{ unSlugify(variable.name) }}</mat-label>
+              <input
+                matInput
+                required
+                type="text"
+                maxlength="30"
+                placeholder=""
+                formControlName="{{ variable.name }}"
+              />
+              <mat-error *ngIf="isFieldValid(variable.name)">Value is <strong>required</strong> </mat-error>
+            </mat-form-field>
+          </ng-container>
+        </p>
+        <div class="app-bottom-action right">
+          <button color="primary" mat-button matStepperNext (click)="onStepOneNext()">
+            Next
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="workspaceForm">
+    <ng-template matStepLabel>Workspace</ng-template>
+    <form [formGroup]="workspaceForm">
+      <div class="solution-workspace-container">
+        <p>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>CI (Continuous intergration service)</mat-label>
+            <mat-select required formControlName="ciId">
+              <mat-option *ngFor="let item of ciList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.ciId.errors?.required">
+              Continuous integration service is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Source Control</mat-label>
+            <mat-select required formControlName="sourceControlId">
+              <mat-option *ngFor="let item of sourceControlList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.sourceControlId.errors?.required">
+              Source control is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>CD (Continuous deployment)</mat-label>
+            <mat-select required formControlName="cdId">
+              <mat-option *ngFor="let item of cdList" [value]="item.key">{{ item.value }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.cdId.errors?.required"> Continuous deployment is <strong>required</strong> </mat-error>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Business unit</mat-label>
+            <mat-select required formControlName="businessUnitId">
+              <mat-option *ngFor="let item of businessUnitList" [value]="item.key"> {{ item.value }} </mat-option>
+            </mat-select>
+            <mat-error *ngIf="w.businessUnitId.errors?.required">
+              Business unit is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Supported regions</mat-label>
+            <mat-chip-list #chipList aria-label="Supported regions">
+              <mat-chip
+                *ngFor="let region of w.regions.value"
+                color="accent"
+                selectable="false"
+                [removable]="false"
+                (removed)="removeRegion(region)"
+              >
+                {{ region }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="UK, DB"
+                disabled="true"
+                maxlength="30"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="addRegion($event)"
+              />
+              <mat-error *ngIf="w.regions.errors?.required">
+                At least one region is <strong>required</strong>
+              </mat-error>
+            </mat-chip-list>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-card>
+            <span class="mat-subheading-1">Available environments</span>
+            <mat-divider></mat-divider>
+            <mat-selection-list formControlName="environments">
+              <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
+                {{ item.value }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card>
+        </p>
+
+        <div class="app-bottom-action left">
+          <button mat-button color="primary" matStepperPrevious>
+            <mat-icon>chevron_left</mat-icon>
+            Back
+          </button>
+        </div>
+        <div class="app-bottom-action right">
+          <button mat-button color="primary" matStepperNext (click)="onStepTwoNext()">
+            Next
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Review</ng-template>
+    <form class="workspace-container">
+      <div class="column-container">
+        <div class="title">Metadata</div>
+        <mat-card class="activ-dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Description
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>{{ activatorData.name }} - {{ activatorData.activatorMetadata.description }}</div>
+            <mat-list dense class="description-list">
+              <mat-list-item>
+                <div class="mat-body-1">Category</div>
+                <div class="mat-chip-alternative ">
+                  {{ activatorData.activatorMetadata.category }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Platforms</div>
+                <div *ngFor="let platform of activatorData.activatorMetadata.platforms" class="mat-chip-alternative ">
+                  {{ platform.value }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Type</div>
+                <div class="mat-chip-alternative">
+                  {{ activatorData.activatorMetadata.type.value }}
+                </div>
+              </mat-list-item>
+              <mat-list-item *ngFor="let variable of activatorData.activatorMetadata.variables">
+                <div class="mat-body-1">{{ unSlugify(variable.name) }}</div>
+                <div class="mat-chip-alternative ">
+                  {{ variable.value }}
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="column-container">
+        <div class="title">Configuration</div>
+        <mat-card class="activ-dashboard-card">
+          <mat-card-content class="dashboard-card-content">
+            <mat-list dense class="description-list">
+              <mat-list-item>
+                <div class="mat-body-1">Environments</div>
+                <div *ngFor="let category of activatorData.envs" class="mat-chip-alternative">
+                  {{ category.name }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">CI (Continuous integration)</div>
+                <div *ngFor="let ci of activatorData.ci" class="mat-chip-alternative">
+                  {{ ci.value }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">CD (Continuous deployment)</div>
+                <div *ngFor="let cd of activatorData.cd" class="mat-chip-alternative">
+                  {{ cd.value }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Supported regions</div>
+                <div *ngFor="let region of activatorData.regions" class="mat-chip-alternative">
+                  {{ region }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Data sensitivity</div>
+                <div class="mat-chip-alternative">
+                  {{ activatorData.sensitivity }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Source control</div>
+                <div class="mat-chip-alternative">
+                  {{ activatorData.sourceControl?.value }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Business Unit</div>
+                <div class="mat-chip-alternative">
+                  {{ activatorData.businessUnit?.name }}
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </form>
+
+    <div class="app-bottom-action right">
+      <a
+        mat-button
+        color="primary"
+        routerLink="/mission-control/activator-store/view"
+        [queryParams]="{ id: activatorData.id }"
+      >
+        Submit
+      </a>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+<div class="app-bottom-background"></div>

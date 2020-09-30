@@ -10,7 +10,7 @@ import {
   createActivatorByURLSuccess,
   createActivatorByURLError
 } from './activator-store.actions';
-import { Activator } from './activator-store.model';
+import { Activator, ActivatorMetadata } from './activator-store.model';
 
 export interface Loadable {
   loading: boolean;

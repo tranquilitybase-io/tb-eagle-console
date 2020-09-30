@@ -8,6 +8,7 @@ import { selectActivatorDataStatus, Loadable } from '../../activator-store.reduc
 import { MatSnackBar } from '@angular/material';
 import { ActivatorCreateSuccessComponent } from '@app/shared/snack-bar/activator-create-success/activator-create-success.component';
 import { ActivatorCreateErrorComponent } from '@app/shared/snack-bar/activator-create-error/activator-create-error.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activator-store-dialog-grant-access',
@@ -22,7 +23,8 @@ export class ActivatorStoreDialogCreateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private store: Store<any>,
     private dialogRef: MatDialogRef<ActivatorStoreDialogCreateComponent>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,15 +45,23 @@ export class ActivatorStoreDialogCreateComponent implements OnInit {
     }
   }
 
+  closeDialogOnSuccess(activatorMetadata) {
+    if (Object.keys(activatorMetadata).length) {
+      this.dialogRef.close();
+    }
+  }
+
   cancel() {
     this.dialogRef.close();
   }
 
   handleStatus(status: Loadable) {
     if (status.success) {
-      this.snackBar.openFromComponent(ActivatorCreateSuccessComponent, { duration: 3000 });
+      this.router.navigate(['/mission-control/activator-store/create']);
+      this.snackBar.openFromComponent(ActivatorCreateSuccessComponent, { duration: 3500 });
+      this.dialogRef.close();
     } else if (status.error) {
-      this.snackBar.openFromComponent(ActivatorCreateErrorComponent, { duration: 3000 });
+      this.snackBar.openFromComponent(ActivatorCreateErrorComponent, { duration: 3500 });
     }
   }
 }
