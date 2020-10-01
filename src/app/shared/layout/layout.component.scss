@@ -151,3 +151,12 @@ h1:hover {
 .notifications {
   min-width: 350px;
 }
+
+.mat-flat-button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}

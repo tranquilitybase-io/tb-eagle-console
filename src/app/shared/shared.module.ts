@@ -49,6 +49,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    LayoutModule
   ],
   exports: [
     AlertComponent,
