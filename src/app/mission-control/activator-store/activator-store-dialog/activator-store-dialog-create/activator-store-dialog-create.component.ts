@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { createActivatorByURL } from '../../activator-store.actions';
+import { createActivatorByURL, resetActivatorDataStatus } from '../../activator-store.actions';
 import { selectActivatorDataStatus, Loadable } from '../../activator-store.reducer';
 import { MatSnackBar } from '@angular/material';
 import { ActivatorCreateSuccessComponent } from '@app/shared/snack-bar/activator-create-success/activator-create-success.component';
@@ -60,8 +60,10 @@ export class ActivatorStoreDialogCreateComponent implements OnInit {
       this.router.navigate(['/mission-control/activator-store/create']);
       this.snackBar.openFromComponent(ActivatorCreateSuccessComponent, { duration: 3500 });
       this.dialogRef.close();
+      this.store.dispatch(resetActivatorDataStatus());
     } else if (status.error) {
       this.snackBar.openFromComponent(ActivatorCreateErrorComponent, { duration: 3500 });
+      this.store.dispatch(resetActivatorDataStatus());
     }
   }
 }

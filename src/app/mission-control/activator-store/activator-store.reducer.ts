@@ -8,7 +8,8 @@ import {
   storeActivatorData,
   createActivatorByURL,
   createActivatorByURLSuccess,
-  createActivatorByURLError
+  createActivatorByURLError,
+  resetActivatorDataStatus
 } from './activator-store.actions';
 import { Activator, ActivatorMetadata } from './activator-store.model';
 
@@ -18,7 +19,7 @@ export interface Loadable {
   error: any;
 }
 
-const createDefaultLoadable = (): Loadable => ({
+const defaultLoadable = (): Loadable => ({
   loading: false,
   success: false,
   error: null
@@ -48,7 +49,7 @@ const initialState = {
   step: 0,
   activatorsByCategoryData: [],
   activatorData: {} as Activator,
-  activatorDataStatus: createDefaultLoadable() as Loadable
+  activatorDataStatus: defaultLoadable() as Loadable
 };
 const innerReducer = createReducer(
   initialState,
@@ -63,7 +64,11 @@ const innerReducer = createReducer(
     activatorData,
     activatorDataStatus: onLoadableSuccess()
   })),
-  on(createActivatorByURLError, (state, { error }) => ({ ...state, activatorDataStatus: onLoadableError(error) }))
+  on(createActivatorByURLError, (state, { error }) => ({ ...state, activatorDataStatus: onLoadableError(error) })),
+  on(resetActivatorDataStatus, state => {
+    console.log('reset', defaultLoadable());
+    return { ...state, activatorDataStatus: defaultLoadable() };
+  })
 );
 
 export default function reducer(state, action) {

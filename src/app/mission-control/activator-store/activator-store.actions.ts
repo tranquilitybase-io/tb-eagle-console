@@ -43,3 +43,5 @@ export const createActivatorByURLError = createAction(
 );
 
 export const updateActivator = createAction('[ActivatorStore] updateActivator', props<{ activatorData: Activator }>());
+
+export const resetActivatorDataStatus = createAction('[ActivatorStore] resetActivatorDataStatus');
