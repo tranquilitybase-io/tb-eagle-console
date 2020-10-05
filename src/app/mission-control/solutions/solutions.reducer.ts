@@ -1,10 +1,20 @@
+import {
+  Loadable,
+  defaultLoadable,
+  onLoadableInit,
+  onLoadableSuccess,
+  onLoadableError
+} from '@app/shared/shared.reducer';
 import { createReducer, on, createSelector } from '@ngrx/store';
 
 import {
   setSelectedSolution,
   discardSelectedSolution,
   updateSolution,
-  setSolutionDeploymentsData
+  setSolutionDeploymentsData,
+  createSolution,
+  createSolutionSuccess,
+  createSolutionError
 } from './solutions.actions';
 import { Solution, SolutionDeployment } from './solutions.model';
 
@@ -12,7 +22,8 @@ export const intialState = {
   dismissAlmostReady: false,
   isDeploymentReady: false,
   solutionDeploymentsData: [],
-  selectedSolution: undefined
+  selectedSolution: undefined,
+  createSolutionStatus: defaultLoadable() as Loadable
 };
 
 export interface SolutionsState {
@@ -33,7 +44,10 @@ export const solutionsReducer = createReducer(
       return { ...state, solutionDeploymentsData };
     }
     return state;
-  })
+  }),
+  on(createSolution, state => ({ ...state, createSolutionStatus: onLoadableInit() })),
+  on(createSolutionSuccess, state => ({ ...state, createSolutionStatus: onLoadableSuccess() })),
+  on(createSolutionError, (state, { error }) => ({ ...state, createSolutionStatus: onLoadableError(error) }))
 );
 
 export default function reducer(state, action) {
@@ -50,3 +64,5 @@ export const selectSolutionDeploymentsData = createSelector(
   selectFeature,
   state => state && state.solutionDeploymentsData
 );
+
+export const selectCreateSolutionStatus = createSelector(selectFeature, state => state && state.createSolutionStatus);
