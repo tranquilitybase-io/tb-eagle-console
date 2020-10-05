@@ -4,6 +4,11 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
+import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
+import { LayoutModule } from './layout/layout.module';
+import { NotificationsModule } from './notifications/notifications.module';
+
 import { AlertComponent } from './alert/alert.component';
 import { BadgesComponent } from './badges/badges.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
@@ -48,11 +53,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
-import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
-import { NotificationsModule } from './notifications/notifications.module';
-import { LayoutModule } from './layout/layout.module';
-
 @NgModule({
   declarations: [
     ActivatorCreateErrorComponent,
@@ -82,14 +82,14 @@ import { LayoutModule } from './layout/layout.module';
     YesNoDialogComponent
   ],
   entryComponents: [
+    ActivatorCreateErrorComponent,
+    ActivatorCreateSuccessComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
-    YesNoDialogComponent,
-    ActivatorCreateSuccessComponent,
-    ActivatorCreateErrorComponent
+    YesNoDialogComponent
   ],
   providers: [
     SharedService,
@@ -104,6 +104,7 @@ import { LayoutModule } from './layout/layout.module';
     HttpClientModule,
     FormsModule,
     GridViewSwitchModule,
+    LayoutModule,
     NotificationsModule,
     MatBadgeModule,
     MatButtonModule,
@@ -118,8 +119,7 @@ import { LayoutModule } from './layout/layout.module';
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule,
-    LayoutModule
+    MatTooltipModule
   ],
   exports: [
     ActivatorCreateErrorComponent,

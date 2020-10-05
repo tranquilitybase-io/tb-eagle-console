@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { NotificationsService } from '../notifications/notifications.service';
 import { NotificationsMeta } from '../notifications/notifications.model';
-import { selectNotificationMetaData, selectNotificationData } from '../notifications/notifications.reducer';
+import { selectNotificationMetaData } from '../notifications/notifications.reducer';
 import { Router } from '@angular/router';
 import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
 
