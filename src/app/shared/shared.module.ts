@@ -25,6 +25,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ActivatorCreateErrorComponent } from './snack-bar/activator-create-error/activator-create-error.component';
+import { ActivatorCreateSuccessComponent } from './snack-bar/activator-create-success/activator-create-success.component';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
 import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
@@ -52,6 +54,8 @@ import { NotificationsModule } from './notifications/notifications.module';
 
 @NgModule({
   declarations: [
+    ActivatorCreateErrorComponent,
+    ActivatorCreateSuccessComponent,
     AlertComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
@@ -63,6 +67,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     InputComponent,
     LayoutComponent,
     LoaderComponent,
+    NotificationsComponent,
     PaginationComponent,
     PillsComponent,
     ProgressComponent,
@@ -73,7 +78,6 @@ import { NotificationsModule } from './notifications/notifications.module';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    NotificationsComponent,
     YesNoDialogComponent
   ],
   entryComponents: [
@@ -82,7 +86,9 @@ import { NotificationsModule } from './notifications/notifications.module';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    ActivatorCreateSuccessComponent,
+    ActivatorCreateErrorComponent
   ],
   providers: [
     SharedService,
@@ -114,6 +120,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     MatTooltipModule
   ],
   exports: [
+    ActivatorCreateErrorComponent,
+    ActivatorCreateSuccessComponent,
     AlertComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
@@ -127,6 +135,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     InputComponent,
     LayoutComponent,
     LoaderComponent,
+    MatBadgeModule,
+    MatDialogModule,
     MatDialogModule,
     PaginationComponent,
     PillsComponent,
@@ -136,9 +146,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent,
-    MatDialogModule,
-    MatBadgeModule
+    SwitchesComponent
   ]
 })
 export class SharedModule {}
