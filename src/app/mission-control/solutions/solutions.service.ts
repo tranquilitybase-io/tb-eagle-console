@@ -4,7 +4,12 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Solution, SolutionDeployment } from './solutions.model';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { createSolutionSuccess, createSolutionError } from './solutions.actions';
+import {
+  createSolutionSuccess,
+  createSolutionError,
+  updateSolutionSuccess,
+  updateSolutionError
+} from './solutions.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -72,21 +77,23 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
     return this.http.get<SolutionDeployment[]>(url).pipe(catchError(this.handleError));
   }
 
+  private updateSolutionSuccess = (val: Solution) => {
+    console.log('PUT call successful value returned in body', val);
+    this.store.dispatch(updateSolutionSuccess());
+  };
+
+  private updateSolutionError = (error: any) => {
+    console.log('PUT call in error', error);
+    this.store.dispatch(updateSolutionError(error));
+  };
+
   updateSolution(solution: Solution): void {
     const url = `${this.BASE_URL}/solution/${solution.id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.put(url, solution, { headers }).subscribe(
-      (val: Solution) => {
-        console.log('PUT call successful value returned in body', val);
-      },
-      response => {
-        console.log('PUT call in error', response);
-      },
-      () => {
-        console.log('The PUT observable is now completed.');
-        this.getAll();
-      }
-    );
+    this.http.put(url, solution, { headers }).subscribe(this.updateSolutionSuccess, this.updateSolutionError, () => {
+      console.log('The PUT observable is now completed.');
+      this.getAll();
+    });
     console.log(solution + ' put');
   }
 }

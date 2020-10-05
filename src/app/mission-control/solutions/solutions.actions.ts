@@ -9,6 +9,9 @@ export const createSolutionSuccess = createAction('[Solutions] createSolutionSuc
 export const createSolutionError = createAction('[Solutions] createSolutionError', props<{ error: any }>());
 
 export const updateSolution = createAction('[Solutions] updateSolution', props<{ solution: Solution }>());
+export const updateSolutionSuccess = createAction('[Solutions] updateSolutionSuccess');
+export const updateSolutionError = createAction('[Solutions] updateSolutionsError', props<{ error: any }>());
+
 export const startDeployment = createAction('[Solutions] startDeployment', props<{ id: number }>());
 
 export const setSolutionDeploymentsData = createAction(

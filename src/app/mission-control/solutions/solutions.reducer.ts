@@ -11,6 +11,8 @@ import {
   setSelectedSolution,
   discardSelectedSolution,
   updateSolution,
+  updateSolutionSuccess,
+  updateSolutionError,
   setSolutionDeploymentsData,
   createSolution,
   createSolutionSuccess,
@@ -23,7 +25,8 @@ export const intialState = {
   isDeploymentReady: false,
   solutionDeploymentsData: [],
   selectedSolution: undefined,
-  createSolutionStatus: defaultLoadable() as Loadable
+  createSolutionStatus: defaultLoadable() as Loadable,
+  updateSolutionStatus: defaultLoadable() as Loadable
 };
 
 export interface SolutionsState {
@@ -31,6 +34,8 @@ export interface SolutionsState {
   isDeploymentReady: boolean;
   selectedSolution: Solution;
   solutionDeploymentsData: SolutionDeployment[];
+  createSolutionStatus: Loadable;
+  updateSolutionStatus: Loadable;
 }
 export const solutionFeatureKey = 'solutions';
 
@@ -38,7 +43,13 @@ export const solutionsReducer = createReducer(
   intialState,
   on(setSelectedSolution, (state, { solution }) => ({ ...state, selectedSolution: solution })),
   on(discardSelectedSolution, state => ({ ...state, selectedSolution: undefined })),
-  on(updateSolution, (state, { solution }) => ({ ...state, selectedSolution: solution })),
+  on(updateSolution, (state, { solution }) => ({
+    ...state,
+    selectedSolution: solution,
+    updateSolutionStatus: onLoadableInit()
+  })),
+  on(updateSolutionSuccess, state => ({ ...state, updateSolutionStatus: onLoadableSuccess() })),
+  on(updateSolutionError, (state, { error }) => ({ ...state, updateSolutionStatus: onLoadableError(error) })),
   on(setSolutionDeploymentsData, (state, { solutionDeploymentsData }) => {
     if (JSON.stringify(solutionDeploymentsData) !== JSON.stringify(state.solutionDeploymentsData)) {
       return { ...state, solutionDeploymentsData };
@@ -66,3 +77,4 @@ export const selectSolutionDeploymentsData = createSelector(
 );
 
 export const selectCreateSolutionStatus = createSelector(selectFeature, state => state && state.createSolutionStatus);
+export const selectUpdateSolutionStatus = createSelector(selectFeature, state => state && state.updateSolutionStatus);
