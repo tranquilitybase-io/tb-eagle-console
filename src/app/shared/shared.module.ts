@@ -29,6 +29,7 @@ import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deplo
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
 import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
 import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creation/solution-under-creation.component';
+import { ApiCallStatusComponent } from './snack-bar/api-call-status/api-call-status.component';
 
 import { SharedService } from './shared.service';
 import { ApplicationsService } from '@app/mission-control/applications/applications.service';
@@ -74,7 +75,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     SwitchesComponent,
     WelcomeComponent,
     NotificationsComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    ApiCallStatusComponent
   ],
   entryComponents: [
     AppIsDeployedComponent,
@@ -82,7 +84,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    ApiCallStatusComponent
   ],
   providers: [
     SharedService,
@@ -138,7 +141,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     MatDialogModule,
-    MatBadgeModule
+    MatBadgeModule,
+    ApiCallStatusComponent
   ]
 })
 export class SharedModule {}
