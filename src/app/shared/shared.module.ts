@@ -25,6 +25,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ActivatorCreateErrorComponent } from './snack-bar/activator-create-error/activator-create-error.component';
+import { ActivatorCreateSuccessComponent } from './snack-bar/activator-create-success/activator-create-success.component';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
 import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
@@ -53,6 +55,8 @@ import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [
+    ActivatorCreateErrorComponent,
+    ActivatorCreateSuccessComponent,
     AlertComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
@@ -64,6 +68,7 @@ import { LayoutModule } from './layout/layout.module';
     InputComponent,
     LayoutComponent,
     LoaderComponent,
+    NotificationsComponent,
     PaginationComponent,
     PillsComponent,
     ProgressComponent,
@@ -74,7 +79,6 @@ import { LayoutModule } from './layout/layout.module';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    NotificationsComponent,
     YesNoDialogComponent
   ],
   entryComponents: [
@@ -83,7 +87,9 @@ import { LayoutModule } from './layout/layout.module';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    ActivatorCreateSuccessComponent,
+    ActivatorCreateErrorComponent
   ],
   providers: [
     SharedService,
@@ -116,6 +122,8 @@ import { LayoutModule } from './layout/layout.module';
     LayoutModule
   ],
   exports: [
+    ActivatorCreateErrorComponent,
+    ActivatorCreateSuccessComponent,
     AlertComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
@@ -129,6 +137,8 @@ import { LayoutModule } from './layout/layout.module';
     InputComponent,
     LayoutComponent,
     LoaderComponent,
+    MatBadgeModule,
+    MatDialogModule,
     MatDialogModule,
     PaginationComponent,
     PillsComponent,
@@ -138,9 +148,7 @@ import { LayoutModule } from './layout/layout.module';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent,
-    MatDialogModule,
-    MatBadgeModule
+    SwitchesComponent
   ]
 })
 export class SharedModule {}
