@@ -62,7 +62,6 @@ export class SolutionsCreateComponent implements OnInit {
 
     this.createSolutionStatus$ = this.store.pipe(select(selectCreateSolutionStatus));
     this.createSolutionStatus$.subscribe(status => {
-      console.log(status);
       this.handleSubmitStatus(status);
     });
   }
@@ -75,19 +74,23 @@ export class SolutionsCreateComponent implements OnInit {
     return this.workspaceForm.controls;
   }
 
+  navigateToSolutionsHome() {
+    this.router.navigateByUrl('/mission-control/solutions');
+  }
+
   handleSubmitStatus(status: Loadable) {
     if (status.success) {
       this.snackBar.openFromComponent(ApiCallStatusComponent, {
         data: { message: 'Solution has been created', success: true },
         duration: 3500
       });
-      this.router.navigateByUrl('/mission-control/solutions');
+      this.navigateToSolutionsHome();
     } else if (status.error) {
       this.snackBar.openFromComponent(ApiCallStatusComponent, {
         data: { message: 'Something went wrong. Solution has not been created', success: false },
         duration: 3500
       });
-      this.router.navigateByUrl('/mission-control/solutions');
+      this.navigateToSolutionsHome();
     }
   }
 
