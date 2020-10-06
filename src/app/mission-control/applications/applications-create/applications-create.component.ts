@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { MatDialog, MatStepper } from '@angular/material';
+import { MatDialog, MatSnackBar, MatStepper } from '@angular/material';
 import { KeyValue } from '@angular/common';
 import { createApplication } from '../applications.actions';
 import { setProgress } from '@app/mission-control/activator-store/activator-store.actions';
@@ -13,6 +13,9 @@ import { selectSelectedSolution } from '@app/mission-control/solutions/solutions
 import { discardSelectedSolution } from '@app/mission-control/solutions/solutions.actions';
 import { ActivatorStoreDialogMissingSolutionsComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-missing-solutions/activator-store-dialog-missing-solutions.component';
 import { Observable } from 'rxjs';
+import { Loadable } from '@app/shared/shared.reducer';
+import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
+import { selectCreateApplicationStatus } from '../applications.reducer';
 
 @Component({
   selector: 'app-applications-create',
@@ -27,6 +30,8 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   selectedSolutionName: string;
   selectedActivator: Activator;
 
+  createApplicationStatus$: Observable<Loadable>;
+
   @ViewChild('stepper', { static: false })
   stepper: MatStepper;
 
@@ -35,7 +40,8 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private store: Store<any>,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -64,6 +70,25 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     });
     if (!(availableSolutions.length || this.dialog.openDialogs.length)) {
       this.dialog.open(ActivatorStoreDialogMissingSolutionsComponent, { disableClose: true, autoFocus: false });
+    }
+    this.createApplicationStatus$ = this.store.pipe(select(selectCreateApplicationStatus));
+    this.createApplicationStatus$.subscribe(status => {
+      this.handleSubmitStatus(status);
+    });
+  }
+
+  handleSubmitStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Application has been created', success: true },
+        duration: 3500
+      });
+    }
+    if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong. Application has not been created', success: false },
+        duration: 3500
+      });
     }
   }
 
