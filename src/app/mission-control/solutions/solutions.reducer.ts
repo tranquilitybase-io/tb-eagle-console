@@ -16,7 +16,9 @@ import {
   setSolutionDeploymentsData,
   createSolution,
   createSolutionSuccess,
-  createSolutionError
+  createSolutionError,
+  startDeploymentSuccess,
+  startDeploymentError
 } from './solutions.actions';
 import { Solution, SolutionDeployment } from './solutions.model';
 
@@ -26,7 +28,8 @@ export const intialState = {
   solutionDeploymentsData: [],
   selectedSolution: undefined,
   createSolutionStatus: defaultLoadable() as Loadable,
-  updateSolutionStatus: defaultLoadable() as Loadable
+  updateSolutionStatus: defaultLoadable() as Loadable,
+  startDeploymentStatus: defaultLoadable() as Loadable
 };
 
 export interface SolutionsState {
@@ -36,6 +39,7 @@ export interface SolutionsState {
   solutionDeploymentsData: SolutionDeployment[];
   createSolutionStatus: Loadable;
   updateSolutionStatus: Loadable;
+  startDeploymentStatus: Loadable;
 }
 export const solutionFeatureKey = 'solutions';
 
@@ -58,7 +62,9 @@ export const solutionsReducer = createReducer(
   }),
   on(createSolution, state => ({ ...state, createSolutionStatus: onLoadableInit() })),
   on(createSolutionSuccess, state => ({ ...state, createSolutionStatus: onLoadableSuccess() })),
-  on(createSolutionError, (state, { error }) => ({ ...state, createSolutionStatus: onLoadableError(error) }))
+  on(createSolutionError, (state, { error }) => ({ ...state, createSolutionStatus: onLoadableError(error) })),
+  on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() })),
+  on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) }))
 );
 
 export default function reducer(state, action) {
@@ -78,3 +84,4 @@ export const selectSolutionDeploymentsData = createSelector(
 
 export const selectCreateSolutionStatus = createSelector(selectFeature, state => state && state.createSolutionStatus);
 export const selectUpdateSolutionStatus = createSelector(selectFeature, state => state && state.updateSolutionStatus);
+export const selectStartDeploymentStatus = createSelector(selectFeature, state => state && state.startDeploymentStatus);

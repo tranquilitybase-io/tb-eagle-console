@@ -8,7 +8,9 @@ import {
   createSolutionSuccess,
   createSolutionError,
   updateSolutionSuccess,
-  updateSolutionError
+  updateSolutionError,
+  startDeploymentSuccess,
+  startDeploymentError
 } from './solutions.actions';
 
 @Injectable({
@@ -41,21 +43,23 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
     console.log(solution + ' posted');
   }
 
+  private deploySolutionSuccess = (val: Solution) => {
+    console.log('POST call successful value returned in body', val);
+    this.store.dispatch(startDeploymentSuccess());
+  };
+
+  private deploySolutionError = (error: any) => {
+    console.log('POST call in error', error);
+    this.store.dispatch(startDeploymentError(error));
+  };
+
   deploySolution(id: number): void {
     const url = `${this.BASE_URL}/solutiondeployment/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, { id }, { headers }).subscribe(
-      (val: Solution) => {
-        console.log('POST call successful value returned in body', val);
-      },
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
-        console.log('The POST observable is now completed.');
-        this.getAll();
-      }
-    );
+    this.http.post(url, { id }, { headers }).subscribe(this.deploySolutionSuccess, this.deploySolutionError, () => {
+      console.log('The POST observable is now completed.');
+      this.getAll();
+    });
     console.log(`Solution ${id} is been deployed`);
   }
 
