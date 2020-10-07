@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Team } from '../teams.model';
-import { updateTeamData } from '../teams.actions';
+import { updateTeamData, resetUpdateTeamDataStatus } from '../teams.actions';
 import { KeyValue } from '@angular/common';
 import { User } from '@app/login/login.model';
+import { Observable } from 'rxjs';
+import { Loadable } from '@app/mission-control/activator-store/activator-store.reducer';
+import { MatSnackBar } from '@angular/material';
+import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
+import { selectUpdateTeamDataStatus } from './../teams.reducer';
 
 @Component({
   selector: 'app-teams-edit',
@@ -18,14 +23,18 @@ export class TeamsEditComponent implements OnInit {
   businessUnitList: KeyValue<string, string>[];
   users: User[];
 
+  updateTeamDataStatus$: Observable<Loadable>;
+
   constructor(
     private store: Store<any>,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetUpdateTeamDataStatus());
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.teamData = this.route.snapshot.data['team'] as Team;
     this.teamForm = this.formBuilder.group({
@@ -34,18 +43,46 @@ export class TeamsEditComponent implements OnInit {
       description: [this.teamData.description, Validators.required],
       businessUnitId: [this.teamData.businessUnitId, Validators.required]
     });
+
+    this.updateTeamDataStatus$ = this.store.pipe(select(selectUpdateTeamDataStatus));
+    this.updateTeamDataStatus$.subscribe(status => {
+      this.handleSubmitStatus(status);
+    });
   }
 
   get f() {
     return this.teamForm.controls;
   }
 
-  cancel() {
+  private navigateToTeamsHome() {
     this.router.navigateByUrl('/administration/teams');
   }
 
+  private handleSubmitStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Team has been updated', success: true },
+        duration: 3500
+      });
+      this.navigateToTeamsHome();
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong. Team has not been updated', success: false },
+        duration: 3500
+      });
+      this.navigateToTeamsHome();
+    }
+  }
+
+  cancel() {
+    this.navigateToTeamsHome();
+  }
+
   onSubmit(teamData) {
-    this.store.dispatch(updateTeamData({ teamData }));
-    this.router.navigateByUrl('/administration/teams');
+    if (this.teamForm.valid) {
+      this.store.dispatch(updateTeamData({ teamData }));
+    } else {
+      this.teamForm.markAllAsTouched();
+    }
   }
 }
