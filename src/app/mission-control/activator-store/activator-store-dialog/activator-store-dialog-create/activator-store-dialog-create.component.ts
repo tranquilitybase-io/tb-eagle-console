@@ -1,9 +1,14 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Store, select } from '@ngrx/store';
-import { createActivatorByURL } from '../../activator-store.actions';
-import { selectActivatorData } from '../../activator-store.reducer';
+import { select, Store } from '@ngrx/store';
+import { createActivatorByURL, resetActivatorDataStatus } from '../../activator-store.actions';
+import { selectActivatorDataStatus, Loadable } from '../../activator-store.reducer';
+import { MatSnackBar } from '@angular/material';
+import { ActivatorCreateSuccessComponent } from '@app/shared/snack-bar/activator-create-success/activator-create-success.component';
+import { ActivatorCreateErrorComponent } from '@app/shared/snack-bar/activator-create-error/activator-create-error.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activator-store-dialog-grant-access',
@@ -12,33 +17,27 @@ import { selectActivatorData } from '../../activator-store.reducer';
 })
 export class ActivatorStoreDialogCreateComponent implements OnInit {
   createActivatorForm: FormGroup;
-  activatorId = 0;
-  wasOpened = false;
+  createActivatorStatus$: Observable<Loadable>;
 
   constructor(
     private formBuilder: FormBuilder,
     private store: Store<any>,
-    private dialogRef: MatDialogRef<ActivatorStoreDialogCreateComponent>
-  ) {
-    this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
-      if (!this.wasOpened) {
-        this.activatorId = activatorData.id;
-        this.wasOpened = true;
-      }
-      if (activatorData.id && this.activatorId !== activatorData.id) {
-        this.dialogRef.close();
-      }
-    });
-  }
+    private dialogRef: MatDialogRef<ActivatorStoreDialogCreateComponent>,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.createActivatorStatus$ = this.store.pipe(select(selectActivatorDataStatus));
+    this.createActivatorStatus$.subscribe(status => {
+      this.handleStatus(status);
+    });
     this.createActivatorForm = this.formBuilder.group({
       url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
     });
   }
 
   createActivator() {
-    console.log(this.createActivatorForm);
     if (this.createActivatorForm.valid) {
       this.store.dispatch(createActivatorByURL({ url: this.createActivatorForm.value.url }));
     } else {
@@ -54,5 +53,17 @@ export class ActivatorStoreDialogCreateComponent implements OnInit {
 
   cancel() {
     this.dialogRef.close();
+  }
+
+  handleStatus(status: Loadable) {
+    if (status.success) {
+      this.router.navigate(['/mission-control/activator-store/create']);
+      this.snackBar.openFromComponent(ActivatorCreateSuccessComponent, { duration: 3500 });
+      this.dialogRef.close();
+      this.store.dispatch(resetActivatorDataStatus());
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ActivatorCreateErrorComponent, { duration: 3500 });
+      this.store.dispatch(resetActivatorDataStatus());
+    }
   }
 }

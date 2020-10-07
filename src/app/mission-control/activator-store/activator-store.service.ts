@@ -5,8 +5,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { setActivatorsByCategoryData, setActivatorsCount, storeActivatorData } from './activator-store.actions';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  setActivatorsByCategoryData,
+  setActivatorsCount,
+  storeActivatorData,
+  createActivatorByURLSuccess,
+  createActivatorByURLError
+} from './activator-store.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +23,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   constructor(
     private route: ActivatedRoute,
     serviceElementsFactory: EntityCollectionServiceElementsFactory,
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
   ) {
     super('Activator', serviceElementsFactory);
   }
@@ -120,10 +125,14 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       );
   }
 
-  private createActivatorByURLPorstSuccess = (activatorData: Activator) => {
-    this.store.dispatch(storeActivatorData({ activatorData }));
-    this.router.navigate(['/mission-control/activator-store/create']);
+  private createActivatorByURLSuccess = (activatorData: Activator) => {
+    this.store.dispatch(createActivatorByURLSuccess({ activatorData }));
     console.log('POST call successful value returned in body', activatorData);
+  };
+
+  private createActivatorByURLError = error => {
+    this.store.dispatch(createActivatorByURLError({ error }));
+    console.log('POST call in error', error);
   };
 
   createActivatorByURL(repoURL: string): void {
@@ -131,7 +140,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
       .post(url, { url: repoURL }, { headers })
-      .subscribe(this.createActivatorByURLPorstSuccess, this.postError, this.postCompleted);
+      .subscribe(this.createActivatorByURLSuccess, this.createActivatorByURLError, this.postCompleted);
   }
 
   private putSuccess = (activatorData: Activator) => {

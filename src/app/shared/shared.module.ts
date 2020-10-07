@@ -4,6 +4,11 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
+import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
+import { LayoutModule } from './layout/layout.module';
+import { NotificationsModule } from './notifications/notifications.module';
+
 import { AlertComponent } from './alert/alert.component';
 import { BadgesComponent } from './badges/badges.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
@@ -25,6 +30,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ActivatorCreateErrorComponent } from './snack-bar/activator-create-error/activator-create-error.component';
+import { ActivatorCreateSuccessComponent } from './snack-bar/activator-create-success/activator-create-success.component';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
 import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
@@ -47,12 +54,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
-import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
-import { NotificationsModule } from './notifications/notifications.module';
-
 @NgModule({
   declarations: [
+    ActivatorCreateErrorComponent,
+    ActivatorCreateSuccessComponent,
     AlertComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
@@ -64,6 +69,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     InputComponent,
     LayoutComponent,
     LoaderComponent,
+    NotificationsComponent,
     PaginationComponent,
     PillsComponent,
     ProgressComponent,
@@ -79,6 +85,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     ApiCallStatusComponent
   ],
   entryComponents: [
+    ActivatorCreateErrorComponent,
+    ActivatorCreateSuccessComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     SolutionCreatedComponent,
@@ -100,6 +108,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     HttpClientModule,
     FormsModule,
     GridViewSwitchModule,
+    LayoutModule,
     NotificationsModule,
     MatBadgeModule,
     MatButtonModule,
@@ -117,6 +126,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     MatTooltipModule
   ],
   exports: [
+    ActivatorCreateErrorComponent,
+    ActivatorCreateSuccessComponent,
     AlertComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
@@ -130,6 +141,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     InputComponent,
     LayoutComponent,
     LoaderComponent,
+    MatBadgeModule,
+    MatDialogModule,
     MatDialogModule,
     PaginationComponent,
     PillsComponent,

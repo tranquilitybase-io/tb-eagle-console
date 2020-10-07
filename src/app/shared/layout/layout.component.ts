@@ -6,8 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { NotificationsService } from '../notifications/notifications.service';
 import { NotificationsMeta } from '../notifications/notifications.model';
-import { selectNotificationMetaData, selectNotificationData } from '../notifications/notifications.reducer';
+import { selectNotificationMetaData } from '../notifications/notifications.reducer';
 import { Router } from '@angular/router';
+import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
 
 @Component({
   selector: 'app-layout',
@@ -59,5 +60,23 @@ export class LayoutComponent implements OnInit {
 
   isLinkActive(url: string): boolean {
     return this.router.url.includes(url);
+  }
+
+  createNewSolution() {
+    this.router.navigate(['mission-control/solutions/create']);
+  }
+
+  createNewUser() {
+    this.router.navigate(['administration/users/create']);
+  }
+
+  createNewTeam() {
+    this.router.navigate(['administration/teams/create']);
+  }
+
+  createNewActivator() {
+    this.dialog.open(ActivatorStoreDialogCreateComponent, {
+      autoFocus: false
+    });
   }
 }
