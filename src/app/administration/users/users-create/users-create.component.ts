@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { createUserData } from '../users.actions';
+import { createUserData, resetCreateUserDataStatus } from '../users.actions';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -31,6 +31,7 @@ export class UsersCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetCreateUserDataStatus());
     this.userForm = this.formBuilder.group({
       id: 0,
       firstName: ['', Validators.required],

@@ -5,7 +5,7 @@ import { User } from '@app/login/login.model';
 import { select, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ValidatorPattern } from '@app/shared/shared.model';
-import { updateUserData } from '../users.actions';
+import { updateUserData, resetUpdateDataStatus } from '../users.actions';
 import { Loadable } from '@app/mission-control/activator-store/activator-store.reducer';
 import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 import { MatSnackBar } from '@angular/material';
@@ -31,6 +31,7 @@ export class UsersEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetUpdateDataStatus());
     this.user = this.route.snapshot.data['user'] as User;
 
     this.userForm = this.formBuilder.group({

@@ -3,9 +3,11 @@ import {
   createUserData,
   createUserDataSuccess,
   createUserDataError,
+  resetCreateUserDataStatus,
   updateUserData,
   updateUserDataSuccess,
-  updateUserDataError
+  updateUserDataError,
+  resetUpdateDataStatus
 } from './users.actions';
 import { defaultLoadable, Loadable } from '@app/shared/shared.reducer';
 import { createReducer, on, createSelector } from '@ngrx/store';
@@ -26,9 +28,11 @@ export const usersReducer = createReducer(
   on(createUserData, state => ({ ...state, createUserDataStatus: onLoadableInit() })),
   on(createUserDataSuccess, state => ({ ...state, createUserDataStatus: onLoadableSuccess() })),
   on(createUserDataError, (state, { error }) => ({ ...state, createUserDataStatus: onLoadableError(error) })),
+  on(resetCreateUserDataStatus, state => ({ ...state, createUserDataStatus: defaultLoadable() })),
   on(updateUserData, state => ({ ...state, updateUserDataStatus: onLoadableInit() })),
   on(updateUserDataSuccess, state => ({ ...state, updateUserDataStatus: onLoadableSuccess() })),
-  on(updateUserDataError, (state, { error }) => ({ ...state, updateUserDataStatus: onLoadableError(error) }))
+  on(updateUserDataError, (state, { error }) => ({ ...state, updateUserDataStatus: onLoadableError(error) })),
+  on(resetUpdateDataStatus, state => ({ ...state, updateUserDataStatus: defaultLoadable() }))
 );
 
 export default function reducer(state, action) {
