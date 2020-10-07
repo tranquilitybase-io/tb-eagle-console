@@ -65,7 +65,7 @@
       </mat-form-field>
       <mat-form-field class="small-width" appearance="outline">
         <mat-label>Team</mat-label>
-        <mat-select required formControlName="teamId">
+        <mat-select required [disabled]="disableEdit" formControlName="teamId">
           <mat-option *ngFor="let item of teamList" [value]="item.key"> {{ item.value }} </mat-option>
         </mat-select>
         <mat-error *ngIf="f.teamId.errors?.required"> Team is <strong>required</strong> </mat-error>
@@ -115,7 +115,7 @@
       <mat-card>
         <span class="mat-subheading-1">Available environments</span>
         <mat-divider></mat-divider>
-        <mat-selection-list formControlName="environments">
+        <mat-selection-list [disabled]="disableEdit" formControlName="environments">
           <mat-list-option *ngFor="let item of environmentList" [value]="item.key">
             {{ item.value }}
           </mat-list-option>
