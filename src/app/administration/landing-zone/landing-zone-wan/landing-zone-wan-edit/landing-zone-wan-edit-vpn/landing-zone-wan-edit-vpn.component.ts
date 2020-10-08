@@ -1,3 +1,4 @@
+import { resetUpdateWanConfigurationStatus } from './../../landing-zone-wan.actions';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -5,9 +6,12 @@ import { WanConfiguration } from '../../landing-zone-wan.model';
 import { KeyValue } from '@angular/common';
 import { Observable } from 'rxjs';
 import { updateWanConfiguration } from '../../landing-zone-wan.actions';
-import { Store } from '@ngrx/store';
-import { WanState } from '../../landing-zone-wan.reducer';
+import { select, Store } from '@ngrx/store';
+import { selectUpdateWanConfigurationStatus, WanState } from '../../landing-zone-wan.reducer';
 import { ValidatorPattern } from '@app/shared/shared.model';
+import { Loadable } from '@app/shared/shared.reducer';
+import { MatSnackBar } from '@angular/material';
+import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 
 @Component({
   selector: 'app-landing-zone-wan-edit-vpn',
@@ -23,15 +27,18 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
   bgpRoutingModeList: KeyValue<string, string>[];
   vpnOnPremiseVendorList: KeyValue<string, string>[];
   primarySharedSecret: Observable<string>;
+  updateWanConfigurationStatus$: Observable<Loadable>;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private store: Store<WanState>,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetUpdateWanConfigurationStatus());
     this.wanConfiguration = this.route.snapshot.data['wanConfiguration'];
     this.subnetModeList = this.route.snapshot.data['subnetModeList'];
     this.bgpRoutingModeList = this.route.snapshot.data['bgpRoutingModeList'];
@@ -98,6 +105,11 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
       secondaryBgpPeer: [this.wanConfiguration.remoteEndpoint.secondaryBgpPeer],
       secondarySharedSecret: [this.wanConfiguration.remoteEndpoint.secondarySharedSecret]
     });
+
+    this.updateWanConfigurationStatus$ = this.store.pipe(select(selectUpdateWanConfigurationStatus));
+    this.updateWanConfigurationStatus$.subscribe(status => {
+      this.handleUpdateWanConfigurationStatus(status);
+    });
   }
 
   get vpnF() {
@@ -136,6 +148,26 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
     this.router.navigateByUrl('/administration/landing-zone/wan');
   }
 
+  private navigateToLandingzoneWan() {
+    this.router.navigateByUrl('/administration/landing-zone/wan');
+  }
+
+  handleUpdateWanConfigurationStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Connection has been updated', success: true },
+        duration: 3500
+      });
+      this.navigateToLandingzoneWan();
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong. Connection has not been updated', success: false },
+        duration: 3500
+      });
+      this.navigateToLandingzoneWan();
+    }
+  }
+
   onSubmit() {
     const googleASN = Number(this.vpnFormGroup.value['googleASN']);
     const peerASN = Number(this.vpnFormGroup.value['peerASN']);
@@ -155,6 +187,5 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
     } as WanConfiguration;
 
     this.store.dispatch(updateWanConfiguration({ wanConfiguration }));
-    this.router.navigateByUrl('/administration/landing-zone/wan');
   }
 }
