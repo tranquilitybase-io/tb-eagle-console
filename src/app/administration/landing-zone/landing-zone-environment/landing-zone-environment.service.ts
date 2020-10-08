@@ -6,11 +6,18 @@ import { catchError, tap } from 'rxjs/operators';
 import {
   setFolderStructureTreeData,
   setEnvironmentListData,
-  setLanVPCListData
+  setLanVPCListData,
+  storeEnvironmentListDataSuccess,
+  storeEnvironmentListDataError,
+  storeFolderStructureTreeDataSuccess,
+  storeFolderStructureTreeDataError,
+  storeLanVpcListDataSuccess,
+  storeLanVpcListDataError,
+  lzEnvironmentDeploymentSuccess,
+  lzEnvironmentDeploymentError
 } from './landing-zone-environment.actions';
 import { EnvironmentState } from './landing-zone-environment.reducer';
 import { FolderStructureNode, Environment, LanVPC } from './landing-zone-environment.model';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,75 +25,91 @@ import { Router } from '@angular/router';
 export class LandingZoneEnvironmentService {
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  constructor(private router: Router, private store: Store<EnvironmentState>, private http: HttpClient) {}
+  constructor(private store: Store<EnvironmentState>, private http: HttpClient) {}
+
+  private postEnvironmentListDataSuccess = (val: Environment[]) => {
+    console.log('POST call successful value returned in body', val);
+    this.store.dispatch(storeEnvironmentListDataSuccess({ environmentListData: val }));
+  };
+
+  private postEnvironmentListDataError = (error: any) => {
+    console.log('POST call in error', error);
+    this.store.dispatch(storeEnvironmentListDataError({ error }));
+  };
 
   postEnvironmentListData(environmentListData: Environment[]): void {
     const url = `${this.BASE_URL}/lzmetadataEnv/?readActiveOnly=true&bulkDelete=true`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, environmentListData, { headers }).subscribe(
-      (val: Environment[]) => {
-        console.log('POST call successful value returned in body', val);
-        this.store.dispatch(setEnvironmentListData({ environmentListData: val }));
-      },
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
+    this.http
+      .post(url, environmentListData, { headers })
+      .subscribe(this.postEnvironmentListDataSuccess, this.postEnvironmentListDataError, () => {
         console.log('The POST observable is now completed.');
-      }
-    );
+      });
     console.log(environmentListData + ' posted');
   }
+
+  private postFolderStructureTreeDataSuccess = (val: FolderStructureNode[]) => {
+    console.log('POST call successful value returned in body', val);
+    this.store.dispatch(storeFolderStructureTreeDataSuccess({ folderStructureTreeData: val }));
+  };
+
+  private postFolderStructureTreeDataError = (error: any) => {
+    console.log('POST call in error', error);
+    this.store.dispatch(storeFolderStructureTreeDataError({ error }));
+  };
 
   postFolderStructureTreeData(folderStructureTreeData: FolderStructureNode[]): void {
     const url = `${this.BASE_URL}/lzmetadataFolderStructure/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, folderStructureTreeData, { headers }).subscribe(
-      (val: FolderStructureNode[]) => {
-        console.log('POST call successful value returned in body', val);
-        this.store.dispatch(setFolderStructureTreeData({ folderStructureTreeData: val }));
-      },
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
+    this.http
+      .post(url, folderStructureTreeData, { headers })
+      .subscribe(this.postFolderStructureTreeDataSuccess, this.postFolderStructureTreeDataError, () => {
         console.log('The POST observable is now completed.');
-      }
-    );
+      });
     console.log(folderStructureTreeData + ' posted');
   }
+
+  private postLanVPCListDataSuccess = (val: LanVPC[]) => {
+    console.log('POST call successful value returned in body', val);
+    this.store.dispatch(storeLanVpcListDataSuccess({ lanVPCListData: val }));
+  };
+
+  private postLanVPCListDataError = (error: any) => {
+    console.log('POST call in error', error);
+    this.store.dispatch(storeLanVpcListDataError({ error }));
+  };
 
   postLanVPCListData(lanVPCListData: LanVPC[]): void {
     const url = `${this.BASE_URL}/lzmetadataLanVpc/?readActiveOnly=true&bulkDelete=true`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, lanVPCListData, { headers }).subscribe(
-      (val: LanVPC[]) => {
-        console.log('POST call successful value returned in body', val);
-        this.store.dispatch(setLanVPCListData({ lanVPCListData: val }));
-      },
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
+    this.http
+      .post(url, lanVPCListData, { headers })
+      .subscribe(this.postLanVPCListDataSuccess, this.postLanVPCListDataError, () => {
         console.log('The POST observable is now completed.');
-      }
-    );
+      });
     console.log(lanVPCListData + ' posted');
   }
+
+  private lzEnvironmentDeploymentSuccess = (val: any) => {
+    console.log('POST call successful value returned in body', val);
+    this.store.dispatch(lzEnvironmentDeploymentSuccess());
+  };
+
+  private lzEnvironmentDeploymentError = (error: any) => {
+    console.log('POST call in error', error);
+    this.store.dispatch(lzEnvironmentDeploymentError({ error }));
+  };
 
   lzEnvironmentDeployment(): void {
     const url = `${this.BASE_URL}/lzEnvironmentDeployment/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(url, null, { headers }).subscribe(
-      val => {
-        console.log('POST call successful value returned in body', val);
-      },
+      this.lzEnvironmentDeploymentSuccess,
       response => {
         console.log('POST call in error', response);
       },
       () => {
         console.log('The POST observable is now completed.');
-        this.router.navigateByUrl('/administration/landing-zone');
       }
     );
     console.log('lzEnvironmentDeployment' + ' posted');
