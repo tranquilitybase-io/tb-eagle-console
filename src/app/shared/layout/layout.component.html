@@ -121,6 +121,15 @@
       </div>
       <a
         mat-list-item
+        routerLink="/administration/business-unit"
+        [class.active]="isLinkActive('/administration/business-unit')"
+        [matTooltip]="!isExpanded ? 'Business unit' : null"
+        matTooltipPosition="after"
+      >
+        <mat-icon>person</mat-icon> <span *ngIf="isExpanded">Business unit</span>
+      </a>
+      <a
+        mat-list-item
         routerLink="/administration/users"
         [queryParams]="{ groupSwitch: 'Actives' }"
         [class.active]="isLinkActive('/administration/users')"

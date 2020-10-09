@@ -59,6 +59,17 @@ const routes: Routes = [
             }
           ]
         }
+      },
+      {
+        path: 'business-unit',
+        loadChildren: () => import('./busines-unit/business-unit.module').then(m => m.BusinessUnitModule),
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Business unit'
+            }
+          ]
+        }
       }
     ]
   }
