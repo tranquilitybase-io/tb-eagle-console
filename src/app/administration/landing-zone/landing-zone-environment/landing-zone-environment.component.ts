@@ -28,7 +28,7 @@ import { LandingZoneDialogDeployEnvEnvironmentErrorComponent } from '../landing-
 
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { LandingZoneService } from '../landing-zone.service';
-import { Loadable } from '@app/mission-control/activator-store/activator-store.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 import { Router } from '@angular/router';
 

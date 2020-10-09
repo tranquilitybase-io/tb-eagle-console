@@ -7,7 +7,7 @@ import { updateTeamData, resetUpdateTeamDataStatus } from '../teams.actions';
 import { KeyValue } from '@angular/common';
 import { User } from '@app/login/login.model';
 import { Observable } from 'rxjs';
-import { Loadable } from '@app/mission-control/activator-store/activator-store.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 import { MatSnackBar } from '@angular/material';
 import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 import { selectUpdateTeamDataStatus } from './../teams.reducer';

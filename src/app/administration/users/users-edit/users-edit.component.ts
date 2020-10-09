@@ -6,7 +6,7 @@ import { select, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ValidatorPattern } from '@app/shared/shared.model';
 import { updateUserData, resetUpdateDataStatus } from '../users.actions';
-import { Loadable } from '@app/mission-control/activator-store/activator-store.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 import { MatSnackBar } from '@angular/material';
 import { selectUpdateUserDataStatus } from '../users.reducer';
