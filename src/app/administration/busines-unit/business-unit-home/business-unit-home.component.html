@@ -2,3 +2,4 @@
   <app-breadcrumbs> </app-breadcrumbs>
 </header>
 <app-business-unit-home-select [gridViewName]="gridViewOptionsName"></app-business-unit-home-select>
+<app-business-unit-home-grid *ngIf="isGridViewEnabled$ | async"></app-business-unit-home-grid>

@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { BusinessUnitsHomeComponent } from './business-unit-home.component';
 import { BusinessUnitHomeSelectComponent } from './business-unit-home-select/business-unit-home-select.component';
+import { BusinessUnitHomeGridComponent } from './business-unit-home-grid/business-unit-home-grid.component';
+import { BusinessUnitHomeGridCardComponent } from './business-unit-home-grid/business-unit-home-grid-card/business-unit-home-grid-card.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -28,7 +30,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [BusinessUnitsHomeComponent, BusinessUnitHomeSelectComponent],
+  declarations: [
+    BusinessUnitsHomeComponent,
+    BusinessUnitHomeSelectComponent,
+    BusinessUnitHomeGridComponent,
+    BusinessUnitHomeGridCardComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,

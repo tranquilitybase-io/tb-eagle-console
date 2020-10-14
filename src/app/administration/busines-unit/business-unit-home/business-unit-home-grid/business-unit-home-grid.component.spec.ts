@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsersHomeGridComponent } from './users-home-grid.component';
+import { UsersHomeGridComponent } from './business-unit-home-grid.component';
 
 describe('UsersHomeGridComponent', () => {
   let component: UsersHomeGridComponent;

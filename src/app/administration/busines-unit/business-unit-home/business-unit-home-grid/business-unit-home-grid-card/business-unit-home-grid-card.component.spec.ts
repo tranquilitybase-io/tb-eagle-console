@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsersHomeGridCardComponent } from './users-home-grid-card.component';
+import { BusinessUnitHomeGridCardComponent } from './business-unit-home-grid-card.component';
 
 describe('UsersHomeGridCardComponent', () => {
-  let component: UsersHomeGridCardComponent;
-  let fixture: ComponentFixture<UsersHomeGridCardComponent>;
+  let component: BusinessUnitHomeGridCardComponent;
+  let fixture: ComponentFixture<BusinessUnitHomeGridCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UsersHomeGridCardComponent]
+      declarations: [BusinessUnitHomeGridCardComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersHomeGridCardComponent);
+    fixture = TestBed.createComponent(BusinessUnitHomeGridCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,22 +3,23 @@ import { Observable } from 'rxjs';
 import { Layout } from '@app/shared/layout/layout.model';
 import { LayoutService } from '@app/shared/layout/layout.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '@app/login/login.model';
+import { BusinessUnit } from '../../business-unit.model';
 
 @Component({
-  selector: 'app-users-home-grid',
-  templateUrl: './users-home-grid.component.html',
-  styleUrls: ['./users-home-grid.component.scss']
+  selector: 'app-business-unit-home-grid',
+  templateUrl: './business-unit-home-grid.component.html',
+  styleUrls: ['./business-unit-home-grid.component.scss']
 })
-export class UsersHomeGridComponent {
-  @Input() users$: Observable<User[]>;
+export class BusinessUnitHomeGridComponent {
+  @Input() businessUnitList$: Observable<BusinessUnit[]>;
+
   layout$: Observable<Layout>;
 
   constructor(private layoutService: LayoutService, private router: Router, private route: ActivatedRoute) {
     this.layout$ = this.layoutService.layoutObserver$;
   }
 
-  createNewUser() {
+  createNewBusinessUnit() {
     this.router.navigate(['create'], { relativeTo: this.route });
   }
 }

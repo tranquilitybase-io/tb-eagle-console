@@ -1,0 +1,13 @@
+<div class="grid-container user-grid-container">
+  <mat-grid-list
+    [cols]="(layout$ | async).gridCols"
+    [rowHeight]="(layout$ | async).userGridItemHeight"
+    gutterSize="24px"
+  >
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-stroked-button class="create-new-button" color="primary" (click)="createNewBusinessUnit()">
+        <mat-icon>add</mat-icon>Create new business unit
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

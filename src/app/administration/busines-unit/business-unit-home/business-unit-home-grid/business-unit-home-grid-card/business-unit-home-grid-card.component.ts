@@ -2,11 +2,11 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { User } from '@app/administration/users/users.model';
 
 @Component({
-  selector: 'app-users-home-grid-card',
-  templateUrl: './users-home-grid-card.component.html',
-  styleUrls: ['./users-home-grid-card.component.scss']
+  selector: 'app-business-unit-home-grid-card',
+  templateUrl: './business-unit-home-grid-card.component.html',
+  styleUrls: ['./business-unit-home-grid-card.component.scss']
 })
-export class UsersHomeGridCardComponent implements OnInit {
+export class BusinessUnitHomeGridCardComponent implements OnInit {
   @Input() user: User;
 
   active = false;
