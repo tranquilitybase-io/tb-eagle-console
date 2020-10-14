@@ -23,6 +23,9 @@ export class BusinessUnitsHomeComponent implements OnInit {
   users$: Observable<User[]>;
   businessUnitList$: Observable<BusinessUnit[]>;
 
+  gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.businessUnit;
+  currentGridViewOption$: Observable<GridViewSwitchModel>;
+
   constructor(
     private businessUnitService: BusinessUnitService,
     private route: ActivatedRoute,
@@ -32,6 +35,14 @@ export class BusinessUnitsHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(getBusinessUnitList);
+    //this.store.dispatch(getBusinessUnitList);
+
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+  }
+
+  get isGridViewEnabled$(): Observable<boolean> {
+    return this.currentGridViewOption$.pipe(
+      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+    );
   }
 }

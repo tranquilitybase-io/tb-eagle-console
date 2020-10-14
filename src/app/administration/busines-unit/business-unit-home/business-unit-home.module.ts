@@ -4,6 +4,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BusinessUnitsHomeComponent } from './business-unit-home.component';
+import { BusinessUnitHomeSelectComponent } from './business-unit-home-select/business-unit-home-select.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -27,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [BusinessUnitsHomeComponent],
+  declarations: [BusinessUnitsHomeComponent, BusinessUnitHomeSelectComponent],
   imports: [
     CommonModule,
     SharedModule,
