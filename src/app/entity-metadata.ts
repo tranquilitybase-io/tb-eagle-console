@@ -59,7 +59,8 @@ const entityMetadata: EntityMetadataMap = {
       return teams;
     }
   },
-  User: {}
+  User: {},
+  BusinessUnit: {}
 };
 
 export default {

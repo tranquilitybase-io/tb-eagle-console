@@ -1,5 +1,12 @@
 import { createReducer, on, createSelector } from '@ngrx/store';
-import { getBusinessUnitList, getBusinessUnitListSuccess, getBussinessUnitListError } from './business-unit.actions';
+import {
+  getBusinessUnitList,
+  getBusinessUnitListSuccess,
+  getBussinessUnitListError,
+  createBusinessUnit,
+  createBusinessUnitSuccess,
+  createBusinessUnitError
+} from './business-unit.actions';
 import { BusinessUnit } from './business-unit.model';
 
 export const initialState = {
@@ -16,7 +23,10 @@ export const usersReducer = createReducer(
   // add handling  status after merging error & success branch
   on(getBusinessUnitList, state => ({ ...state })),
   on(getBusinessUnitListSuccess, (state, { businessUnitList }) => ({ ...state, businessUnitList })),
-  on(getBussinessUnitListError, (state, { error }) => ({ ...state }))
+  on(getBussinessUnitListError, (state, { error }) => ({ ...state })),
+  on(createBusinessUnit, state => ({ ...state })),
+  on(createBusinessUnitSuccess, state => ({ ...state })),
+  on(createBusinessUnitError, (state, { error }) => ({ ...state }))
 );
 
 export default function reducer(state, action) {

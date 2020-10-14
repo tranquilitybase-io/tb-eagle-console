@@ -1,0 +1,34 @@
+<header>
+  <app-breadcrumbs> </app-breadcrumbs>
+</header>
+<main>
+  <form [formGroup]="businessForm" (ngSubmit)="onSubmit(businessForm.value)">
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required type="text" maxlength="30" formControlName="name" placeholder="E.g. name..." />
+        <mat-error *ngIf="f.name.errors?.required">Name is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Description name</mat-label>
+        <input matInput required type="text" formControlName="description" placeholder="E.g. description..." />
+        <mat-error *ngIf="f.description.errors?.required">Description is <strong>required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <div class="app-bottom-action left">
+      <button mat-button color="primary" (click)="cancel()">
+        <mat-icon class="app-cancel-icon">cancel</mat-icon>
+        Cancel
+      </button>
+    </div>
+    <div class="app-bottom-action right">
+      <button mat-button color="primary">
+        Create Business Unit
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </form>
+</main>
+<div class="app-bottom-background"></div>
