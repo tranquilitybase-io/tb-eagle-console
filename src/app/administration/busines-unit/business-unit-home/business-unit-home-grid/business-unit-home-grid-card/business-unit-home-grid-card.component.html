@@ -9,15 +9,15 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <a mat-menu-item routerLink="view" [queryParams]="{ id: user.id }">
+          <a mat-menu-item routerLink="view" [queryParams]="{ id: businessUnit.id }">
             View
           </a>
-          <a mat-menu-item routerLink="edit" [queryParams]="{ id: user.id }">
+          <a mat-menu-item routerLink="edit" [queryParams]="{ id: businessUnit.id }">
             Edit
           </a>
         </mat-menu>
       </div>
-      {{ name }}
+      {{ businessUnit.name }}
     </mat-card-title>
   </mat-card-header>
 
@@ -27,34 +27,16 @@
       <mat-list-item>
         <div class="mat-body">Name</div>
         <mat-chip-list>
-          <mat-chip> {{ user.firstName }} </mat-chip>
-        </mat-chip-list>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="mat-body">Last name</div>
-        <mat-chip-list>
-          <mat-chip>{{ user.lastName }}</mat-chip>
-        </mat-chip-list>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="mat-body">E-mail address</div>
-        <mat-chip-list>
-          <mat-chip>{{ user.email }}</mat-chip>
-        </mat-chip-list>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="mat-body">Teams</div>
-        <mat-chip-list>
-          <mat-chip>{{ user.teamCount }}</mat-chip>
+          <mat-chip> {{ businessUnit.name }} </mat-chip>
         </mat-chip-list>
       </mat-list-item>
     </mat-list>
   </mat-card-content>
   <mat-card-actions *ngIf="active">
-    <a mat-button routerLink="view" [queryParams]="{ id: user.id }">
+    <a mat-button routerLink="view" [queryParams]="{ id: businessUnit.id }">
       View
     </a>
-    <a mat-button routerLink="edit" [queryParams]="{ id: user.id }">
+    <a mat-button routerLink="edit" [queryParams]="{ id: businessUnit.id }">
       Edit
     </a>
   </mat-card-actions>

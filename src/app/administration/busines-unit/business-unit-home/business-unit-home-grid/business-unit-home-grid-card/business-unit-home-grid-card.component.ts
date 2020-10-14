@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { User } from '@app/administration/users/users.model';
+import { BusinessUnit } from '../../../business-unit.model';
 
 @Component({
   selector: 'app-business-unit-home-grid-card',
@@ -7,7 +7,7 @@ import { User } from '@app/administration/users/users.model';
   styleUrls: ['./business-unit-home-grid-card.component.scss']
 })
 export class BusinessUnitHomeGridCardComponent implements OnInit {
-  @Input() user: User;
+  @Input() businessUnit: BusinessUnit;
 
   active = false;
 
@@ -23,9 +23,5 @@ export class BusinessUnitHomeGridCardComponent implements OnInit {
   @HostListener('mouseleave')
   onMouseLeave() {
     this.active = false;
-  }
-
-  get name(): string {
-    return `${this.user.lastName}, ${this.user.firstName}`;
   }
 }

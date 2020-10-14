@@ -9,5 +9,8 @@
         <mat-icon>add</mat-icon>Create new business unit
       </button>
     </mat-grid-tile>
+    <mat-grid-tile *ngFor="let businessUnit of businessUnitList$ | async" colspan="1" rowspan="1">
+      <app-business-unit-home-grid-card [businessUnit]="businessUnit"></app-business-unit-home-grid-card>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>

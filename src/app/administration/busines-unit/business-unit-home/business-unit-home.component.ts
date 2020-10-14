@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BusinessUnitService } from '../business-unit.service';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '@app/login/login.model';
 import { Observable } from 'rxjs';
 import {
   GridViewSwitchViewsNames,
@@ -20,7 +19,6 @@ import { getBusinessUnitList } from '../business-unit.actions';
 })
 export class BusinessUnitsHomeComponent implements OnInit {
   [x: string]: any;
-  users$: Observable<User[]>;
   businessUnitList$: Observable<BusinessUnit[]>;
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.businessUnit;
@@ -31,12 +29,11 @@ export class BusinessUnitsHomeComponent implements OnInit {
     private route: ActivatedRoute,
     private store: Store<any>
   ) {
-    // this.users$ = usersService.filteredEntities$;
+    this.businessUnitList$ = businessUnitService.filteredEntities$;
   }
 
   ngOnInit() {
-    //this.store.dispatch(getBusinessUnitList);
-
+    this.businessUnitService.getAll();
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
   }
 
