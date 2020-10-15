@@ -5,7 +5,10 @@ import {
   getBussinessUnitListError,
   createBusinessUnit,
   createBusinessUnitSuccess,
-  createBusinessUnitError
+  createBusinessUnitError,
+  updateBusinessUnit,
+  updateBusinessUnitSuccess,
+  updateBusinessUnitError
 } from './business-unit.actions';
 import { BusinessUnit } from './business-unit.model';
 
@@ -26,7 +29,10 @@ export const usersReducer = createReducer(
   on(getBussinessUnitListError, (state, { error }) => ({ ...state })),
   on(createBusinessUnit, state => ({ ...state })),
   on(createBusinessUnitSuccess, state => ({ ...state })),
-  on(createBusinessUnitError, (state, { error }) => ({ ...state }))
+  on(createBusinessUnitError, (state, { error }) => ({ ...state })),
+  on(updateBusinessUnit, state => ({ ...state })),
+  on(updateBusinessUnitSuccess, state => ({ ...state })),
+  on(updateBusinessUnitError, (state, { error }) => ({ ...state }))
 );
 
 export default function reducer(state, action) {

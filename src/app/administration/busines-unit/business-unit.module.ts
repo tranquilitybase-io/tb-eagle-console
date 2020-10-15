@@ -41,6 +41,21 @@ const routes: Routes = [
         }
       ]
     }
+  },
+  {
+    path: 'edit',
+    loadChildren: () => import('./business-unit-edit/business-unit-edit.module').then(m => m.BusinessUnitEditModule),
+    data: {
+      breadcrumbsSteps: [
+        {
+          name: 'Business unit',
+          link: '/administration/business-unit'
+        },
+        {
+          name: 'Edit'
+        }
+      ]
+    }
   }
 ];
 

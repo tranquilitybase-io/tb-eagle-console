@@ -2,7 +2,9 @@ import {
   getBusinessUnitListSuccess,
   getBussinessUnitListError,
   createBusinessUnitSuccess,
-  createBusinessUnitError
+  createBusinessUnitError,
+  updateBusinessUnitSuccess,
+  updateBusinessUnitError
 } from './business-unit.actions';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -50,5 +52,21 @@ export class BusinessUnitService extends EntityCollectionServiceBase<BusinessUni
       .subscribe(this.createBusinessUnitSuccess, this.createBusinessUnitError, () => {
         this.getAll();
       });
+  }
+
+  private updateBusinessUnitSuccess = (val: BusinessUnit) => {
+    this.store.dispatch(updateBusinessUnitSuccess());
+  };
+
+  private updateBusinessUnitError = (error: any) => {
+    this.store.dispatch(updateBusinessUnitError({ error }));
+  };
+
+  updateBusinessUnit(businessUnit: BusinessUnit): void {
+    const url = `${this.BASE_URL}/businessunit/${businessUnit.id}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http
+      .put(url, businessUnit, { headers })
+      .subscribe(this.updateBusinessUnitSuccess, this.updateBusinessUnitError, () => this.getAll());
   }
 }
