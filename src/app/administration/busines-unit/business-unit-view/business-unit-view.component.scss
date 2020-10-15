@@ -1,0 +1,37 @@
+header {
+  padding: 0.2rem 1.5rem;
+  background-color: var(--active-grey-background);
+}
+
+.user-view-card {
+  position: flex;
+  top: 2rem;
+  left: 0;
+  right: 0;
+  bottom: 2rem;
+  border: none;
+  box-shadow: none;
+
+  .user-view-card-content {
+    a {
+      margin-left: 5px;
+    }
+
+    .description-list {
+      background-color: #f9f9f9;
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      max-width: 40%;
+
+      .mat-body-1 {
+        width: 10rem;
+      }
+
+      .mat-chip.sensitivity {
+        color: white;
+        background-color: var(--dark-grey-2);
+      }
+    }
+  }
+}
