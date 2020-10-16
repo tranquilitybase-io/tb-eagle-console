@@ -32,6 +32,13 @@
       </mat-list-item>
     </mat-list>
   </mat-card-content>
+
+  <mat-card-footer *ngIf="!active">
+    <div>
+      <div class="mat-body-strong">Description</div>
+      <div class="mat-caption">{{ businessUnit.description }}</div>
+    </div>
+  </mat-card-footer>
   <mat-card-actions *ngIf="active">
     <a mat-button routerLink="view" [queryParams]="{ id: businessUnit.id }">
       View

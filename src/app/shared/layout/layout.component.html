@@ -120,16 +120,6 @@
         </a>
       </div>
       <a
-        *ngIf="userIsAdmin$ | async"
-        mat-list-item
-        routerLink="/administration/business-unit"
-        [class.active]="isLinkActive('/administration/business-unit')"
-        [matTooltip]="!isExpanded ? 'Business unit' : null"
-        matTooltipPosition="after"
-      >
-        <mat-icon>person</mat-icon> <span *ngIf="isExpanded">Business unit</span>
-      </a>
-      <a
         mat-list-item
         routerLink="/administration/users"
         [queryParams]="{ groupSwitch: 'Actives' }"
@@ -149,6 +139,16 @@
       >
         <mat-icon>group</mat-icon>
         <span *ngIf="isExpanded"> Teams</span>
+      </a>
+      <a
+        *ngIf="userIsAdmin$ | async"
+        mat-list-item
+        routerLink="/administration/business-unit"
+        [class.active]="isLinkActive('/administration/business-unit')"
+        [matTooltip]="!isExpanded ? 'Business unit' : null"
+        matTooltipPosition="after"
+      >
+        <mat-icon>business</mat-icon> <span *ngIf="isExpanded">Business Units</span>
       </a>
       <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
         <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span>

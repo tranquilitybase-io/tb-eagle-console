@@ -1,14 +1,12 @@
 import {
-  createBusinessUnitSuccess,
   createBusinessUnitError,
-  updateBusinessUnitSuccess,
-  updateBusinessUnitError
+  createBusinessUnitSuccess,
+  updateBusinessUnitError,
+  updateBusinessUnitSuccess
 } from './business-unit.actions';
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '@app/login/login.model';
 import { BusinessUnit } from './business-unit.model';
 
 @Injectable({

@@ -1,4 +1,4 @@
-import { BusinessUnit } from '@app/shared/shared.model';
+import { BusinessUnit } from '../busines-unit/business-unit.model';
 
 export class Team {
   id?: number;

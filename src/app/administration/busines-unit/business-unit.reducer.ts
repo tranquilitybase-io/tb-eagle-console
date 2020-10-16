@@ -1,11 +1,11 @@
 import { createReducer, on, createSelector } from '@ngrx/store';
 import {
   createBusinessUnit,
-  createBusinessUnitSuccess,
   createBusinessUnitError,
+  createBusinessUnitSuccess,
   updateBusinessUnit,
-  updateBusinessUnitSuccess,
-  updateBusinessUnitError
+  updateBusinessUnitError,
+  updateBusinessUnitSuccess
 } from './business-unit.actions';
 import { BusinessUnit } from './business-unit.model';
 
@@ -22,11 +22,11 @@ export const usersReducer = createReducer(
   initialState,
   // add handling  status after merging error & success branch
   on(createBusinessUnit, state => ({ ...state })),
-  on(createBusinessUnitSuccess, state => ({ ...state })),
   on(createBusinessUnitError, (state, { error }) => ({ ...state })),
+  on(createBusinessUnitSuccess, state => ({ ...state })),
   on(updateBusinessUnit, state => ({ ...state })),
-  on(updateBusinessUnitSuccess, state => ({ ...state })),
-  on(updateBusinessUnitError, (state, { error }) => ({ ...state }))
+  on(updateBusinessUnitError, (state, { error }) => ({ ...state })),
+  on(updateBusinessUnitSuccess, state => ({ ...state }))
 );
 
 export default function reducer(state, action) {
