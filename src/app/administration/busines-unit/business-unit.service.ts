@@ -23,19 +23,6 @@ export class BusinessUnitService extends EntityCollectionServiceBase<BusinessUni
 
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  private getBusinessUnitListSuccess(businessUnitList: BusinessUnit[]) {
-    this.store.dispatch(getBusinessUnitListSuccess({ businessUnitList }));
-  }
-
-  private getBussinessUnitListError(error: any) {
-    this.store.dispatch(getBussinessUnitListError({ error: 'error' }));
-  }
-
-  getBusinessUnitList(): void {
-    const url = `${this.BASE_URL}/businessunits`;
-    this.http.get(url).subscribe(this.getBusinessUnitListSuccess, this.getBussinessUnitListError);
-  }
-
   private createBusinessUnitSuccess = (val: BusinessUnit) => {
     this.dispatch(createBusinessUnitSuccess());
   };
