@@ -1,0 +1,22 @@
+header {
+  padding: 0.2rem 1.5rem;
+  background-color: var(--active-grey-background);
+}
+
+main {
+  padding: 3rem;
+  margin-bottom: 5rem;
+
+  p {
+    width: 100%;
+
+    .mat-form-field {
+      width: 100%;
+
+      &.small-width {
+        width: 30%;
+        margin-right: 2rem;
+      }
+    }
+  }
+}

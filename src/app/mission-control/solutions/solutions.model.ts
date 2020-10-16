@@ -1,7 +1,8 @@
 import { Application } from '../applications/applications.model';
-import { Team } from '@app/administration/teams/teams.model';
-import { BusinessUnit, DeploymentState } from '@app/shared/shared.model';
+import { BusinessUnit } from '@app/administration/busines-unit/business-unit.model';
+import { DeploymentState } from '@app/shared/shared.model';
 import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
+import { Team } from '@app/administration/teams/teams.model';
 
 class idValuePair {
   id: number;

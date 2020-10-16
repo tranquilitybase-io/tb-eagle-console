@@ -59,6 +59,18 @@ const routes: Routes = [
             }
           ]
         }
+      },
+      {
+        path: 'business-unit',
+        loadChildren: () => import('./busines-unit/business-unit.module').then(m => m.BusinessUnitModule),
+        canActivate: [AdminGuardService],
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Business unit'
+            }
+          ]
+        }
       }
     ]
   }
