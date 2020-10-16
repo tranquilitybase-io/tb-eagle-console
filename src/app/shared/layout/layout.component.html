@@ -120,6 +120,7 @@
         </a>
       </div>
       <a
+        *ngIf="userIsAdmin$ | async"
         mat-list-item
         routerLink="/administration/business-unit"
         [class.active]="isLinkActive('/administration/business-unit')"
