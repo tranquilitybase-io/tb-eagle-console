@@ -12,6 +12,7 @@ import { DeploymentState } from '@app/shared/shared.model';
 import { MatSnackBar } from '@angular/material';
 import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 import { Loadable } from '@app/shared/shared.reducer';
+import { resetUpdateSolutionStatus } from './../solutions.actions';
 
 @Component({
   selector: 'app-solutions-edit',
@@ -44,6 +45,7 @@ export class SolutionsEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetUpdateSolutionStatus());
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.cdList = this.route.snapshot.data['cdList'];
     this.ciList = this.route.snapshot.data['ciList'];

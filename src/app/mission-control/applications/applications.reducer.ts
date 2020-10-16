@@ -6,7 +6,8 @@ import {
   createApplicationError,
   startDeployment,
   startDeploymentError,
-  startDeploymentSuccess
+  startDeploymentSuccess,
+  createApplicationStatusReset
 } from './applications.actions';
 import { ApplicationDeployment } from './applications.model';
 import {
@@ -39,6 +40,7 @@ const innerReducer = createReducer(
   on(createApplication, state => ({ ...state, createApplicationStatus: onLoadableInit() })),
   on(createApplicationSuccess, state => ({ ...state, createApplicationStatus: onLoadableSuccess() })),
   on(createApplicationError, (state, { error }) => ({ ...state, createApplicationStatus: onLoadableError(error) })),
+  on(createApplicationStatusReset, state => ({ ...state, createApplicationStatus: defaultLoadable() })),
   on(startDeployment, state => ({ ...state, startDeploymentStatus: onLoadableInit() })),
   on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() })),
   on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) }))

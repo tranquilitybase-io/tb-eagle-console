@@ -7,6 +7,7 @@ export const createApplication = createAction(
 );
 export const createApplicationSuccess = createAction('[Applications] createApplicationSuccess');
 export const createApplicationError = createAction('[Applications] createApplicationError', props<{ error: any }>());
+export const createApplicationStatusReset = createAction('[Applications] createApplicationStatusReset');
 
 export const startDeployment = createAction('[Applications] startDeployment', props<{ id: number }>());
 export const startDeploymentSuccess = createAction('[Applications] startDeploymentSuccess');

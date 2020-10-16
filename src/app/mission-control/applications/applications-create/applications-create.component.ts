@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { MatDialog, MatSnackBar, MatStepper } from '@angular/material';
 import { KeyValue } from '@angular/common';
-import { createApplication } from '../applications.actions';
+import { createApplication, createApplicationStatusReset } from '../applications.actions';
 import { setProgress } from '@app/mission-control/activator-store/activator-store.actions';
 import { Activator } from '@app/mission-control/activator-store/activator-store.model';
 import { Application } from '../applications.model';
@@ -45,6 +45,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(createApplicationStatusReset());
     this.store.dispatch(setProgress({ step: 1 }));
     this.selectedActivator = this.route.snapshot.data['activator'] as Activator;
 
@@ -80,7 +81,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   handleSubmitStatus(status: Loadable) {
     if (status.success) {
       this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Application has been created', success: true },
+        data: { message: 'Activator has been provisioned', success: true },
         duration: 3500
       });
     }

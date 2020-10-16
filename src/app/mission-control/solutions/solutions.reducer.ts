@@ -18,7 +18,9 @@ import {
   createSolutionSuccess,
   createSolutionError,
   startDeploymentSuccess,
-  startDeploymentError
+  startDeploymentError,
+  resetUpdateSolutionStatus,
+  resetCreateSolutionStatus
 } from './solutions.actions';
 import { Solution, SolutionDeployment } from './solutions.model';
 
@@ -54,6 +56,7 @@ export const solutionsReducer = createReducer(
   })),
   on(updateSolutionSuccess, state => ({ ...state, updateSolutionStatus: onLoadableSuccess() })),
   on(updateSolutionError, (state, { error }) => ({ ...state, updateSolutionStatus: onLoadableError(error) })),
+  on(resetUpdateSolutionStatus, state => ({ ...state, updateSolutionStatus: defaultLoadable() })),
   on(setSolutionDeploymentsData, (state, { solutionDeploymentsData }) => {
     if (JSON.stringify(solutionDeploymentsData) !== JSON.stringify(state.solutionDeploymentsData)) {
       return { ...state, solutionDeploymentsData };
@@ -63,6 +66,7 @@ export const solutionsReducer = createReducer(
   on(createSolution, state => ({ ...state, createSolutionStatus: onLoadableInit() })),
   on(createSolutionSuccess, state => ({ ...state, createSolutionStatus: onLoadableSuccess() })),
   on(createSolutionError, (state, { error }) => ({ ...state, createSolutionStatus: onLoadableError(error) })),
+  on(resetCreateSolutionStatus, state => ({ ...state, createSolutionStatus: defaultLoadable() })),
   on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() })),
   on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) }))
 );

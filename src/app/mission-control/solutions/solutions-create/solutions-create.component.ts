@@ -6,7 +6,7 @@ import { select, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { createSolution } from '../solutions.actions';
+import { createSolution, resetCreateSolutionStatus } from '../solutions.actions';
 import { Loadable } from '@app/shared/shared.reducer';
 import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 
@@ -37,6 +37,7 @@ export class SolutionsCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetCreateSolutionStatus());
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.cdList = this.route.snapshot.data['cdList'];
     this.ciList = this.route.snapshot.data['ciList'];
