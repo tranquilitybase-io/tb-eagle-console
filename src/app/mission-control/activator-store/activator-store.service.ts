@@ -6,11 +6,22 @@ import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import {
+  createActivatorByURLError,
+  createActivatorByURLSuccess,
+  denyAccessError,
+  denyAccessSuccess,
+  grantAccessError,
+  grantAccessSuccess,
+  requestAccessError,
+  requestAccessSuccess,
   setActivatorsByCategoryData,
   setActivatorsCount,
-  storeActivatorData,
-  createActivatorByURLSuccess,
-  createActivatorByURLError
+  setDeprecatedError,
+  setDeprecatedSuccess,
+  setLockedError,
+  setLockedSuccess,
+  updateActivatorError,
+  updateActivatorSuccess
 } from './activator-store.actions';
 import { ActivatedRoute } from '@angular/router';
 
@@ -28,15 +39,6 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     super('Activator', serviceElementsFactory);
   }
 
-  private postSuccess = (activatorData: Activator) => {
-    this.store.dispatch(storeActivatorData({ activatorData }));
-    console.log('POST call successful value returned in body', activatorData);
-  };
-
-  private postError = err => {
-    console.log('POST call in error', err);
-  };
-
   private postCompleted = () => {
     console.log('The POST observable is now completed.');
     this.getByCategory(this.route.snapshot.queryParams.categorySwitch).subscribe((activators: Activator[]) => {
@@ -44,48 +46,93 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     });
   };
 
+  private setDeprecatedSuccess = (activatorData: Activator) => {
+    console.log('POST call successful value returned in body', activatorData);
+    this.store.dispatch(setDeprecatedSuccess({ activatorData }));
+  };
+
+  private setDeprecatedError = (error: any) => {
+    this.store.dispatch(setDeprecatedError({ error }));
+  };
+
   setDeprecated(id: number) {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
       .post(url, { id, status: 'Deprecated', accessRequestedById: 0 }, { headers })
-      .subscribe(this.postSuccess, this.postError, this.postCompleted);
+      .subscribe(this.setDeprecatedSuccess, this.setDeprecatedError, this.postCompleted);
     console.log('Deprecated status set to activator: ' + id);
   }
+
+  private setLockedSuccess = (activatorData: Activator) => {
+    console.log('POST call successful value returned in body', activatorData);
+    this.store.dispatch(setLockedSuccess({ activatorData }));
+  };
+
+  private setLockedError = (error: any) => {
+    this.store.dispatch(setLockedError({ error }));
+  };
 
   setLocked(id: number) {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
       .post(url, { id, status: 'Locked', accessRequestedById: 0 }, { headers })
-      .subscribe(this.postSuccess, this.postError, this.postCompleted);
+      .subscribe(this.setLockedSuccess, this.setLockedError, this.postCompleted);
     console.log('Locked status set to activator: ' + id);
   }
+
+  private denyAccessSuccess = (activatorData: Activator) => {
+    console.log('POST call successful value returned in body', activatorData);
+    this.store.dispatch(denyAccessSuccess({ activatorData }));
+  };
+
+  private denyAccessError = (error: any) => {
+    this.store.dispatch(denyAccessError({ error }));
+  };
 
   denyAccess(activatorId: number, teamId: string) {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
       .post(url, { id: activatorId, status: 'Locked', accessRequestedById: 0 }, { headers })
-      .subscribe(this.postSuccess, this.postError, this.postCompleted);
+      .subscribe(this.denyAccessSuccess, this.denyAccessError, this.postCompleted);
     console.log('Locked status set to activator: ' + activatorId);
   }
+
+  private grantAccessSuccess = (activatorData: Activator) => {
+    console.log('POST call successful value returned in body', activatorData);
+    this.store.dispatch(grantAccessSuccess({ activatorData }));
+  };
+
+  private grantAccessError = (error: any) => {
+    this.store.dispatch(grantAccessError({ error }));
+  };
 
   grantAccess(activatorId: number, teamId: string) {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
       .post(url, { id: activatorId, status: 'Available', accessRequestedById: 0 }, { headers })
-      .subscribe(this.postSuccess, this.postError, this.postCompleted);
+      .subscribe(this.grantAccessSuccess, this.grantAccessError, this.postCompleted);
     console.log('Available status set to activator: ' + activatorId);
   }
+
+  private requestAccessSuccess = (activatorData: Activator) => {
+    console.log('POST call successful value returned in body', activatorData);
+    this.store.dispatch(requestAccessSuccess({ activatorData }));
+  };
+
+  private requestAccessError = (error: any) => {
+    this.store.dispatch(requestAccessError({ error }));
+  };
 
   requestAccess(id: number, user: User) {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
       .post(url, { id, accessRequestedById: user.id }, { headers })
-      .subscribe(this.postSuccess, this.postError, this.postCompleted);
+      .subscribe(this.requestAccessSuccess, this.requestAccessError, this.postCompleted);
     console.log(`Access requested to activator ${id} by user ${user.id}`);
   }
 
@@ -143,18 +190,19 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       .subscribe(this.createActivatorByURLSuccess, this.createActivatorByURLError, this.postCompleted);
   }
 
-  private putSuccess = (activatorData: Activator) => {
-    this.store.dispatch(storeActivatorData({ activatorData }));
-    console.log('PUT call successful value returned in body', activatorData);
+  private updateActivatorSuccess = (activatorData: Activator) => {
+    this.store.dispatch(updateActivatorSuccess({ activatorData }));
+    console.log('POST call successful value returned in body', activatorData);
   };
 
-  private putError = err => {
-    console.log('PUT call in error', err);
+  private updateActivatorError = error => {
+    this.store.dispatch(updateActivatorError({ error }));
+    console.log('POST call in error', error);
   };
 
   updateActivator(activatorData: Activator): void {
     const url = `${this.BASE_URL}/activator/${activatorData.id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.put(url, activatorData, { headers }).subscribe(this.putSuccess, this.putError);
+    this.http.put(url, activatorData, { headers }).subscribe(this.updateActivatorSuccess, this.updateActivatorError);
   }
 }

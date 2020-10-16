@@ -1,10 +1,15 @@
+import { selectCreateTeamDataStatus } from './../teams.reducer';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { KeyValue } from '@angular/common';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '@app/login/login.model';
-import { storeTeamData } from '../teams.actions';
+import { createTeamData, resetCreateTeamDataStatus } from '../teams.actions';
+import { Loadable } from '@app/shared/shared.reducer';
+import { MatSnackBar } from '@angular/material';
+import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 
 @Component({
   selector: 'app-teams-create',
@@ -18,14 +23,18 @@ export class TeamsCreateComponent implements OnInit {
 
   businessUnitList: KeyValue<string, string>[];
 
+  createTeamDataStatus$: Observable<Loadable>;
+
   constructor(
     private store: Store<any>,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetCreateTeamDataStatus());
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
 
     this.teamForm = this.formBuilder.group({
@@ -35,6 +44,31 @@ export class TeamsCreateComponent implements OnInit {
       description: ['', Validators.required],
       businessUnitId: ['', Validators.required]
     });
+
+    this.createTeamDataStatus$ = this.store.pipe(select(selectCreateTeamDataStatus));
+    this.createTeamDataStatus$.subscribe(status => {
+      this.handleSubmitStatus(status);
+    });
+  }
+
+  private navigateToTeamsHome() {
+    this.router.navigateByUrl('/administration/teams');
+  }
+
+  private handleSubmitStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Team has been created', success: true },
+        duration: 3500
+      });
+      this.navigateToTeamsHome();
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong. Team has not been created', success: false },
+        duration: 3500
+      });
+      this.navigateToTeamsHome();
+    }
   }
 
   get f() {
@@ -42,13 +76,12 @@ export class TeamsCreateComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigateByUrl('/administration/teams');
+    this.navigateToTeamsHome();
   }
 
   onSubmit(teamData) {
     if (this.teamForm.valid) {
-      this.store.dispatch(storeTeamData({ teamData }));
-      this.router.navigateByUrl('/administration/teams');
+      this.store.dispatch(createTeamData({ teamData }));
     } else {
       this.teamForm.markAllAsTouched();
     }

@@ -1,10 +1,14 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
-import { SolutionsState } from '../solutions.reducer';
-import { Store } from '@ngrx/store';
+import { SolutionsState, selectCreateSolutionStatus } from '../solutions.reducer';
+import { select, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { createSolution } from '../solutions.actions';
+import { MatSnackBar } from '@angular/material';
+import { createSolution, resetCreateSolutionStatus } from '../solutions.actions';
+import { Loadable } from '@app/shared/shared.reducer';
+import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 
 @Component({
   selector: 'app-solutions-create',
@@ -22,14 +26,18 @@ export class SolutionsCreateComponent implements OnInit {
   detailsForm: FormGroup;
   workspaceForm: FormGroup;
 
+  createSolutionStatus$: Observable<Loadable>;
+
   constructor(
     private store: Store<SolutionsState>,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetCreateSolutionStatus());
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.cdList = this.route.snapshot.data['cdList'];
     this.ciList = this.route.snapshot.data['ciList'];
@@ -52,6 +60,11 @@ export class SolutionsCreateComponent implements OnInit {
       sourceControlId: ['', Validators.required],
       environments: [[]]
     });
+
+    this.createSolutionStatus$ = this.store.pipe(select(selectCreateSolutionStatus));
+    this.createSolutionStatus$.subscribe(status => {
+      this.handleSubmitStatus(status);
+    });
   }
 
   get f() {
@@ -62,11 +75,30 @@ export class SolutionsCreateComponent implements OnInit {
     return this.workspaceForm.controls;
   }
 
+  navigateToSolutionsHome() {
+    this.router.navigateByUrl('/mission-control/solutions');
+  }
+
+  handleSubmitStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Solution has been created', success: true },
+        duration: 3500
+      });
+      this.navigateToSolutionsHome();
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong. Solution has not been created', success: false },
+        duration: 3500
+      });
+      this.navigateToSolutionsHome();
+    }
+  }
+
   onSubmit() {
     if (this.detailsForm.valid && this.workspaceForm.valid) {
       let solution = Object.assign(this.detailsForm.value, this.workspaceForm.value);
       this.store.dispatch(createSolution({ solution }));
-      this.router.navigateByUrl('/mission-control/solutions');
     } else {
       this.detailsForm.markAllAsTouched();
       this.workspaceForm.markAllAsTouched();
