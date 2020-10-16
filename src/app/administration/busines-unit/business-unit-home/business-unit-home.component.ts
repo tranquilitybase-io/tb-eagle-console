@@ -11,7 +11,7 @@ import { select, Store } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { map } from 'rxjs/operators';
 import { BusinessUnit } from '../business-unit.model';
-import { getBusinessUnitList } from '../business-unit.actions';
+
 @Component({
   selector: 'app-users-home',
   templateUrl: './business-unit-home.component.html',

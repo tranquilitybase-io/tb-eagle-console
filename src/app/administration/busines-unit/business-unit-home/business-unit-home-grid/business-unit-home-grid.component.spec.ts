@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsersHomeGridComponent } from './business-unit-home-grid.component';
+import { BusinessUnitHomeGridComponent } from './business-unit-home-grid.component';
 
 describe('UsersHomeGridComponent', () => {
-  let component: UsersHomeGridComponent;
-  let fixture: ComponentFixture<UsersHomeGridComponent>;
+  let component: BusinessUnitHomeGridComponent;
+  let fixture: ComponentFixture<BusinessUnitHomeGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UsersHomeGridComponent]
+      declarations: [BusinessUnitHomeGridComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersHomeGridComponent);
+    fixture = TestBed.createComponent(BusinessUnitHomeGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
