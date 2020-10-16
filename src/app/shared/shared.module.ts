@@ -32,6 +32,7 @@ import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatorCreateErrorComponent } from './snack-bar/activator-create-error/activator-create-error.component';
 import { ActivatorCreateSuccessComponent } from './snack-bar/activator-create-success/activator-create-success.component';
+import { ApiCallStatusComponent } from './snack-bar/api-call-status/api-call-status.component';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
 import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
@@ -58,6 +59,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ActivatorCreateErrorComponent,
     ActivatorCreateSuccessComponent,
     AlertComponent,
+    ApiCallStatusComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     BadgesComponent,
@@ -68,6 +70,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     InputComponent,
     LayoutComponent,
     LoaderComponent,
+    NotificationsComponent,
     NotificationsComponent,
     PaginationComponent,
     PillsComponent,
@@ -84,6 +87,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   entryComponents: [
     ActivatorCreateErrorComponent,
     ActivatorCreateSuccessComponent,
+    ApiCallStatusComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     SolutionCreatedComponent,
@@ -148,7 +152,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    MatDialogModule,
+    MatBadgeModule,
+    ApiCallStatusComponent
   ]
 })
 export class SharedModule {}

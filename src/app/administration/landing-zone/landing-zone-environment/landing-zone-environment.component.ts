@@ -2,27 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Store, select } from '@ngrx/store';
 import {
-  selectFolderStructureTreeData,
   EnvironmentState,
   selectEnvironmentListData,
-  selectLanVPCListData
+  selectFolderStructureTreeData,
+  selectLanVPCListData,
+  selectLzEnvironmentDeploymentStatus,
+  selectStoreEnvironmentListDataStatus,
+  selectStoreFolderStructureTreeDataStatus,
+  selectStoreLanVPCListDataStatus
 } from './landing-zone-environment.reducer';
 import {
-  storeFolderStructureTreeData,
+  resetEnvironmentStatuses,
   storeEnvironmentListData,
+  storeFolderStructureTreeData,
   storeLanVPCListData
 } from './landing-zone-environment.actions';
 import { FolderStructureNode, LanVPC, Environment } from './landing-zone-environment.model';
 import { LandingZoneDialogDeployEnvComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env/landing-zone-dialog-deploy-env.component';
 import { LandingZoneDialogDeployEnvEnvironmentErrorComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env-environment-error/landing-zone-dialog-deploy-env-environment-error.component';
 
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { LandingZoneService } from '../landing-zone.service';
+import { Loadable } from '@app/shared/shared.reducer';
+import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-zone-environment',
@@ -50,11 +58,18 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
+  storeEnvironmentListDataStatus$: Observable<Loadable>;
+  storeFolderStructureTreeDataStatus$: Observable<Loadable>;
+  storeLanVPCListDataStatus$: Observable<Loadable>;
+  lzEnvironmentDeploymentStatus$: Observable<Loadable>;
+
   //#region Constructor
   constructor(
     private store: Store<EnvironmentState>,
     private dialog: MatDialog,
-    private landingZoneService: LandingZoneService
+    private landingZoneService: LandingZoneService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     landingZoneService.getAll().subscribe(lzProgressItems => {
       this.readOnly = lzProgressItems.some(item => item.label === 'Environment' && item.completed);
@@ -76,7 +91,26 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   //#endregion Constructor
 
   //#region ngOnInit
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(resetEnvironmentStatuses());
+
+    this.storeEnvironmentListDataStatus$ = this.store.pipe(select(selectStoreEnvironmentListDataStatus));
+    this.storeEnvironmentListDataStatus$.subscribe(status => {
+      this.handleStoreEnvironmentListDataStatus(status);
+    });
+    this.storeFolderStructureTreeDataStatus$ = this.store.pipe(select(selectStoreFolderStructureTreeDataStatus));
+    this.storeFolderStructureTreeDataStatus$.subscribe(status => {
+      this.handleStoreFolderStructureTreeDataStatus(status);
+    });
+    this.storeLanVPCListDataStatus$ = this.store.pipe(select(selectStoreLanVPCListDataStatus));
+    this.storeLanVPCListDataStatus$.subscribe(status => {
+      this.handleStoreLanVPCListDataStatus(status);
+    });
+    this.lzEnvironmentDeploymentStatus$ = this.store.pipe(select(selectLzEnvironmentDeploymentStatus));
+    this.lzEnvironmentDeploymentStatus$.subscribe(status => {
+      this.handleLzEnvironmentDeploymentStatus(status);
+    });
+  }
   //#endregion ngOnInit
 
   //#region Folder Structure
@@ -236,4 +270,64 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     }
   }
   //#endregion Deploy
+
+  //#region snack-bar status
+  private handleStoreEnvironmentListDataStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Environments has been saved', success: true },
+        duration: 3500
+      });
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong. Environments has not been saved', success: false },
+        duration: 3500
+      });
+    }
+  }
+
+  private handleStoreFolderStructureTreeDataStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Folder structure has been saved', success: true },
+        duration: 3500
+      });
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong. Folder structure has not been saved', success: false },
+        duration: 3500
+      });
+    }
+  }
+
+  private handleStoreLanVPCListDataStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'LAN VPC list had been updated', success: true },
+        duration: 3500
+      });
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong. LAN VPC list had been updated', success: false },
+        duration: 3500
+      });
+    }
+  }
+
+  private handleLzEnvironmentDeploymentStatus(status: Loadable) {
+    if (status.success) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Environment has been deployed', success: true },
+        duration: 3500
+      });
+      this.router.navigateByUrl('/administration/landing-zone');
+    } else if (status.error) {
+      this.snackBar.openFromComponent(ApiCallStatusComponent, {
+        data: { message: 'Something went wrong.Environment has not been deployed', success: false },
+        duration: 3500
+      });
+      this.router.navigateByUrl('/administration/landing-zone');
+    }
+  }
+  //#endregion snack-bar status
 }
