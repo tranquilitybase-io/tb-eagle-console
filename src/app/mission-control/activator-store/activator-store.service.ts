@@ -6,22 +6,22 @@ import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import {
+  createActivatorByURLError,
+  createActivatorByURLSuccess,
+  denyAccessError,
+  denyAccessSuccess,
+  grantAccessError,
+  grantAccessSuccess,
+  requestAccessError,
+  requestAccessSuccess,
   setActivatorsByCategoryData,
   setActivatorsCount,
-  createActivatorByURLSuccess,
-  createActivatorByURLError,
-  setDeprecatedSuccess,
   setDeprecatedError,
-  setLockedSuccess,
+  setDeprecatedSuccess,
   setLockedError,
-  denyAccessSuccess,
-  denyAccessError,
-  grantAccessSuccess,
-  grantAccessError,
-  requestAccessSuccess,
-  requestAccessError,
-  updateActivatorSuccess,
-  updateActivatorError
+  setLockedSuccess,
+  updateActivatorError,
+  updateActivatorSuccess
 } from './activator-store.actions';
 import { ActivatedRoute } from '@angular/router';
 

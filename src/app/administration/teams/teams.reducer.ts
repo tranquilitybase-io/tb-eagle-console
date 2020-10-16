@@ -1,20 +1,20 @@
 import {
   createTeamData,
-  createTeamDataSuccess,
   createTeamDataError,
+  createTeamDataSuccess,
   resetCreateTeamDataStatus,
+  resetUpdateTeamDataStatus,
   updateTeamData,
-  updateTeamDataSuccess,
   updateTeamDataError,
-  resetUpdateTeamDataStatus
+  updateTeamDataSuccess
 } from './teams.actions';
 import { createReducer, on, createSelector } from '@ngrx/store';
 import {
   defaultLoadable,
   Loadable,
+  onLoadableError,
   onLoadableInit,
-  onLoadableSuccess,
-  onLoadableError
+  onLoadableSuccess
 } from '@app/shared/shared.reducer';
 
 export const initialState = {

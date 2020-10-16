@@ -1,47 +1,47 @@
 import {
-  Loadable,
   defaultLoadable,
+  Loadable,
+  onLoadableError,
   onLoadableInit,
-  onLoadableSuccess,
-  onLoadableError
+  onLoadableSuccess
 } from '@app/shared/shared.reducer';
 import { createReducer, on, createSelector } from '@ngrx/store';
 
 import {
-  setSelectedSolution,
-  discardSelectedSolution,
-  updateSolution,
-  updateSolutionSuccess,
-  updateSolutionError,
-  setSolutionDeploymentsData,
   createSolution,
-  createSolutionSuccess,
   createSolutionError,
-  startDeploymentSuccess,
-  startDeploymentError,
+  createSolutionSuccess,
+  discardSelectedSolution,
+  resetCreateSolutionStatus,
   resetUpdateSolutionStatus,
-  resetCreateSolutionStatus
+  setSelectedSolution,
+  setSolutionDeploymentsData,
+  startDeploymentError,
+  startDeploymentSuccess,
+  updateSolution,
+  updateSolutionError,
+  updateSolutionSuccess
 } from './solutions.actions';
 import { Solution, SolutionDeployment } from './solutions.model';
 
 export const intialState = {
+  createSolutionStatus: defaultLoadable() as Loadable,
   dismissAlmostReady: false,
   isDeploymentReady: false,
-  solutionDeploymentsData: [],
   selectedSolution: undefined,
-  createSolutionStatus: defaultLoadable() as Loadable,
-  updateSolutionStatus: defaultLoadable() as Loadable,
-  startDeploymentStatus: defaultLoadable() as Loadable
+  solutionDeploymentsData: [],
+  startDeploymentStatus: defaultLoadable() as Loadable,
+  updateSolutionStatus: defaultLoadable() as Loadable
 };
 
 export interface SolutionsState {
+  createSolutionStatus: Loadable;
   dismissAlmostReady: boolean;
   isDeploymentReady: boolean;
   selectedSolution: Solution;
   solutionDeploymentsData: SolutionDeployment[];
-  createSolutionStatus: Loadable;
-  updateSolutionStatus: Loadable;
   startDeploymentStatus: Loadable;
+  updateSolutionStatus: Loadable;
 }
 export const solutionFeatureKey = 'solutions';
 
@@ -87,5 +87,5 @@ export const selectSolutionDeploymentsData = createSelector(
 );
 
 export const selectCreateSolutionStatus = createSelector(selectFeature, state => state && state.createSolutionStatus);
-export const selectUpdateSolutionStatus = createSelector(selectFeature, state => state && state.updateSolutionStatus);
 export const selectStartDeploymentStatus = createSelector(selectFeature, state => state && state.startDeploymentStatus);
+export const selectUpdateSolutionStatus = createSelector(selectFeature, state => state && state.updateSolutionStatus);

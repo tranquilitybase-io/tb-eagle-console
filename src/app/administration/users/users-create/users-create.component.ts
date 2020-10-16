@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { createUserData, resetCreateUserDataStatus } from '../users.actions';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ValidatorPattern } from '@app/shared/shared.model';
 import { User } from '@app/login/login.model';
 import { Loadable } from '@app/shared/shared.reducer';
@@ -25,7 +25,6 @@ export class UsersCreateComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private router: Router,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar
   ) {}

@@ -11,29 +11,29 @@ import { WanConfiguration } from './landing-zone-wan.model';
 
 import {
   createWanConfiguration,
-  createWanConfigurationSuccess,
   createWanConfigurationError,
+  createWanConfigurationSuccess,
+  dismissDeploymentConnectionReadyAlert,
   resetCreateWanConfigurationStatus,
-  updateWanConfiguration,
-  updateWanConfigurationSuccess,
-  updateWanConfigurationError,
   resetUpdateWanConfigurationStatus,
-  updateConnectionDeploymentProgress,
   startConnectionDeployment,
   stopConnectionDeployment,
-  dismissDeploymentConnectionReadyAlert
+  updateConnectionDeploymentProgress,
+  updateWanConfiguration,
+  updateWanConfigurationError,
+  updateWanConfigurationSuccess
 } from './landing-zone-wan.actions';
 
 export const intialState = {
-  wanConfiguration: [{}],
   createWanConfigurationStatus: defaultLoadable() as Loadable,
-  updateWanConfigurationStatus: defaultLoadable() as Loadable
+  updateWanConfigurationStatus: defaultLoadable() as Loadable,
+  wanConfiguration: [{}]
 };
 
 export interface WanState {
-  wanConfiguration: WanConfiguration[];
   createWanConfigurationStatus: Loadable;
   isConnectionDeploymentReady: boolean;
+  wanConfiguration: WanConfiguration[];
 }
 export const featureKey = 'landing-zone-wan';
 

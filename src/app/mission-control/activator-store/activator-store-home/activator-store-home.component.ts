@@ -22,11 +22,11 @@ import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { resetAPICallStatuses } from './../activator-store.actions';
 import {
-  selectSetDeprecatedStatus,
-  selectSetLockedStatus,
   selectDenyAccessStatus,
   selectGrantAccessStatus,
-  selectRequestAccessStatus
+  selectRequestAccessStatus,
+  selectSetDeprecatedStatus,
+  selectSetLockedStatus
 } from './../activator-store.reducer';
 import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 
@@ -51,11 +51,11 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
   userIsAdmin$: Observable<boolean>;
 
-  setDeprecatedStatus$: Observable<Loadable>;
-  setLockedStatus$: Observable<Loadable>;
   denyAccessStatus$: Observable<Loadable>;
   grantAccessStatus$: Observable<Loadable>;
   requestAccessStatus$: Observable<Loadable>;
+  setDeprecatedStatus$: Observable<Loadable>;
+  setLockedStatus$: Observable<Loadable>;
 
   constructor(
     private route: ActivatedRoute,

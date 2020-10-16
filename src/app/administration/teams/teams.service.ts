@@ -1,8 +1,8 @@
 import {
-  createTeamDataSuccess,
   createTeamDataError,
-  updateTeamDataSuccess,
-  updateTeamDataError
+  createTeamDataSuccess,
+  updateTeamDataError,
+  updateTeamDataSuccess
 } from './teams.actions';
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';

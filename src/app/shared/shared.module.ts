@@ -32,11 +32,11 @@ import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatorCreateErrorComponent } from './snack-bar/activator-create-error/activator-create-error.component';
 import { ActivatorCreateSuccessComponent } from './snack-bar/activator-create-success/activator-create-success.component';
+import { ApiCallStatusComponent } from './snack-bar/api-call-status/api-call-status.component';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
 import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
 import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creation/solution-under-creation.component';
-import { ApiCallStatusComponent } from './snack-bar/api-call-status/api-call-status.component';
 
 import { SharedService } from './shared.service';
 import { ApplicationsService } from '@app/mission-control/applications/applications.service';
@@ -59,6 +59,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ActivatorCreateErrorComponent,
     ActivatorCreateSuccessComponent,
     AlertComponent,
+    ApiCallStatusComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     BadgesComponent,
@@ -70,6 +71,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     LayoutComponent,
     LoaderComponent,
     NotificationsComponent,
+    NotificationsComponent,
     PaginationComponent,
     PillsComponent,
     ProgressComponent,
@@ -80,20 +82,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    NotificationsComponent,
-    YesNoDialogComponent,
-    ApiCallStatusComponent
+    YesNoDialogComponent
   ],
   entryComponents: [
     ActivatorCreateErrorComponent,
     ActivatorCreateSuccessComponent,
+    ApiCallStatusComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
-    YesNoDialogComponent,
-    ApiCallStatusComponent
+    YesNoDialogComponent
   ],
   providers: [
     SharedService,

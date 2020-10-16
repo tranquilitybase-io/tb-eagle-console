@@ -4,17 +4,17 @@ import { Store } from '@ngrx/store';
 import { throwError, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import {
-  setFolderStructureTreeData,
-  setEnvironmentListData,
-  setLanVPCListData,
-  storeEnvironmentListDataSuccess,
-  storeEnvironmentListDataError,
-  storeFolderStructureTreeDataSuccess,
-  storeFolderStructureTreeDataError,
-  storeLanVpcListDataSuccess,
-  storeLanVpcListDataError,
+  lzEnvironmentDeploymentError,
   lzEnvironmentDeploymentSuccess,
-  lzEnvironmentDeploymentError
+  setEnvironmentListData,
+  setFolderStructureTreeData,
+  setLanVPCListData,
+  storeEnvironmentListDataError,
+  storeEnvironmentListDataSuccess,
+  storeFolderStructureTreeDataError,
+  storeFolderStructureTreeDataSuccess,
+  storeLanVpcListDataError,
+  storeLanVpcListDataSuccess
 } from './landing-zone-environment.actions';
 import { EnvironmentState } from './landing-zone-environment.reducer';
 import { FolderStructureNode, Environment, LanVPC } from './landing-zone-environment.model';

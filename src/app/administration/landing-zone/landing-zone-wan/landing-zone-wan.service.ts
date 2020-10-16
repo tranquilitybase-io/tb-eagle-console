@@ -1,8 +1,8 @@
 import {
-  createWanConfigurationSuccess,
   createWanConfigurationError,
-  updateWanConfigurationSuccess,
-  updateWanConfigurationError
+  createWanConfigurationSuccess,
+  updateWanConfigurationError,
+  updateWanConfigurationSuccess
 } from './landing-zone-wan.actions';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';

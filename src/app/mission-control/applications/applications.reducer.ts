@@ -1,21 +1,21 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
 import {
-  setApplicationDeploymentsData,
-  createApplicationSuccess,
   createApplication,
   createApplicationError,
+  createApplicationStatusReset,
+  createApplicationSuccess,
+  setApplicationDeploymentsData,
   startDeployment,
   startDeploymentError,
-  startDeploymentSuccess,
-  createApplicationStatusReset
+  startDeploymentSuccess
 } from './applications.actions';
 import { ApplicationDeployment } from './applications.model';
 import {
-  Loadable,
   defaultLoadable,
+  Loadable,
+  onLoadableError,
   onLoadableInit,
-  onLoadableSuccess,
-  onLoadableError
+  onLoadableSuccess
 } from '@app/shared/shared.reducer';
 
 export const featureKey = 'application';
@@ -31,19 +31,19 @@ const initialState = {
 
 const innerReducer = createReducer(
   initialState,
+  on(createApplication, state => ({ ...state, createApplicationStatus: onLoadableInit() })),
+  on(createApplicationError, (state, { error }) => ({ ...state, createApplicationStatus: onLoadableError(error) })),
+  on(createApplicationStatusReset, state => ({ ...state, createApplicationStatus: defaultLoadable() })),
+  on(createApplicationSuccess, state => ({ ...state, createApplicationStatus: onLoadableSuccess() })),
+  on(startDeployment, state => ({ ...state, startDeploymentStatus: onLoadableInit() })),
+  on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) })),
+  on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() })),
   on(setApplicationDeploymentsData, (state, { applicationDeploymentsData }) => {
     if (JSON.stringify(applicationDeploymentsData) !== JSON.stringify(state.applicationDeploymentsData)) {
       return { ...state, applicationDeploymentsData };
     }
     return state;
-  }),
-  on(createApplication, state => ({ ...state, createApplicationStatus: onLoadableInit() })),
-  on(createApplicationSuccess, state => ({ ...state, createApplicationStatus: onLoadableSuccess() })),
-  on(createApplicationError, (state, { error }) => ({ ...state, createApplicationStatus: onLoadableError(error) })),
-  on(createApplicationStatusReset, state => ({ ...state, createApplicationStatus: defaultLoadable() })),
-  on(startDeployment, state => ({ ...state, startDeploymentStatus: onLoadableInit() })),
-  on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() })),
-  on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) }))
+  })
 );
 
 export default function reducer(state, action) {

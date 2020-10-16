@@ -1,8 +1,8 @@
 import {
-  createUserDataSuccess,
   createUserDataError,
-  updateUserDataSuccess,
-  updateUserDataError
+  createUserDataSuccess,
+  updateUserDataError,
+  updateUserDataSuccess
 } from './users.actions';
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';

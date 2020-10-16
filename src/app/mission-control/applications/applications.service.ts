@@ -1,8 +1,8 @@
 import {
-  createApplicationSuccess,
   createApplicationError,
-  startDeploymentSuccess,
-  startDeploymentError
+  createApplicationSuccess,
+  startDeploymentError,
+  startDeploymentSuccess
 } from './applications.actions';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';

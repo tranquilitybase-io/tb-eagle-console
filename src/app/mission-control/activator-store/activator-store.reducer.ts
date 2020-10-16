@@ -8,49 +8,49 @@ import {
 import { createReducer, createSelector, on } from '@ngrx/store';
 
 import {
-  setDeprecated,
-  setDeprecatedSuccess,
-  setDeprecatedError,
-  setLocked,
-  setLockedSuccess,
-  setLockedError,
-  denyAccess,
-  denyAccessSuccess,
-  denyAccessError,
-  grantAccess,
-  grantAccessSuccess,
-  grantAccessError,
-  requestAccess,
-  requestAccessSuccess,
-  requestAccessError,
-  setProgress,
-  setCategoriesCount,
-  setActivatorsCount,
-  setActivatorsByCategoryData,
-  storeActivatorData,
   createActivatorByURL,
-  createActivatorByURLSuccess,
   createActivatorByURLError,
-  updateActivator,
-  updateActivatorSuccess,
-  updateActivatorError,
+  createActivatorByURLSuccess,
+  denyAccess,
+  denyAccessError,
+  denyAccessSuccess,
+  grantAccess,
+  grantAccessError,
+  grantAccessSuccess,
+  requestAccess,
+  requestAccessError,
+  requestAccessSuccess,
   resetActivatorDataStatus,
-  resetAPICallStatuses
+  resetAPICallStatuses,
+  setActivatorsByCategoryData,
+  setActivatorsCount,
+  setCategoriesCount,
+  setDeprecated,
+  setDeprecatedError,
+  setDeprecatedSuccess,
+  setLocked,
+  setLockedError,
+  setLockedSuccess,
+  setProgress,
+  storeActivatorData,
+  updateActivator,
+  updateActivatorError,
+  updateActivatorSuccess
 } from './activator-store.actions';
-import { Activator, ActivatorMetadata } from './activator-store.model';
+import { Activator } from './activator-store.model';
 
 export const featureKey = 'activator-store';
 
 const initialState = {
-  step: 0,
-  activatorsByCategoryData: [],
   activatorData: {} as Activator,
   activatorDataStatus: defaultLoadable() as Loadable,
-  setDeprecatedStatus: defaultLoadable() as Loadable,
-  setLockedStatus: defaultLoadable() as Loadable,
+  activatorsByCategoryData: [],
   denyAccessStatus: defaultLoadable() as Loadable,
   grantAccessStatus: defaultLoadable() as Loadable,
   requestAccessStatus: defaultLoadable() as Loadable,
+  setDeprecatedStatus: defaultLoadable() as Loadable,
+  setLockedStatus: defaultLoadable() as Loadable,
+  step: 0,
   updateActivatorStatus: defaultLoadable() as Loadable
 };
 const innerReducer = createReducer(
@@ -144,9 +144,9 @@ export const selectActivatorDataStatus = createSelector(
   ({ activatorDataStatus }) => activatorDataStatus as Loadable
 );
 
-export const selectSetDeprecatedStatus = createSelector(selectFeature, state => state && state.setDeprecatedStatus);
-export const selectSetLockedStatus = createSelector(selectFeature, state => state && state.setLockedStatus);
 export const selectDenyAccessStatus = createSelector(selectFeature, state => state && state.denyAccessStatus);
 export const selectGrantAccessStatus = createSelector(selectFeature, state => state && state.grantAccessStatus);
 export const selectRequestAccessStatus = createSelector(selectFeature, state => state && state.requestAccessStatus);
+export const selectSetDeprecatedStatus = createSelector(selectFeature, state => state && state.setDeprecatedStatus);
+export const selectSetLockedStatus = createSelector(selectFeature, state => state && state.setLockedStatus);
 export const selectUpdateActivatorStatus = createSelector(selectFeature, state => state && state.updateActivatorStatus);

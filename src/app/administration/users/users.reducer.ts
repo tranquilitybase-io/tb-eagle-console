@@ -1,13 +1,13 @@
 import { onLoadableInit, onLoadableSuccess, onLoadableError } from './../../shared/shared.reducer';
 import {
   createUserData,
-  createUserDataSuccess,
   createUserDataError,
+  createUserDataSuccess,
   resetCreateUserDataStatus,
+  resetUpdateDataStatus,
   updateUserData,
-  updateUserDataSuccess,
   updateUserDataError,
-  resetUpdateDataStatus
+  updateUserDataSuccess
 } from './users.actions';
 import { defaultLoadable, Loadable } from '@app/shared/shared.reducer';
 import { createReducer, on, createSelector } from '@ngrx/store';

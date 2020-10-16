@@ -1,21 +1,21 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
 import {
-  setEnvironmentListData,
-  storeEnvironmentListData,
-  storeEnvironmentListDataSuccess,
-  storeEnvironmentListDataError,
-  setFolderStructureTreeData,
-  storeFolderStructureTreeData,
-  storeFolderStructureTreeDataSuccess,
-  storeFolderStructureTreeDataError,
-  setLanVPCListData,
-  storeLanVPCListData,
-  storeLanVpcListDataSuccess,
-  storeLanVpcListDataError,
   lzEnvironmentDeployment,
-  lzEnvironmentDeploymentSuccess,
   lzEnvironmentDeploymentError,
-  resetEnvironmentStatuses
+  lzEnvironmentDeploymentSuccess,
+  resetEnvironmentStatuses,
+  setEnvironmentListData,
+  setFolderStructureTreeData,
+  setLanVPCListData,
+  storeEnvironmentListData,
+  storeEnvironmentListDataError,
+  storeEnvironmentListDataSuccess,
+  storeFolderStructureTreeData,
+  storeFolderStructureTreeDataError,
+  storeFolderStructureTreeDataSuccess,
+  storeLanVPCListData,
+  storeLanVpcListDataError,
+  storeLanVpcListDataSuccess
 } from './landing-zone-environment.actions';
 import { FolderStructureNode, Environment, LanVPC } from './landing-zone-environment.model';
 import {

@@ -2,25 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Store, select } from '@ngrx/store';
 import {
-  selectFolderStructureTreeData,
   EnvironmentState,
   selectEnvironmentListData,
+  selectFolderStructureTreeData,
   selectLanVPCListData,
+  selectLzEnvironmentDeploymentStatus,
   selectStoreEnvironmentListDataStatus,
   selectStoreFolderStructureTreeDataStatus,
-  selectStoreLanVPCListDataStatus,
-  selectLzEnvironmentDeploymentStatus
+  selectStoreLanVPCListDataStatus
 } from './landing-zone-environment.reducer';
 import {
-  storeFolderStructureTreeData,
+  resetEnvironmentStatuses,
   storeEnvironmentListData,
-  storeLanVPCListData,
-  resetEnvironmentStatuses
+  storeFolderStructureTreeData,
+  storeLanVPCListData
 } from './landing-zone-environment.actions';
 import { FolderStructureNode, LanVPC, Environment } from './landing-zone-environment.model';
 import { LandingZoneDialogDeployEnvComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env/landing-zone-dialog-deploy-env.component';
@@ -271,7 +271,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   }
   //#endregion Deploy
 
-  //#snack-bar status
+  //#region snack-bar status
   private handleStoreEnvironmentListDataStatus(status: Loadable) {
     if (status.success) {
       this.snackBar.openFromComponent(ApiCallStatusComponent, {
@@ -329,5 +329,5 @@ export class LandingZoneEnvironmentComponent implements OnInit {
       this.router.navigateByUrl('/administration/landing-zone');
     }
   }
-  //#endsnack-bar status
+  //#endregion snack-bar status
 }
