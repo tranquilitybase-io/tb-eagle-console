@@ -10,6 +10,7 @@ import { createTeamData, resetCreateTeamDataStatus } from '../teams.actions';
 import { Loadable } from '@app/shared/shared.reducer';
 import { MatSnackBar } from '@angular/material';
 import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
+import { ValidatorPattern } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-teams-create',
@@ -42,6 +43,7 @@ export class TeamsCreateComponent implements OnInit {
       isActive: true,
       name: ['', Validators.required],
       description: ['', Validators.required],
+      cloudIdentityGroup: ['', Validators.pattern(ValidatorPattern.EMAIL)],
       businessUnitId: ['', Validators.required]
     });
 
