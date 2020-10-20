@@ -7,7 +7,8 @@ import {
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '@app/login/login.model';
+import { User } from './users.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,11 @@ export class UsersService extends EntityCollectionServiceBase<User> {
   }
 
   private BASE_URL = `${globalThis.location.origin}/api`;
+
+  getUsers(): Observable<User[]> {
+    const url = `${this.BASE_URL}/users/`;
+    return this.http.get(url) as Observable<User[]>;
+  }
 
   private createUserDataSuccess = (user: User) => {
     console.log('POST call successful value returned in body', user);
