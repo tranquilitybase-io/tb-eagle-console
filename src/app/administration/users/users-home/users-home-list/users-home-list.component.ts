@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class UsersHomeListComponent implements OnInit {
   @Input() users$: Observable<User[]>;
+  @Input() isLoading$: Observable<boolean>;
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'teamCount', 'actions'];
 
   dataSource: MatTableDataSource<User>;
