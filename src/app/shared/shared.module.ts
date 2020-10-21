@@ -40,6 +40,7 @@ import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creat
 
 import { SharedService } from './shared.service';
 import { ApplicationsService } from '@app/mission-control/applications/applications.service';
+import { ApiCallStatusSnackbarService } from './snack-bar/api-call-status/api-call-status.service';
 
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -54,6 +55,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { MatButtonLoadingDirective } from './directives/mat-button-loading.directive';
+import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     ActivatorCreateErrorComponent,
@@ -82,7 +85,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    MatButtonLoadingDirective
   ],
   entryComponents: [
     ActivatorCreateErrorComponent,
@@ -93,11 +97,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    MatProgressSpinner
   ],
   providers: [
     SharedService,
     ApplicationsService,
+    ApiCallStatusSnackbarService,
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }
   ],
   bootstrap: [WelcomeComponent],
@@ -123,7 +129,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     ActivatorCreateErrorComponent,
@@ -155,7 +162,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SwitchesComponent,
     MatDialogModule,
     MatBadgeModule,
-    ApiCallStatusComponent
+    ApiCallStatusComponent,
+    MatButtonLoadingDirective
   ]
 })
 export class SharedModule {}
