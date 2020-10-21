@@ -55,7 +55,7 @@
       </button>
     </div>
     <div class="app-bottom-action right">
-      <button mat-button color="primary">
+      <button mat-button color="primary" [loading]="(updateUserDataStatus$ | async).loading">
         Update User
         <mat-icon>chevron_right</mat-icon>
       </button>

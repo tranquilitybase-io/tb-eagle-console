@@ -2,13 +2,11 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '@app/login/login.model';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ValidatorPattern } from '@app/shared/shared.model';
 import { updateUserData, resetUpdateDataStatus } from '../users.actions';
 import { Loadable } from '@app/shared/shared.reducer';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
-import { MatSnackBar } from '@angular/material';
 import { selectUpdateUserDataStatus } from '../users.reducer';
 
 @Component({
@@ -20,14 +18,13 @@ export class UsersEditComponent implements OnInit {
   userForm: FormGroup;
   user: User;
 
-  createUserDataStatus$: Observable<Loadable>;
+  updateUserDataStatus$: Observable<Loadable> = this.store.select(selectUpdateUserDataStatus);
 
   constructor(
     private store: Store<any>,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -40,32 +37,17 @@ export class UsersEditComponent implements OnInit {
       lastName: [this.user.lastName, Validators.required],
       email: [this.user.email, [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]]
     });
-
-    this.createUserDataStatus$ = this.store.pipe(select(selectUpdateUserDataStatus));
-    this.createUserDataStatus$.subscribe(status => {
-      this.handleSubmitStatus(status);
-    });
+    this.updateUserDataStatus$.subscribe(status => this.handleLoading(status));
   }
 
   private navigateToUsersHome() {
     this.router.navigateByUrl('/administration/users');
   }
 
-  private handleSubmitStatus(status: Loadable) {
-    if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'User has been updated', success: true },
-        duration: 3500
-      });
-      this.navigateToUsersHome();
-    } else if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. User has not been updated', success: false },
-        duration: 3500
-      });
-      this.navigateToUsersHome();
-    }
-  }
+  private handleLoading = (status: Loadable) => {
+    status.success && this.navigateToUsersHome();
+    status.loading ? this.userForm.disable() : this.userForm.enable();
+  };
 
   get f() {
     return this.userForm.controls;

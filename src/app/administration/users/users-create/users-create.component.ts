@@ -2,13 +2,10 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { createUserData, resetCreateUserDataStatus } from '../users.actions';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { ValidatorPattern } from '@app/shared/shared.model';
-import { User } from '@app/login/login.model';
 import { Loadable } from '@app/shared/shared.reducer';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
-import { MatSnackBar } from '@angular/material';
 import { selectCreateUserDataStatus } from '../users.reducer';
 
 @Component({
@@ -18,16 +15,9 @@ import { selectCreateUserDataStatus } from '../users.reducer';
 })
 export class UsersCreateComponent implements OnInit {
   userForm: FormGroup;
-  users: User;
+  createUserDataStatus$: Observable<Loadable> = this.store.select(selectCreateUserDataStatus);
 
-  createUserDataStatus$: Observable<Loadable>;
-
-  constructor(
-    private store: Store<any>,
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
-  ) {}
+  constructor(private store: Store<any>, private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.store.dispatch(resetCreateUserDataStatus());
@@ -37,31 +27,16 @@ export class UsersCreateComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]]
     });
-    this.createUserDataStatus$ = this.store.pipe(select(selectCreateUserDataStatus));
-    this.createUserDataStatus$.subscribe(status => {
-      this.handleSubmitStatus(status);
-    });
+    this.createUserDataStatus$.subscribe(status => this.handleLoading(status));
   }
-
   private navigateToUsersHome() {
     this.router.navigateByUrl('/administration/users');
   }
 
-  private handleSubmitStatus(status: Loadable) {
-    if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'User has been created', success: true },
-        duration: 3500
-      });
-      this.navigateToUsersHome();
-    } else if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. User has not been created', success: false },
-        duration: 3500
-      });
-      this.navigateToUsersHome();
-    }
-  }
+  private handleLoading = (status: Loadable) => {
+    status.success && this.navigateToUsersHome();
+    status.loading ? this.userForm.disable() : this.userForm.enable();
+  };
 
   get f() {
     return this.userForm.controls;
