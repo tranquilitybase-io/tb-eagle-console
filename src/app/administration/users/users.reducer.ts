@@ -24,6 +24,7 @@ export const initialState = {
 };
 
 export interface UsersState {
+  users: User;
   getUsersStatus: Loadable;
   createUserDataStatus: Loadable;
   updateUserDataStatus: Loadable;
@@ -55,5 +56,6 @@ export default function reducer(state, action) {
 export const selectFeature = state => state[featureKey];
 
 export const selectUsers = createSelector(selectFeature, state => state && state.users);
+export const selectGetUsersStatus = createSelector(selectFeature, state => state && state.getUsersStatus);
 export const selectCreateUserDataStatus = createSelector(selectFeature, state => state && state.createUserDataStatus);
 export const selectUpdateUserDataStatus = createSelector(selectFeature, state => state && state.updateUserDataStatus);
