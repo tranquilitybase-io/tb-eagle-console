@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { Observable } from 'rxjs';
 import { UsersService } from '@app/administration/users/users.service';
-import { User } from '@app/login/login.model';
+import { User } from '@app/administration/users/users.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserByIdResolver implements Resolve<User> {
