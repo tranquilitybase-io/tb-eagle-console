@@ -12,7 +12,8 @@ import {
 import { select, Store } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { map } from 'rxjs/operators';
-import { selectUsers } from '../users.reducer';
+import { selectGetUsersStatus, selectUsers } from '../users.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-users-home',
@@ -22,6 +23,7 @@ import { selectUsers } from '../users.reducer';
 export class UsersHomeComponent implements OnInit {
   [x: string]: any;
   users$: Observable<User[]> = this.store.select(selectUsers);
+  getUsersStatus$: Observable<Loadable> = this.store.select(selectGetUsersStatus);
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.users;
   currentGridViewOption$: Observable<GridViewSwitchModel>;
