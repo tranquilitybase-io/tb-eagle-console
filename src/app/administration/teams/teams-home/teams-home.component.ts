@@ -1,3 +1,4 @@
+import { selectGetTeamsStatus, selectTeams } from './../teams.reducer';
 import { Component, OnInit } from '@angular/core';
 import { TeamsService } from '../teams.service';
 import { Observable } from 'rxjs';
@@ -12,6 +13,8 @@ import {
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { Store, select } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
+import { getTeams } from '../teams.actions';
+import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-teams-home',
@@ -19,7 +22,8 @@ import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-v
   styleUrls: ['./teams-home.component.scss']
 })
 export class TeamsHomeComponent implements OnInit {
-  teams$: Observable<Team[]>;
+  teams$: Observable<Team[]> = this.store.select(selectTeams);
+  getTeamsStatus$: Observable<Loadable> = this.store.select(selectGetTeamsStatus);
 
   filters: SwitchFilter[] = [
     { name: 'Favourites', count: 0, defaultActive: false },
@@ -35,7 +39,8 @@ export class TeamsHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.teamsService.getAll().subscribe(teams => this.updateNumbering(teams));
+    this.store.dispatch(getTeams());
+    this.teams$.subscribe(teams => this.updateNumbering(teams));
 
     const current$: Observable<string> = this.route.queryParamMap.pipe(
       map(queryParams => queryParams.get('groupSwitch'))
