@@ -40,8 +40,8 @@ export class TeamsHomeComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(getTeams());
-    this.teams$.subscribe(teams => this.updateNumbering(teams));
-
+    //this.teams$.subscribe(teams => this.updateNumbering(teams));
+    //  this.teams$ = service.getAll().subscribe(team=>function(team))
     const current$: Observable<string> = this.route.queryParamMap.pipe(
       map(queryParams => queryParams.get('groupSwitch'))
     );

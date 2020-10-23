@@ -3,13 +3,11 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { KeyValue } from '@angular/common';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '@app/login/login.model';
-import { createTeamData, resetCreateTeamDataStatus } from '../teams.actions';
+import { createTeamData } from '../teams.actions';
 import { Loadable } from '@app/shared/shared.reducer';
-import { MatSnackBar } from '@angular/material';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 
 @Component({
   selector: 'app-teams-create',
@@ -23,18 +21,16 @@ export class TeamsCreateComponent implements OnInit {
 
   businessUnitList: KeyValue<string, string>[];
 
-  createTeamDataStatus$: Observable<Loadable>;
+  createTeamDataStatus$: Observable<Loadable> = this.store.select(selectCreateTeamDataStatus);
 
   constructor(
     private store: Store<any>,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(resetCreateTeamDataStatus());
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
 
     this.teamForm = this.formBuilder.group({
@@ -45,31 +41,17 @@ export class TeamsCreateComponent implements OnInit {
       businessUnitId: ['', Validators.required]
     });
 
-    this.createTeamDataStatus$ = this.store.pipe(select(selectCreateTeamDataStatus));
-    this.createTeamDataStatus$.subscribe(status => {
-      this.handleSubmitStatus(status);
-    });
+    this.createTeamDataStatus$.subscribe(status => this.handleLoading(status));
   }
 
   private navigateToTeamsHome() {
     this.router.navigateByUrl('/administration/teams');
   }
 
-  private handleSubmitStatus(status: Loadable) {
-    if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Team has been created', success: true },
-        duration: 3500
-      });
-      this.navigateToTeamsHome();
-    } else if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. Team has not been created', success: false },
-        duration: 3500
-      });
-      this.navigateToTeamsHome();
-    }
-  }
+  private handleLoading = (status: Loadable) => {
+    status.success && this.navigateToTeamsHome();
+    status.loading ? this.teamForm.disable() : this.teamForm.enable();
+  };
 
   get f() {
     return this.teamForm.controls;

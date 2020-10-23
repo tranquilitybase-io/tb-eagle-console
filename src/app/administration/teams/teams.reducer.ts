@@ -5,8 +5,6 @@ import {
   createTeamData,
   createTeamDataError,
   createTeamDataSuccess,
-  resetCreateTeamDataStatus,
-  resetUpdateTeamDataStatus,
   updateTeamData,
   updateTeamDataError,
   updateTeamDataSuccess
@@ -47,12 +45,10 @@ export const teamsReducer = createReducer(
   on(createTeamData, state => ({ ...state, createTeamDataStatus: onLoadableInit() })),
   on(createTeamDataSuccess, state => ({ ...state, createTeamDataStatus: onLoadableSuccess() })),
   on(createTeamDataError, (state, { error }) => ({ ...state, createTeamDataStatus: onLoadableError(error) })),
-  on(resetCreateTeamDataStatus, state => ({ ...state, createTeamDataStatus: defaultLoadable() })),
   // update
   on(updateTeamData, state => ({ ...state, updateTeamDataStatus: onLoadableInit() })),
   on(updateTeamDataSuccess, state => ({ ...state, updateTeamDataStatus: onLoadableSuccess() })),
-  on(updateTeamDataError, (state, { error }) => ({ ...state, updateTeamDataStatus: onLoadableError(error) })),
-  on(resetUpdateTeamDataStatus, state => ({ ...state, updateTeamDataStatus: defaultLoadable() }))
+  on(updateTeamDataError, (state, { error }) => ({ ...state, updateTeamDataStatus: onLoadableError(error) }))
 );
 
 export default function reducer(state, action) {
