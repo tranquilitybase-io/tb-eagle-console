@@ -1,11 +1,11 @@
 import { onLoadableInit, onLoadableSuccess, onLoadableError } from './../../shared/shared.reducer';
 import {
-  getUsers,
-  getUsersSuccess,
-  getUsersError,
   createUserData,
   createUserDataError,
   createUserDataSuccess,
+  getUsers,
+  getUsersError,
+  getUsersSuccess,
   resetCreateUserDataStatus,
   resetUpdateDataStatus,
   updateUserData,
@@ -24,10 +24,10 @@ export const initialState = {
 };
 
 export interface UsersState {
-  users: User;
-  getUsersStatus: Loadable;
   createUserDataStatus: Loadable;
+  getUsersStatus: Loadable;
   updateUserDataStatus: Loadable;
+  users: User;
 }
 export const featureKey = 'users';
 
@@ -35,8 +35,8 @@ export const usersReducer = createReducer(
   initialState,
   // get
   on(getUsers, state => ({ ...state, getUsersStatus: onLoadableInit() })),
-  on(getUsersSuccess, (state, { users }) => ({ ...state, getUsersStatus: onLoadableSuccess(), users })),
   on(getUsersError, (state, { error }) => ({ ...state, getUsersStatus: onLoadableError(error) })),
+  on(getUsersSuccess, (state, { users }) => ({ ...state, getUsersStatus: onLoadableSuccess(), users })),
   // create
   on(createUserData, state => ({ ...state, createUserDataStatus: onLoadableInit() })),
   on(createUserDataSuccess, state => ({ ...state, createUserDataStatus: onLoadableSuccess() })),
@@ -55,7 +55,7 @@ export default function reducer(state, action) {
 
 export const selectFeature = state => state[featureKey];
 
-export const selectUsers = createSelector(selectFeature, state => state && state.users);
-export const selectGetUsersStatus = createSelector(selectFeature, state => state && state.getUsersStatus);
 export const selectCreateUserDataStatus = createSelector(selectFeature, state => state && state.createUserDataStatus);
+export const selectGetUsersStatus = createSelector(selectFeature, state => state && state.getUsersStatus);
 export const selectUpdateUserDataStatus = createSelector(selectFeature, state => state && state.updateUserDataStatus);
+export const selectUsers = createSelector(selectFeature, state => state && state.users);
