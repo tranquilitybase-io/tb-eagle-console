@@ -22,7 +22,7 @@ import { Loadable } from '@app/shared/shared.reducer';
   styleUrls: ['./teams-home.component.scss']
 })
 export class TeamsHomeComponent implements OnInit {
-  teams$: Observable<Team[]> = this.store.select(selectTeams);
+  teams$: Observable<Team[]>;
   getTeamsStatus$: Observable<Loadable> = this.store.select(selectGetTeamsStatus);
 
   filters: SwitchFilter[] = [
@@ -34,14 +34,19 @@ export class TeamsHomeComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teams;
   currentGridViewOption$: Observable<GridViewSwitchModel>;
 
-  constructor(private teamsService: TeamsService, private route: ActivatedRoute, private store: Store<any>) {
+  constructor(
+    private teamsService: TeamsService,
+    private route: ActivatedRoute,
+    private store: Store<any>,
+    private service: TeamsService
+  ) {
     this.teams$ = teamsService.filteredEntities$;
   }
 
   ngOnInit() {
     this.store.dispatch(getTeams());
-    //this.teams$.subscribe(teams => this.updateNumbering(teams));
-    //  this.teams$ = service.getAll().subscribe(team=>function(team))
+    this.teamsService.getAll().subscribe(teams => this.updateNumbering(teams));
+
     const current$: Observable<string> = this.route.queryParamMap.pipe(
       map(queryParams => queryParams.get('groupSwitch'))
     );
