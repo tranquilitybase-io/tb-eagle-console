@@ -1,6 +1,5 @@
 import { getUsers } from './../users.actions';
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../users.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../users.model';
 import { Observable } from 'rxjs';

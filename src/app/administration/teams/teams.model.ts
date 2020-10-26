@@ -5,6 +5,7 @@ export class Team {
   businessUnit: BusinessUnit;
   businessUnitId: number;
   description: string;
+  cloudIdentityGroup: string;
   isFavourite: boolean;
   isActive: boolean;
   lastUpdated: string;

@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '@app/login/login.model';
 import { createTeamData } from '../teams.actions';
 import { Loadable } from '@app/shared/shared.reducer';
+import { ValidatorPattern } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-teams-create',
@@ -38,6 +39,7 @@ export class TeamsCreateComponent implements OnInit {
       isActive: true,
       name: ['', Validators.required],
       description: ['', Validators.required],
+      cloudIdentityGroup: ['', Validators.pattern(ValidatorPattern.EMAIL)],
       businessUnitId: ['', Validators.required]
     });
 

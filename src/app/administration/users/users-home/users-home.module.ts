@@ -19,11 +19,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
@@ -54,11 +54,11 @@ const routes: Routes = [
     MatListModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatTooltipModule
   ]
 })
 export class UsersHomeModule {}

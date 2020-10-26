@@ -1,14 +1,7 @@
-import {
-  createUserDataError,
-  createUserDataSuccess,
-  updateUserDataError,
-  updateUserDataSuccess
-} from './users.actions';
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from './users.model';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

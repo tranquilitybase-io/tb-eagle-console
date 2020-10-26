@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { Loadable } from '@app/shared/shared.reducer';
 import { MatSnackBar } from '@angular/material';
 import { selectUpdateTeamDataStatus } from './../teams.reducer';
+import { ValidatorPattern } from '@app/shared/shared.model';
 
 @Component({
   selector: 'app-teams-edit',
@@ -39,6 +40,7 @@ export class TeamsEditComponent implements OnInit {
       id: this.teamData.id,
       name: [this.teamData.name, Validators.required],
       description: [this.teamData.description, Validators.required],
+      cloudIdentityGroup: [this.teamData.cloudIdentityGroup, Validators.pattern(ValidatorPattern.EMAIL)],
       businessUnitId: [this.teamData.businessUnitId, Validators.required]
     });
 

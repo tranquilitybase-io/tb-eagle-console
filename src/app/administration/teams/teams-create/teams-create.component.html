@@ -33,6 +33,19 @@
         </mat-select>
         <mat-error *ngIf="f.businessUnitId.errors?.required"> Business unit is <strong>required</strong> </mat-error>
       </mat-form-field>
+      <mat-form-field class="small-width" appearance="outline">
+        <mat-label>Cloud Identity Group</mat-label>
+        <input
+          matInput
+          type="text"
+          maxlength="200"
+          formControlName="cloudIdentityGroup"
+          placeholder="E.g. cloud-identity-group@your.company"
+        />
+        <mat-error *ngIf="f.cloudIdentityGroup.errors?.pattern">
+          Cloud Identity Group format is <strong>e-mail</strong>
+        </mat-error>
+      </mat-form-field>
     </p>
     <div class="app-bottom-action left">
       <button mat-button color="primary" (click)="cancel()" [disabled]="(createTeamDataStatus$ | async).loading">
