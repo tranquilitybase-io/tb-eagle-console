@@ -1,3 +1,4 @@
+import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Injectable } from '@angular/core';
 import { TeamMember } from './team-members.model';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -8,27 +9,21 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class TeamMembersService {
+export class TeamMembersService extends EntityCollectionServiceBase<TeamMember> {
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    serviceElementsFactory: EntityCollectionServiceElementsFactory,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    super('TeamMember', serviceElementsFactory);
+  }
 
-  createTeamMember(teamMember: TeamMember): void {
+  createTeamMember(teamMember: TeamMember): Observable<TeamMember> {
     const url = `${this.BASE_URL}/teamMember/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, teamMember, { headers }).subscribe(
-      val => {
-        console.log('POST call successful value returned in body', val);
-      },
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
-        console.log('The POST observable is now completed.');
-        this.router.navigateByUrl(`/administration/teams/view?id=${teamMember.teamId}`);
-      }
-    );
-    console.log(teamMember + ' created.');
+    return this.http.post(url, teamMember, { headers }) as Observable<TeamMember>;
   }
 
   private handleError(error: HttpErrorResponse) {
