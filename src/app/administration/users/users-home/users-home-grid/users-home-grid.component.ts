@@ -12,6 +12,7 @@ import { User } from '@app/login/login.model';
 })
 export class UsersHomeGridComponent {
   @Input() users$: Observable<User[]>;
+  @Input() isLoading: boolean;
   layout$: Observable<Layout>;
 
   constructor(private layoutService: LayoutService, private router: Router, private route: ActivatedRoute) {

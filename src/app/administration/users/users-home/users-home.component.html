@@ -2,7 +2,11 @@
   <app-breadcrumbs> </app-breadcrumbs>
 </header>
 <app-users-home-select [gridViewName]="gridViewOptionsName"></app-users-home-select>
-<app-users-home-grid *ngIf="isGridViewEnabled$ | async; else listview" [users$]="users$"></app-users-home-grid>
+<app-users-home-grid
+  *ngIf="isGridViewEnabled$ | async; else listview"
+  [users$]="users$"
+  [isLoading]="(getUsersStatus$ | async).loading"
+></app-users-home-grid>
 <ng-template #listview>
-  <app-users-home-list [users$]="users$"></app-users-home-list>
+  <app-users-home-list [users$]="users$" [isLoading]="(getUsersStatus$ | async).loading"></app-users-home-list>
 </ng-template>

@@ -1,5 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from '@app/login/login.model';
+import { User } from './users.model';
+
+const key = '[users]';
+
+export const getUsers = createAction(`${key} getUsers`);
+export const getUsersSuccess = createAction(`${key} getUsersSuccess`, props<{ users: User[] }>());
+export const getUsersError = createAction(`${key} getUsersError`, props<{ error: any }>());
 
 export const createUserData = createAction('[users] createUserData', props<{ userData: User }>());
 export const createUserDataSuccess = createAction('[users] createUserDataSuccess');

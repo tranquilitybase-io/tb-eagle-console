@@ -38,8 +38,11 @@ import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/ap
 import { SolutionCreatedComponent } from './snack-bar/solution-created/solution-created.component';
 import { SolutionUnderCreationComponent } from './snack-bar/solution-under-creation/solution-under-creation.component';
 
+import { MatButtonLoadingDirective } from './directives/mat-button-loading.directive';
+
 import { SharedService } from './shared.service';
 import { ApplicationsService } from '@app/mission-control/applications/applications.service';
+import { ApiCallStatusSnackbarService } from './snack-bar/api-call-status/api-call-status.service';
 
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -50,6 +53,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -82,7 +86,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    MatButtonLoadingDirective
   ],
   entryComponents: [
     ActivatorCreateErrorComponent,
@@ -90,6 +95,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ApiCallStatusComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
+    MatProgressSpinner,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
@@ -98,6 +104,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   providers: [
     SharedService,
     ApplicationsService,
+    ApiCallStatusSnackbarService,
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }
   ],
   bootstrap: [WelcomeComponent],
@@ -120,6 +127,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
@@ -129,6 +137,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ActivatorCreateErrorComponent,
     ActivatorCreateSuccessComponent,
     AlertComponent,
+    ApiCallStatusComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
     BadgesComponent,
@@ -142,6 +151,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     LayoutComponent,
     LoaderComponent,
     MatBadgeModule,
+    MatBadgeModule,
+    MatButtonLoadingDirective,
+    MatDialogModule,
     MatDialogModule,
     MatDialogModule,
     PaginationComponent,
@@ -152,10 +164,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent,
-    MatDialogModule,
-    MatBadgeModule,
-    ApiCallStatusComponent
+    SwitchesComponent
   ]
 })
 export class SharedModule {}
