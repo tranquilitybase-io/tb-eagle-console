@@ -1,4 +1,3 @@
-import { selectGetTeamsStatus, selectTeams } from './../teams.reducer';
 import { Component, OnInit } from '@angular/core';
 import { TeamsService } from '../teams.service';
 import { Observable } from 'rxjs';
@@ -14,6 +13,7 @@ import {
 import { Store, select } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { getTeams } from '../teams.actions';
+import { selectGetTeamsStatus } from './../teams.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
@@ -26,7 +26,11 @@ export class TeamsHomeComponent implements OnInit {
   getTeamsStatus$: Observable<Loadable> = this.store.select(selectGetTeamsStatus);
 
   filters: SwitchFilter[] = [
-    { name: 'Favourites', count: 0, defaultActive: false },
+    {
+      name: 'Favourites',
+      count: 0,
+      defaultActive: false
+    },
     { name: 'Actives', count: 0, defaultActive: true },
     { name: 'Archived', count: 0, defaultActive: false }
   ];
