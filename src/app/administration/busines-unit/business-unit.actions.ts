@@ -3,6 +3,13 @@ import { BusinessUnit } from './business-unit.model';
 
 const key = '[business unit]';
 
+export const getBusinessUnits = createAction(`${key} getBusinessUnits`);
+export const getBusinessUnitsSuccess = createAction(
+  `${key} getBusinessUnitsSuccess`,
+  props<{ businessUnits: BusinessUnit[] }>()
+);
+export const getBusinessUnitsError = createAction(`${key} getBusinessUnitsError`, props<{ error: any }>());
+
 export const createBusinessUnit = createAction(`${key} createBusinessUnit`, props<{ businessUnit: BusinessUnit }>());
 export const createBusinessUnitSuccess = createAction(`${key} createBusinessUnitSuccess`);
 export const createBusinessUnitError = createAction(`${key} createBusinessUnitError`, props<{ error: any }>());

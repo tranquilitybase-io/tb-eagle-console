@@ -1,5 +1,5 @@
+import { getBusinessUnits } from './../business-unit.actions';
 import { Component, OnInit } from '@angular/core';
-import { BusinessUnitService } from '../business-unit.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
@@ -11,6 +11,8 @@ import { select, Store } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { map } from 'rxjs/operators';
 import { BusinessUnit } from '../business-unit.model';
+import { selectBusinessUnits, selectGetBusinessUnitsStatus } from '../business-unit.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-users-home',
@@ -19,21 +21,16 @@ import { BusinessUnit } from '../business-unit.model';
 })
 export class BusinessUnitsHomeComponent implements OnInit {
   [x: string]: any;
-  businessUnitList$: Observable<BusinessUnit[]>;
+  businessUnits$: Observable<BusinessUnit[]> = this.store.select(selectBusinessUnits);
+  getBusinessUnitsStatus$: Observable<Loadable> = this.store.select(selectGetBusinessUnitsStatus);
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.businessUnit;
   currentGridViewOption$: Observable<GridViewSwitchModel>;
 
-  constructor(
-    private businessUnitService: BusinessUnitService,
-    private route: ActivatedRoute,
-    private store: Store<any>
-  ) {
-    this.businessUnitList$ = businessUnitService.filteredEntities$;
-  }
+  constructor(private route: ActivatedRoute, private store: Store<any>) {}
 
   ngOnInit() {
-    this.businessUnitService.getAll();
+    this.store.dispatch(getBusinessUnits());
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
   }
 
