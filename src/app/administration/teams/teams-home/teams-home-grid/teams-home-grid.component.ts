@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TeamsHomeGridComponent {
   @Input() teams$: Observable<Team[]>;
-  @Input() isLoading$: Observable<boolean>;
+  @Input() isLoading: boolean;
   layout$: Observable<Layout>;
 
   constructor(private layoutService: LayoutService, private router: Router, private route: ActivatedRoute) {

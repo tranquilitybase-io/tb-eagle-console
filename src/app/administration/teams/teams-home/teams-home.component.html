@@ -9,8 +9,8 @@
 <app-teams-home-grid
   *ngIf="isGridViewEnabled$ | async; else listview"
   [teams$]="teams$"
-  [isLoading$]="(getTeamsStatus$ | async).loading"
+  [isLoading]="(getTeamsStatus$ | async).loading"
 ></app-teams-home-grid>
 <ng-template #listview>
-  <app-teams-home-list [teams$]="teams$" [isLoading$]="(getTeamsStatus$ | async).loading"></app-teams-home-list>
+  <app-teams-home-list [teams$]="teams$" [isLoading]="(getTeamsStatus$ | async).loading"></app-teams-home-list>
 </ng-template>

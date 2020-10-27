@@ -11,7 +11,7 @@ import { Team } from '../../teams.model';
 })
 export class TeamsHomeListComponent implements OnInit {
   @Input() teams$: Observable<Team[]>;
-  @Input() isLoading$: Observable<boolean>;
+  @Input() isLoading: boolean;
 
   displayedColumns: string[] = ['id', 'name', 'businessUnit', 'userCount', 'lastUpdated', 'description', 'actions'];
   dataSource: MatTableDataSource<Team>;
