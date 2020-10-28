@@ -2,13 +2,12 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { SolutionsState, selectCreateSolutionStatus } from '../solutions.reducer';
-import { select, Store } from '@ngrx/store';
+import { resetCreateSolutionStatus } from './../solutions.actions';
+import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
-import { createSolution, resetCreateSolutionStatus } from '../solutions.actions';
+import { createSolution } from '../solutions.actions';
 import { Loadable } from '@app/shared/shared.reducer';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 
 @Component({
   selector: 'app-solutions-create',
@@ -26,14 +25,13 @@ export class SolutionsCreateComponent implements OnInit {
   detailsForm: FormGroup;
   workspaceForm: FormGroup;
 
-  createSolutionStatus$: Observable<Loadable>;
+  createSolutionStatus$: Observable<Loadable> = this.store.select(selectCreateSolutionStatus);
 
   constructor(
     private store: Store<SolutionsState>,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -60,12 +58,19 @@ export class SolutionsCreateComponent implements OnInit {
       sourceControlId: ['', Validators.required],
       environments: [[]]
     });
-
-    this.createSolutionStatus$ = this.store.pipe(select(selectCreateSolutionStatus));
-    this.createSolutionStatus$.subscribe(status => {
-      this.handleSubmitStatus(status);
-    });
+    this.createSolutionStatus$.subscribe(status => this.handleLoading(status));
   }
+
+  private handleLoading = (status: Loadable) => {
+    status.success && this.navigateToSolutionsHome();
+    if (status.loading) {
+      this.detailsForm.disable();
+      this.workspaceForm.disable();
+    } else {
+      this.detailsForm.enable();
+      this.workspaceForm.enable();
+    }
+  };
 
   get f() {
     return this.detailsForm.controls;
@@ -77,22 +82,6 @@ export class SolutionsCreateComponent implements OnInit {
 
   navigateToSolutionsHome() {
     this.router.navigateByUrl('/mission-control/solutions');
-  }
-
-  handleSubmitStatus(status: Loadable) {
-    if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Solution has been created', success: true },
-        duration: 3500
-      });
-      this.navigateToSolutionsHome();
-    } else if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. Solution has not been created', success: false },
-        duration: 3500
-      });
-      this.navigateToSolutionsHome();
-    }
   }
 
   onSubmit() {

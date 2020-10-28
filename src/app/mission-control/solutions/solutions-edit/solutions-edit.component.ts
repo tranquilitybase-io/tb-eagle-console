@@ -1,18 +1,16 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { SolutionsState, selectUpdateSolutionStatus } from '../solutions.reducer';
-import { Store, select } from '@ngrx/store';
+import { resetUpdateSolutionStatus } from './../solutions.actions';
+import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { updateSolution } from '../solutions.actions';
 import { Solution } from '../solutions.model';
 import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
 import { DeploymentState } from '@app/shared/shared.model';
-import { MatSnackBar } from '@angular/material';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 import { Loadable } from '@app/shared/shared.reducer';
-import { resetUpdateSolutionStatus } from './../solutions.actions';
 
 @Component({
   selector: 'app-solutions-edit',
@@ -34,14 +32,13 @@ export class SolutionsEditComponent implements OnInit {
   sourceControlList: KeyValue<string, string>[];
   teamList: KeyValue<string, string>[];
 
-  updateSolutionStatus$: Observable<Loadable>;
+  updateSolutionStatus$: Observable<Loadable> = this.store.select(selectUpdateSolutionStatus);
 
   constructor(
     private store: Store<SolutionsState>,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -69,11 +66,13 @@ export class SolutionsEditComponent implements OnInit {
       environments: [environmentIdList]
     });
 
-    this.updateSolutionStatus$ = this.store.pipe(select(selectUpdateSolutionStatus));
-    this.updateSolutionStatus$.subscribe(status => {
-      this.handleSubmitStatus(status);
-    });
+    this.updateSolutionStatus$.subscribe(status => this.handleLoading(status));
   }
+
+  private handleLoading = (status: Loadable) => {
+    //status.success && this.navigateToSolutionsHome();
+    status.loading ? this.solutionForm.disable() : this.solutionForm.enable();
+  };
 
   get f() {
     return this.solutionForm.controls;
@@ -85,23 +84,6 @@ export class SolutionsEditComponent implements OnInit {
 
   navigateToSolutionsHome() {
     this.router.navigateByUrl('/mission-control/solutions');
-  }
-
-  handleSubmitStatus(status: Loadable) {
-    console.log(status);
-    if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Solution has been updated', success: true },
-        duration: 3500
-      });
-      this.navigateToSolutionsHome();
-    } else if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. Solution has not been updated', success: false },
-        duration: 3500
-      });
-      this.navigateToSolutionsHome();
-    }
   }
 
   onSubmit(solution) {

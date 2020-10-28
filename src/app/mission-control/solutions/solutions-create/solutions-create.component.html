@@ -212,13 +212,13 @@
     </mat-grid-list>
 
     <div class="app-bottom-action left">
-      <button mat-button color="primary" matStepperPrevious>
+      <button mat-button color="primary" matStepperPrevious [disabled]="(createSolutionStatus$ | async).loading">
         <mat-icon>chevron_left</mat-icon>
         Back
       </button>
     </div>
     <div class="app-bottom-action right">
-      <button mat-button color="primary" (click)="onSubmit()">
+      <button mat-button color="primary" (click)="onSubmit()" [loading]="(createSolutionStatus$ | async).loading">
         Submit
       </button>
     </div>

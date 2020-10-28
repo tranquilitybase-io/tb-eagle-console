@@ -8,6 +8,9 @@ import {
 import { createReducer, on, createSelector } from '@ngrx/store';
 
 import {
+  getSolutions,
+  getSolutionsSuccess,
+  getSolutionsError,
   createSolution,
   createSolutionError,
   createSolutionSuccess,
@@ -25,6 +28,8 @@ import {
 import { Solution, SolutionDeployment } from './solutions.model';
 
 export const intialState = {
+  solutions: [] as Solution[],
+  getSolutionsStatus: defaultLoadable() as Loadable,
   createSolutionStatus: defaultLoadable() as Loadable,
   dismissAlmostReady: false,
   isDeploymentReady: false,
@@ -35,6 +40,8 @@ export const intialState = {
 };
 
 export interface SolutionsState {
+  solutions: Solution[];
+  getSolutionsStatus: Loadable;
   createSolutionStatus: Loadable;
   dismissAlmostReady: boolean;
   isDeploymentReady: boolean;
@@ -49,6 +56,11 @@ export const solutionsReducer = createReducer(
   intialState,
   on(setSelectedSolution, (state, { solution }) => ({ ...state, selectedSolution: solution })),
   on(discardSelectedSolution, state => ({ ...state, selectedSolution: undefined })),
+  // getAll
+  on(getSolutions, state => ({ ...state, getSolutionsStatus: onLoadableInit() })),
+  on(getSolutionsSuccess, (state, { solutions }) => ({ ...state, solutions, getSolutionsStatus: onLoadableSuccess() })),
+  on(getSolutionsError, (state, { error }) => ({ ...state, getSolutionsStatus: onLoadableError(error) })),
+  // update
   on(updateSolution, (state, { solution }) => ({
     ...state,
     selectedSolution: solution,
@@ -57,16 +69,18 @@ export const solutionsReducer = createReducer(
   on(updateSolutionSuccess, state => ({ ...state, updateSolutionStatus: onLoadableSuccess() })),
   on(updateSolutionError, (state, { error }) => ({ ...state, updateSolutionStatus: onLoadableError(error) })),
   on(resetUpdateSolutionStatus, state => ({ ...state, updateSolutionStatus: defaultLoadable() })),
+  //
+  on(createSolution, state => ({ ...state, createSolutionStatus: onLoadableInit() })),
+  on(createSolutionSuccess, state => ({ ...state, createSolutionStatus: onLoadableSuccess() })),
+  on(createSolutionError, (state, { error }) => ({ ...state, createSolutionStatus: onLoadableError(error) })),
+  on(resetCreateSolutionStatus, state => ({ ...state, createSolutionStatus: defaultLoadable() })),
   on(setSolutionDeploymentsData, (state, { solutionDeploymentsData }) => {
     if (JSON.stringify(solutionDeploymentsData) !== JSON.stringify(state.solutionDeploymentsData)) {
       return { ...state, solutionDeploymentsData };
     }
     return state;
   }),
-  on(createSolution, state => ({ ...state, createSolutionStatus: onLoadableInit() })),
-  on(createSolutionSuccess, state => ({ ...state, createSolutionStatus: onLoadableSuccess() })),
-  on(createSolutionError, (state, { error }) => ({ ...state, createSolutionStatus: onLoadableError(error) })),
-  on(resetCreateSolutionStatus, state => ({ ...state, createSolutionStatus: defaultLoadable() })),
+
   on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() })),
   on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) }))
 );

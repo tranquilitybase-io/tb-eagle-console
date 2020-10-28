@@ -23,26 +23,6 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
 
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  private createSolutionSuccess = (val: Solution) => {
-    console.log('POST call successful value returned in body', val);
-    this.store.dispatch(createSolutionSuccess());
-  };
-
-  private createSolutionError = (error: any) => {
-    console.log('POST call in error', error);
-    this.store.dispatch(createSolutionError(error));
-  };
-
-  createSolution(solution: Solution): void {
-    const url = `${this.BASE_URL}/solution/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, solution, { headers }).subscribe(this.createSolutionSuccess, this.createSolutionError, () => {
-      console.log('The POST observable is now completed.');
-      this.getAll();
-    });
-    console.log(solution + ' posted');
-  }
-
   private deploySolutionSuccess = (val: Solution) => {
     console.log('POST call successful value returned in body', val);
     this.store.dispatch(startDeploymentSuccess());
@@ -79,25 +59,5 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
   getDeployments(): Observable<SolutionDeployment[]> {
     const url = `${this.BASE_URL}/solutiondeployments/`;
     return this.http.get<SolutionDeployment[]>(url).pipe(catchError(this.handleError));
-  }
-
-  private updateSolutionSuccess = (val: Solution) => {
-    console.log('PUT call successful value returned in body', val);
-    this.store.dispatch(updateSolutionSuccess());
-  };
-
-  private updateSolutionError = (error: any) => {
-    console.log('PUT call in error', error);
-    this.store.dispatch(updateSolutionError(error));
-  };
-
-  updateSolution(solution: Solution): void {
-    const url = `${this.BASE_URL}/solution/${solution.id}`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.put(url, solution, { headers }).subscribe(this.updateSolutionSuccess, this.updateSolutionError, () => {
-      console.log('The PUT observable is now completed.');
-      this.getAll();
-    });
-    console.log(solution + ' put');
   }
 }
