@@ -84,6 +84,24 @@
     <form [formGroup]="workspaceForm">
       <div class="solution-workspace-container">
         <p>
+          <mat-checkbox formControlName="isSandbox" (change)="onIsSandboxCheck($event)">
+            Without Workspace (Sandbox)</mat-checkbox
+          >
+        </p>
+        <div *ngIf="isSandbox" class="sandbox-container">
+          <p>
+            The purpose of a Sandbox is to test and drive innovation that it is not entirely understood at the time of
+            deployment.
+          </p>
+          <p>
+            Once deployed the Sandbox will consist of a single project under a hierarchy of folders. The project will
+            have labels attached to it to aid with reporting and billing. The project’s assigned team will be able to
+            create resources and enable APIs within the project. It will have no network configured by default, but the
+            team will be able to configure a network themselves. The project’s team will have the minimal set of IAM
+            roles assigned to enable this functionality.
+          </p>
+        </div>
+        <p *ngIf="!isSandbox">
           <mat-form-field appearance="outline">
             <mat-label>CI (Continuous intergration service)</mat-label>
             <mat-select required formControlName="ciId">
@@ -111,7 +129,7 @@
           </mat-form-field>
         </p>
 
-        <p>
+        <p *ngIf="!isSandbox">
           <mat-card>
             <span class="mat-subheading-1">Available environments</span>
             <mat-divider></mat-divider>
@@ -178,7 +196,25 @@
         </mat-card>
       </mat-grid-tile>
 
-      <mat-grid-tile [colspan]="2" [rowspan]="1" class="workspace-tile">
+      <mat-grid-tile *ngIf="isSandbox" [colspan]="2" [rowspan]="1" class="sandbox-tile">
+        <mat-grid-tile-header>Sandbox</mat-grid-tile-header>
+        <mat-card class="sandbox-card primary">
+          <mat-card-content class="sandbox-card-content">
+            <p>
+              The purpose of a Sandbox is to test and drive innovation that it is not entirely understood at the time of
+              deployment.
+            </p>
+            <p>
+              Once deployed the Sandbox will consist of a single project under a hierarchy of folders. The project will
+              have labels attached to it to aid with reporting and billing. The project’s assigned team will be able to
+              create resources and enable APIs within the project. It will have no network configured by default, but
+              the team will be able to configure a network themselves. The project’s team will have the minimal set of
+              IAM roles assigned to enable this functionality.
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="!isSandbox" [colspan]="2" [rowspan]="1" class="workspace-tile">
         <mat-grid-tile-header>Workspace</mat-grid-tile-header>
         <mat-card class="workspace-card primary">
           <mat-card-content class="workspace-card-content">

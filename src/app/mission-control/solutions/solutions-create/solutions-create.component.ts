@@ -58,6 +58,7 @@ export class SolutionsCreateComponent implements OnInit {
       ciId: ['', Validators.required],
       cdId: ['', Validators.required],
       sourceControlId: ['', Validators.required],
+      isSandbox: [false],
       environments: [[]]
     });
 
@@ -102,6 +103,21 @@ export class SolutionsCreateComponent implements OnInit {
     } else {
       this.detailsForm.markAllAsTouched();
       this.workspaceForm.markAllAsTouched();
+    }
+  }
+
+  onIsSandboxCheck({ checked }) {
+    this.workspaceForm.markAsUntouched();
+    if (checked) {
+      this.workspaceForm.controls['ciId'].setValue(0);
+      this.workspaceForm.controls['cdId'].setValue(0);
+      this.workspaceForm.controls['sourceControlId'].setValue(0);
+      this.workspaceForm.controls['environments'].setValue([]);
+    } else {
+      this.workspaceForm.controls['ciId'].setValue('');
+      this.workspaceForm.controls['cdId'].setValue('');
+      this.workspaceForm.controls['sourceControlId'].setValue('');
+      this.workspaceForm.controls['environments'].setValue([]);
     }
   }
 
@@ -150,5 +166,9 @@ export class SolutionsCreateComponent implements OnInit {
   get environments(): string[] {
     const envIds = this.workspaceForm.get('environments').value as number[];
     return this.environmentList.filter(x => envIds.some(id => id === x.key)).map(x => x.value);
+  }
+
+  get isSandbox(): boolean {
+    return this.workspaceForm.get('isSandbox').value;
   }
 }

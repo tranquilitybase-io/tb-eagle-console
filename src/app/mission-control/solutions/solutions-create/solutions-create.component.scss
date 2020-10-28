@@ -57,6 +57,11 @@ header {
   flex-direction: column;
   justify-content: left;
 
+  .sandbox-container {
+    width: 60%;
+    font-size: large;
+  }
+
   p {
     width: 100%;
 
@@ -72,7 +77,8 @@ header {
 }
 
 .mat-grid-tile {
-  &.workspace-tile {
+  &.workspace-tile,
+  &.sandbox-tile {
     background-color: var(--active-grey-background);
   }
 }
@@ -91,7 +97,8 @@ header {
     height: 80%;
     width: 95%;
 
-    &.workspace-card {
+    &.workspace-card,
+    &.sandbox-card {
       position: absolute;
       height: 40%;
       width: 90%;
@@ -121,6 +128,13 @@ header {
       &.workspace-card-content {
         .mat-h4 {
           margin: 8px 0 8px;
+        }
+      }
+
+      &.sandbox-card-content {
+        margin-top: 2rem;
+        p {
+          font-size: large;
         }
       }
     }

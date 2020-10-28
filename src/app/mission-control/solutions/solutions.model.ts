@@ -25,6 +25,7 @@ export class Solution {
   environments: number[] | Environment[];
   isActive: boolean;
   isFavourite: boolean;
+  isSandbox: boolean;
   deploymentState: DeploymentState;
   applications: Application[];
   teamId: number;
