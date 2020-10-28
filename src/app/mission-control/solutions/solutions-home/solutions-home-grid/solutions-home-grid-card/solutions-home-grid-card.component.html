@@ -59,6 +59,16 @@
         <div
           [ngClass]="{ 'column-detail': (layout$ | async).gridCols <= 3, 'row-detail': (layout$ | async).gridCols > 3 }"
         >
+          <div class="mat-body">Workspace</div>
+          <mat-chip-list>
+            <mat-chip>{{ solution.isSandbox ? 'Sandbox' : 'Full' }}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div
+          [ngClass]="{ 'column-detail': (layout$ | async).gridCols <= 3, 'row-detail': (layout$ | async).gridCols > 3 }"
+        >
           <div class="mat-body">Applications</div>
           <mat-chip-list>
             <mat-chip>{{ solution.applications.length }}</mat-chip>
