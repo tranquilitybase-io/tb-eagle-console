@@ -70,7 +70,7 @@ export class SolutionsEditComponent implements OnInit {
   }
 
   private handleLoading = (status: Loadable) => {
-    //status.success && this.navigateToSolutionsHome();
+    status.success && this.navigateToSolutionsHome();
     status.loading ? this.solutionForm.disable() : this.solutionForm.enable();
   };
 
