@@ -1,3 +1,4 @@
+import { resetCreateTeamStatus } from './../teams.actions';
 import { selectCreateTeamDataStatus } from './../teams.reducer';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -32,6 +33,7 @@ export class TeamsCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetCreateTeamStatus());
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
 
     this.teamForm = this.formBuilder.group({

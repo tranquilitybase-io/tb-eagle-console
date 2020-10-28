@@ -5,9 +5,11 @@ import {
   createTeamData,
   createTeamDataError,
   createTeamDataSuccess,
+  resetCreateTeamStatus,
   updateTeamData,
   updateTeamDataError,
-  updateTeamDataSuccess
+  updateTeamDataSuccess,
+  resetUpdateTeamStatus
 } from './teams.actions';
 import { createReducer, on, createSelector } from '@ngrx/store';
 import {
@@ -45,10 +47,12 @@ export const teamsReducer = createReducer(
   on(createTeamData, state => ({ ...state, createTeamDataStatus: onLoadableInit() })),
   on(createTeamDataSuccess, state => ({ ...state, createTeamDataStatus: onLoadableSuccess() })),
   on(createTeamDataError, (state, { error }) => ({ ...state, createTeamDataStatus: onLoadableError(error) })),
+  on(resetCreateTeamStatus, state => ({ ...state, createTeamDataStatus: defaultLoadable() })),
   // update
   on(updateTeamData, state => ({ ...state, updateTeamDataStatus: onLoadableInit() })),
   on(updateTeamDataSuccess, state => ({ ...state, updateTeamDataStatus: onLoadableSuccess() })),
-  on(updateTeamDataError, (state, { error }) => ({ ...state, updateTeamDataStatus: onLoadableError(error) }))
+  on(updateTeamDataError, (state, { error }) => ({ ...state, updateTeamDataStatus: onLoadableError(error) })),
+  on(resetUpdateTeamStatus, state => ({ ...state, updateTeamDataStatus: defaultLoadable() }))
 );
 
 export default function reducer(state, action) {

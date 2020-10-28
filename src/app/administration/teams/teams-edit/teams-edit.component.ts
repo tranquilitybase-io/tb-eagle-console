@@ -1,3 +1,4 @@
+import { resetUpdateTeamStatus } from './../teams.actions';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -34,6 +35,7 @@ export class TeamsEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetUpdateTeamStatus());
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
     this.teamData = this.route.snapshot.data['team'] as Team;
     this.teamForm = this.formBuilder.group({
