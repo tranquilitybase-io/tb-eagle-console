@@ -113,6 +113,10 @@ header {
       }
     }
 
+    &.sandbox-card {
+      height: 60%;
+    }
+
     .mat-card-content {
       &.description-card-content {
         .mat-list {
