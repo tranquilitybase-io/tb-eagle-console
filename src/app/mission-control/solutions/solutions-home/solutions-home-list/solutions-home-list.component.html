@@ -14,7 +14,7 @@
   <button mat-button class="action-button" (click)="createNewSolution()">+ Create new solution</button>
 </div>
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="isLoading ? null : dataSource" matSort>
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -120,5 +120,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
+  <mat-card *ngIf="isLoading" class="progress-spinner-container">
+    <mat-progress-spinner color="primary" mode="indeterminate"> </mat-progress-spinner>
+  </mat-card>
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

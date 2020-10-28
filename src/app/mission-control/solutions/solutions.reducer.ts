@@ -89,7 +89,7 @@ export default function reducer(state, action) {
   return solutionsReducer(state, action);
 }
 
-export const selectFeature = state => state[solutionFeatureKey];
+export const selectFeature = state => state[solutionFeatureKey] as SolutionsState;
 export const selectSelectedSolution = createSelector(selectFeature, state => state && state.selectedSolution);
 export const selectIsSelectedSolution = createSelector(selectFeature, state =>
   Boolean(state && state.selectedSolution)
@@ -100,6 +100,7 @@ export const selectSolutionDeploymentsData = createSelector(
   state => state && state.solutionDeploymentsData
 );
 
+export const selectGetSolutionsStatus = createSelector(selectFeature, state => state && state.getSolutionsStatus);
 export const selectCreateSolutionStatus = createSelector(selectFeature, state => state && state.createSolutionStatus);
 export const selectStartDeploymentStatus = createSelector(selectFeature, state => state && state.startDeploymentStatus);
 export const selectUpdateSolutionStatus = createSelector(selectFeature, state => state && state.updateSolutionStatus);
