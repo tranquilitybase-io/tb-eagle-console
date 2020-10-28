@@ -50,7 +50,7 @@ export class LayoutService {
               applicationCreationReviewGridHeight: '700px',
               applicationCreationReviewGridColumnsAmount: 5,
               applicationCreationReviewLeftColumnSpan: 3,
-              solutionGridItemHeight: '390px',
+              solutionGridItemHeight: '410px',
               teamGridItemHeight: '390px',
               userGridItemHeight: '390px',
               solutionsViewApplicationsGridHeight: '500px'

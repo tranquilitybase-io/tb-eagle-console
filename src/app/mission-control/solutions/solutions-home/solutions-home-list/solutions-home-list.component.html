@@ -58,6 +58,12 @@
       <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.applications.length }}</td>
     </ng-container>
 
+    <!-- Workspace Column -->
+    <ng-container matColumnDef="workspace">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Workspace</th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.isSandbox ? 'Sandbox' : 'Full' }}</td>
+    </ng-container>
+
     <!-- Team Column -->
     <ng-container matColumnDef="team">
       <th mat-header-cell *matHeaderCellDef>Team</th>
