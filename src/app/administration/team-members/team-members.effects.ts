@@ -24,7 +24,7 @@ export class TeamMembersEffects {
             return createTeamMemberSuccess();
           }),
           catchError(error => {
-            this.snackBarService.error('omething went wrong,Team member has not been created');
+            this.snackBarService.error('Something went wrong, Team member has not been created');
             return of(createTeamMemberError({ error }));
           })
         )

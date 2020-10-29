@@ -1,4 +1,3 @@
-import { selectCreateTeamDataStatus } from './../../teams/teams.reducer';
 import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,6 +10,7 @@ import { Observable } from 'rxjs';
 import { createTeamMember } from '../team-members.actions';
 import { TeamMember } from '../team-members.model';
 import { Loadable } from '@app/shared/shared.reducer';
+import { selectCreateTeamDataStatus } from '@app/administration/teams/teams.reducer';
 
 @Component({
   selector: 'app-team-members-create',

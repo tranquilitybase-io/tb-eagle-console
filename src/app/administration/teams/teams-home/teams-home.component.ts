@@ -38,12 +38,7 @@ export class TeamsHomeComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teams;
   currentGridViewOption$: Observable<GridViewSwitchModel>;
 
-  constructor(
-    private teamsService: TeamsService,
-    private route: ActivatedRoute,
-    private store: Store<any>,
-    private service: TeamsService
-  ) {
+  constructor(private teamsService: TeamsService, private route: ActivatedRoute, private store: Store<any>) {
     this.teams$ = teamsService.filteredEntities$;
   }
 

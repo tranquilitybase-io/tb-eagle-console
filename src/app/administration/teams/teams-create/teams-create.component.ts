@@ -1,5 +1,3 @@
-import { resetCreateTeamStatus } from './../teams.actions';
-import { selectCreateTeamDataStatus } from './../teams.reducer';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -7,7 +5,8 @@ import { KeyValue } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '@app/login/login.model';
-import { createTeamData } from '../teams.actions';
+import { createTeamData, resetCreateTeamStatus } from '../teams.actions';
+import { selectCreateTeamDataStatus } from '../teams.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { ValidatorPattern } from '@app/shared/shared.model';
 

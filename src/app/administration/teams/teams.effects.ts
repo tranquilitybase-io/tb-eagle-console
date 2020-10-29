@@ -4,14 +4,14 @@ import { TeamsService } from './teams.service';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import {
   createTeamData,
-  updateTeamData,
-  updateTeamDataSuccess,
-  updateTeamDataError,
-  getTeams,
-  getTeamsSuccess,
-  getTeamsError,
+  createTeamDataError,
   createTeamDataSuccess,
-  createTeamDataError
+  getTeams,
+  getTeamsError,
+  getTeamsSuccess,
+  updateTeamData,
+  updateTeamDataError,
+  updateTeamDataSuccess
 } from './teams.actions';
 import { of } from 'rxjs';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';

@@ -1,15 +1,15 @@
 import {
-  getTeams,
-  getTeamsSuccess,
-  getTeamsError,
   createTeamData,
   createTeamDataError,
   createTeamDataSuccess,
+  getTeams,
+  getTeamsError,
+  getTeamsSuccess,
   resetCreateTeamStatus,
+  resetUpdateTeamStatus,
   updateTeamData,
   updateTeamDataError,
-  updateTeamDataSuccess,
-  resetUpdateTeamStatus
+  updateTeamDataSuccess
 } from './teams.actions';
 import { createReducer, on, createSelector } from '@ngrx/store';
 import {
@@ -41,18 +41,18 @@ export const teamsReducer = createReducer(
   initialState,
   //getAll
   on(getTeams, state => ({ ...state, getTeamsStatus: onLoadableInit() })),
-  on(getTeamsSuccess, (state, { teams }) => ({ ...state, teams, getTeamsStatus: onLoadableSuccess() })),
   on(getTeamsError, (state, { error }) => ({ ...state, getTeamsStatus: onLoadableError(error) })),
+  on(getTeamsSuccess, (state, { teams }) => ({ ...state, teams, getTeamsStatus: onLoadableSuccess() })),
   // create
   on(createTeamData, state => ({ ...state, createTeamDataStatus: onLoadableInit() })),
-  on(createTeamDataSuccess, state => ({ ...state, createTeamDataStatus: onLoadableSuccess() })),
   on(createTeamDataError, (state, { error }) => ({ ...state, createTeamDataStatus: onLoadableError(error) })),
+  on(createTeamDataSuccess, state => ({ ...state, createTeamDataStatus: onLoadableSuccess() })),
   on(resetCreateTeamStatus, state => ({ ...state, createTeamDataStatus: defaultLoadable() })),
   // update
+  on(resetUpdateTeamStatus, state => ({ ...state, updateTeamDataStatus: defaultLoadable() })),
   on(updateTeamData, state => ({ ...state, updateTeamDataStatus: onLoadableInit() })),
-  on(updateTeamDataSuccess, state => ({ ...state, updateTeamDataStatus: onLoadableSuccess() })),
   on(updateTeamDataError, (state, { error }) => ({ ...state, updateTeamDataStatus: onLoadableError(error) })),
-  on(resetUpdateTeamStatus, state => ({ ...state, updateTeamDataStatus: defaultLoadable() }))
+  on(updateTeamDataSuccess, state => ({ ...state, updateTeamDataStatus: onLoadableSuccess() }))
 );
 
 export default function reducer(state, action) {
@@ -60,7 +60,7 @@ export default function reducer(state, action) {
 }
 
 export const selectFeature = state => state[featureKey] as TeamsState;
-export const selectTeams = createSelector(selectFeature, state => state && state.teams);
-export const selectGetTeamsStatus = createSelector(selectFeature, state => state && state.getTeamsStatus);
 export const selectCreateTeamDataStatus = createSelector(selectFeature, state => state && state.createTeamDataStatus);
+export const selectGetTeamsStatus = createSelector(selectFeature, state => state && state.getTeamsStatus);
+export const selectTeams = createSelector(selectFeature, state => state && state.teams);
 export const selectUpdateTeamDataStatus = createSelector(selectFeature, state => state && state.updateTeamDataStatus);

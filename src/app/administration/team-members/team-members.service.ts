@@ -1,10 +1,9 @@
-import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Injectable } from '@angular/core';
 import { TeamMember } from './team-members.model';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +11,7 @@ import { catchError } from 'rxjs/operators';
 export class TeamMembersService extends EntityCollectionServiceBase<TeamMember> {
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  constructor(
-    serviceElementsFactory: EntityCollectionServiceElementsFactory,
-    private http: HttpClient,
-    private router: Router
-  ) {
+  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
     super('TeamMember', serviceElementsFactory);
   }
 

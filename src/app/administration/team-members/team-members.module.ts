@@ -4,7 +4,6 @@ import { SharedModule } from '@app/shared/shared.module';
 
 import { EffectsModule } from '@ngrx/effects';
 import { TeamMembersEffects } from './team-members.effects';
-
 import reducer, { featureKey } from './team-members.reducer';
 import { StoreModule } from '@ngrx/store';
 

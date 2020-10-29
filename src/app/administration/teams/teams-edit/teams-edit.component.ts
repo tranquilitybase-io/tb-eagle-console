@@ -1,16 +1,14 @@
-import { resetUpdateTeamStatus } from './../teams.actions';
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Team } from '../teams.model';
-import { updateTeamData } from '../teams.actions';
+import { resetUpdateTeamStatus, updateTeamData } from '../teams.actions';
+import { selectUpdateTeamDataStatus } from './../teams.reducer';
 import { KeyValue } from '@angular/common';
 import { User } from '@app/login/login.model';
 import { Observable } from 'rxjs';
 import { Loadable } from '@app/shared/shared.reducer';
-import { MatSnackBar } from '@angular/material';
-import { selectUpdateTeamDataStatus } from './../teams.reducer';
 import { ValidatorPattern } from '@app/shared/shared.model';
 
 @Component({
@@ -30,8 +28,7 @@ export class TeamsEditComponent implements OnInit {
     private store: Store<any>,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
