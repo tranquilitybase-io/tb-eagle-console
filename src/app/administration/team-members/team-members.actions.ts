@@ -1,4 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { TeamMember } from './team-members.model';
 
-export const createTeamMember = createAction('[TeamMembers] create', props<{ teamMember: TeamMember }>());
+const key = '[TeamMembers]';
+
+export const createTeamMember = createAction(`${key} createTeamMember`, props<{ teamMember: TeamMember }>());
+export const createTeamMemberSuccess = createAction(`${key} createTeamMemberSuccess`);
+export const createTeamMemberError = createAction(`${key} createTeamMemberError`, props<{ error: any }>());

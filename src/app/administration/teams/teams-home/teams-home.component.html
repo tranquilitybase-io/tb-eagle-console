@@ -6,7 +6,11 @@
   [values]="filters"
   (onSelection)="setFilter($event)"
 ></app-teams-select>
-<app-teams-home-grid *ngIf="isGridViewEnabled$ | async; else listview" [teams$]="teams$"></app-teams-home-grid>
+<app-teams-home-grid
+  *ngIf="isGridViewEnabled$ | async; else listview"
+  [teams$]="teams$"
+  [isLoading]="(getTeamsStatus$ | async).loading"
+></app-teams-home-grid>
 <ng-template #listview>
-  <app-teams-home-list [teams$]="teams$"></app-teams-home-list>
+  <app-teams-home-list [teams$]="teams$" [isLoading]="(getTeamsStatus$ | async).loading"></app-teams-home-list>
 </ng-template>

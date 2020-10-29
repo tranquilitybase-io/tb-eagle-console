@@ -12,6 +12,9 @@ import {
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { Store, select } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
+import { getTeams } from '../teams.actions';
+import { selectGetTeamsStatus } from './../teams.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-teams-home',
@@ -20,9 +23,14 @@ import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-v
 })
 export class TeamsHomeComponent implements OnInit {
   teams$: Observable<Team[]>;
+  getTeamsStatus$: Observable<Loadable> = this.store.select(selectGetTeamsStatus);
 
   filters: SwitchFilter[] = [
-    { name: 'Favourites', count: 0, defaultActive: false },
+    {
+      name: 'Favourites',
+      count: 0,
+      defaultActive: false
+    },
     { name: 'Actives', count: 0, defaultActive: true },
     { name: 'Archived', count: 0, defaultActive: false }
   ];
@@ -35,6 +43,7 @@ export class TeamsHomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(getTeams());
     this.teamsService.getAll().subscribe(teams => this.updateNumbering(teams));
 
     const current$: Observable<string> = this.route.queryParamMap.pipe(
