@@ -13,7 +13,9 @@ export const getBusinessUnitsError = createAction(`${key} getBusinessUnitsError`
 export const createBusinessUnit = createAction(`${key} createBusinessUnit`, props<{ businessUnit: BusinessUnit }>());
 export const createBusinessUnitSuccess = createAction(`${key} createBusinessUnitSuccess`);
 export const createBusinessUnitError = createAction(`${key} createBusinessUnitError`, props<{ error: any }>());
+export const resetCreateBusinessUnitStatus = createAction(`${key} resetCreateBusinessUnitStatus`);
 
 export const updateBusinessUnit = createAction(`${key} updateBusinessUnit`, props<{ businessUnit: BusinessUnit }>());
 export const updateBusinessUnitSuccess = createAction(`${key} updateBusinessUnitSuccess`);
 export const updateBusinessUnitError = createAction(`${key} updateBusinessUnitError`, props<{ error: any }>());
+export const resetUpdateBusinessUnitStatus = createAction(`${key} resetUpdateBusinessUnitStatus`);

@@ -1,4 +1,4 @@
-import { updateBusinessUnit } from './../business-unit.actions';
+import { updateBusinessUnit, resetUpdateBusinessUnitStatus } from './../business-unit.actions';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -27,6 +27,7 @@ export class BusinessUnitEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetUpdateBusinessUnitStatus());
     this.businessUnit = this.route.snapshot.data['businessUnit'] as BusinessUnit;
 
     this.businessForm = this.formBuilder.group({

@@ -5,12 +5,14 @@ import {
   createBusinessUnit,
   createBusinessUnitError,
   createBusinessUnitSuccess,
+  resetCreateBusinessUnitStatus,
   getBusinessUnits,
   getBusinessUnitsError,
   getBusinessUnitsSuccess,
   updateBusinessUnit,
   updateBusinessUnitError,
-  updateBusinessUnitSuccess
+  updateBusinessUnitSuccess,
+  resetUpdateBusinessUnitStatus
 } from './business-unit.actions';
 import { BusinessUnit } from './business-unit.model';
 
@@ -43,10 +45,12 @@ export const usersReducer = createReducer(
   on(createBusinessUnit, state => ({ ...state, createBusinessUnitStatus: onLoadableInit() })),
   on(createBusinessUnitError, (state, { error }) => ({ ...state, createBusinessUnitStatus: onLoadableError(error) })),
   on(createBusinessUnitSuccess, state => ({ ...state, createBusinessUnitStatus: onLoadableSuccess() })),
+  on(resetCreateBusinessUnitStatus, state => ({ ...state, createBusinessUnitStatus: defaultLoadable() })),
   //update
   on(updateBusinessUnit, state => ({ ...state, updateBusinessUnitsStatus: onLoadableInit() })),
   on(updateBusinessUnitError, (state, { error }) => ({ ...state, updateBusinessUnitsStatus: onLoadableError(error) })),
-  on(updateBusinessUnitSuccess, state => ({ ...state, updateBusinessUnitsStatus: onLoadableSuccess() }))
+  on(updateBusinessUnitSuccess, state => ({ ...state, updateBusinessUnitsStatus: onLoadableSuccess() })),
+  on(resetUpdateBusinessUnitStatus, state => ({ ...state, updateBusinessUnitsStatus: defaultLoadable() }))
 );
 
 export default function reducer(state, action) {

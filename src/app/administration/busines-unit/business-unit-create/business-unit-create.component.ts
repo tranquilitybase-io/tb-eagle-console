@@ -1,3 +1,4 @@
+import { resetCreateBusinessUnitStatus } from './../business-unit.actions';
 import { Component, OnInit } from '@angular/core';
 import { createBusinessUnit } from '../business-unit.actions';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -20,6 +21,7 @@ export class BusinessUnitCreateComponent implements OnInit {
   constructor(private store: Store<any>, private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.store.dispatch(resetCreateBusinessUnitStatus());
     this.businessForm = this.formBuilder.group({
       id: 0,
       name: ['', Validators.required],
