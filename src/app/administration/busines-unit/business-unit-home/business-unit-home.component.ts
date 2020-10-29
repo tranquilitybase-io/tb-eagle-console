@@ -1,6 +1,4 @@
-import { getBusinessUnits } from './../business-unit.actions';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
   GridViewSwitchViewsNames,
@@ -11,6 +9,7 @@ import { select, Store } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { map } from 'rxjs/operators';
 import { BusinessUnit } from '../business-unit.model';
+import { getBusinessUnits } from '../business-unit.actions';
 import { selectBusinessUnits, selectGetBusinessUnitsStatus } from '../business-unit.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 
@@ -27,7 +26,7 @@ export class BusinessUnitsHomeComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.businessUnit;
   currentGridViewOption$: Observable<GridViewSwitchModel>;
 
-  constructor(private route: ActivatedRoute, private store: Store<any>) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
     this.store.dispatch(getBusinessUnits());

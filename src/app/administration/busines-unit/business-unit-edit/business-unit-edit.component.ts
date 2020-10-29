@@ -1,4 +1,3 @@
-import { selectUpdateBusinessUnitsStatus } from './../business-unit.reducer';
 import { updateBusinessUnit } from './../business-unit.actions';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -7,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessUnit } from '../business-unit.model';
 import { Observable } from 'rxjs';
 import { Loadable } from '@app/shared/shared.reducer';
+import { selectUpdateBusinessUnitsStatus } from '../business-unit.reducer';
 
 @Component({
   selector: 'app-business-unit-edit',
