@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { MatDialog, MatSnackBar, MatStepper } from '@angular/material';
+import { MatDialog, MatStepper } from '@angular/material';
 import { KeyValue } from '@angular/common';
 import { createApplication, createApplicationStatusReset } from '../applications.actions';
 import { setProgress } from '@app/mission-control/activator-store/activator-store.actions';
@@ -14,8 +14,8 @@ import { discardSelectedSolution } from '@app/mission-control/solutions/solution
 import { ActivatorStoreDialogMissingSolutionsComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-missing-solutions/activator-store-dialog-missing-solutions.component';
 import { Observable } from 'rxjs';
 import { Loadable } from '@app/shared/shared.reducer';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 import { selectCreateApplicationStatus } from '../applications.reducer';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-applications-create',
@@ -29,8 +29,9 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   selectedSolution$: Observable<Solution>;
   selectedSolutionName: string;
   selectedActivator: Activator;
+  selectedSolutionId: number;
 
-  createApplicationStatus$: Observable<Loadable>;
+  createApplicationStatus$: Observable<Loadable> = this.store.select(selectCreateApplicationStatus);
 
   @ViewChild('stepper', { static: false })
   stepper: MatStepper;
@@ -40,8 +41,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private store: Store<any>,
     private dialog: MatDialog,
-    private router: Router,
-    private snackBar: MatSnackBar
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -67,31 +67,24 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
       if (solution) {
         this.applicationForm.controls['solutionId'].setValue(String(solution.id));
         this.selectedSolutionName = solution.name;
+        this.selectedSolutionId = solution.id;
       }
     });
     if (!(availableSolutions.length || this.dialog.openDialogs.length)) {
       this.dialog.open(ActivatorStoreDialogMissingSolutionsComponent, { disableClose: true, autoFocus: false });
     }
-    this.createApplicationStatus$ = this.store.pipe(select(selectCreateApplicationStatus));
     this.createApplicationStatus$.subscribe(status => {
-      this.handleSubmitStatus(status);
+      this.handleLoading(status);
     });
   }
 
-  handleSubmitStatus(status: Loadable) {
+  private handleLoading = (status: Loadable) => {
     if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Activator has been provisioned', success: true },
-        duration: 3500
-      });
+      this.store.dispatch(discardSelectedSolution());
+      this.router.navigateByUrl(`/mission-control/solutions/view?id=${this.selectedSolutionId}&tab=Activators`);
     }
-    if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. Application has not been created', success: false },
-        duration: 3500
-      });
-    }
-  }
+    status.loading ? this.applicationForm.disable() : this.applicationForm.enable();
+  };
 
   // Small hack because of https://github.com/angular/components/issues/8479#issuecomment-444063732
   ngAfterViewInit(): void {
@@ -107,7 +100,6 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   onSubmit(application: Application) {
     if (this.applicationForm.valid) {
       this.store.dispatch(createApplication({ application }));
-      this.store.dispatch(discardSelectedSolution());
     } else {
       this.applicationForm.markAllAsTouched();
     }
