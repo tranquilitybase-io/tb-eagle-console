@@ -4,6 +4,8 @@ import { SharedModule } from '@app/shared/shared.module';
 
 import { EffectsModule } from '@ngrx/effects';
 import { TeamMembersEffects } from './team-members.effects';
+import reducer, { featureKey } from './team-members.reducer';
+import { StoreModule } from '@ngrx/store';
 
 import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
 import { TeamMembersGridCardComponent } from './team-members-grid-card/team-members-grid-card.component';
@@ -34,6 +36,7 @@ import { MatTableModule } from '@angular/material/table';
     CommonModule,
     SharedModule,
     EffectsModule.forFeature([TeamMembersEffects]),
+    StoreModule.forFeature(featureKey, reducer),
     MatButtonModule,
     MatCardModule,
     MatChipsModule,

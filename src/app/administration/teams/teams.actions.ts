@@ -1,14 +1,18 @@
 import { createAction, props } from '@ngrx/store';
 import { Team } from './teams.model';
 
-export const createTeamData = createAction('[teams] createTeamData', props<{ teamData: Team }>());
-export const createTeamDataSuccess = createAction('[teams] createTeamDataSuccess');
-export const createTeamDataError = createAction('[teams] createTeamDataError', props<{ error: any }>());
+const key = '[teams]';
 
-export const resetCreateTeamDataStatus = createAction('[teams] resetCreateTeamDataStatus');
+export const getTeams = createAction(`${key} getTeams`);
+export const getTeamsError = createAction(`${key} getTeamsError`, props<{ error: any }>());
+export const getTeamsSuccess = createAction(`${key} getTeamsSuccess`, props<{ teams: Team[] }>());
 
-export const updateTeamData = createAction('[teams] updateTeamData', props<{ teamData: Team }>());
-export const updateTeamDataSuccess = createAction('[teams] updateTeamData');
-export const updateTeamDataError = createAction('[teams] updateTeamDataError', props<{ error: any }>());
+export const createTeamData = createAction(`${key} createTeamData`, props<{ teamData: Team }>());
+export const createTeamDataError = createAction(`${key} createTeamDataError`, props<{ error: any }>());
+export const createTeamDataSuccess = createAction(`${key} createTeamDataSuccess`);
+export const resetCreateTeamStatus = createAction(`${key} resetCreateTeamStatus`);
 
-export const resetUpdateTeamDataStatus = createAction('[teams] resetUpdateTeamDataStatus');
+export const resetUpdateTeamStatus = createAction(`${key} resetUpdateTeamStatus`);
+export const updateTeamData = createAction(`${key} updateTeamData`, props<{ teamData: Team }>());
+export const updateTeamDataError = createAction(`${key} updateTeamDataError`, props<{ error: any }>());
+export const updateTeamDataSuccess = createAction(`${key} updateTeamData`);

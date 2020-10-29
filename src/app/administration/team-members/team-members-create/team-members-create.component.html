@@ -35,7 +35,7 @@
       <mat-checkbox formControlName="isTeamAdmin">Team admin</mat-checkbox>
     </p>
     <div class="app-bottom-action right">
-      <button mat-button color="primary">
+      <button mat-button color="primary" [loading]="(createTeamMemberStatus$ | async).loading">
         Create Team
         <mat-icon>chevron_right</mat-icon>
       </button>
