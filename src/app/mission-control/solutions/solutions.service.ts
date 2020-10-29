@@ -1,17 +1,9 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Solution, SolutionDeployment } from './solutions.model';
+import { SolutionDeployment } from './solutions.model';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {
-  createSolutionSuccess,
-  createSolutionError,
-  updateSolutionSuccess,
-  updateSolutionError,
-  startDeploymentSuccess,
-  startDeploymentError
-} from './solutions.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -23,24 +15,10 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
 
   private BASE_URL = `${globalThis.location.origin}/api`;
 
-  private deploySolutionSuccess = (val: Solution) => {
-    console.log('POST call successful value returned in body', val);
-    this.store.dispatch(startDeploymentSuccess());
-  };
-
-  private deploySolutionError = (error: any) => {
-    console.log('POST call in error', error);
-    this.store.dispatch(startDeploymentError(error));
-  };
-
-  deploySolution(id: number): void {
+  deploySolution(id: number) {
     const url = `${this.BASE_URL}/solutiondeployment/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, { id }, { headers }).subscribe(this.deploySolutionSuccess, this.deploySolutionError, () => {
-      console.log('The POST observable is now completed.');
-      this.getAll();
-    });
-    console.log(`Solution ${id} is been deployed`);
+    return this.http.post(url, { id }, { headers });
   }
 
   private handleError(error: HttpErrorResponse) {

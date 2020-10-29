@@ -12,7 +12,9 @@ import {
   createSolutionSuccess,
   createSolutionError,
   updateSolutionSuccess,
-  updateSolutionError
+  updateSolutionError,
+  startDeploymentSuccess,
+  startDeploymentError
 } from './solutions.actions';
 import { of } from 'rxjs';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
@@ -73,12 +75,20 @@ export class SolutionEffects {
     )
   );
 
-  startDeployment$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(startDeployment),
-        tap(({ id }) => this.solutionService.deploySolution(id))
-      ),
-    { dispatch: false }
+  startDeployment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(startDeployment),
+      mergeMap(action =>
+        this.solutionService.deploySolution(action.id).pipe(
+          map(() => {
+            return startDeploymentSuccess();
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong. Solution has not been deployed');
+            return of(startDeploymentError(error));
+          })
+        )
+      )
+    )
   );
 }
