@@ -6,7 +6,7 @@ import { Layout } from '@app/shared/layout/layout.model';
 import { ActivatorStoreService } from '../../activator-store.service';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { setActivatorsCount } from '../../activator-store.actions';
+import { getByCategory, setActivatorsCount } from '../../activator-store.actions';
 import { selectActivatorsByCategoryData } from '../../activator-store.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 
@@ -31,9 +31,7 @@ export class ActivatorStoreHomeGridComponent implements OnInit {
 
   ngOnInit() {
     const categorySwitch = this.route.snapshot.queryParams.categorySwitch;
-    this.activatorStoreService.getByCategory(categorySwitch).subscribe((activators: Activator[]) => {
-      this.store.dispatch(setActivatorsCount({ activatorsCount: activators.length }));
-    });
+    this.store.dispatch(getByCategory({ category: categorySwitch }));
     this.activators$ = this.store.select(selectActivatorsByCategoryData);
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }

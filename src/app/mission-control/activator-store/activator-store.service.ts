@@ -14,7 +14,6 @@ import {
   grantAccessSuccess,
   requestAccessError,
   requestAccessSuccess,
-  setActivatorsByCategoryData,
   setActivatorsCount,
   setDeprecatedError,
   setDeprecatedSuccess,
@@ -60,7 +59,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
       .post(url, { id, status: 'Deprecated', accessRequestedById: 0 }, { headers })
-      .subscribe(this.setDeprecatedSuccess, this.setDeprecatedError, this.postCompleted);
+      .subscribe(this.setDeprecatedSuccess, this.setDeprecatedError);
     console.log('Deprecated status set to activator: ' + id);
   }
 
@@ -162,14 +161,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   getByCategory(category: string): Observable<Activator[]> {
     const params = category === 'All' ? null : { category };
     const url = `${this.BASE_URL}/activators/`;
-    return this.http
-      .get<Activator[]>(url, { params })
-      .pipe(
-        tap(activatorsByCategoryData => {
-          this.store.dispatch(setActivatorsByCategoryData({ activatorsByCategoryData }));
-        }),
-        catchError(this.handleError)
-      );
+    return this.http.get<Activator[]>(url, { params });
   }
 
   private createActivatorByURLSuccess = (activatorData: Activator) => {

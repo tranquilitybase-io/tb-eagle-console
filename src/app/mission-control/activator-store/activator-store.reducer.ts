@@ -8,6 +8,9 @@ import {
 import { createReducer, createSelector, on } from '@ngrx/store';
 
 import {
+  getByCategory,
+  getByCategorySuccess,
+  getByCategoryError,
   createActivatorByURL,
   createActivatorByURLError,
   createActivatorByURLSuccess,
@@ -22,7 +25,6 @@ import {
   requestAccessSuccess,
   resetActivatorDataStatus,
   resetAPICallStatuses,
-  setActivatorsByCategoryData,
   setActivatorsCount,
   setCategoriesCount,
   setDeprecated,
@@ -42,6 +44,8 @@ import { Activator } from './activator-store.model';
 export const featureKey = 'activator-store';
 
 const initialState = {
+  activators: [] as Activator[],
+  getByCategoryStatus: defaultLoadable() as Loadable,
   activatorData: {} as Activator,
   activatorDataStatus: defaultLoadable() as Loadable,
   activatorsByCategoryData: [],
@@ -90,11 +94,17 @@ const innerReducer = createReducer(
     requestAccessStatus: onLoadableSuccess()
   })),
   on(requestAccessError, (state, { error }) => ({ ...state, requestAccessStatus: onLoadableError(error) })),
-  on(setActivatorsByCategoryData, (state, { activatorsByCategoryData }) => ({ ...state, activatorsByCategoryData })),
   on(setActivatorsCount, (state, { activatorsCount }) => ({ ...state, activatorsCount })),
   on(setCategoriesCount, (state, { categoriesCount }) => ({ ...state, categoriesCount })),
   on(setProgress, (state, { step }) => ({ ...state, step })),
   on(storeActivatorData, (state, { activatorData }) => ({ ...state, activatorData })),
+  on(getByCategory, state => ({ ...state, getByCategoryStatus: onLoadableInit() })),
+  on(getByCategorySuccess, (state, { activators }) => ({
+    ...state,
+    activatorsByCategoryData: activators,
+    getByCategoryStatus: onLoadableSuccess()
+  })),
+  on(getByCategoryError, (state, { error }) => ({ ...state, getByCategoryStatus: onLoadableError(error) })),
   on(createActivatorByURL, state => ({ ...state, activatorDataStatus: onLoadableInit() })),
   on(createActivatorByURLSuccess, (state, { activatorData }) => ({
     ...state,

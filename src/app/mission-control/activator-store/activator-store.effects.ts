@@ -1,23 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ActivatorStoreService } from './activator-store.service';
-import { tap, first } from 'rxjs/operators';
+import { tap, first, mergeMap, switchMap, map, catchError } from 'rxjs/operators';
 import {
+  getByCategory,
+  getByCategorySuccess,
+  getByCategoryError,
   setDeprecated,
   setLocked,
   denyAccess,
   grantAccess,
   requestAccess,
   createActivatorByURL,
-  updateActivator
+  updateActivator,
+  setActivatorsCount
 } from './activator-store.actions';
 import { Store, select } from '@ngrx/store';
 import { selectUser } from '@app/login/login.reducer';
 import { User } from '@app/login/login.model';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ActivatorStoreEffects {
   constructor(private store: Store<any>, private actions$: Actions, private service: ActivatorStoreService) {}
+
+  getByCategory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getByCategory),
+      mergeMap(action =>
+        this.service.getByCategory(action.category).pipe(
+          switchMap(activators => [
+            setActivatorsCount({ activatorsCount: activators.length }),
+            getByCategorySuccess({ activators })
+          ]),
+          catchError(error => of(getByCategoryError({ error })))
+        )
+      )
+    )
+  );
 
   setDeprecated$ = createEffect(
     () =>

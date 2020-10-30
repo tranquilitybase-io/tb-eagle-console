@@ -1,6 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 import { Activator, ActivatorMetadata } from './activator-store.model';
 
+const key = '[ActivatorStore]';
+
+export const getActivators = createAction(`${key} getActivators`);
+export const getActivatorsSuccess = createAction(`${key} getActivatorsSuccess`, props<{ activators: Activator[] }>());
+export const getActivatorsError = createAction(`${key} getActivatorsError`, props<{ error: any }>());
+
+export const getByCategory = createAction(`${key} getByCategory`, props<{ category: string }>());
+export const getByCategorySuccess = createAction(`${key} getByCategorySuccess`, props<{ activators: Activator[] }>());
+export const getByCategoryError = createAction(`${key} getByCategoryError`, props<{ error: any }>());
+
 export const storeActivatorData = createAction(
   '[ActivatorStore] storeActivatorData',
   props<{ activatorData: Activator }>()
@@ -56,11 +66,6 @@ export const setActivatorsCount = createAction(
   props<{ activatorsCount: number }>()
 );
 export const setProgress = createAction('[ActivatorStore] set-progress', props<{ step: number }>());
-
-export const setActivatorsByCategoryData = createAction(
-  '[ActivatorStore] setActivatorsByCategoryData',
-  props<{ activatorsByCategoryData: Activator[] }>()
-);
 
 export const createActivatorByURL = createAction('[ActivatorStore] createActivatorByURL', props<{ url: string }>());
 export const createActivatorByURLSuccess = createAction(
