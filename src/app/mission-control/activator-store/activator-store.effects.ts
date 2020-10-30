@@ -13,7 +13,14 @@ import {
   requestAccess,
   createActivatorByURL,
   updateActivator,
-  setActivatorsCount
+  setActivatorsCount,
+  getActivatorCategories,
+  setCategoriesCount,
+  getActivatorCategoriesSuccess,
+  getActivatorCategoriesError,
+  getMetaData,
+  getMetaDataSuccess,
+  getMetaDataError
 } from './activator-store.actions';
 import { Store, select } from '@ngrx/store';
 import { selectUser } from '@app/login/login.reducer';
@@ -34,6 +41,36 @@ export class ActivatorStoreEffects {
             getByCategorySuccess({ activators })
           ]),
           catchError(error => of(getByCategoryError({ error })))
+        )
+      )
+    )
+  );
+
+  getActivatorCategories$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getActivatorCategories),
+      mergeMap(() =>
+        this.service.getActivatorCategories().pipe(
+          switchMap(categories => [
+            setCategoriesCount({ categoriesCount: categories.length }),
+            getActivatorCategoriesSuccess({ categories })
+          ]),
+          catchError(error => of(getActivatorCategoriesError({ error })))
+        )
+      )
+    )
+  );
+
+  getMetaData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getMetaData),
+      mergeMap(() =>
+        this.service.getMetadata().pipe(
+          switchMap(activators_meta => [
+            setActivatorsCount({ activatorsCount: activators_meta.count }),
+            getMetaDataSuccess({ activators_meta })
+          ]),
+          catchError(error => of(getMetaDataError({ error })))
         )
       )
     )

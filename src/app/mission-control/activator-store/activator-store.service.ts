@@ -155,7 +155,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
 
   getActivatorCategories(): Observable<ActivatorCategory[]> {
     const url = `${this.BASE_URL}/activatorcategories/`;
-    return this.http.get<ActivatorCategory[]>(url).pipe(catchError(this.handleError));
+    return this.http.get<ActivatorCategory[]>(url);
   }
 
   getByCategory(category: string): Observable<Activator[]> {

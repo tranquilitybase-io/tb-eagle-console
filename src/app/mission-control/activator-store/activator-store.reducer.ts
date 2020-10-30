@@ -11,6 +11,12 @@ import {
   getByCategory,
   getByCategorySuccess,
   getByCategoryError,
+  getActivatorCategories,
+  getActivatorCategoriesSuccess,
+  getActivatorCategoriesError,
+  getMetaData,
+  getMetaDataSuccess,
+  getMetaDataError,
   createActivatorByURL,
   createActivatorByURLError,
   createActivatorByURLSuccess,
@@ -39,13 +45,16 @@ import {
   updateActivatorError,
   updateActivatorSuccess
 } from './activator-store.actions';
-import { Activator } from './activator-store.model';
+import { Activator, ActivatorCategory } from './activator-store.model';
 
 export const featureKey = 'activator-store';
 
 const initialState = {
   activators: [] as Activator[],
   getByCategoryStatus: defaultLoadable() as Loadable,
+  categories: [] as ActivatorCategory[],
+  getActivatorCategoriesStatus: defaultLoadable() as Loadable,
+  getMetaDataStatus: defaultLoadable() as Loadable,
   activatorData: {} as Activator,
   activatorDataStatus: defaultLoadable() as Loadable,
   activatorsByCategoryData: [],
@@ -98,6 +107,7 @@ const innerReducer = createReducer(
   on(setCategoriesCount, (state, { categoriesCount }) => ({ ...state, categoriesCount })),
   on(setProgress, (state, { step }) => ({ ...state, step })),
   on(storeActivatorData, (state, { activatorData }) => ({ ...state, activatorData })),
+  // get by Category
   on(getByCategory, state => ({ ...state, getByCategoryStatus: onLoadableInit() })),
   on(getByCategorySuccess, (state, { activators }) => ({
     ...state,
@@ -105,6 +115,22 @@ const innerReducer = createReducer(
     getByCategoryStatus: onLoadableSuccess()
   })),
   on(getByCategoryError, (state, { error }) => ({ ...state, getByCategoryStatus: onLoadableError(error) })),
+  // get categories
+  on(getActivatorCategories, state => ({ ...state, getActivatorCategoriesStatus: onLoadableInit() })),
+  on(getActivatorCategoriesSuccess, (state, { categories }) => ({
+    ...state,
+    categories,
+    getActivatorCategoriesStatus: onLoadableSuccess()
+  })),
+  on(getActivatorCategoriesError, (state, { error }) => ({
+    ...state,
+    getActivatorCategoriesStatus: onLoadableError(error)
+  })),
+  // getMetaData
+  on(getMetaData, state => ({ ...state, getMetaDataStatus: onLoadableInit() })),
+  on(getMetaDataSuccess, state => ({ ...state, getMetaDataStatus: onLoadableSuccess() })),
+  on(getMetaDataError, (state, { error }) => ({ ...state, getMetaDataStatus: onLoadableError(error) })),
+  // createByUrl
   on(createActivatorByURL, state => ({ ...state, activatorDataStatus: onLoadableInit() })),
   on(createActivatorByURLSuccess, (state, { activatorData }) => ({
     ...state,
@@ -154,6 +180,11 @@ export const selectActivatorDataStatus = createSelector(
   ({ activatorDataStatus }) => activatorDataStatus as Loadable
 );
 
+export const selectCategories = createSelector(selectFeature, state => state.categories);
+export const selectGetActivatorCategoriesStatus = createSelector(
+  selectFeature,
+  state => state.getActivatorCategoriesStatus
+);
 export const selectGetByCategoryStatus = createSelector(selectFeature, state => state.getByCategoryStatus);
 export const selectDenyAccessStatus = createSelector(selectFeature, state => state && state.denyAccessStatus);
 export const selectGrantAccessStatus = createSelector(selectFeature, state => state && state.grantAccessStatus);

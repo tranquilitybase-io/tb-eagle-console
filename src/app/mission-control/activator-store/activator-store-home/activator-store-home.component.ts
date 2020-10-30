@@ -37,19 +37,21 @@ import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/ap
 })
 export class ActivatorStoreHomeComponent implements OnInit {
   categorySwitch$: Observable<string>;
-  categoriesCount$: Observable<number>;
-  activatorsCount$: Observable<number>;
+  categoriesCount$: Observable<number> = this.store.pipe(select(selectCategoriesCount));
+  activatorsCount$: Observable<number> = this.store.pipe(select(selectActivatorsCount));
 
   categories = ['Web applications'];
 
-  progress$: Observable<number>;
-  isSelectedSolution$: Observable<boolean>;
-  selectedSolution$: Observable<Solution>;
+  progress$: Observable<number> = this.store.pipe(select(selectProgress));
+  isSelectedSolution$: Observable<boolean> = this.store.pipe(select(selectIsSelectedSolution));
+  selectedSolution$: Observable<Solution> = this.store.pipe(select(selectSelectedSolution));
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.activatorStore;
-  currentGridViewOption$: Observable<GridViewSwitchModel>;
+  currentGridViewOption$: Observable<GridViewSwitchModel> = this.store.pipe(
+    select(selectGridViewSwitchOptions, this.gridViewOptionsName)
+  );
 
-  userIsAdmin$: Observable<boolean>;
+  userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsAdmin));
 
   denyAccessStatus$: Observable<Loadable>;
   grantAccessStatus$: Observable<Loadable>;
@@ -71,15 +73,6 @@ export class ActivatorStoreHomeComponent implements OnInit {
     this.categorySwitch$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('categorySwitch')));
 
     this.onSwitch(this.route.snapshot.queryParams.categorySwitch || 'Category');
-
-    this.categoriesCount$ = this.store.pipe(select(selectCategoriesCount));
-    this.activatorsCount$ = this.store.pipe(select(selectActivatorsCount));
-
-    this.progress$ = this.store.pipe(select(selectProgress));
-    this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
-    this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
-    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
 
     this.setDeprecatedStatus$ = this.store.pipe(select(selectSetDeprecatedStatus));
     this.setDeprecatedStatus$.subscribe(status => {
