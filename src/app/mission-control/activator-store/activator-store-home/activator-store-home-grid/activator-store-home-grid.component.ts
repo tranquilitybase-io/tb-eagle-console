@@ -6,9 +6,10 @@ import { Layout } from '@app/shared/layout/layout.model';
 import { ActivatorStoreService } from '../../activator-store.service';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { getByCategory, setActivatorsCount } from '../../activator-store.actions';
-import { selectActivatorsByCategoryData } from '../../activator-store.reducer';
+import { getByCategory } from '../../activator-store.actions';
+import { selectActivatorsByCategoryData, selectGetByCategoryStatus } from '../../activator-store.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-activator-store-home-grid',
@@ -19,13 +20,9 @@ export class ActivatorStoreHomeGridComponent implements OnInit {
   activators$: Observable<Activator[]>;
   layout$: Observable<Layout>;
   userIsAdmin$: Observable<boolean>;
+  getByCategoryStatus$: Observable<Loadable> = this.store.select(selectGetByCategoryStatus);
 
-  constructor(
-    private layoutService: LayoutService,
-    private activatorStoreService: ActivatorStoreService,
-    private route: ActivatedRoute,
-    private store: Store<any>
-  ) {
+  constructor(private layoutService: LayoutService, private route: ActivatedRoute, private store: Store<any>) {
     this.layout$ = this.layoutService.layoutObserver$;
   }
 

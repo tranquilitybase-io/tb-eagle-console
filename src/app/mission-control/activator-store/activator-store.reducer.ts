@@ -154,6 +154,7 @@ export const selectActivatorDataStatus = createSelector(
   ({ activatorDataStatus }) => activatorDataStatus as Loadable
 );
 
+export const selectGetByCategoryStatus = createSelector(selectFeature, state => state.getByCategoryStatus);
 export const selectDenyAccessStatus = createSelector(selectFeature, state => state && state.denyAccessStatus);
 export const selectGrantAccessStatus = createSelector(selectFeature, state => state && state.grantAccessStatus);
 export const selectRequestAccessStatus = createSelector(selectFeature, state => state && state.requestAccessStatus);
