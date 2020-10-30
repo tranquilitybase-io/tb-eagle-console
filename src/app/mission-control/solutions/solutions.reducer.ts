@@ -8,13 +8,13 @@ import {
 import { createReducer, on, createSelector } from '@ngrx/store';
 
 import {
-  getSolutions,
-  getSolutionsSuccess,
-  getSolutionsError,
   createSolution,
   createSolutionError,
   createSolutionSuccess,
   discardSelectedSolution,
+  getSolutions,
+  getSolutionsError,
+  getSolutionsSuccess,
   resetCreateSolutionStatus,
   resetUpdateSolutionStatus,
   setSelectedSolution,
@@ -28,25 +28,25 @@ import {
 import { Solution, SolutionDeployment } from './solutions.model';
 
 export const intialState = {
-  solutions: [] as Solution[],
-  getSolutionsStatus: defaultLoadable() as Loadable,
   createSolutionStatus: defaultLoadable() as Loadable,
   dismissAlmostReady: false,
+  getSolutionsStatus: defaultLoadable() as Loadable,
   isDeploymentReady: false,
   selectedSolution: undefined,
   solutionDeploymentsData: [],
+  solutions: [] as Solution[],
   startDeploymentStatus: defaultLoadable() as Loadable,
   updateSolutionStatus: defaultLoadable() as Loadable
 };
 
 export interface SolutionsState {
-  solutions: Solution[];
-  getSolutionsStatus: Loadable;
   createSolutionStatus: Loadable;
   dismissAlmostReady: boolean;
+  getSolutionsStatus: Loadable;
   isDeploymentReady: boolean;
   selectedSolution: Solution;
   solutionDeploymentsData: SolutionDeployment[];
+  solutions: Solution[];
   startDeploymentStatus: Loadable;
   updateSolutionStatus: Loadable;
 }
@@ -54,25 +54,25 @@ export const solutionFeatureKey = 'solutions';
 
 export const solutionsReducer = createReducer(
   intialState,
-  on(setSelectedSolution, (state, { solution }) => ({ ...state, selectedSolution: solution })),
   on(discardSelectedSolution, state => ({ ...state, selectedSolution: undefined })),
+  on(setSelectedSolution, (state, { solution }) => ({ ...state, selectedSolution: solution })),
   // getAll
   on(getSolutions, state => ({ ...state, getSolutionsStatus: onLoadableInit() })),
-  on(getSolutionsSuccess, (state, { solutions }) => ({ ...state, solutions, getSolutionsStatus: onLoadableSuccess() })),
   on(getSolutionsError, (state, { error }) => ({ ...state, getSolutionsStatus: onLoadableError(error) })),
+  on(getSolutionsSuccess, (state, { solutions }) => ({ ...state, solutions, getSolutionsStatus: onLoadableSuccess() })),
   // update
   on(updateSolution, (state, { solution }) => ({
     ...state,
     selectedSolution: solution,
     updateSolutionStatus: onLoadableInit()
   })),
-  on(updateSolutionSuccess, state => ({ ...state, updateSolutionStatus: onLoadableSuccess() })),
   on(updateSolutionError, (state, { error }) => ({ ...state, updateSolutionStatus: onLoadableError(error) })),
+  on(updateSolutionSuccess, state => ({ ...state, updateSolutionStatus: onLoadableSuccess() })),
   on(resetUpdateSolutionStatus, state => ({ ...state, updateSolutionStatus: defaultLoadable() })),
   //
   on(createSolution, state => ({ ...state, createSolutionStatus: onLoadableInit() })),
-  on(createSolutionSuccess, state => ({ ...state, createSolutionStatus: onLoadableSuccess() })),
   on(createSolutionError, (state, { error }) => ({ ...state, createSolutionStatus: onLoadableError(error) })),
+  on(createSolutionSuccess, state => ({ ...state, createSolutionStatus: onLoadableSuccess() })),
   on(resetCreateSolutionStatus, state => ({ ...state, createSolutionStatus: defaultLoadable() })),
   on(setSolutionDeploymentsData, (state, { solutionDeploymentsData }) => {
     if (JSON.stringify(solutionDeploymentsData) !== JSON.stringify(state.solutionDeploymentsData)) {
@@ -81,8 +81,8 @@ export const solutionsReducer = createReducer(
     return state;
   }),
 
-  on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() })),
-  on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) }))
+  on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) })),
+  on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() }))
 );
 
 export default function reducer(state, action) {
@@ -100,7 +100,7 @@ export const selectSolutionDeploymentsData = createSelector(
   state => state && state.solutionDeploymentsData
 );
 
-export const selectGetSolutionsStatus = createSelector(selectFeature, state => state && state.getSolutionsStatus);
 export const selectCreateSolutionStatus = createSelector(selectFeature, state => state && state.createSolutionStatus);
+export const selectGetSolutionsStatus = createSelector(selectFeature, state => state && state.getSolutionsStatus);
 export const selectStartDeploymentStatus = createSelector(selectFeature, state => state && state.startDeploymentStatus);
 export const selectUpdateSolutionStatus = createSelector(selectFeature, state => state && state.updateSolutionStatus);

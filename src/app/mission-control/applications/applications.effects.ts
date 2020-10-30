@@ -3,13 +3,13 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApplicationsService } from './applications.service';
 import {
   createApplication,
-  startDeployment,
-  createApplicationSuccess,
   createApplicationError,
-  startDeploymentSuccess,
-  startDeploymentError
+  createApplicationSuccess,
+  startDeployment,
+  startDeploymentError,
+  startDeploymentSuccess
 } from './applications.actions';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 

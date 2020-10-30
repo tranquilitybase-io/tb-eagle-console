@@ -1,12 +1,11 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
+import { resetUpdateSolutionStatus, updateSolution } from '../solutions.actions';
 import { SolutionsState, selectUpdateSolutionStatus } from '../solutions.reducer';
-import { resetUpdateSolutionStatus } from './../solutions.actions';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { updateSolution } from '../solutions.actions';
 import { Solution } from '../solutions.model';
 import { Environment } from '@app/administration/landing-zone/landing-zone-environment/landing-zone-environment.model';
 import { DeploymentState } from '@app/shared/shared.model';

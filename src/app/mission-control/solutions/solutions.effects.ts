@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { mergeMap, tap, catchError, map } from 'rxjs/operators';
+import { mergeMap, catchError, map } from 'rxjs/operators';
 import { SolutionsService } from './solutions.service';
 import {
   createSolution,
-  updateSolution,
-  startDeployment,
-  getSolutions,
-  getSolutionsSuccess,
-  getSolutionsError,
-  createSolutionSuccess,
   createSolutionError,
-  updateSolutionSuccess,
-  updateSolutionError,
+  createSolutionSuccess,
+  getSolutions,
+  getSolutionsError,
+  getSolutionsSuccess,
+  startDeployment,
+  startDeploymentError,
   startDeploymentSuccess,
-  startDeploymentError
+  updateSolution,
+  updateSolutionError,
+  updateSolutionSuccess
 } from './solutions.actions';
 import { of } from 'rxjs';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';

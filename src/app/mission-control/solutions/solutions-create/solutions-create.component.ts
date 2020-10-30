@@ -1,12 +1,11 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '@angular/common';
-import { SolutionsState, selectCreateSolutionStatus } from '../solutions.reducer';
-import { resetCreateSolutionStatus } from './../solutions.actions';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { createSolution } from '../solutions.actions';
+import { createSolution, resetCreateSolutionStatus } from '../solutions.actions';
+import { SolutionsState, selectCreateSolutionStatus } from '../solutions.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
