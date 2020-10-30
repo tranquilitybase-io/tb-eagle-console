@@ -11,7 +11,11 @@
 <app-solutions-home-grid
   *ngIf="isGridViewEnabled$ | async; else listView"
   [solutions$]="solutions$"
+  [isLoading]="(getSolutionsStatus$ | async).loading"
 ></app-solutions-home-grid>
 <ng-template #listView>
-  <app-solutions-home-list [solutions$]="solutions$"></app-solutions-home-list>
+  <app-solutions-home-list
+    [solutions$]="solutions$"
+    [isLoading]="(getSolutionsStatus$ | async).loading"
+  ></app-solutions-home-list>
 </ng-template>
