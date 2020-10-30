@@ -18,13 +18,13 @@
       </mat-form-field>
     </p>
     <div class="app-bottom-action left">
-      <button mat-button color="primary" (click)="cancel()">
+      <button mat-button color="primary" (click)="cancel()" [disabled]="(updateBusinessUnitStatus$ | async).loading">
         <mat-icon class="app-cancel-icon">cancel</mat-icon>
         Cancel
       </button>
     </div>
     <div class="app-bottom-action right">
-      <button mat-button color="primary">
+      <button mat-button color="primary" [loading]="(updateBusinessUnitStatus$ | async).loading">
         Update Business Unit
         <mat-icon>chevron_right</mat-icon>
       </button>

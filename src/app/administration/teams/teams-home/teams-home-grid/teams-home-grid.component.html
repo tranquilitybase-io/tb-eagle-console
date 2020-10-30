@@ -1,5 +1,9 @@
 <div class="grid-container team-grid-container">
+  <div class="spinner-container">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
   <mat-grid-list
+    *ngIf="!isLoading"
     [cols]="(layout$ | async).gridCols"
     [rowHeight]="(layout$ | async).teamGridItemHeight"
     gutterSize="24px"

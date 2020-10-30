@@ -53,3 +53,9 @@ th.mat-header-cell:first-of-type {
 .nowrap {
   white-space: nowrap;
 }
+
+.progress-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

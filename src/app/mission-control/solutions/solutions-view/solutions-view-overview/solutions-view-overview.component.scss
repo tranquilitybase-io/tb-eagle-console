@@ -60,6 +60,20 @@
   }
 }
 
-.review-card {
+.overview-card {
   top: 3rem;
+}
+
+.sandbox-card {
+  top: 3rem;
+  box-sizing: content-box;
+  padding-top: 28px;
+
+  .mat-card-content {
+    padding: 2rem 1rem;
+
+    p {
+      font-size: large;
+    }
+  }
 }

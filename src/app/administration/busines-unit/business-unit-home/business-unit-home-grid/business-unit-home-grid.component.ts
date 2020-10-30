@@ -12,6 +12,7 @@ import { BusinessUnit } from '../../business-unit.model';
 })
 export class BusinessUnitHomeGridComponent {
   @Input() businessUnitList$: Observable<BusinessUnit[]>;
+  @Input() isLoading: boolean;
 
   layout$: Observable<Layout>;
 

@@ -25,6 +25,7 @@ export class SolutionsHomeListComponent implements OnInit {
     'name',
     'status',
     'deploymentState',
+    'workspace',
     'applications',
     'team',
     'lastUpdated',

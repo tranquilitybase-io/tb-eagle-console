@@ -63,6 +63,7 @@ export class SolutionsEditComponent implements OnInit {
       ciId: [this.solution.ciId],
       cdId: [this.solution.cdId],
       sourceControlId: [this.solution.sourceControlId],
+      isSandbox: [this.solution.isSandbox],
       environments: [environmentIdList]
     });
 
@@ -86,8 +87,27 @@ export class SolutionsEditComponent implements OnInit {
     this.router.navigateByUrl('/mission-control/solutions');
   }
 
+  onIsSandboxCheck({ checked }) {
+    this.solutionForm.markAsUntouched();
+    if (checked) {
+      this.solutionForm.controls['ciId'].setValue(0);
+      this.solutionForm.controls['cdId'].setValue(0);
+      this.solutionForm.controls['sourceControlId'].setValue(0);
+      this.solutionForm.controls['environments'].setValue([]);
+    } else {
+      this.solutionForm.controls['ciId'].setValue('');
+      this.solutionForm.controls['cdId'].setValue('');
+      this.solutionForm.controls['sourceControlId'].setValue('');
+      this.solutionForm.controls['environments'].setValue([]);
+    }
+  }
+
   onSubmit(solution) {
-    this.store.dispatch(updateSolution({ solution }));
+    if (this.solutionForm.valid) {
+      this.store.dispatch(updateSolution({ solution }));
+    } else {
+      this.solutionForm.markAllAsTouched();
+    }
   }
 
   get disableEdit(): boolean {
@@ -97,5 +117,9 @@ export class SolutionsEditComponent implements OnInit {
       this.solution.deploymentState === DeploymentState.Pending ||
       this.solution.deploymentState === DeploymentState.Retry
     );
+  }
+
+  get isSandbox(): boolean {
+    return this.solutionForm.get('isSandbox').value;
   }
 }

@@ -9,6 +9,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { createTeamMember } from '../team-members.actions';
 import { TeamMember } from '../team-members.model';
+import { Loadable } from '@app/shared/shared.reducer';
+import { selectCreateTeamDataStatus } from '@app/administration/teams/teams.reducer';
 
 @Component({
   selector: 'app-team-members-create',
@@ -19,6 +21,8 @@ export class TeamMembersCreateComponent implements OnInit {
   teamMemberForm: FormGroup;
   users$: Observable<User[]>;
   defaultTeam: KeyValue<string, string> = { key: '', value: '' };
+
+  createTeamMemberStatus$: Observable<Loadable> = this.store.select(selectCreateTeamDataStatus);
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,7 +49,18 @@ export class TeamMembersCreateComponent implements OnInit {
         this.teamMemberForm.get('teamId').setValue(parseInt(this.defaultTeam.key));
       });
     });
+    this.createTeamMemberStatus$.subscribe(status => this.handleLoading(status));
   }
+
+  private navigateToTeams() {
+    this.router.navigateByUrl('/administration/teams');
+  }
+
+  private handleLoading = (status: Loadable) => {
+    console.log(status);
+    status.success && this.navigateToTeams();
+    status.loading ? this.teamMemberForm.disable() : this.teamMemberForm.enable();
+  };
 
   get form() {
     return this.teamMemberForm.controls;
@@ -54,7 +69,6 @@ export class TeamMembersCreateComponent implements OnInit {
   onSubmit(teamMember: TeamMember) {
     if (this.teamMemberForm.valid) {
       this.store.dispatch(createTeamMember({ teamMember }));
-      this.router.navigateByUrl('/administration/teams');
     } else {
       this.teamMemberForm.markAllAsTouched();
     }
