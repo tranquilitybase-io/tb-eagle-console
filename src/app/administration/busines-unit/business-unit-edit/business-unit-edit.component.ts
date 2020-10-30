@@ -1,9 +1,12 @@
-import { updateBusinessUnit } from './../business-unit.actions';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessUnit } from '../business-unit.model';
+import { Observable } from 'rxjs';
+import { resetUpdateBusinessUnitStatus, updateBusinessUnit } from '../business-unit.actions';
+import { selectUpdateBusinessUnitsStatus } from '../business-unit.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-business-unit-edit',
@@ -14,6 +17,8 @@ export class BusinessUnitEditComponent implements OnInit {
   businessForm: FormGroup;
   businessUnit: BusinessUnit;
 
+  updateBusinessUnitStatus$: Observable<Loadable> = this.store.select(selectUpdateBusinessUnitsStatus);
+
   constructor(
     private store: Store<any>,
     private router: Router,
@@ -22,6 +27,7 @@ export class BusinessUnitEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetUpdateBusinessUnitStatus());
     this.businessUnit = this.route.snapshot.data['businessUnit'] as BusinessUnit;
 
     this.businessForm = this.formBuilder.group({
@@ -30,20 +36,29 @@ export class BusinessUnitEditComponent implements OnInit {
       description: [this.businessUnit.description, Validators.required],
       isActive: [this.businessUnit.isActive, Validators.required]
     });
+    this.updateBusinessUnitStatus$.subscribe(status => this.handleLoading(status));
   }
+
+  private navigateToBusinessUnitHome() {
+    this.router.navigateByUrl('/administration/business-unit');
+  }
+
+  private handleLoading = (status: Loadable) => {
+    status.success && this.navigateToBusinessUnitHome();
+    status.loading ? this.businessForm.disable() : this.businessForm.enable();
+  };
 
   get f() {
     return this.businessForm.controls;
   }
 
   cancel() {
-    this.router.navigateByUrl('/administration/business-unit');
+    this.navigateToBusinessUnitHome();
   }
 
   onSubmit(businessUnit) {
     if (this.businessForm.valid) {
       this.store.dispatch(updateBusinessUnit({ businessUnit }));
-      this.router.navigateByUrl('/administration/business-unit');
     } else {
       this.businessForm.markAllAsTouched();
     }

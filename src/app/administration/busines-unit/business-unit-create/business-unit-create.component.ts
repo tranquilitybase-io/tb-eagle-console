@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { createBusinessUnit } from '../business-unit.actions';
+import { createBusinessUnit, resetCreateBusinessUnitStatus } from '../business-unit.actions';
+import { selectCreateBusinessUnitsStatus } from '../business-unit.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ValidatorPattern } from '@app/shared/shared.model';
-import { User } from '@app/login/login.model';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-business-unit-create',
@@ -14,34 +15,42 @@ import { User } from '@app/login/login.model';
 export class BusinessUnitCreateComponent implements OnInit {
   businessForm: FormGroup;
 
-  constructor(
-    private store: Store<any>,
-    private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder
-  ) {}
+  createBusinessUnitStatus$: Observable<Loadable> = this.store.select(selectCreateBusinessUnitsStatus);
+
+  constructor(private store: Store<any>, private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.store.dispatch(resetCreateBusinessUnitStatus());
     this.businessForm = this.formBuilder.group({
       id: 0,
       name: ['', Validators.required],
       description: ['', Validators.required],
       isActive: [true, Validators.required]
     });
+
+    this.createBusinessUnitStatus$.subscribe(status => this.handleLoading(status));
   }
+
+  private navigateToBusinessUnitHome() {
+    this.router.navigateByUrl('/administration/business-unit');
+  }
+
+  private handleLoading = (status: Loadable) => {
+    status.success && this.navigateToBusinessUnitHome();
+    status.loading ? this.businessForm.disable() : this.businessForm.enable();
+  };
 
   get f() {
     return this.businessForm.controls;
   }
 
   cancel() {
-    this.router.navigateByUrl('/administration/business-unit');
+    this.navigateToBusinessUnitHome();
   }
 
   onSubmit(businessUnit) {
     if (this.businessForm.valid) {
       this.store.dispatch(createBusinessUnit({ businessUnit }));
-      this.router.navigateByUrl('/administration/business-unit');
     } else {
       this.businessForm.markAllAsTouched();
     }

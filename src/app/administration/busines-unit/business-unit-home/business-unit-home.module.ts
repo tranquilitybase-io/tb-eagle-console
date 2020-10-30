@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -52,6 +53,7 @@ const routes: Routes = [
     MatListModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
     MatTooltipModule

@@ -4,8 +4,12 @@
 <app-business-unit-home-select [gridViewName]="gridViewOptionsName"></app-business-unit-home-select>
 <app-business-unit-home-grid
   *ngIf="isGridViewEnabled$ | async; else listview"
-  [businessUnitList$]="businessUnitList$"
+  [isLoading]="(getBusinessUnitsStatus$ | async).loading"
+  [businessUnitList$]="businessUnits$"
 ></app-business-unit-home-grid>
 <ng-template #listview>
-  <app-business-unit-home-list [businessUnitList$]="businessUnitList$"></app-business-unit-home-list>
+  <app-business-unit-home-list
+    [businessUnitList$]="businessUnits$"
+    [isLoading]="(getBusinessUnitsStatus$ | async).loading"
+  ></app-business-unit-home-list>
 </ng-template>
