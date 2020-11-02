@@ -11,6 +11,7 @@ import { BusinessUnit } from '../../business-unit.model';
 })
 export class BusinessUnitHomeListComponent implements OnInit {
   @Input() businessUnitList$: Observable<BusinessUnit[]>;
+  @Input() isLoading: boolean;
 
   displayedColumns: string[] = ['name', 'description', 'actions'];
 

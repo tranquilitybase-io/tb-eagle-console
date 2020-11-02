@@ -17,6 +17,7 @@ import { SolutionsHomeDialogDeployComponent } from '../solutions-home-dialog/sol
 })
 export class SolutionsHomeListComponent implements OnInit {
   @Input() solutions$: Observable<Solution[]>;
+  @Input() isLoading: boolean;
   layout$: Observable<Layout>;
 
   displayedColumns: string[] = [

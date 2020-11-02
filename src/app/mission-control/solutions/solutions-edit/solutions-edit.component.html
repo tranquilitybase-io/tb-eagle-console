@@ -142,7 +142,13 @@
     </p>
 
     <div class="app-bottom-action right">
-      <button mat-button [disabled]="disableEdit" color="primary" type="submit">
+      <button
+        mat-button
+        [disabled]="disableEdit"
+        color="primary"
+        type="submit"
+        [loading]="(updateSolutionStatus$ | async).loading"
+      >
         Update
         <mat-icon>chevron_right</mat-icon>
       </button>
@@ -151,7 +157,7 @@
 </main>
 
 <div class="app-bottom-action left">
-  <button mat-button color="primary" (click)="cancel()">
+  <button mat-button color="primary" (click)="cancel()" [disabled]="(updateSolutionStatus$ | async).loading">
     <mat-icon class="app-cancel-icon">cancel</mat-icon>
     Cancel
   </button>

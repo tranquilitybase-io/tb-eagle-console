@@ -11,8 +11,6 @@ import { DeploymentState } from '@app/shared/shared.model';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { selectStartDeploymentStatus } from '../applications.reducer';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
-import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-applications-grid',
@@ -23,39 +21,14 @@ export class ApplicationsGridComponent implements OnInit {
   @Input() solution: Solution;
   layout$: Observable<Layout>;
   userIsAdmin$: Observable<boolean>;
-  startDeploymentStatus$: Observable<Loadable>;
+  startDeploymentStatus$: Observable<Loadable> = this.store.pipe(select(selectStartDeploymentStatus));
 
-  constructor(
-    private router: Router,
-    private store: Store<any>,
-    private layoutService: LayoutService,
-    private snackBar: MatSnackBar
-  ) {
+  constructor(private router: Router, private store: Store<any>, private layoutService: LayoutService) {
     this.layout$ = this.layoutService.layoutObserver$;
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
 
-  ngOnInit() {
-    this.startDeploymentStatus$ = this.store.pipe(select(selectStartDeploymentStatus));
-    this.startDeploymentStatus$.subscribe(status => {
-      this.handleStatusChange(status);
-    });
-  }
-
-  handleStatusChange(status: Loadable) {
-    /*    if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: ' Application has been deployed', success: false },
-        duration: 3500
-      });
-    } */
-    if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. Application has not been deployed', success: false },
-        duration: 3500
-      });
-    }
-  }
+  ngOnInit() {}
 
   get apps(): Array<Application> {
     return this.solution.applications;

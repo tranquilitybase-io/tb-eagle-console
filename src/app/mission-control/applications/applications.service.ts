@@ -1,9 +1,3 @@
-import {
-  createApplicationError,
-  createApplicationSuccess,
-  startDeploymentError,
-  startDeploymentSuccess
-} from './applications.actions';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
@@ -26,47 +20,16 @@ export class ApplicationsService extends EntityCollectionServiceBase<Application
     super('Application', serviceElementsFactory);
   }
 
-  private createApplicationSuccess = (val: any) => {
-    console.log('POST call successful value returned in body', val);
-    this.store.dispatch(createApplicationSuccess());
-  };
-
-  private createApplicationError = (error: any) => {
-    console.log('POST call in error', error);
-    this.store.dispatch(createApplicationError(error));
-  };
-
-  createApplication(application: Application): void {
+  createApplication(application: Application) {
     const url = `${this.BASE_URL}/application/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http
-      .post(url, { ...application, solutionId: Number(application.solutionId) }, { headers })
-      .subscribe(this.createApplicationSuccess, this.createApplicationError, () => {
-        console.log('The POST observable is now completed.');
-        this.router.navigateByUrl(`/mission-control/solutions/view?id=${application.solutionId}&tab=Activators`);
-      });
-    console.log(application + ' created.');
+    return this.http.post(url, { ...application, solutionId: Number(application.solutionId) }, { headers });
   }
 
-  private deployApplicationSuccess = (val: any) => {
-    console.log('POST call successful value returned in body', val);
-    this.store.dispatch(startDeploymentSuccess());
-  };
-
-  private deployApplicationError = (error: any) => {
-    console.log('POST call in error', error);
-    this.store.dispatch(startDeploymentError(error));
-  };
-
-  deployApplication(id: number): void {
+  deployApplication(id: number) {
     const url = `${this.BASE_URL}/applicationDeployment/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http
-      .post(url, { id }, { headers })
-      .subscribe(this.deployApplicationSuccess, this.deployApplicationError, () => {
-        console.log('The POST observable is now completed.');
-      });
-    console.log(`Application ${id} is been deployed`);
+    return this.http.post(url, { id }, { headers });
   }
 
   private handleError(error: HttpErrorResponse) {
