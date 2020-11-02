@@ -56,7 +56,7 @@ const initialState = {
   getActivatorCategoriesStatus: defaultLoadable() as Loadable,
   getMetaDataStatus: defaultLoadable() as Loadable,
   activatorData: {} as Activator,
-  activatorDataStatus: defaultLoadable() as Loadable,
+  createActivatorByURLStatus: defaultLoadable() as Loadable,
   activatorsByCategoryData: [],
   denyAccessStatus: defaultLoadable() as Loadable,
   grantAccessStatus: defaultLoadable() as Loadable,
@@ -131,13 +131,16 @@ const innerReducer = createReducer(
   on(getMetaDataSuccess, state => ({ ...state, getMetaDataStatus: onLoadableSuccess() })),
   on(getMetaDataError, (state, { error }) => ({ ...state, getMetaDataStatus: onLoadableError(error) })),
   // createByUrl
-  on(createActivatorByURL, state => ({ ...state, activatorDataStatus: onLoadableInit() })),
+  on(createActivatorByURL, state => ({ ...state, createActivatorByURLStatus: onLoadableInit() })),
   on(createActivatorByURLSuccess, (state, { activatorData }) => ({
     ...state,
     activatorData,
-    activatorDataStatus: onLoadableSuccess()
+    createActivatorByURLStatus: onLoadableSuccess()
   })),
-  on(createActivatorByURLError, (state, { error }) => ({ ...state, activatorDataStatus: onLoadableError(error) })),
+  on(createActivatorByURLError, (state, { error }) => ({
+    ...state,
+    createActivatorByURLStatus: onLoadableError(error)
+  })),
   on(updateActivator, state => ({ ...state, updateActivatorStatus: onLoadableInit() })),
   on(updateActivatorSuccess, (state, { activatorData }) => ({
     ...state,
@@ -148,7 +151,7 @@ const innerReducer = createReducer(
   on(resetActivatorDataStatus, state => ({ ...state, activatorDataStatus: defaultLoadable() })),
   on(resetAPICallStatuses, state => ({
     ...state,
-    activatorDataStatus: defaultLoadable(),
+    createActivatorByURLStatus: defaultLoadable(),
     setDeprecatedStatus: defaultLoadable(),
     setLockedStatus: defaultLoadable(),
     denyAccessStatus: defaultLoadable(),
@@ -175,9 +178,9 @@ export const selectActivatorData = createSelector(
   ({ activatorData }) => activatorData || ({} as Activator)
 );
 
-export const selectActivatorDataStatus = createSelector(
+export const selectCreateActivatorByURLStatus = createSelector(
   selectFeature,
-  ({ activatorDataStatus }) => activatorDataStatus as Loadable
+  ({ createActivatorByURLStatus }) => createActivatorByURLStatus as Loadable
 );
 
 export const selectCategories = createSelector(selectFeature, state => state.categories);

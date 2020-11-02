@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ActivatorStoreService } from './activator-store.service';
-import { tap, first, mergeMap, switchMap, map, catchError } from 'rxjs/operators';
+import { first, mergeMap, switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
 import {
   getByCategory,
   getByCategorySuccess,
@@ -11,6 +11,8 @@ import {
   denyAccess,
   grantAccess,
   requestAccess,
+  requestAccessSuccess,
+  requestAccessError,
   createActivatorByURL,
   updateActivator,
   setActivatorsCount,
@@ -20,16 +22,35 @@ import {
   getActivatorCategoriesError,
   getMetaData,
   getMetaDataSuccess,
-  getMetaDataError
+  getMetaDataError,
+  setDeprecatedSuccess,
+  setDeprecatedError,
+  setLockedSuccess,
+  setLockedError,
+  denyAccessSuccess,
+  denyAccessError,
+  grantAccessSuccess,
+  grantAccessError,
+  createActivatorByURLSuccess,
+  createActivatorByURLError,
+  updateActivatorSuccess,
+  updateActivatorError
 } from './activator-store.actions';
 import { Store, select } from '@ngrx/store';
 import { selectUser } from '@app/login/login.reducer';
-import { User } from '@app/login/login.model';
 import { of } from 'rxjs';
+import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class ActivatorStoreEffects {
-  constructor(private store: Store<any>, private actions$: Actions, private service: ActivatorStoreService) {}
+  constructor(
+    private store: Store<any>,
+    private actions$: Actions,
+    private service: ActivatorStoreService,
+    private snackBarService: ApiCallStatusSnackbarService,
+    private route: ActivatedRoute
+  ) {}
 
   getByCategory$ = createEffect(() =>
     this.actions$.pipe(
@@ -76,70 +97,136 @@ export class ActivatorStoreEffects {
     )
   );
 
-  setDeprecated$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(setDeprecated),
-        tap(({ id }) => this.service.setDeprecated(id))
-      ),
-    { dispatch: false }
+  setDeprecated$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(setDeprecated),
+      mergeMap(action =>
+        this.service.setDeprecated(action.id).pipe(
+          switchMap(activatorData => {
+            this.snackBarService.success('Activator has been deprecated');
+            const category = this.route.snapshot.queryParams.categorySwitch;
+            return [setDeprecatedSuccess({ activatorData }), getByCategory({ category })];
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong. Activator has not been deprecated');
+            return of(setDeprecatedError({ error }));
+          })
+        )
+      )
+    )
   );
 
-  setLocked$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(setLocked),
-        tap(({ id }) => this.service.setLocked(id))
-      ),
-    { dispatch: false }
+  setLocked$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(setLocked),
+      mergeMap(action =>
+        this.service.setLocked(action.id).pipe(
+          switchMap(activatorData => {
+            this.snackBarService.success('Activator has been locked');
+            const category = this.route.snapshot.queryParams.categorySwitch;
+            return [setLockedSuccess({ activatorData }), getByCategory({ category })];
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong. Activator has not been locked');
+            return of(setLockedError({ error }));
+          })
+        )
+      )
+    )
   );
 
-  denyAccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(denyAccess),
-        tap(({ activatorId, teamId }) => this.service.denyAccess(activatorId, teamId))
-      ),
-    { dispatch: false }
+  denyAccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(denyAccess),
+      mergeMap(({ activatorId, teamId }) =>
+        this.service.denyAccess(activatorId, teamId).pipe(
+          switchMap(activatorData => {
+            this.snackBarService.success('Access has been denyed');
+            const category = this.route.snapshot.queryParams.categorySwitch;
+            return [denyAccessSuccess({ activatorData }), getByCategory({ category })];
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong.Access has not been denyed');
+            return of(denyAccessError({ error }));
+          })
+        )
+      )
+    )
   );
 
-  grantAccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(grantAccess),
-        tap(({ activatorId, teamId }) => this.service.grantAccess(activatorId, teamId))
-      ),
-    { dispatch: false }
+  grantAccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(grantAccess),
+      mergeMap(({ activatorId, teamId }) =>
+        this.service.grantAccess(activatorId, teamId).pipe(
+          switchMap(activatorData => {
+            this.snackBarService.success('Access has been denyed');
+            const category = this.route.snapshot.queryParams.categorySwitch;
+            return [grantAccessSuccess({ activatorData }), getByCategory({ category })];
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong.Access has not been denyed');
+            return of(grantAccessError({ error }));
+          })
+        )
+      )
+    )
   );
 
-  requestAccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(requestAccess),
-        tap(({ id }) => {
-          this.store
-            .pipe(select(selectUser))
-            .pipe(first())
-            .subscribe((user: User) => this.service.requestAccess(id, user));
-        })
-      ),
-    { dispatch: false }
+  requestAccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(requestAccess),
+      withLatestFrom(this.store.pipe(select(selectUser)).pipe(first())),
+      mergeMap(([action, user]) =>
+        this.service.requestAccess(action.id, user).pipe(
+          map(data => {
+            this.snackBarService.success('Access has been requested');
+            return requestAccessSuccess({ activatorData: data });
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong.Access has not been requested');
+            return of(requestAccessError({ error }));
+          })
+        )
+      )
+    )
   );
 
-  createActivatorByURL$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(createActivatorByURL),
-        tap(({ url }) => this.service.createActivatorByURL(url))
-      ),
-    { dispatch: false }
+  createActivatorByURL$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createActivatorByURL),
+      mergeMap(({ url }) =>
+        this.service.createActivatorByURL(url).pipe(
+          switchMap(activatorData => {
+            this.snackBarService.success("Activator's draft has been created");
+            const category = this.route.snapshot.queryParams.categorySwitch;
+            return [createActivatorByURLSuccess({ activatorData }), getByCategory({ category })];
+          }),
+          catchError(error => {
+            this.snackBarService.error("Something went wrong. Activator's draft has not been created");
+            return of(createActivatorByURLError({ error }));
+          })
+        )
+      )
+    )
   );
 
   updateActivator$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(updateActivator),
-        tap(({ activatorData }) => this.service.updateActivator(activatorData))
+        mergeMap(({ activatorData }) =>
+          this.service.updateActivator(activatorData).pipe(
+            map(activatorData => {
+              this.snackBarService.success('Activator has been updated');
+              return updateActivatorSuccess({ activatorData });
+            }),
+            catchError(error => {
+              this.snackBarService.error('Something went wrong.Activator has not been updated');
+              return of(updateActivatorError({ error }));
+            })
+          )
+        )
       ),
     { dispatch: false }
   );
