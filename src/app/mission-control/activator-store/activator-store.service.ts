@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { updateActivatorError, updateActivatorSuccess } from './activator-store.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -91,16 +90,6 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post(url, { url: repoURL }, { headers }) as Observable<Activator>;
   }
-
-  private updateActivatorSuccess = (activatorData: Activator) => {
-    this.store.dispatch(updateActivatorSuccess({ activatorData }));
-    console.log('POST call successful value returned in body', activatorData);
-  };
-
-  private updateActivatorError = error => {
-    this.store.dispatch(updateActivatorError({ error }));
-    console.log('POST call in error', error);
-  };
 
   updateActivator(activatorData: Activator): Observable<Activator> {
     const url = `${this.BASE_URL}/activator/${activatorData.id}`;

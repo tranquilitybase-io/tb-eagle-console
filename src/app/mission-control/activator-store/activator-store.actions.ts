@@ -4,26 +4,26 @@ import { Activator, ActivatorsMetadata, ActivatorCategory } from './activator-st
 const key = '[ActivatorStore]';
 
 export const getActivators = createAction(`${key} getActivators`);
-export const getActivatorsSuccess = createAction(`${key} getActivatorsSuccess`, props<{ activators: Activator[] }>());
 export const getActivatorsError = createAction(`${key} getActivatorsError`, props<{ error: any }>());
+export const getActivatorsSuccess = createAction(`${key} getActivatorsSuccess`, props<{ activators: Activator[] }>());
 
 export const getByCategory = createAction(`${key} getByCategory`, props<{ category: string }>());
-export const getByCategorySuccess = createAction(`${key} getByCategorySuccess`, props<{ activators: Activator[] }>());
 export const getByCategoryError = createAction(`${key} getByCategoryError`, props<{ error: any }>());
+export const getByCategorySuccess = createAction(`${key} getByCategorySuccess`, props<{ activators: Activator[] }>());
 
 export const getMetaData = createAction(`${key} getMetaData`);
+export const getMetaDataError = createAction(`${key} getMetaDataError`, props<{ error: any }>());
 export const getMetaDataSuccess = createAction(
   `${key} getMetaDataSuccess`,
   props<{ activators_meta: ActivatorsMetadata }>()
 );
-export const getMetaDataError = createAction(`${key} getMetaDataError`, props<{ error: any }>());
 
 export const getActivatorCategories = createAction(`${key} getActivatorCategories`);
+export const getActivatorCategoriesError = createAction(`${key} getActivatorCategoriesError`, props<{ error: any }>());
 export const getActivatorCategoriesSuccess = createAction(
   `${key} getActivatorCategoriesSuccess`,
   props<{ categories: ActivatorCategory[] }>()
 );
-export const getActivatorCategoriesError = createAction(`${key} getActivatorCategoriesError`, props<{ error: any }>());
 
 export const storeActivatorData = createAction(
   '[ActivatorStore] storeActivatorData',

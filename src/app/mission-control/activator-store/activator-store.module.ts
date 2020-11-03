@@ -6,13 +6,14 @@ import { StoreModule } from '@ngrx/store';
 import { Routes, RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import reducer, { featureKey } from './activator-store.reducer';
-import { ActivatorStoreEffects } from './activator-store.effects';
+
 import { ActivatorStoreComponent } from './activator-store.component';
+import { ActivatorStoreEffects } from './activator-store.effects';
+import { ActivatorStoreGuard } from '@app/guards/activator-store-guard';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material';
-import { ActivatorStoreGuard } from '@app/guards/activator-store-guard';
 
 const routes: Routes = [
   {

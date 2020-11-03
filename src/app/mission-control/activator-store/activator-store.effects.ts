@@ -3,38 +3,38 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ActivatorStoreService } from './activator-store.service';
 import { first, mergeMap, switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
 import {
-  getByCategory,
-  getByCategorySuccess,
-  getByCategoryError,
-  setDeprecated,
-  setLocked,
-  denyAccess,
-  grantAccess,
-  requestAccess,
-  requestAccessSuccess,
-  requestAccessError,
   createActivatorByURL,
-  updateActivator,
-  setActivatorsCount,
-  getActivatorCategories,
-  setCategoriesCount,
-  getActivatorCategoriesSuccess,
-  getActivatorCategoriesError,
-  getMetaData,
-  getMetaDataSuccess,
-  getMetaDataError,
-  setDeprecatedSuccess,
-  setDeprecatedError,
-  setLockedSuccess,
-  setLockedError,
-  denyAccessSuccess,
-  denyAccessError,
-  grantAccessSuccess,
-  grantAccessError,
-  createActivatorByURLSuccess,
   createActivatorByURLError,
-  updateActivatorSuccess,
-  updateActivatorError
+  createActivatorByURLSuccess,
+  denyAccess,
+  denyAccessError,
+  denyAccessSuccess,
+  getActivatorCategories,
+  getActivatorCategoriesError,
+  getActivatorCategoriesSuccess,
+  getByCategory,
+  getByCategoryError,
+  getByCategorySuccess,
+  getMetaData,
+  getMetaDataError,
+  getMetaDataSuccess,
+  grantAccess,
+  grantAccessError,
+  grantAccessSuccess,
+  requestAccess,
+  requestAccessError,
+  requestAccessSuccess,
+  setActivatorsCount,
+  setCategoriesCount,
+  setDeprecated,
+  setDeprecatedError,
+  setDeprecatedSuccess,
+  setLocked,
+  setLockedError,
+  setLockedSuccess,
+  updateActivator,
+  updateActivatorError,
+  updateActivatorSuccess
 } from './activator-store.actions';
 import { Store, select } from '@ngrx/store';
 import { selectUser } from '@app/login/login.reducer';
@@ -45,11 +45,11 @@ import { ActivatedRoute } from '@angular/router';
 @Injectable()
 export class ActivatorStoreEffects {
   constructor(
-    private store: Store<any>,
     private actions$: Actions,
+    private route: ActivatedRoute,
     private service: ActivatorStoreService,
     private snackBarService: ApiCallStatusSnackbarService,
-    private route: ActivatedRoute
+    private store: Store<any>
   ) {}
 
   getByCategory$ = createEffect(() =>
@@ -141,12 +141,12 @@ export class ActivatorStoreEffects {
       mergeMap(({ activatorId, teamId }) =>
         this.service.denyAccess(activatorId, teamId).pipe(
           switchMap(activatorData => {
-            this.snackBarService.success('Access has been denyed');
+            this.snackBarService.success('Access has been denied');
             const category = this.route.snapshot.queryParams.categorySwitch;
             return [denyAccessSuccess({ activatorData }), getByCategory({ category })];
           }),
           catchError(error => {
-            this.snackBarService.error('Something went wrong.Access has not been denyed');
+            this.snackBarService.error('Something went wrong. Access has not been denied');
             return of(denyAccessError({ error }));
           })
         )
@@ -160,12 +160,12 @@ export class ActivatorStoreEffects {
       mergeMap(({ activatorId, teamId }) =>
         this.service.grantAccess(activatorId, teamId).pipe(
           switchMap(activatorData => {
-            this.snackBarService.success('Access has been denyed');
+            this.snackBarService.success('Access has been denied');
             const category = this.route.snapshot.queryParams.categorySwitch;
             return [grantAccessSuccess({ activatorData }), getByCategory({ category })];
           }),
           catchError(error => {
-            this.snackBarService.error('Something went wrong.Access has not been denyed');
+            this.snackBarService.error('Something went wrong. Access has not been denied');
             return of(grantAccessError({ error }));
           })
         )
@@ -184,7 +184,7 @@ export class ActivatorStoreEffects {
             return requestAccessSuccess({ activatorData: data });
           }),
           catchError(error => {
-            this.snackBarService.error('Something went wrong.Access has not been requested');
+            this.snackBarService.error('Something went wrong. Access has not been requested');
             return of(requestAccessError({ error }));
           })
         )
@@ -222,7 +222,7 @@ export class ActivatorStoreEffects {
               return updateActivatorSuccess({ activatorData });
             }),
             catchError(error => {
-              this.snackBarService.error('Something went wrong.Activator has not been updated');
+              this.snackBarService.error('Something went wrong. Activator has not been updated');
               return of(updateActivatorError({ error }));
             })
           )
