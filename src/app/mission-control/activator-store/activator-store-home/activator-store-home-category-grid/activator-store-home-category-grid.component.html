@@ -1,4 +1,12 @@
-<mat-grid-list [cols]="(layout$ | async).gridCols" rowHeight="150px" gutterSize="24px">
+<div *ngIf="(getActivatorCategoriesStatus$ | async).loading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+<mat-grid-list
+  *ngIf="!(getActivatorCategoriesStatus$ | async).loading"
+  [cols]="(layout$ | async).gridCols"
+  rowHeight="150px"
+  gutterSize="24px"
+>
   <mat-grid-tile *ngFor="let item of categories$ | async" colspan="1" rowspan="1">
     <button mat-stroked-button class="category-button" (click)="nagivate(item.category)">
       <div class="category border"></div>

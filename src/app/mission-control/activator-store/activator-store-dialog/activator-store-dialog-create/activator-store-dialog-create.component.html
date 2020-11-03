@@ -15,7 +15,17 @@
     </p>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="cancel()" type="button">Cancel</button>
-    <button mat-raised-button (click)="createActivator()" type="button" color="primary">Create</button>
+    <button mat-button (click)="cancel()" type="button" [disabled]="(createActivatorByURLStatus$ | async).loading">
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      (click)="createActivator()"
+      [disabled]="(createActivatorByURLStatus$ | async).loading"
+      type="button"
+      color="primary"
+    >
+      Create
+    </button>
   </div>
 </form>
