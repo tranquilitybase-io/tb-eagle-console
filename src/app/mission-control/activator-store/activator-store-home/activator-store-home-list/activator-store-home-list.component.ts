@@ -6,12 +6,12 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/m
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { Activator } from '../../activator-store.model';
-import { ActivatorStoreService } from '../../activator-store.service';
-import { setActivatorsCount, setDeprecated, setLocked, requestAccess } from '../../activator-store.actions';
-import { selectActivatorsByCategoryData } from '../../activator-store.reducer';
+import { setDeprecated, setLocked, requestAccess, getByCategory } from '../../activator-store.actions';
+import { selectActivatorsByCategoryData, selectGetByCategoryStatus } from '../../activator-store.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { ActivatorStoreDialogGrantAccessComponent } from '../../activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
 import { KeyValue } from '@angular/common';
+import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-activator-store-home-list',
@@ -19,7 +19,8 @@ import { KeyValue } from '@angular/common';
   styleUrls: ['./activator-store-home-list.component.scss']
 })
 export class ActivatorStoreHomeListComponent implements OnInit {
-  activators$: Observable<Activator[]>;
+  activators$: Observable<Activator[]> = this.store.select(selectActivatorsByCategoryData);
+  getByCategoryStatus$: Observable<Loadable> = this.store.select(selectGetByCategoryStatus);
   layout$: Observable<Layout>;
   private statusColorMap: Map<string, string>;
   private teamList: KeyValue<string, string>[];
@@ -49,7 +50,6 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     private layoutService: LayoutService,
     private store: Store<any>,
     private route: ActivatedRoute,
-    private activatorStoreService: ActivatorStoreService,
     private dialog: MatDialog
   ) {
     this.layout$ = this.layoutService.layoutObserver$;
@@ -61,10 +61,8 @@ export class ActivatorStoreHomeListComponent implements OnInit {
 
   ngOnInit() {
     const categorySwitch = this.route.snapshot.queryParams.categorySwitch;
-    this.activatorStoreService.getByCategory(categorySwitch).subscribe((activators: Activator[]) => {
-      this.store.dispatch(setActivatorsCount({ activatorsCount: activators.length }));
-    });
-    this.activators$ = this.store.select(selectActivatorsByCategoryData);
+    this.store.dispatch(getByCategory({ category: categorySwitch }));
+
     this.activators$.subscribe(activators => {
       this.dataSource = new MatTableDataSource(activators);
       this.dataSource.paginator = this.paginator;

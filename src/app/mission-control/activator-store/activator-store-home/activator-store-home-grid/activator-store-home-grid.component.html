@@ -1,4 +1,8 @@
+<div *ngIf="(getByCategoryStatus$ | async).loading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
 <mat-grid-list
+  *ngIf="!(getByCategoryStatus$ | async).loading"
   [cols]="(layout$ | async).gridCols"
   [rowHeight]="(layout$ | async).activatorGridItemHeight"
   gutterSize="24px"
