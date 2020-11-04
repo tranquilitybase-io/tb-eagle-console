@@ -30,8 +30,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ActivatorCreateErrorComponent } from './snack-bar/activator-create-error/activator-create-error.component';
-import { ActivatorCreateSuccessComponent } from './snack-bar/activator-create-success/activator-create-success.component';
 import { ApiCallStatusComponent } from './snack-bar/api-call-status/api-call-status.component';
 import { AppIsDeployedComponent } from './snack-bar/app-is-deployed/app-is-deployed.component';
 import { AppUnderDeploymentComponent } from './snack-bar/app-under-deployment/app-under-deployment.component';
@@ -60,8 +58,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
-    ActivatorCreateErrorComponent,
-    ActivatorCreateSuccessComponent,
     AlertComponent,
     ApiCallStatusComponent,
     AppIsDeployedComponent,
@@ -90,8 +86,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonLoadingDirective
   ],
   entryComponents: [
-    ActivatorCreateErrorComponent,
-    ActivatorCreateSuccessComponent,
     ApiCallStatusComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
@@ -134,8 +128,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTooltipModule
   ],
   exports: [
-    ActivatorCreateErrorComponent,
-    ActivatorCreateSuccessComponent,
     AlertComponent,
     ApiCallStatusComponent,
     AppIsDeployedComponent,
