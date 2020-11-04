@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingZoneHomeComponent } from './landing-zone-home.component';
 
+import { StoreModule } from '@ngrx/store';
+import reducer, { featureKey } from './landing-zone-home.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { LandingZoneHomeEffects } from './landing-zone-home.effects';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -31,6 +36,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    EffectsModule.forFeature([LandingZoneHomeEffects]),
+    StoreModule.forFeature(featureKey, reducer),
     LayoutModule,
     MatButtonModule,
     MatButtonToggleModule,
