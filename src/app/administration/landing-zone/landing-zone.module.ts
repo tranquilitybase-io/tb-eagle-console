@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 
+import { StoreModule } from '@ngrx/store';
+import reducer, { featureKey } from './landing-zone.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { LandingZoneEnvironmentEffects } from './landing-zone.effects';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -38,6 +43,8 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
+    EffectsModule.forFeature([LandingZoneEnvironmentEffects]),
+    StoreModule.forFeature(featureKey, reducer),
     LayoutModule,
     MatButtonModule,
     MatButtonToggleModule,

@@ -6,7 +6,7 @@
     <mat-expansion-panel
       (closed)="cancelFolderStructure()"
       (opened)="folderStructureTreeControl.expandAll()"
-      [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"
+      [matTooltip]="(readOnly$ | async) ? 'Landing Zone Environment already deployed' : ''"
     >
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -58,18 +58,29 @@
 
       <mat-action-row>
         <button
-          [disabled]="readOnly"
-          *ngIf="!isFolderStructureEdit"
+          [disabled]="readOnly$ | async"
+          *ngIf="!isFolderStructureEdit && !(storeFolderStructureTreeDataStatus$ | async).loading"
           mat-button
           color="primary"
           (click)="setFolderStructureEdit()"
         >
           Edit
         </button>
-        <button *ngIf="isFolderStructureEdit" mat-button (click)="cancelFolderStructure()">
+        <button
+          *ngIf="isFolderStructureEdit || (storeFolderStructureTreeDataStatus$ | async).loading"
+          mat-button
+          (click)="cancelFolderStructure()"
+          [disabled]="(storeFolderStructureTreeDataStatus$ | async).loading"
+        >
           Cancel
         </button>
-        <button *ngIf="isFolderStructureEdit" mat-button color="primary" (click)="saveFolderStructure()">
+        <button
+          *ngIf="isFolderStructureEdit || (storeFolderStructureTreeDataStatus$ | async).loading"
+          mat-button
+          color="primary"
+          (click)="saveFolderStructure()"
+          [loading]="(storeFolderStructureTreeDataStatus$ | async).loading"
+        >
           Save
         </button>
       </mat-action-row>
@@ -77,7 +88,7 @@
 
     <mat-expansion-panel
       (closed)="cancelEnvironmentEdit()"
-      [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"
+      [matTooltip]="(readOnly$ | async) ? 'Landing Zone Environment already deployed' : ''"
     >
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -119,18 +130,29 @@
 
       <mat-action-row>
         <button
-          [disabled]="readOnly"
-          *ngIf="!isEnvironmentEdit"
+          [disabled]="readOnly$ | async"
+          *ngIf="!isEnvironmentEdit && !(storeEnvironmentListDataStatus$ | async).loading"
           mat-button
           color="primary"
           (click)="setEnvironmentEdit()"
         >
           Edit
         </button>
-        <button *ngIf="isEnvironmentEdit" mat-button (click)="cancelEnvironmentEdit()">
+        <button
+          *ngIf="isEnvironmentEdit || (storeEnvironmentListDataStatus$ | async).loading"
+          mat-button
+          (click)="cancelEnvironmentEdit()"
+          [disabled]="(storeEnvironmentListDataStatus$ | async).loading"
+        >
           Cancel
         </button>
-        <button *ngIf="isEnvironmentEdit" mat-button color="primary" (click)="saveEnvironmentList()">
+        <button
+          *ngIf="isEnvironmentEdit || (storeEnvironmentListDataStatus$ | async).loading"
+          mat-button
+          color="primary"
+          (click)="saveEnvironmentList()"
+          [loading]="(storeEnvironmentListDataStatus$ | async).loading"
+        >
           Save
         </button>
       </mat-action-row>
@@ -140,7 +162,7 @@
       <mat-expansion-panel
         expanded
         (closed)="onLanVPCCancel()"
-        [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"
+        [matTooltip]="(readOnly$ | async) ? 'Landing Zone Environment already deployed' : ''"
       >
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -189,8 +211,8 @@
 
         <mat-action-row>
           <button
-            [disabled]="readOnly"
-            *ngIf="!isLanVPCEdit"
+            [disabled]="readOnly$ | async"
+            *ngIf="!isLanVPCEdit && !(storeLanVPCListDataStatus$ | async).loading"
             mat-button
             type="button"
             color="primary"
@@ -198,10 +220,21 @@
           >
             Edit
           </button>
-          <button *ngIf="isLanVPCEdit" mat-button type="button" (click)="onLanVPCCancel()">
+          <button
+            *ngIf="isLanVPCEdit || (storeLanVPCListDataStatus$ | async).loading"
+            mat-button
+            type="button"
+            (click)="onLanVPCCancel()"
+            [disabled]="(storeLanVPCListDataStatus$ | async).loading"
+          >
             Cancel
           </button>
-          <button *ngIf="isLanVPCEdit" mat-button color="primary">
+          <button
+            *ngIf="isLanVPCEdit || (storeLanVPCListDataStatus$ | async).loading"
+            mat-button
+            color="primary"
+            [loading]="(storeLanVPCListDataStatus$ | async).loading"
+          >
             Save
           </button>
         </mat-action-row>
@@ -211,9 +244,24 @@
 </main>
 
 <div class="app-bottom-action right">
-  <button [disabled]="readOnly" mat-button type="button" color="primary" (click)="deploy()">
+  <button
+    [disabled]="
+      (readOnly$ | async) ||
+      (storeEnvironmentListDataStatus$ | async).loading ||
+      (storeFolderStructureTreeDataStatus$ | async).loading ||
+      (storeLanVPCListDataStatus$ | async).loading
+    "
+    mat-button
+    type="button"
+    color="primary"
+    (click)="deploy()"
+    [loading]="(lzEnvironmentDeploymentStatus$ | async).loading"
+  >
     Deploy
     <mat-icon>chevron_right</mat-icon>
   </button>
 </div>
-<div class="app-bottom-background" [matTooltip]="readOnly ? 'Landing Zone Environment already deployed' : ''"></div>
+<div
+  class="app-bottom-background"
+  [matTooltip]="(readOnly$ | async) ? 'Landing Zone Environment already deployed' : ''"
+></div>

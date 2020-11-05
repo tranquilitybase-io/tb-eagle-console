@@ -4,17 +4,9 @@ import { Store } from '@ngrx/store';
 import { throwError, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import {
-  lzEnvironmentDeploymentError,
-  lzEnvironmentDeploymentSuccess,
   setEnvironmentListData,
   setFolderStructureTreeData,
-  setLanVPCListData,
-  storeEnvironmentListDataError,
-  storeEnvironmentListDataSuccess,
-  storeFolderStructureTreeDataError,
-  storeFolderStructureTreeDataSuccess,
-  storeLanVpcListDataError,
-  storeLanVpcListDataSuccess
+  setLanVPCListData
 } from './landing-zone-environment.actions';
 import { EnvironmentState } from './landing-zone-environment.reducer';
 import { FolderStructureNode, Environment, LanVPC } from './landing-zone-environment.model';
@@ -27,92 +19,28 @@ export class LandingZoneEnvironmentService {
 
   constructor(private store: Store<EnvironmentState>, private http: HttpClient) {}
 
-  private postEnvironmentListDataSuccess = (val: Environment[]) => {
-    console.log('POST call successful value returned in body', val);
-    this.store.dispatch(storeEnvironmentListDataSuccess({ environmentListData: val }));
-  };
-
-  private postEnvironmentListDataError = (error: any) => {
-    console.log('POST call in error', error);
-    this.store.dispatch(storeEnvironmentListDataError({ error }));
-  };
-
-  postEnvironmentListData(environmentListData: Environment[]): void {
+  postEnvironmentListData(environmentListData: Environment[]): Observable<Environment[]> {
     const url = `${this.BASE_URL}/lzmetadataEnv/?readActiveOnly=true&bulkDelete=true`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http
-      .post(url, environmentListData, { headers })
-      .subscribe(this.postEnvironmentListDataSuccess, this.postEnvironmentListDataError, () => {
-        console.log('The POST observable is now completed.');
-      });
-    console.log(environmentListData + ' posted');
+    return this.http.post(url, environmentListData, { headers }) as Observable<Environment[]>;
   }
 
-  private postFolderStructureTreeDataSuccess = (val: FolderStructureNode[]) => {
-    console.log('POST call successful value returned in body', val);
-    this.store.dispatch(storeFolderStructureTreeDataSuccess({ folderStructureTreeData: val }));
-  };
-
-  private postFolderStructureTreeDataError = (error: any) => {
-    console.log('POST call in error', error);
-    this.store.dispatch(storeFolderStructureTreeDataError({ error }));
-  };
-
-  postFolderStructureTreeData(folderStructureTreeData: FolderStructureNode[]): void {
+  postFolderStructureTreeData(folderStructureTreeData: FolderStructureNode[]): Observable<FolderStructureNode[]> {
     const url = `${this.BASE_URL}/lzmetadataFolderStructure/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http
-      .post(url, folderStructureTreeData, { headers })
-      .subscribe(this.postFolderStructureTreeDataSuccess, this.postFolderStructureTreeDataError, () => {
-        console.log('The POST observable is now completed.');
-      });
-    console.log(folderStructureTreeData + ' posted');
+    return this.http.post(url, folderStructureTreeData, { headers }) as Observable<FolderStructureNode[]>;
   }
 
-  private postLanVPCListDataSuccess = (val: LanVPC[]) => {
-    console.log('POST call successful value returned in body', val);
-    this.store.dispatch(storeLanVpcListDataSuccess({ lanVPCListData: val }));
-  };
-
-  private postLanVPCListDataError = (error: any) => {
-    console.log('POST call in error', error);
-    this.store.dispatch(storeLanVpcListDataError({ error }));
-  };
-
-  postLanVPCListData(lanVPCListData: LanVPC[]): void {
+  postLanVPCListData(lanVPCListData: LanVPC[]): Observable<LanVPC[]> {
     const url = `${this.BASE_URL}/lzmetadataLanVpc/?readActiveOnly=true&bulkDelete=true`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http
-      .post(url, lanVPCListData, { headers })
-      .subscribe(this.postLanVPCListDataSuccess, this.postLanVPCListDataError, () => {
-        console.log('The POST observable is now completed.');
-      });
-    console.log(lanVPCListData + ' posted');
+    return this.http.post(url, lanVPCListData, { headers }) as Observable<LanVPC[]>;
   }
 
-  private lzEnvironmentDeploymentSuccess = (val: any) => {
-    console.log('POST call successful value returned in body', val);
-    this.store.dispatch(lzEnvironmentDeploymentSuccess());
-  };
-
-  private lzEnvironmentDeploymentError = (error: any) => {
-    console.log('POST call in error', error);
-    this.store.dispatch(lzEnvironmentDeploymentError({ error }));
-  };
-
-  lzEnvironmentDeployment(): void {
+  lzEnvironmentDeployment(): Observable<any> {
     const url = `${this.BASE_URL}/lzEnvironmentDeployment/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(url, null, { headers }).subscribe(
-      this.lzEnvironmentDeploymentSuccess,
-      response => {
-        console.log('POST call in error', response);
-      },
-      () => {
-        console.log('The POST observable is now completed.');
-      }
-    );
-    console.log('lzEnvironmentDeployment' + ' posted');
+    return this.http.post(url, null, { headers }) as Observable<any>;
   }
 
   private handleError(error: HttpErrorResponse) {
