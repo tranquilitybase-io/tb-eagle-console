@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { Team } from './teams.model';
 
 const key = '[teams]';
@@ -15,4 +16,4 @@ export const resetCreateTeamStatus = createAction(`${key} resetCreateTeamStatus`
 export const resetUpdateTeamStatus = createAction(`${key} resetUpdateTeamStatus`);
 export const updateTeamData = createAction(`${key} updateTeamData`, props<{ teamData: Team }>());
 export const updateTeamDataError = createAction(`${key} updateTeamDataError`, props<{ error: any }>());
-export const updateTeamDataSuccess = createAction(`${key} updateTeamData`);
+export const updateTeamDataSuccess = createAction(`${key} updateTeamDataSuccess`);
