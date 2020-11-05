@@ -3,18 +3,18 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { LandingZoneEnvironmentService } from './landing-zone-environment.service';
 import {
-  storeFolderStructureTreeData,
-  storeEnvironmentListData,
-  storeLanVPCListData,
   lzEnvironmentDeployment,
-  storeFolderStructureTreeDataSuccess,
-  storeFolderStructureTreeDataError,
-  storeEnvironmentListDataSuccess,
-  storeEnvironmentListDataError,
-  storeLanVpcListDataSuccess,
-  storeLanVpcListDataError,
+  lzEnvironmentDeploymentError,
   lzEnvironmentDeploymentSuccess,
-  lzEnvironmentDeploymentError
+  storeEnvironmentListData,
+  storeEnvironmentListDataError,
+  storeEnvironmentListDataSuccess,
+  storeFolderStructureTreeData,
+  storeFolderStructureTreeDataError,
+  storeFolderStructureTreeDataSuccess,
+  storeLanVPCListData,
+  storeLanVpcListDataError,
+  storeLanVpcListDataSuccess
 } from './landing-zone-environment.actions';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 import { of } from 'rxjs';

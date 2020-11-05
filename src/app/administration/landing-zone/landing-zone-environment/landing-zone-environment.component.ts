@@ -11,7 +11,10 @@ import {
   selectEnvironmentListData,
   selectFolderStructureTreeData,
   selectLanVPCListData,
-  selectLzEnvironmentDeploymentStatus
+  selectLzEnvironmentDeploymentStatus,
+  selectStoreEnvironmentListDataStatus,
+  selectStoreFolderStructureTreeDataStatus,
+  selectStoreLanVPCListDataStatus
 } from './landing-zone-environment.reducer';
 import {
   resetEnvironmentStatuses,
@@ -43,6 +46,12 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   environmentList$: Observable<Environment[]> = this.store.select(selectEnvironmentListData);
   environmentListData: Environment[];
+
+  storeFolderStructureTreeDataStatus$: Observable<Loadable> = this.store.select(
+    selectStoreFolderStructureTreeDataStatus
+  );
+  storeEnvironmentListDataStatus$: Observable<Loadable> = this.store.select(selectStoreEnvironmentListDataStatus);
+  storeLanVPCListDataStatus$: Observable<Loadable> = this.store.select(selectStoreLanVPCListDataStatus);
 
   folderStructureDataSource = new MatTreeNestedDataSource<FolderStructureNode>();
   folderStructureTreeControl = new NestedTreeControl<FolderStructureNode>(node => node.children);
