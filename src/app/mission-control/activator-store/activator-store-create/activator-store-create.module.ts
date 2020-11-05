@@ -56,7 +56,8 @@ const routes: Routes = [
     MatDividerModule,
     MatCardModule,
     MatChipsModule,
-    MatGridListModule
+    MatGridListModule,
+    SharedModule
   ]
 })
 export class ActivatorStoreCreateModule {}

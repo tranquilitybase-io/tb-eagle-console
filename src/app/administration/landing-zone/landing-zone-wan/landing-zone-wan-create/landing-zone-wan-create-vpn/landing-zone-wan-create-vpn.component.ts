@@ -7,9 +7,7 @@ import { WanConfiguration } from '../../landing-zone-wan.model';
 import { Router } from '@angular/router';
 import { ValidatorPattern } from '@app/shared/shared.model';
 import { Loadable } from '@app/shared/shared.reducer';
-import { resetCreateWanConfigurationStatus } from './../../landing-zone-wan.actions';
-import { MatSnackBar } from '@angular/material';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
+import { resetCreateWanConfigurationStatus } from '../../landing-zone-wan.actions';
 import { selectCreateWanConfigurationStatus } from '../../landing-zone-wan.reducer';
 
 @Component({
@@ -21,14 +19,9 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
   vpnFormGroup: FormGroup;
   googleEndpointFormGroup: FormGroup;
   remoteEndpointFormGroup: FormGroup;
-  createWanConfigurationStatus$: Observable<Loadable>;
+  createWanConfigurationStatus$: Observable<Loadable> = this.store.pipe(select(selectCreateWanConfigurationStatus));
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private store: Store<any>,
-    private snackBar: MatSnackBar
-  ) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private store: Store<any>) {}
 
   ngOnInit() {
     this.store.dispatch(resetCreateWanConfigurationStatus());
@@ -70,7 +63,6 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
       secondarySharedSecret: ['']
     });
 
-    this.createWanConfigurationStatus$ = this.store.pipe(select(selectCreateWanConfigurationStatus));
     this.createWanConfigurationStatus$.subscribe(status => {
       this.handleCreateWanConfigurationStatus(status);
     });
@@ -81,19 +73,16 @@ export class LandingZoneWanCreateVpnComponent implements OnInit {
   }
 
   handleCreateWanConfigurationStatus(status: Loadable) {
-    if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'New connection has been created', success: true },
-        duration: 3500
-      });
-      this.navigateToLandingzoneWan();
-    } else if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. New connection has not been created', success: false },
-        duration: 3500
-      });
-      this.navigateToLandingzoneWan();
+    if (status.loading) {
+      this.vpnFormGroup.disable();
+      this.googleEndpointFormGroup.disable();
+      this.remoteEndpointFormGroup.disable();
+    } else {
+      this.vpnFormGroup.enable();
+      this.googleEndpointFormGroup.enable();
+      this.remoteEndpointFormGroup.enable();
     }
+    status.success && this.navigateToLandingzoneWan();
   }
 
   submit() {

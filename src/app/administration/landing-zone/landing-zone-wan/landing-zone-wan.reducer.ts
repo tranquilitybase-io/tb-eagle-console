@@ -5,11 +5,14 @@ import {
   onLoadableSuccess,
   onLoadableError
 } from '@app/shared/shared.reducer';
-import { createReducer, on, createSelector, select, createFeatureSelector } from '@ngrx/store';
+import { createReducer, on, createSelector } from '@ngrx/store';
 
 import { WanConfiguration } from './landing-zone-wan.model';
 
 import {
+  getLandingZoneWans,
+  getLandingZoneWansSuccess,
+  getLandingZoneWansError,
   createWanConfiguration,
   createWanConfigurationError,
   createWanConfigurationSuccess,
@@ -25,13 +28,18 @@ import {
 } from './landing-zone-wan.actions';
 
 export const intialState = {
+  wanConfigurations: [] as WanConfiguration[],
+  getLandingZoneWansStatus: defaultLoadable() as Loadable,
   createWanConfigurationStatus: defaultLoadable() as Loadable,
   updateWanConfigurationStatus: defaultLoadable() as Loadable,
   wanConfiguration: [{}]
 };
 
 export interface WanState {
+  wanConfigurations: WanConfiguration[];
+  getLandingZoneWansStatus: Loadable;
   createWanConfigurationStatus: Loadable;
+  updateWanConfigurationStatus: Loadable;
   isConnectionDeploymentReady: boolean;
   wanConfiguration: WanConfiguration[];
 }
@@ -39,6 +47,15 @@ export const featureKey = 'landing-zone-wan';
 
 export const landingZoneWanReducer = createReducer(
   intialState,
+  //get all
+  on(getLandingZoneWans, state => ({ ...state, getLandingZoneWansStatus: onLoadableInit() })),
+  on(getLandingZoneWansSuccess, (state, { wanConfigurations }) => ({
+    ...state,
+    wanConfigurations,
+    getLandingZoneWansStatus: onLoadableSuccess()
+  })),
+  on(getLandingZoneWansError, (state, { error }) => ({ ...state, getLandingZoneWansStatus: onLoadableError(error) })),
+  // create
   on(createWanConfiguration, state => ({ ...state, createWanConfigurationStatus: onLoadableInit() })),
   on(createWanConfigurationSuccess, state => ({ ...state, createWanConfigurationStatus: onLoadableSuccess() })),
   on(createWanConfigurationError, (state, { error }) => ({
@@ -50,6 +67,7 @@ export const landingZoneWanReducer = createReducer(
   on(stopConnectionDeployment, state => ({ ...state, inProgress: false, deployed: true })),
   on(updateConnectionDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
   on(dismissDeploymentConnectionReadyAlert, state => ({ ...state, isConnectionDeploymentReady: false })),
+  // update
   on(updateWanConfiguration, (state, { wanConfiguration }) => ({
     ...state,
     selectedConnection: wanConfiguration,
@@ -83,12 +101,14 @@ export default function reducer(state, action) {
   return landingZoneWanReducer(state, action);
 }
 
-export const selectFeature = state => state[featureKey];
+export const selectFeature = state => state[featureKey] as WanState;
 export const selectProgress = name => createSelector(selectFeature, state => (state[name] ? state[name].progress : 0));
 export const selectInProgress = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].inProgress : false));
 export const selectDeployed = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].deployed : false));
+export const selectWanConfigurations = createSelector(selectFeature, state => state.wanConfigurations);
+export const selectGetLandingZoneWansStatus = createSelector(selectFeature, state => state.getLandingZoneWansStatus);
 export const selectIsDeploymentReady = createSelector(selectFeature, state => state.isConnectionDeploymentReady);
 export const selectCreateWanConfigurationStatus = createSelector(
   selectFeature,

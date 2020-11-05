@@ -39,6 +39,7 @@
       [vpnFormGroup]="vpnFormGroup"
       [googleEndpointFormGroup]="googleEndpointFormGroup"
       [remoteEndpointFormGroup]="remoteEndpointFormGroup"
+      [isLoading]="(createWanConfigurationStatus$ | async).loading"
       (onSubmit)="submit()"
     ></app-landing-zone-wan-create-vpn-review-tab>
   </mat-step>

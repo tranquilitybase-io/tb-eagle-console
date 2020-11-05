@@ -1,6 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 import { WanConfiguration } from './landing-zone-wan.model';
 
+const key = '[landing-zone-wan-create-configuration]';
+
+export const getLandingZoneWans = createAction(`${key} getLandingZoneWans`);
+export const getLandingZoneWansSuccess = createAction(
+  `${key} getLandingZoneWansSuccess`,
+  props<{ wanConfigurations: WanConfiguration[] }>()
+);
+export const getLandingZoneWansError = createAction(`${key} getLandingZoneWansError`, props<{ error: any }>());
+
 export const createWanConfiguration = createAction(
   '[landing-zone-wan-create-configuration] Creates WAN configuration',
   props<{ wanConfiguration: WanConfiguration }>()
