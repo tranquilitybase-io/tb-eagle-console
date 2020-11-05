@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LayoutService } from '@app/shared/layout/layout.service';
 import { Layout } from '@app/shared/layout/layout.model';
-import { ActivatorCategory, ActivatorsMetadata } from '../../activator-store.model';
-import { ActivatorStoreService } from '../../activator-store.service';
+import { ActivatorCategory } from '../../activator-store.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { setCategoriesCount, setActivatorsCount } from '../../activator-store.actions';
+import { getActivatorCategories, getMetaData } from '../../activator-store.actions';
+import { selectCategories, selectGetActivatorCategoriesStatus } from '../../activator-store.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-activator-store-home-category-grid',
@@ -15,10 +16,10 @@ import { setCategoriesCount, setActivatorsCount } from '../../activator-store.ac
 })
 export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
   layout$: Observable<Layout>;
-  categories$: Observable<ActivatorCategory[]>;
+  categories$: Observable<ActivatorCategory[]> = this.store.select(selectCategories);
+  getActivatorCategoriesStatus$: Observable<Loadable> = this.store.select(selectGetActivatorCategoriesStatus);
 
   constructor(
-    private activatorStoreService: ActivatorStoreService,
     private layoutService: LayoutService,
     private route: ActivatedRoute,
     private router: Router,
@@ -28,13 +29,8 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.categories$ = this.activatorStoreService.getActivatorCategories();
-    this.categories$.subscribe((categories: ActivatorCategory[]) => {
-      this.store.dispatch(setCategoriesCount({ categoriesCount: categories.length }));
-    });
-    this.activatorStoreService.getMetadata().subscribe((activators_meta: ActivatorsMetadata) => {
-      this.store.dispatch(setActivatorsCount({ activatorsCount: activators_meta.count }));
-    });
+    this.store.dispatch(getActivatorCategories());
+    this.store.dispatch(getMetaData());
   }
 
   nagivate(categorySwitch: string) {
