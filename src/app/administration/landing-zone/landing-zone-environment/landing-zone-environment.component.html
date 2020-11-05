@@ -245,7 +245,12 @@
 
 <div class="app-bottom-action right">
   <button
-    [disabled]="readOnly$ | async"
+    [disabled]="
+      (readOnly$ | async) ||
+      (storeEnvironmentListDataStatus$ | async).loading ||
+      (storeFolderStructureTreeDataStatus$ | async).loading ||
+      (storeLanVPCListDataStatus$ | async).loading
+    "
     mat-button
     type="button"
     color="primary"
