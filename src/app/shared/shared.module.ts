@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
-import { LayoutModule } from './layout/layout.module';
 import { NotificationsModule } from './notifications/notifications.module';
 
 import { AlertComponent } from './alert/alert.component';
@@ -16,7 +15,6 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
-import { LayoutComponent } from './layout/layout.component';
 import { LoaderComponent } from './loader/loader.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PaginationComponent } from './pagination/pagination.component';
@@ -68,9 +66,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     GridViewSwitchComponent,
     IconComponent,
     InputComponent,
-    LayoutComponent,
     LoaderComponent,
-    NotificationsComponent,
     NotificationsComponent,
     PaginationComponent,
     PillsComponent,
@@ -109,7 +105,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HttpClientModule,
     FormsModule,
     GridViewSwitchModule,
-    LayoutModule,
     NotificationsModule,
     MatBadgeModule,
     MatButtonModule,
@@ -140,7 +135,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HttpClientModule,
     IconComponent,
     InputComponent,
-    LayoutComponent,
     LoaderComponent,
     MatBadgeModule,
     MatBadgeModule,
@@ -156,7 +150,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    NotificationsModule,
+    NotificationsComponent
   ]
 })
 export class SharedModule {}

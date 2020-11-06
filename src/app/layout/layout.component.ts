@@ -3,10 +3,10 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
-import { WelcomeComponent } from '../welcome/welcome.component';
-import { NotificationsService } from '../notifications/notifications.service';
-import { NotificationsMeta } from '../notifications/notifications.model';
-import { selectNotificationMetaData } from '../notifications/notifications.reducer';
+import { WelcomeComponent } from '../shared/welcome/welcome.component';
+import { NotificationsService } from '../shared/notifications/notifications.service';
+import { NotificationsMeta } from '../shared/notifications/notifications.model';
+import { selectNotificationMetaData } from '../shared/notifications/notifications.reducer';
 import { Router } from '@angular/router';
 import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LayoutService } from '@app/shared/layout/layout.service';
+import { LayoutService } from '@app/layout/layout.service';
 import { Router } from '@angular/router';
 import { LandingZoneWanService } from '../../landing-zone-wan.service';
 import { WanConfiguration } from '../../landing-zone-wan.model';
-import { Layout } from '@app/shared/layout/layout.model';
+import { Layout } from '@app/layout/layout.model';
 
 @Component({
   selector: 'app-landing-zone-wan-home-vpn',
