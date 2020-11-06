@@ -73,6 +73,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
       this.dialog.open(ActivatorStoreDialogMissingSolutionsComponent, { disableClose: true, autoFocus: false });
     }
     this.createApplicationStatus$.subscribe(status => {
+      console.log(status);
       this.handleLoading(status);
     });
   }
@@ -80,7 +81,9 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   private handleLoading = (status: Loadable) => {
     if (status.success) {
       this.store.dispatch(discardSelectedSolution());
-      this.router.navigateByUrl(`/mission-control/solutions/view?id=${this.selectedSolutionId}&tab=Activators`);
+      this.selectedSolutionId
+        ? this.router.navigateByUrl(`/mission-control/solutions/view?id=${this.selectedSolutionId}&tab=Activators`)
+        : this.router.navigateByUrl('/mission-control/activator-store');
     }
     status.loading ? this.applicationForm.disable() : this.applicationForm.enable();
   };

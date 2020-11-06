@@ -211,23 +211,21 @@ export class ActivatorStoreEffects {
     )
   );
 
-  updateActivator$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(updateActivator),
-        mergeMap(({ activatorData }) =>
-          this.service.updateActivator(activatorData).pipe(
-            map(activatorData => {
-              this.snackBarService.success('Activator has been updated');
-              return updateActivatorSuccess({ activatorData });
-            }),
-            catchError(error => {
-              this.snackBarService.error('Something went wrong. Activator has not been updated');
-              return of(updateActivatorError({ error }));
-            })
-          )
+  updateActivator$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateActivator),
+      mergeMap(({ activatorData }) =>
+        this.service.updateActivator(activatorData).pipe(
+          map(activatorData => {
+            this.snackBarService.success('Activator has been updated');
+            return updateActivatorSuccess({ activatorData });
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong. Activator has not been updated');
+            return of(updateActivatorError({ error }));
+          })
         )
-      ),
-    { dispatch: false }
+      )
+    )
   );
 }
