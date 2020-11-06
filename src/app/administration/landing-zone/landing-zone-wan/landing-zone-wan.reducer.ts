@@ -1,11 +1,11 @@
 import {
-  Loadable,
   defaultLoadable,
+  Loadable,
+  onLoadableError,
   onLoadableInit,
-  onLoadableSuccess,
-  onLoadableError
+  onLoadableSuccess
 } from '@app/shared/shared.reducer';
-import { createReducer, on, createSelector, select, createFeatureSelector } from '@ngrx/store';
+import { createReducer, on, createSelector } from '@ngrx/store';
 
 import { WanConfiguration } from './landing-zone-wan.model';
 
@@ -14,6 +14,9 @@ import {
   createWanConfigurationError,
   createWanConfigurationSuccess,
   dismissDeploymentConnectionReadyAlert,
+  getLandingZoneWans,
+  getLandingZoneWansError,
+  getLandingZoneWansSuccess,
   resetCreateWanConfigurationStatus,
   resetUpdateWanConfigurationStatus,
   startConnectionDeployment,
@@ -26,40 +29,55 @@ import {
 
 export const intialState = {
   createWanConfigurationStatus: defaultLoadable() as Loadable,
+  getLandingZoneWansStatus: defaultLoadable() as Loadable,
   updateWanConfigurationStatus: defaultLoadable() as Loadable,
-  wanConfiguration: [{}]
+  wanConfiguration: [{}],
+  wanConfigurations: [] as WanConfiguration[]
 };
 
 export interface WanState {
   createWanConfigurationStatus: Loadable;
+  getLandingZoneWansStatus: Loadable;
   isConnectionDeploymentReady: boolean;
+  updateWanConfigurationStatus: Loadable;
   wanConfiguration: WanConfiguration[];
+  wanConfigurations: WanConfiguration[];
 }
 export const featureKey = 'landing-zone-wan';
 
 export const landingZoneWanReducer = createReducer(
   intialState,
+  //get all
+  on(getLandingZoneWans, state => ({ ...state, getLandingZoneWansStatus: onLoadableInit() })),
+  on(getLandingZoneWansError, (state, { error }) => ({ ...state, getLandingZoneWansStatus: onLoadableError(error) })),
+  on(getLandingZoneWansSuccess, (state, { wanConfigurations }) => ({
+    ...state,
+    wanConfigurations,
+    getLandingZoneWansStatus: onLoadableSuccess()
+  })),
+  // create
   on(createWanConfiguration, state => ({ ...state, createWanConfigurationStatus: onLoadableInit() })),
-  on(createWanConfigurationSuccess, state => ({ ...state, createWanConfigurationStatus: onLoadableSuccess() })),
   on(createWanConfigurationError, (state, { error }) => ({
     ...state,
     createWanConfigurationStatus: onLoadableError(error)
   })),
+  on(createWanConfigurationSuccess, state => ({ ...state, createWanConfigurationStatus: onLoadableSuccess() })),
   on(resetCreateWanConfigurationStatus, state => ({ ...state, createWanConfigurationStatus: defaultLoadable() })),
   on(startConnectionDeployment, state => ({ ...state, progress: 0, inProgress: true })),
   on(stopConnectionDeployment, state => ({ ...state, inProgress: false, deployed: true })),
   on(updateConnectionDeploymentProgress, (state, { progress }) => ({ ...state, progress })),
   on(dismissDeploymentConnectionReadyAlert, state => ({ ...state, isConnectionDeploymentReady: false })),
+  // update
   on(updateWanConfiguration, (state, { wanConfiguration }) => ({
     ...state,
     selectedConnection: wanConfiguration,
     updateWanConfigurationStatus: onLoadableInit()
   })),
-  on(updateWanConfigurationSuccess, state => ({ ...state, updateWanConfigurationStatus: onLoadableSuccess() })),
   on(updateWanConfigurationError, (state, { error }) => ({
     ...state,
     updateWanConfigurationStatus: onLoadableError(error)
   })),
+  on(updateWanConfigurationSuccess, state => ({ ...state, updateWanConfigurationStatus: onLoadableSuccess() })),
   on(resetUpdateWanConfigurationStatus, state => ({ ...state, updateWanConfigurationStatus: defaultLoadable() }))
 );
 
@@ -83,12 +101,14 @@ export default function reducer(state, action) {
   return landingZoneWanReducer(state, action);
 }
 
-export const selectFeature = state => state[featureKey];
+export const selectFeature = state => state[featureKey] as WanState;
 export const selectProgress = name => createSelector(selectFeature, state => (state[name] ? state[name].progress : 0));
 export const selectInProgress = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].inProgress : false));
 export const selectDeployed = name =>
   createSelector(selectFeature, state => (state[name] ? state[name].deployed : false));
+export const selectWanConfigurations = createSelector(selectFeature, state => state.wanConfigurations);
+export const selectGetLandingZoneWansStatus = createSelector(selectFeature, state => state.getLandingZoneWansStatus);
 export const selectIsDeploymentReady = createSelector(selectFeature, state => state.isConnectionDeploymentReady);
 export const selectCreateWanConfigurationStatus = createSelector(
   selectFeature,

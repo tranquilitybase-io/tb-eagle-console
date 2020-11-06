@@ -10,7 +10,7 @@ export class LandingZoneWanCreateVpnReviewTabComponent implements OnInit {
   @Input() vpnFormGroup: FormGroup;
   @Input() googleEndpointFormGroup: FormGroup;
   @Input() remoteEndpointFormGroup: FormGroup;
-
+  @Input() isLoading: boolean;
   @Output() onSubmit = new EventEmitter();
 
   constructor() {}

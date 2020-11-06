@@ -15,7 +15,11 @@
   </div>
   <mat-divider></mat-divider>
 </div>
+<div *ngIf="(getActionsStatus$ | async).loading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
 <mat-grid-list
+  *ngIf="!(getActionsStatus$ | async).loading"
   [cols]="(layout$ | async).gridCols"
   [rowHeight]="(layout$ | async).landingZoneGridItemHeight"
   gutterSize="24px"

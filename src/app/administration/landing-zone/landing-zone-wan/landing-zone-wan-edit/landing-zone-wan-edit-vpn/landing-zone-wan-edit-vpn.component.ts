@@ -10,8 +10,6 @@ import { select, Store } from '@ngrx/store';
 import { selectUpdateWanConfigurationStatus, WanState } from '../../landing-zone-wan.reducer';
 import { ValidatorPattern } from '@app/shared/shared.model';
 import { Loadable } from '@app/shared/shared.reducer';
-import { MatSnackBar } from '@angular/material';
-import { ApiCallStatusComponent } from '@app/shared/snack-bar/api-call-status/api-call-status.component';
 
 @Component({
   selector: 'app-landing-zone-wan-edit-vpn',
@@ -27,14 +25,13 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
   bgpRoutingModeList: KeyValue<string, string>[];
   vpnOnPremiseVendorList: KeyValue<string, string>[];
   primarySharedSecret: Observable<string>;
-  updateWanConfigurationStatus$: Observable<Loadable>;
+  updateWanConfigurationStatus$: Observable<Loadable> = this.store.pipe(select(selectUpdateWanConfigurationStatus));
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private store: Store<WanState>,
-    private router: Router,
-    private snackBar: MatSnackBar
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -106,7 +103,6 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
       secondarySharedSecret: [this.wanConfiguration.remoteEndpoint.secondarySharedSecret]
     });
 
-    this.updateWanConfigurationStatus$ = this.store.pipe(select(selectUpdateWanConfigurationStatus));
     this.updateWanConfigurationStatus$.subscribe(status => {
       this.handleUpdateWanConfigurationStatus(status);
     });
@@ -153,19 +149,16 @@ export class LandingZoneWanEditVpnComponent implements OnInit {
   }
 
   handleUpdateWanConfigurationStatus(status: Loadable) {
-    if (status.success) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Connection has been updated', success: true },
-        duration: 3500
-      });
-      this.navigateToLandingzoneWan();
-    } else if (status.error) {
-      this.snackBar.openFromComponent(ApiCallStatusComponent, {
-        data: { message: 'Something went wrong. Connection has not been updated', success: false },
-        duration: 3500
-      });
-      this.navigateToLandingzoneWan();
+    if (status.loading) {
+      this.vpnFormGroup.disable();
+      this.googleSessionFormGroup.disable();
+      this.onPremiseSessionFormGroup.disable();
+    } else {
+      this.vpnFormGroup.enable();
+      this.googleSessionFormGroup.enable();
+      this.onPremiseSessionFormGroup.enable();
     }
+    status.success && this.navigateToLandingzoneWan();
   }
 
   onSubmit() {
