@@ -4,8 +4,8 @@ import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import {
   getLandingZoneActions,
-  getLandingZoneActionsSuccess,
-  getLandingZoneActionsError
+  getLandingZoneActionsError,
+  getLandingZoneActionsSuccess
 } from './landing-zone-home.actions';
 import { LandingZoneHomeService } from './landing-zone-home.service';
 

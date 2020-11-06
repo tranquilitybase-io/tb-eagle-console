@@ -4,22 +4,22 @@ import { WanConfiguration } from './landing-zone-wan.model';
 const key = '[landing-zone-wan-create-configuration]';
 
 export const getLandingZoneWans = createAction(`${key} getLandingZoneWans`);
+export const getLandingZoneWansError = createAction(`${key} getLandingZoneWansError`, props<{ error: any }>());
 export const getLandingZoneWansSuccess = createAction(
   `${key} getLandingZoneWansSuccess`,
   props<{ wanConfigurations: WanConfiguration[] }>()
 );
-export const getLandingZoneWansError = createAction(`${key} getLandingZoneWansError`, props<{ error: any }>());
 
 export const createWanConfiguration = createAction(
   '[landing-zone-wan-create-configuration] Creates WAN configuration',
   props<{ wanConfiguration: WanConfiguration }>()
 );
-export const createWanConfigurationSuccess = createAction(
-  '[landing-zone-wan-create-configuration] createWanConfigurationSuccess'
-);
 export const createWanConfigurationError = createAction(
   '[landing-zone-wan-create-configuration] createWanConfigurationError',
   props<{ error: any }>()
+);
+export const createWanConfigurationSuccess = createAction(
+  '[landing-zone-wan-create-configuration] createWanConfigurationSuccess'
 );
 export const resetCreateWanConfigurationStatus = createAction(
   '[landing-zone-wan-create-configuration] resetCreateWanConfigurationStatus'
@@ -29,12 +29,12 @@ export const updateWanConfiguration = createAction(
   '[landing-zone-wan-connection-edit] Update Wan Configuration',
   props<{ wanConfiguration: WanConfiguration }>()
 );
-export const updateWanConfigurationSuccess = createAction(
-  '[landing-zone-wan-connection-edit] updateWanConfigurationSuccess'
-);
 export const updateWanConfigurationError = createAction(
   '[landing-zone-wan-connection-edit] updateWanConfigurationError',
   props<{ error: any }>()
+);
+export const updateWanConfigurationSuccess = createAction(
+  '[landing-zone-wan-connection-edit] updateWanConfigurationSuccess'
 );
 export const resetUpdateWanConfigurationStatus = createAction(
   '[landing-zone-wan-connection-edit] resetUpdateWanConfigurationStatus'

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LandingZoneHomeService } from '../landing-zone-home.service';
+import { LandingZoneHomeService } from './landing-zone-home.service';
 
 describe('LandingZoneHomeGridService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

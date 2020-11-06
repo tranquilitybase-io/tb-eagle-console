@@ -29,11 +29,11 @@ const routes: Routes = [
     path: '',
     component: ActivatorStoreCreateComponent,
     resolve: {
+      businessUnitList: BusinessUnitResolver,
       cdList: ContinuousDeploymentResolver,
       ciList: ContinuousIntegrationResolver,
       environmentList: EnvironmentResolver,
-      sourceControlList: SourceControlResolver,
-      businessUnitList: BusinessUnitResolver
+      sourceControlList: SourceControlResolver
     }
   }
 ];
@@ -46,18 +46,17 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
     MatButtonModule,
-    MatSelectModule,
-    MatListModule,
-    MatDividerModule,
     MatCardModule,
     MatChipsModule,
+    MatDividerModule,
+    MatFormFieldModule,
     MatGridListModule,
-    SharedModule
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSelectModule,
+    MatStepperModule
   ]
 })
 export class ActivatorStoreCreateModule {}
