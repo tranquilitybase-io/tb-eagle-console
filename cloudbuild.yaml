@@ -1,0 +1,22 @@
+steps:
+  - id: Build image
+    name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-f', 'Dockerfile.experimental', '-t', 'gcr.io/${PROJECT_ID}/${_IMAGE_NAME}', '.' ]
+
+  - id: Push image
+    name: 'gcr.io/cloud-builders/docker'
+    waitFor:
+      - Build image
+    args: [ 'push', 'gcr.io/${PROJECT_ID}/${_IMAGE_NAME}' ]
+
+  - id: Tag image
+    name: 'gcr.io/cloud-builders/gcloud'
+    waitFor:
+      - Push image
+    args: ['container', 'images', 'add-tag', 'gcr.io/${PROJECT_ID}/${_IMAGE_NAME}','gcr.io/${PROJECT_ID}/${_IMAGE_NAME}:${TAG_NAME}']
+
+substitutions:
+  _IMAGE_NAME: "tb-eagle-console"
+images: [
+    'gcr.io/${PROJECT_ID}/${_IMAGE_NAME}'
+]
