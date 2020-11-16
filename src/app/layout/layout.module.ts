@@ -7,32 +7,33 @@ import { ActivatorStoreDialogModule } from '@app/mission-control/activator-store
 import { LayoutComponent } from './layout.component';
 import { NotificationsModule } from '../shared/notifications/notifications.module';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatButtonModule, MatButtonToggleModule } from '@angular/material';
 
 @NgModule({
   declarations: [LayoutComponent],
   imports: [
     RouterModule.forChild([]),
-    CommonModule,
     ActivatorStoreDialogModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatMenuModule,
-    MatBadgeModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTooltipModule,
+    CommonModule,
     NotificationsModule,
     SharedModule,
+    MatBadgeModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatTooltipModule
   ]
 })
 export class LayoutModule {}

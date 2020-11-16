@@ -31,14 +31,14 @@ import { MatInputModule } from '@angular/material/input';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule,
-    SharedModule
+    MatInputModule
   ]
 })
 export class ActivatorStoreDialogModule {}

@@ -73,7 +73,6 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
       this.dialog.open(ActivatorStoreDialogMissingSolutionsComponent, { disableClose: true, autoFocus: false });
     }
     this.createApplicationStatus$.subscribe(status => {
-      console.log(status);
       this.handleLoading(status);
     });
   }
