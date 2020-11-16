@@ -132,13 +132,25 @@
       [solution]="selectedSolution$ | async"
     ></app-applications-create-review>
     <div class="app-bottom-action left">
-      <button mat-button matStepperPrevious color="primary" type="button">
+      <button
+        mat-button
+        matStepperPrevious
+        color="primary"
+        type="button"
+        [disabled]="(createApplicationStatus$ | async).loading"
+      >
         <mat-icon>chevron_left</mat-icon>
         Review application details
       </button>
     </div>
     <div class="app-bottom-action right">
-      <button mat-button color="primary" type="submit" (click)="onSubmit(applicationForm.value)">
+      <button
+        mat-button
+        color="primary"
+        type="submit"
+        (click)="onSubmit(applicationForm.value)"
+        [loading]="(createApplicationStatus$ | async).loading"
+      >
         Provision activator
         <mat-icon>chevron_right</mat-icon>
       </button>
@@ -199,7 +211,7 @@
   </p>
 
   <div class="app-bottom-action right">
-    <button mat-button color="primary" type="submit">
+    <button mat-button color="primary" type="submit" [loading]="(createApplicationStatus$ | async).loading">
       Add to Solution
       <mat-icon>chevron_right</mat-icon>
     </button>

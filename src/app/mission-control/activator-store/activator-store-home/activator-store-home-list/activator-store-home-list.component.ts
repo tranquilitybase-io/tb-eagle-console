@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Layout } from '@app/shared/layout/layout.model';
-import { LayoutService } from '@app/shared/layout/layout.service';
+import { Layout } from '@app/layout/layout.model';
+import { LayoutService } from '@app/layout/layout.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';

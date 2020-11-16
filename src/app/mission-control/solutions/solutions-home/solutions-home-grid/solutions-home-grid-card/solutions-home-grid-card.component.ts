@@ -5,8 +5,8 @@ import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material';
 import { SolutionsHomeDialogDeployComponent } from '../../solutions-home-dialog/solutions-home-dialog-deploy/solutions-home-dialog-deploy.component';
-import { LayoutService } from '@app/shared/layout/layout.service';
-import { Layout } from '@app/shared/layout/layout.model';
+import { LayoutService } from '@app/layout/layout.service';
+import { Layout } from '@app/layout/layout.model';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Solution } from '../../solutions.model';
-import { LayoutService } from '@app/shared/layout/layout.service';
-import { Layout } from '@app/shared/layout/layout.model';
+import { LayoutService } from '@app/layout/layout.service';
+import { Layout } from '@app/layout/layout.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

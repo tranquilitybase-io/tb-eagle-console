@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { Observable } from 'rxjs';
-import { Layout } from '@app/shared/layout/layout.model';
+import { Layout } from '@app/layout/layout.model';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { LayoutService } from '@app/shared/layout/layout.service';
+import { LayoutService } from '@app/layout/layout.service';
 import { Application } from '../applications.model';
 import { setSelectedSolution } from '@app/mission-control/solutions/solutions.actions';
 import { DeploymentState } from '@app/shared/shared.model';

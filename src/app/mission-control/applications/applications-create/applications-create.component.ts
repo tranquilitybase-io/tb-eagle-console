@@ -80,7 +80,9 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   private handleLoading = (status: Loadable) => {
     if (status.success) {
       this.store.dispatch(discardSelectedSolution());
-      this.router.navigateByUrl(`/mission-control/solutions/view?id=${this.selectedSolutionId}&tab=Activators`);
+      this.selectedSolutionId
+        ? this.router.navigateByUrl(`/mission-control/solutions/view?id=${this.selectedSolutionId}&tab=Activators`)
+        : this.router.navigateByUrl('/mission-control/activator-store');
     }
     status.loading ? this.applicationForm.disable() : this.applicationForm.enable();
   };

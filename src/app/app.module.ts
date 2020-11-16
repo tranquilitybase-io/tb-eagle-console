@@ -14,7 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { LoginComponent } from './login/login/login.component';
 import { LoginModule } from './login/login.module';
-import { LayoutComponent } from './shared/layout/layout.component';
+import { LayoutComponent } from './layout/layout.component';
+import { LayoutModule } from './layout/layout.module';
 
 const routes: Routes = [
   {
@@ -62,7 +63,8 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LayoutModule
   ],
   providers: [AuthGuardService, { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }],
   bootstrap: [AppComponent]

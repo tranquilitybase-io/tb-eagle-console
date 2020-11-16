@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Team } from '../../teams.model';
-import { Layout } from '@app/shared/layout/layout.model';
-import { LayoutService } from '@app/shared/layout/layout.service';
+import { Layout } from '@app/layout/layout.model';
+import { LayoutService } from '@app/layout/layout.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

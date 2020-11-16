@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LayoutService } from '@app/shared/layout/layout.service';
+import { LayoutService } from '@app/layout/layout.service';
 import { Router } from '@angular/router';
 import { WanConfiguration } from '../../landing-zone-wan.model';
-import { Layout } from '@app/shared/layout/layout.model';
+import { Layout } from '@app/layout/layout.model';
 import { Store } from '@ngrx/store';
 import { selectGetLandingZoneWansStatus, selectWanConfigurations } from '../../landing-zone-wan.reducer';
 import { getLandingZoneWans } from '../../landing-zone-wan.actions';

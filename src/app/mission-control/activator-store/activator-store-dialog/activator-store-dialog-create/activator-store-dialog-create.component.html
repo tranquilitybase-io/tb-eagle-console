@@ -21,7 +21,7 @@
     <button
       mat-raised-button
       (click)="createActivator()"
-      [disabled]="(createActivatorByURLStatus$ | async).loading"
+      [loading]="(createActivatorByURLStatus$ | async).loading"
       type="button"
       color="primary"
     >

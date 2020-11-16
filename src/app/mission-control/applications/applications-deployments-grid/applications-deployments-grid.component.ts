@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Layout } from '@app/shared/layout/layout.model';
-import { LayoutService } from '@app/shared/layout/layout.service';
+import { Layout } from '@app/layout/layout.model';
+import { LayoutService } from '@app/layout/layout.service';
 import { Observable } from 'rxjs';
 import { Application } from '../applications.model';
 

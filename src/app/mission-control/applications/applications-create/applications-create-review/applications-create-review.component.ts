@@ -2,9 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Activator } from '@app/mission-control/activator-store/activator-store.model';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
-import { LayoutService } from '@app/shared/layout/layout.service';
+import { LayoutService } from '@app/layout/layout.service';
 import { Observable } from 'rxjs';
-import { Layout } from '@app/shared/layout/layout.model';
+import { Layout } from '@app/layout/layout.model';
 import { map } from 'rxjs/operators';
 
 @Component({
