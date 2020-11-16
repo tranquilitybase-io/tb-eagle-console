@@ -36,10 +36,11 @@
   <mat-step>
     <ng-template matStepLabel>Review</ng-template>
     <app-landing-zone-wan-create-vpn-review-tab
-      [vpnFormGroup]="vpnFormGroup"
-      [googleEndpointFormGroup]="googleEndpointFormGroup"
-      [remoteEndpointFormGroup]="remoteEndpointFormGroup"
       (onSubmit)="submit()"
+      [googleEndpointFormGroup]="googleEndpointFormGroup"
+      [isLoading]="(createWanConfigurationStatus$ | async).loading"
+      [remoteEndpointFormGroup]="remoteEndpointFormGroup"
+      [vpnFormGroup]="vpnFormGroup"
     ></app-landing-zone-wan-create-vpn-review-tab>
   </mat-step>
 </mat-horizontal-stepper>

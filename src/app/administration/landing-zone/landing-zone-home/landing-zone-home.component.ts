@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LandingZoneProgressItem } from '../landing-zone.model';
-import { LandingZoneService } from '../landing-zone.service';
 import { map, startWith, delay } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { selectLandingZoneProgressItems } from '../landing-zone.reducer';
+import { getLandingZoneProgressItems } from '../landing-zone.actions';
 
 @Component({
   selector: 'app-landing-zone-home',
@@ -10,11 +12,11 @@ import { map, startWith, delay } from 'rxjs/operators';
   styleUrls: ['./landing-zone-home.component.scss']
 })
 export class LandingZoneHomeComponent implements OnInit {
-  progressItems$: Observable<LandingZoneProgressItem[]>;
+  progressItems$: Observable<LandingZoneProgressItem[]> = this.store.select(selectLandingZoneProgressItems);
   selectedIndex$: Observable<number>;
 
-  constructor(landingZoneService: LandingZoneService) {
-    this.progressItems$ = landingZoneService.getAll();
+  constructor(private store: Store<any>) {
+    this.store.dispatch(getLandingZoneProgressItems());
   }
 
   ngOnInit() {

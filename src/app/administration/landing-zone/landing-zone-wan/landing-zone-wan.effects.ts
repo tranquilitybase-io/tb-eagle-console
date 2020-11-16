@@ -1,17 +1,25 @@
-import { map, tap, mergeMap } from 'rxjs/operators';
+import { map, tap, mergeMap, catchError, switchMap } from 'rxjs/operators';
 
 import { Injectable, NgZone } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LandingZoneWanService } from './landing-zone-wan.service';
 import range from '@app/shared/utils/range';
 import {
   createWanConfiguration,
+  createWanConfigurationError,
+  createWanConfigurationSuccess,
+  getLandingZoneWans,
+  getLandingZoneWansError,
+  getLandingZoneWansSuccess,
   startConnectionDeployment,
   stopConnectionDeployment,
   updateConnectionDeploymentProgress,
-  updateWanConfiguration
+  updateWanConfiguration,
+  updateWanConfigurationError,
+  updateWanConfigurationSuccess
 } from './landing-zone-wan.actions';
+import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 
 function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
   return new Observable(observer => {
@@ -40,24 +48,59 @@ function emitRangeDelayed<T>(values: T[], delay): Observable<T> {
 
 @Injectable()
 export class LandingZoneWanEffects {
-  constructor(private actions$: Actions, private langingZoneWanService: LandingZoneWanService, private zone: NgZone) {}
+  constructor(
+    private actions$: Actions,
+    private langingZoneWanService: LandingZoneWanService,
+    private snackBarService: ApiCallStatusSnackbarService,
+    private zone: NgZone
+  ) {}
 
-  createWanConfiguration$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(createWanConfiguration),
-        tap(action => this.langingZoneWanService.createWanConfiguration(action.wanConfiguration))
-      ),
-    { dispatch: false }
+  getLandingZoneWans$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getLandingZoneWans),
+      mergeMap(() =>
+        this.langingZoneWanService.getAll().pipe(
+          map(wanConfigurations => getLandingZoneWansSuccess({ wanConfigurations })),
+          catchError(error => of(getLandingZoneWansError({ error })))
+        )
+      )
+    )
   );
 
-  updateWanConfiguration$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(updateWanConfiguration),
-        tap(action => this.langingZoneWanService.updateWanConfiguration(action.wanConfiguration))
-      ),
-    { dispatch: false }
+  createWanConfiguration$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createWanConfiguration),
+      mergeMap(action =>
+        this.langingZoneWanService.add(action.wanConfiguration).pipe(
+          switchMap(() => {
+            this.snackBarService.success('New connection has been created');
+            return [createWanConfigurationSuccess(), getLandingZoneWans()];
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong. New connection has not been created');
+            return of(createWanConfigurationError({ error }));
+          })
+        )
+      )
+    )
+  );
+
+  updateWanConfiguration$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateWanConfiguration),
+      mergeMap(action =>
+        this.langingZoneWanService.update(action.wanConfiguration).pipe(
+          switchMap(() => {
+            this.snackBarService.success('Connection has been updated');
+            return [updateWanConfigurationSuccess(), getLandingZoneWans()];
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong. Connection has not been updated');
+            return of(updateWanConfigurationError({ error }));
+          })
+        )
+      )
+    )
   );
 
   startConnectionDeployment$ = createEffect(() =>

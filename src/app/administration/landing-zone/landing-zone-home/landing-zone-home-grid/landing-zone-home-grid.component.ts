@@ -4,7 +4,11 @@ import { LandingZoneAction } from '../../landing-zone.model';
 import { LayoutService } from '@app/layout/layout.service';
 import { Layout } from '@app/layout/layout.model';
 import { Router } from '@angular/router';
-import { LandingZoneHomeGridService } from './landing-zone-home-grid.service';
+import { LandingZoneHomeService } from '../landing-zone-home.service';
+import { Loadable } from '@app/shared/shared.reducer';
+import { selectGetlandingZoneActionsStatus } from '../landing-zone-home.reducer';
+import { Store } from '@ngrx/store';
+import { getLandingZoneActions } from '../landing-zone-home.actions';
 
 @Component({
   selector: 'app-landing-zone-home-grid',
@@ -14,6 +18,7 @@ import { LandingZoneHomeGridService } from './landing-zone-home-grid.service';
 export class LandingZoneHomeGridComponent implements OnInit {
   actions$: Observable<LandingZoneAction[]>;
   layout$: Observable<Layout>;
+  getActionsStatus$: Observable<Loadable> = this.store.select(selectGetlandingZoneActionsStatus);
 
   filterAllLength = 0;
   filterCompletedLength = 0;
@@ -22,15 +27,17 @@ export class LandingZoneHomeGridComponent implements OnInit {
 
   constructor(
     private layoutService: LayoutService,
-    private landingZoneGridService: LandingZoneHomeGridService,
-    private router: Router
+    private landingZoneService: LandingZoneHomeService,
+    private router: Router,
+    private store: Store<any>
   ) {
-    this.actions$ = landingZoneGridService.filteredEntities$;
+    this.actions$ = landingZoneService.filteredEntities$;
     this.layout$ = this.layoutService.layoutObserver$;
   }
 
   ngOnInit() {
-    this.landingZoneGridService.getAll().subscribe(actions => {
+    this.store.dispatch(getLandingZoneActions());
+    this.landingZoneService.getAll().subscribe(actions => {
       this.filterAllLength = actions.length;
       this.filterCompletedLength = actions.filter(action => action.completionRate === 100).length;
       this.filterInProgressLength = actions.filter(action => action.completionRate !== 100 && !action.locked).length;
@@ -49,6 +56,6 @@ export class LandingZoneHomeGridComponent implements OnInit {
   }
 
   setFilter(filter: string) {
-    this.landingZoneGridService.setFilter(filter);
+    this.landingZoneService.setFilter(filter);
   }
 }

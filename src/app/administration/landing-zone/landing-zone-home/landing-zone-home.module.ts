@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { SharedModule } from '@app/shared/shared.module';
+
+import { StoreModule } from '@ngrx/store';
+import reducer, { featureKey } from './landing-zone-home.reducer';
+import { EffectsModule } from '@ngrx/effects';
+
 import { LandingZoneHomeComponent } from './landing-zone-home.component';
+import { LandingZoneHomeEffects } from './landing-zone-home.effects';
+import { LandingZoneHomeGridComponent } from './landing-zone-home-grid/landing-zone-home-grid.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,10 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { LandingZoneHomeGridComponent } from './landing-zone-home-grid/landing-zone-home-grid.component';
 
-import { SharedModule } from '@app/shared/shared.module';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 const routes: Routes = [
   {
@@ -31,6 +37,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    SharedModule,
+    EffectsModule.forFeature([LandingZoneHomeEffects]),
+    StoreModule.forFeature(featureKey, reducer),
     LayoutModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -41,8 +50,7 @@ const routes: Routes = [
     MatIconModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatStepperModule,
-    SharedModule
+    MatStepperModule
   ],
   providers: [
     {

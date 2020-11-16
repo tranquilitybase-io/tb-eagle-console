@@ -462,13 +462,19 @@
 </div>
 
 <div class="app-bottom-action left">
-  <button mat-button color="primary" (click)="cancel()">
+  <button mat-button color="primary" (click)="cancel()" [disabled]="(updateWanConfigurationStatus$ | async).loading">
     <mat-icon class="app-cancel-icon">cancel</mat-icon>
     Cancel
   </button>
 </div>
 <div class="app-bottom-action right">
-  <button mat-button color="primary" type="submit" (click)="onSubmit()">
+  <button
+    mat-button
+    color="primary"
+    type="submit"
+    (click)="onSubmit()"
+    [loading]="(updateWanConfigurationStatus$ | async).loading"
+  >
     Update <mat-icon>chevron_right</mat-icon>
   </button>
 </div>
