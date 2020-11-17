@@ -1,5 +1,6 @@
 export interface NotificationDetails {
-  activatorId: number;
+  activatorId?: number;
+  solutionId?: number;
   isActive: boolean;
   lastUpdated: string;
   notificationId: number;

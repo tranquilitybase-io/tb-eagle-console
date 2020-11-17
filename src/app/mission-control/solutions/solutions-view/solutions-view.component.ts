@@ -16,7 +16,7 @@ import {
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { Observable } from 'rxjs';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { TeamMember } from '@app/administration/team-members/team-members.model';
 import { TeamMembersService } from '@app/administration/team-members/team-members.service';
 
@@ -59,6 +59,17 @@ export class SolutionsViewComponent implements OnInit {
       ['TeamMembers', 2]
     ]);
     this.selectedTabIndex = this.getTabIndex(this.route.snapshot.queryParamMap.get('tab'));
+    // update solution when using notifications component
+    this.route.queryParams
+      .pipe(
+        switchMap(params => {
+          return this.solutionsService.getByKey(params['id']);
+        })
+      )
+      .subscribe(solution => {
+        this.solution = solution;
+        this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
+      });
   }
 
   updateSolutionData() {
