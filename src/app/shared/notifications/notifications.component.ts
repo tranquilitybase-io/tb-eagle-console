@@ -34,7 +34,7 @@ export class NotificationsComponent implements OnInit {
       case NotificationTypeId[NotificationType.Application]:
         return { ...notificationData };
       case NotificationTypeId[NotificationType.Solution]:
-        return { ...notificationData };
+        return { ...notificationData, link: this.createSolutionLink(notificationData.details.solutionId) };
     }
   }
 
@@ -42,6 +42,13 @@ export class NotificationsComponent implements OnInit {
     return {
       routerLink: `/mission-control/activator-store/view`,
       id: activatorId
+    };
+  }
+
+  createSolutionLink(solutionId: number) {
+    return {
+      routerLink: `/mission-control/solutions/view`,
+      id: solutionId
     };
   }
 }
