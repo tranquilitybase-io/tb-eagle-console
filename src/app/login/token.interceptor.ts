@@ -9,7 +9,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     request = request.clone({
       setHeaders: {
-        Authorization: id_token ? `Bearer ${id_token}` : ''
+        Authorization: `Bearer ${id_token}`
       }
     });
     return next.handle(request);
