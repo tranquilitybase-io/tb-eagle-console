@@ -20,8 +20,7 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
 
     const id_token = localStorage.getItem('id_token');
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : ''
+      'Content-Type': 'application/json'
     });
 
     return this.http.post(url, { id }, { headers });
