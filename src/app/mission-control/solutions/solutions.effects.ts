@@ -14,7 +14,11 @@ import {
   startDeploymentSuccess,
   updateSolution,
   updateSolutionError,
-  updateSolutionSuccess
+  updateSolutionSuccess,
+  toggleFavorites,
+  toggleFavoritesError,
+  toggleFavoritesSuccess,
+  getSolutionsSilentLoading
 } from './solutions.actions';
 import { of } from 'rxjs';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
@@ -30,6 +34,18 @@ export class SolutionEffects {
   getSolutions$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getSolutions),
+      mergeMap(() =>
+        this.solutionService.getAll().pipe(
+          map(solutions => getSolutionsSuccess({ solutions })),
+          catchError(error => of(getSolutionsError({ error })))
+        )
+      )
+    )
+  );
+
+  getSolutionsSilentLoading$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getSolutionsSilentLoading),
       mergeMap(() =>
         this.solutionService.getAll().pipe(
           map(solutions => getSolutionsSuccess({ solutions })),
@@ -86,6 +102,26 @@ export class SolutionEffects {
           catchError(error => {
             this.snackBarService.error('Something went wrong. Solution has not been deployed');
             return of(startDeploymentError(error));
+          })
+        )
+      )
+    )
+  );
+
+  toggleFavorites$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(toggleFavorites),
+      mergeMap(action =>
+        this.solutionService.toggleFavorites(action.solutionId, action.isFavourite).pipe(
+          map(solution => {
+            solution.isFavourite
+              ? this.snackBarService.success('Solution has been added to favorites')
+              : this.snackBarService.success('Solution has been removed from favorites');
+            return toggleFavoritesSuccess({ solution });
+          }),
+          catchError(error => {
+            this.snackBarService.error('Solution can not be added / removed from favorites');
+            return of(toggleFavoritesError({ error }));
           })
         )
       )

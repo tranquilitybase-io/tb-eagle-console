@@ -26,6 +26,7 @@ import { SearchPillComponent } from './search-pill/search-pill.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
+import { FavoriteButtonComponent } from './favorite-button/favorite-button.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiCallStatusComponent } from './snack-bar/api-call-status/api-call-status.component';
@@ -79,7 +80,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SwitchesComponent,
     WelcomeComponent,
     YesNoDialogComponent,
-    MatButtonLoadingDirective
+    MatButtonLoadingDirective,
+    FavoriteButtonComponent
   ],
   entryComponents: [
     ApiCallStatusComponent,
@@ -152,7 +154,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     NotificationsModule,
-    NotificationsComponent
+    NotificationsComponent,
+    FavoriteButtonComponent
   ]
 })
 export class SharedModule {}
