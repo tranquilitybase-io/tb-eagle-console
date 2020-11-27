@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Onboarding process</h1>
+<div mat-dialog-content>
+  <p>Activator has been saved as a draft. Would you like to start onboarding process?</p>
+</div>
+<div mat-dialog-actions>
+  <a
+    mat-button
+    color="primary"
+    routerLink="/mission-control/activator-store/view"
+    (click)="cancel()"
+    [queryParams]="{ id: activator.id }"
+    [disabled]="(onboardActivatorStatus$ | async).loading"
+  >
+    Keep it as a draft
+  </a>
+  <button
+    mat-raised-button
+    (click)="startOnboarding()"
+    [loading]="(onboardActivatorStatus$ | async).loading"
+    type="button"
+    color="primary"
+  >
+    Start onboarding
+  </button>
+</div>
