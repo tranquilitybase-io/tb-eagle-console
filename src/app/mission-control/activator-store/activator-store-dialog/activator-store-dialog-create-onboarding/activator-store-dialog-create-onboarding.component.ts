@@ -52,4 +52,8 @@ export class ActivatorStoreDialogCreateOnboardingComponent implements OnInit {
   get activator() {
     return this.data.activator;
   }
+
+  get redirect() {
+    return this.data.redirect;
+  }
 }

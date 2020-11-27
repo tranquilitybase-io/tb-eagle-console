@@ -98,6 +98,9 @@
     >
       Undeprecate
     </button>
+    <button mat-raised-button color="primary" *ngIf="isDraft && (userIsAdmin$ | async)" (click)="onboard()">
+      Onboard
+    </button>
   </div>
 </header>
 <mat-tab-group mat-stretch-tabs>

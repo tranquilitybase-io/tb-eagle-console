@@ -162,7 +162,8 @@ export class ActivatorStoreCreateComponent implements OnInit {
       this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
         autoFocus: false,
         data: {
-          activator: this.activatorData
+          activator: this.activatorData,
+          redirect: true
         }
       });
   }

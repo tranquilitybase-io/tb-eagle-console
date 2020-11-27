@@ -10,6 +10,7 @@ import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { setDeprecated, setLocked, requestAccess } from '@app/mission-control/activator-store/activator-store.actions';
 
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { ActivatorStoreDialogCreateOnboardingComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 
 @Component({
   selector: 'app-activator-store-home-grid-card',
@@ -59,6 +60,10 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
     return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.category;
   }
 
+  get isDraft(): boolean {
+    return this.activator && this.activator.status === 'Draft';
+  }
+
   @HostListener('mouseover')
   onMouseOver() {
     this.active = true;
@@ -94,5 +99,15 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
 
   get lastUpdated(): Date {
     return new Date(this.activator.lastUpdated || null);
+  }
+
+  onboard() {
+    this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
+      autoFocus: false,
+      data: {
+        activator: this.activator,
+        redirect: false
+      }
+    });
   }
 }

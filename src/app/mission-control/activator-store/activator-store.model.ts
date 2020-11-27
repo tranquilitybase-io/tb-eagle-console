@@ -95,4 +95,5 @@ export interface ActivatorStoreGrantAccessDialogData {
 
 export interface ActivatorStoreDialogCreateOnboardingData {
   activator: Activator;
+  redirect: boolean;
 }

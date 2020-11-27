@@ -1,3 +1,4 @@
+import { ActivatorStoreDialogCreateOnboardingComponent } from './../../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Layout } from '@app/layout/layout.model';
@@ -110,6 +111,10 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     this.store.dispatch(setLocked({ id: _id }));
   }
 
+  isDraft(status: string): boolean {
+    return status === 'Draft';
+  }
+
   grantAccess(activator: Activator) {
     this.dialog.open(ActivatorStoreDialogGrantAccessComponent, {
       autoFocus: false,
@@ -127,5 +132,15 @@ export class ActivatorStoreHomeListComponent implements OnInit {
 
   actionNeeded(activator: Activator): boolean {
     if (activator.accessRequestedBy) return true;
+  }
+
+  onboard(activator: Activator) {
+    this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
+      autoFocus: false,
+      data: {
+        activator,
+        redirect: false
+      }
+    });
   }
 }

@@ -1,9 +1,13 @@
 <h1 mat-dialog-title>Onboarding process</h1>
 <div mat-dialog-content>
-  <p>Activator has been saved as a draft. Would you like to start onboarding process?</p>
+  <p>
+    <ng-container *ngIf="redirect">Activator has been saved as a draft. </ng-container>Would you like to start
+    onboarding process?
+  </p>
 </div>
 <div mat-dialog-actions>
   <a
+    *ngIf="redirect"
     mat-button
     color="primary"
     routerLink="/mission-control/activator-store/view"
@@ -13,6 +17,16 @@
   >
     Keep it as a draft
   </a>
+  <button
+    *ngIf="!redirect"
+    mat-button
+    (click)="cancel()"
+    [disabled]="(onboardActivatorStatus$ | async).loading"
+    type="button"
+    color="primary"
+  >
+    Keep it as a draft
+  </button>
   <button
     mat-raised-button
     (click)="startOnboarding()"

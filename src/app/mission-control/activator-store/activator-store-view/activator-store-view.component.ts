@@ -1,3 +1,4 @@
+import { ActivatorStoreDialogCreateOnboardingComponent } from './../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -83,6 +84,10 @@ export class ActivatorStoreViewComponent implements OnInit {
     return String(this.activator.status).toLowerCase() === 'deprecated';
   }
 
+  get isDraft(): boolean {
+    return this.activator && String(this.activator.status).toLowerCase() === 'draft';
+  }
+
   setDeprecated() {
     this.store.dispatch(setDeprecated({ id: this.activator.id }));
   }
@@ -104,5 +109,15 @@ export class ActivatorStoreViewComponent implements OnInit {
 
   requestAccess() {
     this.store.dispatch(requestAccess({ id: this.activator.id }));
+  }
+
+  onboard() {
+    this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
+      autoFocus: false,
+      data: {
+        activator: this.activator,
+        redirect: false
+      }
+    });
   }
 }
