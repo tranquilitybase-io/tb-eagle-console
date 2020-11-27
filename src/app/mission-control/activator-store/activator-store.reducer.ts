@@ -27,6 +27,9 @@ import {
   grantAccess,
   grantAccessError,
   grantAccessSuccess,
+  onboardActivator,
+  onboardActivatorError,
+  onboardActivatorSuccess,
   requestAccess,
   requestAccessError,
   requestAccessSuccess,
@@ -65,7 +68,8 @@ const initialState = {
   setDeprecatedStatus: defaultLoadable() as Loadable,
   setLockedStatus: defaultLoadable() as Loadable,
   step: 0,
-  updateActivatorStatus: defaultLoadable() as Loadable
+  updateActivatorStatus: defaultLoadable() as Loadable,
+  onboardActivatorStatus: defaultLoadable() as Loadable
 };
 const innerReducer = createReducer(
   initialState,
@@ -158,8 +162,13 @@ const innerReducer = createReducer(
     denyAccessStatus: defaultLoadable(),
     grantAccessStatus: defaultLoadable(),
     requestAccessStatus: defaultLoadable(),
-    updateActivatorStatus: defaultLoadable()
-  }))
+    updateActivatorStatus: defaultLoadable(),
+    onboardActivatorStatus: defaultLoadable()
+  })),
+  // onboard
+  on(onboardActivator, state => ({ ...state, onboardActivatorStatus: onLoadableInit() })),
+  on(onboardActivatorError, (state, { error }) => ({ ...state, onboardActivatorStatus: onLoadableError(error) })),
+  on(onboardActivatorSuccess, state => ({ ...state, onboardActivatorStatus: onLoadableSuccess() }))
 );
 
 export default function reducer(state, action) {
@@ -194,3 +203,7 @@ export const selectRequestAccessStatus = createSelector(selectFeature, state => 
 export const selectSetDeprecatedStatus = createSelector(selectFeature, state => state && state.setDeprecatedStatus);
 export const selectSetLockedStatus = createSelector(selectFeature, state => state && state.setLockedStatus);
 export const selectUpdateActivatorStatus = createSelector(selectFeature, state => state && state.updateActivatorStatus);
+export const selectOnboardActivatorStatus = createSelector(
+  selectFeature,
+  state => state && state.onboardActivatorStatus
+);

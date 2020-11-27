@@ -226,14 +226,16 @@
     </form>
 
     <div class="app-bottom-action right">
-      <a
+      <button
         mat-button
         color="primary"
-        routerLink="/mission-control/activator-store/view"
-        [queryParams]="{ id: activatorData.id }"
+        matStepperNext
+        (click)="onSubmit()"
+        [loading]="(updateActivatorStatus$ | async).loading"
       >
         Submit
-      </a>
+        <mat-icon>chevron_right</mat-icon>
+      </button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

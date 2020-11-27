@@ -92,3 +92,7 @@ export interface ActivatorStoreGrantAccessDialogData {
   teamList: KeyValue<string, string>[];
   accessRequestedBy: User;
 }
+
+export interface ActivatorStoreDialogCreateOnboardingData {
+  activator: Activator;
+}

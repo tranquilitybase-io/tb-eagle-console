@@ -21,6 +21,9 @@ import {
   grantAccess,
   grantAccessError,
   grantAccessSuccess,
+  onboardActivator,
+  onboardActivatorError,
+  onboardActivatorSuccess,
   requestAccess,
   requestAccessError,
   requestAccessSuccess,
@@ -223,6 +226,24 @@ export class ActivatorStoreEffects {
           catchError(error => {
             this.snackBarService.error('Something went wrong. Activator has not been updated');
             return of(updateActivatorError({ error }));
+          })
+        )
+      )
+    )
+  );
+
+  onboardActivator$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(onboardActivator),
+      mergeMap(({ activatorData }) =>
+        this.service.onboardActivator(activatorData).pipe(
+          map(data => {
+            this.snackBarService.success('Activator has been onboarded');
+            return onboardActivatorSuccess();
+          }),
+          catchError(error => {
+            this.snackBarService.error('Something went wrong. Activator has not been onboarded');
+            return of(onboardActivatorError({ error }));
           })
         )
       )

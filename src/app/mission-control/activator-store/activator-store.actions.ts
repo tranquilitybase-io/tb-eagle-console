@@ -98,5 +98,12 @@ export const updateActivatorSuccess = createAction(
 );
 export const updateActivatorError = createAction('[ActivatorStore] updateActivatorError', props<{ error: any }>());
 
+export const onboardActivator = createAction(
+  '[ActivatorStore] onboardActivator',
+  props<{ activatorData: Activator }>()
+);
+export const onboardActivatorSuccess = createAction('[ActivatorStore] onboardActivatorSuccess');
+export const onboardActivatorError = createAction('[ActivatorStore] onboardActivatorError', props<{ error: any }>());
+
 export const resetActivatorDataStatus = createAction('[ActivatorStore] resetActivatorDataStatus');
 export const resetAPICallStatuses = createAction('[ActivatorStore] resetAPICallStatuses');
