@@ -84,7 +84,7 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   }
 
   sensitivityColor(sensitivity: string): string {
-    return sensitivity.toLowerCase() === 'restricted' ? 'warn' : '';
+    return sensitivity && sensitivity.toLowerCase() === 'restricted' ? 'warn' : '';
   }
 
   statusColor(status: string): string {
