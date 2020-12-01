@@ -9,7 +9,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { Store, select } from '@ngrx/store';
 import { Activator } from '../activator-store.model';
 import { selectActivatorData, selectUpdateActivatorStatus } from '../activator-store.reducer';
-import { updateActivator } from '../activator-store.actions';
+import { resetAPICallStatuses, updateActivator } from '../activator-store.actions';
 import { ActivatorStoreDialogCreateOnboardingComponent } from '../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 @Component({
   selector: 'app-solutions-create',
@@ -40,12 +40,11 @@ export class ActivatorStoreEditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetAPICallStatuses());
     this.activator = this.route.snapshot.data['activator'] as Activator;
-    console.log('activator', this.activator);
     let variableGroup = {};
 
     this.activator.activatorMetadata.variables.forEach(variable => {
-      console.log(variable);
       variableGroup[variable.name] = new FormControl(variable.value, [Validators.required]);
     });
     this.variablesForm = new FormGroup(variableGroup);
@@ -57,8 +56,8 @@ export class ActivatorStoreEditComponent implements OnInit {
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
 
     this.workspaceForm = this.formBuilder.group({
-      ciId: [this.activator.ci.map(ci => ci.id), Validators.required],
-      cdId: [this.activator.cd.map(cd => cd.id), Validators.required],
+      ciId: [this.activator.ci[0].id, Validators.required],
+      cdId: [this.activator.cd[0].id, Validators.required],
       sourceControlId: [this.activator.sourceControlId, Validators.required],
       environments: [this.activator.envs.map(envs => envs.id), Validators.required],
       businessUnitId: [this.activator.businessUnitId, Validators.required],
@@ -136,7 +135,6 @@ export class ActivatorStoreEditComponent implements OnInit {
     activator.businessUnitId = this.workspaceForm.value.businessUnitId;
     activator.regions = this.workspaceForm.value.regions;
     activator.status = 'Draft';
-    console.log('parsed', activator);
     return activator;
   }
 

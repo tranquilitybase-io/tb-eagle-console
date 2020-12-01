@@ -13,7 +13,8 @@ import {
   setDeprecated,
   setLocked,
   requestAccess,
-  storeActivatorData
+  storeActivatorData,
+  resetAPICallStatuses
 } from '@app/mission-control/activator-store/activator-store.actions';
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
 import { ActivatorStoreService } from '../activator-store.service';
@@ -45,6 +46,7 @@ export class ActivatorStoreViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(resetAPICallStatuses());
     this.activator = this.route.snapshot.data['activator'] as Activator;
     this.store.dispatch(storeActivatorData({ activatorData: this.activator }));
     this.activator$.subscribe(activatorData => {
