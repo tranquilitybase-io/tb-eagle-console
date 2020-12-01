@@ -67,8 +67,8 @@ export interface Activator {
   billing: string;
   businessUnit: ActivatorBusinessUnit;
   businessUnitId: number;
-  cd: string[] | ActivatorCD[];
-  ci: string[] | ActivatorCI[];
+  cd: ActivatorCD[];
+  ci: ActivatorCI[];
   envs: ActivatorEnv[];
   hosting: string[];
   id: number;

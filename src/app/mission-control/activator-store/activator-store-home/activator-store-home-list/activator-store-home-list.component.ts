@@ -5,7 +5,7 @@ import { Layout } from '@app/layout/layout.model';
 import { LayoutService } from '@app/layout/layout.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Store, select } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Activator } from '../../activator-store.model';
 import { setDeprecated, setLocked, requestAccess, getByCategory } from '../../activator-store.actions';
 import { selectActivatorsByCategoryData, selectGetByCategoryStatus } from '../../activator-store.reducer';
@@ -51,7 +51,8 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     private layoutService: LayoutService,
     private store: Store<any>,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.layout$ = this.layoutService.layoutObserver$;
     this.statusColorMap = new Map([
@@ -142,5 +143,9 @@ export class ActivatorStoreHomeListComponent implements OnInit {
         redirect: false
       }
     });
+  }
+
+  edit(activator) {
+    this.router.navigateByUrl(`/mission-control/activator-store/edit?id=${activator.id}`);
   }
 }

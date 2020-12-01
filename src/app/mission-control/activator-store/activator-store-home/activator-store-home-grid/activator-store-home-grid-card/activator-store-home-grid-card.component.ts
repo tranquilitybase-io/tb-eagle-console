@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { KeyValue } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 
 import { setDeprecated, setLocked, requestAccess } from '@app/mission-control/activator-store/activator-store.actions';
@@ -25,7 +25,12 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
   private statusColorMap: Map<string, string>;
   private teamList: KeyValue<string, string>[];
 
-  constructor(private store: Store<any>, private dialog: MatDialog, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store<any>,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.statusColorMap = new Map([
@@ -109,5 +114,9 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
         redirect: false
       }
     });
+  }
+
+  edit() {
+    this.router.navigateByUrl(`/mission-control/activator-store/edit?id=${this.activator.id}`);
   }
 }

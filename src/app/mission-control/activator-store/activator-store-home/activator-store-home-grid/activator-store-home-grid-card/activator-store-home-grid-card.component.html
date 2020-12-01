@@ -36,6 +36,9 @@
             <button mat-menu-item *ngIf="isDraft && (userIsAdmin$ | async)" (click)="onboard()">
               Onboard
             </button>
+            <button mat-menu-item *ngIf="isDraft && (userIsAdmin$ | async)" (click)="edit()">
+              Edit
+            </button>
           </mat-menu>
         </div>
       </div>

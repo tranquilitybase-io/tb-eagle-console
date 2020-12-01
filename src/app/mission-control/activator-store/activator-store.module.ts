@@ -71,6 +71,22 @@ const routes: Routes = [
             }
           ]
         }
+      },
+      {
+        path: 'edit',
+        loadChildren: () =>
+          import('./activator-store-edit/activator-store-edit.module').then(m => m.ActivatorStoreEditModule),
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Activator Store',
+              link: '/mission-control/activator-store'
+            },
+            {
+              name: 'Edit'
+            }
+          ]
+        }
       }
     ]
   }

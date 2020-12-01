@@ -145,8 +145,11 @@
           <button mat-menu-item *ngIf="isDeprecated(row.status) && (userIsAdmin$ | async)" (click)="setLocked(row.id)">
             Undeprecate
           </button>
-          <button mat-menu-item *ngIf="isDraft && (userIsAdmin$ | async)" (click)="onboard(row)">
+          <button mat-menu-item *ngIf="isDraft(row.status) && (userIsAdmin$ | async)" (click)="onboard(row)">
             Onboard
+          </button>
+          <button mat-menu-item *ngIf="isDraft(row.status) && (userIsAdmin$ | async)" (click)="edit(row)">
+            Edit
           </button>
           <button mat-menu-item>
             Mark as favourite
