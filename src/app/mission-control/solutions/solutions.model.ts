@@ -37,3 +37,15 @@ export class SolutionDeployment {
   id?: number;
   deploymentState: DeploymentState;
 }
+
+export enum FilterNames {
+  FAVOURITES = 'Favourites',
+  ACTIVES = 'Actives',
+  ARCHIVED = 'Archived'
+}
+
+export const FilterNamesValues = {
+  [FilterNames.FAVOURITES]: 'Favourites',
+  [FilterNames.ACTIVES]: 'Actives',
+  [FilterNames.ARCHIVED]: 'Archived'
+};

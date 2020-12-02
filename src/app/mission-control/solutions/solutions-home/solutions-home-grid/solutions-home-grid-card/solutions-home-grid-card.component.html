@@ -2,9 +2,11 @@
   <mat-card-header>
     <mat-card-title>
       <div class="card-actions-bar">
-        <button mat-icon-button>
-          <mat-icon>star_border</mat-icon>
-        </button>
+        <app-favorite-button
+          [isFavourite]="solution.isFavourite"
+          [isLoading]="isFavouriteLoading$ | async"
+          (click)="toggleFavorites()"
+        ></app-favorite-button>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
