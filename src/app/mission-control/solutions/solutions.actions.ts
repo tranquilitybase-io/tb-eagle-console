@@ -7,8 +7,8 @@ export const discardSelectedSolution = createAction(`${key}  discardSelectedSolu
 export const setSelectedSolution = createAction(`${key} setSelectedSolution`, props<{ solution: Solution }>());
 
 export const getSolutions = createAction(`${key} getSolutions`);
-export const getSolutionsSilentLoading = createAction(`${key} getSolutionsSilentLoading`);
 export const getSolutionsError = createAction(`${key} getSolutionsError`, props<{ error: any }>());
+export const getSolutionsSilentLoading = createAction(`${key} getSolutionsSilentLoading`);
 export const getSolutionsSuccess = createAction(`${key} getSolutionsSuccess`, props<{ solutions: Solution[] }>());
 
 export const createSolution = createAction(`${key}  createSolution`, props<{ solution: Solution }>());
@@ -35,5 +35,5 @@ export const toggleFavorites = createAction(
   props<{ solutionId: number; isFavourite: boolean }>()
 );
 
-export const toggleFavoritesSuccess = createAction(`${key}  toggleFavoritesSuccess`, props<{ solution: Solution }>());
 export const toggleFavoritesError = createAction(`${key}  toggleFavoritesError`, props<{ error: any }>());
+export const toggleFavoritesSuccess = createAction(`${key}  toggleFavoritesSuccess`, props<{ solution: Solution }>());

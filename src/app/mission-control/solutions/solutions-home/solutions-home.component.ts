@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Solution, FilterNames } from '../solutions.model';
 import { Observable } from 'rxjs';
-import { SolutionsService } from '../solutions.service';
 import {
   SolutionsState,
   selectSolutionDeploymentsData,

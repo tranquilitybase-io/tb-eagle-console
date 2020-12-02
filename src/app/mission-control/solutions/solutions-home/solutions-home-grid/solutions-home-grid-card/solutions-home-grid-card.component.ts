@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { DeploymentState } from '@app/shared/shared.model';
-import { MatSnackBar } from '@angular/material';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material';
@@ -8,7 +7,7 @@ import { SolutionsHomeDialogDeployComponent } from '../../solutions-home-dialog/
 import { LayoutService } from '@app/layout/layout.service';
 import { Layout } from '@app/layout/layout.model';
 import { Observable } from 'rxjs';
-import { toggleFavorites } from '../../../solutions.actions';
+import { toggleFavorites } from '@app/mission-control/solutions/solutions.actions';
 import { selectIsFavoriteLoading } from '@app/mission-control/solutions/solutions.reducer';
 
 @Component({

@@ -84,9 +84,7 @@ export class ActivatorStoreCreateComponent implements OnInit {
   }
 
   onStepOneNext() {
-    if (this.variablesForm.valid) {
-      // this.store.dispatch(updateActivator({ activatorData: activator }));
-    } else {
+    if (!this.variablesForm.valid) {
       this.variablesForm.markAllAsTouched();
     }
   }
@@ -128,14 +126,12 @@ export class ActivatorStoreCreateComponent implements OnInit {
     activator.businessUnitId = this.workspaceForm.value.businessUnitId;
     activator.regions = this.workspaceForm.value.regions;
     // PUT status =  "AVAILABLE" is temporary solution
-    activator.status = 'Available';
+    activator.status = 'Draft';
     return activator;
   }
 
   onStepTwoNext() {
-    if (this.workspaceForm.valid) {
-      this.store.dispatch(updateActivator({ activatorData: this.parseActivatorFormsValuesToSend() }));
-    } else {
+    if (!this.workspaceForm.valid) {
       this.workspaceForm.markAllAsTouched();
     }
   }
@@ -145,6 +141,11 @@ export class ActivatorStoreCreateComponent implements OnInit {
    */
 
   onSubmit() {
+    if (this.workspaceForm.valid) {
+      this.store.dispatch(updateActivator({ activatorData: this.parseActivatorFormsValuesToSend() }));
+    } else {
+      this.workspaceForm.markAllAsTouched();
+    }
     // Call SUBMIT API endpoint and redirect to activator
     // this.router.navigate(['/mission-control/activator-store/view', { queryParams: { id: this.activatorData.id } }]);
   }

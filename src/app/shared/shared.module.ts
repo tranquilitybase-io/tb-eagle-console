@@ -12,6 +12,7 @@ import { AlertComponent } from './alert/alert.component';
 import { BadgesComponent } from './badges/badges.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { FavoriteButtonComponent } from './favorite-button/favorite-button.component';
 import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
@@ -26,7 +27,6 @@ import { SearchPillComponent } from './search-pill/search-pill.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
-import { FavoriteButtonComponent } from './favorite-button/favorite-button.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiCallStatusComponent } from './snack-bar/api-call-status/api-call-status.component';
@@ -64,10 +64,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BadgesComponent,
     BreadcrumbsComponent,
     DropdownComponent,
+    FavoriteButtonComponent,
     GridViewSwitchComponent,
     IconComponent,
     InputComponent,
     LoaderComponent,
+    MatButtonLoadingDirective,
     NotificationsComponent,
     PaginationComponent,
     PillsComponent,
@@ -79,9 +81,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    YesNoDialogComponent,
-    MatButtonLoadingDirective,
-    FavoriteButtonComponent
+    YesNoDialogComponent
   ],
   entryComponents: [
     ApiCallStatusComponent,
@@ -132,6 +132,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BadgesComponent,
     BreadcrumbsComponent,
     DropdownComponent,
+    FavoriteButtonComponent,
     FormsModule,
     GridViewSwitchComponent,
     HttpClientModule,
@@ -144,6 +145,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDialogModule,
     MatDialogModule,
     MatDialogModule,
+    NotificationsComponent,
+    NotificationsModule,
     PaginationComponent,
     PillsComponent,
     ProgressComponent,
@@ -152,10 +155,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent,
-    NotificationsModule,
-    NotificationsComponent,
-    FavoriteButtonComponent
+    SwitchesComponent
   ]
 })
 export class SharedModule {}

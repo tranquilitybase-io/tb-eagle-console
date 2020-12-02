@@ -22,12 +22,12 @@ import {
   setSolutionDeploymentsData,
   startDeploymentError,
   startDeploymentSuccess,
-  updateSolution,
-  updateSolutionError,
-  updateSolutionSuccess,
   toggleFavorites,
   toggleFavoritesError,
-  toggleFavoritesSuccess
+  toggleFavoritesSuccess,
+  updateSolution,
+  updateSolutionError,
+  updateSolutionSuccess
 } from './solutions.actions';
 import { Solution, SolutionDeployment, FilterNames } from './solutions.model';
 
@@ -38,9 +38,9 @@ export interface LoadableFavorites extends Loadable {
 const updateListObject = (list, obj) => list.map(li => (li.id === obj.id ? obj : li));
 const updateLoadingList = (list, id) => list.filter(li => li !== id);
 const updateFilters = (solutions: Solution[]) => [
-  { name: 'Favourites', count: solutions.filter(solution => solution.isFavourite).length, defaultActive: false },
   { name: 'Actives', count: solutions.filter(solution => solution.isActive).length, defaultActive: true },
-  { name: 'Archived', count: solutions.filter(solution => !solution.isActive).length, defaultActive: false }
+  { name: 'Archived', count: solutions.filter(solution => !solution.isActive).length, defaultActive: false },
+  { name: 'Favourites', count: solutions.filter(solution => solution.isFavourite).length, defaultActive: false }
 ];
 
 export const intialState = {
@@ -59,9 +59,9 @@ export const intialState = {
   } as LoadableFavorites,
   pendingFavoritesIds: [] as number[],
   solutionsHomeFilters: [
-    { name: 'Favourites', count: 0, defaultActive: false },
     { name: 'Actives', count: 0, defaultActive: true },
-    { name: 'Archived', count: 0, defaultActive: false }
+    { name: 'Archived', count: 0, defaultActive: false },
+    { name: 'Favourites', count: 0, defaultActive: false }
   ] as SwitchFilter[]
 };
 export interface SolutionsState {
@@ -69,13 +69,13 @@ export interface SolutionsState {
   dismissAlmostReady: boolean;
   getSolutionsStatus: Loadable;
   isDeploymentReady: boolean;
+  pendingFavoritesIds: number[];
   selectedSolution: Solution;
   solutionDeploymentsData: SolutionDeployment[];
   solutions: Solution[];
+  solutionsHomeFilters: SwitchFilter[];
   startDeploymentStatus: Loadable;
   updateSolutionStatus: Loadable;
-  pendingFavoritesIds: number[];
-  solutionsHomeFilters: SwitchFilter[];
 }
 export const solutionFeatureKey = 'solutions';
 
@@ -88,8 +88,8 @@ export const solutionsReducer = createReducer(
   on(getSolutionsError, (state, { error }) => ({ ...state, getSolutionsStatus: onLoadableError(error) })),
   on(getSolutionsSuccess, (state, { solutions }) => ({
     ...state,
-    solutions,
     getSolutionsStatus: onLoadableSuccess(),
+    solutions,
     solutionsHomeFilters: updateFilters(solutions)
   })),
   // update
