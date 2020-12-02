@@ -4,7 +4,7 @@ COPY package.json .
 RUN npm install
 COPY . .
 ARG GOOGLE_OAUTH_CLIENT_ID
-RUN cat src/index.html | sed "s+GOOGLE_OAUTH_CLIENT_ID+$GOOGLE_OAUTH_CLIENT_ID+g" > src/index.html \
+RUN sed "s+GOOGLE_OAUTH_CLIENT_ID+$GOOGLE_OAUTH_CLIENT_ID+g" src/.index.html > src/index.html \
     && npm run build
 
 FROM nginx:1.18-alpine
