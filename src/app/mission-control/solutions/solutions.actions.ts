@@ -8,6 +8,7 @@ export const setSelectedSolution = createAction(`${key} setSelectedSolution`, pr
 
 export const getSolutions = createAction(`${key} getSolutions`);
 export const getSolutionsError = createAction(`${key} getSolutionsError`, props<{ error: any }>());
+export const getSolutionsSilentLoading = createAction(`${key} getSolutionsSilentLoading`);
 export const getSolutionsSuccess = createAction(`${key} getSolutionsSuccess`, props<{ solutions: Solution[] }>());
 
 export const createSolution = createAction(`${key}  createSolution`, props<{ solution: Solution }>());
@@ -28,3 +29,11 @@ export const setSolutionDeploymentsData = createAction(
   `${key}  setSolutionDeploymentsData`,
   props<{ solutionDeploymentsData: SolutionDeployment[] }>()
 );
+
+export const toggleFavorites = createAction(
+  `${key}  toggleFavorites`,
+  props<{ solutionId: number; isFavourite: boolean }>()
+);
+
+export const toggleFavoritesError = createAction(`${key}  toggleFavoritesError`, props<{ error: any }>());
+export const toggleFavoritesSuccess = createAction(`${key}  toggleFavoritesSuccess`, props<{ solution: Solution }>());
