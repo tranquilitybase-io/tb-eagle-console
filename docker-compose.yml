@@ -36,7 +36,7 @@ services:
       - 3000:3000
 
   eagle-console:
-    image: gcr.io/tranquility-base-images/tb-eagle-console:landingzone
+    image: gcr.io/tranquility-base-images/tb-eagle-console-dev
     restart: always
     environment:
       PROXY_TARGET: 'http://houston-service:3000'

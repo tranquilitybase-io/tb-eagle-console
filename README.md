@@ -112,18 +112,16 @@ docker volume rm $(docker volume ls -qf dangling=true)
 
 # GCP Build commands
 
+## tb-eagle-console-dev
 ```sh
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt-get install -y nodejs
-git clone https://github.com/tranquilitybase-io/tb-eagle-console.git
-cd tb-eagle-console
-npm install
-npm run build
-gcloud config set project tranquility-base-images
-docker build -t gcr.io/tranquility-base-images/tb-eagle-console:alpha .
-docker push gcr.io/tranquility-base-images/tb-eagle-console:alpha
-docker build -f Dockerfile.experimental -t gcr.io/tranquility-base-images/tb-eagle-console:experimental .
-docker push gcr.io/tranquility-base-images/tb-eagle-console:experimental
+docker build -f Dockerfile.experimental --build-arg GOOGLE_OAUTH_CLIENT_ID -t gcr.io/tranquility-base-images/tb-eagle-console-dev .
+docker push gcr.io/tranquility-base-images/tb-eagle-console-dev
+```
+
+## tb-eagle-console
+```sh
+docker build --build-arg GOOGLE_OAUTH_CLIENT_ID -t gcr.io/tranquility-base-images/tb-eagle-console .
+docker push gcr.io/tranquility-base-images/tb-eagle-console
 ```
 
 # TbEagleConsoleUi
