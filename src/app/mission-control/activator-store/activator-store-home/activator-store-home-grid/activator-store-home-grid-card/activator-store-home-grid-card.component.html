@@ -98,6 +98,14 @@
       View
     </a>
     <a
+      mat-button
+      *ngIf="(userIsAdmin$ | async) && isDraft"
+      routerLink="/mission-control/activator-store/edit"
+      [queryParams]="{ id: activator.id }"
+    >
+      Edit
+    </a>
+    <a
       *ngIf="!(userIsAdmin$ | async)"
       mat-button
       color="primary"
