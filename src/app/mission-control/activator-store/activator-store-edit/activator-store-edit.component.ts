@@ -18,6 +18,7 @@ import { ActivatorStoreDialogCreateOnboardingComponent } from '../activator-stor
 })
 export class ActivatorStoreEditComponent implements OnInit {
   activator: Activator = {} as Activator;
+  reviewActivatorData: Activator;
   isRegionEdit = false;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   variablesForm: FormGroup;
@@ -42,10 +43,12 @@ export class ActivatorStoreEditComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(resetAPICallStatuses());
     this.activator = this.route.snapshot.data['activator'] as Activator;
+    this.reviewActivatorData = this.route.snapshot.data['activator'] as Activator;
+
     let variableGroup = {};
 
     this.activator.activatorMetadata.variables.forEach(variable => {
-      variableGroup[variable.name] = new FormControl(variable.value, [Validators.required]);
+      variableGroup[variable.name] = new FormControl(variable.value, variable.isOptional ? [] : Validators.required);
     });
     this.variablesForm = new FormGroup(variableGroup);
 
@@ -138,8 +141,37 @@ export class ActivatorStoreEditComponent implements OnInit {
     return activator;
   }
 
+  private parsedActivatorFormsValuesToReview(): Activator {
+    let activator = { ...this.activator };
+    activator.activatorMetadata.variables.forEach(variable => {
+      variable.value = this.variablesForm.value[variable.name];
+    });
+    const cd = [this.workspaceForm.value.cdId].map(cdId => this.cdList.find(cd => cd.key === cdId));
+    activator.cd = cd.map(cd => ({ id: cd.key, value: cd.value }));
+    const ci = [this.workspaceForm.value.ciId].map(ciId => this.ciList.find(ci => ci.key === ciId));
+    activator.ci = ci.map(ci => ({ id: ci.key, value: ci.value }));
+    const sourceControl = this.sourceControlList.find(
+      source => source.key === this.workspaceForm.value.sourceControlId
+    );
+    activator.sourceControl = { id: sourceControl.key, value: sourceControl.value };
+
+    const environments = this.workspaceForm.value.environments.map(envId =>
+      this.environmentList.find(env => env.key === envId)
+    );
+    activator.envs = environments.map(env => ({ id: env.id, name: env.value }));
+    const businessUnit = this.businessUnitList.find(
+      business => business.key === this.workspaceForm.value.businessUnitId
+    );
+    activator.businessUnit = { id: 0, name: businessUnit.value, description: '', isActive: false };
+    activator.regions = this.workspaceForm.value.regions;
+    activator.status = 'Draft';
+    return activator;
+  }
+
   onStepTwoNext() {
-    if (!this.workspaceForm.valid) {
+    if (this.workspaceForm.valid) {
+      this.reviewActivatorData = this.parsedActivatorFormsValuesToReview();
+    } else {
       this.workspaceForm.markAllAsTouched();
     }
   }

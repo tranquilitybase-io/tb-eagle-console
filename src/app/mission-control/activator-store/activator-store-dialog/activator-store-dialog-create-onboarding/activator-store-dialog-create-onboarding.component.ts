@@ -1,8 +1,9 @@
+import { resetAPICallStatuses } from './../../activator-store.actions';
 import { Observable } from 'rxjs';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { selectCreateActivatorByURLStatus, selectOnboardActivatorStatus } from '../../activator-store.reducer';
+import { selectOnboardActivatorStatus } from '../../activator-store.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { Router } from '@angular/router';
 import { ActivatorStoreDialogCreateOnboardingData } from '../../activator-store.model';
@@ -45,6 +46,7 @@ export class ActivatorStoreDialogCreateOnboardingComponent implements OnInit {
   handleStatus(status: Loadable) {
     if (status.success) {
       this.router.navigateByUrl(`/mission-control/activator-store/view?id=${this.activator.id}`);
+      this.store.dispatch(resetAPICallStatuses());
       this.dialogRef.close();
     }
   }

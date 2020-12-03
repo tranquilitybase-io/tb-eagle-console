@@ -23,6 +23,7 @@ export class ActivatorStoreCreateComponent implements OnInit {
   workspaceForm: FormGroup;
 
   activatorData: Activator;
+  reviewActivatorData: Activator;
 
   cdList: KeyValue<number, string>[];
   ciList: KeyValue<number, string>[];
@@ -41,18 +42,20 @@ export class ActivatorStoreCreateComponent implements OnInit {
   ) {
     this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
       this.activatorData = activatorData;
+      this.reviewActivatorData = activatorData;
     });
   }
 
   ngOnInit() {
     let variableGroup = {};
     this.activatorData.activatorMetadata.variables.forEach(variable => {
-      variableGroup[variable.name] = new FormControl(variable.value, [Validators.required]);
+      variableGroup[variable.name] = new FormControl(variable.value, variable.isOptional ? [] : Validators.required);
     });
     this.variablesForm = new FormGroup(variableGroup);
 
     this.cdList = this.route.snapshot.data['cdList'];
     this.ciList = this.route.snapshot.data['ciList'];
+
     this.sourceControlList = this.route.snapshot.data['sourceControlList'];
     this.environmentList = this.route.snapshot.data['environmentList'];
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
@@ -140,8 +143,37 @@ export class ActivatorStoreCreateComponent implements OnInit {
     return activator;
   }
 
+  private parsedActivatorFormsValuesToReview(): Activator {
+    let activator = { ...this.activatorData };
+    activator.activatorMetadata.variables.forEach(variable => {
+      variable.value = this.variablesForm.value[variable.name];
+    });
+    const cd = [this.workspaceForm.value.cdId].map(cdId => this.cdList.find(cd => cd.key === cdId));
+    activator.cd = cd.map(cd => ({ id: cd.key, value: cd.value }));
+    const ci = [this.workspaceForm.value.ciId].map(ciId => this.ciList.find(ci => ci.key === ciId));
+    activator.ci = ci.map(ci => ({ id: ci.key, value: ci.value }));
+    const sourceControl = this.sourceControlList.find(
+      source => source.key === this.workspaceForm.value.sourceControlId
+    );
+    activator.sourceControl = { id: sourceControl.key, value: sourceControl.value };
+
+    const environments = this.workspaceForm.value.environments.map(envId =>
+      this.environmentList.find(env => env.key === envId)
+    );
+    activator.envs = environments.map(env => ({ id: env.id, name: env.value }));
+    const businessUnit = this.businessUnitList.find(
+      business => business.key === this.workspaceForm.value.businessUnitId
+    );
+    activator.businessUnit = { id: 0, name: businessUnit.value, description: '', isActive: false };
+    activator.regions = this.workspaceForm.value.regions;
+    activator.status = 'Draft';
+    return activator;
+  }
+
   onStepTwoNext() {
-    if (!this.workspaceForm.valid) {
+    if (this.workspaceForm.valid) {
+      this.reviewActivatorData = this.parsedActivatorFormsValuesToReview();
+    } else {
       this.workspaceForm.markAllAsTouched();
     }
   }

@@ -98,7 +98,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   }
 
   onboardActivator(activatorData: Activator): Observable<any> {
-    const url = `${this.BASE_URL}/activatorOnboard`;
+    const url = `${this.BASE_URL}/activatorOnboard/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http.post(

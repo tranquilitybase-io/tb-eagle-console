@@ -13,7 +13,7 @@
               <mat-label>{{ unSlugify(variable.name) }}</mat-label>
               <input
                 matInput
-                required
+                required="{{ !variable.isOptional }}"
                 type="text"
                 maxlength="30"
                 placeholder=""
@@ -141,27 +141,30 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>{{ activator.name }} - {{ activator.activatorMetadata.description }}</div>
+            <div>{{ activator.name }} - {{ reviewActivatorData.activatorMetadata.description }}</div>
             <mat-list dense class="description-list">
               <mat-list-item>
                 <div class="mat-body-1">Category</div>
                 <div class="mat-chip-alternative ">
-                  {{ activator.activatorMetadata.category }}
+                  {{ reviewActivatorData.activatorMetadata.category }}
                 </div>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Platforms</div>
-                <div *ngFor="let platform of activator.activatorMetadata.platforms" class="mat-chip-alternative ">
+                <div
+                  *ngFor="let platform of reviewActivatorData.activatorMetadata.platforms"
+                  class="mat-chip-alternative "
+                >
                   {{ platform.value }}
                 </div>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Type</div>
                 <div class="mat-chip-alternative">
-                  {{ activator.activatorMetadata.type.value }}
+                  {{ reviewActivatorData.activatorMetadata.type.value }}
                 </div>
               </mat-list-item>
-              <mat-list-item *ngFor="let variable of activator.activatorMetadata.variables">
+              <mat-list-item *ngFor="let variable of reviewActivatorData.activatorMetadata.variables">
                 <div class="mat-body-1">{{ unSlugify(variable.name) }}</div>
                 <div class="mat-chip-alternative ">
                   {{ variable.value }}
@@ -179,44 +182,44 @@
             <mat-list dense class="description-list">
               <mat-list-item>
                 <div class="mat-body-1">Environments</div>
-                <div *ngFor="let category of activator.envs" class="mat-chip-alternative">
+                <div *ngFor="let category of reviewActivatorData.envs" class="mat-chip-alternative">
                   {{ category.name }}
                 </div>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">CI (Continuous integration)</div>
-                <div *ngFor="let ci of activator.ci" class="mat-chip-alternative">
+                <div *ngFor="let ci of reviewActivatorData.ci" class="mat-chip-alternative">
                   {{ ci.value }}
                 </div>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">CD (Continuous deployment)</div>
-                <div *ngFor="let cd of activator.cd" class="mat-chip-alternative">
+                <div *ngFor="let cd of reviewActivatorData.cd" class="mat-chip-alternative">
                   {{ cd.value }}
                 </div>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Supported regions</div>
-                <div *ngFor="let region of activator.regions" class="mat-chip-alternative">
+                <div *ngFor="let region of reviewActivatorData.regions" class="mat-chip-alternative">
                   {{ region }}
                 </div>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Data sensitivity</div>
                 <div class="mat-chip-alternative">
-                  {{ activator.sensitivity }}
+                  {{ reviewActivatorData.sensitivity }}
                 </div>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Source control</div>
                 <div class="mat-chip-alternative">
-                  {{ activator.sourceControl?.value }}
+                  {{ reviewActivatorData.sourceControl?.value }}
                 </div>
               </mat-list-item>
               <mat-list-item>
                 <div class="mat-body-1">Business Unit</div>
                 <div class="mat-chip-alternative">
-                  {{ activator.businessUnit?.name }}
+                  {{ reviewActivatorData.businessUnit?.name }}
                 </div>
               </mat-list-item>
             </mat-list>
