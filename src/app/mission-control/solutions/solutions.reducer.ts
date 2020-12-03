@@ -5,6 +5,7 @@ import {
   onLoadableInit,
   onLoadableSuccess
 } from '@app/shared/shared.reducer';
+import { SwitchFilter } from '@app/shared/switches/switches.model';
 import { createReducer, on, createSelector } from '@ngrx/store';
 
 import {
@@ -21,11 +22,26 @@ import {
   setSolutionDeploymentsData,
   startDeploymentError,
   startDeploymentSuccess,
+  toggleFavorites,
+  toggleFavoritesError,
+  toggleFavoritesSuccess,
   updateSolution,
   updateSolutionError,
   updateSolutionSuccess
 } from './solutions.actions';
-import { Solution, SolutionDeployment } from './solutions.model';
+import { Solution, SolutionDeployment, FilterNames } from './solutions.model';
+
+export interface LoadableFavorites extends Loadable {
+  loadingIds: number[];
+}
+
+const updateListObject = (list, obj) => list.map(li => (li.id === obj.id ? obj : li));
+const updateLoadingList = (list, id) => list.filter(li => li !== id);
+const updateFilters = (solutions: Solution[]) => [
+  { name: 'Actives', count: solutions.filter(solution => solution.isActive).length, defaultActive: true },
+  { name: 'Archived', count: solutions.filter(solution => !solution.isActive).length, defaultActive: false },
+  { name: 'Favourites', count: solutions.filter(solution => solution.isFavourite).length, defaultActive: false }
+];
 
 export const intialState = {
   createSolutionStatus: defaultLoadable() as Loadable,
@@ -36,17 +52,28 @@ export const intialState = {
   solutionDeploymentsData: [],
   solutions: [] as Solution[],
   startDeploymentStatus: defaultLoadable() as Loadable,
-  updateSolutionStatus: defaultLoadable() as Loadable
+  updateSolutionStatus: defaultLoadable() as Loadable,
+  toggleFavoritesStatus: {
+    ...defaultLoadable(),
+    loadingIds: [] as number[]
+  } as LoadableFavorites,
+  pendingFavoritesIds: [] as number[],
+  solutionsHomeFilters: [
+    { name: 'Actives', count: 0, defaultActive: true },
+    { name: 'Archived', count: 0, defaultActive: false },
+    { name: 'Favourites', count: 0, defaultActive: false }
+  ] as SwitchFilter[]
 };
-
 export interface SolutionsState {
   createSolutionStatus: Loadable;
   dismissAlmostReady: boolean;
   getSolutionsStatus: Loadable;
   isDeploymentReady: boolean;
+  pendingFavoritesIds: number[];
   selectedSolution: Solution;
   solutionDeploymentsData: SolutionDeployment[];
   solutions: Solution[];
+  solutionsHomeFilters: SwitchFilter[];
   startDeploymentStatus: Loadable;
   updateSolutionStatus: Loadable;
 }
@@ -59,7 +86,12 @@ export const solutionsReducer = createReducer(
   // getAll
   on(getSolutions, state => ({ ...state, getSolutionsStatus: onLoadableInit() })),
   on(getSolutionsError, (state, { error }) => ({ ...state, getSolutionsStatus: onLoadableError(error) })),
-  on(getSolutionsSuccess, (state, { solutions }) => ({ ...state, solutions, getSolutionsStatus: onLoadableSuccess() })),
+  on(getSolutionsSuccess, (state, { solutions }) => ({
+    ...state,
+    getSolutionsStatus: onLoadableSuccess(),
+    solutions,
+    solutionsHomeFilters: updateFilters(solutions)
+  })),
   // update
   on(updateSolution, (state, { solution }) => ({
     ...state,
@@ -82,7 +114,21 @@ export const solutionsReducer = createReducer(
   }),
 
   on(startDeploymentError, (state, { error }) => ({ ...state, startDeploymentStatus: onLoadableError(error) })),
-  on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() }))
+  on(startDeploymentSuccess, state => ({ ...state, startDeploymentStatus: onLoadableSuccess() })),
+  on(toggleFavorites, (state, { solutionId }) => ({
+    ...state,
+    pendingFavoritesIds: [...state.pendingFavoritesIds, solutionId]
+  })),
+  on(toggleFavoritesSuccess, (state, { solution }) => {
+    const updatedSolutions = updateListObject(state.solutions, solution);
+    return {
+      ...state,
+      pendingFavoritesIds: updateLoadingList(state.pendingFavoritesIds, solution.id),
+      solutions: updatedSolutions,
+      solutionsHomeFilters: updateFilters(updatedSolutions)
+    };
+  }),
+  on(toggleFavoritesError, (state, { error }) => ({ ...state }))
 );
 
 export default function reducer(state, action) {
@@ -104,3 +150,25 @@ export const selectCreateSolutionStatus = createSelector(selectFeature, state =>
 export const selectGetSolutionsStatus = createSelector(selectFeature, state => state && state.getSolutionsStatus);
 export const selectStartDeploymentStatus = createSelector(selectFeature, state => state && state.startDeploymentStatus);
 export const selectUpdateSolutionStatus = createSelector(selectFeature, state => state && state.updateSolutionStatus);
+export const selectPendingFavoritesId = createSelector(selectFeature, state => state && state.pendingFavoritesIds);
+export const selectIsFavoriteLoading = id =>
+  createSelector(selectFeature, state => {
+    const selectedId = state.pendingFavoritesIds.find(favId => favId === id);
+    return selectedId ? true : false;
+  });
+
+export const selectFilteredSolutions = (filterName: FilterNames) =>
+  createSelector(selectFeature, state => {
+    switch (filterName) {
+      case FilterNames.ACTIVES:
+        return [...state.solutions.filter(solution => solution.isActive)];
+      case FilterNames.FAVOURITES:
+        return [...state.solutions.filter(solution => solution.isFavourite)];
+      case FilterNames.ARCHIVED:
+        return [...state.solutions.filter(solution => !solution.isActive)];
+      default:
+        return [...state.solutions.filter(solution => solution.isActive)];
+    }
+  });
+
+export const selectSolutionsHomeFilters = createSelector(selectFeature, state => state.solutionsHomeFilters);

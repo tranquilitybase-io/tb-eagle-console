@@ -96,9 +96,7 @@ export class ActivatorStoreCreateComponent implements OnInit {
   }
 
   onStepOneNext() {
-    if (this.variablesForm.valid) {
-      // this.store.dispatch(updateActivator({ activatorData: activator }));
-    } else {
+    if (!this.variablesForm.valid) {
       this.variablesForm.markAllAsTouched();
     }
   }

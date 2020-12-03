@@ -6,11 +6,12 @@ steps:
         'build',
         '--build-arg',
         'GOOGLE_OAUTH_CLIENT_ID=${_GOOGLE_OAUTH_CLIENT_ID}',
+        '-f',
+        'Dockerfile.experimental',
         '-t',
         'gcr.io/${PROJECT_ID}/${_IMAGE_NAME}',
         '.',
       ]
-
   - id: Push image
     name: 'gcr.io/cloud-builders/docker'
     waitFor:
@@ -31,5 +32,5 @@ steps:
       ]
 
 substitutions:
-  _IMAGE_NAME: 'tb-eagle-console'
+  _IMAGE_NAME: 'tb-eagle-console-experimental'
 images: ['gcr.io/${PROJECT_ID}/${_IMAGE_NAME}']

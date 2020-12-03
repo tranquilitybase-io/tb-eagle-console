@@ -119,6 +119,11 @@
             </mat-progress-spinner>
           </ng-template>
         </button>
+        <app-favorite-button
+          [isFavourite]="row.isFavourite"
+          [isLoading]="isFavouriteLoading(row.id)"
+          (click)="toggleFavorites(row.id, row.isFavourite)"
+        ></app-favorite-button>
       </td>
     </ng-container>
 

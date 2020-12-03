@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { SolutionDeployment } from './solutions.model';
+import { SolutionDeployment, Solution } from './solutions.model';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -43,5 +43,13 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
   getDeployments(): Observable<SolutionDeployment[]> {
     const url = `${this.BASE_URL}/solutiondeployments/`;
     return this.http.get<SolutionDeployment[]>(url).pipe(catchError(this.handleError));
+  }
+
+  toggleFavorites(solutionId: number, isFavourite: Boolean): Observable<Solution> {
+    const url = `${this.BASE_URL}/solution/${solutionId}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<Solution>(url, { isFavourite }, { headers });
   }
 }

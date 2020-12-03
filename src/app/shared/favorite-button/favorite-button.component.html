@@ -1,0 +1,4 @@
+<button mat-icon-button [loading]="isLoading">
+  <mat-icon *ngIf="isFavourite" class="color-gold">star</mat-icon>
+  <mat-icon *ngIf="!isFavourite">star_border</mat-icon>
+</button>
