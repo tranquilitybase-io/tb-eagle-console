@@ -33,6 +33,8 @@ export class ActivatorStoreCreateComponent implements OnInit {
 
   updateActivatorStatus$ = this.store.select(selectUpdateActivatorStatus);
 
+  onboardDialogOpened = false;
+
   constructor(
     private store: Store<any>,
     private formBuilder: FormBuilder,
@@ -188,7 +190,8 @@ export class ActivatorStoreCreateComponent implements OnInit {
   }
 
   handleSubmitStatus(status: Loadable) {
-    status.success &&
+    if (status.success && !this.onboardDialogOpened) {
+      this.onboardDialogOpened = true;
       this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
         autoFocus: false,
         data: {
@@ -196,5 +199,6 @@ export class ActivatorStoreCreateComponent implements OnInit {
           redirect: true
         }
       });
+    }
   }
 }

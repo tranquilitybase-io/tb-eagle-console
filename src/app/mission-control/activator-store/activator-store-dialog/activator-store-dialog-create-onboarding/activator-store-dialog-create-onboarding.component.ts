@@ -24,6 +24,7 @@ export class ActivatorStoreDialogCreateOnboardingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetAPICallStatuses());
     this.onboardActivatorStatus$.subscribe(status => {
       this.handleStatus(status);
     });
@@ -46,8 +47,8 @@ export class ActivatorStoreDialogCreateOnboardingComponent implements OnInit {
   handleStatus(status: Loadable) {
     if (status.success) {
       this.router.navigateByUrl(`/mission-control/activator-store/view?id=${this.activator.id}`);
-      this.store.dispatch(resetAPICallStatuses());
       this.dialogRef.close();
+      this.store.dispatch(resetAPICallStatuses());
     }
   }
 

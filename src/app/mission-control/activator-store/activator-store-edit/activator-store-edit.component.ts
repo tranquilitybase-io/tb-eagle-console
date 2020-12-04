@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Loadable } from '../../../shared/shared.reducer';
 import { Component, OnInit } from '@angular/core';
@@ -30,7 +31,9 @@ export class ActivatorStoreEditComponent implements OnInit {
   sourceControlList: KeyValue<number, string>[];
   businessUnitList: KeyValue<string, string>[];
 
-  updateActivatorStatus$ = this.store.select(selectUpdateActivatorStatus);
+  updateActivatorStatus$: Observable<Loadable>;
+
+  onboardDialogOpened = false;
 
   constructor(
     private store: Store<any>,
@@ -59,14 +62,14 @@ export class ActivatorStoreEditComponent implements OnInit {
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
 
     this.workspaceForm = this.formBuilder.group({
-      ciId: [this.activator.ci[0].id, Validators.required],
-      cdId: [this.activator.cd[0].id, Validators.required],
+      ciId: [this.getCiId(), Validators.required],
+      cdId: [this.getCdId(), Validators.required],
       sourceControlId: [this.activator.sourceControlId, Validators.required],
       environments: [this.activator.envs.map(envs => envs.id), Validators.required],
       businessUnitId: [this.activator.businessUnitId, Validators.required],
       regions: [['UK']]
     });
-
+    this.updateActivatorStatus$ = this.store.select(selectUpdateActivatorStatus);
     this.updateActivatorStatus$.subscribe(status => {
       this.handleSubmitStatus(status);
     });
@@ -83,6 +86,14 @@ export class ActivatorStoreEditComponent implements OnInit {
   /*
    * Variables step functions
    */
+
+  getCiId() {
+    return this.activator.ci && this.activator.ci[0] && this.activator.ci[0].id ? this.activator.ci[0].id : '';
+  }
+
+  getCdId() {
+    return this.activator.cd && this.activator.cd[0] && this.activator.cd[0].id ? this.activator.cd[0].id : '';
+  }
 
   isFieldValid(field: string) {
     return this.variablesForm.get(field).touched && !this.variablesForm.get(field).valid;
@@ -188,7 +199,8 @@ export class ActivatorStoreEditComponent implements OnInit {
   }
 
   handleSubmitStatus(status: Loadable) {
-    status.success &&
+    if (status.success && !this.onboardDialogOpened) {
+      this.onboardDialogOpened = true;
       this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
         autoFocus: false,
         data: {
@@ -196,5 +208,6 @@ export class ActivatorStoreEditComponent implements OnInit {
           redirect: true
         }
       });
+    }
   }
 }
