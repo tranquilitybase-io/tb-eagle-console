@@ -8,16 +8,16 @@
     <form [formGroup]="variablesForm">
       <div class="solution-details-container">
         <p>
-          <ng-container *ngFor="let variable of activatorData.activatorMetadata.variables">
+          <ng-container *ngFor="let variable of activator.activatorMetadata.variables">
             <mat-form-field class="half-width" appearance="outline">
               <mat-label>{{ unSlugify(variable.name) }}</mat-label>
               <input
                 matInput
-                [required]="!variable.isOptional"
+                required="{{ !variable.isOptional }}"
                 type="text"
                 maxlength="30"
                 placeholder=""
-                [formControlName]="variable.name"
+                formControlName="{{ variable.name }}"
               />
               <mat-error *ngIf="isFieldValid(variable.name)">Value is <strong>required</strong> </mat-error>
             </mat-form-field>
@@ -141,7 +141,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>{{ reviewActivatorData.name }} - {{ reviewActivatorData.activatorMetadata.description }}</div>
+            <div>{{ activator.name }} - {{ reviewActivatorData.activatorMetadata.description }}</div>
             <mat-list dense class="description-list">
               <mat-list-item>
                 <div class="mat-body-1">Category</div>
@@ -167,7 +167,7 @@
               <mat-list-item *ngFor="let variable of reviewActivatorData.activatorMetadata.variables">
                 <div class="mat-body-1">{{ unSlugify(variable.name) }}</div>
                 <div class="mat-chip-alternative ">
-                  {{ variable.value.length > 0 ? variable.value : '-' }}
+                  {{ variable.value }}
                 </div>
               </mat-list-item>
             </mat-list>

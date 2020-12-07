@@ -1,31 +1,30 @@
+import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { Loadable } from '@app/shared/shared.reducer';
+import { Loadable } from '../../../shared/shared.reducer';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { Activator } from './../activator-store.model';
+import { Activator } from '../activator-store.model';
 import { selectActivatorData, selectUpdateActivatorStatus } from '../activator-store.reducer';
-import { updateActivator } from '../activator-store.actions';
+import { resetAPICallStatuses, updateActivator } from '../activator-store.actions';
 import { ActivatorStoreDialogCreateOnboardingComponent } from '../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
-import { Subscription } from 'rxjs';
-
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-solutions-create',
-  templateUrl: './activator-store-create.component.html',
-  styleUrls: ['./activator-store-create.component.scss']
+  templateUrl: './activator-store-edit.component.html',
+  styleUrls: ['./activator-store-edit.component.scss']
 })
-export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
+export class ActivatorStoreEditComponent implements OnInit, OnDestroy {
+  activator: Activator = {} as Activator;
+  reviewActivatorData: Activator;
   isRegionEdit = false;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   variablesForm: FormGroup;
   workspaceForm: FormGroup;
-
-  activatorData: Activator;
-  reviewActivatorData: Activator;
 
   cdList: KeyValue<number, string>[];
   ciList: KeyValue<number, string>[];
@@ -33,48 +32,44 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
   sourceControlList: KeyValue<number, string>[];
   businessUnitList: KeyValue<string, string>[];
 
-  updateActivatorStatus$;
-
-  onboardDialogOpened = false;
-
   subscription: Subscription;
   updateActivatorStatus: Loadable;
+
+  onboardDialogOpened = false;
 
   constructor(
     private store: Store<any>,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private dialog: MatDialog
-  ) {
-    this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
-      this.activatorData = activatorData;
-      this.reviewActivatorData = activatorData;
-    });
-  }
+  ) {}
 
   ngOnInit() {
+    this.store.dispatch(resetAPICallStatuses());
+    this.activator = this.route.snapshot.data['activator'] as Activator;
+    this.reviewActivatorData = this.route.snapshot.data['activator'] as Activator;
+
     let variableGroup = {};
-    this.activatorData.activatorMetadata.variables.forEach(variable => {
+
+    this.activator.activatorMetadata.variables.forEach(variable => {
       variableGroup[variable.name] = new FormControl(variable.value, variable.isOptional ? [] : Validators.required);
     });
     this.variablesForm = new FormGroup(variableGroup);
 
     this.cdList = this.route.snapshot.data['cdList'];
     this.ciList = this.route.snapshot.data['ciList'];
-
     this.sourceControlList = this.route.snapshot.data['sourceControlList'];
     this.environmentList = this.route.snapshot.data['environmentList'];
     this.businessUnitList = this.route.snapshot.data['businessUnitList'];
 
     this.workspaceForm = this.formBuilder.group({
-      ciId: ['', Validators.required],
-      cdId: ['', Validators.required],
-      sourceControlId: ['', Validators.required],
-      environments: [[], Validators.required],
-      businessUnitId: ['', Validators.required],
+      ciId: [this.getCiId(), Validators.required],
+      cdId: [this.getCdId(), Validators.required],
+      sourceControlId: [this.activator.sourceControlId, Validators.required],
+      environments: [this.activator.envs.map(envs => envs.id), Validators.required],
+      businessUnitId: [this.activator.businessUnitId, Validators.required],
       regions: [['UK']]
     });
-
     this.subscription = this.store.select(selectUpdateActivatorStatus).subscribe(status => {
       this.updateActivatorStatus = status;
       this.handleSubmitStatus(status);
@@ -97,6 +92,14 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
    * Variables step functions
    */
 
+  getCiId() {
+    return this.activator.ci && this.activator.ci[0] && this.activator.ci[0].id ? this.activator.ci[0].id : '';
+  }
+
+  getCdId() {
+    return this.activator.cd && this.activator.cd[0] && this.activator.cd[0].id ? this.activator.cd[0].id : '';
+  }
+
   isFieldValid(field: string) {
     return this.variablesForm.get(field).touched && !this.variablesForm.get(field).valid;
   }
@@ -107,7 +110,9 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
   }
 
   onStepOneNext() {
-    if (!this.variablesForm.valid) {
+    if (this.variablesForm.valid) {
+      // this.store.dispatch(updateActivator({ activatorData: activator }));
+    } else {
       this.variablesForm.markAllAsTouched();
     }
   }
@@ -138,7 +143,7 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
   }
 
   private parseActivatorFormsValuesToSend(): Activator {
-    let activator = { ...this.activatorData };
+    let activator = { ...this.activator };
     activator.activatorMetadata.variables.forEach(variable => {
       variable.value = this.variablesForm.value[variable.name];
     });
@@ -153,7 +158,7 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
   }
 
   private parsedActivatorFormsValuesToReview(): Activator {
-    let activator = { ...this.activatorData };
+    let activator = { ...this.activator };
     activator.activatorMetadata.variables.forEach(variable => {
       variable.value = this.variablesForm.value[variable.name];
     });
@@ -204,7 +209,7 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
       this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
         autoFocus: false,
         data: {
-          activator: this.activatorData,
+          activator: this.activator,
           redirect: true
         }
       });

@@ -1,10 +1,11 @@
+import { ActivatorStoreDialogCreateOnboardingComponent } from './../../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Layout } from '@app/layout/layout.model';
 import { LayoutService } from '@app/layout/layout.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Store, select } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Activator } from '../../activator-store.model';
 import { setDeprecated, setLocked, requestAccess, getByCategory } from '../../activator-store.actions';
 import { selectActivatorsByCategoryData, selectGetByCategoryStatus } from '../../activator-store.reducer';
@@ -50,7 +51,8 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     private layoutService: LayoutService,
     private store: Store<any>,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.layout$ = this.layoutService.layoutObserver$;
     this.statusColorMap = new Map([
@@ -83,7 +85,7 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   }
 
   sensitivityColor(sensitivity: string): string {
-    return sensitivity.toLowerCase() === 'restricted' ? 'warn' : '';
+    return sensitivity && sensitivity.toLowerCase() === 'restricted' ? 'warn' : '';
   }
 
   statusColor(status: string): string {
@@ -110,6 +112,10 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     this.store.dispatch(setLocked({ id: _id }));
   }
 
+  isDraft(status: string): boolean {
+    return status === 'Draft';
+  }
+
   grantAccess(activator: Activator) {
     this.dialog.open(ActivatorStoreDialogGrantAccessComponent, {
       autoFocus: false,
@@ -127,5 +133,19 @@ export class ActivatorStoreHomeListComponent implements OnInit {
 
   actionNeeded(activator: Activator): boolean {
     if (activator.accessRequestedBy) return true;
+  }
+
+  onboard(activator: Activator) {
+    this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
+      autoFocus: false,
+      data: {
+        activator,
+        redirect: false
+      }
+    });
+  }
+
+  edit(activator) {
+    this.router.navigateByUrl(`/mission-control/activator-store/edit?id=${activator.id}`);
   }
 }

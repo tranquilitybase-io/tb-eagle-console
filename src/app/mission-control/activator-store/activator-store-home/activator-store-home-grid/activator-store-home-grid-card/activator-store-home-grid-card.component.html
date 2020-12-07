@@ -33,6 +33,12 @@
             <button mat-menu-item *ngIf="isDeprecated && (userIsAdmin$ | async)" (click)="setLocked()">
               Undeprecate
             </button>
+            <button mat-menu-item *ngIf="isDraft && (userIsAdmin$ | async)" (click)="onboard()">
+              Onboard
+            </button>
+            <button mat-menu-item *ngIf="isDraft && (userIsAdmin$ | async)" (click)="edit()">
+              Edit
+            </button>
           </mat-menu>
         </div>
       </div>
@@ -90,6 +96,14 @@
   <mat-card-actions *ngIf="active">
     <a mat-button routerLink="/mission-control/activator-store/view" [queryParams]="{ id: activator.id }">
       View
+    </a>
+    <a
+      mat-button
+      *ngIf="(userIsAdmin$ | async) && isDraft"
+      routerLink="/mission-control/activator-store/edit"
+      [queryParams]="{ id: activator.id }"
+    >
+      Edit
     </a>
     <a
       *ngIf="!(userIsAdmin$ | async)"

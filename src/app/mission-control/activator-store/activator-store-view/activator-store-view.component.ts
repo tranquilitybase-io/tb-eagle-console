@@ -9,12 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 import { selectIsSelectedSolution, selectSelectedSolution } from '@app/mission-control/solutions/solutions.reducer';
 import { selectActivatorData } from '../activator-store.reducer';
 import {
+  requestAccess,
+  resetAPICallStatuses,
   setDeprecated,
   setLocked,
-  requestAccess,
   storeActivatorData
 } from '@app/mission-control/activator-store/activator-store.actions';
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { ActivatorStoreDialogCreateOnboardingComponent } from './../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 import { ActivatorStoreService } from '../activator-store.service';
 import { Activator } from '../activator-store.model';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
@@ -44,6 +46,7 @@ export class ActivatorStoreViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(resetAPICallStatuses());
     this.activator = this.route.snapshot.data['activator'] as Activator;
     this.store.dispatch(storeActivatorData({ activatorData: this.activator }));
     this.activator$.subscribe(activatorData => {
@@ -83,6 +86,10 @@ export class ActivatorStoreViewComponent implements OnInit {
     return String(this.activator.status).toLowerCase() === 'deprecated';
   }
 
+  get isDraft(): boolean {
+    return this.activator && String(this.activator.status).toLowerCase() === 'draft';
+  }
+
   setDeprecated() {
     this.store.dispatch(setDeprecated({ id: this.activator.id }));
   }
@@ -104,5 +111,15 @@ export class ActivatorStoreViewComponent implements OnInit {
 
   requestAccess() {
     this.store.dispatch(requestAccess({ id: this.activator.id }));
+  }
+
+  onboard() {
+    this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
+      autoFocus: false,
+      data: {
+        activator: this.activator,
+        redirect: false
+      }
+    });
   }
 }

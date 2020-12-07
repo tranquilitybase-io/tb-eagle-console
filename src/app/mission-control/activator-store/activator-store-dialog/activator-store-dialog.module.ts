@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatorStoreDialogMissingSolutionsComponent } from './activator-store-dialog-missing-solutions/activator-store-dialog-missing-solutions.component';
 import { ActivatorStoreDialogGrantAccessComponent } from './activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
 import { ActivatorStoreDialogCreateComponent } from './activator-store-dialog-create/activator-store-dialog-create.component';
+import { ActivatorStoreDialogCreateOnboardingComponent } from './activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -17,17 +18,20 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [
     ActivatorStoreDialogMissingSolutionsComponent,
     ActivatorStoreDialogGrantAccessComponent,
-    ActivatorStoreDialogCreateComponent
+    ActivatorStoreDialogCreateComponent,
+    ActivatorStoreDialogCreateOnboardingComponent
   ],
   entryComponents: [
     ActivatorStoreDialogMissingSolutionsComponent,
     ActivatorStoreDialogGrantAccessComponent,
-    ActivatorStoreDialogCreateComponent
+    ActivatorStoreDialogCreateComponent,
+    ActivatorStoreDialogCreateOnboardingComponent
   ],
   exports: [
     ActivatorStoreDialogMissingSolutionsComponent,
     ActivatorStoreDialogGrantAccessComponent,
-    ActivatorStoreDialogCreateComponent
+    ActivatorStoreDialogCreateComponent,
+    ActivatorStoreDialogCreateOnboardingComponent
   ],
   imports: [
     CommonModule,

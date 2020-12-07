@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { KeyValue } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 
 import { setDeprecated, setLocked, requestAccess } from '@app/mission-control/activator-store/activator-store.actions';
 
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { ActivatorStoreDialogCreateOnboardingComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 
 @Component({
   selector: 'app-activator-store-home-grid-card',
@@ -24,7 +25,12 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
   private statusColorMap: Map<string, string>;
   private teamList: KeyValue<string, string>[];
 
-  constructor(private store: Store<any>, private dialog: MatDialog, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store<any>,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.statusColorMap = new Map([
@@ -57,6 +63,10 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
 
   get category(): string {
     return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.category;
+  }
+
+  get isDraft(): boolean {
+    return this.activator && this.activator.status === 'Draft';
   }
 
   @HostListener('mouseover')
@@ -94,5 +104,19 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
 
   get lastUpdated(): Date {
     return new Date(this.activator.lastUpdated || null);
+  }
+
+  onboard() {
+    this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
+      autoFocus: false,
+      data: {
+        activator: this.activator,
+        redirect: false
+      }
+    });
+  }
+
+  edit() {
+    this.router.navigateByUrl(`/mission-control/activator-store/edit?id=${this.activator.id}`);
   }
 }
