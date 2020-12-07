@@ -15,7 +15,7 @@ import { onboardActivator } from '../../activator-store.actions';
   styleUrls: ['./activator-store-dialog-create-onboarding.component.scss']
 })
 export class ActivatorStoreDialogCreateOnboardingComponent implements OnInit {
-  onboardActivatorStatus$: Observable<Loadable> = this.store.select(selectOnboardActivatorStatus);
+  onboardActivatorStatus$: Observable<Loadable>;
   constructor(
     private store: Store<any>,
     private dialogRef: MatDialogRef<ActivatorStoreDialogCreateOnboardingComponent>,
@@ -25,6 +25,7 @@ export class ActivatorStoreDialogCreateOnboardingComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(resetAPICallStatuses());
+    this.onboardActivatorStatus$ = this.store.select(selectOnboardActivatorStatus);
     this.onboardActivatorStatus$.subscribe(status => {
       this.handleStatus(status);
     });

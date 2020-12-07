@@ -229,13 +229,7 @@
     </form>
 
     <div class="app-bottom-action right">
-      <button
-        mat-button
-        color="primary"
-        matStepperNext
-        (click)="onSubmit()"
-        [loading]="(updateActivatorStatus$ | async).loading"
-      >
+      <button mat-button color="primary" matStepperNext (click)="onSubmit()" [loading]="updateActivatorStatus.loading">
         Submit
         <mat-icon>chevron_right</mat-icon>
       </button>

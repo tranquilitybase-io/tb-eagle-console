@@ -1,6 +1,6 @@
 import { MatDialog } from '@angular/material/dialog';
 import { Loadable } from './../../../shared/shared.reducer';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
@@ -11,12 +11,14 @@ import { Activator } from './../activator-store.model';
 import { selectActivatorData, selectUpdateActivatorStatus } from '../activator-store.reducer';
 import { updateActivator } from '../activator-store.actions';
 import { ActivatorStoreDialogCreateOnboardingComponent } from '../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-solutions-create',
   templateUrl: './activator-store-create.component.html',
   styleUrls: ['./activator-store-create.component.scss']
 })
-export class ActivatorStoreCreateComponent implements OnInit {
+export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
   isRegionEdit = false;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   variablesForm: FormGroup;
@@ -31,15 +33,17 @@ export class ActivatorStoreCreateComponent implements OnInit {
   sourceControlList: KeyValue<number, string>[];
   businessUnitList: KeyValue<string, string>[];
 
-  updateActivatorStatus$ = this.store.select(selectUpdateActivatorStatus);
+  updateActivatorStatus$;
 
   onboardDialogOpened = false;
+
+  subscription: Subscription;
+  updateActivatorStatus: Loadable;
 
   constructor(
     private store: Store<any>,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
     private dialog: MatDialog
   ) {
     this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
@@ -71,9 +75,14 @@ export class ActivatorStoreCreateComponent implements OnInit {
       regions: [['UK']]
     });
 
-    this.updateActivatorStatus$.subscribe(status => {
+    this.subscription = this.store.select(selectUpdateActivatorStatus).subscribe(status => {
+      this.updateActivatorStatus = status;
       this.handleSubmitStatus(status);
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   get v() {
