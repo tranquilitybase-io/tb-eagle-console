@@ -1,4 +1,3 @@
-import { ActivatorStoreDialogCreateOnboardingComponent } from './../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -10,13 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 import { selectIsSelectedSolution, selectSelectedSolution } from '@app/mission-control/solutions/solutions.reducer';
 import { selectActivatorData } from '../activator-store.reducer';
 import {
+  requestAccess,
+  resetAPICallStatuses,
   setDeprecated,
   setLocked,
-  requestAccess,
-  storeActivatorData,
-  resetAPICallStatuses
+  storeActivatorData
 } from '@app/mission-control/activator-store/activator-store.actions';
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { ActivatorStoreDialogCreateOnboardingComponent } from './../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 import { ActivatorStoreService } from '../activator-store.service';
 import { Activator } from '../activator-store.model';
 import { Solution } from '@app/mission-control/solutions/solutions.model';

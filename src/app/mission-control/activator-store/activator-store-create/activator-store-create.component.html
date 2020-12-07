@@ -13,11 +13,11 @@
               <mat-label>{{ unSlugify(variable.name) }}</mat-label>
               <input
                 matInput
-                required="{{ !variable.isOptional }}"
+                [required]="!variable.isOptional"
                 type="text"
                 maxlength="30"
                 placeholder=""
-                formControlName="{{ variable.name }}"
+                [formControlName]="variable.name"
               />
               <mat-error *ngIf="isFieldValid(variable.name)">Value is <strong>required</strong> </mat-error>
             </mat-form-field>

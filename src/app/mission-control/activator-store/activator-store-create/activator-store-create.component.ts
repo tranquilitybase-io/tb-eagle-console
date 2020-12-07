@@ -1,10 +1,10 @@
 import { MatDialog } from '@angular/material/dialog';
-import { Loadable } from './../../../shared/shared.reducer';
+import { Loadable } from '@app/shared/shared.reducer';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Activator } from './../activator-store.model';
