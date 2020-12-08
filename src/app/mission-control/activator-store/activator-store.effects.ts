@@ -163,12 +163,12 @@ export class ActivatorStoreEffects {
       mergeMap(({ activatorId, teamId }) =>
         this.service.grantAccess(activatorId, teamId).pipe(
           switchMap(activatorData => {
-            this.snackBarService.success('Access has been denied');
+            this.snackBarService.success('Access has been granted');
             const category = this.route.snapshot.queryParams.categorySwitch;
             return [grantAccessSuccess({ activatorData }), getByCategory({ category })];
           }),
           catchError(error => {
-            this.snackBarService.error('Something went wrong. Access has not been denied');
+            this.snackBarService.error('Something went wrong. Access has not been granted');
             return of(grantAccessError({ error }));
           })
         )
