@@ -54,15 +54,11 @@
       (click)="onSwitch({ showCategories: true })"
     >
       Category
-      <span class="count">({{ categoriesCount$ | async }})</span>
+      <!-- <span class="count">({{ categoriesCount$ | async }})</span> -->
     </button>
     <button
       *ngIf="
-        !(
-          (isAllSwitchSelected$ | async) ||
-          (isSelectedShowCateogries$ | async) ||
-          (isAllDraftSwitchSelected$ | async)
-        ) || (isCategoryDraftSelected$ | async)
+        !((isAllSwitchSelected$ | async) || (isSelectedShowCateogries$ | async) || (isAllDraftSwitchSelected$ | async))
       "
       mat-flat-button
       color="primary"
@@ -70,7 +66,7 @@
       (click)="onSwitch({ category: category })"
     >
       {{ category$ | async }}
-      <span class="count">({{ activatorsCount$ | async }})</span>
+      <!-- <span class="count">({{ activatorsCount$ | async }})</span> -->
     </button>
     <button
       *ngIf="
@@ -84,12 +80,12 @@
       (click)="onSwitch({ category: 'All' })"
     >
       All
-      <span class="count">({{ activatorsCount$ | async }})</span>
+      <!-- <span class="count">({{ activatorsCount$ | async }})</span> -->
     </button>
     <button
       mat-flat-button
       [color]="(isDraftSwitchSelected$ | async) && 'primary'"
-      (click)="onSwitch({ category: category || 'All', status: 'Draft' })"
+      (click)="onSwitch({ category: 'All', status: 'Draft' })"
     >
       Drafts
     </button>

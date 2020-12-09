@@ -127,12 +127,4 @@ export class ActivatorStoreHomeComponent implements OnInit {
       })
     );
   }
-
-  get isCategoryDraftSelected$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('category') !== 'All' && queryParams.get('status') === 'Draft';
-      })
-    );
-  }
 }
