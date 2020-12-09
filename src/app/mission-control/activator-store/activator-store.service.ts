@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Activator, ActivatorCategory, ActivatorsMetadata, ActivatorsQueryParams } from './activator-store.model';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -79,8 +79,16 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     return this.http.get<ActivatorCategory[]>(url);
   }
 
-  getByCategory(category: string): Observable<Activator[]> {
-    const params = category === 'All' ? null : { category };
+  getActivators(queryParams: ActivatorsQueryParams): Observable<Activator[]> {
+    let params = new HttpParams();
+    for (let [key, value] of Object.entries(queryParams)) {
+      params = params.append(key, value);
+    }
+
+    if (queryParams.category === 'All') {
+      params = params.delete('category');
+    }
+
     const url = `${this.BASE_URL}/activators/`;
     return this.http.get<Activator[]>(url, { params });
   }

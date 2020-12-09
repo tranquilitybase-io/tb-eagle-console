@@ -1,15 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { Activator, ActivatorsMetadata, ActivatorCategory } from './activator-store.model';
+import { Activator, ActivatorsMetadata, ActivatorCategory, ActivatorsQueryParams } from './activator-store.model';
 
 const key = '[ActivatorStore]';
 
-export const getActivators = createAction(`${key} getActivators`);
+export const getActivators = createAction(`${key} getActivators`, props<{ queryParams: ActivatorsQueryParams }>());
 export const getActivatorsError = createAction(`${key} getActivatorsError`, props<{ error: any }>());
 export const getActivatorsSuccess = createAction(`${key} getActivatorsSuccess`, props<{ activators: Activator[] }>());
-
-export const getByCategory = createAction(`${key} getByCategory`, props<{ category: string }>());
-export const getByCategoryError = createAction(`${key} getByCategoryError`, props<{ error: any }>());
-export const getByCategorySuccess = createAction(`${key} getByCategorySuccess`, props<{ activators: Activator[] }>());
 
 export const getMetaData = createAction(`${key} getMetaData`);
 export const getMetaDataError = createAction(`${key} getMetaDataError`, props<{ error: any }>());
