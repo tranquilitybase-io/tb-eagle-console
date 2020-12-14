@@ -95,7 +95,13 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
 
   createActivatorByURL(repoURL: string): Observable<Activator> {
     const url = `${this.BASE_URL}/activatorByURL/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    const id_token = localStorage.getItem('id_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: id_token ? `Bearer ${id_token}` : ''
+    });
+
     return this.http.post(url, { url: repoURL }, { headers }) as Observable<Activator>;
   }
 
@@ -114,12 +120,6 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
       Authorization: id_token ? `Bearer ${id_token}` : ''
     });
 
-    return this.http.post(
-      url,
-      {
-        id: activatorData.id
-      },
-      { headers }
-    );
+    return this.http.post(url, { id: activatorData.id }, { headers });
   }
 }
