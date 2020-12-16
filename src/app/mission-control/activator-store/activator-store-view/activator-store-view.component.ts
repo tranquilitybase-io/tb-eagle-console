@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { KeyValue } from '@angular/common';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { selectIsSelectedSolution, selectSelectedSolution } from '@app/mission-control/solutions/solutions.reducer';
 import { selectActivatorData } from '../activator-store.reducer';
 import {
@@ -40,6 +40,7 @@ export class ActivatorStoreViewComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store<any>,
     private route: ActivatedRoute,
+    private router: Router,
     private activatorStoreService: ActivatorStoreService
   ) {
     this.activator$ = this.store.pipe(select(selectActivatorData));
@@ -121,5 +122,9 @@ export class ActivatorStoreViewComponent implements OnInit {
         redirect: false
       }
     });
+  }
+
+  edit() {
+    this.router.navigate(['mission-control', 'activator-store', 'edit'], { queryParams: { id: this.activator.id } });
   }
 }

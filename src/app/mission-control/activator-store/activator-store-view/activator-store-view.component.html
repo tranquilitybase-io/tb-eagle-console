@@ -98,7 +98,24 @@
     >
       Undeprecate
     </button>
-    <button mat-raised-button color="primary" *ngIf="isDraft && (userIsAdmin$ | async)" (click)="onboard()">
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isDraft && (userIsAdmin$ | async)"
+      routerLink="/mission-control/activator-store/edit"
+      [queryParams]="{ id: activator.id }"
+      (click)="edit()"
+      class="button-policy"
+    >
+      Edit
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isDraft && (userIsAdmin$ | async)"
+      (click)="onboard()"
+      class="button-policy"
+    >
       Onboard
     </button>
   </div>
