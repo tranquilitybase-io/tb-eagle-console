@@ -77,7 +77,6 @@ export class ActivatorStoreHomeComponent implements OnInit {
   }
 
   onSwitch(categorySwitch) {
-    console.log(categorySwitch);
     this.router.navigate(['mission-control', 'activator-store'], {
       queryParams: categorySwitch
     });
