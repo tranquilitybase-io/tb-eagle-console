@@ -29,6 +29,7 @@ import { resetAPICallStatuses } from './../activator-store.actions';
 export class ActivatorStoreHomeComponent implements OnInit {
   category$: Observable<string>;
   category: string;
+  status: string;
   showCategoriesParam$: Observable<string>;
   categoriesCount$: Observable<number> = this.store.pipe(select(selectCategoriesCount));
   activatorsCount$: Observable<number> = this.store.pipe(select(selectActivatorsCount));
@@ -59,6 +60,13 @@ export class ActivatorStoreHomeComponent implements OnInit {
     this.category$ = this.route.queryParamMap.pipe(
       map(queryParams => {
         this.category = queryParams.get('category');
+        this.status = queryParams.get('status');
+        const params = {
+          ...(this.category && { category: this.category }),
+          ...(this.status && { status: this.status }),
+          ...(!this.category && !this.status && { showCategories: true })
+        };
+        this.onSwitch(params);
         return this.category;
       })
     );

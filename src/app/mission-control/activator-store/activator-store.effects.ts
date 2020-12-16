@@ -63,7 +63,6 @@ export class ActivatorStoreEffects {
       ...(category && { category }),
       ...(status && { status })
     };
-    console.log('params', params);
     return params;
   }
 
@@ -76,7 +75,12 @@ export class ActivatorStoreEffects {
             setActivatorsCount({ activatorsCount: activators.length }),
             getActivatorsSuccess({ activators })
           ]),
-          catchError(error => of(getActivatorsError({ error })))
+          catchError(error => {
+            if (error.status === 404) {
+              return of(getActivatorsSuccess({ activators: [] }));
+            }
+            return of(getActivatorsError({ error }));
+          })
         )
       )
     )

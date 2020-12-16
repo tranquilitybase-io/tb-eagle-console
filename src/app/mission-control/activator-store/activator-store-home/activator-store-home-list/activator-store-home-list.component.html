@@ -165,5 +165,11 @@
   <mat-card *ngIf="(getByActivatorsStatus$ | async).loading" class="progress-spinner-container">
     <mat-progress-spinner color="primary" mode="indeterminate"> </mat-progress-spinner>
   </mat-card>
+  <mat-card
+    *ngIf="(activators$ | async).length === 0 && !(getByActivatorsStatus$ | async).loading"
+    class="progress-spinner-container"
+  >
+    No data meeting the given criteria
+  </mat-card>
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

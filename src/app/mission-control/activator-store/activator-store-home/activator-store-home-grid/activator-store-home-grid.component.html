@@ -1,8 +1,11 @@
 <div *ngIf="(getByActivatorsStatus$ | async).loading" class="spinner-container">
   <mat-spinner></mat-spinner>
 </div>
+<div *ngIf="(activators$ | async).length === 0 && !(getByActivatorsStatus$ | async).loading" class="spinner-container">
+  No data meeting the given criteria
+</div>
 <mat-grid-list
-  *ngIf="!(getByActivatorsStatus$ | async).loading"
+  *ngIf="!(getByActivatorsStatus$ | async).loading && (activators$ | async).length > 0"
   [cols]="(layout$ | async).gridCols"
   [rowHeight]="(layout$ | async).activatorGridItemHeight"
   gutterSize="24px"
