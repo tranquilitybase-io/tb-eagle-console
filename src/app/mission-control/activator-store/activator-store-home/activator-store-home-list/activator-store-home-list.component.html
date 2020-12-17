@@ -13,7 +13,7 @@
   </mat-form-field>
 </div>
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="(getByCategoryStatus$ | async).loading ? null : dataSource" matSort>
+  <table mat-table [dataSource]="(getByActivatorsStatus$ | async).loading ? null : dataSource" matSort>
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -162,8 +162,14 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-card *ngIf="(getByCategoryStatus$ | async).loading" class="progress-spinner-container">
+  <mat-card *ngIf="(getByActivatorsStatus$ | async).loading" class="progress-spinner-container">
     <mat-progress-spinner color="primary" mode="indeterminate"> </mat-progress-spinner>
+  </mat-card>
+  <mat-card
+    *ngIf="(activators$ | async).length === 0 && !(getByActivatorsStatus$ | async).loading"
+    class="progress-spinner-container"
+  >
+    No data meeting the given criteria
   </mat-card>
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
