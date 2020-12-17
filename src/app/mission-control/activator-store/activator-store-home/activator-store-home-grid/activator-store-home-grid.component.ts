@@ -1,7 +1,6 @@
-import { ActivatorsQueryParams } from './../../activator-store.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Activator } from '../../activator-store.model';
+import { Activator, ActivatorsQueryParams } from '../../activator-store.model';
 import { LayoutService } from '@app/layout/layout.service';
 import { Layout } from '@app/layout/layout.model';
 import { ActivatedRoute, ParamMap } from '@angular/router';

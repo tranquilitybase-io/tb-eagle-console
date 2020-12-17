@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ActivatorStoreService } from './activator-store.service';
-import { first, mergeMap, switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
+import { first, switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
 import {
   createActivatorByURL,
   createActivatorByURLError,
@@ -44,7 +44,6 @@ import { selectUser } from '@app/login/login.reducer';
 import { of } from 'rxjs';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 import { ActivatedRoute } from '@angular/router';
-import { ActivatorsQueryParams } from './activator-store.model';
 
 @Injectable()
 export class ActivatorStoreEffects {

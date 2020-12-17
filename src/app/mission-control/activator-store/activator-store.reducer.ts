@@ -56,19 +56,19 @@ export const featureKey = 'activator-store';
 const initialState = {
   activatorData: {} as Activator,
   activators: [] as Activator[],
-  getActivatorsStatus: defaultLoadable() as Loadable,
   categories: [] as ActivatorCategory[],
   createActivatorByURLStatus: defaultLoadable() as Loadable,
   denyAccessStatus: defaultLoadable() as Loadable,
   getActivatorCategoriesStatus: defaultLoadable() as Loadable,
+  getActivatorsStatus: defaultLoadable() as Loadable,
   getMetaDataStatus: defaultLoadable() as Loadable,
   grantAccessStatus: defaultLoadable() as Loadable,
+  onboardActivatorStatus: defaultLoadable() as Loadable,
   requestAccessStatus: defaultLoadable() as Loadable,
   setDeprecatedStatus: defaultLoadable() as Loadable,
   setLockedStatus: defaultLoadable() as Loadable,
   step: 0,
-  updateActivatorStatus: defaultLoadable() as Loadable,
-  onboardActivatorStatus: defaultLoadable() as Loadable
+  updateActivatorStatus: defaultLoadable() as Loadable
 };
 const innerReducer = createReducer(
   initialState,

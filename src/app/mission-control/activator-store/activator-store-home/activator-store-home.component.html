@@ -54,7 +54,6 @@
       (click)="onSwitch({ showCategories: true })"
     >
       Category
-      <!-- <span class="count">({{ categoriesCount$ | async }})</span> -->
     </button>
     <button
       *ngIf="
@@ -66,7 +65,6 @@
       (click)="onSwitch({ category: category })"
     >
       {{ category$ | async }}
-      <!-- <span class="count">({{ activatorsCount$ | async }})</span> -->
     </button>
     <button
       *ngIf="
@@ -80,7 +78,6 @@
       (click)="onSwitch({ category: 'All' })"
     >
       All
-      <!-- <span class="count">({{ activatorsCount$ | async }})</span> -->
     </button>
     <button
       mat-flat-button
