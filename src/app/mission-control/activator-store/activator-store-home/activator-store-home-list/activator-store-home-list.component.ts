@@ -1,18 +1,18 @@
-import { ActivatorStoreDialogCreateOnboardingComponent } from './../../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Layout } from '@app/layout/layout.model';
 import { LayoutService } from '@app/layout/layout.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Store, select } from '@ngrx/store';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Activator } from '../../activator-store.model';
-import { setDeprecated, setLocked, requestAccess, getByCategory } from '../../activator-store.actions';
-import { selectActivatorsByCategoryData, selectGetByCategoryStatus } from '../../activator-store.reducer';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Activator, ActivatorsQueryParams } from '../../activator-store.model';
+import { setDeprecated, setLocked, requestAccess, getActivators } from '../../activator-store.actions';
+import { selectActivators, selectGetActivatorsStatus } from '../../activator-store.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { ActivatorStoreDialogGrantAccessComponent } from '../../activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
 import { KeyValue } from '@angular/common';
 import { Loadable } from '@app/shared/shared.reducer';
+import { ActivatorStoreDialogCreateOnboardingComponent } from '../../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 
 @Component({
   selector: 'app-activator-store-home-list',
@@ -20,8 +20,8 @@ import { Loadable } from '@app/shared/shared.reducer';
   styleUrls: ['./activator-store-home-list.component.scss']
 })
 export class ActivatorStoreHomeListComponent implements OnInit {
-  activators$: Observable<Activator[]> = this.store.select(selectActivatorsByCategoryData);
-  getByCategoryStatus$: Observable<Loadable> = this.store.select(selectGetByCategoryStatus);
+  activators$: Observable<Activator[]> = this.store.select(selectActivators);
+  getByActivatorsStatus$: Observable<Loadable> = this.store.select(selectGetActivatorsStatus);
   layout$: Observable<Layout>;
   private statusColorMap: Map<string, string>;
   private teamList: KeyValue<string, string>[];
@@ -62,8 +62,9 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    const categorySwitch = this.route.snapshot.queryParams.categorySwitch;
-    this.store.dispatch(getByCategory({ category: categorySwitch }));
+    this.route.queryParamMap.subscribe(queryParams => {
+      this.getActivators(queryParams);
+    });
 
     this.activators$.subscribe(activators => {
       this.dataSource = new MatTableDataSource(activators);
@@ -73,6 +74,19 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     });
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
+  }
+
+  getActivators(queryParams: ParamMap) {
+    console.log('activator home list ');
+    const category = queryParams.get('category');
+    const status = queryParams.get('status');
+
+    const params = {
+      ...(category !== null && { category }),
+      ...(status !== null && { status })
+    };
+
+    this.store.dispatch(getActivators({ queryParams: params as ActivatorsQueryParams }));
   }
 
   applyFilter(filter: string) {
