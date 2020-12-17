@@ -121,4 +121,9 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
   get activatorLink(): string {
     return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.activatorLink;
   }
+
+  unSlugify(string) {
+    const unslugifiedString = string.replaceAll('_', ' ');
+    return unslugifiedString.charAt(0).toUpperCase() + unslugifiedString.slice(1);
+  }
 }
