@@ -1,0 +1,85 @@
+<header>
+  <app-breadcrumbs> </app-breadcrumbs>
+</header>
+<main>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Github Credentials
+        </mat-panel-title>
+        <mat-panel-description>
+          Credentials are used for onboarding activators
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form [formGroup]="settingsForm">
+        <p>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              required
+              type="text"
+              maxlength="30"
+              formControlName="username"
+              placeholder="E.g. username..."
+            />
+            <mat-error *ngIf="f.username.errors?.required">Username is <strong>required</strong> </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="small-width" appearance="outline">
+            <mat-label>Token</mat-label>
+            <input matInput required type="text" formControlName="token" placeholder="E.g. token..." />
+            <mat-error *ngIf="f.token.errors?.required">Token is <strong>required</strong> </mat-error>
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onClear()"
+            [disabled]="
+              areSettinsEmpty() ||
+              (createSettingsStatus$ | async).loading ||
+              (updateSettingsStatus$ | async).loading ||
+              (deleteSettingsStatus$ | async).loading
+            "
+            class="buttonLeft"
+          >
+            <mat-icon class="app-cancel-icon">clear</mat-icon>
+            Clear
+          </button>
+          <button
+            *ngIf="!areSettinsEmpty()"
+            mat-raised-button
+            color="accent"
+            [disabled]="
+              (createSettingsStatus$ | async).loading ||
+              (updateSettingsStatus$ | async).loading ||
+              (deleteSettingsStatus$ | async).loading
+            "
+            (click)="onUpdate(settingsForm.value)"
+          >
+            <mat-icon class="app-cancel-icon">update</mat-icon>
+            Update
+          </button>
+          <button
+            *ngIf="areSettinsEmpty()"
+            mat-raised-button
+            color="accent"
+            [disabled]="
+              (createSettingsStatus$ | async).loading ||
+              (updateSettingsStatus$ | async).loading ||
+              (deleteSettingsStatus$ | async).loading
+            "
+            (click)="onCreate(settingsForm.value)"
+          >
+            <mat-icon class="app-cancel-icon">create</mat-icon>
+            Create
+          </button>
+        </mat-action-row>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+</main>
