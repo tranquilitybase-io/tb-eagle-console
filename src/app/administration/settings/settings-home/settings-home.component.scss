@@ -4,7 +4,7 @@ header {
 }
 
 main {
-  padding: 3rem;
+  padding: 1.5rem 2rem 0 2rem;
   margin-bottom: 5rem;
 
   p {
@@ -18,10 +18,11 @@ main {
         width: 30%;
         margin-right: 2rem;
       }
-    }
-  }
 
-  .buttonLeft {
-    margin-right: 2rem;
+      &.half-width {
+        width: 45%;
+        margin-right: 2rem;
+      }
+    }
   }
 }

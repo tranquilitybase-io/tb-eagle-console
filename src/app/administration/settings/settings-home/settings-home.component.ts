@@ -1,19 +1,18 @@
-import {
-  selectSettings,
-  selectCreateSettingsStatus,
-  selectUpdateSettingsStatus,
-  selectDeleteSettingsStatus
-} from './../settings.reducer';
-import { getSettings, createSettings, updateSettings } from './../settings.actions';
 import { Component, OnInit } from '@angular/core';
 import { Settings } from '../settings.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Loadable } from '@app/shared/shared.reducer';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { resetApiStatuses } from '../settings.actions';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { SettingsDialogComponent } from '../setting-dialog/settings-dialog-clear/settings-dialog-clear.component';
 import { MatDialog } from '@angular/material';
+import { createSettings, getSettings, resetApiStatuses, updateSettings } from '../settings.actions';
+import {
+  selectCreateSettingsStatus,
+  selectDeleteSettingsStatus,
+  selectSettings,
+  selectUpdateSettingsStatus
+} from '../settings.reducer';
 
 @Component({
   selector: 'app-settings-home',
@@ -28,6 +27,8 @@ export class SettingsHomeComponent implements OnInit {
   updateSettingsStatus$: Observable<Loadable>;
   deleteSettingsStatus$: Observable<Loadable>;
 
+  isGitHubCredentialsEdit = false;
+
   constructor(private store: Store<any>, private formBuilder: FormBuilder, private dialog: MatDialog) {}
 
   ngOnInit() {
@@ -38,8 +39,8 @@ export class SettingsHomeComponent implements OnInit {
     this.deleteSettingsStatus$ = this.store.select(selectDeleteSettingsStatus);
 
     this.settingsForm = this.formBuilder.group({
-      token: ['', Validators.required],
-      username: ['', Validators.required]
+      token: [''],
+      username: ['']
     });
 
     this.store.select(selectSettings).subscribe(settings => {
@@ -66,24 +67,38 @@ export class SettingsHomeComponent implements OnInit {
     status.loading ? this.settingsForm.disable() : this.settingsForm.enable();
   }
 
-  onCreate(settings) {
-    this.settingsForm.valid ? this.store.dispatch(createSettings({ settings })) : this.settingsForm.markAllAsTouched();
+  handleSave(settings) {
+    this.settingsForm.valid
+      ? this.store.dispatch(this.areSettinsEmpty ? createSettings({ settings }) : updateSettings({ settings }))
+      : this.settingsForm.markAllAsTouched();
+
+    this.isGitHubCredentialsEdit = false;
   }
 
-  onUpdate(settings) {
-    this.store.dispatch(updateSettings({ settings }));
+  handleClear() {
+    this.dialog
+      .open(SettingsDialogComponent, {
+        autoFocus: false
+      })
+      .afterClosed()
+      .subscribe(result => {
+        if (result === 'Yes') this.isGitHubCredentialsEdit = false;
+      });
   }
 
-  onClear() {
-    this.dialog.open(SettingsDialogComponent, {
-      autoFocus: false
-    });
+  handleCancel() {
+    this.settingsForm.patchValue(this.settings);
+    this.isGitHubCredentialsEdit = false;
   }
 
-  areSettinsEmpty(): boolean {
+  get areSettinsEmpty(): boolean {
     return (
       (this.settings.token === undefined || this.settings.token === '') &&
       (this.settings.username === undefined || this.settings.username === '')
     );
+  }
+
+  setGitHubCredentialsEdit() {
+    this.isGitHubCredentialsEdit = true;
   }
 }

@@ -15,10 +15,10 @@ export class SettingsDialogComponent implements OnInit {
 
   confirm() {
     this.store.dispatch(deleteSettings());
-    this.dialogRef.close();
+    this.dialogRef.close('Yes');
   }
 
   cancel() {
-    this.dialogRef.close();
+    this.dialogRef.close('No');
   }
 }
