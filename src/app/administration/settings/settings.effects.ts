@@ -4,18 +4,18 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SettingsService } from './settings.service';
 import { catchError, mergeMap, map } from 'rxjs/operators';
 import {
-  getSettings,
-  getSettingsError,
-  getSettingsSuccess,
   createSettings,
   createSettingsError,
   createSettingsSuccess,
-  updateSettings,
-  updateSettingsError,
-  updateSettingsSuccess,
   deleteSettings,
   deleteSettingsError,
-  deleteSettingsSuccess
+  deleteSettingsSuccess,
+  getSettings,
+  getSettingsError,
+  getSettingsSuccess,
+  updateSettings,
+  updateSettingsError,
+  updateSettingsSuccess
 } from './settings.actions';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 

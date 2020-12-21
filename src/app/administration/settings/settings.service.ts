@@ -23,10 +23,10 @@ export class SettingsService extends EntityCollectionServiceBase<Settings> {
     });
   };
 
-  getSettings = (): Observable<Settings> => this.http.get<Settings>(this.url, { headers: this.prepareHeaders() });
   createSettings = (settings: Settings): Observable<Settings> =>
     this.http.post<Settings>(this.url, settings, { headers: this.prepareHeaders() });
+  deleteSettings = (): Observable<Settings> => this.http.delete<any>(this.url, { headers: this.prepareHeaders() });
+  getSettings = (): Observable<Settings> => this.http.get<Settings>(this.url, { headers: this.prepareHeaders() });
   updateSettings = (settings: Settings): Observable<Settings> =>
     this.http.put<Settings>(this.url, settings, { headers: this.prepareHeaders() });
-  deleteSettings = (): Observable<Settings> => this.http.delete<any>(this.url, { headers: this.prepareHeaders() });
 }

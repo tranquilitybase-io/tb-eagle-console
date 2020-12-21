@@ -1,37 +1,37 @@
 import { onLoadableInit, onLoadableSuccess, onLoadableError } from '../../shared/shared.reducer';
 import {
-  getSettings,
-  getSettingsError,
-  getSettingsSuccess,
   createSettings,
   createSettingsError,
   createSettingsSuccess,
-  updateSettings,
-  updateSettingsError,
-  updateSettingsSuccess,
   deleteSettings,
   deleteSettingsError,
   deleteSettingsSuccess,
-  resetApiStatuses
+  getSettings,
+  getSettingsError,
+  getSettingsSuccess,
+  resetApiStatuses,
+  updateSettings,
+  updateSettingsError,
+  updateSettingsSuccess
 } from './settings.actions';
 import { defaultLoadable, Loadable } from '@app/shared/shared.reducer';
 import { createReducer, on, createSelector } from '@ngrx/store';
 import { Settings } from './settings.model';
 
 export const initialState = {
-  settings: {} as Settings,
-  getSettingsStatus: defaultLoadable() as Loadable,
   createSettingsStatus: defaultLoadable() as Loadable,
-  updateSettingsStatus: defaultLoadable() as Loadable,
-  deleteSettingsStatus: defaultLoadable() as Loadable
+  deleteSettingsStatus: defaultLoadable() as Loadable,
+  getSettingsStatus: defaultLoadable() as Loadable,
+  settings: {} as Settings,
+  updateSettingsStatus: defaultLoadable() as Loadable
 };
 
 export interface SettingsState {
-  settings: Settings;
-  getSettingsStatus: Loadable;
   createSettingsStatus: Loadable;
-  updateSettingsStatus: Loadable;
   deleteSettingsStatus: Loadable;
+  getSettingsStatus: Loadable;
+  settings: Settings;
+  updateSettingsStatus: Loadable;
 }
 export const featureKey = 'settings';
 
@@ -81,8 +81,8 @@ export default function reducer(state, action) {
 
 export const selectFeature = state => state[featureKey] as SettingsState;
 
-export const selectSettings = createSelector(selectFeature, state => state && state.settings);
-export const selectGetSettingsStatus = createSelector(selectFeature, state => state && state.getSettingsStatus);
 export const selectCreateSettingsStatus = createSelector(selectFeature, state => state && state.createSettingsStatus);
-export const selectUpdateSettingsStatus = createSelector(selectFeature, state => state && state.updateSettingsStatus);
 export const selectDeleteSettingsStatus = createSelector(selectFeature, state => state && state.deleteSettingsStatus);
+export const selectGetSettingsStatus = createSelector(selectFeature, state => state && state.getSettingsStatus);
+export const selectSettings = createSelector(selectFeature, state => state && state.settings);
+export const selectUpdateSettingsStatus = createSelector(selectFeature, state => state && state.updateSettingsStatus);
