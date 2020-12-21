@@ -18,9 +18,9 @@ import {
   getActivatorCategories,
   getActivatorCategoriesError,
   getActivatorCategoriesSuccess,
-  getByCategory,
-  getByCategoryError,
-  getByCategorySuccess,
+  getActivators,
+  getActivatorsError,
+  getActivatorsSuccess,
   getMetaData,
   getMetaDataError,
   getMetaDataSuccess,
@@ -56,20 +56,19 @@ export const featureKey = 'activator-store';
 const initialState = {
   activatorData: {} as Activator,
   activators: [] as Activator[],
-  activatorsByCategoryData: [],
   categories: [] as ActivatorCategory[],
   createActivatorByURLStatus: defaultLoadable() as Loadable,
   denyAccessStatus: defaultLoadable() as Loadable,
   getActivatorCategoriesStatus: defaultLoadable() as Loadable,
-  getByCategoryStatus: defaultLoadable() as Loadable,
+  getActivatorsStatus: defaultLoadable() as Loadable,
   getMetaDataStatus: defaultLoadable() as Loadable,
   grantAccessStatus: defaultLoadable() as Loadable,
+  onboardActivatorStatus: defaultLoadable() as Loadable,
   requestAccessStatus: defaultLoadable() as Loadable,
   setDeprecatedStatus: defaultLoadable() as Loadable,
   setLockedStatus: defaultLoadable() as Loadable,
   step: 0,
-  updateActivatorStatus: defaultLoadable() as Loadable,
-  onboardActivatorStatus: defaultLoadable() as Loadable
+  updateActivatorStatus: defaultLoadable() as Loadable
 };
 const innerReducer = createReducer(
   initialState,
@@ -112,13 +111,13 @@ const innerReducer = createReducer(
   on(setCategoriesCount, (state, { categoriesCount }) => ({ ...state, categoriesCount })),
   on(setProgress, (state, { step }) => ({ ...state, step })),
   on(storeActivatorData, (state, { activatorData }) => ({ ...state, activatorData })),
-  // get by Category
-  on(getByCategory, state => ({ ...state, getByCategoryStatus: onLoadableInit() })),
-  on(getByCategoryError, (state, { error }) => ({ ...state, getByCategoryStatus: onLoadableError(error) })),
-  on(getByCategorySuccess, (state, { activators }) => ({
+  // get activators
+  on(getActivators, state => ({ ...state, getActivatorsStatus: onLoadableInit() })),
+  on(getActivatorsError, (state, { error }) => ({ ...state, getActivatorsStatus: onLoadableError(error) })),
+  on(getActivatorsSuccess, (state, { activators }) => ({
     ...state,
-    activatorsByCategoryData: activators,
-    getByCategoryStatus: onLoadableSuccess()
+    activators,
+    getActivatorsStatus: onLoadableSuccess()
   })),
   // get categories
   on(getActivatorCategories, state => ({ ...state, getActivatorCategoriesStatus: onLoadableInit() })),
@@ -181,8 +180,8 @@ export const selectActivatorData = createSelector(
   selectFeature,
   ({ activatorData }) => activatorData || ({} as Activator)
 );
-export const selectActivatorsByCategoryData = createSelector(selectFeature, state =>
-  state ? state.activatorsByCategoryData : ([] as Activator[])
+export const selectActivators = createSelector(selectFeature, state =>
+  state ? state.activators : ([] as Activator[])
 );
 export const selectActivatorsCount = createSelector(selectFeature, ({ activatorsCount }) => activatorsCount);
 export const selectCategories = createSelector(selectFeature, state => state.categories);
@@ -196,7 +195,7 @@ export const selectGetActivatorCategoriesStatus = createSelector(
   selectFeature,
   state => state.getActivatorCategoriesStatus
 );
-export const selectGetByCategoryStatus = createSelector(selectFeature, state => state.getByCategoryStatus);
+export const selectGetActivatorsStatus = createSelector(selectFeature, state => state.getActivatorsStatus);
 export const selectGrantAccessStatus = createSelector(selectFeature, state => state && state.grantAccessStatus);
 export const selectProgress = createSelector(selectFeature, ({ step }) => step);
 export const selectRequestAccessStatus = createSelector(selectFeature, state => state && state.requestAccessStatus);

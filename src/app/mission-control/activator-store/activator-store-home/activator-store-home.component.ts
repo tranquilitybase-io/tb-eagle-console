@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +27,10 @@ import { resetAPICallStatuses } from './../activator-store.actions';
   styleUrls: ['./activator-store-home.component.scss']
 })
 export class ActivatorStoreHomeComponent implements OnInit {
-  categorySwitch$: Observable<string>;
+  category$: Observable<string>;
+  category: string;
+  status: string;
+  showCategoriesParam$: Observable<string>;
   categoriesCount$: Observable<number> = this.store.pipe(select(selectCategoriesCount));
   activatorsCount$: Observable<number> = this.store.pipe(select(selectActivatorsCount));
 
@@ -54,20 +57,28 @@ export class ActivatorStoreHomeComponent implements OnInit {
   ngOnInit() {
     this.resetAPIStatuses();
     this.store.dispatch(setProgress({ step: 0 }));
-    this.categorySwitch$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('categorySwitch')));
-
-    this.onSwitch(this.route.snapshot.queryParams.categorySwitch || 'Category');
+    this.category$ = this.route.queryParamMap.pipe(
+      map(queryParams => {
+        this.category = queryParams.get('category');
+        this.status = queryParams.get('status');
+        const params = {
+          ...(this.category && { category: this.category }),
+          ...(this.status && { status: this.status }),
+          ...(!this.category && !this.status && { showCategories: true })
+        };
+        this.onSwitch(params);
+        return this.category;
+      })
+    );
   }
 
   resetAPIStatuses() {
     this.store.dispatch(resetAPICallStatuses());
   }
 
-  onSwitch(categorySwitch: string) {
-    this.router.navigate(['.'], {
-      relativeTo: this.route,
-      queryParamsHandling: 'merge',
-      queryParams: { categorySwitch }
+  onSwitch(categorySwitch) {
+    this.router.navigate(['mission-control', 'activator-store'], {
+      queryParams: categorySwitch
     });
   }
 
@@ -88,11 +99,39 @@ export class ActivatorStoreHomeComponent implements OnInit {
     );
   }
 
-  get isCategorySwitchSelected$(): Observable<boolean> {
-    return this.categorySwitch$.pipe(map(categorySwitch => categorySwitch === 'Category'));
+  get isSelectedShowCateogries$(): Observable<boolean> {
+    return this.route.queryParamMap.pipe(map(queryParams => queryParams.get('showCategories') === 'true'));
   }
 
   get isAllSwitchSelected$(): Observable<boolean> {
-    return this.categorySwitch$.pipe(map(categorySwitch => categorySwitch === 'All'));
+    return this.route.queryParamMap.pipe(
+      map(queryParams => {
+        return queryParams.get('category') === 'All' && queryParams.get('status') !== 'Draft';
+      })
+    );
+  }
+
+  get isDraftSwitchSelected$(): Observable<boolean> {
+    return this.route.queryParamMap.pipe(
+      map(queryParams => {
+        return queryParams.get('status') === 'Draft';
+      })
+    );
+  }
+
+  get isAllDraftSwitchSelected$(): Observable<boolean> {
+    return this.route.queryParamMap.pipe(
+      map(queryParams => {
+        return queryParams.get('category') === 'All' && queryParams.get('status') === 'Draft';
+      })
+    );
+  }
+
+  get isCategorySelected$(): Observable<boolean> {
+    return this.route.queryParamMap.pipe(
+      map(queryParams => {
+        return queryParams.get('category') !== 'All';
+      })
+    );
   }
 }

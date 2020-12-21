@@ -1,62 +1,93 @@
-<mat-grid-list cols="5" rowHeight="400px" class="activ-view-info">
-  <mat-grid-tile [colspan]="3" [rowspan]="1">
-    <mat-grid-tile-header>Metadata</mat-grid-tile-header>
-    <mat-grid-list class="internal-mat-grid" cols="2" rowHeight="444px">
-      <mat-grid-tile [colspan]="2" [rowspan]="3">
-        <mat-card class="activ-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Description
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div>{{ activator.name }} - {{ activator.activatorMetadata.description }}</div>
-            <mat-list dense class="description-list">
-              <mat-list-item *ngFor="let property of properties">
-                <div class="mat-body-1">{{ property.name }}</div>
-
-                <div
-                  *ngIf="property.name !== 'Supported regions'; else isArray"
-                  class="mat-chip-alternative font-weight-bold"
-                >
-                  {{ property.value }}
-                </div>
-                <ng-template #isArray>
-                  <div *ngFor="let val of property.value" class="mat-chip-alternative font-weight-bold">
-                    {{ val }}
-                  </div>
-                </ng-template>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="1" class="configuration-grid-tile">
-    <mat-grid-tile-header>Configuration</mat-grid-tile-header>
-    <mat-grid-list class="internal-mat-grid" cols="1" rowHeight="70px">
-      <mat-card class="activ-dashboard-card">
-        <mat-card-content class="dashboard-card-content">
-          <mat-list dense class="description-list">
-            <mat-list-item *ngFor="let property of deploymentOptions">
-              <div class="mat-body-1">{{ property.name }}</div>
-              <div *ngFor="let val of property.value" class="mat-chip-alternative font-weight-bold">
-                {{ val !== null ? val.value : '' }}
-              </div>
-            </mat-list-item>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-list>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="1">
-    <mat-card class="app-dashboard-card">
+<div class="workspace-container">
+  <div class="column-container">
+    <div class="title">Metadata</div>
+    <mat-card class="activ-dashboard-card">
+      <mat-card-header>
+        <mat-card-title>
+          Description
+        </mat-card-title>
+      </mat-card-header>
       <mat-card-content class="dashboard-card-content">
-        <a [href]="activatorLink || '#'" class="custom-link" target="_blank">
-          View on GitHub<img src="assets/icons/github.svg" height="16" width="16" alt="GitHub" class="link-icon"
-        /></a>
+        <div>{{ activator.name }} - {{ activator.activatorMetadata.description }}</div>
+        <mat-list dense class="description-list">
+          <mat-list-item>
+            <div class="mat-body-1">Category</div>
+            <div class="mat-chip-alternative ">
+              {{ activator.activatorMetadata.category }}
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div class="mat-body-1">Platforms</div>
+            <div *ngFor="let platform of activator.activatorMetadata.platforms" class="mat-chip-alternative ">
+              {{ platform.value }}
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div class="mat-body-1">Type</div>
+            <div class="mat-chip-alternative">
+              {{ activator.activatorMetadata.type.value }}
+            </div>
+          </mat-list-item>
+          <mat-list-item *ngFor="let variable of activator.activatorMetadata.variables">
+            <div class="mat-body-1">{{ unSlugify(variable.name) }}</div>
+            <div class="mat-chip-alternative ">
+              {{ variable.value.length > 0 ? variable.value : '-' }}
+            </div>
+          </mat-list-item>
+        </mat-list>
       </mat-card-content>
     </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+
+  <div class="column-container">
+    <div class="title">Configuration</div>
+    <mat-card class="activ-dashboard-card">
+      <mat-card-content class="dashboard-card-content">
+        <mat-list dense class="description-list">
+          <mat-list-item>
+            <div class="mat-body-1">Environments</div>
+            <div *ngFor="let category of activator.envs" class="mat-chip-alternative">
+              {{ category.name }}
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div class="mat-body-1">CI (Continuous integration)</div>
+            <div *ngFor="let ci of activator.ci" class="mat-chip-alternative">
+              {{ ci.value }}
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div class="mat-body-1">CD (Continuous deployment)</div>
+            <div *ngFor="let cd of activator.cd" class="mat-chip-alternative">
+              {{ cd.value }}
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div class="mat-body-1">Supported regions</div>
+            <div *ngFor="let region of activator.regions" class="mat-chip-alternative">
+              {{ region }}
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div class="mat-body-1">Data sensitivity</div>
+            <div class="mat-chip-alternative">
+              {{ activator.sensitivity }}
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div class="mat-body-1">Source control</div>
+            <div class="mat-chip-alternative">
+              {{ activator.sourceControl?.value }}
+            </div>
+          </mat-list-item>
+          <mat-list-item>
+            <div class="mat-body-1">Business Unit</div>
+            <div class="mat-chip-alternative">
+              {{ activator.businessUnit?.name }}
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
