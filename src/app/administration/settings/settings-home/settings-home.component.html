@@ -1,0 +1,97 @@
+<header>
+  <app-breadcrumbs> </app-breadcrumbs>
+</header>
+<main>
+  <mat-accordion>
+    <form [formGroup]="settingsForm">
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            GitHub Credentials
+          </mat-panel-title>
+          <mat-panel-description>
+            Credentials are used for onboarding activators and modules
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              type="text"
+              maxlength="30"
+              formControlName="username"
+              placeholder="E.g. username..."
+              [readonly]="!isGitHubCredentialsEdit"
+            />
+          </mat-form-field>
+          <mat-form-field class="half-width" appearance="outline">
+            <mat-label>Personal Access Token</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="token"
+              placeholder="E.g. token..."
+              [readonly]="!isGitHubCredentialsEdit"
+            />
+          </mat-form-field>
+        </p>
+        <mat-action-row>
+          <button
+            *ngIf="isGitHubCredentialsEdit"
+            mat-button
+            (click)="handleClear()"
+            [disabled]="
+              areSettinsEmpty ||
+              (createSettingsStatus$ | async).loading ||
+              (updateSettingsStatus$ | async).loading ||
+              (deleteSettingsStatus$ | async).loading
+            "
+          >
+            Clear
+          </button>
+          <button
+            *ngIf="isGitHubCredentialsEdit"
+            mat-button
+            (click)="handleCancel()"
+            [disabled]="
+              (createSettingsStatus$ | async).loading ||
+              (updateSettingsStatus$ | async).loading ||
+              (deleteSettingsStatus$ | async).loading
+            "
+          >
+            Cancel
+          </button>
+          <button
+            *ngIf="isGitHubCredentialsEdit"
+            mat-button
+            color="primary"
+            [disabled]="
+              (createSettingsStatus$ | async).loading ||
+              (updateSettingsStatus$ | async).loading ||
+              (deleteSettingsStatus$ | async).loading
+            "
+            (click)="handleSave(settingsForm.value)"
+          >
+            Save
+          </button>
+          <button
+            *ngIf="!isGitHubCredentialsEdit"
+            mat-button
+            color="primary"
+            [disabled]="
+              (createSettingsStatus$ | async).loading ||
+              (updateSettingsStatus$ | async).loading ||
+              (deleteSettingsStatus$ | async).loading
+            "
+            (click)="setGitHubCredentialsEdit()"
+          >
+            Edit
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </form>
+  </mat-accordion>
+</main>
+
+<div class="app-bottom-background"></div>
