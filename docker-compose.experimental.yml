@@ -28,7 +28,6 @@ services:
       SQLALCHEMY_DATABASE_URI: 'mysql+mysqlconnector://eagle-user:eagle-user-secret-pw@tb-db/eagle_db'
       SQLALCHEMY_ECHO: 'False'
       SQLALCHEMY_TRACK_MODIFICATIONS: 'False'
-      CLIENT_ID: 576108226578-m876jb0mjk5gjsenvifthut89gna3j8o.apps.googleusercontent.com
       GCP_DAC_URL: 'gcp-dac:3100'
     depends_on:
       - tb-db
