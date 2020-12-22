@@ -19,7 +19,7 @@ export class SolutionsHomeDialogDeployComponent {
     private router: Router,
     private snackBar: MatSnackBar,
     private store: Store<any>,
-    @Inject(MAT_DIALOG_DATA) private solution: Solution
+    @Inject(MAT_DIALOG_DATA) public solution: Solution
   ) {}
 
   cancel() {
