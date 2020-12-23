@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { selectIsSelectedSolution } from '../mission-control/solutions/solutions.reducer';
 import { map, mergeMap } from 'rxjs/operators';
 import { ActivatorStoreComponent } from '@app/mission-control/activator-store/activator-store.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { YesNoDialogComponent } from '@app/shared/dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
 import { discardSelectedSolution } from '@app/mission-control/solutions/solutions.actions';
 import { Observable, of } from 'rxjs';

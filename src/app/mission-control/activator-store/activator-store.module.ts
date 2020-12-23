@@ -13,7 +13,7 @@ import { ActivatorStoreGuard } from '@app/guards/activator-store-guard';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatStepperModule } from '@angular/material';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const routes: Routes = [
   {

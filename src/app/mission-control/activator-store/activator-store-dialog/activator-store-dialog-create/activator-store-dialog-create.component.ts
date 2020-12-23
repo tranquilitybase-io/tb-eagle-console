@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { createActivatorByURL, resetActivatorDataStatus } from '../../activator-store.actions';
 import { selectCreateActivatorByURLStatus } from '../../activator-store.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({

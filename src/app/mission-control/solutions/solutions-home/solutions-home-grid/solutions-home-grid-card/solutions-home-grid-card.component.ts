@@ -2,7 +2,7 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { DeploymentState } from '@app/shared/shared.model';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import { Store } from '@ngrx/store';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { SolutionsHomeDialogDeployComponent } from '../../solutions-home-dialog/solutions-home-dialog-deploy/solutions-home-dialog-deploy.component';
 import { LayoutService } from '@app/layout/layout.service';
 import { Layout } from '@app/layout/layout.model';

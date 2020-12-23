@@ -3,11 +3,13 @@ import { Observable } from 'rxjs';
 import { Solution } from '../../solutions.model';
 import { Layout } from '@app/layout/layout.model';
 import { LayoutService } from '@app/layout/layout.service';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { DeploymentState } from '@app/shared/shared.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { SolutionsHomeDialogDeployComponent } from '../solutions-home-dialog/solutions-home-dialog-deploy/solutions-home-dialog-deploy.component';
 import { Store } from '@ngrx/store';
 import { toggleFavorites } from '../../solutions.actions';
