@@ -17,7 +17,7 @@ import {
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { resetAPICallStatuses } from './../activator-store.actions';
 

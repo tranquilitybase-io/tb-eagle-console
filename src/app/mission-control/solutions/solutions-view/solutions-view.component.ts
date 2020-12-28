@@ -6,7 +6,7 @@ import { SolutionsService } from '../solutions.service';
 import { Store, select } from '@ngrx/store';
 import { selectSolutionDeploymentsData } from '../solutions.reducer';
 import { selectApplicationDeploymentsData } from '@app/mission-control/applications/applications.reducer';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
 import { startDeployment } from '../solutions.actions';
 import {

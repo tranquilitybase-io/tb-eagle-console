@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Loadable } from '@app/shared/shared.reducer';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SettingsDialogComponent } from '../setting-dialog/settings-dialog-clear/settings-dialog-clear.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { createSettings, getSettings, resetApiStatuses, updateSettings } from '../settings.actions';
 import {
   selectCreateSettingsStatus,

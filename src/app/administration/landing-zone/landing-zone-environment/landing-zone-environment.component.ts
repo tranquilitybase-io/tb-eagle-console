@@ -26,7 +26,7 @@ import { FolderStructureNode, LanVPC, Environment } from './landing-zone-environ
 import { LandingZoneDialogDeployEnvComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env/landing-zone-dialog-deploy-env.component';
 import { LandingZoneDialogDeployEnvEnvironmentErrorComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env-environment-error/landing-zone-dialog-deploy-env-environment-error.component';
 
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Loadable } from '@app/shared/shared.reducer';
 import { Router } from '@angular/router';
 import { selectLandingZoneEnvironmentReadOnly } from '../landing-zone.reducer';
