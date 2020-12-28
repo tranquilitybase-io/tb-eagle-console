@@ -62,7 +62,9 @@ const entityMetadata: EntityMetadataMap = {
   User: {},
   BusinessUnit: {},
   TeamMember: {},
-  Settings: {}
+  Settings: {},
+  SharedService: {},
+  SharedServiceHome: {}
 };
 
 export default {
