@@ -6,6 +6,6 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 })
 export class SharedServiceService extends EntityCollectionServiceBase<any> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('SharedService', serviceElementsFactory);
+    super('SharedService', serviceElementsFactory); // RENAME TO MATCH API!
   }
 }
