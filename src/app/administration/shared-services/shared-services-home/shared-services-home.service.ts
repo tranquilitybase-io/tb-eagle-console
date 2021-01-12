@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
+import { SharedServicesAction } from '../shared-services.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SharedServiceService extends EntityCollectionServiceBase<any> {
+export class SharedServicesHomeService extends EntityCollectionServiceBase<SharedServicesAction> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('SharedService', serviceElementsFactory); // RENAME TO MATCH API!
+    super('SharedServicesAction', serviceElementsFactory);
   }
 }

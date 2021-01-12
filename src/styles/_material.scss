@@ -111,7 +111,8 @@ $material-custom-theme: mat-light-theme($material-custom-primary, $material-cust
     stroke: #c4c4c4;
   }
 
-  header.app-landing-header {
+  header.app-landing-header,
+  header.app-shared-services-header {
     .mat-step-header .mat-step-icon-selected,
     .mat-step-header .mat-step-icon-state-done,
     .mat-step-header .mat-step-icon-state-edit {

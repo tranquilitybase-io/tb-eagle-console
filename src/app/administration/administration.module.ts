@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: 'shared-services',
-        loadChildren: () => import('./shared-service/shared-service.module').then(m => m.SharedServiceModule),
+        loadChildren: () => import('./shared-services/shared-services.module').then(m => m.SharedServicesModule),
         data: {
           breadcrumbsSteps: [
             {

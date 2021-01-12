@@ -4,9 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { StoreModule } from '@ngrx/store';
-import reducer, { featureKey } from './shared-service.reducer';
+import reducer, { featureKey } from './shared-services.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { LandingZoneEnvironmentEffects } from './shared-service.effects';
+import { SharedServicesEnvironmentEffects } from './shared-services.effects';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +24,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./shared-service-home/shared-service-home.module').then(m => m.SharedServiceHomeModule)
+    loadChildren: () =>
+      import('./shared-services-home/shared-services-home.module').then(m => m.SharedServicesHomeModule)
   }
 ];
 
@@ -34,7 +35,7 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-    EffectsModule.forFeature([LandingZoneEnvironmentEffects]),
+    EffectsModule.forFeature([SharedServicesEnvironmentEffects]),
     StoreModule.forFeature(featureKey, reducer),
     LayoutModule,
     MatButtonModule,
@@ -55,4 +56,4 @@ const routes: Routes = [
     }
   ]
 })
-export class SharedServiceModule {}
+export class SharedServicesModule {}

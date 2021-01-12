@@ -12,6 +12,7 @@ header {
     padding: 0;
     box-shadow: unset;
     background: unset;
+
     .title {
       font-size: 1.25rem;
       font-weight: 500;
@@ -29,7 +30,7 @@ header {
 
       h2 {
         margin-left: 26px;
-        font-family: 'SF Pro Display';
+        font-family: 'SF Pro Display', Roboto, 'Helvetica Neue', sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 16px;
@@ -39,7 +40,7 @@ header {
       p {
         max-width: 50%;
         margin-left: 26px;
-        font-family: 'SF Pro Display';
+        font-family: 'SF Pro Display', Roboto, 'Helvetica Neue', sans-serif;
         font-size: 11px;
         line-height: 14px;
         color: #828282;

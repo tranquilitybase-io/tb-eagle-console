@@ -1,13 +1,14 @@
 export interface Layout {
+  activatorGridItemHeight: string;
+  applicationCreationReviewGridColumnsAmount: number;
+  applicationCreationReviewGridHeight: string;
+  applicationCreationReviewLeftColumnSpan: number;
+  applicationGridItemHeight: string;
   gridCols: number;
   landingZoneGridItemHeight: string;
-  activatorGridItemHeight: string;
-  applicationGridItemHeight: string;
-  applicationCreationReviewGridHeight: string;
-  applicationCreationReviewGridColumnsAmount: number;
-  applicationCreationReviewLeftColumnSpan: number;
+  sharedServicesGridItemHeight: string;
   solutionGridItemHeight: string;
+  solutionsViewApplicationsGridHeight: string;
   teamGridItemHeight: string;
   userGridItemHeight: string;
-  solutionsViewApplicationsGridHeight: string;
 }
