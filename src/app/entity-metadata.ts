@@ -1,5 +1,6 @@
 import { EntityMetadataMap } from '@ngrx/data';
 import { LandingZoneAction } from './administration/landing-zone/landing-zone.model';
+import { SharedServicesAction } from './administration/shared-services/shared-services.model';
 import { Solution } from './mission-control/solutions/solutions.model';
 import { Team } from './administration/teams/teams.model';
 
@@ -8,6 +9,24 @@ const entityMetadata: EntityMetadataMap = {
   LandingZoneProgressItem: {},
   LandingZoneAction: {
     filterFn: (actions: LandingZoneAction[], filter: string) => {
+      if (filter === 'Completed') {
+        return actions.filter(action => action.completionRate === 100);
+      }
+
+      if (filter === 'InProgress') {
+        return actions.filter(action => action.completionRate !== 100 && !action.locked);
+      }
+
+      if (filter === 'Locked') {
+        return actions.filter(action => action.locked);
+      }
+
+      return actions;
+    }
+  },
+  SharedServicesProgressItem: {},
+  SharedServicesAction: {
+    filterFn: (actions: SharedServicesAction[], filter: string) => {
       if (filter === 'Completed') {
         return actions.filter(action => action.completionRate === 100);
       }

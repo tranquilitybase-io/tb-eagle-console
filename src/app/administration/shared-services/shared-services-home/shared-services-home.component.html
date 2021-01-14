@@ -1,4 +1,4 @@
-<header class="app-landing-header">
+<header class="app-shared-services-header">
   <mat-accordion>
     <mat-expansion-panel expanded>
       <mat-expansion-panel-header>
@@ -7,9 +7,7 @@
       <div class="setup-progress" *ngIf="progressItems$ | async">
         <h2>Setup Progress</h2>
         <p>
-          Select the tiles below in turn, to progress through the Landing Zone setup. Once the below items are
-          completed, you will be able to start the Shared Services setup by clicking on the Shared Services tab in the
-          menu on the left.
+          Select the tiles below in turn, to progress through the Shared Services setup.
         </p>
         <mat-horizontal-stepper
           [selectedIndex]="selectedIndex$ | async"
@@ -42,4 +40,4 @@
   </mat-accordion>
 </header>
 
-<app-landing-zone-home-grid></app-landing-zone-home-grid>
+<app-shared-services-home-grid></app-shared-services-home-grid>

@@ -115,7 +115,13 @@
           <mat-icon>account_tree</mat-icon>
           <span *ngIf="isExpanded"> Landing Zone</span>
         </a>
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Shared Services' : null" matTooltipPosition="after">
+        <a
+          mat-list-item
+          routerLink="/administration/shared-services"
+          [class.active]="isLinkActive('/administration/shared-services')"
+          [matTooltip]="!isExpanded ? 'Shared Services' : null"
+          matTooltipPosition="after"
+        >
           <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span>
         </a>
       </div>
