@@ -14,6 +14,7 @@ import { getSharedServicesProgressItems } from '../shared-services.actions';
 export class SharedServicesHomeComponent implements OnInit {
   progressItems$: Observable<SharedServicesProgressItem[]> = this.store.select(selectSharedServicesProgressItems);
   selectedIndex$: Observable<number>;
+  isFinished: boolean;
 
   constructor(private store: Store<any>) {
     this.store.dispatch(getSharedServicesProgressItems());
@@ -23,6 +24,7 @@ export class SharedServicesHomeComponent implements OnInit {
     this.selectedIndex$ = this.progressItems$.pipe(
       map(items => {
         const index = items.findIndex(item => !item.completed);
+        this.isFinished = index === -1;
         return index < 0 ? 0 : index;
       }),
       startWith(0),

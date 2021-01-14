@@ -14,6 +14,7 @@ import { getLandingZoneProgressItems } from '../landing-zone.actions';
 export class LandingZoneHomeComponent implements OnInit {
   progressItems$: Observable<LandingZoneProgressItem[]> = this.store.select(selectLandingZoneProgressItems);
   selectedIndex$: Observable<number>;
+  isFinished: boolean;
 
   constructor(private store: Store<any>) {
     this.store.dispatch(getLandingZoneProgressItems());
@@ -23,6 +24,7 @@ export class LandingZoneHomeComponent implements OnInit {
     this.selectedIndex$ = this.progressItems$.pipe(
       map(items => {
         const index = items.findIndex(item => !item.completed);
+        this.isFinished = index === -1;
         return index < 0 ? 0 : index;
       }),
       startWith(0),

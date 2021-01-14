@@ -32,7 +32,7 @@
             <mat-icon>done</mat-icon>
           </ng-template>
           <ng-template matStepperIcon="app-progress-item">
-            <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+            <mat-icon fontSet="material-icons-outlined">{{ isFinished ? 'done' : 'file_copy' }}</mat-icon>
           </ng-template>
         </mat-horizontal-stepper>
       </div>
