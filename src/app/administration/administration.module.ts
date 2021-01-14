@@ -32,7 +32,7 @@ const routes: Routes = [
         data: {
           breadcrumbsSteps: [
             {
-              name: 'Shared service'
+              name: 'Shared Services'
             }
           ]
         }
