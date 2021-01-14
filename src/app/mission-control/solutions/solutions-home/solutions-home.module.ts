@@ -8,6 +8,7 @@ import { SolutionsHomeComponent } from './solutions-home.component';
 import { SolutionsHomeGridCardComponent } from './solutions-home-grid/solutions-home-grid-card/solutions-home-grid-card.component';
 import { SolutionsHomeGridComponent } from './solutions-home-grid/solutions-home-grid.component';
 import { SolutionsHomeListComponent } from './solutions-home-list/solutions-home-list.component';
+import { SolutionsHomeListFilterComponent } from './solutions-home-list-filter/solutions-home-list-filter.component';
 
 import { LandingZoneDialogModule } from './solutions-home-dialog/solutions-home-dialog.module';
 
@@ -40,7 +41,8 @@ const routes: Routes = [
     SolutionsHomeComponent,
     SolutionsHomeGridCardComponent,
     SolutionsHomeGridComponent,
-    SolutionsHomeListComponent
+    SolutionsHomeListComponent,
+    SolutionsHomeListFilterComponent
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
@@ -27,6 +27,8 @@ import { SearchPillComponent } from './search-pill/search-pill.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog/yes-no-dialog.component';
+import { FilterBarComponent } from './filter-bar/filter-bar.component';
+import { FilterSelectComponent } from './filter-select/filter-select.component';
 
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiCallStatusComponent } from './snack-bar/api-call-status/api-call-status.component';
@@ -54,6 +56,8 @@ import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -81,7 +85,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    FilterBarComponent,
+    FilterSelectComponent
   ],
   entryComponents: [
     ApiCallStatusComponent,
@@ -91,7 +97,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
+    FilterBarComponent,
+    FilterSelectComponent
   ],
   providers: [
     SharedService,
@@ -106,6 +114,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BreadcrumbsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     GridViewSwitchModule,
     NotificationsModule,
     MatBadgeModule,
@@ -122,7 +131,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule,
+    MatSelectModule
   ],
   exports: [
     AlertComponent,
@@ -155,7 +166,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    FilterBarComponent,
+    FilterSelectComponent
   ]
 })
 export class SharedModule {}

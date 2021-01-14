@@ -1,8 +1,4 @@
 <div class="select-bar">
-  <app-switches
-    [filters]="values"
-    (switchCallback)="onGroupSwitch($event)"
-    [paramSwitch]="'groupSwitch'"
-  ></app-switches>
+  <app-solutions-home-list-filter class="filter"></app-solutions-home-list-filter>
   <app-grid-view-switch [gridViewName]="gridViewName"></app-grid-view-switch>
 </div>
