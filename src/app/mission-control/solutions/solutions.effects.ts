@@ -34,8 +34,8 @@ export class SolutionEffects {
   getSolutions$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getSolutions),
-      mergeMap(() =>
-        this.solutionService.getAll().pipe(
+      mergeMap(action =>
+        this.solutionService.getSolutions(action.queryParams).pipe(
           map(solutions => getSolutionsSuccess({ solutions })),
           catchError(error => of(getSolutionsError({ error })))
         )
@@ -46,8 +46,8 @@ export class SolutionEffects {
   getSolutionsSilentLoading$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getSolutionsSilentLoading),
-      mergeMap(() =>
-        this.solutionService.getAll().pipe(
+      mergeMap(action =>
+        this.solutionService.getSolutions(action.queryParams).pipe(
           map(solutions => getSolutionsSuccess({ solutions })),
           catchError(error => of(getSolutionsError({ error })))
         )

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ListFilter } from './solutions-home-list-filter.model';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { FilterOption } from './solutions-home-list-filter.model';
 import { FilterOptions } from './solutions-home-list-filter.model';
 
 @Component({
@@ -8,20 +10,49 @@ import { FilterOptions } from './solutions-home-list-filter.model';
   styleUrls: ['./solutions-home-list-filter.component.scss']
 })
 export class SolutionsHomeListFilterComponent implements OnInit {
-  constructor() {}
-  name: string;
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  @Output() filterList = new EventEmitter<FilterOption[]>();
+
   options = FilterOptions;
-  filterBarName: string;
-  filterQueryValue: string;
-  filterList = [] as ListFilter[];
+  currentFilterList = [] as FilterOption[];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setInitialFilterValues();
+  }
 
-  onFilterSelect(filter: ListFilter) {
-    const foundItem = this.filterList.find(listItem => listItem.name === filter.name);
+  onFilterSelect(filter: FilterOption) {
+    const foundItem = this.currentFilterList.find(listItem => listItem.name === filter.name);
     if (!foundItem) {
-      this.filterList.push(filter);
-      console.log(this.filterList);
+      this.currentFilterList.push(filter);
+      this.filterList.emit(this.currentFilterList);
+      this.onQuerySwitch();
     }
+  }
+
+  onFilterRemove(filterList: FilterOption[]) {
+    this.currentFilterList = filterList;
+    this.filterList.emit(this.currentFilterList);
+    this.onQuerySwitch();
+  }
+
+  onQuerySwitch() {
+    const params = this.currentFilterList.reduce((obj, item) => {
+      return Object.assign(obj, { [item.filterQueryValue.key]: item.filterQueryValue.value });
+    }, {});
+
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
+      queryParams: params
+    });
+  }
+
+  setInitialFilterValues() {
+    const initQueryParams = this.route.snapshot.queryParams;
+    const keys = Object.keys(initQueryParams);
+    if (keys.length === 0) {
+      return null;
+    }
+    this.currentFilterList = keys.map(key => this.options.find(option => option.shortQueryName === key));
   }
 }

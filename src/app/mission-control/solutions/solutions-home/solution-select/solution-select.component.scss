@@ -1,19 +1,10 @@
 :host {
   display: flex;
-  margin: 1rem 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--grey);
 }
 
 .app-pills {
   flex: auto;
-}
-
-.select-bar {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .filter {

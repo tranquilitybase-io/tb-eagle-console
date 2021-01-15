@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { SolutionDeployment, Solution } from './solutions.model';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { QueryParam } from './solutions-home/solutions-home-list-filter/solutions-home-list-filter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,30 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
       'Content-Type': 'application/json'
     });
     return this.http.put<Solution>(url, { isFavourite }, { headers });
+  }
+
+  /*
+  getActivators(queryParams: ActivatorsQueryParams): Observable<Activator[]> {
+    let params = new HttpParams();
+    for (let [key, value] of Object.entries(queryParams)) {
+      params = params.append(key, value);
+    }
+
+    if (queryParams.category === 'All') {
+      params = params.delete('category');
+    }
+
+    const url = `${this.BASE_URL}/activators/`;
+    return this.http.get<Activator[]>(url, { params });
+  }
+*/
+
+  getSolutions(queryParams: QueryParam[]): Observable<Solution[]> {
+    const url = `${this.BASE_URL}/solutions/`;
+    let params = new HttpParams();
+    for (let obj of queryParams) {
+      params = params.append(obj.key, obj.value);
+    }
+    return this.http.get<Solution[]>(url, { params });
   }
 }

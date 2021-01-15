@@ -1,28 +1,37 @@
-export interface ListFilter {
+export interface QueryParam {
+  key: string;
+  value: string;
+}
+export interface FilterOption {
   name: string;
   filterBarName: string;
-  filterQueryValue: string;
+  filterQueryValue: QueryParam;
+  shortQueryName: string;
 }
 
 export const FilterOptions = [
   {
     name: 'Active',
     filterBarName: 'isActive:true',
-    filterQueryValue: 'isActive=true'
+    filterQueryValue: { key: 'isActive', value: 'true' },
+    shortQueryName: 'isActive'
   },
   {
     name: 'Favourite',
     filterBarName: 'isFavourite:true',
-    filterQueryValue: 'isFavourite=true'
+    filterQueryValue: { key: 'isFavourite', value: 'true' },
+    shortQueryName: 'isFavourite'
   },
   {
     name: 'Sandbox',
     filterBarName: 'isSandbox:true',
-    filterQueryValue: 'isSandbox=true'
+    filterQueryValue: { key: 'isSandbox', value: 'true' },
+    shortQueryName: 'isSandbox'
   },
   {
     name: 'Names only',
     filterBarName: 'namesonly:true',
-    filterQueryValue: 'namesonly=true'
+    filterQueryValue: { key: 'namesonly', value: 'true' },
+    shortQueryName: 'namesonly'
   }
-] as ListFilter[];
+] as FilterOption[];

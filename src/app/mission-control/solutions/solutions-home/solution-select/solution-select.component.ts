@@ -13,27 +13,9 @@ import { GridViewSwitchViewsNames } from '@app/shared/grid-view-switch/grid-view
 export class SolutionSelectComponent implements OnInit {
   current$: Observable<string>;
 
-  @Input('values') values: SwitchFilter[];
   @Input() gridViewName: GridViewSwitchViewsNames;
 
-  @Output('onSelection') onSelection = new EventEmitter<string>();
+  constructor() {}
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
-  ngOnInit() {
-    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
-
-    this.onGroupSwitch(this.route.snapshot.queryParams.groupSwitch || 'Actives');
-  }
-
-  onGroupSwitch(value: string) {
-    this.router.navigate(['.'], {
-      relativeTo: this.route,
-      queryParamsHandling: 'merge',
-      queryParams: {
-        groupSwitch: value
-      }
-    });
-    this.onSelection.emit(value);
-  }
+  ngOnInit() {}
 }

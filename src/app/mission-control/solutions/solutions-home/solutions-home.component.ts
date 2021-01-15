@@ -1,3 +1,4 @@
+import { FilterOption, QueryParam } from './solutions-home-list-filter/solutions-home-list-filter.model';
 import { Component, OnInit } from '@angular/core';
 import { Solution, FilterNames } from '../solutions.model';
 import { Observable } from 'rxjs';
@@ -5,13 +6,11 @@ import {
   SolutionsState,
   selectSolutionDeploymentsData,
   selectGetSolutionsStatus,
-  selectFilteredSolutions,
-  selectSolutionsHomeFilters
+  selectSolutions
 } from '../solutions.reducer';
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { SwitchFilter } from '@app/shared/switches/switches.model';
 import {
   GridViewSwitchViewsNames,
   GridViewSwitchModel,
@@ -31,8 +30,6 @@ export class SolutionsHomeComponent implements OnInit {
   active = false;
   getSolutionsStatus$: Observable<Loadable> = this.store.select(selectGetSolutionsStatus);
 
-  filters$: Observable<SwitchFilter[]>;
-
   current$: Observable<string>;
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutions;
@@ -41,23 +38,30 @@ export class SolutionsHomeComponent implements OnInit {
   constructor(private store: Store<SolutionsState>, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.store.dispatch(getSolutions());
-    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
-    this.current$.subscribe(event => this.getSolutions(event));
-    this.filters$ = this.store.select(selectSolutionsHomeFilters);
-    this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
-      this.store.dispatch(getSolutionsSilentLoading());
-    });
-    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
-  }
+    this.queryInitialData();
+    this.solutions$ = this.store.select(selectSolutions);
 
-  getSolutions(filter: string) {
-    this.solutions$ = this.store.select(selectFilteredSolutions(FilterNames[filter.toUpperCase()]));
+    this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
+
+    // get solution deployments data
+
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
       map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
     );
+  }
+
+  private queryInitialData() {
+    const initQueryParams = this.route.snapshot.queryParams;
+    const result = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    this.store.dispatch(getSolutions({ queryParams: result as QueryParam[] }));
+  }
+
+  onFilterListUpdate(filterOptions: FilterOption[]) {
+    const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
+    this.store.dispatch(getSolutions({ queryParams }));
   }
 }

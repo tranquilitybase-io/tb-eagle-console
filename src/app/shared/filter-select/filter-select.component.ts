@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ListFilter } from './filter-select.model';
+import { FilterOption } from './filter-select.model';
 
 @Component({
   selector: 'app-filter-select',
@@ -8,8 +8,8 @@ import { ListFilter } from './filter-select.model';
   styleUrls: ['./filter-select.component.scss']
 })
 export class FilterSelectComponent implements OnInit {
-  @Input() options: ListFilter[];
-  @Output() selectedFilter = new EventEmitter<ListFilter>();
+  @Input() options: FilterOption[];
+  @Output() selectedFilter = new EventEmitter<FilterOption>();
 
   filterCtrl = new FormControl();
   removable = true;
@@ -18,8 +18,8 @@ export class FilterSelectComponent implements OnInit {
 
   ngOnInit() {}
 
-  select(event: Event) {
-    this.selectedFilter.emit(event.value as ListFilter);
+  select(value: FilterOption) {
+    this.selectedFilter.emit(value);
     this.filterCtrl.setValue('');
   }
 }

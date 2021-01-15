@@ -1,5 +1,9 @@
-export interface ListFilter {
+export interface QueryParam {
+  key: string;
+  value: string;
+}
+export interface FilterOption {
   name: string;
   filterBarName: string;
-  filterQueryValue: string;
+  filterQueryValue: QueryParam;
 }
