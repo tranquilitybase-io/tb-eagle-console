@@ -9,3 +9,15 @@
   margin: 0 20px;
   width: 100%;
 }
+
+app-filter-select {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+app-filter-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
