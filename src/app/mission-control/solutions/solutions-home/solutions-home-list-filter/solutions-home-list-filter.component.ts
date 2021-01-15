@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { FilterOption } from './solutions-home-list-filter.model';
 import { FilterOptions } from './solutions-home-list-filter.model';
 

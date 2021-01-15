@@ -82,6 +82,7 @@
         <a
           mat-list-item
           routerLink="/mission-control/solutions"
+          [queryParams]="{ isActive: 'true' }"
           [matTooltip]="!isExpanded ? 'Solutions' : null"
           matTooltipPosition="after"
           [class.active]="isLinkActive('/mission-control/solutions')"

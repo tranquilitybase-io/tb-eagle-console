@@ -39,11 +39,10 @@ export class SolutionsHomeComponent implements OnInit {
 
   ngOnInit() {
     this.queryInitialData();
+    this.subscribeToSolutionDeploymentsData();
     this.solutions$ = this.store.select(selectSolutions);
 
     this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
-
-    // get solution deployments data
 
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
   }
@@ -54,10 +53,20 @@ export class SolutionsHomeComponent implements OnInit {
     );
   }
 
-  private queryInitialData() {
+  private getCurrentQueryParams(): QueryParam[] {
     const initQueryParams = this.route.snapshot.queryParams;
-    const result = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
-    this.store.dispatch(getSolutions({ queryParams: result as QueryParam[] }));
+    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    return params;
+  }
+
+  private queryInitialData() {
+    this.store.dispatch(getSolutions({ queryParams: this.getCurrentQueryParams() }));
+  }
+
+  private subscribeToSolutionDeploymentsData() {
+    this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
+      this.store.dispatch(getSolutionsSilentLoading({ queryParams: this.getCurrentQueryParams() }));
+    });
   }
 
   onFilterListUpdate(filterOptions: FilterOption[]) {
