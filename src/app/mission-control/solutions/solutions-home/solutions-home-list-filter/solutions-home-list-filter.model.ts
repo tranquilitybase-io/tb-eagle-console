@@ -27,11 +27,5 @@ export const FilterOptions = [
     filterBarName: 'isSandbox:true',
     filterQueryValue: { key: 'isSandbox', value: 'true' },
     shortQueryName: 'isSandbox'
-  },
-  {
-    name: 'Names only',
-    filterBarName: 'namesonly:true',
-    filterQueryValue: { key: 'namesonly', value: 'true' },
-    shortQueryName: 'namesonly'
   }
 ] as FilterOption[];
