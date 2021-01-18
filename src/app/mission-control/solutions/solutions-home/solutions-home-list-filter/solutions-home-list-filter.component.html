@@ -1,4 +1,13 @@
 <div class="list-filter">
-  <app-filter-select [options]="options" (selectedFilter)="onFilterSelect($event)"></app-filter-select>
-  <app-filter-bar [list]="currentFilterList" (newList)="onFilterRemove($event)" class="bar"></app-filter-bar>
+  <app-filter-select
+    class="filter-select"
+    [options]="options"
+    (selectedFilter)="onFilterSelect($event)"
+  ></app-filter-select>
+  <app-filter-bar
+    class="filter-bar"
+    [list]="currentFilterList"
+    (newList)="onFilterRemove($event)"
+    class="bar"
+  ></app-filter-bar>
 </div>

@@ -2,7 +2,10 @@
   <app-breadcrumbs></app-breadcrumbs>
 </header>
 <div class="select-bar">
-  <app-solutions-home-list-filter (filterList)="onFilterListUpdate($event)"></app-solutions-home-list-filter>
+  <app-solutions-home-list-filter
+    class="home-list-filter"
+    (filterList)="onFilterListUpdate($event)"
+  ></app-solutions-home-list-filter>
   <app-solution-select [gridViewName]="gridViewOptionsName"></app-solution-select>
 </div>
 <app-solutions-home-grid
