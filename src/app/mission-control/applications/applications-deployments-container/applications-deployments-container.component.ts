@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
   GridViewSwitchOptionsEnum
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
@@ -16,17 +15,17 @@ import { map } from 'rxjs/operators';
 })
 export class ApplicationsDeploymentsContainerComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.applicationDeployments;
-  currentGridViewOption$: Observable<GridViewSwitchModel>;
+  currentGridViewOption$: Observable<string>;
 
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
-    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 }
