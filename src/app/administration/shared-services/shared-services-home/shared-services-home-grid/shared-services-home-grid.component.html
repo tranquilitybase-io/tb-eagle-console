@@ -1,0 +1,68 @@
+<div class="filters-row">
+  <div class="filters">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle (click)="setFilter('All')" value="All" checked>All ({{ filterAllLength }})</mat-button-toggle>
+      <mat-button-toggle (click)="setFilter('Completed')" value="Completed">
+        Completed ({{ filterCompletedLength }})
+      </mat-button-toggle>
+      <mat-button-toggle (click)="setFilter('InProgress')" value="InProgress">
+        In Progress ({{ filterInProgressLength }})
+      </mat-button-toggle>
+      <mat-button-toggle (click)="setFilter('Locked')" value="Locked">
+        Locked ({{ filterLockedLength }})
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <mat-divider></mat-divider>
+</div>
+<div *ngIf="(getActionsStatus$ | async).loading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+<mat-grid-list
+  *ngIf="!(getActionsStatus$ | async).loading"
+  [cols]="(layout$ | async).gridCols"
+  [rowHeight]="(layout$ | async).sharedServicesGridItemHeight"
+  gutterSize="24px"
+>
+  <mat-grid-tile *ngFor="let action of actions$ | async" colspan="1" rowspan="1">
+    <button
+      mat-stroked-button
+      class="action-button"
+      [disabled]="action.locked"
+      (click)="actionNagivate(action.routerLink)"
+    >
+      <div class="category border" [ngClass]="action.categoryClass"></div>
+      <div class="category title" [ngClass]="action.categoryClass">{{ action.categoryName }}</div>
+      <div>
+        <div>
+          <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
+        </div>
+        {{ action.title }}
+      </div>
+      <div class="progress">
+        <div class="progress-spinner-container">
+          <mat-progress-spinner class="guide-line" mode="determinate" diameter="26" strokeWidth="3" [value]="100">
+          </mat-progress-spinner>
+          <mat-progress-spinner
+            *ngIf="!action.locked"
+            color="primary"
+            mode="determinate"
+            diameter="26"
+            strokeWidth="3"
+            [value]="action.completionRate"
+          >
+          </mat-progress-spinner>
+          <div *ngIf="!action.locked" class="value" [ngClass]="progressValueClass(action.completionRate)">
+            {{ action.completionRate }}
+          </div>
+          <div *ngIf="action.locked" class="lock-icon">
+            <mat-icon>lock</mat-icon>
+          </div>
+        </div>
+        <div *ngIf="action.locked" class="locked-text">
+          Please complete previous requirements
+        </div>
+      </div>
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>

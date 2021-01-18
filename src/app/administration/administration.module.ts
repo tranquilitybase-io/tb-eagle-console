@@ -25,14 +25,17 @@ const routes: Routes = [
             }
           ]
         }
-        // },
-        // {
-        //   path: 'shared-services',
-        //   loadChildren: () => import('./shared-services/shared-services.module').then(m => m.SharedServicesModule)
-        // },
-        // {
-        //   path: 'users',
-        //   loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+      },
+      {
+        path: 'shared-services',
+        loadChildren: () => import('./shared-services/shared-services.module').then(m => m.SharedServicesModule),
+        data: {
+          breadcrumbsSteps: [
+            {
+              name: 'Shared Services'
+            }
+          ]
+        }
       },
       {
         path: 'teams',
@@ -44,10 +47,6 @@ const routes: Routes = [
             }
           ]
         }
-        // },
-        // {
-        //   path: 'settings',
-        //   loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
       },
       {
         path: 'users',

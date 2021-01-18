@@ -1,4 +1,4 @@
-export interface LandingZoneAction {
+export interface SharedServicesAction {
   id: number;
   title: string;
   categoryName: string;
@@ -10,7 +10,7 @@ export interface LandingZoneAction {
   isOptional: boolean;
 }
 
-export interface LandingZoneProgressItem {
+export interface SharedServicesProgressItem {
   id: number;
   label: string;
   completed: boolean;

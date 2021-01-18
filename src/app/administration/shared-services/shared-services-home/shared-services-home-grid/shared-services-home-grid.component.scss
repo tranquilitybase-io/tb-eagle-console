@@ -120,17 +120,17 @@
       line-height: 20px;
     }
 
-    &.shared-environment {
+    &.operations {
       border-color: rgb(54, 197, 240);
       color: rgb(54, 197, 240);
     }
 
-    &.network-setup {
+    &.fin-ops {
       border-color: rgb(39, 174, 96);
       color: rgb(39, 174, 96);
     }
 
-    &.connectivity {
+    &.security {
       border-color: rgb(224, 30, 90);
       color: rgb(224, 30, 90);
     }
@@ -146,12 +146,12 @@
       color: white;
     }
 
-    &.security {
+    &.multizone-setup {
       border-color: rgba(95, 42, 96, 0.7);
       color: rgba(95, 42, 96, 0.7);
     }
 
-    &.user-environment {
+    &.shared-infrastructure {
       border-color: rgba(1, 69, 136, 0.7);
       color: rgba(1, 69, 136, 0.7);
     }

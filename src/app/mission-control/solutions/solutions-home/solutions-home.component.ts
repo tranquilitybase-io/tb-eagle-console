@@ -1,6 +1,5 @@
-import { FilterOption, QueryParam } from './solutions-home-list-filter/solutions-home-list-filter.model';
 import { Component, OnInit } from '@angular/core';
-import { Solution, FilterNames } from '../solutions.model';
+import { Solution } from '../solutions.model';
 import { Observable } from 'rxjs';
 import {
   SolutionsState,
@@ -13,12 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
   GridViewSwitchOptionsEnum
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { getSolutions, getSolutionsSilentLoading } from './../solutions.actions';
+import { FilterOption, QueryParam } from './solutions-home-list-filter/solutions-home-list-filter.model';
 
 @Component({
   selector: 'app-solutions-home',
@@ -30,10 +29,8 @@ export class SolutionsHomeComponent implements OnInit {
   active = false;
   getSolutionsStatus$: Observable<Loadable> = this.store.select(selectGetSolutionsStatus);
 
-  current$: Observable<string>;
-
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutions;
-  currentGridViewOption$: Observable<GridViewSwitchModel>;
+  currentGridViewOption$: Observable<string>;
 
   constructor(private store: Store<SolutionsState>, private route: ActivatedRoute) {}
 
@@ -41,15 +38,12 @@ export class SolutionsHomeComponent implements OnInit {
     this.queryInitialData();
     this.subscribeToSolutionDeploymentsData();
     this.solutions$ = this.store.select(selectSolutions);
-
-    this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
-
-    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 

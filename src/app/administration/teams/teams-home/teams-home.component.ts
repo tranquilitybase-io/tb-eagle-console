@@ -7,10 +7,9 @@ import { map } from 'rxjs/operators';
 import { SwitchFilter } from '@app/shared/switches/switches.model';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
   GridViewSwitchOptionsEnum
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { getTeams } from '../teams.actions';
 import { selectGetTeamsStatus } from './../teams.reducer';
@@ -36,7 +35,7 @@ export class TeamsHomeComponent implements OnInit {
   ];
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teams;
-  currentGridViewOption$: Observable<GridViewSwitchModel>;
+  currentGridViewOption$: Observable<string>;
 
   constructor(private teamsService: TeamsService, private route: ActivatedRoute, private store: Store<any>) {
     this.teams$ = teamsService.filteredEntities$;
@@ -45,13 +44,12 @@ export class TeamsHomeComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(getTeams());
     this.teamsService.getAll().subscribe(teams => this.updateNumbering(teams));
-
     const current$: Observable<string> = this.route.queryParamMap.pipe(
       map(queryParams => queryParams.get('groupSwitch'))
     );
     current$.subscribe(event => this.setFilter(event));
 
-    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+    this.currentGridViewOption$ = this.store.select(selectGridViewSwitchOptions(this.gridViewOptionsName));
   }
 
   setFilter(filter: string) {
@@ -71,8 +69,6 @@ export class TeamsHomeComponent implements OnInit {
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
-    return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
-    );
+    return this.currentGridViewOption$.pipe(map(option => option === GridViewSwitchOptionsEnum.grid));
   }
 }
