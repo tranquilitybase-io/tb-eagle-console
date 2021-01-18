@@ -29,7 +29,7 @@ export class SolutionsViewComponent implements OnInit {
   solution: Solution = { businessUnit: {}, team: {} } as Solution;
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutionsView;
-  currentGridViewOption$: Observable<GridViewSwitchModel>;
+  currentGridViewOption$: Observable<string>;
 
   private tabsIndexMap: Map<string, number>;
   selectedTabIndex: number = 0;
@@ -52,7 +52,7 @@ export class SolutionsViewComponent implements OnInit {
     this.store.pipe(select(selectApplicationDeploymentsData)).subscribe(() => {
       this.updateSolutionData();
     });
-    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
     this.tabsIndexMap = new Map([
       ['Overview', 0],
       ['Activators', 1],
@@ -118,7 +118,7 @@ export class SolutionsViewComponent implements OnInit {
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 

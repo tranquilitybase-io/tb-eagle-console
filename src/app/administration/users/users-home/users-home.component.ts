@@ -25,18 +25,18 @@ export class UsersHomeComponent implements OnInit {
   getUsersStatus$: Observable<Loadable> = this.store.select(selectGetUsersStatus);
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.users;
-  currentGridViewOption$: Observable<GridViewSwitchModel>;
+  currentGridViewOption$: Observable<string>;
 
   constructor(private route: ActivatedRoute, private store: Store<any>) {}
 
   ngOnInit() {
     this.store.dispatch(getUsers());
-    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 }

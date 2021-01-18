@@ -36,7 +36,7 @@ export class SolutionsHomeComponent implements OnInit {
   current$: Observable<string>;
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutions;
-  currentGridViewOption$: Observable<GridViewSwitchModel>;
+  currentGridViewOption$: Observable<string>;
 
   constructor(private store: Store<SolutionsState>, private route: ActivatedRoute) {}
 
@@ -48,7 +48,7 @@ export class SolutionsHomeComponent implements OnInit {
     this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
       this.store.dispatch(getSolutionsSilentLoading());
     });
-    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions, this.gridViewOptionsName));
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
   }
 
   getSolutions(filter: string) {
@@ -57,7 +57,7 @@ export class SolutionsHomeComponent implements OnInit {
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 }

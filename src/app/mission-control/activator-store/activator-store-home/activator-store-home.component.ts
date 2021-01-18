@@ -41,8 +41,8 @@ export class ActivatorStoreHomeComponent implements OnInit {
   selectedSolution$: Observable<Solution> = this.store.pipe(select(selectSelectedSolution));
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.activatorStore;
-  currentGridViewOption$: Observable<GridViewSwitchModel> = this.store.pipe(
-    select(selectGridViewSwitchOptions, this.gridViewOptionsName)
+  currentGridViewOption$: Observable<string> = this.store.pipe(
+    select(selectGridViewSwitchOptions(this.gridViewOptionsName))
   );
 
   userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsAdmin));
@@ -95,7 +95,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption.option === GridViewSwitchOptionsEnum.grid)
+      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 
