@@ -26,3 +26,10 @@ export class ApplicationDeployment {
   id?: number;
   deploymentState: DeploymentState;
 }
+
+export class ApplicationSettings {
+  application_id?: number;
+  name: string;
+  type: string;
+  value: string;
+}

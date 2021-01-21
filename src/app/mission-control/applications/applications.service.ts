@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Application, ApplicationDeployment } from './applications.model';
+import { Application, ApplicationDeployment, ApplicationSettings } from './applications.model';
 import { Router } from '@angular/router';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -48,5 +48,27 @@ export class ApplicationsService extends EntityCollectionServiceBase<Application
   getDeployments(): Observable<ApplicationDeployment[]> {
     const url = `${this.BASE_URL}/applicationDeployments/`;
     return this.http.get<ApplicationDeployment[]>(url).pipe(catchError(this.handleError));
+  }
+
+  getApplicationSettings(): Observable<ApplicationSettings> {
+    const url = `${this.BASE_URL}/applicationSettings/`;
+    return this.http.get<ApplicationSettings>(url);
+  }
+
+  createApplicationSettings(): Observable<ApplicationSettings> {
+    const url = `${this.BASE_URL}/applicationSettings/`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<ApplicationSettings>(url, {}, { headers });
+  }
+
+  deleteApplicationSettings(): Observable<any> {
+    const url = `${this.BASE_URL}/applicationSettings/`;
+    return this.http.delete(url);
+  }
+
+  updateApplicationSettings(): Observable<ApplicationSettings> {
+    const url = `${this.BASE_URL}/applicationSettings/`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put<ApplicationSettings>(url, {}, { headers });
   }
 }

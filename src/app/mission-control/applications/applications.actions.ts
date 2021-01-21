@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Application, ApplicationDeployment } from './applications.model';
+import { Application, ApplicationDeployment, ApplicationSettings } from './applications.model';
 
 export const createApplication = createAction(
   '[Applications] createApplication',
@@ -17,3 +17,31 @@ export const setApplicationDeploymentsData = createAction(
   '[Applications Deploy] setApplicationDeploymentsData',
   props<{ applicationDeploymentsData: ApplicationDeployment[] }>()
 );
+
+export const getApplicationSettings = createAction('[Applications] getApplicationSettings');
+export const getApplicationSettingsError = createAction(
+  '[Applications] getApplicationSettingsError',
+  props<{ error: any }>()
+);
+export const getApplicationSettingsSuccess = createAction('[Applications] getApplicationSettings');
+
+export const deleteApplicationSettings = createAction('[Applications] deleteApplicationSettings');
+export const deleteApplicationSettingsError = createAction(
+  '[Applications] deleteApplicationSettingsError',
+  props<{ error: any }>()
+);
+export const deleteApplicationSettingsSuccess = createAction('[Applications] deleteApplicationSettingsSuccess');
+
+export const updateApplicationSettings = createAction('[Applications] updateApplicationSettings');
+export const updateApplicationSettingsError = createAction(
+  '[Applications] updateApplicationSettingsError',
+  props<{ error: any }>()
+);
+export const updateApplicationSettingsSuccess = createAction('[Applications] updateApplicationSettingsSuccess');
+
+export const createApplicationSettings = createAction('[Applications] createApplicationSettings');
+export const createApplicationSettingsError = createAction(
+  '[Applications] createApplicationSettingsError',
+  props<{ error: any }>()
+);
+export const createApplicationSettingsSuccess = createAction('[Applications] createApplicationSettingsSuccess');
