@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Activator, ActivatorsQueryParams } from '../../activator-store.model';
+import { Activator } from '../../activator-store.model';
 import { LayoutService } from '@app/layout/layout.service';
 import { Layout } from '@app/layout/layout.model';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -28,20 +28,5 @@ export class ActivatorStoreHomeGridComponent implements OnInit {
   ngOnInit() {
     this.activators$ = this.store.select(selectActivators);
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
-    this.route.queryParamMap.subscribe(queryParams => {
-      this.getActivators(queryParams);
-    });
-  }
-
-  getActivators(queryParams: ParamMap) {
-    const category = queryParams.get('category');
-    const status = queryParams.get('status');
-
-    const params = {
-      ...(category !== null && { category }),
-      ...(status !== null && { status })
-    };
-
-    this.store.dispatch(getActivators({ queryParams: params as ActivatorsQueryParams }));
   }
 }

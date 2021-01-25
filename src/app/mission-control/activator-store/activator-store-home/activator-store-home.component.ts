@@ -12,14 +12,15 @@ import { discardSelectedSolution } from '../../solutions/solutions.actions';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
   GridViewSwitchOptionsEnum
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
 import { MatDialog } from '@angular/material/dialog';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
-import { resetAPICallStatuses } from './../activator-store.actions';
+import { resetAPICallStatuses, getActivators } from './../activator-store.actions';
+import { FilterOption, QueryParam } from './activator-store-home-list-filter/activator-store-home-list-filter.model';
+import { Activator } from '../activator-store.model';
 
 @Component({
   selector: 'app-activator-store-home',
@@ -27,6 +28,7 @@ import { resetAPICallStatuses } from './../activator-store.actions';
   styleUrls: ['./activator-store-home.component.scss']
 })
 export class ActivatorStoreHomeComponent implements OnInit {
+  activators$: Observable<Activator[]>;
   category$: Observable<string>;
   category: string;
   status: string;
@@ -56,20 +58,23 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
   ngOnInit() {
     this.resetAPIStatuses();
+    this.queryInitialData();
     this.store.dispatch(setProgress({ step: 0 }));
-    this.category$ = this.route.queryParamMap.pipe(
-      map(queryParams => {
-        this.category = queryParams.get('category');
-        this.status = queryParams.get('status');
-        const params = {
-          ...(this.category && { category: this.category }),
-          ...(this.status && { status: this.status }),
-          ...(!this.category && !this.status && { showCategories: true })
-        };
-        this.onSwitch(params);
-        return this.category;
-      })
-    );
+  }
+
+  private getCurrentQueryParams(): QueryParam[] {
+    const initQueryParams = this.route.snapshot.queryParams;
+    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    return params;
+  }
+
+  onFilterListUpdate(filterOptions: FilterOption[]) {
+    const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
+    this.store.dispatch(getActivators({ queryParams }));
+  }
+
+  private queryInitialData() {
+    this.store.dispatch(getActivators({ queryParams: this.getCurrentQueryParams() }));
   }
 
   resetAPIStatuses() {
@@ -99,39 +104,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
     );
   }
 
-  get isSelectedShowCateogries$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(map(queryParams => queryParams.get('showCategories') === 'true'));
-  }
-
-  get isAllSwitchSelected$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('category') === 'All' && queryParams.get('status') !== 'Draft';
-      })
-    );
-  }
-
-  get isDraftSwitchSelected$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('status') === 'Draft';
-      })
-    );
-  }
-
-  get isAllDraftSwitchSelected$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('category') === 'All' && queryParams.get('status') === 'Draft';
-      })
-    );
-  }
-
-  get isCategorySelected$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('category') !== 'All';
-      })
-    );
+  get showCategories$(): Observable<boolean> {
+    return this.route.queryParamMap.pipe(map(queryParams => queryParams.keys.length === 0));
   }
 }

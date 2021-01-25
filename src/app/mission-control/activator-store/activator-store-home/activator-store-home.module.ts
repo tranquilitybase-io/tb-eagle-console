@@ -10,6 +10,7 @@ import { ActivatorStoreHomeCategoryGridComponent } from './activator-store-home-
 import { ActivatorStoreHomeGridCardComponent } from './activator-store-home-grid/activator-store-home-grid-card/activator-store-home-grid-card.component';
 import { ActivatorStoreHomeGridComponent } from './activator-store-home-grid/activator-store-home-grid.component';
 import { ActivatorStoreHomeListComponent } from './activator-store-home-list/activator-store-home-list.component';
+import { ActivatorStoreHomeListFilterComponent } from './activator-store-home-list-filter/activator-store-home-list-filter.component';
 
 import { ActivatorStoreDialogModule } from '../activator-store-dialog/activator-store-dialog.module';
 
@@ -46,7 +47,8 @@ const routes: Routes = [
     ActivatorStoreHomeGridComponent,
     ActivatorStoreHomeGridCardComponent,
     ActivatorStoreHomeCategoryGridComponent,
-    ActivatorStoreHomeListComponent
+    ActivatorStoreHomeListComponent,
+    ActivatorStoreHomeListFilterComponent
   ],
   imports: [
     CommonModule,

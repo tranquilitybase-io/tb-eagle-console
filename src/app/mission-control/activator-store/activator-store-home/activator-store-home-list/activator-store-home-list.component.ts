@@ -7,8 +7,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store, select } from '@ngrx/store';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Activator, ActivatorsQueryParams } from '../../activator-store.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Activator } from '../../activator-store.model';
 import { setDeprecated, setLocked, requestAccess, getActivators } from '../../activator-store.actions';
 import { selectActivators, selectGetActivatorsStatus } from '../../activator-store.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
@@ -65,10 +65,6 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(queryParams => {
-      this.getActivators(queryParams);
-    });
-
     this.activators$.subscribe(activators => {
       this.dataSource = new MatTableDataSource(activators);
       this.dataSource.paginator = this.paginator;
@@ -77,19 +73,6 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     });
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
-  }
-
-  getActivators(queryParams: ParamMap) {
-    console.log('activator home list ');
-    const category = queryParams.get('category');
-    const status = queryParams.get('status');
-
-    const params = {
-      ...(category !== null && { category }),
-      ...(status !== null && { status })
-    };
-
-    this.store.dispatch(getActivators({ queryParams: params as ActivatorsQueryParams }));
   }
 
   applyFilter(filter: string) {

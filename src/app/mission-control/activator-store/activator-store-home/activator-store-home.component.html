@@ -47,56 +47,18 @@
 </mat-horizontal-stepper>
 
 <div class="controls-activator-home">
-  <div class="switches-activator-home">
-    <button
-      mat-flat-button
-      [color]="(isSelectedShowCateogries$ | async) && 'primary'"
-      (click)="onSwitch({ showCategories: true })"
-    >
-      Category
-    </button>
-    <button
-      *ngIf="
-        !((isAllSwitchSelected$ | async) || (isSelectedShowCateogries$ | async) || (isAllDraftSwitchSelected$ | async))
-      "
-      mat-flat-button
-      color="primary"
-      [color]="!(isDraftSwitchSelected$ | async) && 'primary'"
-      (click)="onSwitch({ category: category })"
-    >
-      {{ category$ | async }}
-    </button>
-    <button
-      *ngIf="
-        (isAllSwitchSelected$ | async) ||
-        (isSelectedShowCateogries$ | async) ||
-        (isAllDraftSwitchSelected$ | async) ||
-        !(isCategorySelected$ | async)
-      "
-      mat-flat-button
-      [color]="(isAllSwitchSelected$ | async) && 'primary'"
-      (click)="onSwitch({ category: 'All' })"
-    >
-      All
-    </button>
-    <button
-      mat-flat-button
-      [color]="(isDraftSwitchSelected$ | async) && 'primary'"
-      (click)="onSwitch({ category: 'All', status: 'Draft' })"
-    >
-      Drafts
-    </button>
-  </div>
+  <app-activator-store-home-list-filter
+    class="home-list-filter"
+    (filterList)="onFilterListUpdate($event)"
+    *ngIf="!(showCategories$ | async)"
+  ></app-activator-store-home-list-filter>
   <button mat-button class="action-button" (click)="createNewActivator()" *ngIf="userIsAdmin$ | async">
-    + Add new Activator
+    +
   </button>
-  <app-grid-view-switch
-    *ngIf="!(isSelectedShowCateogries$ | async)"
-    [gridViewName]="gridViewOptionsName"
-  ></app-grid-view-switch>
+  <app-grid-view-switch *ngIf="!(showCategories$ | async)" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
 </div>
 
-<div *ngIf="!(isSelectedShowCateogries$ | async); else categoryGrid">
+<div *ngIf="!(showCategories$ | async); else categoryGrid">
   <app-activator-store-home-grid
     *ngIf="isGridViewEnabled$ | async; else listview"
     class="grid-container"

@@ -1,9 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { Activator, ActivatorsMetadata, ActivatorCategory, ActivatorsQueryParams } from './activator-store.model';
+import { Activator, ActivatorsMetadata, ActivatorCategory } from './activator-store.model';
+import { QueryParam } from './activator-store-home/activator-store-home-list-filter/activator-store-home-list-filter.model';
 
 const key = '[ActivatorStore]';
 
-export const getActivators = createAction(`${key} getActivators`, props<{ queryParams: ActivatorsQueryParams }>());
+export const getActivators = createAction(`${key} getActivators`, props<{ queryParams: QueryParam[] }>());
 export const getActivatorsError = createAction(`${key} getActivatorsError`, props<{ error: any }>());
 export const getActivatorsSuccess = createAction(`${key} getActivatorsSuccess`, props<{ activators: Activator[] }>());
 

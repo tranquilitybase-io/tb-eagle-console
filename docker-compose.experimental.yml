@@ -10,7 +10,7 @@ services:
       - 3100:3100
 
   tb-db:
-    image: gcr.io/tranquility-base-images/tb-db:experimental
+    image: gcr.io/tranquility-base-images/tb-db:review
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -22,13 +22,14 @@ services:
       - 3306:3306
 
   houston-service:
-    image: gcr.io/tranquility-base-images/tb-houston-service:experimental
+    image: gcr.io/tranquility-base-images/tb-houston-service:review
     restart: always
     environment:
       SQLALCHEMY_DATABASE_URI: 'mysql+mysqlconnector://eagle-user:eagle-user-secret-pw@tb-db/eagle_db'
       SQLALCHEMY_ECHO: 'False'
       SQLALCHEMY_TRACK_MODIFICATIONS: 'False'
       GCP_DAC_URL: 'gcp-dac:3100'
+      CLIENT_ID: 576108226578-m876jb0mjk5gjsenvifthut89gna3j8o.apps.googleusercontent.com
     depends_on:
       - tb-db
       - gcp-dac

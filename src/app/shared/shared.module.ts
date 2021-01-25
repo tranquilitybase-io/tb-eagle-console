@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { FilterBarModule } from './filter-bar/filter-bar.module';
 
 import { AlertComponent } from './alert/alert.component';
 import { BadgesComponent } from './badges/badges.component';
@@ -133,7 +134,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatTooltipModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    FilterBarModule
   ],
   exports: [
     AlertComponent,
@@ -168,7 +170,8 @@ import { MatSelectModule } from '@angular/material/select';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     FilterBarComponent,
-    FilterSelectComponent
+    FilterSelectComponent,
+    FilterBarModule
   ]
 })
 export class SharedModule {}
