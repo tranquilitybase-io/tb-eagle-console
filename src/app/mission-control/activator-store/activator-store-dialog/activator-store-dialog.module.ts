@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     MatInputModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    MatChipsModule
   ]
 })
 export class ActivatorStoreDialogModule {}

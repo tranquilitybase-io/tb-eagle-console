@@ -16,3 +16,31 @@
   display: flex;
   justify-content: space-around;
 }
+
+.content-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+
+  .text {
+    padding-left: 1rem;
+  }
+
+  .left {
+  }
+
+  .chip {
+    background-color: transparent !important;
+
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+  .mat-chip.mat-standard-chip::after {
+    background-color: transparent !important;
+  }
+  .right {
+    width: 60%;
+    margin-left: 30px;
+  }
+}
