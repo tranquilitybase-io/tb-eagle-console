@@ -1,12 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FilterOption } from './solutions-home-list-filter.model';
-import { FilterOptions } from './solutions-home-list-filter.model';
+import { FilterOption, FilterOptions } from './solutions-home-list-filter.model';
 
 @Component({
   selector: 'app-solutions-home-list-filter',
   templateUrl: './solutions-home-list-filter.component.html',
-  styleUrls: ['./solutions-home-list-filter.component.scss']
+  styleUrls: ['./solutions-home-list-filter.component.scss'],
 })
 export class SolutionsHomeListFilterComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -21,7 +20,7 @@ export class SolutionsHomeListFilterComponent implements OnInit {
   }
 
   onFilterSelect(filter: FilterOption) {
-    const foundItem = this.currentFilterList.find(listItem => listItem.name === filter.name);
+    const foundItem = this.currentFilterList.find((listItem) => listItem.name === filter.name);
     if (!foundItem) {
       this.currentFilterList.push(filter);
       this.filterList.emit(this.currentFilterList);
@@ -42,7 +41,7 @@ export class SolutionsHomeListFilterComponent implements OnInit {
 
     this.router.navigate(['.'], {
       relativeTo: this.route,
-      queryParams: params
+      queryParams: params,
     });
   }
 
@@ -52,6 +51,6 @@ export class SolutionsHomeListFilterComponent implements OnInit {
     if (keys.length === 0) {
       return null;
     }
-    this.currentFilterList = keys.map(key => this.options.find(option => option.shortQueryName === key));
+    this.currentFilterList = keys.map((key) => this.options.find((option) => option.shortQueryName === key));
   }
 }
