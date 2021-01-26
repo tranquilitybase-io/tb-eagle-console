@@ -1,9 +1,9 @@
 .controls-activator-home {
   display: flex;
   margin: 1rem 1rem;
-  padding-bottom: 1rem;
   border-bottom: 1px solid var(--grey);
   justify-content: space-between;
+  align-items: center;
 
   .switches-activator-home {
     display: flex;
