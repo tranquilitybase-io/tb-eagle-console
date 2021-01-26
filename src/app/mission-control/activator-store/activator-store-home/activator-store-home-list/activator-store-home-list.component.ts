@@ -46,8 +46,6 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  filterValue: string = '';
-
   userIsAdmin$: Observable<boolean>;
 
   constructor(
@@ -69,19 +67,9 @@ export class ActivatorStoreHomeListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(activators);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.dataSource.filter = this.filterValue;
     });
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
-  }
-
-  applyFilter(filter: string) {
-    this.filterValue = filter;
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 
   sensitivityColor(sensitivity: string): string {
