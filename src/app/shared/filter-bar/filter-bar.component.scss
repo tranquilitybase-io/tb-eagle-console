@@ -1,0 +1,15 @@
+.mat-form-field {
+  width: 100%;
+  flex: 1;
+  outline: none;
+  min-height: 32px;
+}
+
+.mat-chip-list {
+  min-height: 32px;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+}

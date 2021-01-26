@@ -172,3 +172,5 @@ export const selectFilteredSolutions = (filterName: FilterNames) =>
   });
 
 export const selectSolutionsHomeFilters = createSelector(selectFeature, state => state.solutionsHomeFilters);
+
+export const selectSolutions = createSelector(selectFeature, state => state.solutions);

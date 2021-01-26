@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { QueryParam } from './solutions-home/solutions-home-list-filter/solutions-home-list-filter.model';
 import { Solution, SolutionDeployment } from './solutions.model';
 
 const key = '[Solutions]';
@@ -6,9 +7,12 @@ const key = '[Solutions]';
 export const discardSelectedSolution = createAction(`${key}  discardSelectedSolution`);
 export const setSelectedSolution = createAction(`${key} setSelectedSolution`, props<{ solution: Solution }>());
 
-export const getSolutions = createAction(`${key} getSolutions`);
+export const getSolutions = createAction(`${key} getSolutions`, props<{ queryParams: QueryParam[] }>());
 export const getSolutionsError = createAction(`${key} getSolutionsError`, props<{ error: any }>());
-export const getSolutionsSilentLoading = createAction(`${key} getSolutionsSilentLoading`);
+export const getSolutionsSilentLoading = createAction(
+  `${key} getSolutionsSilentLoading`,
+  props<{ queryParams: QueryParam[] }>()
+);
 export const getSolutionsSuccess = createAction(`${key} getSolutionsSuccess`, props<{ solutions: Solution[] }>());
 
 export const createSolution = createAction(`${key}  createSolution`, props<{ solution: Solution }>());

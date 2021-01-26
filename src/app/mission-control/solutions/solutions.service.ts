@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { SolutionDeployment, Solution } from './solutions.model';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { QueryParam } from './solutions-home/solutions-home-list-filter/solutions-home-list-filter.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SolutionsService extends EntityCollectionServiceBase<any> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
@@ -21,7 +22,7 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
     const id_token = localStorage.getItem('id_token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : ''
+      Authorization: id_token ? `Bearer ${id_token}` : '',
     });
 
     return this.http.post(url, { id }, { headers });
@@ -48,8 +49,17 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
   toggleFavorites(solutionId: number, isFavourite: Boolean): Observable<Solution> {
     const url = `${this.BASE_URL}/solution/${solutionId}`;
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
     return this.http.put<Solution>(url, { isFavourite }, { headers });
+  }
+
+  getSolutions(queryParams: QueryParam[]): Observable<Solution[]> {
+    const url = `${this.BASE_URL}/solutions/`;
+    let params = new HttpParams();
+    for (let obj of queryParams) {
+      params = params.append(obj.key, obj.value);
+    }
+    return this.http.get<Solution[]>(url, { params });
   }
 }

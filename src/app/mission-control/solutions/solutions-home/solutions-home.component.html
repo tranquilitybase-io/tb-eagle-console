@@ -1,12 +1,12 @@
 <header>
   <app-breadcrumbs></app-breadcrumbs>
 </header>
-<div>
-  <app-solution-select
-    [gridViewName]="gridViewOptionsName"
-    [values]="filters$ | async"
-    (onSelection)="getSolutions($event)"
-  ></app-solution-select>
+<div class="select-bar">
+  <app-solutions-home-list-filter
+    class="home-list-filter"
+    (filterList)="onFilterListUpdate($event)"
+  ></app-solutions-home-list-filter>
+  <app-grid-view-switch class="grid-view-switch" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
 </div>
 <app-solutions-home-grid
   *ngIf="isGridViewEnabled$ | async; else listView"

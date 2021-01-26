@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
 import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
@@ -13,6 +13,8 @@ import { BadgesComponent } from './badges/badges.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { FavoriteButtonComponent } from './favorite-button/favorite-button.component';
+import { FilterBarComponent } from './filter-bar/filter-bar.component';
+import { FilterSelectComponent } from './filter-select/filter-select.component';
 import { GridViewSwitchComponent } from './grid-view-switch/grid-view-switch.component';
 import { IconComponent } from './icon/icon.component';
 import { InputComponent } from './input/input.component';
@@ -45,12 +47,14 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -65,6 +69,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BreadcrumbsComponent,
     DropdownComponent,
     FavoriteButtonComponent,
+    FilterBarComponent,
+    FilterSelectComponent,
     GridViewSwitchComponent,
     IconComponent,
     InputComponent,
@@ -81,23 +87,25 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SolutionUnderCreationComponent,
     SwitchesComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
   ],
   entryComponents: [
     ApiCallStatusComponent,
     AppIsDeployedComponent,
     AppUnderDeploymentComponent,
+    FilterBarComponent,
+    FilterSelectComponent,
     MatProgressSpinner,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
     WelcomeComponent,
-    YesNoDialogComponent
+    YesNoDialogComponent,
   ],
   providers: [
     SharedService,
     ApplicationsService,
     ApiCallStatusSnackbarService,
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { verticalPosition: 'top' } },
   ],
   bootstrap: [WelcomeComponent],
   imports: [
@@ -106,12 +114,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BreadcrumbsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     GridViewSwitchModule,
     NotificationsModule,
     MatBadgeModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCheckboxModule,
+    MatChipsModule,
     MatDialogModule,
     MatDialogModule,
     MatIconModule,
@@ -119,10 +129,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   exports: [
     AlertComponent,
@@ -133,6 +144,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BreadcrumbsComponent,
     DropdownComponent,
     FavoriteButtonComponent,
+    FilterBarComponent,
+    FilterSelectComponent,
     FormsModule,
     GridViewSwitchComponent,
     HttpClientModule,
@@ -155,7 +168,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SearchComponent,
     SolutionCreatedComponent,
     SolutionUnderCreationComponent,
-    SwitchesComponent
-  ]
+    SwitchesComponent,
+  ],
 })
 export class SharedModule {}

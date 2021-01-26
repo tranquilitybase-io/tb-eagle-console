@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Solution, FilterNames } from '../solutions.model';
+import { Solution } from '../solutions.model';
 import { Observable } from 'rxjs';
 import {
   SolutionsState,
   selectSolutionDeploymentsData,
   selectGetSolutionsStatus,
-  selectFilteredSolutions,
-  selectSolutionsHomeFilters
+  selectSolutions
 } from '../solutions.reducer';
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { SwitchFilter } from '@app/shared/switches/switches.model';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
   GridViewSwitchOptionsEnum
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { getSolutions, getSolutionsSilentLoading } from './../solutions.actions';
+import { FilterOption, QueryParam } from './solutions-home-list-filter/solutions-home-list-filter.model';
 
 @Component({
   selector: 'app-solutions-home',
@@ -31,33 +29,42 @@ export class SolutionsHomeComponent implements OnInit {
   active = false;
   getSolutionsStatus$: Observable<Loadable> = this.store.select(selectGetSolutionsStatus);
 
-  filters$: Observable<SwitchFilter[]>;
-
-  current$: Observable<string>;
-
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutions;
   currentGridViewOption$: Observable<string>;
 
   constructor(private store: Store<SolutionsState>, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.store.dispatch(getSolutions());
-    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
-    this.current$.subscribe(event => this.getSolutions(event));
-    this.filters$ = this.store.select(selectSolutionsHomeFilters);
-    this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
-      this.store.dispatch(getSolutionsSilentLoading());
-    });
+    this.queryInitialData();
+    this.subscribeToSolutionDeploymentsData();
+    this.solutions$ = this.store.select(selectSolutions);
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
-  }
-
-  getSolutions(filter: string) {
-    this.solutions$ = this.store.select(selectFilteredSolutions(FilterNames[filter.toUpperCase()]));
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
       map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
+  }
+
+  private getCurrentQueryParams(): QueryParam[] {
+    const initQueryParams = this.route.snapshot.queryParams;
+    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    return params;
+  }
+
+  private queryInitialData() {
+    this.store.dispatch(getSolutions({ queryParams: this.getCurrentQueryParams() }));
+  }
+
+  private subscribeToSolutionDeploymentsData() {
+    this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
+      this.store.dispatch(getSolutionsSilentLoading({ queryParams: this.getCurrentQueryParams() }));
+    });
+  }
+
+  onFilterListUpdate(filterOptions: FilterOption[]) {
+    const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
+    this.store.dispatch(getSolutions({ queryParams }));
   }
 }
