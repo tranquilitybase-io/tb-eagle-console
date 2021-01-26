@@ -52,9 +52,6 @@
     (filterList)="onFilterListUpdate($event)"
     *ngIf="!(showCategories$ | async)"
   ></app-activator-store-home-list-filter>
-  <button mat-button class="action-button" (click)="createNewActivator()" *ngIf="userIsAdmin$ | async">
-    +
-  </button>
   <app-grid-view-switch *ngIf="!(showCategories$ | async)" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
 </div>
 

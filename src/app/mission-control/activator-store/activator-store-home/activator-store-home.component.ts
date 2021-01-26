@@ -15,8 +15,6 @@ import {
   GridViewSwitchOptionsEnum
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
-import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
-import { MatDialog } from '@angular/material/dialog';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { resetAPICallStatuses, getActivators } from './../activator-store.actions';
 import { FilterOption, QueryParam } from './activator-store-home-list-filter/activator-store-home-list-filter.model';
@@ -49,12 +47,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
   userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsAdmin));
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private store: Store<any>,
-    private dialog: MatDialog
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
 
   ngOnInit() {
     this.resetAPIStatuses();
@@ -90,12 +83,6 @@ export class ActivatorStoreHomeComponent implements OnInit {
   cancel() {
     this.store.dispatch(discardSelectedSolution());
     this.router.navigateByUrl('/mission-control/solutions');
-  }
-
-  createNewActivator() {
-    this.dialog.open(ActivatorStoreDialogCreateComponent, {
-      autoFocus: false
-    });
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
