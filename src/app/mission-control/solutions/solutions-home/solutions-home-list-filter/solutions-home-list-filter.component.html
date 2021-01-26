@@ -4,10 +4,5 @@
     [options]="options"
     (selectedFilter)="onFilterSelect($event)"
   ></app-filter-select>
-  <app-filter-bar
-    class="filter-bar"
-    [list]="currentFilterList"
-    (newList)="onFilterRemove($event)"
-    class="bar"
-  ></app-filter-bar>
+  <app-filter-bar class="filter-bar" [list]="currentFilterList" (newList)="onFilterRemove($event)"></app-filter-bar>
 </div>

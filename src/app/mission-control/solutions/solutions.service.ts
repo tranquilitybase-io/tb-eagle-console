@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { QueryParam } from './solutions-home/solutions-home-list-filter/solutions-home-list-filter.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SolutionsService extends EntityCollectionServiceBase<any> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
@@ -22,7 +22,7 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
     const id_token = localStorage.getItem('id_token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : ''
+      Authorization: id_token ? `Bearer ${id_token}` : '',
     });
 
     return this.http.post(url, { id }, { headers });
@@ -49,26 +49,10 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
   toggleFavorites(solutionId: number, isFavourite: Boolean): Observable<Solution> {
     const url = `${this.BASE_URL}/solution/${solutionId}`;
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
     return this.http.put<Solution>(url, { isFavourite }, { headers });
   }
-
-  /*
-  getActivators(queryParams: ActivatorsQueryParams): Observable<Activator[]> {
-    let params = new HttpParams();
-    for (let [key, value] of Object.entries(queryParams)) {
-      params = params.append(key, value);
-    }
-
-    if (queryParams.category === 'All') {
-      params = params.delete('category');
-    }
-
-    const url = `${this.BASE_URL}/activators/`;
-    return this.http.get<Activator[]>(url, { params });
-  }
-*/
 
   getSolutions(queryParams: QueryParam[]): Observable<Solution[]> {
     const url = `${this.BASE_URL}/solutions/`;
