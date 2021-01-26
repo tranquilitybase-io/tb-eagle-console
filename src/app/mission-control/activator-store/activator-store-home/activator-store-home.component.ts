@@ -46,6 +46,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
   );
 
   userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsAdmin));
+  displayCategoryPage = true;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
 
@@ -57,7 +58,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
   private getCurrentQueryParams(): QueryParam[] {
     const initQueryParams = this.route.snapshot.queryParams;
-    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    let params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
     return params;
   }
 
@@ -74,12 +75,6 @@ export class ActivatorStoreHomeComponent implements OnInit {
     this.store.dispatch(resetAPICallStatuses());
   }
 
-  onSwitch(categorySwitch) {
-    this.router.navigate(['mission-control', 'activator-store'], {
-      queryParams: categorySwitch
-    });
-  }
-
   cancel() {
     this.store.dispatch(discardSelectedSolution());
     this.router.navigateByUrl('/mission-control/solutions');
@@ -92,6 +87,17 @@ export class ActivatorStoreHomeComponent implements OnInit {
   }
 
   get showCategories$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(map(queryParams => queryParams.keys.length === 0));
+    return this.route.queryParamMap.pipe(
+      map(queryParams => {
+        if (queryParams.keys.length !== 0) {
+          this.displayCategoryPage = false;
+        }
+        return this.displayCategoryPage;
+      })
+    );
+  }
+
+  showInitialPage() {
+    this.displayCategoryPage = true;
   }
 }

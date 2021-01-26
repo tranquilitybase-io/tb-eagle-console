@@ -65,11 +65,10 @@ export class ActivatorStoreHomeListFilterComponent implements OnInit {
     let initList = [] as FilterOption[];
 
     for (let i = 0; i < keys.length; i++) {
-      console.log(keys[i]);
       initList.push({
         name: keys[i].charAt(0).toUpperCase() + keys[i].slice(1),
         filterBarName: `${keys[i]}:${initQueryParams[keys[i]]}`,
-        filterQueryValue: { key: keys[i], value: initQueryParams[i] },
+        filterQueryValue: { key: keys[i], value: initQueryParams[keys[i]] },
         shortQueryName: keys[i]
       });
     }

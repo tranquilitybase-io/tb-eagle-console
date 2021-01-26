@@ -20,7 +20,9 @@
 </div>
 <ng-template #standardHeader>
   <header>
-    <app-breadcrumbs></app-breadcrumbs>
+    <div (click)="showInitialPage()">
+      <app-breadcrumbs></app-breadcrumbs>
+    </div>
   </header>
 </ng-template>
 
