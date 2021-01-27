@@ -29,7 +29,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/mission-control/solutions',
+        redirectTo: '/home',
+        //redirectTo: '/mission-control/solutions',
         pathMatch: 'full'
       },
       {
@@ -39,6 +40,11 @@ const routes: Routes = [
       {
         path: 'administration',
         loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule)
+      },
+      {
+        path: 'home',
+        loadChildren: () =>
+          import('./home/landing-zones-list/landing-zones-list.module').then(m => m.LandingZonesListModule)
       }
     ]
   }

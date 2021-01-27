@@ -31,9 +31,12 @@ export class UserLoginService {
   }
 
   loginSuccess(user: User): void {
+    this.router.navigateByUrl('/home');
+    /*
     if (user.isAdmin) this.router.navigateByUrl('/administration/landing-zone');
     else if (!user.teams.length) this.router.navigateByUrl('/administration/teams');
     else this.router.navigateByUrl('/mission-control/solutions');
+    */
   }
 
   loginFailure(): void {
