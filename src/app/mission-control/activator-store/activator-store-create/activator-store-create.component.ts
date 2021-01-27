@@ -138,10 +138,11 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
   }
 
   private parseActivatorFormsValuesToSend(): Activator {
-    let activator = { ...this.activatorData };
-    activator.activatorMetadata.variables.forEach(variable => {
-      variable.value = this.variablesForm.value[variable.name];
-    });
+    let activator = JSON.parse(JSON.stringify(this.activatorData));
+    activator.activatorMetadata.variables = activator.activatorMetadata.variables.map(variable => ({
+      ...variable,
+      value: this.variablesForm.value[variable.name]
+    }));
     activator.cd = [this.workspaceForm.value.cdId];
     activator.ci = [this.workspaceForm.value.ciId];
     activator.sourceControlId = this.workspaceForm.value.sourceControlId;
@@ -153,10 +154,11 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
   }
 
   private parsedActivatorFormsValuesToReview(): Activator {
-    let activator = { ...this.activatorData };
-    activator.activatorMetadata.variables.forEach(variable => {
-      variable.value = this.variablesForm.value[variable.name];
-    });
+    let activator = JSON.parse(JSON.stringify(this.activatorData));
+    activator.activatorMetadata.variables = activator.activatorMetadata.variables.map(variable => ({
+      ...variable,
+      value: this.variablesForm.value[variable.name]
+    }));
     const cd = [this.workspaceForm.value.cdId].map(cdId => this.cdList.find(cd => cd.key === cdId));
     activator.cd = cd.map(cd => ({ id: cd.key, value: cd.value }));
     const ci = [this.workspaceForm.value.ciId].map(ciId => this.ciList.find(ci => ci.key === ciId));
