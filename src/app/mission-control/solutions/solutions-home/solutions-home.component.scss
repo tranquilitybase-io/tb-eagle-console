@@ -18,6 +18,11 @@ app-breadcrumbs {
   justify-content: space-between;
   align-items: flex-end;
   border-bottom: 1px solid var(--grey);
+
+  .grid-view-switch {
+    display: flex;
+    padding-bottom: 1rem;
+  }
 }
 
 .home-list-filter {

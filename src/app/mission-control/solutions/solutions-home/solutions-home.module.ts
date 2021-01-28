@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SolutionSelectComponent } from './solution-select/solution-select.component';
 import { SolutionsHomeComponent } from './solutions-home.component';
 import { SolutionsHomeGridCardComponent } from './solutions-home-grid/solutions-home-grid-card/solutions-home-grid-card.component';
 import { SolutionsHomeGridComponent } from './solutions-home-grid/solutions-home-grid.component';
@@ -31,18 +30,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 const routes: Routes = [
   {
     path: '',
-    component: SolutionsHomeComponent
-  }
+    component: SolutionsHomeComponent,
+  },
 ];
 
 @NgModule({
   declarations: [
-    SolutionSelectComponent,
     SolutionsHomeComponent,
     SolutionsHomeGridCardComponent,
     SolutionsHomeGridComponent,
     SolutionsHomeListComponent,
-    SolutionsHomeListFilterComponent
+    SolutionsHomeListFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +61,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class SolutionsHomeModule {}
