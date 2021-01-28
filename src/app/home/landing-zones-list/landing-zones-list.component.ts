@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TableData } from './landing-zones-list.model';
 const DATA: TableData[] = [
   {
-    cloudImgSrc: 'https://miro.medium.com/max/600/1*W02WEmR0_JeJXfLWN2zHwQ.png',
+    cloudImgSrc: 'https://its.lmu.edu/media/its/aws.png',
     site: 'us-west-1',
     status: 'Online',
     alerts: 21,
@@ -11,10 +11,11 @@ const DATA: TableData[] = [
     users: 154,
     version: '1.32.2',
     actions: 'Launch',
-    actions2: 'Delete'
+    actions2: 'Delete',
+    dns: 'tranquilitybase-demo.io'
   },
   {
-    cloudImgSrc: 'src',
+    cloudImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
     site: 'us-west-1',
     status: 'Online',
     alerts: 12,
@@ -23,10 +24,11 @@ const DATA: TableData[] = [
     users: 244,
     version: '1.32.2',
     actions: 'Launch',
-    actions2: 'Delete'
+    actions2: 'Delete',
+    dns: 'tranquilitybase-demo.io'
   },
   {
-    cloudImgSrc: 'src',
+    cloudImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
     site: 'asia-northeast1',
     status: 'Online',
     alerts: 13,
@@ -35,10 +37,11 @@ const DATA: TableData[] = [
     users: 244,
     version: '1.4.0',
     actions: 'Launch',
-    actions2: 'Delete'
+    actions2: 'Delete',
+    dns: 'gftdevgcp.com'
   },
   {
-    cloudImgSrc: 'src',
+    cloudImgSrc: 'https://www.edwinmsarmiento.com/wp-content/uploads/2016/04/windows-azure.png',
     site: 'eastus2',
     status: 'Online',
     alerts: 0,
@@ -47,7 +50,8 @@ const DATA: TableData[] = [
     users: 4,
     version: '1.4.0',
     actions: 'Launch',
-    actions2: 'Delete'
+    actions2: 'Delete',
+    dns: 'gft.com'
   }
 ];
 
@@ -66,6 +70,7 @@ export class LandingZonesListComponent implements OnInit {
     'applications',
     'users',
     'version',
+    'organizationUrl',
     'actions'
   ];
   dataSource = DATA;

@@ -9,4 +9,5 @@ export interface TableData {
   version: string;
   actions: string;
   actions2: string;
+  dns: string;
 }

@@ -2,8 +2,23 @@ header {
   padding: 0.2rem 1.5rem;
   background-color: var(--active-grey-background);
 }
+.table-container {
+  margin-right: 1rem;
+}
 
 .table-home {
-  width: 98%;
-  margin: 1rem;
+  width: 97%;
+  margin: 0 1rem;
+}
+
+.table-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 0 1rem 0 2.2rem;
+}
+
+.img {
+  height: auto;
+  width: 40px;
 }

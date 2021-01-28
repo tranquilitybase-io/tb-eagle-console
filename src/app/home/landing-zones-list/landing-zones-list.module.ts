@@ -6,6 +6,7 @@ import { LandingZonesListComponent } from './landing-zones-list.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -23,6 +24,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [LandingZonesListComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), SharedModule, MatTableModule, MatIconModule]
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule, MatTableModule, MatIconModule, MatButtonModule]
 })
 export class LandingZonesListModule {}
