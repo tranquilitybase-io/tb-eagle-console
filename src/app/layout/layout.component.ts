@@ -9,6 +9,7 @@ import { NotificationsMeta } from '../shared/notifications/notifications.model';
 import { selectNotificationMetaData } from '../shared/notifications/notifications.reducer';
 import { Router } from '@angular/router';
 import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
+import { displayCategoryPage } from '../mission-control/activator-store/activator-store.actions';
 
 @Component({
   selector: 'app-layout',
@@ -78,5 +79,9 @@ export class LayoutComponent implements OnInit {
     this.dialog.open(ActivatorStoreDialogCreateComponent, {
       autoFocus: false
     });
+  }
+
+  showActivatorsCategories() {
+    this.store.dispatch(displayCategoryPage({ display: true }));
   }
 }

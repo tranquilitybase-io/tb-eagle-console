@@ -104,3 +104,5 @@ export const onboardActivatorError = createAction('[ActivatorStore] onboardActiv
 
 export const resetActivatorDataStatus = createAction('[ActivatorStore] resetActivatorDataStatus');
 export const resetAPICallStatuses = createAction('[ActivatorStore] resetAPICallStatuses');
+
+export const displayCategoryPage = createAction('[ActivatorStore] displayCategoryPage', props<{ display: boolean }>());

@@ -15,6 +15,7 @@ import {
   denyAccess,
   denyAccessError,
   denyAccessSuccess,
+  displayCategoryPage,
   getActivatorCategories,
   getActivatorCategoriesError,
   getActivatorCategoriesSuccess,
@@ -54,6 +55,7 @@ import { Activator, ActivatorCategory } from './activator-store.model';
 export const featureKey = 'activator-store';
 
 const initialState = {
+  displayCategoryPage: true,
   activatorData: {} as Activator,
   activators: [] as Activator[],
   categories: [] as ActivatorCategory[],
@@ -167,7 +169,8 @@ const innerReducer = createReducer(
   // onboard
   on(onboardActivator, state => ({ ...state, onboardActivatorStatus: onLoadableInit() })),
   on(onboardActivatorError, (state, { error }) => ({ ...state, onboardActivatorStatus: onLoadableError(error) })),
-  on(onboardActivatorSuccess, state => ({ ...state, onboardActivatorStatus: onLoadableSuccess() }))
+  on(onboardActivatorSuccess, state => ({ ...state, onboardActivatorStatus: onLoadableSuccess() })),
+  on(displayCategoryPage, (state, { display }) => ({ ...state, displayCategoryPage: display }))
 );
 
 export default function reducer(state, action) {
@@ -206,3 +209,5 @@ export const selectOnboardActivatorStatus = createSelector(
   selectFeature,
   state => state && state.onboardActivatorStatus
 );
+
+export const selectDisplayCategoryPage = createSelector(selectFeature, state => state && state.displayCategoryPage);

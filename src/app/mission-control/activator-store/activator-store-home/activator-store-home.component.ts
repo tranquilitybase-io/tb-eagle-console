@@ -1,3 +1,4 @@
+import { selectDisplayCategoryPage } from './../activator-store.reducer';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
@@ -16,7 +17,7 @@ import {
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
-import { resetAPICallStatuses, getActivators } from './../activator-store.actions';
+import { resetAPICallStatuses, getActivators, displayCategoryPage } from './../activator-store.actions';
 import { FilterOption, QueryParam } from './activator-store-home-list-filter/activator-store-home-list-filter.model';
 import { Activator } from '../activator-store.model';
 
@@ -46,13 +47,14 @@ export class ActivatorStoreHomeComponent implements OnInit {
   );
 
   userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsAdmin));
-  displayCategoryPage = true;
+  displayCategoryPage: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
 
   ngOnInit() {
     this.resetAPIStatuses();
     this.queryInitialData();
+    this.store.select(selectDisplayCategoryPage).subscribe(display => (this.displayCategoryPage = display));
     this.store.dispatch(setProgress({ step: 0 }));
   }
 
@@ -89,8 +91,8 @@ export class ActivatorStoreHomeComponent implements OnInit {
   get showCategories$(): Observable<boolean> {
     return this.route.queryParamMap.pipe(
       map(queryParams => {
-        if (queryParams.keys.length !== 0) {
-          this.displayCategoryPage = false;
+        if (queryParams.keys.length !== 0 && this.displayCategoryPage === true) {
+          this.store.dispatch(displayCategoryPage({ display: false }));
         }
         return this.displayCategoryPage;
       })
@@ -98,6 +100,6 @@ export class ActivatorStoreHomeComponent implements OnInit {
   }
 
   showInitialPage() {
-    this.displayCategoryPage = true;
+    this.store.dispatch(displayCategoryPage({ display: true }));
   }
 }
