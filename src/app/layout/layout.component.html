@@ -81,6 +81,17 @@
         <div class="section-header" *ngIf="isExpanded">Mission control</div>
         <a
           mat-list-item
+          routerLink="/home"
+          [queryParams]="{ isActive: 'true' }"
+          [matTooltip]="!isExpanded ? 'Solutions' : null"
+          matTooltipPosition="after"
+          [class.active]="isLinkActive('/home')"
+        >
+          <mat-icon>home</mat-icon>
+          <span *ngIf="isExpanded">Home</span>
+        </a>
+        <a
+          mat-list-item
           routerLink="/mission-control/solutions"
           [queryParams]="{ isActive: 'true' }"
           [matTooltip]="!isExpanded ? 'Solutions' : null"

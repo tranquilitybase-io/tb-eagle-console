@@ -3,7 +3,7 @@
 </header>
 <div class="table-header">
   <h5>List of landing zones</h5>
-  <button mat-button color="primary">
+  <button mat-button color="primary" (click)="create()">
     + Add new landing zone
   </button>
 </div>
@@ -15,7 +15,7 @@
     </ng-container>
 
     <ng-container matColumnDef="site">
-      <th mat-header-cell *matHeaderCellDef>Region</th>
+      <th mat-header-cell *matHeaderCellDef>Site</th>
       <td mat-cell *matCellDef="let element">{{ element.site }}</td>
     </ng-container>
 

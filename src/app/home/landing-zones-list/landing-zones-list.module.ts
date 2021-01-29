@@ -11,14 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 const routes: Routes = [
   {
     path: '',
-    component: LandingZonesListComponent,
-    data: {
-      breadcrumbsSteps: [
-        {
-          name: 'Home'
-        }
-      ]
-    }
+    component: LandingZonesListComponent
   }
 ];
 

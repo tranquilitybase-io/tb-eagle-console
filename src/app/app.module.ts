@@ -43,8 +43,7 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: () =>
-          import('./home/landing-zones-list/landing-zones-list.module').then(m => m.LandingZonesListModule)
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       }
     ]
   }

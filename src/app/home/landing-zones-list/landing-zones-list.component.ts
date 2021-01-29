@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TableData } from './landing-zones-list.model';
 const DATA: TableData[] = [
   {
@@ -16,7 +17,7 @@ const DATA: TableData[] = [
   },
   {
     cloudImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
-    site: 'us-west-1',
+    site: 'us-west1',
     status: 'Online',
     alerts: 12,
     solutions: 6,
@@ -29,7 +30,7 @@ const DATA: TableData[] = [
   },
   {
     cloudImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
-    site: 'asia-northeast1',
+    site: 'europe-west2',
     status: 'Online',
     alerts: 13,
     solutions: 2,
@@ -56,7 +57,7 @@ const DATA: TableData[] = [
 ];
 
 @Component({
-  selector: 'app-layout',
+  selector: 'app-landing-zones-list',
   templateUrl: './landing-zones-list.component.html',
   styleUrls: ['./landing-zones-list.component.scss']
 })
@@ -74,6 +75,10 @@ export class LandingZonesListComponent implements OnInit {
     'actions'
   ];
   dataSource = DATA;
-  constructor() {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
   ngOnInit() {}
+
+  create() {
+    this.router.navigate(['create'], { relativeTo: this.route });
+  }
 }
