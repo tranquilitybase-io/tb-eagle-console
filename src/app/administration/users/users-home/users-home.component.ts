@@ -13,6 +13,7 @@ import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-v
 import { map } from 'rxjs/operators';
 import { selectGetUsersStatus, selectUsers } from '../users.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
+import { FilterOption, QueryParam } from './users-home-filter/users-home-filter.model';
 
 @Component({
   selector: 'app-users-home',
@@ -30,7 +31,7 @@ export class UsersHomeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private store: Store<any>) {}
 
   ngOnInit() {
-    this.store.dispatch(getUsers());
+    this.queryInitialData();
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
   }
 
@@ -38,5 +39,21 @@ export class UsersHomeComponent implements OnInit {
     return this.currentGridViewOption$.pipe(
       map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
+  }
+
+  private getCurrentQueryParams(): QueryParam[] {
+    const initQueryParams = this.route.snapshot.queryParams;
+    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    return params;
+  }
+
+  private queryInitialData() {
+    this.store.dispatch(getUsers({ queryParams: this.getCurrentQueryParams() }));
+  }
+
+  onFilterListUpdate(filterOptions: FilterOption[]) {
+    const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
+    //this.store.dispatch(getUsers({ queryParams }));
+    this.store.dispatch(getUsers({ queryParams: [] }));
   }
 }

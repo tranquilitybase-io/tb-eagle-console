@@ -9,6 +9,7 @@ import { FilterOption } from './filter-select.model';
 })
 export class FilterSelectComponent implements OnInit {
   @Input() options: FilterOption[];
+  @Input() disabled: boolean;
   @Output() selectedFilter = new EventEmitter<FilterOption>();
 
   filterCtrl = new FormControl();

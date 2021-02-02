@@ -1,7 +1,10 @@
 <header>
   <app-breadcrumbs> </app-breadcrumbs>
 </header>
-<app-users-home-select [gridViewName]="gridViewOptionsName"></app-users-home-select>
+<div class="select-bar">
+  <app-users-home-filter class="home-list-filter"></app-users-home-filter>
+  <app-grid-view-switch class="grid-view-switch" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+</div>
 <app-users-home-grid
   *ngIf="isGridViewEnabled$ | async; else listview"
   [users$]="users$"

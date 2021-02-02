@@ -7,7 +7,7 @@ import { UsersHomeComponent } from './users-home.component';
 import { UsersHomeGridCardComponent } from './users-home-grid/users-home-grid-card/users-home-grid-card.component';
 import { UsersHomeGridComponent } from './users-home-grid/users-home-grid.component';
 import { UsersHomeListComponent } from './users-home-list/users-home-list.component';
-import { UsersHomeSelectComponent } from './users-home-select/users-home-select.component';
+import { UsersHomeFilterComponent } from './users-home-filter/users-home-filter.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -38,7 +38,7 @@ const routes: Routes = [
     UsersHomeGridComponent,
     UsersHomeGridCardComponent,
     UsersHomeListComponent,
-    UsersHomeSelectComponent
+    UsersHomeFilterComponent
   ],
   imports: [
     CommonModule,
