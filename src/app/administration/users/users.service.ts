@@ -15,7 +15,7 @@ export class UsersService extends EntityCollectionServiceBase<User> {
   private BASE_URL = `${globalThis.location.origin}/api`;
 
   getUsers(queryParams: QueryParam[]): Observable<User[]> {
-    const url = `${this.BASE_URL}/solutions/`;
+    const url = `${this.BASE_URL}/users/`;
     let params = new HttpParams();
     for (let obj of queryParams) {
       params = params.append(obj.key, obj.value);
