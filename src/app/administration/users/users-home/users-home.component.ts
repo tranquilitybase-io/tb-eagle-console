@@ -1,11 +1,10 @@
 import { getUsers } from './../users.actions';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../users.model';
 import { Observable } from 'rxjs';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
   GridViewSwitchOptionsEnum
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { select, Store } from '@ngrx/store';
@@ -28,7 +27,7 @@ export class UsersHomeComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.users;
   currentGridViewOption$: Observable<string>;
 
-  constructor(private route: ActivatedRoute, private store: Store<any>) {}
+  constructor(private route: ActivatedRoute, private store: Store<any>, private router: Router) {}
 
   ngOnInit() {
     this.queryInitialData();
@@ -49,6 +48,10 @@ export class UsersHomeComponent implements OnInit {
 
   private queryInitialData() {
     this.store.dispatch(getUsers({ queryParams: this.getCurrentQueryParams() }));
+  }
+
+  createNewUser() {
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
 
   onFilterListUpdate(filterOptions: FilterOption[]) {

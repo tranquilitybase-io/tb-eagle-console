@@ -29,8 +29,4 @@ export class UsersHomeListComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
-
-  createNewUser() {
-    this.router.navigate(['create'], { relativeTo: this.route });
-  }
 }
