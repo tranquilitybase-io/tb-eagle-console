@@ -7,7 +7,7 @@ import { TeamsHomeComponent } from './teams-home.component';
 import { TeamsHomeGridCardComponent } from './teams-home-grid/teams-home-grid-card/teams-home-grid-card.component';
 import { TeamsHomeGridComponent } from './teams-home-grid/teams-home-grid.component';
 import { TeamsHomeListComponent } from './teams-home-list/teams-home-list.component';
-import { TeamsSelectComponent } from './teams-select/teams-select.component';
+import { TeamsHomeFilterComponent } from './teams-home-filter/teams-home-filter.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -36,8 +36,8 @@ const routes: Routes = [
     TeamsHomeComponent,
     TeamsHomeGridComponent,
     TeamsHomeGridCardComponent,
-    TeamsSelectComponent,
-    TeamsHomeListComponent
+    TeamsHomeListComponent,
+    TeamsHomeFilterComponent
   ],
   imports: [
     CommonModule,

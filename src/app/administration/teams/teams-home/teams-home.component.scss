@@ -2,3 +2,21 @@ header {
   padding: 0.2rem 1.5rem;
   background-color: var(--active-grey-background);
 }
+
+.select-bar {
+  margin: 1rem 1rem;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--grey);
+
+  .grid-view-switch {
+    display: flex;
+    padding-bottom: 1rem;
+  }
+}
+
+.home-list-filter {
+  flex: 1;
+}

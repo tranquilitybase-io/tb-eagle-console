@@ -27,8 +27,8 @@ export class TeamsEffects {
   getTeams$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getTeams),
-      mergeMap(() =>
-        this.teamsService.getAll().pipe(
+      mergeMap(actions =>
+        this.teamsService.getTeams(actions.queryParams).pipe(
           map(teams => getTeamsSuccess({ teams })),
           catchError(error => of(getTeamsError({ error })))
         )
