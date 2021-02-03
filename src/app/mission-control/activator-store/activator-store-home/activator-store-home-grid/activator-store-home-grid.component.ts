@@ -3,9 +3,8 @@ import { Observable } from 'rxjs';
 import { Activator } from '../../activator-store.model';
 import { LayoutService } from '@app/layout/layout.service';
 import { Layout } from '@app/layout/layout.model';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { getActivators } from '../../activator-store.actions';
 import { selectActivators, selectGetActivatorsStatus } from '../../activator-store.reducer';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
@@ -13,7 +12,7 @@ import { Loadable } from '@app/shared/shared.reducer';
 @Component({
   selector: 'app-activator-store-home-grid',
   templateUrl: './activator-store-home-grid.component.html',
-  styleUrls: ['./activator-store-home-grid.component.scss']
+  styleUrls: ['./activator-store-home-grid.component.scss'],
 })
 export class ActivatorStoreHomeGridComponent implements OnInit {
   activators$: Observable<Activator[]>;

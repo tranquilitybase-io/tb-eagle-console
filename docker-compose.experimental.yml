@@ -29,7 +29,6 @@ services:
       SQLALCHEMY_ECHO: 'False'
       SQLALCHEMY_TRACK_MODIFICATIONS: 'False'
       GCP_DAC_URL: 'gcp-dac:3100'
-      CLIENT_ID: 576108226578-m876jb0mjk5gjsenvifthut89gna3j8o.apps.googleusercontent.com
     depends_on:
       - tb-db
       - gcp-dac
