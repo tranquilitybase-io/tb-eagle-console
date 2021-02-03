@@ -66,9 +66,4 @@ export class TeamMembersGridComponent implements OnInit {
   statusColor(isActive: boolean) {
     return isActive ? 'primary' : '';
   }
-
-  addNewTeamMember() {
-    let teamId = this.route.snapshot.data['team'].id;
-    this.router.navigateByUrl(`/administration/teams/create-team-member?teamId=${teamId}`);
-  }
 }
