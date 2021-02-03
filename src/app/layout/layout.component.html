@@ -107,17 +107,18 @@
           <mat-icon>filter_none</mat-icon>
           <span *ngIf="isExpanded"> Solutions</span>
         </a>
-        <a
-          mat-list-item
-          routerLink="/mission-control/activator-store"
-          [queryParams]="{ showCategories: 'true' }"
-          [class.active]="isLinkActive('/mission-control/activator-store')"
-          [matTooltip]="!isExpanded ? 'Activator store' : null"
-          matTooltipPosition="after"
-        >
-          <mat-icon>storefront</mat-icon>
-          <span *ngIf="isExpanded"> Activator store</span>
-        </a>
+        <div (click)="showActivatorsCategories()">
+          <a
+            mat-list-item
+            routerLink="/mission-control/activator-store"
+            [class.active]="isLinkActive('/mission-control/activator-store')"
+            [matTooltip]="!isExpanded ? 'Activator store' : null"
+            matTooltipPosition="after"
+          >
+            <mat-icon>storefront</mat-icon>
+            <span *ngIf="isExpanded">Activator store</span>
+          </a>
+        </div>
       </div>
       <mat-divider *ngIf="!isExpanded" class="miniDrawerBr"></mat-divider>
       <div class="section-header" *ngIf="isExpanded">Administration menu</div>

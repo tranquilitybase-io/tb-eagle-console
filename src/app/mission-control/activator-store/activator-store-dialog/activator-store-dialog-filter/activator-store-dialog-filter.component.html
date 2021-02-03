@@ -1,0 +1,26 @@
+<div>
+  <h1 mat-dialog-title>Filtering query options</h1>
+  <p>Use following syntax to query data:</p>
+  <div class="content-container">
+    <mat-chip-list class="mat-chip-list-stacked left">
+      <p class="text">Qualifier:</p>
+      <mat-chip>category:string</mat-chip>
+      <mat-chip>status:string</mat-chip>
+      <mat-chip>environment:string</mat-chip>
+      <mat-chip>platform:string</mat-chip>
+      <mat-chip>type:string</mat-chip>
+      <mat-chip>sensitivity:string</mat-chip>
+    </mat-chip-list>
+    <div class="right">
+      <mat-chip-list class="mat-chip-list-stacked left">
+        <p class="text">Example:</p>
+        <mat-chip class="chip">category:Infrastructure</mat-chip>
+        <mat-chip class="chip">status:Deprecated, status:Locked</mat-chip>
+        <mat-chip class="chip">environment:Development</mat-chip>
+        <mat-chip class="chip">platform:GCP</mat-chip>
+        <mat-chip class="chip">type:3</mat-chip>
+        <mat-chip class="chip">sensitivity:Public</mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+</div>

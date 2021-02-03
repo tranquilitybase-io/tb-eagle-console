@@ -1,0 +1,17 @@
+<div class="list-filter">
+  <app-filter-select
+    class="filter-select"
+    [options]="options"
+    (selectedFilter)="onFilterSelect($event)"
+  ></app-filter-select>
+  <button mat-icon-button color="primary" class="button-icon" (click)="showInformations()">
+    <mat-icon>info</mat-icon>
+  </button>
+  <app-filter-bar
+    class="filter-bar"
+    [list]="currentFilterList"
+    [inputMode]="true"
+    (newList)="onFilterUpdate($event)"
+    class="bar"
+  ></app-filter-bar>
+</div>

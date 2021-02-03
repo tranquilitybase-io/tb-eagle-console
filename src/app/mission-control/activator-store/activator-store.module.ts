@@ -28,7 +28,8 @@ const routes: Routes = [
         data: {
           breadcrumbsSteps: [
             {
-              name: 'Activator Store'
+              name: 'Activator Store',
+              link: '/mission-control/activator-store'
             }
           ]
         }

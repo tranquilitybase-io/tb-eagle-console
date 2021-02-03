@@ -97,17 +97,3 @@ export interface ActivatorStoreDialogCreateOnboardingData {
   activator: Activator;
   redirect: boolean;
 }
-
-export interface ActivatorsQueryParams {
-  isActive?: string;
-  isFavourite?: string;
-  category?: string;
-  status?: string;
-  environment?: string;
-  platform?: string;
-  type?: string;
-  source?: string;
-  sensitivity?: string;
-  page?: string;
-  page_size?: string;
-}
