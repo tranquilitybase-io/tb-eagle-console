@@ -1,5 +1,6 @@
 <header>
   <app-breadcrumbs> </app-breadcrumbs>
+  <button mat-button class="action-button" (click)="createNewTeam()">+ Create new team</button>
 </header>
 <div class="select-bar">
   <app-teams-home-filter class="home-list-filter" (filterList)="onFilterListUpdate($event)"></app-teams-home-filter>

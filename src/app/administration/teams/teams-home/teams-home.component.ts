@@ -12,7 +12,7 @@ import { getTeams } from '../teams.actions';
 import { selectGetTeamsStatus, selectTeams } from './../teams.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { FilterOption, QueryParam } from './teams-home-filter/teams-home-filter.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-teams-home',
@@ -25,7 +25,7 @@ export class TeamsHomeComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teams;
   currentGridViewOption$: Observable<string>;
 
-  constructor(private store: Store<any>, private route: ActivatedRoute) {}
+  constructor(private store: Store<any>, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.queryInitialData();
@@ -51,5 +51,9 @@ export class TeamsHomeComponent implements OnInit {
     const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
     this.store.dispatch(getTeams({ queryParams }));
     //this.store.dispatch(getTeams({ queryParams: [] }));
+  }
+
+  createNewTeam() {
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
 }
