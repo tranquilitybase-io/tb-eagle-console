@@ -1,17 +1,3 @@
-<div class="actions-top-bar">
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event.target.value)"
-      [(ngModel)]="filterValue"
-      placeholder="Ex. Activator name or description"
-    />
-    <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="applyFilter('')">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-</div>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="(getByActivatorsStatus$ | async).loading ? null : dataSource" matSort>
     <!-- ID Column -->

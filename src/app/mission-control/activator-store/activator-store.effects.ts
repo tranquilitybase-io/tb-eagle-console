@@ -44,6 +44,7 @@ import { selectUser } from '@app/login/login.reducer';
 import { of } from 'rxjs';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 import { ActivatedRoute } from '@angular/router';
+import { QueryParam } from './activator-store-home/activator-store-home-list-filter/activator-store-home-list-filter.model';
 
 @Injectable()
 export class ActivatorStoreEffects {
@@ -55,13 +56,9 @@ export class ActivatorStoreEffects {
     private store: Store<any>
   ) {}
 
-  getQueryParams() {
-    const category = this.route.snapshot.queryParams.category;
-    const status = this.route.snapshot.queryParams.status;
-    const params = {
-      ...(category && { category }),
-      ...(status && { status })
-    };
+  private getCurrentQueryParams(): QueryParam[] {
+    const initQueryParams = this.route.snapshot.queryParams;
+    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
     return params;
   }
 
@@ -122,7 +119,10 @@ export class ActivatorStoreEffects {
         this.service.setDeprecated(action.id).pipe(
           switchMap(activatorData => {
             this.snackBarService.success('Activator has been deprecated');
-            return [setDeprecatedSuccess({ activatorData }), getActivators({ queryParams: this.getQueryParams() })];
+            return [
+              setDeprecatedSuccess({ activatorData }),
+              getActivators({ queryParams: this.getCurrentQueryParams() })
+            ];
           }),
           catchError(error => {
             this.snackBarService.error('Something went wrong. Activator has not been deprecated');
@@ -140,7 +140,7 @@ export class ActivatorStoreEffects {
         this.service.setLocked(action.id).pipe(
           switchMap(activatorData => {
             this.snackBarService.success('Activator has been locked');
-            return [setLockedSuccess({ activatorData }), getActivators({ queryParams: this.getQueryParams() })];
+            return [setLockedSuccess({ activatorData }), getActivators({ queryParams: this.getCurrentQueryParams() })];
           }),
           catchError(error => {
             this.snackBarService.error('Something went wrong. Activator has not been locked');
@@ -158,7 +158,7 @@ export class ActivatorStoreEffects {
         this.service.denyAccess(activatorId, teamId).pipe(
           switchMap(activatorData => {
             this.snackBarService.success('Access has been denied');
-            return [denyAccessSuccess({ activatorData }), getActivators({ queryParams: this.getQueryParams() })];
+            return [denyAccessSuccess({ activatorData }), getActivators({ queryParams: this.getCurrentQueryParams() })];
           }),
           catchError(error => {
             this.snackBarService.error('Something went wrong. Access has not been denied');
@@ -176,7 +176,10 @@ export class ActivatorStoreEffects {
         this.service.grantAccess(activatorId, teamId).pipe(
           switchMap(activatorData => {
             this.snackBarService.success('Access has been granted');
-            return [grantAccessSuccess({ activatorData }), getActivators({ queryParams: this.getQueryParams() })];
+            return [
+              grantAccessSuccess({ activatorData }),
+              getActivators({ queryParams: this.getCurrentQueryParams() })
+            ];
           }),
           catchError(error => {
             this.snackBarService.error('Something went wrong. Access has not been granted');
@@ -215,7 +218,7 @@ export class ActivatorStoreEffects {
             this.snackBarService.success("Activator's draft has been created");
             return [
               createActivatorByURLSuccess({ activatorData }),
-              getActivators({ queryParams: this.getQueryParams() })
+              getActivators({ queryParams: this.getCurrentQueryParams() })
             ];
           }),
           catchError(error => {

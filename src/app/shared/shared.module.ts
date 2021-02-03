@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { BreadcrumbsModule } from './breadcrumbs/breadcrumbs.component.module';
+import { FilterBarModule } from './filter-bar/filter-bar.module';
 import { GridViewSwitchModule } from './grid-view-switch/grid-view-switch.module';
 import { NotificationsModule } from './notifications/notifications.module';
 
@@ -114,6 +115,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BreadcrumbsModule,
     HttpClientModule,
     FormsModule,
+    FilterBarModule,
     ReactiveFormsModule,
     GridViewSwitchModule,
     NotificationsModule,
@@ -145,6 +147,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DropdownComponent,
     FavoriteButtonComponent,
     FilterBarComponent,
+    FilterBarComponent,
+    FilterBarModule,
+    FilterSelectComponent,
     FilterSelectComponent,
     FormsModule,
     GridViewSwitchComponent,

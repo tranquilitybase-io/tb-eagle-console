@@ -1,10 +1,19 @@
 <mat-form-field class="search-bar">
   <mat-chip-list #chipList aria-label="filter bar">
-    <ng-container *ngIf="list.length > 0">
+    <div *ngIf="list.length > 0">
       <mat-chip *ngFor="let item of list" [removable]="removable" (removed)="remove(item)">
         {{ item.filterBarName }}
         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
-    </ng-container>
+    </div>
+    <input
+      *ngIf="inputMode"
+      placeholder="Add Filter..."
+      maxlength="30"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="true"
+      (matChipInputTokenEnd)="add($event)"
+    />
   </mat-chip-list>
 </mat-form-field>

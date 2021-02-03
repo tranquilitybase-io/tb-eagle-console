@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { setProgress } from '../activator-store.actions';
 import { map } from 'rxjs/operators';
-import { selectCategoriesCount, selectActivatorsCount } from '../activator-store.reducer';
+import { selectCategoriesCount, selectActivatorsCount, selectDisplayCategoryPage } from '../activator-store.reducer';
 
 import { selectProgress } from '../activator-store.reducer';
 import { selectIsSelectedSolution, selectSelectedSolution } from '../../solutions/solutions.reducer';
@@ -12,21 +12,21 @@ import { discardSelectedSolution } from '../../solutions/solutions.actions';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
-  GridViewSwitchOptionsEnum
+  GridViewSwitchOptionsEnum,
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
-import { ActivatorStoreDialogCreateComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
-import { MatDialog } from '@angular/material/dialog';
 import { selectUserIsAdmin } from '@app/login/login.reducer';
-import { resetAPICallStatuses } from './../activator-store.actions';
+import { resetAPICallStatuses, getActivators, displayCategoryPage } from './../activator-store.actions';
+import { FilterOption, QueryParam } from './activator-store-home-list-filter/activator-store-home-list-filter.model';
+import { Activator } from '../activator-store.model';
 
 @Component({
   selector: 'app-activator-store-home',
   templateUrl: './activator-store-home.component.html',
-  styleUrls: ['./activator-store-home.component.scss']
+  styleUrls: ['./activator-store-home.component.scss'],
 })
 export class ActivatorStoreHomeComponent implements OnInit {
+  activators$: Observable<Activator[]>;
   category$: Observable<string>;
   category: string;
   status: string;
@@ -46,40 +46,34 @@ export class ActivatorStoreHomeComponent implements OnInit {
   );
 
   userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsAdmin));
+  displayCategoryPage: boolean;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private store: Store<any>,
-    private dialog: MatDialog
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
 
   ngOnInit() {
     this.resetAPIStatuses();
+    this.queryInitialData();
+    this.store.select(selectDisplayCategoryPage).subscribe((display) => (this.displayCategoryPage = display));
     this.store.dispatch(setProgress({ step: 0 }));
-    this.category$ = this.route.queryParamMap.pipe(
-      map(queryParams => {
-        this.category = queryParams.get('category');
-        this.status = queryParams.get('status');
-        const params = {
-          ...(this.category && { category: this.category }),
-          ...(this.status && { status: this.status }),
-          ...(!this.category && !this.status && { showCategories: true })
-        };
-        this.onSwitch(params);
-        return this.category;
-      })
-    );
+  }
+
+  private getCurrentQueryParams(): QueryParam[] {
+    const initQueryParams = this.route.snapshot.queryParams;
+    let params = Object.keys(initQueryParams).map((key) => ({ key: key, value: initQueryParams[key] }));
+    return params;
+  }
+
+  onFilterListUpdate(filterOptions: FilterOption[]) {
+    const queryParams = filterOptions.map((filterOption) => filterOption.filterQueryValue);
+    this.store.dispatch(getActivators({ queryParams }));
+  }
+
+  private queryInitialData() {
+    this.store.dispatch(getActivators({ queryParams: this.getCurrentQueryParams() }));
   }
 
   resetAPIStatuses() {
     this.store.dispatch(resetAPICallStatuses());
-  }
-
-  onSwitch(categorySwitch) {
-    this.router.navigate(['mission-control', 'activator-store'], {
-      queryParams: categorySwitch
-    });
   }
 
   cancel() {
@@ -87,51 +81,24 @@ export class ActivatorStoreHomeComponent implements OnInit {
     this.router.navigateByUrl('/mission-control/solutions');
   }
 
-  createNewActivator() {
-    this.dialog.open(ActivatorStoreDialogCreateComponent, {
-      autoFocus: false
-    });
-  }
-
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
+      map((currentGridViewOption) => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 
-  get isSelectedShowCateogries$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(map(queryParams => queryParams.get('showCategories') === 'true'));
-  }
-
-  get isAllSwitchSelected$(): Observable<boolean> {
+  get showCategories$(): Observable<boolean> {
     return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('category') === 'All' && queryParams.get('status') !== 'Draft';
+      map((queryParams) => {
+        if (queryParams.keys.length !== 0 && this.displayCategoryPage === true) {
+          this.store.dispatch(displayCategoryPage({ display: false }));
+        }
+        return this.displayCategoryPage;
       })
     );
   }
 
-  get isDraftSwitchSelected$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('status') === 'Draft';
-      })
-    );
-  }
-
-  get isAllDraftSwitchSelected$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('category') === 'All' && queryParams.get('status') === 'Draft';
-      })
-    );
-  }
-
-  get isCategorySelected$(): Observable<boolean> {
-    return this.route.queryParamMap.pipe(
-      map(queryParams => {
-        return queryParams.get('category') !== 'All';
-      })
-    );
+  showInitialPage() {
+    this.store.dispatch(displayCategoryPage({ display: true }));
   }
 }

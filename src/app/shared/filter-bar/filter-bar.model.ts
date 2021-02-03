@@ -6,4 +6,5 @@ export interface FilterOption {
   name: string;
   filterBarName: string;
   filterQueryValue: QueryParam;
+  shortQueryName: string;
 }
