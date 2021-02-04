@@ -12,7 +12,7 @@ import { getBusinessUnits } from '../business-unit.actions';
 import { selectBusinessUnits, selectGetBusinessUnitsStatus } from '../business-unit.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { FilterOption, QueryParam } from './business-unit-home-filter/business-unit-home-filter.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-home',
@@ -27,7 +27,7 @@ export class BusinessUnitsHomeComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.businessUnit;
   currentGridViewOption$: Observable<string>;
 
-  constructor(private store: Store<any>, private route: ActivatedRoute) {}
+  constructor(private store: Store<any>, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.queryInitialData();
@@ -53,5 +53,9 @@ export class BusinessUnitsHomeComponent implements OnInit {
   onFilterListUpdate(filterOptions: FilterOption[]) {
     const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
     this.store.dispatch(getBusinessUnits({ queryParams }));
+  }
+
+  createNewBusinessUnit() {
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
 }
