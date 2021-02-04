@@ -1,40 +1,32 @@
-<mat-grid-list cols="5" rowHeight="700px" *ngIf="activator">
-  <mat-grid-tile [colspan]="3" [rowspan]="1">
+<mat-grid-list cols="4" rowHeight="700px" *ngIf="activator">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
     <mat-grid-tile-header>Metadata</mat-grid-tile-header>
     <mat-grid-list class="internal-mat-grid" cols="2" rowHeight="95px">
       <mat-grid-tile [colspan]="2" [rowspan]="3">
         <mat-card class="app-dashboard-card">
           <mat-card-header>
-            <mat-card-title>
-              Description
-            </mat-card-title>
+            <mat-card-title> Description </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>{{ application.name }} - {{ application.description }}</div>
+            <div>{{ activator.name }} - {{ activator.activatorMetadata.description }}</div>
             <mat-list dense class="description-list">
               <mat-list-item>
-                <div class="mat-body-1">Data sensitivity</div>
-                <mat-chip-list>
-                  <mat-chip class="sensitivity" [ngClass]="sensitivityColor">{{ activator.sensitivity }}</mat-chip>
-                </mat-chip-list>
+                <div class="mat-body-1">Category</div>
+                <div class="mat-chip-alternative">
+                  {{ activator.activatorMetadata.category }}
+                </div>
               </mat-list-item>
               <mat-list-item>
-                <div class="mat-body-1">Users</div>
-                <mat-chip-list>
-                  <mat-chip>{{ activator.userCapacity }}</mat-chip>
-                </mat-chip-list>
+                <div class="mat-body-1">Platforms</div>
+                <div *ngFor="let platform of activator.activatorMetadata.platforms" class="mat-chip-alternative">
+                  {{ platform.value }}
+                </div>
               </mat-list-item>
               <mat-list-item>
-                <div class="mat-body-1">Servers</div>
-                <mat-chip-list>
-                  <mat-chip>{{ activator.serverCapacity }}</mat-chip>
-                </mat-chip-list>
-              </mat-list-item>
-              <mat-list-item>
-                <div class="mat-body-1">Regions</div>
-                <mat-chip-list>
-                  <mat-chip *ngFor="let region of activator.regions">{{ region }}</mat-chip>
-                </mat-chip-list>
+                <div class="mat-body-1">Type</div>
+                <div class="mat-chip-alternative">
+                  {{ activator.activatorMetadata.type.value }}
+                </div>
               </mat-list-item>
             </mat-list>
           </mat-card-content>
@@ -43,45 +35,7 @@
       <mat-grid-tile [colspan]="2" [rowspan]="1">
         <mat-card class="app-dashboard-card">
           <mat-card-header>
-            <mat-card-title>
-              Business unit
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ activator.businessUnit.name }}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Technology owner
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ activator.technologyOwner }}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Technology owner e-mail
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div class="mat-body-2">{{ activator.technologyOwnerEmail }}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="2" [rowspan]="1">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Billing
-            </mat-card-title>
+            <mat-card-title> Billing </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <div class="mat-body-2">{{ activator.billing }} <a href="#">View details</a></div>
@@ -102,66 +56,60 @@
   <mat-grid-tile [colspan]="2" [rowspan]="1" class="configuration-grid-tile">
     <mat-grid-tile-header>Configuration</mat-grid-tile-header>
     <mat-grid-list class="internal-mat-grid" cols="1" rowHeight="110px">
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-grid-tile [colspan]="1" [rowspan]="3">
         <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Activator
-            </mat-card-title>
-          </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <div>{{ activator.name }}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Category
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <mat-chip-list>
-              <mat-chip>{{ activator.activatorMetadata.category }}</mat-chip>
-            </mat-chip-list>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Environments
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <mat-chip-list>
-              <mat-chip *ngFor="let env of activator.envs">{{ env.name }}</mat-chip>
-            </mat-chip-list>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <mat-card class="app-dashboard-card">
-          <mat-card-header>
-            <mat-card-title>
-              Cloud patform
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <mat-chip-list>
-              <mat-chip *ngFor="let platform of activator.activatorMetadata.platforms">{{ platform.value }}</mat-chip>
-            </mat-chip-list>
+            <mat-list dense class="description-list">
+              <mat-list-item>
+                <div class="mat-body-1">Environments</div>
+                <div *ngFor="let category of activator.envs" class="mat-chip-alternative">
+                  {{ category.name }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">CI (Continuous integration)</div>
+                <div *ngFor="let ci of activator.ci" class="mat-chip-alternative">
+                  {{ ci.value }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">CD (Continuous deployment)</div>
+                <div *ngFor="let cd of activator.cd" class="mat-chip-alternative">
+                  {{ cd.value }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Supported regions</div>
+                <div *ngFor="let region of activator.regions" class="mat-chip-alternative">
+                  {{ region }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Data sensitivity</div>
+                <div class="mat-chip-alternative">
+                  {{ activator.sensitivity }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Source control</div>
+                <div class="mat-chip-alternative">
+                  {{ activator.sourceControl?.value }}
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="mat-body-1">Business Unit</div>
+                <div class="mat-chip-alternative">
+                  {{ activator.businessUnit?.name }}
+                </div>
+              </mat-list-item>
+            </mat-list>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="2">
         <mat-card class="app-dashboard-card">
           <mat-card-header>
-            <mat-card-title>
-              Resources
-            </mat-card-title>
+            <mat-card-title> Resources </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <mat-chip-list>
