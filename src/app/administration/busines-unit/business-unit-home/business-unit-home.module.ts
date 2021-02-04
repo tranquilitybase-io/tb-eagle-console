@@ -6,8 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { BusinessUnitHomeGridCardComponent } from './business-unit-home-grid/business-unit-home-grid-card/business-unit-home-grid-card.component';
 import { BusinessUnitHomeGridComponent } from './business-unit-home-grid/business-unit-home-grid.component';
 import { BusinessUnitHomeListComponent } from './business-unit-home-list/business-unit-home-list.component';
-import { BusinessUnitHomeSelectComponent } from './business-unit-home-select/business-unit-home-select.component';
 import { BusinessUnitsHomeComponent } from './business-unit-home.component';
+import { BusinesUnitHomeFilterComponent } from './business-unit-home-filter/business-unit-home-filter.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -36,8 +36,8 @@ const routes: Routes = [
     BusinessUnitHomeGridCardComponent,
     BusinessUnitHomeGridComponent,
     BusinessUnitHomeListComponent,
-    BusinessUnitHomeSelectComponent,
-    BusinessUnitsHomeComponent
+    BusinessUnitsHomeComponent,
+    BusinesUnitHomeFilterComponent
   ],
   imports: [
     CommonModule,

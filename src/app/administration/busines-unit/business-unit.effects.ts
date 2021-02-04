@@ -27,8 +27,8 @@ export class BusinessUnitEffects {
   getBusinessUnits = createEffect(() =>
     this.actions$.pipe(
       ofType(getBusinessUnits),
-      mergeMap(() =>
-        this.businessUnitService.getAll().pipe(
+      mergeMap(actions =>
+        this.businessUnitService.getBusinessUnits(actions.queryParams).pipe(
           map(businessUnits => getBusinessUnitsSuccess({ businessUnits })),
           catchError(error => of(getBusinessUnitsError({ error })))
         )
