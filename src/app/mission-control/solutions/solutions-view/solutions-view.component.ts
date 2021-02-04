@@ -8,7 +8,7 @@ import { selectSolutionDeploymentsData } from '../solutions.reducer';
 import { selectApplicationDeploymentsData } from '@app/mission-control/applications/applications.reducer';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
-import { startDeployment } from '../solutions.actions';
+import { setSelectedSolution, startDeployment } from '../solutions.actions';
 import {
   GridViewSwitchViewsNames,
   GridViewSwitchModel,
@@ -19,6 +19,7 @@ import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-v
 import { map, switchMap } from 'rxjs/operators';
 import { TeamMember } from '@app/administration/team-members/team-members.model';
 import { TeamMembersService } from '@app/administration/team-members/team-members.service';
+import { selectUserIsAdmin } from '@app/login/login.reducer';
 
 @Component({
   selector: 'app-solutions-view',
@@ -35,6 +36,7 @@ export class SolutionsViewComponent implements OnInit {
   selectedTabIndex: number = 0;
 
   teamMembers$: Observable<TeamMember[]>;
+  userIsAdmin$: Observable<boolean>;
 
   constructor(
     private solutionsService: SolutionsService,
@@ -70,6 +72,7 @@ export class SolutionsViewComponent implements OnInit {
         this.solution = solution;
         this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
       });
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
 
   updateSolutionData() {
@@ -124,5 +127,10 @@ export class SolutionsViewComponent implements OnInit {
 
   getTabIndex(tabName: string) {
     return this.tabsIndexMap.get(tabName) ? this.tabsIndexMap.get(tabName) : 0;
+  }
+
+  createNewApplication() {
+    this.store.dispatch(setSelectedSolution({ solution: this.solution }));
+    this.router.navigateByUrl('/mission-control/activator-store');
   }
 }
