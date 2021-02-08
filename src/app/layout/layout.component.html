@@ -14,18 +14,10 @@
         <mat-icon>add</mat-icon>
       </button>
       <mat-menu #addMenu="matMenu">
-        <button mat-flat-button (click)="createNewSolution()">
-          Create new solution
-        </button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewActivator()">
-          Add new activator
-        </button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewUser()">
-          Create new user
-        </button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewTeam()">
-          Create new team
-        </button>
+        <button mat-flat-button (click)="createNewSolution()">Create new solution</button>
+        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewActivator()">Add new activator</button>
+        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewUser()">Create new user</button>
+        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewTeam()">Create new team</button>
       </mat-menu>
 
       <span class="spacer"></span>

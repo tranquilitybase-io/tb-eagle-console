@@ -36,19 +36,19 @@ const routes: Routes = [
     path: '',
     component: ActivatorStoreHomeComponent,
     resolve: {
-      teamList: TeamResolver
-    }
-  }
+      teamList: TeamResolver,
+    },
+  },
 ];
 
 @NgModule({
   declarations: [
-    ActivatorStoreHomeComponent,
-    ActivatorStoreHomeGridComponent,
-    ActivatorStoreHomeGridCardComponent,
     ActivatorStoreHomeCategoryGridComponent,
+    ActivatorStoreHomeComponent,
+    ActivatorStoreHomeGridCardComponent,
+    ActivatorStoreHomeGridComponent,
     ActivatorStoreHomeListComponent,
-    ActivatorStoreHomeListFilterComponent
+    ActivatorStoreHomeListFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -70,7 +70,7 @@ const routes: Routes = [
     MatSortModule,
     MatStepperModule,
     MatTableModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class ActivatorStoreHomeModule {}
