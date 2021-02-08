@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { LayoutService } from '@app/layout/layout.service';
 import { Layout } from '@app/layout/layout.model';
 import { ActivatorCategory } from '../../activator-store.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { getActivatorCategories, getMetaData } from '../../activator-store.actions';
 import { selectCategories, selectGetActivatorCategoriesStatus } from '../../activator-store.reducer';
@@ -20,12 +20,7 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
   categories$: Observable<ActivatorCategory[]> = this.store.select(selectCategories);
   getActivatorCategoriesStatus$: Observable<Loadable> = this.store.select(selectGetActivatorCategoriesStatus);
 
-  constructor(
-    private layoutService: LayoutService,
-    private router: Router,
-    private store: Store<any>,
-    private route: ActivatedRoute
-  ) {
+  constructor(private layoutService: LayoutService, private router: Router, private store: Store<any>) {
     this.layout$ = this.layoutService.layoutObserver$;
   }
 
