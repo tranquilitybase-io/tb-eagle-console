@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BusinesUnitHomeFilterComponent } from './business-unit-home-filter.component';
+import { BusinessUnitHomeFilterComponent } from './business-unit-home-filter.component';
 
 describe('SolutionsHomeListFilterComponent', () => {
-  let component: BusinesUnitHomeFilterComponent;
-  let fixture: ComponentFixture<BusinesUnitHomeFilterComponent>;
+  let component: BusinessUnitHomeFilterComponent;
+  let fixture: ComponentFixture<BusinessUnitHomeFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BusinesUnitHomeFilterComponent]
+      declarations: [BusinessUnitHomeFilterComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BusinesUnitHomeFilterComponent);
+    fixture = TestBed.createComponent(BusinessUnitHomeFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

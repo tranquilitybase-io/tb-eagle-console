@@ -5,9 +5,9 @@ import { FilterOption, FilterOptions } from './business-unit-home-filter.model';
 @Component({
   selector: 'app-business-unit-home-filter',
   templateUrl: './business-unit-home-filter.component.html',
-  styleUrls: ['./business-unit-home-filter.component.scss']
+  styleUrls: ['./business-unit-home-filter.component.scss'],
 })
-export class BusinesUnitHomeFilterComponent implements OnInit {
+export class BusinessUnitHomeFilterComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   @Output() filterList = new EventEmitter<FilterOption[]>();
@@ -20,7 +20,7 @@ export class BusinesUnitHomeFilterComponent implements OnInit {
   }
 
   onFilterSelect(filter: FilterOption) {
-    const foundItem = this.currentFilterList.find(listItem => listItem.name === filter.name);
+    const foundItem = this.currentFilterList.find((listItem) => listItem.name === filter.name);
     if (!foundItem) {
       this.currentFilterList.push(filter);
       this.filterList.emit(this.currentFilterList);
@@ -41,7 +41,7 @@ export class BusinesUnitHomeFilterComponent implements OnInit {
 
     this.router.navigate(['.'], {
       relativeTo: this.route,
-      queryParams: params
+      queryParams: params,
     });
   }
 
@@ -51,6 +51,6 @@ export class BusinesUnitHomeFilterComponent implements OnInit {
     if (keys.length === 0) {
       return null;
     }
-    this.currentFilterList = keys.map(key => this.options.find(option => option.shortQueryName === key));
+    this.currentFilterList = keys.map((key) => this.options.find((option) => option.shortQueryName === key));
   }
 }
