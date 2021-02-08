@@ -1,4 +1,3 @@
-import { getActivators } from './../../activator-store.actions';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LayoutService } from '@app/layout/layout.service';
@@ -6,7 +5,7 @@ import { Layout } from '@app/layout/layout.model';
 import { ActivatorCategory } from '../../activator-store.model';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getActivatorCategories, getMetaData } from '../../activator-store.actions';
+import { getActivatorCategories, getActivators, getMetaData } from '../../activator-store.actions';
 import { selectCategories, selectGetActivatorCategoriesStatus } from '../../activator-store.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 

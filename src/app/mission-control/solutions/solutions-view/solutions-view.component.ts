@@ -11,8 +11,7 @@ import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-u
 import { setSelectedSolution, startDeployment } from '../solutions.actions';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
-  GridViewSwitchOptionsEnum
+  GridViewSwitchOptionsEnum,
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { Observable } from 'rxjs';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
@@ -24,7 +23,7 @@ import { selectUserIsAdmin } from '@app/login/login.reducer';
 @Component({
   selector: 'app-solutions-view',
   templateUrl: './solutions-view.component.html',
-  styleUrls: ['./solutions-view.component.scss']
+  styleUrls: ['./solutions-view.component.scss'],
 })
 export class SolutionsViewComponent implements OnInit {
   solution: Solution = { businessUnit: {}, team: {} } as Solution;
@@ -58,17 +57,17 @@ export class SolutionsViewComponent implements OnInit {
     this.tabsIndexMap = new Map([
       ['Overview', 0],
       ['Activators', 1],
-      ['TeamMembers', 2]
+      ['TeamMembers', 2],
     ]);
     this.selectedTabIndex = this.getTabIndex(this.route.snapshot.queryParamMap.get('tab'));
     // update solution when using notifications component
     this.route.queryParams
       .pipe(
-        switchMap(params => {
+        switchMap((params) => {
           return this.solutionsService.getByKey(params['id']);
         })
       )
-      .subscribe(solution => {
+      .subscribe((solution) => {
         this.solution = solution;
         this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
       });
@@ -77,7 +76,7 @@ export class SolutionsViewComponent implements OnInit {
 
   updateSolutionData() {
     console.log(this.route.snapshot.queryParamMap.get('id'));
-    this.solutionsService.getByKey(this.route.snapshot.queryParamMap.get('id')).subscribe(solution => {
+    this.solutionsService.getByKey(this.route.snapshot.queryParamMap.get('id')).subscribe((solution) => {
       this.solution = solution;
       this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
     });
@@ -121,7 +120,7 @@ export class SolutionsViewComponent implements OnInit {
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
+      map((currentGridViewOption) => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 
