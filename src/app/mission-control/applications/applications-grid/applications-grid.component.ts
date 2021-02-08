@@ -23,7 +23,7 @@ export class ApplicationsGridComponent implements OnInit {
   userIsAdmin$: Observable<boolean>;
   startDeploymentStatus$: Observable<Loadable> = this.store.pipe(select(selectStartDeploymentStatus));
 
-  constructor(private router: Router, private store: Store<any>, private layoutService: LayoutService) {
+  constructor(private store: Store<any>, private layoutService: LayoutService) {
     this.layout$ = this.layoutService.layoutObserver$;
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
@@ -36,10 +36,5 @@ export class ApplicationsGridComponent implements OnInit {
 
   get isSolutionDeployed(): boolean {
     return this.solution.deploymentState === DeploymentState.Success;
-  }
-
-  createNewApplication() {
-    this.store.dispatch(setSelectedSolution({ solution: this.solution }));
-    this.router.navigateByUrl('/mission-control/activator-store');
   }
 }

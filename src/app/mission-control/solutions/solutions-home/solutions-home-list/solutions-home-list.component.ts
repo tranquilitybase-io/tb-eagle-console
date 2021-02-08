@@ -7,7 +7,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DeploymentState } from '@app/shared/shared.model';
-import { Router, ActivatedRoute } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
 import { SolutionsHomeDialogDeployComponent } from '../solutions-home-dialog/solutions-home-dialog-deploy/solutions-home-dialog-deploy.component';
@@ -42,17 +41,8 @@ export class SolutionsHomeListComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  filterValue: string = '';
-
-  constructor(
-    private dialog: MatDialog,
-    private layoutService: LayoutService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private store: Store<any>
-  ) {
+  constructor(private dialog: MatDialog, private layoutService: LayoutService, private store: Store<any>) {
     this.layout$ = this.layoutService.layoutObserver$;
-    this.filterValue = '';
   }
 
   ngOnInit() {
@@ -67,7 +57,6 @@ export class SolutionsHomeListComponent implements OnInit, OnChanges {
         this.dataSource = new MatTableDataSource(solutions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        this.dataSource.filter = this.filterValue;
       });
     }
   }
@@ -86,19 +75,6 @@ export class SolutionsHomeListComponent implements OnInit, OnChanges {
 
   isDeploymentStateSuccess(deploymentState: DeploymentState): boolean {
     return deploymentState === DeploymentState.Success;
-  }
-
-  applyFilter(filter: string) {
-    this.filterValue = filter;
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  createNewSolution() {
-    this.router.navigate(['create'], { relativeTo: this.route });
   }
 
   deploymentStateColor(deploymentState: DeploymentState): string {

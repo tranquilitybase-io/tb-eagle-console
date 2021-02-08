@@ -20,8 +20,6 @@ export class UsersHomeListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  filterValue: string = '';
-
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -29,20 +27,6 @@ export class UsersHomeListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.dataSource.filter = this.filterValue;
     });
-  }
-
-  applyFilter(filter: string) {
-    this.filterValue = filter;
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  createNewUser() {
-    this.router.navigate(['create'], { relativeTo: this.route });
   }
 }

@@ -26,6 +26,9 @@
 header {
   background-color: var(--active-grey-background);
   padding: 0.2rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .grid-container {

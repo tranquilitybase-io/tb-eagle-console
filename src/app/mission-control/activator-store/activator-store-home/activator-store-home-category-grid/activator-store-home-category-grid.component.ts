@@ -5,14 +5,14 @@ import { Layout } from '@app/layout/layout.model';
 import { ActivatorCategory } from '../../activator-store.model';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getActivatorCategories, getMetaData } from '../../activator-store.actions';
+import { getActivatorCategories, getActivators, getMetaData } from '../../activator-store.actions';
 import { selectCategories, selectGetActivatorCategoriesStatus } from '../../activator-store.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
   selector: 'app-activator-store-home-category-grid',
   templateUrl: './activator-store-home-category-grid.component.html',
-  styleUrls: ['./activator-store-home-category-grid.component.scss']
+  styleUrls: ['./activator-store-home-category-grid.component.scss'],
 })
 export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
   layout$: Observable<Layout>;
@@ -30,7 +30,8 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
 
   nagivate(category: string) {
     this.router.navigate(['mission-control', 'activator-store'], {
-      queryParams: { category }
+      queryParams: { category },
     });
+    this.store.dispatch(getActivators({ queryParams: [{ key: 'category', value: category }] }));
   }
 }

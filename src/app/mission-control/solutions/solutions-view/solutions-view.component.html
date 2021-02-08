@@ -53,6 +53,9 @@
   <mat-tab label="Activators">
     <div class="tab-content">
       <div class="grid-list-switch-bar">
+        <button [disabled]="userIsAdmin$ | async" mat-raised-button color="primary" (click)="createNewApplication()">
+          + Provision new activator
+        </button>
         <app-grid-view-switch class="align-right" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
       </div>
       <app-applications-grid

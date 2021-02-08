@@ -4,17 +4,6 @@
     [rowHeight]="(layout$ | async).applicationGridItemHeight"
     gutterSize="24px"
   >
-    <mat-grid-tile colspan="1" rowspan="1">
-      <button
-        [disabled]="userIsAdmin$ | async"
-        mat-stroked-button
-        class="create-new-button"
-        color="primary"
-        (click)="createNewApplication()"
-      >
-        <mat-icon>add</mat-icon>Provision new activator
-      </button>
-    </mat-grid-tile>
     <mat-grid-tile *ngFor="let app of apps" colspan="1" rowspan="1">
       <app-applications-grid-card
         class="application-grid-card"

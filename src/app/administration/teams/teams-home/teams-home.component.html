@@ -1,11 +1,11 @@
 <header>
   <app-breadcrumbs> </app-breadcrumbs>
+  <button mat-raised-button color="primary" class="action-button" (click)="createNewTeam()">+ Create new team</button>
 </header>
-<app-teams-select
-  [gridViewOptionName]="gridViewOptionsName"
-  [values]="filters"
-  (onSelection)="setFilter($event)"
-></app-teams-select>
+<div class="select-bar">
+  <app-teams-home-filter class="home-list-filter" (filterList)="onFilterListUpdate($event)"></app-teams-home-filter>
+  <app-grid-view-switch class="grid-view-switch" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+</div>
 <app-teams-home-grid
   *ngIf="isGridViewEnabled$ | async; else listview"
   [teams$]="teams$"

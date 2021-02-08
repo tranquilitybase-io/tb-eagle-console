@@ -1,9 +1,10 @@
 import { createAction, props } from '@ngrx/store';
+import { QueryParam } from './business-unit-home/business-unit-home-filter/business-unit-home-filter.model';
 import { BusinessUnit } from './business-unit.model';
 
 const key = '[business unit]';
 
-export const getBusinessUnits = createAction(`${key} getBusinessUnits`);
+export const getBusinessUnits = createAction(`${key} getBusinessUnits`, props<{ queryParams: QueryParam[] }>());
 export const getBusinessUnitsSuccess = createAction(
   `${key} getBusinessUnitsSuccess`,
   props<{ businessUnits: BusinessUnit[] }>()

@@ -8,12 +8,6 @@
     [rowHeight]="(layout$ | async).teamGridItemHeight"
     gutterSize="24px"
   >
-    <mat-grid-tile colspan="1" rowspan="1">
-      <button mat-stroked-button class="create-new-button" color="primary" (click)="createNewTeam()">
-        <mat-icon>add</mat-icon>Create new team
-      </button>
-    </mat-grid-tile>
-
     <mat-grid-tile *ngFor="let team of teams$ | async" colspan="1" rowspan="1">
       <app-teams-home-grid-card class="team-grid-card" [team]="team"></app-teams-home-grid-card>
     </mat-grid-tile>

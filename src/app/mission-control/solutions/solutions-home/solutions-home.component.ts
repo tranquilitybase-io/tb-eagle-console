@@ -8,7 +8,7 @@ import {
   selectSolutions
 } from '../solutions.reducer';
 import { Store, select } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import {
   GridViewSwitchViewsNames,
@@ -32,7 +32,7 @@ export class SolutionsHomeComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.solutions;
   currentGridViewOption$: Observable<string>;
 
-  constructor(private store: Store<SolutionsState>, private route: ActivatedRoute) {}
+  constructor(private store: Store<SolutionsState>, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.queryInitialData();
@@ -66,5 +66,9 @@ export class SolutionsHomeComponent implements OnInit {
   onFilterListUpdate(filterOptions: FilterOption[]) {
     const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
     this.store.dispatch(getSolutions({ queryParams }));
+  }
+
+  createNewSolution() {
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
 }

@@ -27,8 +27,8 @@ export class UsersEffects {
   getUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getUsers),
-      mergeMap(() =>
-        this.usersService.getAll().pipe(
+      mergeMap(action =>
+        this.usersService.getUsers(action.queryParams).pipe(
           map(users => getUsersSuccess({ users })),
           catchError(error => of(getUsersError({ error })))
         )

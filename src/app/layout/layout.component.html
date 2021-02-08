@@ -121,7 +121,6 @@
       <a
         mat-list-item
         routerLink="/administration/users"
-        [queryParams]="{ groupSwitch: 'Actives' }"
         [class.active]="isLinkActive('/administration/users')"
         [matTooltip]="!isExpanded ? 'Users' : null"
         matTooltipPosition="after"
@@ -131,7 +130,6 @@
       <a
         mat-list-item
         routerLink="/administration/teams"
-        [queryParams]="{ groupSwitch: 'Actives' }"
         [class.active]="isLinkActive('/administration/teams')"
         [matTooltip]="!isExpanded ? 'Teams' : null"
         matTooltipPosition="after"

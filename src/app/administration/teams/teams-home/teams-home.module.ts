@@ -4,10 +4,10 @@ import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TeamsHomeComponent } from './teams-home.component';
+import { TeamsHomeFilterComponent } from './teams-home-filter/teams-home-filter.component';
 import { TeamsHomeGridCardComponent } from './teams-home-grid/teams-home-grid-card/teams-home-grid-card.component';
 import { TeamsHomeGridComponent } from './teams-home-grid/teams-home-grid.component';
 import { TeamsHomeListComponent } from './teams-home-list/teams-home-list.component';
-import { TeamsSelectComponent } from './teams-select/teams-select.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -27,17 +27,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 const routes: Routes = [
   {
     path: '',
-    component: TeamsHomeComponent
-  }
+    component: TeamsHomeComponent,
+  },
 ];
 
 @NgModule({
   declarations: [
     TeamsHomeComponent,
-    TeamsHomeGridComponent,
+    TeamsHomeFilterComponent,
     TeamsHomeGridCardComponent,
-    TeamsSelectComponent,
-    TeamsHomeListComponent
+    TeamsHomeGridComponent,
+    TeamsHomeListComponent,
   ],
   imports: [
     CommonModule,
@@ -56,7 +56,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class TeamsHomeModule {}
