@@ -8,22 +8,22 @@ import { selectSolutionDeploymentsData } from '../solutions.reducer';
 import { selectApplicationDeploymentsData } from '@app/mission-control/applications/applications.reducer';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SolutionUnderCreationComponent } from '@app/shared/snack-bar/solution-under-creation/solution-under-creation.component';
-import { startDeployment } from '../solutions.actions';
+import { setSelectedSolution, startDeployment } from '../solutions.actions';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchModel,
-  GridViewSwitchOptionsEnum
+  GridViewSwitchOptionsEnum,
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { Observable } from 'rxjs';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { map, switchMap } from 'rxjs/operators';
 import { TeamMember } from '@app/administration/team-members/team-members.model';
 import { TeamMembersService } from '@app/administration/team-members/team-members.service';
+import { selectUserIsAdmin } from '@app/login/login.reducer';
 
 @Component({
   selector: 'app-solutions-view',
   templateUrl: './solutions-view.component.html',
-  styleUrls: ['./solutions-view.component.scss']
+  styleUrls: ['./solutions-view.component.scss'],
 })
 export class SolutionsViewComponent implements OnInit {
   solution: Solution = { businessUnit: {}, team: {} } as Solution;
@@ -35,6 +35,7 @@ export class SolutionsViewComponent implements OnInit {
   selectedTabIndex: number = 0;
 
   teamMembers$: Observable<TeamMember[]>;
+  userIsAdmin$: Observable<boolean>;
 
   constructor(
     private solutionsService: SolutionsService,
@@ -56,25 +57,26 @@ export class SolutionsViewComponent implements OnInit {
     this.tabsIndexMap = new Map([
       ['Overview', 0],
       ['Activators', 1],
-      ['TeamMembers', 2]
+      ['TeamMembers', 2],
     ]);
     this.selectedTabIndex = this.getTabIndex(this.route.snapshot.queryParamMap.get('tab'));
     // update solution when using notifications component
     this.route.queryParams
       .pipe(
-        switchMap(params => {
+        switchMap((params) => {
           return this.solutionsService.getByKey(params['id']);
         })
       )
-      .subscribe(solution => {
+      .subscribe((solution) => {
         this.solution = solution;
         this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
       });
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   }
 
   updateSolutionData() {
     console.log(this.route.snapshot.queryParamMap.get('id'));
-    this.solutionsService.getByKey(this.route.snapshot.queryParamMap.get('id')).subscribe(solution => {
+    this.solutionsService.getByKey(this.route.snapshot.queryParamMap.get('id')).subscribe((solution) => {
       this.solution = solution;
       this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
     });
@@ -118,11 +120,16 @@ export class SolutionsViewComponent implements OnInit {
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
+      map((currentGridViewOption) => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 
   getTabIndex(tabName: string) {
     return this.tabsIndexMap.get(tabName) ? this.tabsIndexMap.get(tabName) : 0;
+  }
+
+  createNewApplication() {
+    this.store.dispatch(setSelectedSolution({ solution: this.solution }));
+    this.router.navigateByUrl('/mission-control/activator-store');
   }
 }

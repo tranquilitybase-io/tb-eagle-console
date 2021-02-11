@@ -19,6 +19,8 @@ import { selectUserIsAdmin } from '@app/login/login.reducer';
 import { resetAPICallStatuses, getActivators, displayCategoryPage } from './../activator-store.actions';
 import { FilterOption, QueryParam } from './activator-store-home-list-filter/activator-store-home-list-filter.model';
 import { Activator } from '../activator-store.model';
+import { ActivatorStoreDialogCreateComponent } from '../activator-store-dialog/activator-store-dialog-create/activator-store-dialog-create.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-activator-store-home',
@@ -48,7 +50,12 @@ export class ActivatorStoreHomeComponent implements OnInit {
   userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsAdmin));
   displayCategoryPage: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router, private store: Store<any>) {}
+  constructor(
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private router: Router,
+    private store: Store<any>
+  ) {}
 
   ngOnInit() {
     this.resetAPIStatuses();
@@ -100,5 +107,11 @@ export class ActivatorStoreHomeComponent implements OnInit {
 
   showInitialPage() {
     this.store.dispatch(displayCategoryPage({ display: true }));
+  }
+
+  createNewActivator() {
+    this.dialog.open(ActivatorStoreDialogCreateComponent, {
+      autoFocus: false,
+    });
   }
 }

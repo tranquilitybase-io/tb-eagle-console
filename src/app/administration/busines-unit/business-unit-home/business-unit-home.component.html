@@ -1,7 +1,16 @@
 <header>
   <app-breadcrumbs> </app-breadcrumbs>
+  <button mat-raised-button color="primary" class="action-button" (click)="createNewBusinessUnit()">
+    + Create new Business Unit
+  </button>
 </header>
-<app-business-unit-home-select [gridViewName]="gridViewOptionsName"></app-business-unit-home-select>
+<div class="select-bar">
+  <app-business-unit-home-filter
+    class="home-list-filter"
+    (filterList)="onFilterListUpdate($event)"
+  ></app-business-unit-home-filter>
+  <app-grid-view-switch class="grid-view-switch" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+</div>
 <app-business-unit-home-grid
   *ngIf="isGridViewEnabled$ | async; else listview"
   [isLoading]="(getBusinessUnitsStatus$ | async).loading"

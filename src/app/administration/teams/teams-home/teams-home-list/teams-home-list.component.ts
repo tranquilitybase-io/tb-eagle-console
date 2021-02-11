@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -19,29 +18,14 @@ export class TeamsHomeListComponent implements OnInit {
   dataSource: MatTableDataSource<Team>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  filterValue: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit() {
     this.teams$.subscribe(teams => {
       this.dataSource = new MatTableDataSource(teams);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.dataSource.filter = this.filterValue;
     });
-  }
-
-  createNewTeam() {
-    this.router.navigate(['create'], { relativeTo: this.route });
-  }
-
-  applyFilter(filter: string) {
-    this.filterValue = filter;
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }

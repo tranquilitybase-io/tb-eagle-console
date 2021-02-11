@@ -1,7 +1,11 @@
 <header>
   <app-breadcrumbs> </app-breadcrumbs>
+  <button mat-raised-button color="primary" class="action-button" (click)="createNewUser()">+ Create new user</button>
 </header>
-<app-users-home-select [gridViewName]="gridViewOptionsName"></app-users-home-select>
+<div class="select-bar">
+  <app-users-home-filter class="home-list-filter"></app-users-home-filter>
+  <app-grid-view-switch class="grid-view-switch" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+</div>
 <app-users-home-grid
   *ngIf="isGridViewEnabled$ | async; else listview"
   [users$]="users$"

@@ -23,6 +23,15 @@
     <div (click)="showInitialPage()">
       <app-breadcrumbs></app-breadcrumbs>
     </div>
+    <button
+      *ngIf="userIsAdmin$ | async"
+      mat-raised-button
+      color="primary"
+      class="action-button"
+      (click)="createNewActivator()"
+    >
+      + Add new activator
+    </button>
   </header>
 </ng-template>
 

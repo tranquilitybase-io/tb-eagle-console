@@ -1,18 +1,3 @@
-<div class="actions-top-bar">
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input
-      matInput
-      [(ngModel)]="filterValue"
-      (keyup)="applyFilter($event.target.value)"
-      placeholder="Ex. Solution name or description"
-    />
-    <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="applyFilter('')">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-  <button mat-button class="action-button" (click)="createNewSolution()">+ Create new solution</button>
-</div>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="isLoading ? null : dataSource" matSort>
     <!-- ID Column -->

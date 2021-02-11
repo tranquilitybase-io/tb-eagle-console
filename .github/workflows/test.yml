@@ -28,3 +28,5 @@ jobs:
         npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
     - name: Validate the build for production
       run: npm run build
+    - name: Validate docker build for production
+      run: docker build .

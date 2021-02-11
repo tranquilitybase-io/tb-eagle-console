@@ -2,3 +2,10 @@
   justify-content: flex-end;
   height: 3rem;
 }
+
+.top-container {
+  padding: 1rem 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
