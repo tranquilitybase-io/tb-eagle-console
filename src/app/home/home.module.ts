@@ -17,38 +17,45 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./landing-zones-list/landing-zones-list.module').then(m => m.LandingZonesListModule),
+          import('./landing-zones-list/landing-zones-list.module').then((m) => m.LandingZonesListModule),
         data: {
           breadcrumbsSteps: [
             {
-              name: 'Home',
-              link: '/home'
-            }
-          ]
-        }
+              name: 'Sites',
+              link: '/home',
+            },
+          ],
+        },
       },
       {
         path: 'create',
         loadChildren: () =>
-          import('./landing-zones-create/landing-zones-create.module').then(m => m.LandingZonesCreateModule),
+          import('./landing-zones-create/landing-zones-create.module').then((m) => m.LandingZonesCreateModule),
         data: {
           breadcrumbsSteps: [
             {
               name: 'Home',
-              link: '/home'
+              link: '/home',
             },
             {
-              name: 'Create'
-            }
-          ]
-        }
-      }
-    ]
-  }
+              name: 'Create',
+            },
+          ],
+        },
+      },
+    ],
+  },
 ];
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes), MatButtonModule, MatIconModule, MatStepperModule]
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(routes),
+    MatButtonModule,
+    MatIconModule,
+    MatStepperModule,
+  ],
 })
 export class HomeModule {}

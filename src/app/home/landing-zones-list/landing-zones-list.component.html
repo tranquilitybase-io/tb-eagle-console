@@ -1,12 +1,7 @@
 <header>
   <app-breadcrumbs> </app-breadcrumbs>
+  <button mat-raised-button color="primary" (click)="create()">+ Create new site</button>
 </header>
-<div class="table-header">
-  <h5>List of landing zones</h5>
-  <button mat-button color="primary" (click)="create()">
-    + Add new landing zone
-  </button>
-</div>
 <div class="table-container">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-home">
     <ng-container matColumnDef="cloudImgSrc">
@@ -69,12 +64,8 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon>
-          launch
-        </mat-icon>
-        <mat-icon>
-          delete
-        </mat-icon>
+        <mat-icon> launch </mat-icon>
+        <mat-icon> delete </mat-icon>
       </td>
     </ng-container>
 
