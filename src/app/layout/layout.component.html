@@ -70,6 +70,31 @@
   <mat-sidenav mode="side" [opened]="isExpanded">
     <mat-nav-list>
       <div>
+        <div class="section-header" *ngIf="isExpanded">Home</div>
+        <a
+          mat-list-item
+          routerLink="/home"
+          [queryParams]="{ isActive: 'true' }"
+          [matTooltip]="!isExpanded ? 'Sites' : null"
+          matTooltipPosition="after"
+          [class.active]="isLinkActive('/home')"
+        >
+          <mat-icon>home</mat-icon>
+          <span *ngIf="isExpanded">Sites</span>
+        </a>
+        <a
+          mat-list-item
+          routerLink="/home"
+          [queryParams]="{ isActive: 'true' }"
+          [matTooltip]="!isExpanded ? 'Sites' : null"
+          matTooltipPosition="after"
+        >
+          <!-- [class.active]="isLinkActive('/home')" -->
+          <mat-icon>dashboard</mat-icon>
+          <span *ngIf="isExpanded">Dashboard</span>
+        </a>
+      </div>
+      <div>
         <div class="section-header" *ngIf="isExpanded">Mission control</div>
         <a
           mat-list-item

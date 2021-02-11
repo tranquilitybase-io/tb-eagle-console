@@ -1,0 +1,75 @@
+<header>
+  <app-breadcrumbs> </app-breadcrumbs>
+  <button mat-raised-button color="primary" (click)="create()">+ Create new site</button>
+</header>
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-home">
+    <ng-container matColumnDef="cloudImgSrc">
+      <th mat-header-cell *matHeaderCellDef>CSP</th>
+      <td mat-cell *matCellDef="let element"><img src="{{ element.cloudImgSrc }}" class="img" /></td>
+    </ng-container>
+
+    <ng-container matColumnDef="site">
+      <th mat-header-cell *matHeaderCellDef>Site</th>
+      <td mat-cell *matCellDef="let element">{{ element.site }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="region">
+      <th mat-header-cell *matHeaderCellDef>Region</th>
+      <td mat-cell *matCellDef="let element">{{ element.region }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="alerts">
+      <th mat-header-cell *matHeaderCellDef>Alerts</th>
+      <td mat-cell *matCellDef="let element">{{ element.alerts }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="solutions">
+      <th mat-header-cell *matHeaderCellDef>Solutions</th>
+      <td mat-cell *matCellDef="let element">{{ element.solutions }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="applications">
+      <th mat-header-cell *matHeaderCellDef>Applications</th>
+      <td mat-cell *matCellDef="let element">{{ element.applications }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="users">
+      <th mat-header-cell *matHeaderCellDef>Users</th>
+      <td mat-cell *matCellDef="let element">{{ element.users }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="version">
+      <th mat-header-cell *matHeaderCellDef>Version</th>
+      <td mat-cell *matCellDef="let element">{{ element.version }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="CSP">
+      <th mat-header-cell *matHeaderCellDef>CSP</th>
+      <td mat-cell *matCellDef="let element">{{ element.SCP }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="organizationUrl">
+      <th mat-header-cell *matHeaderCellDef>Organization Url</th>
+      <td mat-cell *matCellDef="let element">
+        <a href="{{ element.organizationUrl }}">{{ element.dns }}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon> launch </mat-icon>
+        <mat-icon> delete </mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
