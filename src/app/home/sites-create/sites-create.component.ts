@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-landing-zones-create',
-  templateUrl: './landing-zones-create.component.html',
-  styleUrls: ['./landing-zones-create.component.scss']
+  selector: 'app-sites-create',
+  templateUrl: './sites-create.component.html',
+  styleUrls: ['./sites-create.component.scss'],
 })
-export class LandingZonesListComponent implements OnInit {
+export class SitesCreateComponent implements OnInit {
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -15,7 +15,7 @@ export class LandingZonesListComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       csp: [''],
-      site: ['']
+      site: [''],
     });
   }
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { LandingZonesListComponent } from './landing-zones-create.component';
+import { SitesCreateComponent } from './sites-create.component';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { MatTableModule } from '@angular/material/table';
@@ -16,12 +16,12 @@ import { MatInputModule } from '@angular/material/input';
 const routes: Routes = [
   {
     path: '',
-    component: LandingZonesListComponent
-  }
+    component: SitesCreateComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [LandingZonesListComponent],
+  declarations: [SitesCreateComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -33,7 +33,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
-  ]
+    MatInputModule,
+  ],
 })
-export class LandingZonesCreateModule {}
+export class SitesCreateModule {}

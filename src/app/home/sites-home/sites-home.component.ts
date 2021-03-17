@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TableData } from './landing-zones-list.model';
+import { TableData } from './sites-home.model';
 const DATA: TableData[] = [
   {
     cloudImgSrc: 'https://its.lmu.edu/media/its/aws.png',
@@ -13,7 +13,7 @@ const DATA: TableData[] = [
     version: '1.32.2',
     actions: 'Launch',
     actions2: 'Delete',
-    dns: 'tranquilitybase-demo.io'
+    dns: 'tranquilitybase-demo.io',
   },
   {
     cloudImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
@@ -26,7 +26,7 @@ const DATA: TableData[] = [
     version: '1.32.2',
     actions: 'Launch',
     actions2: 'Delete',
-    dns: 'tranquilitybase-demo.io'
+    dns: 'tranquilitybase-demo.io',
   },
   {
     cloudImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
@@ -39,7 +39,7 @@ const DATA: TableData[] = [
     version: '1.4.0',
     actions: 'Launch',
     actions2: 'Delete',
-    dns: 'gftdevgcp.com'
+    dns: 'gftdevgcp.com',
   },
   {
     cloudImgSrc: 'https://www.edwinmsarmiento.com/wp-content/uploads/2016/04/windows-azure.png',
@@ -52,16 +52,16 @@ const DATA: TableData[] = [
     version: '1.4.0',
     actions: 'Launch',
     actions2: 'Delete',
-    dns: 'gft.com'
-  }
+    dns: 'gft.com',
+  },
 ];
 
 @Component({
-  selector: 'app-landing-zones-list',
-  templateUrl: './landing-zones-list.component.html',
-  styleUrls: ['./landing-zones-list.component.scss']
+  selector: 'app-sites-home',
+  templateUrl: './sites-home.component.html',
+  styleUrls: ['./sites-home.component.scss'],
 })
-export class LandingZonesListComponent implements OnInit {
+export class SitesHomeComponent implements OnInit {
   displayedColumns: string[] = [
     'cloudImgSrc',
     'site',
@@ -72,10 +72,12 @@ export class LandingZonesListComponent implements OnInit {
     'users',
     'version',
     'organizationUrl',
-    'actions'
+    'actions',
   ];
+
   dataSource = DATA;
   constructor(private router: Router, private route: ActivatedRoute) {}
+
   ngOnInit() {}
 
   create() {
