@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./sites-home/sites-home.module').then((m) => m.SitesHomeModule),
+        loadChildren: () => import('./sites/sites-home/sites-home.module').then((m) => m.SitesHomeModule),
         data: {
           breadcrumbsSteps: [
             {
@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        loadChildren: () => import('./sites-create/sites-create.module').then((m) => m.SitesCreateModule),
+        loadChildren: () => import('./sites/sites-create/sites-create.module').then((m) => m.SitesCreateModule),
         data: {
           breadcrumbsSteps: [
             {

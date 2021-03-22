@@ -1,6 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TableData } from './sites-home.model';
+import { TableData } from '../sites.model';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { Loadable } from '@app/shared/shared.reducer';
+import {
+  GridViewSwitchViewsNames,
+  GridViewSwitchOptionsEnum,
+} from '@app/shared/grid-view-switch/grid-view-switch.model';
+import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
+import { selectGetSitesStatus, selectSites } from '../sites.reducer';
+import { getSites } from '../sites.actions';
+import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 const DATA: TableData[] = [
   {
     cloudImgSrc: 'https://its.lmu.edu/media/its/aws.png',
@@ -62,6 +75,8 @@ const DATA: TableData[] = [
   styleUrls: ['./sites-home.component.scss'],
 })
 export class SitesHomeComponent implements OnInit {
+  constructor(private router: Router, private route: ActivatedRoute, private store: Store<any>) {}
+
   displayedColumns: string[] = [
     'cloudImgSrc',
     'site',
@@ -69,18 +84,37 @@ export class SitesHomeComponent implements OnInit {
     'alerts',
     'solutions',
     'applications',
-    'users',
+    //'users',
     'version',
     'organizationUrl',
     'actions',
   ];
+  //dataSource = DATA;
 
-  dataSource = DATA;
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  sites$: Observable<TableData[]> = of(DATA);
+  //sites$: Observable<TableData[]> = this.store.select(selectSites);
+  getSitesStatus$: Observable<Loadable> = this.store.select(selectGetSitesStatus);
 
-  ngOnInit() {}
+  gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.users;
+  currentGridViewOption$: Observable<string>;
 
-  create() {
-    this.router.navigate(['create'], { relativeTo: this.route });
+  ngOnInit() {
+    this.queryInitialData();
+    this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
+  }
+
+  get isGridViewEnabled$(): Observable<boolean> {
+    return this.currentGridViewOption$.pipe(
+      map((currentGridViewOption) => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
+    );
+  }
+
+  createNewSite() {
+    //this.router.navigate(['create'], { relativeTo: this.route });
+  }
+
+  private queryInitialData() {
+    this.store.dispatch(getSites());
+    //this.store.dispatch(getSites());
   }
 }

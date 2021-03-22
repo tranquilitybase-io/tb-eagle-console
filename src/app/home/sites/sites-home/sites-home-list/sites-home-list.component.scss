@@ -1,0 +1,42 @@
+.mat-elevation-z8 {
+  overflow: auto;
+  margin: 1rem;
+  margin-top: 0;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.action-button {
+  min-width: fit-content;
+}
+
+.mat-row:hover {
+  background-color: var(--active-grey-background);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.progress-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  height: auto;
+  width: 40px;
+}

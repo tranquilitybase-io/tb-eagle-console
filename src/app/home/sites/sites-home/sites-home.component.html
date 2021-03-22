@@ -1,5 +1,22 @@
 <header>
   <app-breadcrumbs> </app-breadcrumbs>
+  <button mat-raised-button color="primary" class="action-button" (click)="createNewSite()">+ Create new site</button>
+</header>
+<div class="select-bar">
+  <!--<app-sites-home-filter class="home-list-filter"></app-sites-home-filter>-->
+  <app-grid-view-switch class="grid-view-switch" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+</div>
+<app-sites-home-list
+  *ngIf="isGridViewEnabled$ | async; else listview"
+  [sites$]="sites$"
+  [isLoading]="(getSitesStatus$ | async).loading"
+></app-sites-home-list>
+<ng-template #listview>
+  <app-sites-home-list [sites$]="sites$" [isLoading]="(getSitesStatus$ | async).loading"></app-sites-home-list>
+</ng-template>
+
+<!--<header>
+  <app-breadcrumbs> </app-breadcrumbs>
   <button mat-raised-button color="primary" (click)="create()">+ Create new site</button>
 </header>
 <div class="table-container">
@@ -39,9 +56,9 @@
       <td mat-cell *matCellDef="let element">{{ element.applications }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="users">
-      <th mat-header-cell *matHeaderCellDef>Users</th>
-      <td mat-cell *matCellDef="let element">{{ element.users }}</td>
+    <ng-container matColumnDef="sites">
+      <th mat-header-cell *matHeaderCellDef>Sites</th>
+      <td mat-cell *matCellDef="let element">{{ element.sites }}</td>
     </ng-container>
 
     <ng-container matColumnDef="version">
@@ -72,4 +89,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-</div>
+</div> -->
