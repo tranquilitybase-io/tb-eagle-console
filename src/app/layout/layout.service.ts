@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LayoutService {
   constructor(private breakpointObserver: BreakpointObserver) {}
@@ -26,7 +26,8 @@ export class LayoutService {
               solutionGridItemHeight: '470px',
               solutionsViewApplicationsGridHeight: '1000px',
               teamGridItemHeight: '470px',
-              userGridItemHeight: '470px'
+              userGridItemHeight: '470px',
+              siteGridItemHeight: '470px',
             };
           case breakpoints[Breakpoints.Medium]:
             return {
@@ -41,7 +42,8 @@ export class LayoutService {
               solutionGridItemHeight: '430px',
               solutionsViewApplicationsGridHeight: '1000px',
               teamGridItemHeight: '430px',
-              userGridItemHeight: '430px'
+              userGridItemHeight: '430px',
+              siteGridItemHeight: '470px',
             };
           case breakpoints[Breakpoints.Large]:
             return {
@@ -56,7 +58,8 @@ export class LayoutService {
               solutionGridItemHeight: '410px',
               solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '390px',
-              userGridItemHeight: '390px'
+              userGridItemHeight: '390px',
+              siteGridItemHeight: '390px',
             };
           case breakpoints[Breakpoints.XLarge]:
             return {
@@ -71,7 +74,8 @@ export class LayoutService {
               solutionGridItemHeight: '350px',
               solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '350px',
-              userGridItemHeight: '350px'
+              userGridItemHeight: '350px',
+              siteGridItemHeight: '350px',
             };
           default:
             return {
@@ -86,7 +90,8 @@ export class LayoutService {
               solutionGridItemHeight: '510px',
               solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '510px',
-              userGridItemHeight: '510px'
+              userGridItemHeight: '510px',
+              siteGridItemHeight: '510px',
             };
         }
       })

@@ -6,11 +6,12 @@
   <!--<app-sites-home-filter class="home-list-filter"></app-sites-home-filter>-->
   <app-grid-view-switch class="grid-view-switch" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
 </div>
-<app-sites-home-list
+<!-- [isLoading]="(getSitesStatus$ | async).loading"-->
+<app-sites-home-grid
   *ngIf="isGridViewEnabled$ | async; else listview"
   [sites$]="sites$"
-  [isLoading]="(getSitesStatus$ | async).loading"
-></app-sites-home-list>
+  [isLoading]="false"
+></app-sites-home-grid>
 <ng-template #listview>
   <app-sites-home-list [sites$]="sites$" [isLoading]="(getSitesStatus$ | async).loading"></app-sites-home-list>
 </ng-template>

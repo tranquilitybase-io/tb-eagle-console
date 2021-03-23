@@ -21,7 +21,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-//todo:  add list and grid comp????
+import { SitesHomeGridComponent } from './sites-home-grid/sites-home-grid.component';
+import { SitesHomeGridCardComponent } from './sites-home-grid/sites-home-grid-card/sites-home-grid-card.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -30,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SitesHomeComponent, SitesHomeListComponent],
+  declarations: [SitesHomeComponent, SitesHomeListComponent, SitesHomeGridComponent, SitesHomeGridCardComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

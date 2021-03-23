@@ -14,7 +14,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SitesHomeListComponent implements OnInit {
   @Input() sites$: Observable<TableData[]>;
   @Input() isLoading: boolean;
-  //todo: column list
 
   displayedColumns: string[] = [
     'cloudImgSrc',

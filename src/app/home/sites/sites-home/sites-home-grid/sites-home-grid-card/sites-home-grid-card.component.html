@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <div class="card-actions-bar">
+        <button mat-icon-button>
+          <mat-icon>star_border</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <a mat-menu-item routerLink="view" [queryParams]="{ id: site.site }"> View </a>
+          <a mat-menu-item routerLink="edit" [queryParams]="{ id: site.site }"> Edit </a>
+        </mat-menu>
+      </div>
+      {{ site.site }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="mat-body-strong">Details</div>
+    <mat-list dense class="description-list">
+      <mat-list-item>
+        <div class="mat-body">Site</div>
+        <mat-chip-list>
+          <mat-chip> {{ site.site }} </mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body">Status</div>
+        <mat-chip-list>
+          <mat-chip>{{ site.status }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body">Alerts</div>
+        <mat-chip-list>
+          <mat-chip>{{ site.alerts }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="mat-body">Solutions</div>
+        <mat-chip-list>
+          <mat-chip>{{ site.solutions }}</mat-chip>
+        </mat-chip-list>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+
+  <mat-card-actions *ngIf="active">
+    <a mat-button routerLink="view" [queryParams]="{ id: site.site }"> View </a>
+    <a mat-button routerLink="edit" [queryParams]="{ id: site.site }"> Edit </a>
+  </mat-card-actions>
+</mat-card>
