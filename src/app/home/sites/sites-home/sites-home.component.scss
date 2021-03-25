@@ -6,20 +6,22 @@ header {
   justify-content: space-between;
 }
 
-.table-container {
-  margin-right: 1rem;
-}
-
-.table-home {
-  width: 98%;
-  margin: 0 1rem;
-}
-
-.table-header {
+.select-bar {
+  margin: 1rem 1rem;
+  flex: 1;
   display: flex;
-  flex-flow: row nowrap;
   justify-content: space-between;
-  padding: 0 1rem 0 2.2rem;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--grey);
+
+  .grid-view-switch {
+    display: flex;
+    padding-bottom: 1rem;
+  }
+}
+
+.home-list-filter {
+  flex: 1;
 }
 
 .img {

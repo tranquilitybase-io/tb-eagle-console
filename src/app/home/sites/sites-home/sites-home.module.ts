@@ -23,6 +23,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SitesHomeGridComponent } from './sites-home-grid/sites-home-grid.component';
 import { SitesHomeGridCardComponent } from './sites-home-grid/sites-home-grid-card/sites-home-grid-card.component';
+import { SitesHomeFilterComponent } from './sites-home-filter/sites-home-filter.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SitesHomeComponent, SitesHomeListComponent, SitesHomeGridComponent, SitesHomeGridCardComponent],
+  declarations: [
+    SitesHomeComponent,
+    SitesHomeListComponent,
+    SitesHomeGridComponent,
+    SitesHomeGridCardComponent,
+    SitesHomeFilterComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

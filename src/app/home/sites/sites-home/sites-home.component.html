@@ -3,7 +3,7 @@
   <button mat-raised-button color="primary" class="action-button" (click)="createNewSite()">+ Create new site</button>
 </header>
 <div class="select-bar">
-  <!--<app-sites-home-filter class="home-list-filter"></app-sites-home-filter>-->
+  <app-sites-home-filter class="home-list-filter"></app-sites-home-filter>
   <app-grid-view-switch class="grid-view-switch" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
 </div>
 <!-- [isLoading]="(getSitesStatus$ | async).loading"-->
