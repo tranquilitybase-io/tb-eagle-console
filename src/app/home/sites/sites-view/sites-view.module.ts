@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '@app/shared/shared.module';
 
 import { SiteByIdResolver } from '@app/shared/resolvers/site-by-id.resolver';
 import { SitesViewComponent } from './sites-view.component';
@@ -13,8 +14,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
-
-import { SharedModule } from '@app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -30,9 +29,10 @@ const routes: Routes = [
   declarations: [SitesViewComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    SharedModule,
     MatButtonModule,
     MatCardModule,
     MatChipsModule,
@@ -40,7 +40,6 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatSelectModule,
-    SharedModule,
   ],
 })
 export class SitesViewModule {}

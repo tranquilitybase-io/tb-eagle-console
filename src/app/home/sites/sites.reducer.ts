@@ -1,8 +1,13 @@
-import { defaultLoadable, Loadable } from '@app/shared/shared.reducer';
 import { createReducer, on, createSelector } from '@ngrx/store';
 import { getSites, getSitesError, getSitesSuccess } from './sites.actions';
 import { TableData } from './sites.model';
-import { onLoadableInit, onLoadableSuccess, onLoadableError } from './../../shared/shared.reducer';
+import {
+  defaultLoadable,
+  Loadable,
+  onLoadableError,
+  onLoadableInit,
+  onLoadableSuccess,
+} from '@app/shared/shared.reducer';
 
 export const initialState = {
   sites: [] as TableData[],

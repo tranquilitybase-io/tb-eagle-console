@@ -9,7 +9,7 @@ import { getSites, getSitesError, getSitesSuccess } from './sites.actions';
 export class SitesEffects {
   constructor(private actions$: Actions, private sitesService: SitesService) {}
 
-  geSites$ = createEffect(() =>
+  getSites$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getSites),
       mergeMap((action) =>

@@ -22,7 +22,6 @@ export class SitesHomeListComponent implements OnInit {
     'alerts',
     'solutions',
     'applications',
-    //'users',
     'version',
     'organizationUrl',
     'actions',
