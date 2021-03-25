@@ -89,10 +89,9 @@ export class SitesHomeComponent implements OnInit {
     'organizationUrl',
     'actions',
   ];
-  //dataSource = DATA;
 
   sites$: Observable<TableData[]> = of(DATA);
-  //sites$: Observable<TableData[]> = this.store.select(selectSites);
+  // sites$: Observable<TableData[]> = this.store.select(selectSites);
   getSitesStatus$: Observable<Loadable> = this.store.select(selectGetSitesStatus);
 
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.users;
@@ -110,11 +109,10 @@ export class SitesHomeComponent implements OnInit {
   }
 
   createNewSite() {
-    //this.router.navigate(['create'], { relativeTo: this.route });
+    this.router.navigate(['create'], { relativeTo: this.route });
   }
 
   private queryInitialData() {
     this.store.dispatch(getSites());
-    //this.store.dispatch(getSites());
   }
 }

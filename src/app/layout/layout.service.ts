@@ -27,7 +27,7 @@ export class LayoutService {
               solutionsViewApplicationsGridHeight: '1000px',
               teamGridItemHeight: '470px',
               userGridItemHeight: '470px',
-              siteGridItemHeight: '470px',
+              siteGridItemHeight: '500px',
             };
           case breakpoints[Breakpoints.Medium]:
             return {
@@ -43,7 +43,7 @@ export class LayoutService {
               solutionsViewApplicationsGridHeight: '1000px',
               teamGridItemHeight: '430px',
               userGridItemHeight: '430px',
-              siteGridItemHeight: '470px',
+              siteGridItemHeight: '500px',
             };
           case breakpoints[Breakpoints.Large]:
             return {

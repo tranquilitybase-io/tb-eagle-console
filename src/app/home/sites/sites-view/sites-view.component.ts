@@ -7,7 +7,7 @@ import { TableData } from '../sites.model';
   templateUrl: './sites-view.component.html',
   styleUrls: ['./sites-view.component.scss'],
 })
-export class UsersViewComponent implements OnInit {
+export class SitesViewComponent implements OnInit {
   site: TableData;
 
   constructor(private route: ActivatedRoute) {}

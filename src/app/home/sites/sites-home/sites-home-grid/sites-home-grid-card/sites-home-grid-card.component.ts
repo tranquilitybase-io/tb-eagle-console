@@ -12,7 +12,7 @@ export class SitesHomeGridCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   @HostListener('mouseover')
   onMouseOver() {

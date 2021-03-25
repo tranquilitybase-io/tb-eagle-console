@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-sites-create',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class SitesCreateComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private store: Store<any>, private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -18,4 +19,6 @@ export class SitesCreateComponent implements OnInit {
       site: [''],
     });
   }
+
+  private navigateToSitesHome() {}
 }

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { UserByIdResolver } from '@app/shared/resolvers/user-by-id.resolver';
-import { UsersViewComponent } from './sites-view.component';
+import { SiteByIdResolver } from '@app/shared/resolvers/site-by-id.resolver';
+import { SitesViewComponent } from './sites-view.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,15 +19,15 @@ import { SharedModule } from '@app/shared/shared.module';
 const routes: Routes = [
   {
     path: '',
-    component: UsersViewComponent,
+    component: SitesViewComponent,
     resolve: {
-      user: UserByIdResolver,
+      site: SiteByIdResolver,
     },
   },
 ];
 
 @NgModule({
-  declarations: [UsersViewComponent],
+  declarations: [SitesViewComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -43,4 +43,4 @@ const routes: Routes = [
     SharedModule,
   ],
 })
-export class UsersViewModule {}
+export class SitesViewModule {}
