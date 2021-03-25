@@ -32,7 +32,7 @@
     "@ngrx/effects": "10.1.2",
     "@ngrx/entity": "10.1.2",
     "@ngrx/store": "10.1.2",
-    "rxjs": "6.6.3",
+    "rxjs": "6.6.6",
     "tslib": "2.1.0",
     "zone.js": "0.10.3"
   },
