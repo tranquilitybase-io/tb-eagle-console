@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { TableData } from '../../../sites.model';
+import { Site } from '../../../sites.model';
 
 @Component({
   selector: 'app-sites-home-grid-card',
@@ -7,7 +7,7 @@ import { TableData } from '../../../sites.model';
   styleUrls: ['./sites-home-grid-card.component.scss'],
 })
 export class SitesHomeGridCardComponent implements OnInit {
-  @Input() site: TableData;
+  @Input() site: Site;
   active = false;
 
   constructor() {}

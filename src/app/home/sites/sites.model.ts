@@ -1,6 +1,9 @@
-export interface TableData {
-  cloudImgSrc: string;
-  site: string;
+export interface Site {
+  id: number;
+  name: string;
+  CSPImgSrc: string;
+  CSPName: string;
+  region: string;
   status: string;
   alerts: number;
   solutions: number;

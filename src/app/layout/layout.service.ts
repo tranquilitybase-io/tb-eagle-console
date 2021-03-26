@@ -27,7 +27,7 @@ export class LayoutService {
               solutionsViewApplicationsGridHeight: '1000px',
               teamGridItemHeight: '470px',
               userGridItemHeight: '470px',
-              siteGridItemHeight: '500px',
+              siteGridItemHeight: '570px',
             };
           case breakpoints[Breakpoints.Medium]:
             return {
@@ -43,7 +43,7 @@ export class LayoutService {
               solutionsViewApplicationsGridHeight: '1000px',
               teamGridItemHeight: '430px',
               userGridItemHeight: '430px',
-              siteGridItemHeight: '500px',
+              siteGridItemHeight: '570px',
             };
           case breakpoints[Breakpoints.Large]:
             return {
@@ -59,7 +59,7 @@ export class LayoutService {
               solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '390px',
               userGridItemHeight: '390px',
-              siteGridItemHeight: '390px',
+              siteGridItemHeight: '430px',
             };
           case breakpoints[Breakpoints.XLarge]:
             return {
@@ -75,7 +75,7 @@ export class LayoutService {
               solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '350px',
               userGridItemHeight: '350px',
-              siteGridItemHeight: '350px',
+              siteGridItemHeight: '430px',
             };
           default:
             return {
@@ -91,7 +91,7 @@ export class LayoutService {
               solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '510px',
               userGridItemHeight: '510px',
-              siteGridItemHeight: '510px',
+              siteGridItemHeight: '600px',
             };
         }
       })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TableData } from '../sites.model';
+import { Site } from '../sites.model';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { Loadable } from '@app/shared/shared.reducer';
@@ -14,10 +14,13 @@ import { getSites } from '../sites.actions';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-const DATA: TableData[] = [
+const DATA: Site[] = [
   {
-    cloudImgSrc: 'https://its.lmu.edu/media/its/aws.png',
-    site: 'us-west-1',
+    id: 1,
+    name: 'Risk Monitoring Reports',
+    CSPImgSrc: 'https://its.lmu.edu/media/its/aws.png',
+    CSPName: 'AWS',
+    region: 'us-west-1',
     status: 'Online',
     alerts: 21,
     solutions: 6,
@@ -29,8 +32,11 @@ const DATA: TableData[] = [
     dns: 'tranquilitybase-demo.io',
   },
   {
-    cloudImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
-    site: 'us-west1',
+    id: 2,
+    name: 'Logistics BI',
+    CSPImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
+    CSPName: 'GCP',
+    region: 'us-west1',
     status: 'Online',
     alerts: 12,
     solutions: 6,
@@ -42,8 +48,11 @@ const DATA: TableData[] = [
     dns: 'tranquilitybase-demo.io',
   },
   {
-    cloudImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
-    site: 'europe-west2',
+    id: 3,
+    name: 'Quality AI Analysis',
+    CSPImgSrc: 'https://seeklogo.com/images/G/google-cloud-logo-ADE788217F-seeklogo.com.png',
+    CSPName: 'GCP',
+    region: 'europe-west2',
     status: 'Online',
     alerts: 13,
     solutions: 2,
@@ -55,8 +64,11 @@ const DATA: TableData[] = [
     dns: 'gftdevgcp.com',
   },
   {
-    cloudImgSrc: 'https://www.edwinmsarmiento.com/wp-content/uploads/2016/04/windows-azure.png',
-    site: 'eastus2',
+    id: 4,
+    name: 'Stocks Rebalancing Tracker',
+    CSPImgSrc: 'https://www.edwinmsarmiento.com/wp-content/uploads/2016/04/windows-azure.png',
+    CSPName: 'Azure',
+    region: 'eastus2',
     status: 'Online',
     alerts: 0,
     solutions: 2,
@@ -77,20 +89,7 @@ const DATA: TableData[] = [
 export class SitesHomeComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private store: Store<any>) {}
 
-  displayedColumns: string[] = [
-    'cloudImgSrc',
-    'site',
-    'status',
-    'alerts',
-    'solutions',
-    'applications',
-    //'users',
-    'version',
-    'organizationUrl',
-    'actions',
-  ];
-
-  sites$: Observable<TableData[]> = of(DATA);
+  sites$: Observable<Site[]> = of(DATA);
   // sites$: Observable<TableData[]> = this.store.select(selectSites);
   getSitesStatus$: Observable<Loadable> = this.store.select(selectGetSitesStatus);
 

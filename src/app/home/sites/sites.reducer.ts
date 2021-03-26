@@ -1,6 +1,6 @@
 import { createReducer, on, createSelector } from '@ngrx/store';
 import { getSites, getSitesError, getSitesSuccess } from './sites.actions';
-import { TableData } from './sites.model';
+import { Site } from './sites.model';
 import {
   defaultLoadable,
   Loadable,
@@ -10,7 +10,7 @@ import {
 } from '@app/shared/shared.reducer';
 
 export const initialState = {
-  sites: [] as TableData[],
+  sites: [] as Site[],
   getSitesStatus: defaultLoadable() as Loadable,
   createSiteDataStatus: defaultLoadable() as Loadable,
   updateSiteDataStatus: defaultLoadable() as Loadable,
@@ -20,7 +20,7 @@ export interface SitesState {
   createSiteDataStatus: Loadable;
   getSitesStatus: Loadable;
   updateSiteDataStatus: Loadable;
-  sites: TableData;
+  sites: Site;
 }
 export const featureKey = 'sites';
 
