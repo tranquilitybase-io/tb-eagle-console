@@ -11,4 +11,5 @@ export interface Layout {
   solutionsViewApplicationsGridHeight: string;
   teamGridItemHeight: string;
   userGridItemHeight: string;
+  siteGridItemHeight: string;
 }

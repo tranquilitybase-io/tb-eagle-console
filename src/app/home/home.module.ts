@@ -16,8 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () =>
-          import('./landing-zones-list/landing-zones-list.module').then((m) => m.LandingZonesListModule),
+        loadChildren: () => import('./sites/sites-home/sites-home.module').then((m) => m.SitesHomeModule),
         data: {
           breadcrumbsSteps: [
             {
@@ -29,13 +28,12 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        loadChildren: () =>
-          import('./landing-zones-create/landing-zones-create.module').then((m) => m.LandingZonesCreateModule),
+        loadChildren: () => import('./sites/sites-create/sites-create.module').then((m) => m.SitesCreateModule),
         data: {
           breadcrumbsSteps: [
             {
-              name: 'Home',
-              link: '/home',
+              name: 'Create',
+              link: '/create',
             },
             {
               name: 'Create',

@@ -1,12 +1,8 @@
-<header>
-  <app-breadcrumbs> </app-breadcrumbs>
-  <button mat-raised-button color="primary" (click)="create()">+ Create new site</button>
-</header>
-<div class="table-container">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-home">
-    <ng-container matColumnDef="cloudImgSrc">
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="CSPImgSrc">
       <th mat-header-cell *matHeaderCellDef>CSP</th>
-      <td mat-cell *matCellDef="let element"><img src="{{ element.cloudImgSrc }}" class="img" /></td>
+      <td mat-cell *matCellDef="let element"><img src="{{ element.CSPImgSrc }}" class="img" /></td>
     </ng-container>
 
     <ng-container matColumnDef="site">
@@ -17,6 +13,11 @@
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Status</th>
       <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="region">
@@ -39,19 +40,14 @@
       <td mat-cell *matCellDef="let element">{{ element.applications }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="users">
-      <th mat-header-cell *matHeaderCellDef>Users</th>
-      <td mat-cell *matCellDef="let element">{{ element.users }}</td>
+    <ng-container matColumnDef="sites">
+      <th mat-header-cell *matHeaderCellDef>Sites</th>
+      <td mat-cell *matCellDef="let element">{{ element.sites }}</td>
     </ng-container>
 
     <ng-container matColumnDef="version">
       <th mat-header-cell *matHeaderCellDef>Version</th>
       <td mat-cell *matCellDef="let element">{{ element.version }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="CSP">
-      <th mat-header-cell *matHeaderCellDef>CSP</th>
-      <td mat-cell *matCellDef="let element">{{ element.SCP }}</td>
     </ng-container>
 
     <ng-container matColumnDef="organizationUrl">
@@ -72,4 +68,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <!--mat-card *ngIf="isLoading" class="progress-spinner-container">
+    <mat-progress-spinner color="primary" mode="indeterminate"> </mat-progress-spinner>
+  </mat-card-->
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
