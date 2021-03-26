@@ -1,0 +1,44 @@
+name: Add Realease Assets
+
+on:
+  release:
+    types: [published]
+    
+jobs:
+  release-assets:
+    runs-on: ubuntu-latest
+    env:
+      ARCHIVE_NAME: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}
+    steps:
+      - name: Git checkout current branch
+        uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Build static files
+        shell: bash
+        run: |
+          npm install
+          npm run build
+          mv dist/tb-eagle-console-ui/ "${ARCHIVE_NAME}/"
+      - name: Tarball built static files and checksum
+        shell: bash
+        run: |
+          tar -cvzf "${ARCHIVE_NAME}.tar.gz" "${ARCHIVE_NAME}/"
+          sha256sum "${ARCHIVE_NAME}.tar.gz" > "${ARCHIVE_NAME}.tar.gz.sha256"
+      - name: ZIP built static files and checksum
+        shell: bash
+        run: |
+          zip -r "${ARCHIVE_NAME}.zip" "${ARCHIVE_NAME}/"
+          sha256sum "$ARCHIVE_NAME.zip" > "$ARCHIVE_NAME.zip.sha256"
+      - name: Add assets to release
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${GITHUB_REF#refs/tags/}" \
+            "${ARCHIVE_NAME}.tar.gz#Build (tar.gz)" \
+            "${ARCHIVE_NAME}.tar.gz.sha256#Build checksum (tar.gz.sha256)" \
+            "${ARCHIVE_NAME}.zip#Build (zip)" \
+            "${ARCHIVE_NAME}.zip.sha256#Build checksum (zip.sha256)"
