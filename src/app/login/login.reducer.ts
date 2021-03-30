@@ -9,7 +9,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  isAuthenticated: false
+  isAuthenticated: false,
 };
 
 const loginReducer = createReducer(
@@ -19,7 +19,7 @@ const loginReducer = createReducer(
     localStorage.setItem('isAuthenticated', 'True');
     return { ...state, user, isAuthenticated: true };
   }),
-  on(loginFailure, state => {
+  on(loginFailure, (state) => {
     localStorage.clear();
     return state;
   })
@@ -29,15 +29,25 @@ export function reducer(state: State, action: Action) {
   return loginReducer(state, action);
 }
 
-export const selectFeature = state => state[loginFeatureKey];
+export const selectFeature = (state) => state[loginFeatureKey];
 export const selectIsAuthenticated = createSelector(
   selectFeature,
   ({ isAuthenticated }) => isAuthenticated || localStorage.getItem('isAuthenticated') === 'True'
 );
 export const selectUser = createSelector(selectFeature, () => JSON.parse(localStorage.getItem('user')) as User);
-export const selectUserIsAdmin = createSelector(
+export const selectUserIsMCAdmin = createSelector(
   selectFeature,
-  () => (JSON.parse(localStorage.getItem('user')) as User).isAdmin
+  () => (JSON.parse(localStorage.getItem('user')) as User).isMCAdmin
+);
+export const selectUserIsLZAdmin = createSelector(
+  selectFeature,
+  () => (JSON.parse(localStorage.getItem('user')) as User).isLZAdmin
+);
+export const selectUserIsAnyAdmin = createSelector(
+  selectFeature,
+  () =>
+    (JSON.parse(localStorage.getItem('user')) as User).isMCAdmin ||
+    (JSON.parse(localStorage.getItem('user')) as User).isLZAdmin
 );
 export const selectUserName = createSelector(
   selectFeature,

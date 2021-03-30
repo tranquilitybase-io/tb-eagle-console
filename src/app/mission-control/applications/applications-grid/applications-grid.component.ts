@@ -8,14 +8,14 @@ import { LayoutService } from '@app/layout/layout.service';
 import { Application } from '../applications.model';
 import { setSelectedSolution } from '@app/mission-control/solutions/solutions.actions';
 import { DeploymentState } from '@app/shared/shared.model';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsMCAdmin } from '@app/login/login.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 import { selectStartDeploymentStatus } from '../applications.reducer';
 
 @Component({
   selector: 'app-applications-grid',
   templateUrl: './applications-grid.component.html',
-  styleUrls: ['./applications-grid.component.scss']
+  styleUrls: ['./applications-grid.component.scss'],
 })
 export class ApplicationsGridComponent implements OnInit {
   @Input() solution: Solution;
@@ -25,7 +25,7 @@ export class ApplicationsGridComponent implements OnInit {
 
   constructor(private store: Store<any>, private layoutService: LayoutService) {
     this.layout$ = this.layoutService.layoutObserver$;
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
   }
 
   ngOnInit() {}

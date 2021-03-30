@@ -6,7 +6,7 @@ import { Layout } from '@app/layout/layout.model';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { selectActivators, selectGetActivatorsStatus } from '../../activator-store.reducer';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsMCAdmin } from '@app/login/login.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
 
 @Component({
@@ -26,6 +26,6 @@ export class ActivatorStoreHomeGridComponent implements OnInit {
 
   ngOnInit() {
     this.activators$ = this.store.select(selectActivators);
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
   }
 }

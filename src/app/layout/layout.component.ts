@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/login/login.reducer';
+import { selectUserIsAnyAdmin, selectUserInitials, selectShowWelcome } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../shared/welcome/welcome.component';
 import { NotificationsService } from '../shared/notifications/notifications.service';
@@ -14,7 +14,7 @@ import { displayCategoryPage } from '../mission-control/activator-store/activato
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
   isExpanded = true;
@@ -33,16 +33,16 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
     this.notificationService.pollingInitAll();
     this.notificationMetaData$ = this.store.pipe(select(selectNotificationMetaData));
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAnyAdmin));
     this.userInitials$ = this.store.pipe(select(selectUserInitials));
     this.showWelcome$ = this.store.pipe(select(selectShowWelcome));
-    this.showWelcome$.subscribe(showWelcome => {
+    this.showWelcome$.subscribe((showWelcome) => {
       if (showWelcome) {
         setTimeout(() => {
           this.dialog
             .open(WelcomeComponent, { panelClass: 'custom-dialog-container' })
             .afterClosed()
-            .subscribe(result => {
+            .subscribe((result) => {
               console.log(`${result}`);
             });
         }, 400);
@@ -77,7 +77,7 @@ export class LayoutComponent implements OnInit {
 
   createNewActivator() {
     this.dialog.open(ActivatorStoreDialogCreateComponent, {
-      autoFocus: false
+      autoFocus: false,
     });
   }
 

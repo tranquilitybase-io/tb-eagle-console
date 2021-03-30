@@ -3,13 +3,13 @@ import { Observable } from 'rxjs';
 import { User } from '@app/login/login.model';
 import { select } from '@ngrx/store';
 import { Store } from '@ngrx/store';
-import { selectUserIsAdmin, selectUserName, selectUserTeams, selectUserId } from '@app/login/login.reducer';
+import { selectUserIsLZAdmin, selectUserName, selectUserTeams, selectUserId } from '@app/login/login.reducer';
 import { updateShowWelcome } from '@app/login/login.actions';
 
 @Component({
   selector: 'welcome',
   templateUrl: 'welcome.component.html',
-  styleUrls: ['welcome.component.scss']
+  styleUrls: ['welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
   checkWelcome = false;
@@ -21,10 +21,10 @@ export class WelcomeComponent implements OnInit {
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
     this.selectUser$ = this.store.pipe(select(selectUserName));
     this.userTeams$ = this.store.pipe(select(selectUserTeams));
-    this.store.pipe(select(selectUserId)).subscribe(userId => (this.userId = userId));
+    this.store.pipe(select(selectUserId)).subscribe((userId) => (this.userId = userId));
   }
 
   setShowWelcome(showWelcome: boolean) {

@@ -18,7 +18,7 @@ import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-v
 import { map, switchMap } from 'rxjs/operators';
 import { TeamMember } from '@app/administration/team-members/team-members.model';
 import { TeamMembersService } from '@app/administration/team-members/team-members.service';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsMCAdmin } from '@app/login/login.reducer';
 
 @Component({
   selector: 'app-solutions-view',
@@ -71,7 +71,7 @@ export class SolutionsViewComponent implements OnInit {
         this.solution = solution;
         this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
       });
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
   }
 
   updateSolutionData() {

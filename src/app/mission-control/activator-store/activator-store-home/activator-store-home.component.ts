@@ -15,7 +15,7 @@ import {
   GridViewSwitchOptionsEnum,
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsMCAdmin } from '@app/login/login.reducer';
 import { resetAPICallStatuses, getActivators, displayCategoryPage } from './../activator-store.actions';
 import { FilterOption, QueryParam } from './activator-store-home-list-filter/activator-store-home-list-filter.model';
 import { Activator } from '../activator-store.model';
@@ -47,7 +47,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
     select(selectGridViewSwitchOptions(this.gridViewOptionsName))
   );
 
-  userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsAdmin));
+  userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsMCAdmin));
   displayCategoryPage: boolean;
 
   constructor(

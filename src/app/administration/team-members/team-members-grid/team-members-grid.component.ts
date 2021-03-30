@@ -5,13 +5,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
-import { selectUserId, selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserId, selectUserIsLZAdmin } from '@app/login/login.reducer';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-team-members-grid',
   templateUrl: './team-members-grid.component.html',
-  styleUrls: ['./team-members-grid.component.scss']
+  styleUrls: ['./team-members-grid.component.scss'],
 })
 export class TeamMembersGridComponent implements OnInit {
   @Input() isAddTeamMemberButtonVisible: boolean = true;
@@ -27,29 +27,29 @@ export class TeamMembersGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
     if (this._teamMembers === undefined) {
       const teamMembers = this.route.snapshot.data['teamMembers'] as TeamMember[];
       this.initTeamsGrid(teamMembers);
     } else {
-      this._teamMembers.subscribe(teamMembers => {
+      this._teamMembers.subscribe((teamMembers) => {
         this.initTeamsGrid(teamMembers);
       });
     }
   }
 
   initTeamsGrid(teamMembers: TeamMember[]) {
-    const teamMembersDataSource = teamMembers.map(tm => ({
+    const teamMembersDataSource = teamMembers.map((tm) => ({
       ...tm,
       roleInfo: '',
-      userInfo: `${tm.user.firstName} ${tm.user.lastName} <${tm.user.email}>`
+      userInfo: `${tm.user.firstName} ${tm.user.lastName} <${tm.user.email}>`,
     }));
     this.dataSource = new MatTableDataSource(teamMembersDataSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.store.select(selectUserId).subscribe(userId => {
-      if (teamMembers.find(tM => tM.userId === userId)) {
-        this.isUserTeamAdmin = teamMembers.find(tM => tM.userId === userId).isTeamAdmin;
+    this.store.select(selectUserId).subscribe((userId) => {
+      if (teamMembers.find((tM) => tM.userId === userId)) {
+        this.isUserTeamAdmin = teamMembers.find((tM) => tM.userId === userId).isTeamAdmin;
       }
     });
   }

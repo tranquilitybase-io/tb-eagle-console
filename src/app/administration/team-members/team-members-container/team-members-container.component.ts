@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchOptionsEnum
+  GridViewSwitchOptionsEnum,
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsLZAdmin } from '@app/login/login.reducer';
 
 @Component({
   selector: 'app-team-members-container',
   templateUrl: './team-members-container.component.html',
-  styleUrls: ['./team-members-container.component.scss']
+  styleUrls: ['./team-members-container.component.scss'],
 })
 export class TeamMembersContainerComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teamMembers;
@@ -24,12 +24,12 @@ export class TeamMembersContainerComponent implements OnInit {
 
   ngOnInit() {
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
+      map((currentGridViewOption) => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 
