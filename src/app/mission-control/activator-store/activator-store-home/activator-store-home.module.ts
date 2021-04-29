@@ -15,6 +15,7 @@ import { ActivatorStoreHomeListFilterComponent } from './activator-store-home-li
 import { ActivatorStoreDialogModule } from '../activator-store-dialog/activator-store-dialog.module';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -30,6 +31,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const routes: Routes = [
   {
@@ -56,6 +61,7 @@ const routes: Routes = [
     ActivatorStoreDialogModule,
     RouterModule.forChild(routes),
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
@@ -71,6 +77,9 @@ const routes: Routes = [
     MatStepperModule,
     MatTableModule,
     MatTooltipModule,
+    MatDividerModule,
+    LayoutModule,
+    MatExpansionModule,
   ],
 })
 export class ActivatorStoreHomeModule {}
