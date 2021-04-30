@@ -67,11 +67,12 @@
 </mat-toolbar>
 
 <mat-sidenav-container autosize>
-  <mat-sidenav mode="side" [opened]="isExpanded">
+  <mat-sidenav mode="side" [opened]="isExpanded" [ngClass]="!isExpanded ? 'slideLeft' : 'slideRight'">
     <mat-nav-list>
       <div>
         <div class="section-header" *ngIf="isExpanded">Home</div>
         <a
+          (click)="isExpanded = !isExpanded"
           mat-list-item
           routerLink="/home"
           [matTooltip]="!isExpanded ? 'Sites' : null"
@@ -81,7 +82,13 @@
           <mat-icon>home</mat-icon>
           <span *ngIf="isExpanded">Sites</span>
         </a>
-        <a mat-list-item routerLink="/home" [matTooltip]="!isExpanded ? 'Sites' : null" matTooltipPosition="after">
+        <a
+          (click)="isExpanded = !isExpanded"
+          mat-list-item
+          routerLink="/home"
+          [matTooltip]="!isExpanded ? 'Sites' : null"
+          matTooltipPosition="after"
+        >
           <!-- [class.active]="isLinkActive('/home')" -->
           <mat-icon>dashboard</mat-icon>
           <span *ngIf="isExpanded">Dashboard</span>
@@ -90,6 +97,7 @@
       <div>
         <div class="section-header" *ngIf="isExpanded">Mission control</div>
         <a
+          (click)="isExpanded = !isExpanded"
           mat-list-item
           routerLink="/mission-control/solutions"
           [queryParams]="{ isActive: 'true' }"
@@ -102,6 +110,7 @@
         </a>
         <div (click)="showActivatorsCategories()">
           <a
+            (click)="isExpanded = !isExpanded"
             mat-list-item
             routerLink="/mission-control/activator-store"
             [class.active]="isLinkActive('/mission-control/activator-store')"
@@ -117,6 +126,7 @@
       <div class="section-header" *ngIf="isExpanded">Administration menu</div>
       <div *ngIf="userIsAdmin$ | async">
         <a
+          (click)="isExpanded = !isExpanded"
           mat-list-item
           routerLink="/administration/landing-zone"
           [class.active]="isLinkActive('/administration/landing-zone')"
@@ -127,6 +137,7 @@
           <span *ngIf="isExpanded"> Landing Zone</span>
         </a>
         <a
+          (click)="isExpanded = !isExpanded"
           mat-list-item
           routerLink="/administration/shared-services"
           [class.active]="isLinkActive('/administration/shared-services')"
@@ -137,6 +148,7 @@
         </a>
       </div>
       <a
+        (click)="isExpanded = !isExpanded"
         mat-list-item
         routerLink="/administration/users"
         [class.active]="isLinkActive('/administration/users')"
@@ -146,6 +158,7 @@
         <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span>
       </a>
       <a
+        (click)="isExpanded = !isExpanded"
         mat-list-item
         routerLink="/administration/teams"
         [class.active]="isLinkActive('/administration/teams')"
@@ -156,6 +169,7 @@
         <span *ngIf="isExpanded"> Teams</span>
       </a>
       <a
+        (click)="isExpanded = !isExpanded"
         *ngIf="userIsAdmin$ | async"
         mat-list-item
         routerLink="/administration/business-unit"
@@ -166,6 +180,7 @@
         <mat-icon>business</mat-icon> <span *ngIf="isExpanded">Business Units</span>
       </a>
       <a
+        (click)="isExpanded = !isExpanded"
         *ngIf="userIsAdmin$ | async"
         mat-list-item
         routerLink="/administration/settings"
@@ -178,8 +193,12 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div [ngClass]="isExpanded == false ? 'smallDrawer' : null">
-      <router-outlet></router-outlet>
-    </div>
+    <div
+      *ngIf="isExpanded"
+      (click)="isExpanded = !isExpanded"
+      class="cfc-page-overlay"
+      [ngClass]="isExpanded ? 'greyCover' : null"
+    ></div>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
