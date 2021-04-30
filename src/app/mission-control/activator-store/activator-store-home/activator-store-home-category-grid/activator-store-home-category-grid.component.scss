@@ -1,28 +1,3 @@
-/*.category-button {
-  font-family: 'SF Pro Display', Roboto, 'Helvetica Neue', sans-serif;
-  height: 100%;
-  width: 100%;
-  border-radius: 10px;
-  font-size: 22px;
-  padding: 0;
-  .category {
-    &.border {
-      position: absolute;
-      top: 0;
-      border-left: 20px solid var(--middle-light-grey);
-      border-radius: 10px 0 0 10px;
-      height: 100%;
-    }
-  }
-}
-
-.spinner-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}*/
-
 .mat-grid-list {
   margin: 20px;
 }
@@ -125,7 +100,7 @@
       }
     }
   }
-
+  // todo: colour-code subcategories
   .category {
     &.border {
       position: absolute;
@@ -145,38 +120,38 @@
       line-height: 20px;
     }
 
-    &.shared-environment {
+    &.sub-category-1 {
       border-color: rgb(54, 197, 240);
       color: rgb(54, 197, 240);
     }
 
-    &.network-setup {
+    &.sub-category-2 {
       border-color: rgb(39, 174, 96);
       color: rgb(39, 174, 96);
     }
 
-    &.connectivity {
+    &.c.sub-category-3 {
       border-color: rgb(224, 30, 90);
       color: rgb(224, 30, 90);
     }
 
-    &.logging {
+    &.sub-category-4 {
       border-color: rgb(236, 178, 46);
       color: rgb(236, 178, 46);
     }
 
-    &.billing-cost-management {
+    &.sub-category-5 {
       border-color: rgba(67, 67, 67, 0.7);
       background-color: rgba(67, 67, 67, 0.7);
       color: white;
     }
 
-    &.security {
+    &.sub-category-6 {
       border-color: rgba(95, 42, 96, 0.7);
       color: rgba(95, 42, 96, 0.7);
     }
 
-    &.user-environment {
+    &.sub-category-7 {
       border-color: rgba(1, 69, 136, 0.7);
       color: rgba(1, 69, 136, 0.7);
     }

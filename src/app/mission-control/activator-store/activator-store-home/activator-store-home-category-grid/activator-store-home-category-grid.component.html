@@ -1,6 +1,6 @@
 <div class="filters-row">
   <div class="filters">
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" disabled>
       <mat-button-toggle (click)="setFilter('All')" value="All" checked>All ({{ filterAllLength }})</mat-button-toggle>
       <mat-button-toggle (click)="setFilter('Completed')" value="Completed">
         Completed ({{ filterCompletedLength }})

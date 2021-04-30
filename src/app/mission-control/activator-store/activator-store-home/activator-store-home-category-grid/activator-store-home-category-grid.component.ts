@@ -31,7 +31,7 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(getActivatorCategories());
     this.store.dispatch(getMetaData());
-    // TODO: set filters after getting categories
+    // todo: set filters after getting categories
   }
 
   nagivate(category: string) {
@@ -43,6 +43,5 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
 
   setFilter(filter: string) {
     // todo: set chosen filter
-    //this.landingZoneService.setFilter(filter);
   }
 }
