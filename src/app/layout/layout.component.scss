@@ -19,7 +19,7 @@
 
 .mat-sidenav-content {
   height: calc(100vh - var(--toolbarHeight));
-  margin-left: 0px !important;
+  margin-left: 0 !important;
 }
 
 .mainContainer {
@@ -147,6 +147,7 @@ h1:hover {
     background-color: #f5f5f5;
   }
 }
+
 .cfc-page-overlay {
   position: absolute;
   top: 0;
@@ -156,14 +157,17 @@ h1:hover {
   z-index: 1001;
   transition: 0.3s;
 }
+
 .greyCover {
   background-color: rgba(0, 0, 0, 0.29);
   transition: 0.3s;
 }
+
 .slideLeft {
   left: -216px;
   transition: 0.3s;
 }
+
 .slideRight {
   transition: 0.3s;
   left: -0;
