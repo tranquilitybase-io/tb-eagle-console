@@ -18,6 +18,8 @@ categories:
     label: 'type: dependencies'
   - title: 'Refactoring'
     label: 'type: refactoring'
+  - title: 'UX/UI Update'
+    label: 'type: ux/ui update'
 
 version-resolver:
   major:
@@ -34,6 +36,7 @@ version-resolver:
       - 'type: dependencies'
       - 'type: security'
       - 'type: refactoring'
+      - 'type: ux/ui update'
   default: patch
 
 exclude-labels:
