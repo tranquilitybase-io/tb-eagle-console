@@ -1,4 +1,4 @@
-<div class="filters-row">
+<!-- <div class="filters-row">
   <div class="filters">
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style" disabled>
       <mat-button-toggle (click)="setFilter('All')" value="All" checked>All ({{ filterAllLength }})</mat-button-toggle>
@@ -14,7 +14,7 @@
     </mat-button-toggle-group>
   </div>
   <mat-divider></mat-divider>
-</div>
+</div> -->
 <div *ngIf="(getActivatorCategoriesStatus$ | async).loading" class="spinner-container">
   <mat-spinner></mat-spinner>
 </div>
