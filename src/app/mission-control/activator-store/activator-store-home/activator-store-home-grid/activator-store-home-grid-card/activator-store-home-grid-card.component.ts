@@ -5,7 +5,7 @@ import { KeyValue } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsMCAdmin } from '@app/login/login.reducer';
 
 import { setDeprecated, setLocked, requestAccess } from '@app/mission-control/activator-store/activator-store.actions';
 
@@ -15,12 +15,12 @@ import { ActivatorStoreDialogCreateOnboardingComponent } from '@app/mission-cont
 @Component({
   selector: 'app-activator-store-home-grid-card',
   templateUrl: './activator-store-home-grid-card.component.html',
-  styleUrls: ['./activator-store-home-grid-card.component.scss']
+  styleUrls: ['./activator-store-home-grid-card.component.scss'],
 })
 export class ActivatorStoreHomeGridCardComponent implements OnInit {
   @Input() activator: Activator;
   active = false;
-  userIsAdmin$: Observable<boolean>;
+  userIsMCAdmin$: Observable<boolean>;
 
   private statusColorMap: Map<string, string>;
   private teamList: KeyValue<string, string>[];
@@ -35,9 +35,9 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
   ngOnInit() {
     this.statusColorMap = new Map([
       ['available', 'accent'],
-      ['deprecated', 'warn']
+      ['deprecated', 'warn'],
     ]);
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
   }
 
@@ -93,8 +93,8 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
       data: {
         activatorId: this.activator.id,
         teamList: this.teamList,
-        accessRequestedBy: this.activator.accessRequestedBy
-      }
+        accessRequestedBy: this.activator.accessRequestedBy,
+      },
     });
   }
 
@@ -111,8 +111,8 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
       autoFocus: false,
       data: {
         activator: this.activator,
-        redirect: false
-      }
+        redirect: false,
+      },
     });
   }
 

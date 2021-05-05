@@ -3,7 +3,7 @@
     mat-button
     class="create-new-button"
     color="primary"
-    [disabled]="!isUserTeamAdmin && !(userIsAdmin$ | async)"
+    [disabled]="!isUserTeamAdmin && !(userIsLZAdmin$ | async)"
     (click)="addNewTeamMember()"
   >
     + Add New Team Member

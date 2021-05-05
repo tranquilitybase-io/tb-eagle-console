@@ -5,7 +5,8 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  isAdmin: boolean;
+  isMCAdmin: boolean;
+  isLZAdmin: boolean;
   showWelcome: boolean;
   teams: string[] | Team[];
 }

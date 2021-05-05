@@ -18,25 +18,25 @@
             <a mat-menu-item routerLink="/mission-control/activator-store/view" [queryParams]="{ id: activator.id }"
               >View</a
             >
-            <button mat-menu-item *ngIf="isLocked && !(userIsAdmin$ | async)" (click)="requestAccess()">
+            <button mat-menu-item *ngIf="isLocked && !(userIsMCAdmin$ | async)" (click)="requestAccess()">
               Request Access
             </button>
-            <button mat-menu-item *ngIf="isLocked && (userIsAdmin$ | async)" (click)="grantAccess()">
+            <button mat-menu-item *ngIf="isLocked && (userIsMCAdmin$ | async)" (click)="grantAccess()">
               Grant Access
             </button>
-            <button mat-menu-item *ngIf="isAvailable && (userIsAdmin$ | async)" (click)="setLocked()">
+            <button mat-menu-item *ngIf="isAvailable && (userIsMCAdmin$ | async)" (click)="setLocked()">
               Lock
             </button>
-            <button mat-menu-item *ngIf="(isAvailable || isLocked) && (userIsAdmin$ | async)" (click)="setDeprecated()">
+            <button mat-menu-item *ngIf="(isAvailable || isLocked) && (userIsMCAdmin$ | async)" (click)="setDeprecated()">
               Deprecate
             </button>
-            <button mat-menu-item *ngIf="isDeprecated && (userIsAdmin$ | async)" (click)="setLocked()">
+            <button mat-menu-item *ngIf="isDeprecated && (userIsMCAdmin$ | async)" (click)="setLocked()">
               Undeprecate
             </button>
-            <button mat-menu-item *ngIf="isDraft && (userIsAdmin$ | async)" (click)="onboard()">
+            <button mat-menu-item *ngIf="isDraft && (userIsMCAdmin$ | async)" (click)="onboard()">
               Onboard
             </button>
-            <button mat-menu-item *ngIf="isDraft && (userIsAdmin$ | async)" (click)="edit()">
+            <button mat-menu-item *ngIf="isDraft && (userIsMCAdmin$ | async)" (click)="edit()">
               Edit
             </button>
           </mat-menu>
@@ -99,14 +99,14 @@
     </a>
     <a
       mat-button
-      *ngIf="(userIsAdmin$ | async) && isDraft"
+      *ngIf="(userIsMCAdmin$ | async) && isDraft"
       routerLink="/mission-control/activator-store/edit"
       [queryParams]="{ id: activator.id }"
     >
       Edit
     </a>
     <a
-      *ngIf="!(userIsAdmin$ | async)"
+      *ngIf="!(userIsMCAdmin$ | async)"
       mat-button
       color="primary"
       routerLink="/mission-control/activator-store/create-app"

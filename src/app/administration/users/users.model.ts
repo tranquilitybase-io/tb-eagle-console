@@ -4,7 +4,8 @@ export class User {
   email: string;
   firstName: string;
   id: number;
-  isAdmin?: boolean;
+  isMCAdmin?: boolean;
+  isLZAdmin?: boolean;
   lastName: string;
   showWelcome?: boolean;
   teamCount: number;

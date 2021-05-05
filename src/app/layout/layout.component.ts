@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { selectUserIsAdmin, selectUserInitials, selectShowWelcome } from '@app/login/login.reducer';
+import {
+  selectUserInitials,
+  selectShowWelcome,
+  selectUserIsLZAdmin,
+  selectUserIsMCAdmin,
+} from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
 import { WelcomeComponent } from '../shared/welcome/welcome.component';
 import { NotificationsService } from '../shared/notifications/notifications.service';
@@ -21,7 +26,8 @@ export class LayoutComponent implements OnInit {
   notificationMetaData$: Observable<NotificationsMeta>;
   showWelcome$: Observable<boolean>;
   userInitials$: Observable<string>;
-  userIsAdmin$: Observable<boolean>;
+  userIsLZAdmin$: Observable<boolean>;
+  userIsMCAdmin$: Observable<boolean>;
 
   constructor(
     private store: Store<any>,
@@ -33,7 +39,8 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
     this.notificationService.pollingInitAll();
     this.notificationMetaData$ = this.store.pipe(select(selectNotificationMetaData));
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsLZAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
+    this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
     this.userInitials$ = this.store.pipe(select(selectUserInitials));
     this.showWelcome$ = this.store.pipe(select(selectShowWelcome));
     this.showWelcome$.subscribe((showWelcome) => {

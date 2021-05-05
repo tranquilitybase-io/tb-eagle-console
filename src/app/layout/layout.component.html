@@ -15,9 +15,9 @@
       </button>
       <mat-menu #addMenu="matMenu">
         <button mat-flat-button (click)="createNewSolution()">Create new solution</button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewActivator()">Add new activator</button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewUser()">Create new user</button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewTeam()">Create new team</button>
+        <button *ngIf="userIsMCAdmin$ | async" mat-flat-button (click)="createNewActivator()">Add new activator</button>
+        <button *ngIf="userIsLZAdmin$ | async" mat-flat-button (click)="createNewUser()">Create new user</button>
+        <button *ngIf="userIsLZAdmin$ | async" mat-flat-button (click)="createNewTeam()">Create new team</button>
       </mat-menu>
 
       <span class="spacer"></span>
@@ -124,7 +124,7 @@
       </div>
       <mat-divider *ngIf="!isExpanded" class="miniDrawerBr"></mat-divider>
       <div class="section-header" *ngIf="isExpanded">Administration menu</div>
-      <div *ngIf="userIsAdmin$ | async">
+      <div *ngIf="userIsLZAdmin$ | async">
         <a
           (click)="isExpanded = !isExpanded"
           mat-list-item
@@ -170,7 +170,7 @@
       </a>
       <a
         (click)="isExpanded = !isExpanded"
-        *ngIf="userIsAdmin$ | async"
+        *ngIf="userIsLZAdmin$ | async"
         mat-list-item
         routerLink="/administration/business-unit"
         [class.active]="isLinkActive('/administration/business-unit')"
@@ -181,7 +181,7 @@
       </a>
       <a
         (click)="isExpanded = !isExpanded"
-        *ngIf="userIsAdmin$ | async"
+        *ngIf="userIsLZAdmin$ | async"
         mat-list-item
         routerLink="/administration/settings"
         [class.active]="isLinkActive('/administration/settings')"

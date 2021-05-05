@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Activator } from '../../activator-store.model';
 import { setDeprecated, setLocked, requestAccess, getActivators } from '../../activator-store.actions';
 import { selectActivators, selectGetActivatorsStatus } from '../../activator-store.reducer';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsMCAdmin } from '@app/login/login.reducer';
 import { ActivatorStoreDialogGrantAccessComponent } from '../../activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
 import { KeyValue } from '@angular/common';
 import { Loadable } from '@app/shared/shared.reducer';
@@ -20,7 +20,7 @@ import { ActivatorStoreDialogCreateOnboardingComponent } from '../../activator-s
 @Component({
   selector: 'app-activator-store-home-list',
   templateUrl: './activator-store-home-list.component.html',
-  styleUrls: ['./activator-store-home-list.component.scss']
+  styleUrls: ['./activator-store-home-list.component.scss'],
 })
 export class ActivatorStoreHomeListComponent implements OnInit {
   activators$: Observable<Activator[]> = this.store.select(selectActivators);
@@ -40,13 +40,13 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     'cloudPlatforms',
     'lastUpdated',
     'description',
-    'actions'
+    'actions',
   ];
   dataSource: MatTableDataSource<Activator>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  userIsAdmin$: Observable<boolean>;
+  userIsMCAdmin$: Observable<boolean>;
 
   constructor(
     private layoutService: LayoutService,
@@ -58,17 +58,17 @@ export class ActivatorStoreHomeListComponent implements OnInit {
     this.layout$ = this.layoutService.layoutObserver$;
     this.statusColorMap = new Map([
       ['available', 'accent'],
-      ['deprecated', 'warn']
+      ['deprecated', 'warn'],
     ]);
   }
 
   ngOnInit() {
-    this.activators$.subscribe(activators => {
+    this.activators$.subscribe((activators) => {
       this.dataSource = new MatTableDataSource(activators);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
   }
 
@@ -110,8 +110,8 @@ export class ActivatorStoreHomeListComponent implements OnInit {
       data: {
         activatorId: activator.id,
         teamList: this.teamList,
-        accessRequestedBy: activator.accessRequestedBy
-      }
+        accessRequestedBy: activator.accessRequestedBy,
+      },
     });
   }
 
@@ -128,8 +128,8 @@ export class ActivatorStoreHomeListComponent implements OnInit {
       autoFocus: false,
       data: {
         activator,
-        redirect: false
-      }
+        redirect: false,
+      },
     });
   }
 
