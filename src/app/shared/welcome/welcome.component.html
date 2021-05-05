@@ -39,7 +39,7 @@
       <button
         mat-button
         routerLink="/administration/teams"
-        [queryParams]="{ groupSwitch: 'Actives' }"
+        [queryParams]="{ isActive: true }"
         routerLinkActive="active"
         class="mcm-link"
         (click)="setShowWelcome(!checkWelcome)"
@@ -70,7 +70,7 @@
       <button
         mat-button
         routerLink="/mission-control/solutions"
-        [queryParams]="{ groupSwitch: 'Actives' }"
+        [queryParams]="{ isActive: true }"
         routerLinkActive="active"
         class="mcm-link"
         (click)="setShowWelcome(!checkWelcome)"
