@@ -4,8 +4,7 @@ import { TeamMember } from '../team-members.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { select, Store } from '@ngrx/store';
-import { selectUserId, selectUserIsLZAdmin } from '@app/login/login.reducer';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -18,8 +17,6 @@ export class TeamMembersGridComponent implements OnInit {
   @Input() _teamMembers?: Observable<TeamMember[]>;
   displayedColumns: string[] = ['id', 'isActive', 'isTeamAdmin', 'userInfo'];
   dataSource: MatTableDataSource<{}>;
-  isUserTeamAdmin = false;
-  userIsAdmin$: Observable<boolean>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(private route: ActivatedRoute, private store: Store<any>, private router: Router) {
@@ -27,7 +24,6 @@ export class TeamMembersGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
     if (this._teamMembers === undefined) {
       const teamMembers = this.route.snapshot.data['teamMembers'] as TeamMember[];
       this.initTeamsGrid(teamMembers);
@@ -47,11 +43,6 @@ export class TeamMembersGridComponent implements OnInit {
     this.dataSource = new MatTableDataSource(teamMembersDataSource);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.store.select(selectUserId).subscribe((userId) => {
-      if (teamMembers.find((tM) => tM.userId === userId)) {
-        this.isUserTeamAdmin = teamMembers.find((tM) => tM.userId === userId).isTeamAdmin;
-      }
-    });
   }
 
   applyFilter(event: Event) {

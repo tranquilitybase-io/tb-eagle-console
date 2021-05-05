@@ -29,7 +29,7 @@ import { Solution } from '@app/mission-control/solutions/solutions.model';
 export class ActivatorStoreViewComponent implements OnInit {
   activator: Activator = {} as Activator;
   activator$: Observable<Activator>;
-  userIsAdmin$: Observable<boolean>;
+  userIsMCAdmin$: Observable<boolean>;
   private teamList: KeyValue<string, string>[];
 
   isSelectedSolution$: Observable<boolean>;
@@ -55,7 +55,7 @@ export class ActivatorStoreViewComponent implements OnInit {
       this.selectedActivatorName = this.activator.name;
     });
 
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
+    this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
     this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
     this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
     this.teamList = this.route.snapshot.data['teamList'];

@@ -5,12 +5,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Application } from '@app/mission-control/applications/applications.model';
 import { Solution } from '../../solutions.model';
-import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { selectUserIsMCAdmin } from '@app/login/login.reducer';
 import { selectSolutionDeploymentsData } from '../../solutions.reducer';
 import { SolutionsService } from '../../solutions.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DeploymentState } from '@app/shared/shared.model';
 import { ApplicationsDialogDeployComponent } from '@app/mission-control/applications/applications-dialog/applications-dialog-deploy/applications-dialog-deploy.component';
 
@@ -35,7 +33,6 @@ export class SolutionsViewApplicationsComponent implements OnInit {
     'actions',
   ];
   dataSource: MatTableDataSource<Application>;
-  userIsAdmin$: Observable<boolean>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -44,9 +41,7 @@ export class SolutionsViewApplicationsComponent implements OnInit {
     private solutionsService: SolutionsService,
     private route: ActivatedRoute,
     private dialog: MatDialog
-  ) {
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
-  }
+  ) {}
 
   ngOnInit() {
     this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {

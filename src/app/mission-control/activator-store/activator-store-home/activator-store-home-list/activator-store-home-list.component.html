@@ -112,29 +112,29 @@
           </mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item *ngIf="isLocked(row.status) && !(userIsAdmin$ | async)" (click)="requestAccess(row.id)">
+          <button mat-menu-item *ngIf="isLocked(row.status) && !(userIsMCAdmin$ | async)" (click)="requestAccess(row.id)">
             Request Access
           </button>
-          <button mat-menu-item *ngIf="isLocked(row.status) && (userIsAdmin$ | async)" (click)="grantAccess(row)">
+          <button mat-menu-item *ngIf="isLocked(row.status) && (userIsMCAdmin$ | async)" (click)="grantAccess(row)">
             Grant Access
           </button>
-          <button mat-menu-item *ngIf="isAvailable(row.status) && (userIsAdmin$ | async)" (click)="setLocked(row.id)">
+          <button mat-menu-item *ngIf="isAvailable(row.status) && (userIsMCAdmin$ | async)" (click)="setLocked(row.id)">
             Lock
           </button>
           <button
             mat-menu-item
-            *ngIf="(isAvailable(row.status) || isLocked(row.status)) && (userIsAdmin$ | async)"
+            *ngIf="(isAvailable(row.status) || isLocked(row.status)) && (userIsMCAdmin$ | async)"
             (click)="setDeprecated(row.id)"
           >
             Deprecate
           </button>
-          <button mat-menu-item *ngIf="isDeprecated(row.status) && (userIsAdmin$ | async)" (click)="setLocked(row.id)">
+          <button mat-menu-item *ngIf="isDeprecated(row.status) && (userIsMCAdmin$ | async)" (click)="setLocked(row.id)">
             Undeprecate
           </button>
-          <button mat-menu-item *ngIf="isDraft(row.status) && (userIsAdmin$ | async)" (click)="onboard(row)">
+          <button mat-menu-item *ngIf="isDraft(row.status) && (userIsMCAdmin$ | async)" (click)="onboard(row)">
             Onboard
           </button>
-          <button mat-menu-item *ngIf="isDraft(row.status) && (userIsAdmin$ | async)" (click)="edit(row)">
+          <button mat-menu-item *ngIf="isDraft(row.status) && (userIsMCAdmin$ | async)" (click)="edit(row)">
             Edit
           </button>
           <button mat-menu-item>

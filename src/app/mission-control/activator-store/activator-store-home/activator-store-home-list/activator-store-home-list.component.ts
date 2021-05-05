@@ -46,7 +46,7 @@ export class ActivatorStoreHomeListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  userIsAdmin$: Observable<boolean>;
+  userIsMCAdmin$: Observable<boolean>;
 
   constructor(
     private layoutService: LayoutService,
@@ -68,7 +68,7 @@ export class ActivatorStoreHomeListComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
+    this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
   }
 

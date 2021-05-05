@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdministrationComponent } from './administration.component';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminGuardService } from '@app/guards/admin-guard.service';
+import { LZAdminGuardService } from '@app/guards/lz-admin-guard.service';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: 'landing-zone',
         loadChildren: () => import('./landing-zone/landing-zone.module').then(m => m.LandingZoneModule),
-        canActivate: [AdminGuardService],
+        canActivate: [LZAdminGuardService],
         data: {
           breadcrumbsSteps: [
             {
@@ -29,6 +29,7 @@ const routes: Routes = [
       {
         path: 'shared-services',
         loadChildren: () => import('./shared-services/shared-services.module').then(m => m.SharedServicesModule),
+        canActivate: [LZAdminGuardService],
         data: {
           breadcrumbsSteps: [
             {
@@ -62,7 +63,7 @@ const routes: Routes = [
       {
         path: 'business-unit',
         loadChildren: () => import('./busines-unit/business-unit.module').then(m => m.BusinessUnitModule),
-        canActivate: [AdminGuardService],
+        canActivate: [LZAdminGuardService],
         data: {
           breadcrumbsSteps: [
             {
@@ -74,7 +75,7 @@ const routes: Routes = [
       {
         path: 'settings',
         loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule),
-        canActivate: [AdminGuardService],
+        canActivate: [LZAdminGuardService],
         data: {
           breadcrumbsSteps: [
             {
@@ -89,7 +90,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AdministrationComponent],
-  providers: [AdminGuardService],
+  providers: [LZAdminGuardService],
   imports: [CommonModule, RouterModule.forChild(routes)]
 })
 export class AdministrationModule {}

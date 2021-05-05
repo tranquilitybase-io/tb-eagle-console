@@ -47,7 +47,7 @@ export class ActivatorStoreHomeComponent implements OnInit {
     select(selectGridViewSwitchOptions(this.gridViewOptionsName))
   );
 
-  userIsAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsMCAdmin));
+  userIsMCAdmin$: Observable<boolean> = this.store.pipe(select(selectUserIsMCAdmin));
   displayCategoryPage: boolean;
 
   constructor(

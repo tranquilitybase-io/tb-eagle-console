@@ -19,12 +19,12 @@ export class TeamMembersContainerComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teamMembers;
   currentGridViewOption$: Observable<string>;
   isUserTeamAdmin = false;
-  userIsAdmin$: Observable<boolean>;
+  userIsLZAdmin$: Observable<boolean>;
   constructor(private store: Store<any>, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
+    this.userIsLZAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
   }
 
   get isGridViewEnabled$(): Observable<boolean> {

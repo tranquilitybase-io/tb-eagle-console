@@ -20,7 +20,7 @@ import { ActivatorStoreDialogCreateOnboardingComponent } from '@app/mission-cont
 export class ActivatorStoreHomeGridCardComponent implements OnInit {
   @Input() activator: Activator;
   active = false;
-  userIsAdmin$: Observable<boolean>;
+  userIsMCAdmin$: Observable<boolean>;
 
   private statusColorMap: Map<string, string>;
   private teamList: KeyValue<string, string>[];
@@ -37,7 +37,7 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
       ['available', 'accent'],
       ['deprecated', 'warn'],
     ]);
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
+    this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
   }
 

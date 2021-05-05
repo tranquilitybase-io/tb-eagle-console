@@ -35,7 +35,7 @@ export class SolutionsViewComponent implements OnInit {
   selectedTabIndex: number = 0;
 
   teamMembers$: Observable<TeamMember[]>;
-  userIsAdmin$: Observable<boolean>;
+  userIsMCAdmin$: Observable<boolean>;
 
   constructor(
     private solutionsService: SolutionsService,
@@ -71,7 +71,7 @@ export class SolutionsViewComponent implements OnInit {
         this.solution = solution;
         this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
       });
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
+    this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
   }
 
   updateSolutionData() {
