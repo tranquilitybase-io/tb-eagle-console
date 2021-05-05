@@ -17,7 +17,7 @@ import { displayCategoryPage } from '../mission-control/activator-store/activato
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  isExpanded = true;
+  isExpanded = false;
   notificationMetaData$: Observable<NotificationsMeta>;
   showWelcome$: Observable<boolean>;
   userInitials$: Observable<string>;

@@ -19,6 +19,11 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
   categories$: Observable<ActivatorCategory[]> = this.store.select(selectCategories);
   getActivatorCategoriesStatus$: Observable<Loadable> = this.store.select(selectGetActivatorCategoriesStatus);
 
+  filterAllLength = 0;
+  filterCompletedLength = 0;
+  filterInProgressLength = 0;
+  filterLockedLength = 0;
+
   constructor(private layoutService: LayoutService, private router: Router, private store: Store<any>) {
     this.layout$ = this.layoutService.layoutObserver$;
   }
@@ -26,6 +31,7 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(getActivatorCategories());
     this.store.dispatch(getMetaData());
+    // todo: set filters after getting categories
   }
 
   nagivate(category: string) {
@@ -33,5 +39,9 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
       queryParams: { category },
     });
     this.store.dispatch(getActivators({ queryParams: [{ key: 'category', value: category }] }));
+  }
+
+  setFilter(filter: string) {
+    // todo: set chosen filter
   }
 }
