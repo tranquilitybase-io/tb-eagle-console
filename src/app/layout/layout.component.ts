@@ -14,10 +14,10 @@ import { displayCategoryPage } from '../mission-control/activator-store/activato
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  isExpanded = true;
+  isExpanded = false;
   notificationMetaData$: Observable<NotificationsMeta>;
   showWelcome$: Observable<boolean>;
   userInitials$: Observable<string>;
@@ -36,13 +36,13 @@ export class LayoutComponent implements OnInit {
     this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
     this.userInitials$ = this.store.pipe(select(selectUserInitials));
     this.showWelcome$ = this.store.pipe(select(selectShowWelcome));
-    this.showWelcome$.subscribe(showWelcome => {
+    this.showWelcome$.subscribe((showWelcome) => {
       if (showWelcome) {
         setTimeout(() => {
           this.dialog
             .open(WelcomeComponent, { panelClass: 'custom-dialog-container' })
             .afterClosed()
-            .subscribe(result => {
+            .subscribe((result) => {
               console.log(`${result}`);
             });
         }, 400);
@@ -77,7 +77,7 @@ export class LayoutComponent implements OnInit {
 
   createNewActivator() {
     this.dialog.open(ActivatorStoreDialogCreateComponent, {
-      autoFocus: false
+      autoFocus: false,
     });
   }
 

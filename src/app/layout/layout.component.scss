@@ -101,6 +101,7 @@
 }
 
 .mat-toolbar {
+  position: relative;
   top: 0;
   z-index: 20;
   height: var(--toolbarHeight);
