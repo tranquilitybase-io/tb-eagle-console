@@ -6,7 +6,6 @@ Please check if your PR fulfills the following requirements:
   - [ ] Login
   - [ ] "Create New Solution"
   - [ ] "Provision New Activator"
-  - [ ] "Create New WAN VPN"
   - [ ] Dev user is able to request access to a "Locked" Activator
   - [ ] Admin user is able to "Grant Access", "Lock", "Deprecate" and "Undeprecate" an Activator
 
