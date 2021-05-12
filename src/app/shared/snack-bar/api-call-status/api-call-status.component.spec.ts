@@ -8,7 +8,7 @@ describe('AppIsDeployedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApiCallStatusComponent]
+      declarations: [ApiCallStatusComponent],
     }).compileComponents();
   }));
 

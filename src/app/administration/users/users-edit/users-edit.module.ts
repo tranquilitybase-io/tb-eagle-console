@@ -17,9 +17,9 @@ const routes: Routes = [
     path: '',
     component: UsersEditComponent,
     resolve: {
-      user: UserByIdResolver
-    }
-  }
+      user: UserByIdResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -34,7 +34,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class UsersEditModule {}

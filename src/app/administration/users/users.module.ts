@@ -9,53 +9,53 @@ import { UsersEffects } from './users.effects';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./users-home/users-home.module').then(m => m.UsersHomeModule)
+    loadChildren: () => import('./users-home/users-home.module').then((m) => m.UsersHomeModule),
   },
   {
     path: 'create',
-    loadChildren: () => import('./users-create/users-create.module').then(m => m.UsersCreateModule),
+    loadChildren: () => import('./users-create/users-create.module').then((m) => m.UsersCreateModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Users',
-          link: '/administration/users'
+          link: '/administration/users',
         },
         {
-          name: 'Create new user'
-        }
-      ]
-    }
+          name: 'Create new user',
+        },
+      ],
+    },
   },
   {
     path: 'edit',
-    loadChildren: () => import('./users-edit/users-edit.module').then(m => m.UsersEditModule),
+    loadChildren: () => import('./users-edit/users-edit.module').then((m) => m.UsersEditModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Users',
-          link: '/administration/users'
+          link: '/administration/users',
         },
         {
-          name: 'Edit'
-        }
-      ]
-    }
+          name: 'Edit',
+        },
+      ],
+    },
   },
   {
     path: 'view',
-    loadChildren: () => import('./users-view/users-view.module').then(m => m.UsersViewModule),
+    loadChildren: () => import('./users-view/users-view.module').then((m) => m.UsersViewModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Users',
-          link: '/administration/users'
+          link: '/administration/users',
         },
         {
-          name: 'View'
-        }
-      ]
-    }
-  }
+          name: 'View',
+        },
+      ],
+    },
+  },
 ];
 
 @NgModule({
@@ -64,7 +64,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([UsersEffects])
-  ]
+    EffectsModule.forFeature([UsersEffects]),
+  ],
 })
 export class UsersModule {}

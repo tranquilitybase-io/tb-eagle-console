@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-grid-view-switch',
   templateUrl: './grid-view-switch.component.html',
-  styleUrls: ['./grid-view-switch.component.scss']
+  styleUrls: ['./grid-view-switch.component.scss'],
 })
 export class GridViewSwitchComponent implements OnInit {
   @Input() readonly gridViewName: GridViewSwitchViewsNames;
@@ -21,12 +21,12 @@ export class GridViewSwitchComponent implements OnInit {
   readonly options = [
     {
       name: GridViewSwitchOptionsEnum.grid,
-      icon: '3x3grid'
+      icon: '3x3grid',
     },
     {
       name: GridViewSwitchOptionsEnum.row,
-      icon: 'row_view'
-    }
+      icon: 'row_view',
+    },
   ];
 
   current$: Observable<GridViewSwitchModel>;
@@ -41,12 +41,12 @@ export class GridViewSwitchComponent implements OnInit {
 
   buttonActivnessColor(optionName): Observable<string> {
     return this.current$.pipe(
-      map(currentOption => (currentOption === optionName ? this.activeColor : this.inactiveColor))
+      map((currentOption) => (currentOption === optionName ? this.activeColor : this.inactiveColor))
     );
   }
 
   buttonActivnessState(optionName): Observable<boolean> {
-    return this.current$.pipe(map(currentOption => currentOption === optionName));
+    return this.current$.pipe(map((currentOption) => currentOption === optionName));
   }
 
   onOptionClick(name: GridViewSwitchOptionsEnum) {
@@ -54,8 +54,8 @@ export class GridViewSwitchComponent implements OnInit {
       setGridViewOption({
         viewOption: {
           viewName: this.gridViewName,
-          option: name
-        }
+          option: name,
+        },
       })
     );
     this.onViewChange.emit(name);

@@ -7,7 +7,7 @@ import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApplicationsService extends EntityCollectionServiceBase<Application> {
   private BASE_URL = `${globalThis.location.origin}/api`;

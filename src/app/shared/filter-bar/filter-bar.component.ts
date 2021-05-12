@@ -6,7 +6,7 @@ import { FilterOption } from './filter-bar.model';
 @Component({
   selector: 'app-filter-bar',
   templateUrl: './filter-bar.component.html',
-  styleUrls: ['./filter-bar.component.scss']
+  styleUrls: ['./filter-bar.component.scss'],
 })
 export class FilterBarComponent implements OnInit {
   @Input() list: FilterOption[] = [];
@@ -23,7 +23,7 @@ export class FilterBarComponent implements OnInit {
   ngOnInit() {}
 
   remove(item: FilterOption): void {
-    const filteredItem = this.list.find(listItem => listItem.filterBarName === item.filterBarName);
+    const filteredItem = this.list.find((listItem) => listItem.filterBarName === item.filterBarName);
     const index = this.list.indexOf(filteredItem);
 
     if (index >= 0) {
@@ -52,7 +52,7 @@ export class FilterBarComponent implements OnInit {
         name,
         filterBarName,
         filterQueryValue: { key, value },
-        shortQueryName: key
+        shortQueryName: key,
       });
     }
 

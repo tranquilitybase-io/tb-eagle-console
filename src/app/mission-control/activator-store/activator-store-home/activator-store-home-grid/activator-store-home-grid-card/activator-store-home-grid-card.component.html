@@ -24,21 +24,19 @@
             <button mat-menu-item *ngIf="isLocked && (userIsMCAdmin$ | async)" (click)="grantAccess()">
               Grant Access
             </button>
-            <button mat-menu-item *ngIf="isAvailable && (userIsMCAdmin$ | async)" (click)="setLocked()">
-              Lock
-            </button>
-            <button mat-menu-item *ngIf="(isAvailable || isLocked) && (userIsMCAdmin$ | async)" (click)="setDeprecated()">
+            <button mat-menu-item *ngIf="isAvailable && (userIsMCAdmin$ | async)" (click)="setLocked()">Lock</button>
+            <button
+              mat-menu-item
+              *ngIf="(isAvailable || isLocked) && (userIsMCAdmin$ | async)"
+              (click)="setDeprecated()"
+            >
               Deprecate
             </button>
             <button mat-menu-item *ngIf="isDeprecated && (userIsMCAdmin$ | async)" (click)="setLocked()">
               Undeprecate
             </button>
-            <button mat-menu-item *ngIf="isDraft && (userIsMCAdmin$ | async)" (click)="onboard()">
-              Onboard
-            </button>
-            <button mat-menu-item *ngIf="isDraft && (userIsMCAdmin$ | async)" (click)="edit()">
-              Edit
-            </button>
+            <button mat-menu-item *ngIf="isDraft && (userIsMCAdmin$ | async)" (click)="onboard()">Onboard</button>
+            <button mat-menu-item *ngIf="isDraft && (userIsMCAdmin$ | async)" (click)="edit()">Edit</button>
           </mat-menu>
         </div>
       </div>
@@ -94,9 +92,7 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
-    <a mat-button routerLink="/mission-control/activator-store/view" [queryParams]="{ id: activator.id }">
-      View
-    </a>
+    <a mat-button routerLink="/mission-control/activator-store/view" [queryParams]="{ id: activator.id }"> View </a>
     <a
       mat-button
       *ngIf="(userIsMCAdmin$ | async) && isDraft"
@@ -112,9 +108,7 @@
       routerLink="/mission-control/activator-store/create-app"
       [queryParams]="{ id: activator.id }"
     >
-      <div class="mat-button-text">
-        Add to Solution
-      </div>
+      <div class="mat-button-text">Add to Solution</div>
       <mat-icon>chevron_right</mat-icon>
     </a>
   </mat-card-actions>

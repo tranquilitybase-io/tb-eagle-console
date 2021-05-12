@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-business-unit-create',
   templateUrl: './business-unit-create.component.html',
-  styleUrls: ['./business-unit-create.component.scss']
+  styleUrls: ['./business-unit-create.component.scss'],
 })
 export class BusinessUnitCreateComponent implements OnInit {
   businessForm: FormGroup;
@@ -25,10 +25,10 @@ export class BusinessUnitCreateComponent implements OnInit {
       id: 0,
       name: ['', Validators.required],
       description: ['', Validators.required],
-      isActive: [true, Validators.required]
+      isActive: [true, Validators.required],
     });
 
-    this.createBusinessUnitStatus$.subscribe(status => this.handleLoading(status));
+    this.createBusinessUnitStatus$.subscribe((status) => this.handleLoading(status));
   }
 
   private navigateToBusinessUnitHome() {

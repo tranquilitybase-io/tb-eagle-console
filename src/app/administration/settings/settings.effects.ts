@@ -15,7 +15,7 @@ import {
   getSettingsSuccess,
   updateSettings,
   updateSettingsError,
-  updateSettingsSuccess
+  updateSettingsSuccess,
 } from './settings.actions';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 
@@ -32,8 +32,8 @@ export class SettingsEffects {
       ofType(getSettings),
       mergeMap(() =>
         this.service.getSettings().pipe(
-          map(settings => getSettingsSuccess({ settings })),
-          catchError(error => of(getSettingsError({ error })))
+          map((settings) => getSettingsSuccess({ settings })),
+          catchError((error) => of(getSettingsError({ error })))
         )
       )
     )
@@ -42,13 +42,13 @@ export class SettingsEffects {
   createSettings$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createSettings),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.service.createSettings(action.settings).pipe(
-          map(settings => {
+          map((settings) => {
             this.snackBarService.success('Settings has been created');
             return createSettingsSuccess({ settings });
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Settings has not been created');
             return of(createSettingsError({ error }));
           })
@@ -60,13 +60,13 @@ export class SettingsEffects {
   updateSettings$ = createEffect(() =>
     this.actions$.pipe(
       ofType(updateSettings),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.service.updateSettings(action.settings).pipe(
-          map(settings => {
+          map((settings) => {
             this.snackBarService.success('Settings has been updated');
             return updateSettingsSuccess({ settings });
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. User has not been updated');
             return of(updateSettingsError({ error }));
           })
@@ -84,7 +84,7 @@ export class SettingsEffects {
             this.snackBarService.success('Settings has been deleted');
             return deleteSettingsSuccess();
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Settings has not been deleted');
             return of(deleteSettingsError({ error }));
           })

@@ -12,7 +12,7 @@ export enum DeploymentState {
   Failure = 'FAILURE',
   Retry = 'RETRY',
   Revoked = 'REVOKED',
-  Removed = 'REMOVED'
+  Removed = 'REMOVED',
 }
 
 const decimalByte = '([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])';

@@ -7,7 +7,7 @@ import { BusinessUnit } from '../../business-unit.model';
 @Component({
   selector: 'app-business-unit-home-grid',
   templateUrl: './business-unit-home-grid.component.html',
-  styleUrls: ['./business-unit-home-grid.component.scss']
+  styleUrls: ['./business-unit-home-grid.component.scss'],
 })
 export class BusinessUnitHomeGridComponent {
   @Input() businessUnitList$: Observable<BusinessUnit[]>;

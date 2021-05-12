@@ -20,7 +20,7 @@ import { selectCreateApplicationStatus } from '../applications.reducer';
 @Component({
   selector: 'app-applications-create',
   templateUrl: './applications-create.component.html',
-  styleUrls: ['./applications-create.component.scss']
+  styleUrls: ['./applications-create.component.scss'],
 })
 export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   applicationForm: FormGroup;
@@ -50,7 +50,10 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     this.selectedActivator = this.route.snapshot.data['activator'] as Activator;
 
     const availableSolutions = this.route.snapshot.data['availableSolutions'] as Solution[];
-    this.availableSolutions = availableSolutions.map(solution => ({ key: String(solution.id), value: solution.name }));
+    this.availableSolutions = availableSolutions.map((solution) => ({
+      key: String(solution.id),
+      value: solution.name,
+    }));
 
     this.applicationForm = this.formBuilder.group({
       solutionId: ['', Validators.required],
@@ -58,7 +61,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
       description: ['', Validators.required],
       env: 'DEV',
       status: 'Inactive',
-      activatorId: this.selectedActivator.id
+      activatorId: this.selectedActivator.id,
     });
 
     this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
@@ -73,7 +76,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     if (!(availableSolutions.length || this.dialog.openDialogs.length)) {
       this.dialog.open(ActivatorStoreDialogMissingSolutionsComponent, { disableClose: true, autoFocus: false });
     }
-    this.createApplicationStatus$.subscribe(status => {
+    this.createApplicationStatus$.subscribe((status) => {
       this.handleLoading(status);
     });
   }

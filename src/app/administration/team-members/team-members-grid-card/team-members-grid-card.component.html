@@ -10,9 +10,7 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item (click)="viewUser(teamMember.userId)">
-            View
-          </button>
+          <button mat-menu-item (click)="viewUser(teamMember.userId)">View</button>
         </mat-menu>
       </div>
     </mat-card-title>
@@ -34,8 +32,6 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button (click)="viewUser(teamMember.userId)">
-      View
-    </button>
+    <button mat-button (click)="viewUser(teamMember.userId)">View</button>
   </mat-card-actions>
 </mat-card>

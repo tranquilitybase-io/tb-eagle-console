@@ -10,7 +10,7 @@ describe('BadgesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [FavoriteButtonComponent],
-      imports: [MatIconModule]
+      imports: [MatIconModule],
     }).compileComponents();
   }));
 

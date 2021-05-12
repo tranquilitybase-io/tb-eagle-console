@@ -8,7 +8,7 @@ describe('LandingZoneDialogDeployEnvComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LandingZoneDialogDeployEnvEnvironmentErrorComponent]
+      declarations: [LandingZoneDialogDeployEnvEnvironmentErrorComponent],
     }).compileComponents();
   }));
 

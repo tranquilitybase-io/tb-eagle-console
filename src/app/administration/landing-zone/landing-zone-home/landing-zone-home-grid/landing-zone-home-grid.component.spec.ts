@@ -29,8 +29,8 @@ describe('LandingZoneHomeGridComponent', () => {
         MatIconModule,
         MatMenuModule,
         MatProgressSpinnerModule,
-        MatStepperModule
-      ]
+        MatStepperModule,
+      ],
     }).compileComponents();
   }));
 

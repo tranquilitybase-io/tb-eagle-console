@@ -8,7 +8,7 @@ describe('SolutionsViewOverviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SolutionsViewOverviewComponent]
+      declarations: [SolutionsViewOverviewComponent],
     }).compileComponents();
   }));
 

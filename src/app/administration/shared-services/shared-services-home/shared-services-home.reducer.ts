@@ -2,20 +2,20 @@ import { createReducer, on, createSelector } from '@ngrx/store';
 import {
   getSharedServicesActions,
   getSharedServicesActionsError,
-  getSharedServicesActionsSuccess
+  getSharedServicesActionsSuccess,
 } from './shared-services-home.actions';
 import {
   defaultLoadable,
   Loadable,
   onLoadableError,
   onLoadableInit,
-  onLoadableSuccess
+  onLoadableSuccess,
 } from '@app/shared/shared.reducer';
 import { SharedServicesAction } from '../shared-services.model';
 
 export const initialState = {
   getsharedServicesActionsStatus: defaultLoadable() as Loadable,
-  sharedServicesActions: [] as SharedServicesAction[]
+  sharedServicesActions: [] as SharedServicesAction[],
 };
 
 export interface SharedServicesHomeState {
@@ -28,15 +28,15 @@ export const featureKey = 'sharedServicesHome';
 export const usersReducer = createReducer(
   initialState,
   // get
-  on(getSharedServicesActions, state => ({ ...state, getsharedServicesActionsStatus: onLoadableInit() })),
+  on(getSharedServicesActions, (state) => ({ ...state, getsharedServicesActionsStatus: onLoadableInit() })),
   on(getSharedServicesActionsError, (state, { error }) => ({
     ...state,
-    getsharedServicesActionsStatus: onLoadableError(error)
+    getsharedServicesActionsStatus: onLoadableError(error),
   })),
   on(getSharedServicesActionsSuccess, (state, { sharedServicesActions }) => ({
     ...state,
     getsharedServicesActionsStatus: onLoadableSuccess(),
-    sharedServicesActions
+    sharedServicesActions,
   }))
 );
 
@@ -44,10 +44,13 @@ export default function reducer(state, action) {
   return usersReducer(state, action);
 }
 
-export const selectFeature = state => state[featureKey] as SharedServicesHomeState;
+export const selectFeature = (state) => state[featureKey] as SharedServicesHomeState;
 
 export const selectGetsharedServicesActionsStatus = createSelector(
   selectFeature,
-  state => state && state.getsharedServicesActionsStatus
+  (state) => state && state.getsharedServicesActionsStatus
 );
-export const selectSharedServicesActions = createSelector(selectFeature, state => state && state.sharedServicesActions);
+export const selectSharedServicesActions = createSelector(
+  selectFeature,
+  (state) => state && state.sharedServicesActions
+);

@@ -6,7 +6,7 @@ import { lzEnvironmentDeployment } from '../../landing-zone-environment/landing-
 @Component({
   selector: 'app-landing-zone-dialog-deploy-env',
   templateUrl: './landing-zone-dialog-deploy-env.component.html',
-  styleUrls: ['./landing-zone-dialog-deploy-env.component.scss']
+  styleUrls: ['./landing-zone-dialog-deploy-env.component.scss'],
 })
 export class LandingZoneDialogDeployEnvComponent {
   constructor(private store: Store<any>, private dialogRef: MatDialogRef<LandingZoneDialogDeployEnvComponent>) {}

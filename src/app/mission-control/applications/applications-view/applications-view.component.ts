@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-applications-view',
   templateUrl: './applications-view.component.html',
-  styleUrls: ['./applications-view.component.scss']
+  styleUrls: ['./applications-view.component.scss'],
 })
 export class ApplicationsViewComponent implements OnInit {
   application: Application;

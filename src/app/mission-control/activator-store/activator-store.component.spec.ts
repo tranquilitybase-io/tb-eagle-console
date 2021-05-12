@@ -8,7 +8,7 @@ describe('ActivatorStoreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreComponent]
+      declarations: [ActivatorStoreComponent],
     }).compileComponents();
   }));
 

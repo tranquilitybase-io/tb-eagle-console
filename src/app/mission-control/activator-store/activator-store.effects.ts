@@ -37,7 +37,7 @@ import {
   setLockedSuccess,
   updateActivator,
   updateActivatorError,
-  updateActivatorSuccess
+  updateActivatorSuccess,
 } from './activator-store.actions';
 import { Store, select } from '@ngrx/store';
 import { selectUser } from '@app/login/login.reducer';
@@ -58,20 +58,20 @@ export class ActivatorStoreEffects {
 
   private getCurrentQueryParams(): QueryParam[] {
     const initQueryParams = this.route.snapshot.queryParams;
-    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    const params = Object.keys(initQueryParams).map((key) => ({ key: key, value: initQueryParams[key] }));
     return params;
   }
 
   getActivators$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getActivators),
-      switchMap(action =>
+      switchMap((action) =>
         this.service.getActivators(action.queryParams).pipe(
-          switchMap(activators => [
+          switchMap((activators) => [
             setActivatorsCount({ activatorsCount: activators.length }),
-            getActivatorsSuccess({ activators })
+            getActivatorsSuccess({ activators }),
           ]),
-          catchError(error => {
+          catchError((error) => {
             if (error.status === 404) {
               return of(getActivatorsSuccess({ activators: [] }));
             }
@@ -87,11 +87,11 @@ export class ActivatorStoreEffects {
       ofType(getActivatorCategories),
       switchMap(() =>
         this.service.getActivatorCategories().pipe(
-          switchMap(categories => [
+          switchMap((categories) => [
             setCategoriesCount({ categoriesCount: categories.length }),
-            getActivatorCategoriesSuccess({ categories })
+            getActivatorCategoriesSuccess({ categories }),
           ]),
-          catchError(error => of(getActivatorCategoriesError({ error })))
+          catchError((error) => of(getActivatorCategoriesError({ error })))
         )
       )
     )
@@ -102,11 +102,11 @@ export class ActivatorStoreEffects {
       ofType(getMetaData),
       switchMap(() =>
         this.service.getMetadata().pipe(
-          switchMap(activators_meta => [
+          switchMap((activators_meta) => [
             setActivatorsCount({ activatorsCount: activators_meta.count }),
-            getMetaDataSuccess({ activators_meta })
+            getMetaDataSuccess({ activators_meta }),
           ]),
-          catchError(error => of(getMetaDataError({ error })))
+          catchError((error) => of(getMetaDataError({ error })))
         )
       )
     )
@@ -115,16 +115,16 @@ export class ActivatorStoreEffects {
   setDeprecated$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setDeprecated),
-      switchMap(action =>
+      switchMap((action) =>
         this.service.setDeprecated(action.id).pipe(
-          switchMap(activatorData => {
+          switchMap((activatorData) => {
             this.snackBarService.success('Activator has been deprecated');
             return [
               setDeprecatedSuccess({ activatorData }),
-              getActivators({ queryParams: this.getCurrentQueryParams() })
+              getActivators({ queryParams: this.getCurrentQueryParams() }),
             ];
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Activator has not been deprecated');
             return of(setDeprecatedError({ error }));
           })
@@ -136,13 +136,13 @@ export class ActivatorStoreEffects {
   setLocked$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setLocked),
-      switchMap(action =>
+      switchMap((action) =>
         this.service.setLocked(action.id).pipe(
-          switchMap(activatorData => {
+          switchMap((activatorData) => {
             this.snackBarService.success('Activator has been locked');
             return [setLockedSuccess({ activatorData }), getActivators({ queryParams: this.getCurrentQueryParams() })];
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Activator has not been locked');
             return of(setLockedError({ error }));
           })
@@ -156,11 +156,11 @@ export class ActivatorStoreEffects {
       ofType(denyAccess),
       switchMap(({ activatorId, teamId }) =>
         this.service.denyAccess(activatorId, teamId).pipe(
-          switchMap(activatorData => {
+          switchMap((activatorData) => {
             this.snackBarService.success('Access has been denied');
             return [denyAccessSuccess({ activatorData }), getActivators({ queryParams: this.getCurrentQueryParams() })];
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Access has not been denied');
             return of(denyAccessError({ error }));
           })
@@ -174,14 +174,14 @@ export class ActivatorStoreEffects {
       ofType(grantAccess),
       switchMap(({ activatorId, teamId }) =>
         this.service.grantAccess(activatorId, teamId).pipe(
-          switchMap(activatorData => {
+          switchMap((activatorData) => {
             this.snackBarService.success('Access has been granted');
             return [
               grantAccessSuccess({ activatorData }),
-              getActivators({ queryParams: this.getCurrentQueryParams() })
+              getActivators({ queryParams: this.getCurrentQueryParams() }),
             ];
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Access has not been granted');
             return of(grantAccessError({ error }));
           })
@@ -196,11 +196,11 @@ export class ActivatorStoreEffects {
       withLatestFrom(this.store.pipe(select(selectUser)).pipe(first())),
       switchMap(([action, user]) =>
         this.service.requestAccess(action.id, user).pipe(
-          map(data => {
+          map((data) => {
             this.snackBarService.success('Access has been requested');
             return requestAccessSuccess({ activatorData: data });
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Access has not been requested');
             return of(requestAccessError({ error }));
           })
@@ -214,14 +214,14 @@ export class ActivatorStoreEffects {
       ofType(createActivatorByURL),
       switchMap(({ url }) =>
         this.service.createActivatorByURL(url).pipe(
-          switchMap(activatorData => {
+          switchMap((activatorData) => {
             this.snackBarService.success("Activator's draft has been created");
             return [
               createActivatorByURLSuccess({ activatorData }),
-              getActivators({ queryParams: this.getCurrentQueryParams() })
+              getActivators({ queryParams: this.getCurrentQueryParams() }),
             ];
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error("Something went wrong. Activator's draft has not been created");
             return of(createActivatorByURLError({ error }));
           })
@@ -235,11 +235,11 @@ export class ActivatorStoreEffects {
       ofType(updateActivator),
       switchMap(({ activatorData }) =>
         this.service.updateActivator(activatorData).pipe(
-          map(activatorData => {
+          map((activatorData) => {
             this.snackBarService.success('Activator has been updated');
             return updateActivatorSuccess({ activatorData });
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Activator has not been updated');
             return of(updateActivatorError({ error }));
           })
@@ -253,11 +253,11 @@ export class ActivatorStoreEffects {
       ofType(onboardActivator),
       switchMap(({ activatorData }) =>
         this.service.onboardActivator(activatorData).pipe(
-          map(data => {
+          map((data) => {
             this.snackBarService.success('Activator has been onboarded');
             return onboardActivatorSuccess();
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Activator has not been onboarded');
             return of(onboardActivatorError({ error }));
           })

@@ -5,7 +5,7 @@ import { FilterOption } from './filter-select.model';
 @Component({
   selector: 'app-filter-select',
   templateUrl: './filter-select.component.html',
-  styleUrls: ['./filter-select.component.scss']
+  styleUrls: ['./filter-select.component.scss'],
 })
 export class FilterSelectComponent implements OnInit {
   @Input() options: FilterOption[];

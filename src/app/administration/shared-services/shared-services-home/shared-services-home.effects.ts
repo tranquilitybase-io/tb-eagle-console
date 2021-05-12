@@ -5,7 +5,7 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 import {
   getSharedServicesActions,
   getSharedServicesActionsError,
-  getSharedServicesActionsSuccess
+  getSharedServicesActionsSuccess,
 } from './shared-services-home.actions';
 import { SharedServicesHomeService } from './shared-services-home.service';
 
@@ -18,8 +18,8 @@ export class SharedServicesHomeEffects {
       ofType(getSharedServicesActions),
       mergeMap(() =>
         this.service.getAll().pipe(
-          map(sharedServicesActions => getSharedServicesActionsSuccess({ sharedServicesActions })),
-          catchError(error => of(getSharedServicesActionsError({ error })))
+          map((sharedServicesActions) => getSharedServicesActionsSuccess({ sharedServicesActions })),
+          catchError((error) => of(getSharedServicesActionsError({ error })))
         )
       )
     )

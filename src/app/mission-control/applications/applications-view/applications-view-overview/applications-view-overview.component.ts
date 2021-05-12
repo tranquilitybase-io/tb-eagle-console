@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-applications-view-overview',
   templateUrl: './applications-view-overview.component.html',
-  styleUrls: ['./applications-view-overview.component.scss']
+  styleUrls: ['./applications-view-overview.component.scss'],
 })
 export class ApplicationsViewOverviewComponent implements OnInit {
   application: Application;

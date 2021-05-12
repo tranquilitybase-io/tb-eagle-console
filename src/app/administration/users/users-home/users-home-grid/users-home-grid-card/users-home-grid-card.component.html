@@ -9,12 +9,8 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <a mat-menu-item routerLink="view" [queryParams]="{ id: user.id }">
-            View
-          </a>
-          <a mat-menu-item routerLink="edit" [queryParams]="{ id: user.id }">
-            Edit
-          </a>
+          <a mat-menu-item routerLink="view" [queryParams]="{ id: user.id }"> View </a>
+          <a mat-menu-item routerLink="edit" [queryParams]="{ id: user.id }"> Edit </a>
         </mat-menu>
       </div>
       {{ name }}
@@ -51,11 +47,7 @@
     </mat-list>
   </mat-card-content>
   <mat-card-actions *ngIf="active">
-    <a mat-button routerLink="view" [queryParams]="{ id: user.id }">
-      View
-    </a>
-    <a mat-button routerLink="edit" [queryParams]="{ id: user.id }">
-      Edit
-    </a>
+    <a mat-button routerLink="view" [queryParams]="{ id: user.id }"> View </a>
+    <a mat-button routerLink="edit" [queryParams]="{ id: user.id }"> Edit </a>
   </mat-card-actions>
 </mat-card>

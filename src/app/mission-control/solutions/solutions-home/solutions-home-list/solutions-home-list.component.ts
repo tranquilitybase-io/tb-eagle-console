@@ -17,7 +17,7 @@ import { selectPendingFavoritesId } from '../../solutions.reducer';
 @Component({
   selector: 'app-solutions-home-list',
   templateUrl: './solutions-home-list.component.html',
-  styleUrls: ['./solutions-home-list.component.scss']
+  styleUrls: ['./solutions-home-list.component.scss'],
 })
 export class SolutionsHomeListComponent implements OnInit, OnChanges {
   @Input() solutions$: Observable<Solution[]>;
@@ -35,7 +35,7 @@ export class SolutionsHomeListComponent implements OnInit, OnChanges {
     'team',
     'lastUpdated',
     'description',
-    'actions'
+    'actions',
   ];
   dataSource: MatTableDataSource<Solution>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -46,14 +46,14 @@ export class SolutionsHomeListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.store.select(selectPendingFavoritesId).subscribe(pendingList => {
+    this.store.select(selectPendingFavoritesId).subscribe((pendingList) => {
       this.pendingFavouritesId = pendingList;
     });
   }
 
   ngOnChanges(changes) {
     if (changes['solutions$'] && this.solutions$) {
-      this.solutions$.subscribe(solutions => {
+      this.solutions$.subscribe((solutions) => {
         this.dataSource = new MatTableDataSource(solutions);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -98,7 +98,7 @@ export class SolutionsHomeListComponent implements OnInit, OnChanges {
   }
 
   isFavouriteLoading(solutionId) {
-    const selectedId = this.pendingFavouritesId.find(favId => favId === solutionId);
+    const selectedId = this.pendingFavouritesId.find((favId) => favId === solutionId);
     return selectedId ? true : false;
   }
 }

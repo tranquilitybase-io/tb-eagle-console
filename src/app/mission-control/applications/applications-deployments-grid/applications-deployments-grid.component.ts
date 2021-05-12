@@ -8,7 +8,7 @@ import { Application } from '../applications.model';
 @Component({
   selector: 'app-applications-deployments-grid',
   templateUrl: './applications-deployments-grid.component.html',
-  styleUrls: ['./applications-deployments-grid.component.scss']
+  styleUrls: ['./applications-deployments-grid.component.scss'],
 })
 export class ApplicationsDeploymentsGridComponent implements OnInit {
   applications: Application[] = [];

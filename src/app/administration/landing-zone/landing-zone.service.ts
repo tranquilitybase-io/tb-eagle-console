@@ -3,7 +3,7 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 import { LandingZoneProgressItem } from './landing-zone.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LandingZoneService extends EntityCollectionServiceBase<LandingZoneProgressItem> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {

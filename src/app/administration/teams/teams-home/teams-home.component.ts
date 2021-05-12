@@ -4,7 +4,7 @@ import { Team } from '../teams.model';
 import { map } from 'rxjs/operators';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchOptionsEnum
+  GridViewSwitchOptionsEnum,
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { Store } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-teams-home',
   templateUrl: './teams-home.component.html',
-  styleUrls: ['./teams-home.component.scss']
+  styleUrls: ['./teams-home.component.scss'],
 })
 export class TeamsHomeComponent implements OnInit {
   teams$: Observable<Team[]>;
@@ -34,12 +34,12 @@ export class TeamsHomeComponent implements OnInit {
   }
 
   get isGridViewEnabled$(): Observable<boolean> {
-    return this.currentGridViewOption$.pipe(map(option => option === GridViewSwitchOptionsEnum.grid));
+    return this.currentGridViewOption$.pipe(map((option) => option === GridViewSwitchOptionsEnum.grid));
   }
 
   private getCurrentQueryParams(): QueryParam[] {
     const initQueryParams = this.route.snapshot.queryParams;
-    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    const params = Object.keys(initQueryParams).map((key) => ({ key: key, value: initQueryParams[key] }));
     return params;
   }
 
@@ -48,7 +48,7 @@ export class TeamsHomeComponent implements OnInit {
   }
 
   onFilterListUpdate(filterOptions: FilterOption[]) {
-    const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
+    const queryParams = filterOptions.map((filterOption) => filterOption.filterQueryValue);
     this.store.dispatch(getTeams({ queryParams }));
     //this.store.dispatch(getTeams({ queryParams: [] }));
   }

@@ -8,7 +8,7 @@ describe('BadgesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BadgesComponent]
+      declarations: [BadgesComponent],
     }).compileComponents();
   }));
 

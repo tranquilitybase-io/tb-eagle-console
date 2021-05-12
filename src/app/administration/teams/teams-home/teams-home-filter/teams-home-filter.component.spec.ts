@@ -8,7 +8,7 @@ describe('SolutionsHomeListFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TeamsHomeFilterComponent]
+      declarations: [TeamsHomeFilterComponent],
     }).compileComponents();
   }));
 

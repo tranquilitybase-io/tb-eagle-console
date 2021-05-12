@@ -33,16 +33,16 @@ const routes: Routes = [
     path: '',
     component: SolutionsViewComponent,
     resolve: {
-      solution: SolutionsViewResolver
-    }
+      solution: SolutionsViewResolver,
+    },
   },
   {
     path: 'application',
     loadChildren: () =>
       import('@app/mission-control/applications/applications-view/applications-view.module').then(
-        m => m.ApplicationsViewModule
-      )
-  }
+        (m) => m.ApplicationsViewModule
+      ),
+  },
 ];
 
 @NgModule({
@@ -51,7 +51,7 @@ const routes: Routes = [
     SolutionsViewSelectComponent,
     SolutionsViewWorkspaceInfoComponent,
     SolutionsViewOverviewComponent,
-    SolutionsViewApplicationsComponent
+    SolutionsViewApplicationsComponent,
   ],
   imports: [
     CommonModule,
@@ -72,7 +72,7 @@ const routes: Routes = [
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class SolutionsViewModule {}

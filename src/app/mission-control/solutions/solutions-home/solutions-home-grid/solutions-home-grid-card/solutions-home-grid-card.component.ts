@@ -13,7 +13,7 @@ import { selectIsFavoriteLoading } from '@app/mission-control/solutions/solution
 @Component({
   selector: 'app-solutions-home-grid-card',
   templateUrl: './solutions-home-grid-card.component.html',
-  styleUrls: ['./solutions-home-grid-card.component.scss']
+  styleUrls: ['./solutions-home-grid-card.component.scss'],
 })
 export class SolutionsHomeGridCardComponent implements OnInit {
   @Input() solution: Solution;

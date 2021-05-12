@@ -5,7 +5,7 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 import {
   getSharedServicesProgressItems,
   getSharedServicesProgressItemsError,
-  getSharedServicesProgressItemsSuccess
+  getSharedServicesProgressItemsSuccess,
 } from './shared-services.actions';
 import { SharedServicesService } from './shared-services.service';
 
@@ -18,8 +18,8 @@ export class SharedServicesEnvironmentEffects {
       ofType(getSharedServicesProgressItems),
       mergeMap(() =>
         this.service.getAll().pipe(
-          map(sharedServicesProgressItems => getSharedServicesProgressItemsSuccess({ sharedServicesProgressItems })),
-          catchError(error => of(getSharedServicesProgressItemsError({ error })))
+          map((sharedServicesProgressItems) => getSharedServicesProgressItemsSuccess({ sharedServicesProgressItems })),
+          catchError((error) => of(getSharedServicesProgressItemsError({ error })))
         )
       )
     )

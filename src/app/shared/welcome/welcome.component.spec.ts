@@ -12,7 +12,7 @@ describe('WelcomeComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       providers: [provideMockStore({ initialState })],
-      declarations: [WelcomeComponent]
+      declarations: [WelcomeComponent],
     });
 
     fixture = TestBed.createComponent(WelcomeComponent);

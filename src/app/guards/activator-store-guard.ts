@@ -10,14 +10,14 @@ import { discardSelectedSolution } from '@app/mission-control/solutions/solution
 import { Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActivatorStoreGuard implements CanDeactivate<ActivatorStoreComponent> {
   constructor(private store: Store<any>, private dialogService: MatDialog) {}
 
   canDeactivate(): Observable<boolean> {
     return this.store.pipe(select(selectIsSelectedSolution)).pipe(
-      mergeMap(isSolutionSelected => {
+      mergeMap((isSolutionSelected) => {
         if (isSolutionSelected) {
           return this.dialogService
             .open(YesNoDialogComponent, {
@@ -25,12 +25,12 @@ export class ActivatorStoreGuard implements CanDeactivate<ActivatorStoreComponen
               autoFocus: false,
               data: {
                 title: 'Application creation process was not finished',
-                content: 'If you leave now, all progress will be lost. Do you still want to leave?'
-              }
+                content: 'If you leave now, all progress will be lost. Do you still want to leave?',
+              },
             })
             .afterClosed()
             .pipe(
-              map(dialogResult => {
+              map((dialogResult) => {
                 if (dialogResult) {
                   this.store.dispatch(discardSelectedSolution());
                   return true;
