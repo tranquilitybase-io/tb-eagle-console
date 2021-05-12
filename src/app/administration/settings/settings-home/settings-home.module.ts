@@ -16,8 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 const routes: Routes = [
   {
     path: '',
-    component: SettingsHomeComponent
-  }
+    component: SettingsHomeComponent,
+  },
 ];
 
 @NgModule({
@@ -33,7 +33,7 @@ const routes: Routes = [
     MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
-  ]
+    MatInputModule,
+  ],
 })
 export class SettingsHomeModule {}

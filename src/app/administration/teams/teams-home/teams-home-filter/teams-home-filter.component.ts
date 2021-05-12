@@ -5,7 +5,7 @@ import { FilterOption, FilterOptions } from './teams-home-filter.model';
 @Component({
   selector: 'app-teams-home-filter',
   templateUrl: './teams-home-filter.component.html',
-  styleUrls: ['./teams-home-filter.component.scss']
+  styleUrls: ['./teams-home-filter.component.scss'],
 })
 export class TeamsHomeFilterComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -20,7 +20,7 @@ export class TeamsHomeFilterComponent implements OnInit {
   }
 
   onFilterSelect(filter: FilterOption) {
-    const foundItem = this.currentFilterList.find(listItem => listItem.name === filter.name);
+    const foundItem = this.currentFilterList.find((listItem) => listItem.name === filter.name);
     if (!foundItem) {
       this.currentFilterList.push(filter);
       this.filterList.emit(this.currentFilterList);
@@ -41,7 +41,7 @@ export class TeamsHomeFilterComponent implements OnInit {
 
     this.router.navigate(['.'], {
       relativeTo: this.route,
-      queryParams: params
+      queryParams: params,
     });
   }
 
@@ -51,6 +51,6 @@ export class TeamsHomeFilterComponent implements OnInit {
     if (keys.length === 0) {
       return null;
     }
-    this.currentFilterList = keys.map(key => this.options.find(option => option.shortQueryName === key));
+    this.currentFilterList = keys.map((key) => this.options.find((option) => option.shortQueryName === key));
   }
 }

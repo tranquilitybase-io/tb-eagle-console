@@ -7,7 +7,7 @@ import { User } from '@app/login/login.model';
 @Component({
   selector: 'app-users-home-grid',
   templateUrl: './users-home-grid.component.html',
-  styleUrls: ['./users-home-grid.component.scss']
+  styleUrls: ['./users-home-grid.component.scss'],
 })
 export class UsersHomeGridComponent {
   @Input() users$: Observable<User[]>;

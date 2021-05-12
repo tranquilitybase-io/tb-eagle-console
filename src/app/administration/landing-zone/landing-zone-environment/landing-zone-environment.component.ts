@@ -14,13 +14,13 @@ import {
   selectLzEnvironmentDeploymentStatus,
   selectStoreEnvironmentListDataStatus,
   selectStoreFolderStructureTreeDataStatus,
-  selectStoreLanVPCListDataStatus
+  selectStoreLanVPCListDataStatus,
 } from './landing-zone-environment.reducer';
 import {
   resetEnvironmentStatuses,
   storeEnvironmentListData,
   storeFolderStructureTreeData,
-  storeLanVPCListData
+  storeLanVPCListData,
 } from './landing-zone-environment.actions';
 import { FolderStructureNode, LanVPC, Environment } from './landing-zone-environment.model';
 import { LandingZoneDialogDeployEnvComponent } from '../landing-zone-dialog/landing-zone-dialog-deploy-env/landing-zone-dialog-deploy-env.component';
@@ -35,7 +35,7 @@ import { getLandingZoneProgressItems } from '../landing-zone.actions';
 @Component({
   selector: 'app-landing-zone-environment',
   templateUrl: './landing-zone-environment.component.html',
-  styleUrls: ['./landing-zone-environment.component.scss']
+  styleUrls: ['./landing-zone-environment.component.scss'],
 })
 export class LandingZoneEnvironmentComponent implements OnInit {
   environmentList: Environment[];
@@ -54,7 +54,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   storeLanVPCListDataStatus$: Observable<Loadable> = this.store.select(selectStoreLanVPCListDataStatus);
 
   folderStructureDataSource = new MatTreeNestedDataSource<FolderStructureNode>();
-  folderStructureTreeControl = new NestedTreeControl<FolderStructureNode>(node => node.children);
+  folderStructureTreeControl = new NestedTreeControl<FolderStructureNode>((node) => node.children);
   folderStructureTreeData: FolderStructureNode[];
 
   lanVPCListData: LanVPC[];
@@ -68,15 +68,15 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   //#region Constructor
   constructor(private store: Store<EnvironmentState>, private dialog: MatDialog, private router: Router) {
-    this.store.pipe(select(selectFolderStructureTreeData)).subscribe(folderStructureTreeData => {
+    this.store.pipe(select(selectFolderStructureTreeData)).subscribe((folderStructureTreeData) => {
       this.folderStructureTreeData = folderStructureTreeData;
       this.setInitialFolderStructureForm();
     });
-    this.environmentList$.subscribe(environmentListData => {
+    this.environmentList$.subscribe((environmentListData) => {
       this.environmentListData = environmentListData;
       this.setInitialEnvironmentForm();
     });
-    this.store.pipe(select(selectLanVPCListData)).subscribe(lanVPCListData => {
+    this.store.pipe(select(selectLanVPCListData)).subscribe((lanVPCListData) => {
       this.lanVPCListData = lanVPCListData;
       this.setInitialLanVPCForm();
     });
@@ -87,7 +87,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(getLandingZoneProgressItems());
     this.store.dispatch(resetEnvironmentStatuses());
-    this.lzEnvironmentDeploymentStatus$.subscribe(status => {
+    this.lzEnvironmentDeploymentStatus$.subscribe((status) => {
       this.handleLzEnvironmentDeploymentStatus(status);
     });
   }
@@ -170,12 +170,12 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   setInitialLanVPCForm() {
     let lanVPCGroup = {};
 
-    this.lanVPCListData.forEach(lanVPC => {
-      lanVPCGroup[lanVPC.name] = new FormControl((lanVPC.environments as Environment[]).map(env => env.id));
+    this.lanVPCListData.forEach((lanVPC) => {
+      lanVPCGroup[lanVPC.name] = new FormControl((lanVPC.environments as Environment[]).map((env) => env.id));
     });
 
     this.lanVPCForm = new FormGroup(lanVPCGroup);
-    this.lanVPCNameList = this.lanVPCListData.map(lanVPC => lanVPC.name);
+    this.lanVPCNameList = this.lanVPCListData.map((lanVPC) => lanVPC.name);
   }
 
   addLanVPC(event: MatChipInputEvent): void {
@@ -206,7 +206,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
     const lanVPCListData: LanVPC[] = Object.entries(this.lanVPCForm.value).map(([key, value]: [string, number[]]) => ({
       name: key,
       isActive: true,
-      environments: value
+      environments: value,
     }));
     this.store.dispatch(storeLanVPCListData({ lanVPCListData }));
     this.isLanVPCEdit = false;
@@ -223,7 +223,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
 
   isEnvironmentAvailable(envId: number, lanVpcName?: string) {
     let usedLanVpcEnvList: number[] = [];
-    this.lanVPCNameList.forEach(_lanVpcName => {
+    this.lanVPCNameList.forEach((_lanVpcName) => {
       if (lanVpcName !== _lanVpcName) {
         usedLanVpcEnvList = [...usedLanVpcEnvList, ...(this.lanVPCForm.value[_lanVpcName] as number[])];
       }
@@ -234,7 +234,7 @@ export class LandingZoneEnvironmentComponent implements OnInit {
   isAnyEnvironmentAvailable() {
     let usedEnvCount: number = 0;
     const lanVpcFormValue = this.lanVPCForm.value;
-    Object.keys(lanVpcFormValue).forEach(key => {
+    Object.keys(lanVpcFormValue).forEach((key) => {
       usedEnvCount = usedEnvCount + lanVpcFormValue[key].length;
     });
     return this.environmentList.length > usedEnvCount;

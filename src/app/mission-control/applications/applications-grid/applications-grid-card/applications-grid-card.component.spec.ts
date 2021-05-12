@@ -8,7 +8,7 @@ describe('ApplicationsGridCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationsGridCardComponent]
+      declarations: [ApplicationsGridCardComponent],
     }).compileComponents();
   }));
 

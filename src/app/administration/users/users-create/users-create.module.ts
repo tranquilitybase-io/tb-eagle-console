@@ -14,9 +14,9 @@ import { SharedModule } from '@app/shared/shared.module';
 const routes: Routes = [
   {
     path: '',
-    component: UsersCreateComponent
+    component: UsersCreateComponent,
     // TODO: add resolver!!!
-  }
+  },
 ];
 
 @NgModule({
@@ -31,7 +31,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class UsersCreateModule {}

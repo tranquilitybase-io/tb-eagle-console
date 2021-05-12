@@ -21,9 +21,9 @@ const routes: Routes = [
     component: TeamsEditComponent,
     resolve: {
       businessUnitList: BusinessUnitResolver,
-      team: TeamByIdResolver
-    }
-  }
+      team: TeamByIdResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -38,7 +38,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class TeamsEditModule {}

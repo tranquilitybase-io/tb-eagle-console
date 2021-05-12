@@ -8,7 +8,7 @@ describe('ActivatorStoreViewAuditHistoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreViewAuditHistoryComponent]
+      declarations: [ActivatorStoreViewAuditHistoryComponent],
     }).compileComponents();
   }));
 

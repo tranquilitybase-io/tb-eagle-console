@@ -5,7 +5,7 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 import {
   getLandingZoneActions,
   getLandingZoneActionsError,
-  getLandingZoneActionsSuccess
+  getLandingZoneActionsSuccess,
 } from './landing-zone-home.actions';
 import { LandingZoneHomeService } from './landing-zone-home.service';
 
@@ -18,8 +18,8 @@ export class LandingZoneHomeEffects {
       ofType(getLandingZoneActions),
       mergeMap(() =>
         this.service.getAll().pipe(
-          map(landingZoneActions => getLandingZoneActionsSuccess({ landingZoneActions })),
-          catchError(error => of(getLandingZoneActionsError({ error })))
+          map((landingZoneActions) => getLandingZoneActionsSuccess({ landingZoneActions })),
+          catchError((error) => of(getLandingZoneActionsError({ error })))
         )
       )
     )

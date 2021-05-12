@@ -27,8 +27,8 @@ describe('ApplicationsDeploymentsComponent', () => {
         MatFormFieldModule,
         MatInputModule,
         MatListModule,
-        MatChipsModule
-      ]
+        MatChipsModule,
+      ],
     }).compileComponents();
   }));
 

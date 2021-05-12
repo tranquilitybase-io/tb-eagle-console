@@ -5,7 +5,7 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 import { Settings } from './settings.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SettingsService extends EntityCollectionServiceBase<Settings> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
@@ -19,7 +19,7 @@ export class SettingsService extends EntityCollectionServiceBase<Settings> {
     const id_token = localStorage.getItem('id_token');
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : ''
+      Authorization: id_token ? `Bearer ${id_token}` : '',
     });
   };
 

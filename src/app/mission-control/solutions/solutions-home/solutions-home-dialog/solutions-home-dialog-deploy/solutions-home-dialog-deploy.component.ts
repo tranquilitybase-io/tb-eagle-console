@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-solutions-home-dialog-deploy.component',
   templateUrl: './solutions-home-dialog-deploy.component.html',
-  styleUrls: ['./solutions-home-dialog-deploy.component.scss']
+  styleUrls: ['./solutions-home-dialog-deploy.component.scss'],
 })
 export class SolutionsHomeDialogDeployComponent {
   constructor(

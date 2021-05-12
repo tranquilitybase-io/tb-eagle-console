@@ -6,9 +6,7 @@
       </mat-expansion-panel-header>
       <div class="setup-progress" *ngIf="progressItems$ | async">
         <h2>Setup Progress</h2>
-        <p>
-          Select the tiles below in turn, to progress through the Shared Services setup.
-        </p>
+        <p>Select the tiles below in turn, to progress through the Shared Services setup.</p>
         <mat-horizontal-stepper
           [selectedIndex]="selectedIndex$ | async"
           [linear]="true"

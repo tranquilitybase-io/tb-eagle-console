@@ -6,7 +6,7 @@ import { QueryParam } from './business-unit-home/business-unit-home-filter/busin
 import { BusinessUnit } from './business-unit.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BusinessUnitService extends EntityCollectionServiceBase<BusinessUnit> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {

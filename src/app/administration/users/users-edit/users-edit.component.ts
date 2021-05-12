@@ -12,7 +12,7 @@ import { selectUpdateUserDataStatus } from '../users.reducer';
 @Component({
   selector: 'app-users-edit',
   templateUrl: './users-edit.component.html',
-  styleUrls: ['./users-edit.component.scss']
+  styleUrls: ['./users-edit.component.scss'],
 })
 export class UsersEditComponent implements OnInit {
   userForm: FormGroup;
@@ -35,9 +35,9 @@ export class UsersEditComponent implements OnInit {
       id: this.user.id,
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
-      email: [this.user.email, [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]]
+      email: [this.user.email, [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]],
     });
-    this.updateUserDataStatus$.subscribe(status => this.handleLoading(status));
+    this.updateUserDataStatus$.subscribe((status) => this.handleLoading(status));
   }
 
   private navigateToUsersHome() {

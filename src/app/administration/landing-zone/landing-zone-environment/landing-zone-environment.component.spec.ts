@@ -8,7 +8,7 @@ describe('LandingZoneEnvironmentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LandingZoneEnvironmentComponent]
+      declarations: [LandingZoneEnvironmentComponent],
     }).compileComponents();
   }));
 

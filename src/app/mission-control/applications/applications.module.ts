@@ -36,7 +36,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     ApplicationsDeploymentsContainerComponent,
     ApplicationsDeploymentsGridComponent,
     ApplicationsGridCardComponent,
-    ApplicationsGridComponent
+    ApplicationsGridComponent,
   ],
   imports: [
     CommonModule,
@@ -58,13 +58,13 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatSortModule,
     MatStepperModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   exports: [
     ApplicationsDeploymentsComponent,
     ApplicationsDeploymentsContainerComponent,
     ApplicationsDeploymentsGridComponent,
-    ApplicationsGridComponent
-  ]
+    ApplicationsGridComponent,
+  ],
 })
 export class ApplicationsModule {}

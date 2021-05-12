@@ -8,7 +8,7 @@ describe('SolutionsCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreEditComponent]
+      declarations: [ActivatorStoreEditComponent],
     }).compileComponents();
   }));
 

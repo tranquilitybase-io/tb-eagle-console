@@ -15,8 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 const routes: Routes = [
   {
     path: '',
-    component: TeamMembersCreateComponent
-  }
+    component: TeamMembersCreateComponent,
+  },
 ];
 
 @NgModule({
@@ -32,7 +32,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
 export class TeamMembersCreateModule {}

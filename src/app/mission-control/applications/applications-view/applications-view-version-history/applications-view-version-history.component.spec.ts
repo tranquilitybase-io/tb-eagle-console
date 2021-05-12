@@ -8,7 +8,7 @@ describe('ApplicationsViewVersionHistoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationsViewVersionHistoryComponent]
+      declarations: [ApplicationsViewVersionHistoryComponent],
     }).compileComponents();
   }));
 

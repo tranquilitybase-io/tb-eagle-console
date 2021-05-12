@@ -7,7 +7,7 @@ import { KeyValue } from '@angular/common';
 import { QueryParam } from './teams-home/teams-home-filter/teams-home-filter.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TeamsService extends EntityCollectionServiceBase<Team> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {

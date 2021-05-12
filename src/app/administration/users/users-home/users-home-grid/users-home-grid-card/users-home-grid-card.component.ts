@@ -4,7 +4,7 @@ import { User } from '@app/administration/users/users.model';
 @Component({
   selector: 'app-users-home-grid-card',
   templateUrl: './users-home-grid-card.component.html',
-  styleUrls: ['./users-home-grid-card.component.scss']
+  styleUrls: ['./users-home-grid-card.component.scss'],
 })
 export class UsersHomeGridCardComponent implements OnInit {
   @Input() user: User;

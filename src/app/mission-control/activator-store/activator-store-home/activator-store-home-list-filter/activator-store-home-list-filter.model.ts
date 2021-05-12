@@ -14,12 +14,12 @@ export const FilterOptions = [
     name: 'Active',
     filterBarName: 'isActive:true',
     filterQueryValue: { key: 'isActive', value: 'true' },
-    shortQueryName: 'isActive'
+    shortQueryName: 'isActive',
   },
   {
     name: 'Favourite',
     filterBarName: 'isFavourite:true',
     filterQueryValue: { key: 'isFavourite', value: 'true' },
-    shortQueryName: 'isFavourite'
-  }
+    shortQueryName: 'isFavourite',
+  },
 ] as FilterOption[];

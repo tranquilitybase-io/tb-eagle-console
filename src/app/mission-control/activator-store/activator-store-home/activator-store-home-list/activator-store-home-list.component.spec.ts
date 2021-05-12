@@ -8,7 +8,7 @@ describe('ActivatorStoreHomeListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreHomeListComponent]
+      declarations: [ActivatorStoreHomeListComponent],
     }).compileComponents();
   }));
 

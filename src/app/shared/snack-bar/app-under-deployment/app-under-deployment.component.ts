@@ -7,7 +7,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 @Component({
   selector: 'app-app-under-deployment',
   templateUrl: './app-under-deployment.component.html',
-  styleUrls: ['./app-under-deployment.component.scss']
+  styleUrls: ['./app-under-deployment.component.scss'],
 })
 export class AppUnderDeploymentComponent extends MatSnackBar {
   constructor(

@@ -8,7 +8,7 @@ describe('ActivatorStoreHomeCategoryGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreHomeCategoryGridComponent]
+      declarations: [ActivatorStoreHomeCategoryGridComponent],
     }).compileComponents();
   }));
 

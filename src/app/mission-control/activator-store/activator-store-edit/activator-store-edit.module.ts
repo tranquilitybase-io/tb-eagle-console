@@ -35,9 +35,9 @@ const routes: Routes = [
       ciList: ContinuousIntegrationResolver,
       environmentList: EnvironmentResolver,
       sourceControlList: SourceControlResolver,
-      activator: ActivatorByIdResolver
-    }
-  }
+      activator: ActivatorByIdResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -58,7 +58,7 @@ const routes: Routes = [
     MatInputModule,
     MatListModule,
     MatSelectModule,
-    MatStepperModule
-  ]
+    MatStepperModule,
+  ],
 })
 export class ActivatorStoreEditModule {}

@@ -4,7 +4,7 @@ import getCustomProperty from '../utils/getCustomProperty';
 @Component({
   selector: 'app-badges',
   templateUrl: './badges.component.html',
-  styleUrls: ['./badges.component.scss']
+  styleUrls: ['./badges.component.scss'],
 })
 export class BadgesComponent {
   displayBadges: string[] = [];

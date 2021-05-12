@@ -7,12 +7,12 @@ export enum GridViewSwitchViewsNames {
   landingZone = 'landingZone',
   applicationDeployments = 'applicationDeployments',
   teamMembers = 'teamMembers',
-  businessUnit = 'businessUnit'
+  businessUnit = 'businessUnit',
 }
 
 export enum GridViewSwitchOptionsEnum {
   grid = 'grid',
-  row = 'row'
+  row = 'row',
 }
 
 export interface GridViewSwitchModel {

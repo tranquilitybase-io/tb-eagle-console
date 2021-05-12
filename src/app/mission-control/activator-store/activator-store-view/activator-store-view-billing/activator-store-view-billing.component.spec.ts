@@ -8,7 +8,7 @@ describe('ActivatorStoreViewBillingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreViewBillingComponent]
+      declarations: [ActivatorStoreViewBillingComponent],
     }).compileComponents();
   }));
 

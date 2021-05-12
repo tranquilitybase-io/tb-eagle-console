@@ -6,14 +6,14 @@ import { Store, select } from '@ngrx/store';
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+  styleUrls: ['./notifications.component.scss'],
 })
 export class NotificationsComponent implements OnInit {
   notificationData: Notification[];
   notificationMetaData: NotificationsMeta;
 
   constructor(private store: Store<NotificationState>) {
-    this.store.pipe(select(selectNotificationData)).subscribe(notificationData => {
+    this.store.pipe(select(selectNotificationData)).subscribe((notificationData) => {
       this.setNotifications(notificationData);
     });
   }
@@ -21,7 +21,7 @@ export class NotificationsComponent implements OnInit {
   ngOnInit() {}
 
   setNotifications(notificationData) {
-    const parsedData = notificationData.map(notification => this.parseNotification(notification));
+    const parsedData = notificationData.map((notification) => this.parseNotification(notification));
     this.notificationData = parsedData;
   }
 
@@ -41,14 +41,14 @@ export class NotificationsComponent implements OnInit {
   createActivatorLink(activatorId: number) {
     return {
       routerLink: `/mission-control/activator-store/view`,
-      id: activatorId
+      id: activatorId,
     };
   }
 
   createSolutionLink(solutionId: number) {
     return {
       routerLink: `/mission-control/solutions/view`,
-      id: solutionId
+      id: solutionId,
     };
   }
 }

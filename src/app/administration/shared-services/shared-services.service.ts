@@ -3,7 +3,7 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 import { SharedServicesProgressItem } from './shared-services.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SharedServicesService extends EntityCollectionServiceBase<SharedServicesProgressItem> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {

@@ -28,8 +28,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 const routes: Routes = [
   {
     path: '',
-    component: SharedServicesHomeComponent
-  }
+    component: SharedServicesHomeComponent,
+  },
 ];
 
 @NgModule({
@@ -50,13 +50,13 @@ const routes: Routes = [
     MatIconModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatStepperModule
+    MatStepperModule,
   ],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { displayDefaultIndicatorType: false }
-    }
-  ]
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
 })
 export class SharedServicesHomeModule {}

@@ -13,7 +13,7 @@ import { getSharedServicesActions } from '../shared-services-home.actions';
 @Component({
   selector: 'app-shared-services-home-grid',
   templateUrl: './shared-services-home-grid.component.html',
-  styleUrls: ['./shared-services-home-grid.component.scss']
+  styleUrls: ['./shared-services-home-grid.component.scss'],
 })
 export class SharedServicesHomeGridComponent implements OnInit {
   actions$: Observable<SharedServicesAction[]>;
@@ -37,11 +37,11 @@ export class SharedServicesHomeGridComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(getSharedServicesActions());
-    this.sharedServicesService.getAll().subscribe(actions => {
+    this.sharedServicesService.getAll().subscribe((actions) => {
       this.filterAllLength = actions.length;
-      this.filterCompletedLength = actions.filter(action => action.completionRate === 100).length;
-      this.filterInProgressLength = actions.filter(action => action.completionRate !== 100 && !action.locked).length;
-      this.filterLockedLength = actions.filter(action => action.locked).length;
+      this.filterCompletedLength = actions.filter((action) => action.completionRate === 100).length;
+      this.filterInProgressLength = actions.filter((action) => action.completionRate !== 100 && !action.locked).length;
+      this.filterLockedLength = actions.filter((action) => action.locked).length;
     });
   }
 

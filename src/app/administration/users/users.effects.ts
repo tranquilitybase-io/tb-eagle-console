@@ -12,7 +12,7 @@ import {
   updateUserDataError,
   getUsers,
   getUsersSuccess,
-  getUsersError
+  getUsersError,
 } from './users.actions';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 
@@ -27,10 +27,10 @@ export class UsersEffects {
   getUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getUsers),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.usersService.getUsers(action.queryParams).pipe(
-          map(users => getUsersSuccess({ users })),
-          catchError(error => of(getUsersError({ error })))
+          map((users) => getUsersSuccess({ users })),
+          catchError((error) => of(getUsersError({ error })))
         )
       )
     )
@@ -39,13 +39,13 @@ export class UsersEffects {
   createUserData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createUserData),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.usersService.add(action.userData).pipe(
           map(() => {
             this.snackBarService.success('User has been created');
             return createUserDataSuccess();
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. User has not been created');
             return of(createUserDataError({ error }));
           })
@@ -57,13 +57,13 @@ export class UsersEffects {
   updateUserData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(updateUserData),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.usersService.update(action.userData).pipe(
           map(() => {
             this.snackBarService.success('User has been updated');
             return updateUserDataSuccess();
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. User has not been updated');
             return of(updateUserDataError({ error }));
           })

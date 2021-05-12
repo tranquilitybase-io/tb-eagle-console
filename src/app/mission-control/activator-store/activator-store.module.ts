@@ -24,73 +24,73 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./activator-store-home/activator-store-home.module').then(m => m.ActivatorStoreHomeModule),
+          import('./activator-store-home/activator-store-home.module').then((m) => m.ActivatorStoreHomeModule),
         data: {
           breadcrumbsSteps: [
             {
               name: 'Activator Store',
-              link: '/mission-control/activator-store'
-            }
-          ]
-        }
+              link: '/mission-control/activator-store',
+            },
+          ],
+        },
       },
       {
         path: 'view',
         loadChildren: () =>
-          import('./activator-store-view/activator-store-view.module').then(m => m.ActivatorStoreViewModule),
+          import('./activator-store-view/activator-store-view.module').then((m) => m.ActivatorStoreViewModule),
         data: {
           breadcrumbsSteps: [
             {
               name: 'Activator Store',
-              link: '/mission-control/activator-store'
+              link: '/mission-control/activator-store',
             },
             {
-              name: 'View'
-            }
-          ]
-        }
+              name: 'View',
+            },
+          ],
+        },
       },
       {
         path: 'create-app',
         loadChildren: () =>
           import('@app/mission-control/applications/applications-create/applications-create.module.ts').then(
-            m => m.ApplicationsCreateModule
-          )
+            (m) => m.ApplicationsCreateModule
+          ),
       },
       {
         path: 'create',
         loadChildren: () =>
-          import('./activator-store-create/activator-store-create.module').then(m => m.ActivatorStoreCreateModule),
+          import('./activator-store-create/activator-store-create.module').then((m) => m.ActivatorStoreCreateModule),
         data: {
           breadcrumbsSteps: [
             {
               name: 'Activator Store',
-              link: '/mission-control/activator-store'
+              link: '/mission-control/activator-store',
             },
             {
-              name: 'Create'
-            }
-          ]
-        }
+              name: 'Create',
+            },
+          ],
+        },
       },
       {
         path: 'edit',
         loadChildren: () =>
-          import('./activator-store-edit/activator-store-edit.module').then(m => m.ActivatorStoreEditModule),
+          import('./activator-store-edit/activator-store-edit.module').then((m) => m.ActivatorStoreEditModule),
         data: {
           breadcrumbsSteps: [
             {
               name: 'Activator Store',
-              link: '/mission-control/activator-store'
+              link: '/mission-control/activator-store',
             },
             {
-              name: 'Edit'
-            }
-          ]
-        }
-      }
-    ]
-  }
+              name: 'Edit',
+            },
+          ],
+        },
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -104,7 +104,7 @@ const routes: Routes = [
     EffectsModule.forFeature([ActivatorStoreEffects]),
     MatButtonModule,
     MatIconModule,
-    MatStepperModule
-  ]
+    MatStepperModule,
+  ],
 })
 export class ActivatorStoreModule {}

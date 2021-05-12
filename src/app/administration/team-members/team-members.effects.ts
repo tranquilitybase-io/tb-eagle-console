@@ -17,13 +17,13 @@ export class TeamMembersEffects {
   createTeamMember$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createTeamMember),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.service.createTeamMember(action.teamMember).pipe(
           map(() => {
             this.snackBarService.success('Team member has been created');
             return createTeamMemberSuccess();
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong, Team member has not been created');
             return of(createTeamMemberError({ error }));
           })

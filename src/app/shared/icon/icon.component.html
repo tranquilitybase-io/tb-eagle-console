@@ -5,7 +5,8 @@
   aria-hidden="true"
   focusable="false"
   [attr.fill]="!stroke ? color : 'transparent'"
-  [attr.stroke]="stroke ? color : 'transparent'">
+  [attr.stroke]="stroke ? color : 'transparent'"
+>
   <use [attr.href]="href"></use>
 </svg>
-<img *ngIf="isException" [width]="dim" [height]="dim" src="{{href}}" />
+<img *ngIf="isException" [width]="dim" [height]="dim" src="{{ href }}" />
