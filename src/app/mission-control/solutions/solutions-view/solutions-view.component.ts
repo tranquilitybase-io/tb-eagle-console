@@ -47,12 +47,6 @@ export class SolutionsViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.pipe(select(selectSolutionDeploymentsData)).subscribe(() => {
-      this.updateSolutionData();
-    });
-    this.store.pipe(select(selectApplicationDeploymentsData)).subscribe(() => {
-      this.updateSolutionData();
-    });
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
     this.tabsIndexMap = new Map([
       ['Overview', 0],
@@ -72,14 +66,6 @@ export class SolutionsViewComponent implements OnInit {
         this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
       });
     this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
-  }
-
-  updateSolutionData() {
-    console.log(this.route.snapshot.queryParamMap.get('id'));
-    this.solutionsService.getByKey(this.route.snapshot.queryParamMap.get('id')).subscribe((solution) => {
-      this.solution = solution;
-      this.teamMembers$ = this.teamMembersService.getByTeamId(solution.teamId);
-    });
   }
 
   get isSolutionDeployed(): boolean {
