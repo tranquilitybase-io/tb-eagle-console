@@ -45,22 +45,15 @@
     ></app-breadcrumbs>
   </ng-template>
 </header>
-
-<mat-horizontal-stepper *ngIf="selectedSolution$ | async" [linear]="true" #stepper>
+<mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step
-    [editable]="false"
-    [completed]="true"
-    state="done"
+    [stepControl]="applicationForm"
     (click)="onNavigateStepperBack()"
     [routerLink]="'/mission-control/activator-store'"
   >
     <ng-template matStepLabel><div (click)="onNavigateStepperBack()">Selection</div></ng-template>
-  </mat-step>
 
-  <mat-step [editable]="true" [stepControl]="applicationForm">
-    <ng-template matStepLabel>Application details</ng-template>
-
-    <form *ngIf="selectedSolution$ | async" [formGroup]="applicationForm">
+    <form [formGroup]="applicationForm">
       <app-alert
         class="app-alert"
         text="Please provide the initial details. Users and teams can be added after initial set-up."
@@ -76,7 +69,7 @@
       </p>
       <p>
         <mat-form-field class="small-width" appearance="outline">
-          <mat-label>Name</mat-label>
+          <mat-label>Nameeee</mat-label>
           <input
             matInput
             required
@@ -104,7 +97,7 @@
         </mat-form-field>
       </p>
       <div class="app-bottom-action right">
-        <button mat-button color="primary" type="button" matStepperNext>
+        <button mat-button color="primary" matStepperNext>
           Review
           <mat-icon>chevron_right</mat-icon>
         </button>
@@ -130,6 +123,7 @@
       [applicationFormGroup]="applicationForm"
       [activator]="selectedActivator"
       [solution]="selectedSolution$ | async"
+      [applicationSolutionName]="solutionName"
     ></app-applications-create-review>
     <div class="app-bottom-action left">
       <button
@@ -168,66 +162,4 @@
     <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
   </ng-template>
 </mat-horizontal-stepper>
-
-<!-- No Solution selected variant below -->
-
-<form *ngIf="!(selectedSolution$ | async)" [formGroup]="applicationForm" (ngSubmit)="onSubmit(applicationForm.value)">
-  <app-alert
-    class="app-alert"
-    text="Please provide the initial details. Users and teams can be added after initial set-up."
-  ></app-alert>
-
-  <p>
-    <mat-form-field class="small-width" appearance="outline">
-      <mat-label>Solution</mat-label>
-      <mat-select required formControlName="solutionId">
-        <mat-option *ngFor="let item of availableSolutions" [value]="item.key"> {{ item.value }} </mat-option>
-      </mat-select>
-      <mat-error *ngIf="isFieldValid('solutionId')"> Solution is <strong>required</strong> </mat-error>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field class="small-width" appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput required type="text" maxlength="50" formControlName="name" placeholder="E.g. project name..." />
-      <mat-error *ngIf="isFieldValid('name')"> Name is <strong>required</strong> </mat-error>
-    </mat-form-field>
-  </p>
-
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        required
-        #desctext
-        maxlength="200"
-        formControlName="description"
-        placeholder="Type your description here..."
-      ></textarea>
-      <mat-hint align="end">{{ desctext.value.length }} / 200</mat-hint>
-      <mat-error *ngIf="isFieldValid('description')"> Description is <strong>required</strong> </mat-error>
-    </mat-form-field>
-  </p>
-
-  <div class="app-bottom-action right">
-    <button mat-button color="primary" type="submit" [loading]="(createApplicationStatus$ | async).loading">
-      Add to Solution
-      <mat-icon>chevron_right</mat-icon>
-    </button>
-  </div>
-</form>
-
-<div class="app-bottom-action left" *ngIf="!(selectedSolution$ | async)">
-  <button
-    mat-button
-    color="primary"
-    type="button"
-    routerLink="/mission-control/activator-store/view"
-    queryParamsHandling="preserve"
-  >
-    <mat-icon>chevron_left</mat-icon>
-    Review activator
-  </button>
-</div>
 <div class="app-bottom-background"></div>
