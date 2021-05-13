@@ -8,7 +8,7 @@ describe('SolutionsHomeListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SolutionsHomeListComponent]
+      declarations: [SolutionsHomeListComponent],
     }).compileComponents();
   }));
 

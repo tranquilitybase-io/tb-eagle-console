@@ -11,22 +11,22 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'activator-store',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'activator-store',
-        loadChildren: () => import('./activator-store/activator-store.module').then(m => m.ActivatorStoreModule)
+        loadChildren: () => import('./activator-store/activator-store.module').then((m) => m.ActivatorStoreModule),
       },
       {
         path: 'solutions',
-        loadChildren: () => import('./solutions/solutions.module').then(m => m.SolutionsModule)
-      }
-    ]
-  }
+        loadChildren: () => import('./solutions/solutions.module').then((m) => m.SolutionsModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   declarations: [MissionControlComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
 export class MissionControlModule {}

@@ -6,7 +6,7 @@ import { ApplicationsDialogDeployComponent } from '../../applications-dialog/app
 @Component({
   selector: 'app-applications-grid-card',
   templateUrl: './applications-grid-card.component.html',
-  styleUrls: ['./applications-grid-card.component.scss']
+  styleUrls: ['./applications-grid-card.component.scss'],
 })
 export class ApplicationsGridCardComponent implements OnInit {
   @Input() app: Application;

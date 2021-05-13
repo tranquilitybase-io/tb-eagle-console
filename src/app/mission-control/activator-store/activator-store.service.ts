@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { QueryParam } from './activator-store-home/activator-store-home-list-filter/activator-store-home-list-filter.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActivatorStoreService extends EntityCollectionServiceBase<Activator> {
   private BASE_URL = `${globalThis.location.origin}/api`;
@@ -20,9 +20,11 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   setDeprecated(id: number): Observable<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(url, { id, status: 'Deprecated', accessRequestedById: 0 }, { headers }) as Observable<
-      Activator
-    >;
+    return this.http.post(
+      url,
+      { id, status: 'Deprecated', accessRequestedById: 0 },
+      { headers }
+    ) as Observable<Activator>;
   }
 
   setLocked(id: number): Observable<Activator> {
@@ -96,7 +98,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const id_token = localStorage.getItem('id_token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : ''
+      Authorization: id_token ? `Bearer ${id_token}` : '',
     });
 
     return this.http.post(url, { url: repoURL }, { headers }) as Observable<Activator>;
@@ -114,7 +116,7 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const id_token = localStorage.getItem('id_token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : ''
+      Authorization: id_token ? `Bearer ${id_token}` : '',
     });
 
     return this.http.post(url, { id: activatorData.id }, { headers });

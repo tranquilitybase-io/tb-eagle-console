@@ -5,7 +5,7 @@ import { FilterOption, FilterOptions } from './users-home-filter.model';
 @Component({
   selector: 'app-users-home-filter',
   templateUrl: './users-home-filter.component.html',
-  styleUrls: ['./users-home-filter.component.scss']
+  styleUrls: ['./users-home-filter.component.scss'],
 })
 export class UsersHomeFilterComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -20,7 +20,7 @@ export class UsersHomeFilterComponent implements OnInit {
   }
 
   onFilterSelect(filter: FilterOption) {
-    const foundItem = this.currentFilterList.find(listItem => listItem.name === filter.name);
+    const foundItem = this.currentFilterList.find((listItem) => listItem.name === filter.name);
     if (!foundItem) {
       this.currentFilterList.push(filter);
       this.filterList.emit(this.currentFilterList);
@@ -41,7 +41,7 @@ export class UsersHomeFilterComponent implements OnInit {
 
     this.router.navigate(['.'], {
       relativeTo: this.route,
-      queryParams: params
+      queryParams: params,
     });
   }
 
@@ -51,6 +51,6 @@ export class UsersHomeFilterComponent implements OnInit {
     if (keys.length === 0) {
       return null;
     }
-    this.currentFilterList = keys.map(key => this.options.find(option => option.shortQueryName === key));
+    this.currentFilterList = keys.map((key) => this.options.find((option) => option.shortQueryName === key));
   }
 }

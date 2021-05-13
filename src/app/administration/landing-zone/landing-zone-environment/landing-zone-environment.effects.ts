@@ -14,7 +14,7 @@ import {
   storeFolderStructureTreeDataSuccess,
   storeLanVPCListData,
   storeLanVpcListDataError,
-  storeLanVpcListDataSuccess
+  storeLanVpcListDataSuccess,
 } from './landing-zone-environment.actions';
 import { ApiCallStatusSnackbarService } from '@app/shared/snack-bar/api-call-status/api-call-status.service';
 import { of } from 'rxjs';
@@ -30,13 +30,13 @@ export class LandingZoneEnvironmentEffects {
   storeFolderStructureTreeData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(storeFolderStructureTreeData),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.landingZoneEnvironmentService.postFolderStructureTreeData(action.folderStructureTreeData).pipe(
-          map(folderStructureTreeData => {
+          map((folderStructureTreeData) => {
             this.snackBarService.success('Folder structure has been saved');
             return storeFolderStructureTreeDataSuccess({ folderStructureTreeData });
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Folder structure has not been saved');
             return of(storeFolderStructureTreeDataError({ error }));
           })
@@ -48,13 +48,13 @@ export class LandingZoneEnvironmentEffects {
   storeEnvironmentListData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(storeEnvironmentListData),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.landingZoneEnvironmentService.postEnvironmentListData(action.environmentListData).pipe(
-          map(environmentListData => {
+          map((environmentListData) => {
             this.snackBarService.success('Environments has been saved');
             return storeEnvironmentListDataSuccess({ environmentListData });
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Environments has not been saved');
             return of(storeEnvironmentListDataError({ error }));
           })
@@ -66,13 +66,13 @@ export class LandingZoneEnvironmentEffects {
   storeLanVPCListData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(storeLanVPCListData),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.landingZoneEnvironmentService.postLanVPCListData(action.lanVPCListData).pipe(
-          map(lanVPCListData => {
+          map((lanVPCListData) => {
             this.snackBarService.success('LAN VPC list had been updated');
             return storeLanVpcListDataSuccess({ lanVPCListData });
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. LAN VPC list had been updated');
             return of(storeLanVpcListDataError({ error }));
           })
@@ -90,7 +90,7 @@ export class LandingZoneEnvironmentEffects {
             this.snackBarService.success('Environment has been deployed');
             return lzEnvironmentDeploymentSuccess();
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong.Environment has not been deployed');
             return of(lzEnvironmentDeploymentError({ error }));
           })

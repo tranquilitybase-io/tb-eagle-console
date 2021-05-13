@@ -8,7 +8,7 @@ describe('TeamsHomeGridCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TeamsHomeGridCardComponent]
+      declarations: [TeamsHomeGridCardComponent],
     }).compileComponents();
   }));
 

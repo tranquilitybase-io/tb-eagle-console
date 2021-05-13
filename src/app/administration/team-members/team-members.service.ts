@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TeamMembersService extends EntityCollectionServiceBase<TeamMember> {
   private BASE_URL = `${globalThis.location.origin}/api`;

@@ -20,9 +20,9 @@ const routes: Routes = [
     path: '',
     component: BusinessUnitViewComponent,
     resolve: {
-      businessUnit: BusinessUnitByIdResolver
-    }
-  }
+      businessUnit: BusinessUnitByIdResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -39,7 +39,7 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatSelectModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
 export class BusinessUnitViewModule {}

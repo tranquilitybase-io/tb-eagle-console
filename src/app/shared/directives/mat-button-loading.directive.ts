@@ -7,7 +7,7 @@ import {
   OnChanges,
   Renderer2,
   SimpleChanges,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MatButton } from '@angular/material/button';
@@ -16,7 +16,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 @Directive({
   selector: `button[mat-button][loading], button[mat-raised-button][loading], button[mat-icon-button][loading],
                button[mat-fab][loading], button[mat-mini-fab][loading], button[mat-stroked-button][loading],
-               button[mat-flat-button][loading]`
+               button[mat-flat-button][loading]`,
 })
 export class MatButtonLoadingDirective implements OnChanges {
   private spinnerFactory: ComponentFactory<MatProgressSpinner>;

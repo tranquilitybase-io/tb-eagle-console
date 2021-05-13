@@ -38,8 +38,8 @@ $custom-primary: (
     A100: $dark-primary-text,
     A200: $light-primary-text,
     A400: $light-primary-text,
-    A700: $light-primary-text
-  )
+    A700: $light-primary-text,
+  ),
 );
 
 $custom-accent: (
@@ -71,8 +71,8 @@ $custom-accent: (
     A100: $dark-primary-text,
     A200: $dark-primary-text,
     A400: $light-primary-text,
-    A700: $light-primary-text
-  )
+    A700: $light-primary-text,
+  ),
 );
 
 $material-custom-primary: mat-palette($custom-primary, 800, 100, 900);

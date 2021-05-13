@@ -29,8 +29,8 @@ describe('SharedServicesHomeGridComponent', () => {
         MatIconModule,
         MatMenuModule,
         MatProgressSpinnerModule,
-        MatStepperModule
-      ]
+        MatStepperModule,
+      ],
     }).compileComponents();
   }));
 

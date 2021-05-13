@@ -10,7 +10,7 @@ describe('BreadcrumbsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BreadcrumbsComponent],
-      imports: [MatIconModule]
+      imports: [MatIconModule],
     }).compileComponents();
   }));
 

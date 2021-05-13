@@ -33,12 +33,12 @@ export enum NotificationType {
   Activator = 'ACTIVATOR',
   Team = 'TEAM',
   Application = 'APPLICATION',
-  Solution = 'SOLUTION'
+  Solution = 'SOLUTION',
 }
 
 export const NotificationTypeId = {
   [NotificationType.Activator]: 1,
   [NotificationType.Team]: 2,
   [NotificationType.Application]: 3,
-  [NotificationType.Solution]: 4
+  [NotificationType.Solution]: 4,
 };

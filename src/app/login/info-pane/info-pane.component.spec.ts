@@ -8,7 +8,7 @@ describe('InfoPaneComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [InfoPaneComponent]
+      declarations: [InfoPaneComponent],
     }).compileComponents();
   }));
 

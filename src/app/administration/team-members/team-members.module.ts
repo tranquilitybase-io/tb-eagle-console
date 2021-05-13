@@ -30,7 +30,7 @@ import { MatTableModule } from '@angular/material/table';
     TeamMembersContainerComponent,
     TeamMembersGridCardComponent,
     TeamMembersGridComponent,
-    TeamMembersListComponent
+    TeamMembersListComponent,
   ],
   imports: [
     CommonModule,
@@ -48,8 +48,8 @@ import { MatTableModule } from '@angular/material/table';
     MatMenuModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
   ],
-  exports: [TeamMembersContainerComponent, TeamMembersGridComponent, TeamMembersListComponent]
+  exports: [TeamMembersContainerComponent, TeamMembersGridComponent, TeamMembersListComponent],
 })
 export class TeamMembersModule {}

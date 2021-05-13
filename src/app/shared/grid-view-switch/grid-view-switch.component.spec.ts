@@ -8,7 +8,7 @@ describe('GridViewSwitchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [GridViewSwitchComponent]
+      declarations: [GridViewSwitchComponent],
     }).compileComponents();
   }));
 

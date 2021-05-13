@@ -29,9 +29,9 @@ describe('SolutionsEditComponent', () => {
         MatIconModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
       ],
-      providers: [provideMockStore({ initialState })]
+      providers: [provideMockStore({ initialState })],
     }).compileComponents();
   }));
 

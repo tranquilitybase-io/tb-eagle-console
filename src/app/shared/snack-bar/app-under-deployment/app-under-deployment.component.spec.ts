@@ -8,7 +8,7 @@ describe('AppUnderDeploymentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppUnderDeploymentComponent]
+      declarations: [AppUnderDeploymentComponent],
     }).compileComponents();
   }));
 

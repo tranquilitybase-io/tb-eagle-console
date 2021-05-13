@@ -8,7 +8,7 @@ describe('ActivatorStoreDialogGrantAccessComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreDialogCreateOnboardingComponent]
+      declarations: [ActivatorStoreDialogCreateOnboardingComponent],
     }).compileComponents();
   }));
 

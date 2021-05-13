@@ -15,7 +15,7 @@ import { selectCreateTeamDataStatus } from '@app/administration/teams/teams.redu
 @Component({
   selector: 'app-team-members-create',
   templateUrl: './team-members-create.component.html',
-  styleUrls: ['./team-members-create.component.scss']
+  styleUrls: ['./team-members-create.component.scss'],
 })
 export class TeamMembersCreateComponent implements OnInit {
   teamMemberForm: FormGroup;
@@ -39,17 +39,17 @@ export class TeamMembersCreateComponent implements OnInit {
       isActive: true,
       teamId: ['', Validators.required],
       userId: ['', Validators.required],
-      isTeamAdmin: [false, Validators.required]
+      isTeamAdmin: [false, Validators.required],
     });
     this.users$ = this.usersService.getAll();
-    this.route.queryParams.subscribe(params => {
-      this.teamsService.getTeamKeyValues().subscribe(teams => {
+    this.route.queryParams.subscribe((params) => {
+      this.teamsService.getTeamKeyValues().subscribe((teams) => {
         this.defaultTeam.key = params['teamId'];
-        this.defaultTeam.value = teams.find(team => team.key === parseInt(params['teamId'])).value;
+        this.defaultTeam.value = teams.find((team) => team.key === parseInt(params['teamId'])).value;
         this.teamMemberForm.get('teamId').setValue(parseInt(this.defaultTeam.key));
       });
     });
-    this.createTeamMemberStatus$.subscribe(status => this.handleLoading(status));
+    this.createTeamMemberStatus$.subscribe((status) => this.handleLoading(status));
   }
 
   private navigateToTeams() {

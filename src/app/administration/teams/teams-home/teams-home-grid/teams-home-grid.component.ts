@@ -7,7 +7,7 @@ import { LayoutService } from '@app/layout/layout.service';
 @Component({
   selector: 'app-teams-home-grid',
   templateUrl: './teams-home-grid.component.html',
-  styleUrls: ['./teams-home-grid.component.scss']
+  styleUrls: ['./teams-home-grid.component.scss'],
 })
 export class TeamsHomeGridComponent {
   @Input() teams$: Observable<Team[]>;

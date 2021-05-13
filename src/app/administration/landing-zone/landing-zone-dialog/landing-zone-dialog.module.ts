@@ -9,6 +9,6 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [LandingZoneDialogDeployEnvComponent, LandingZoneDialogDeployEnvEnvironmentErrorComponent],
   entryComponents: [LandingZoneDialogDeployEnvComponent, LandingZoneDialogDeployEnvEnvironmentErrorComponent],
   exports: [LandingZoneDialogDeployEnvComponent, LandingZoneDialogDeployEnvEnvironmentErrorComponent],
-  imports: [CommonModule, MatButtonModule, MatDialogModule]
+  imports: [CommonModule, MatButtonModule, MatDialogModule],
 })
 export class LandingZoneDialogModule {}

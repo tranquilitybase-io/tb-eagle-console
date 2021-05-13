@@ -6,7 +6,7 @@ import { deleteSettings } from '../../settings.actions';
 @Component({
   selector: 'app-activator-store-dialog-grant-access',
   templateUrl: './settings-dialog-clear.component.html',
-  styleUrls: ['./settings-dialog-clear.component.scss']
+  styleUrls: ['./settings-dialog-clear.component.scss'],
 })
 export class SettingsDialogComponent implements OnInit {
   constructor(private store: Store<any>, private dialogRef: MatDialogRef<SettingsDialogComponent>) {}

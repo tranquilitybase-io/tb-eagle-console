@@ -4,7 +4,7 @@ import { on, createReducer, createSelector } from '@ngrx/store';
 
 export const intialState = {
   notificationsData: [],
-  notificationsMetaData: { count: 0 }
+  notificationsMetaData: { count: 0 },
 };
 
 export interface NotificationState {
@@ -12,7 +12,7 @@ export interface NotificationState {
   notificationsMetaData: NotificationsMeta;
 }
 export const featureKey = 'notifications';
-export const selectFeature = state => state[featureKey];
+export const selectFeature = (state) => state[featureKey];
 
 export const notificationsReducer = createReducer(
   intialState,
@@ -24,10 +24,10 @@ export default function reducer(state, action) {
   return notificationsReducer(state, action);
 }
 
-export const selectNotificationData = createSelector(selectFeature, state =>
+export const selectNotificationData = createSelector(selectFeature, (state) =>
   state ? state.notificationsData : ([] as Notification[])
 );
 
-export const selectNotificationMetaData = createSelector(selectFeature, state =>
+export const selectNotificationMetaData = createSelector(selectFeature, (state) =>
   state ? state.notificationsMetaData : ({} as NotificationsMeta)
 );

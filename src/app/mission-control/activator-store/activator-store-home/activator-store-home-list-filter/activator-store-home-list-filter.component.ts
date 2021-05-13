@@ -8,7 +8,7 @@ import { FilterOptions } from './activator-store-home-list-filter.model';
 @Component({
   selector: 'app-activator-store-home-list-filter',
   templateUrl: './activator-store-home-list-filter.component.html',
-  styleUrls: ['./activator-store-home-list-filter.component.scss']
+  styleUrls: ['./activator-store-home-list-filter.component.scss'],
 })
 export class ActivatorStoreHomeListFilterComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private dialog: MatDialog) {}
@@ -24,12 +24,12 @@ export class ActivatorStoreHomeListFilterComponent implements OnInit {
 
   showInformations() {
     this.dialog.open(ActivatorStoreFilterCreateComponent, {
-      autoFocus: false
+      autoFocus: false,
     });
   }
 
   onFilterSelect(filter: FilterOption) {
-    const foundItem = this.currentFilterList.find(listItem => listItem.name === filter.name);
+    const foundItem = this.currentFilterList.find((listItem) => listItem.name === filter.name);
     if (!foundItem) {
       this.currentFilterList.push(filter);
       this.filterList.emit(this.currentFilterList);
@@ -50,7 +50,7 @@ export class ActivatorStoreHomeListFilterComponent implements OnInit {
 
     this.router.navigate(['.'], {
       relativeTo: this.route,
-      queryParams: params
+      queryParams: params,
     });
   }
 
@@ -69,7 +69,7 @@ export class ActivatorStoreHomeListFilterComponent implements OnInit {
         name: keys[i].charAt(0).toUpperCase() + keys[i].slice(1),
         filterBarName: `${keys[i]}:${initQueryParams[keys[i]]}`,
         filterQueryValue: { key: keys[i], value: initQueryParams[keys[i]] },
-        shortQueryName: keys[i]
+        shortQueryName: keys[i],
       });
     }
 

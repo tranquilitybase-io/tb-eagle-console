@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-solutions-create',
   templateUrl: './activator-store-create.component.html',
-  styleUrls: ['./activator-store-create.component.scss']
+  styleUrls: ['./activator-store-create.component.scss'],
 })
 export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
   isRegionEdit = false;
@@ -46,7 +46,7 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private dialog: MatDialog
   ) {
-    this.store.pipe(select(selectActivatorData)).subscribe(activatorData => {
+    this.store.pipe(select(selectActivatorData)).subscribe((activatorData) => {
       this.activatorData = activatorData;
       this.reviewActivatorData = activatorData;
     });
@@ -54,7 +54,7 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     let variableGroup = {};
-    this.activatorData.activatorMetadata.variables.forEach(variable => {
+    this.activatorData.activatorMetadata.variables.forEach((variable) => {
       variableGroup[variable.name] = new FormControl(variable.value, variable.isOptional ? [] : Validators.required);
     });
     this.variablesForm = new FormGroup(variableGroup);
@@ -72,10 +72,10 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
       sourceControlId: ['', Validators.required],
       environments: [[], Validators.required],
       businessUnitId: ['', Validators.required],
-      regions: [['UK']]
+      regions: [['UK']],
     });
 
-    this.subscription = this.store.select(selectUpdateActivatorStatus).subscribe(status => {
+    this.subscription = this.store.select(selectUpdateActivatorStatus).subscribe((status) => {
       this.updateActivatorStatus = status;
       this.handleSubmitStatus(status);
     });
@@ -139,9 +139,9 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
 
   private parseActivatorFormsValuesToSend(): Activator {
     let activator = JSON.parse(JSON.stringify(this.activatorData));
-    activator.activatorMetadata.variables = activator.activatorMetadata.variables.map(variable => ({
+    activator.activatorMetadata.variables = activator.activatorMetadata.variables.map((variable) => ({
       ...variable,
-      value: this.variablesForm.value[variable.name]
+      value: this.variablesForm.value[variable.name],
     }));
     activator.cd = [this.workspaceForm.value.cdId];
     activator.ci = [this.workspaceForm.value.ciId];
@@ -155,25 +155,25 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
 
   private parsedActivatorFormsValuesToReview(): Activator {
     let activator = JSON.parse(JSON.stringify(this.activatorData));
-    activator.activatorMetadata.variables = activator.activatorMetadata.variables.map(variable => ({
+    activator.activatorMetadata.variables = activator.activatorMetadata.variables.map((variable) => ({
       ...variable,
-      value: this.variablesForm.value[variable.name]
+      value: this.variablesForm.value[variable.name],
     }));
-    const cd = [this.workspaceForm.value.cdId].map(cdId => this.cdList.find(cd => cd.key === cdId));
-    activator.cd = cd.map(cd => ({ id: cd.key, value: cd.value }));
-    const ci = [this.workspaceForm.value.ciId].map(ciId => this.ciList.find(ci => ci.key === ciId));
-    activator.ci = ci.map(ci => ({ id: ci.key, value: ci.value }));
+    const cd = [this.workspaceForm.value.cdId].map((cdId) => this.cdList.find((cd) => cd.key === cdId));
+    activator.cd = cd.map((cd) => ({ id: cd.key, value: cd.value }));
+    const ci = [this.workspaceForm.value.ciId].map((ciId) => this.ciList.find((ci) => ci.key === ciId));
+    activator.ci = ci.map((ci) => ({ id: ci.key, value: ci.value }));
     const sourceControl = this.sourceControlList.find(
-      source => source.key === this.workspaceForm.value.sourceControlId
+      (source) => source.key === this.workspaceForm.value.sourceControlId
     );
     activator.sourceControl = { id: sourceControl.key, value: sourceControl.value };
 
-    const environments = this.workspaceForm.value.environments.map(envId =>
-      this.environmentList.find(env => env.key === envId)
+    const environments = this.workspaceForm.value.environments.map((envId) =>
+      this.environmentList.find((env) => env.key === envId)
     );
-    activator.envs = environments.map(env => ({ id: env.id, name: env.value }));
+    activator.envs = environments.map((env) => ({ id: env.id, name: env.value }));
     const businessUnit = this.businessUnitList.find(
-      business => business.key === this.workspaceForm.value.businessUnitId
+      (business) => business.key === this.workspaceForm.value.businessUnitId
     );
     activator.businessUnit = { id: 0, name: businessUnit.value, description: '', isActive: false };
     activator.regions = this.workspaceForm.value.regions;
@@ -207,8 +207,8 @@ export class ActivatorStoreCreateComponent implements OnInit, OnDestroy {
         autoFocus: false,
         data: {
           activator: this.activatorData,
-          redirect: true
-        }
+          redirect: true,
+        },
       });
     }
   }

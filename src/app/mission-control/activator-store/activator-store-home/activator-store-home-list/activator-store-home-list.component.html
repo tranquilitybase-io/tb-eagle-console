@@ -107,12 +107,14 @@
           [matTooltip]="row.accessRequestedBy ? 'Access requested' : ''"
         >
           <mat-icon>more_vert</mat-icon>
-          <mat-icon *ngIf="actionNeeded(row)" color="warn" class="action-needed-icon">
-            stop_circle
-          </mat-icon>
+          <mat-icon *ngIf="actionNeeded(row)" color="warn" class="action-needed-icon"> stop_circle </mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item *ngIf="isLocked(row.status) && !(userIsMCAdmin$ | async)" (click)="requestAccess(row.id)">
+          <button
+            mat-menu-item
+            *ngIf="isLocked(row.status) && !(userIsMCAdmin$ | async)"
+            (click)="requestAccess(row.id)"
+          >
             Request Access
           </button>
           <button mat-menu-item *ngIf="isLocked(row.status) && (userIsMCAdmin$ | async)" (click)="grantAccess(row)">
@@ -128,7 +130,11 @@
           >
             Deprecate
           </button>
-          <button mat-menu-item *ngIf="isDeprecated(row.status) && (userIsMCAdmin$ | async)" (click)="setLocked(row.id)">
+          <button
+            mat-menu-item
+            *ngIf="isDeprecated(row.status) && (userIsMCAdmin$ | async)"
+            (click)="setLocked(row.id)"
+          >
             Undeprecate
           </button>
           <button mat-menu-item *ngIf="isDraft(row.status) && (userIsMCAdmin$ | async)" (click)="onboard(row)">
@@ -137,9 +143,7 @@
           <button mat-menu-item *ngIf="isDraft(row.status) && (userIsMCAdmin$ | async)" (click)="edit(row)">
             Edit
           </button>
-          <button mat-menu-item>
-            Mark as favourite
-          </button>
+          <button mat-menu-item>Mark as favourite</button>
         </mat-menu>
       </td>
     </ng-container>

@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-users-home-list',
   templateUrl: './users-home-list.component.html',
-  styleUrls: ['./users-home-list.component.scss']
+  styleUrls: ['./users-home-list.component.scss'],
 })
 export class UsersHomeListComponent implements OnInit {
   @Input() users$: Observable<User[]>;
@@ -23,7 +23,7 @@ export class UsersHomeListComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.users$.subscribe(users => {
+    this.users$.subscribe((users) => {
       this.dataSource = new MatTableDataSource(users);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

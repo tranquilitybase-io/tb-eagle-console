@@ -5,7 +5,7 @@ import { BusinessUnit } from '../business-unit.model';
 @Component({
   selector: 'app-users-view',
   templateUrl: './business-unit-view.component.html',
-  styleUrls: ['./business-unit-view.component.scss']
+  styleUrls: ['./business-unit-view.component.scss'],
 })
 export class BusinessUnitViewComponent implements OnInit {
   businessUnit: BusinessUnit;

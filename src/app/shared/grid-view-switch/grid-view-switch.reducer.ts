@@ -23,7 +23,7 @@ const initialState: GridViewSwitchState = {
   [GridViewSwitchViewsNames.solutionsView]: GridViewSwitchOptionsEnum.grid,
   [GridViewSwitchViewsNames.applicationDeployments]: GridViewSwitchOptionsEnum.row,
   [GridViewSwitchViewsNames.teamMembers]: GridViewSwitchOptionsEnum.row,
-  [GridViewSwitchViewsNames.businessUnit]: GridViewSwitchOptionsEnum.grid
+  [GridViewSwitchViewsNames.businessUnit]: GridViewSwitchOptionsEnum.grid,
 };
 
 export const gridViewSwitchReducer = createReducer(
@@ -37,9 +37,9 @@ export default function reducer(state, action) {
 
 export const solutionFeatureKey = 'gridViewSwitchOptions';
 
-export const selectFeature = state => state[solutionFeatureKey];
+export const selectFeature = (state) => state[solutionFeatureKey];
 
 export const selectGridViewSwitchOptions = (selectedOptionName: string) =>
-  createSelector(selectFeature, state => {
+  createSelector(selectFeature, (state) => {
     return state && state[selectedOptionName];
   });

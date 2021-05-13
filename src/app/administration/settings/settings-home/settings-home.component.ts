@@ -11,13 +11,13 @@ import {
   selectCreateSettingsStatus,
   selectDeleteSettingsStatus,
   selectSettings,
-  selectUpdateSettingsStatus
+  selectUpdateSettingsStatus,
 } from '../settings.reducer';
 
 @Component({
   selector: 'app-settings-home',
   templateUrl: './settings-home.component.html',
-  styleUrls: ['./settings-home.component.scss']
+  styleUrls: ['./settings-home.component.scss'],
 })
 export class SettingsHomeComponent implements OnInit {
   settingsForm: FormGroup;
@@ -40,21 +40,21 @@ export class SettingsHomeComponent implements OnInit {
 
     this.settingsForm = this.formBuilder.group({
       token: [''],
-      username: ['']
+      username: [''],
     });
 
-    this.store.select(selectSettings).subscribe(settings => {
+    this.store.select(selectSettings).subscribe((settings) => {
       this.settings = settings;
       this.settingsForm.patchValue(settings);
     });
 
-    this.createSettingsStatus$.subscribe(status => {
+    this.createSettingsStatus$.subscribe((status) => {
       this.handleStatus(status);
     });
-    this.updateSettingsStatus$.subscribe(status => {
+    this.updateSettingsStatus$.subscribe((status) => {
       this.handleStatus(status);
     });
-    this.deleteSettingsStatus$.subscribe(status => {
+    this.deleteSettingsStatus$.subscribe((status) => {
       this.handleStatus(status);
     });
   }
@@ -78,10 +78,10 @@ export class SettingsHomeComponent implements OnInit {
   handleClear() {
     this.dialog
       .open(SettingsDialogComponent, {
-        autoFocus: false
+        autoFocus: false,
       })
       .afterClosed()
-      .subscribe(result => {
+      .subscribe((result) => {
         if (result === 'Yes') this.isGitHubCredentialsEdit = false;
       });
   }

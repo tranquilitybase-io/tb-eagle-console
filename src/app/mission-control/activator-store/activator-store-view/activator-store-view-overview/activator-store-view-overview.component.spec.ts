@@ -8,7 +8,7 @@ describe('ActivatorStoreViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreViewOverviewComponent]
+      declarations: [ActivatorStoreViewOverviewComponent],
     }).compileComponents();
   }));
 

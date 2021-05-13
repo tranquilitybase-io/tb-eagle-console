@@ -9,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login-form-pane',
   templateUrl: './login-form-pane.component.html',
-  styleUrls: ['./login-form-pane.component.scss']
+  styleUrls: ['./login-form-pane.component.scss'],
 })
 export class LoginFormPaneComponent implements OnInit, AfterViewInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
@@ -51,7 +51,7 @@ export class LoginFormPaneComponent implements OnInit, AfterViewInit {
       height: 50,
       longtitle: true,
       theme: 'dark',
-      onsuccess: this.onGoogleSuccess
+      onsuccess: this.onGoogleSuccess,
       // 'onfailure': onFailure
     });
   }

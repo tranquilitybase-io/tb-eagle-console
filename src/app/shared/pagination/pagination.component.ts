@@ -4,7 +4,7 @@ import range from '@app/shared/utils/range';
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnChanges {
   pages: number[] = [];

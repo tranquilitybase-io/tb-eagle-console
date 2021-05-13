@@ -5,7 +5,7 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 import {
   getLandingZoneProgressItems,
   getLandingZoneProgressItemsError,
-  getLandingZoneProgressItemsSuccess
+  getLandingZoneProgressItemsSuccess,
 } from './landing-zone.actions';
 import { LandingZoneService } from './landing-zone.service';
 
@@ -18,8 +18,8 @@ export class LandingZoneEnvironmentEffects {
       ofType(getLandingZoneProgressItems),
       mergeMap(() =>
         this.service.getAll().pipe(
-          map(landingZoneProgressItems => getLandingZoneProgressItemsSuccess({ landingZoneProgressItems })),
-          catchError(error => of(getLandingZoneProgressItemsError({ error })))
+          map((landingZoneProgressItems) => getLandingZoneProgressItemsSuccess({ landingZoneProgressItems })),
+          catchError((error) => of(getLandingZoneProgressItemsError({ error })))
         )
       )
     )

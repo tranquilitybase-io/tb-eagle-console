@@ -11,7 +11,7 @@ import { Loadable } from '@app/shared/shared.reducer';
 @Component({
   selector: 'app-solutions-create',
   templateUrl: './solutions-create.component.html',
-  styleUrls: ['./solutions-create.component.scss']
+  styleUrls: ['./solutions-create.component.scss'],
 })
 export class SolutionsCreateComponent implements OnInit {
   businessUnitList: KeyValue<number, string>[];
@@ -48,7 +48,7 @@ export class SolutionsCreateComponent implements OnInit {
       description: ['', Validators.required],
       businessUnitId: ['', Validators.required],
       teamId: ['', Validators.required],
-      costCentre: ['', Validators.required]
+      costCentre: ['', Validators.required],
     });
 
     this.workspaceForm = this.formBuilder.group({
@@ -56,9 +56,9 @@ export class SolutionsCreateComponent implements OnInit {
       cdId: ['', Validators.required],
       sourceControlId: ['', Validators.required],
       isSandbox: [false],
-      environments: [[]]
+      environments: [[]],
     });
-    this.createSolutionStatus$.subscribe(status => this.handleLoading(status));
+    this.createSolutionStatus$.subscribe((status) => this.handleLoading(status));
   }
 
   private handleLoading = (status: Loadable) => {
@@ -123,37 +123,37 @@ export class SolutionsCreateComponent implements OnInit {
 
   get businessUnit(): string {
     return this.detailsForm.get('businessUnitId').value
-      ? this.businessUnitList.find(x => x.key === this.detailsForm.get('businessUnitId').value).value
+      ? this.businessUnitList.find((x) => x.key === this.detailsForm.get('businessUnitId').value).value
       : '';
   }
 
   get team(): string {
     return this.detailsForm.get('teamId').value
-      ? this.teamList.find(x => x.key === this.detailsForm.get('teamId').value).value
+      ? this.teamList.find((x) => x.key === this.detailsForm.get('teamId').value).value
       : '';
   }
 
   get ci(): string {
     return this.workspaceForm.get('ciId').value
-      ? this.ciList.find(x => x.key === this.workspaceForm.get('ciId').value).value
+      ? this.ciList.find((x) => x.key === this.workspaceForm.get('ciId').value).value
       : '';
   }
 
   get cd(): string {
     return this.workspaceForm.get('cdId').value
-      ? this.cdList.find(x => x.key === this.workspaceForm.get('cdId').value).value
+      ? this.cdList.find((x) => x.key === this.workspaceForm.get('cdId').value).value
       : '';
   }
 
   get sourceControl(): string {
     return this.workspaceForm.get('sourceControlId').value
-      ? this.sourceControlList.find(x => x.key === this.workspaceForm.get('sourceControlId').value).value
+      ? this.sourceControlList.find((x) => x.key === this.workspaceForm.get('sourceControlId').value).value
       : '';
   }
 
   get environments(): string[] {
     const envIds = this.workspaceForm.get('environments').value as number[];
-    return this.environmentList.filter(x => envIds.some(id => id === x.key)).map(x => x.value);
+    return this.environmentList.filter((x) => envIds.some((id) => id === x.key)).map((x) => x.value);
   }
 
   get isSandbox(): boolean {

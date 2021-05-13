@@ -9,7 +9,7 @@ import { getLandingZoneProgressItems } from '../landing-zone.actions';
 @Component({
   selector: 'app-landing-zone-home',
   templateUrl: './landing-zone-home.component.html',
-  styleUrls: ['./landing-zone-home.component.scss']
+  styleUrls: ['./landing-zone-home.component.scss'],
 })
 export class LandingZoneHomeComponent implements OnInit {
   progressItems$: Observable<LandingZoneProgressItem[]> = this.store.select(selectLandingZoneProgressItems);
@@ -22,8 +22,8 @@ export class LandingZoneHomeComponent implements OnInit {
 
   ngOnInit() {
     this.selectedIndex$ = this.progressItems$.pipe(
-      map(items => {
-        const index = items.findIndex(item => !item.completed);
+      map((items) => {
+        const index = items.findIndex((item) => !item.completed);
         this.isFinished = index === -1;
         return index < 0 ? 0 : index;
       }),

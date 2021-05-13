@@ -8,7 +8,7 @@ describe('ApplicationsDeploymentsGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationsDeploymentsGridComponent]
+      declarations: [ApplicationsDeploymentsGridComponent],
     }).compileComponents();
   }));
 

@@ -7,7 +7,7 @@ const sizeMapping: { [K in IconSize]: number } = {
   m: 20,
   lg: 30,
   xl: 40,
-  xxl: 50
+  xxl: 50,
 };
 const exceptions = ['slack', 'tb_rocket'];
 
@@ -39,7 +39,7 @@ const exceptions = ['slack', 'tb_rocket'];
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.scss']
+  styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent {
   @Input() icon: string;

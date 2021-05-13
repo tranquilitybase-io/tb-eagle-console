@@ -15,10 +15,10 @@ describe('SwitchesComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            queryParamMap: of(convertToParamMap({ groupSwitch: 'Actives' }))
-          }
-        }
-      ]
+            queryParamMap: of(convertToParamMap({ groupSwitch: 'Actives' })),
+          },
+        },
+      ],
     }).compileComponents();
   }));
 

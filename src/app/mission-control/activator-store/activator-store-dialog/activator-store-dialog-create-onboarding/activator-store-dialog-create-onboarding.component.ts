@@ -12,7 +12,7 @@ import { onboardActivator } from '../../activator-store.actions';
 @Component({
   selector: 'app-activator-store-dialog-grant-access',
   templateUrl: './activator-store-dialog-create-onboarding.component.html',
-  styleUrls: ['./activator-store-dialog-create-onboarding.component.scss']
+  styleUrls: ['./activator-store-dialog-create-onboarding.component.scss'],
 })
 export class ActivatorStoreDialogCreateOnboardingComponent implements OnInit {
   onboardActivatorStatus$: Observable<Loadable>;
@@ -26,7 +26,7 @@ export class ActivatorStoreDialogCreateOnboardingComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(resetAPICallStatuses());
     this.onboardActivatorStatus$ = this.store.select(selectOnboardActivatorStatus);
-    this.onboardActivatorStatus$.subscribe(status => {
+    this.onboardActivatorStatus$.subscribe((status) => {
       this.handleStatus(status);
     });
   }

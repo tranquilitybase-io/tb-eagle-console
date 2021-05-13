@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
-  styleUrls: ['./breadcrumbs.component.scss']
+  styleUrls: ['./breadcrumbs.component.scss'],
 })
 export class BreadcrumbsComponent implements OnInit {
   @Input() steps: BreadcrumbStep[] = [];
@@ -17,7 +17,7 @@ export class BreadcrumbsComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.steps.length) {
-      this.route.data.subscribe(data => {
+      this.route.data.subscribe((data) => {
         this.steps = data.breadcrumbsSteps;
       });
     }

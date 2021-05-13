@@ -23,8 +23,8 @@ describe('LayoutComponent', () => {
         MatSidenavModule,
         MatToolbarModule,
         NoopAnimationsModule,
-        RouterTestingModule
-      ]
+        RouterTestingModule,
+      ],
     }).compileComponents();
   }));
 

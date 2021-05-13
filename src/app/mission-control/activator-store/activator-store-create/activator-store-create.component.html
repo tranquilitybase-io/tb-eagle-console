@@ -136,16 +136,14 @@
         <div class="title">Metadata</div>
         <mat-card class="activ-dashboard-card">
           <mat-card-header>
-            <mat-card-title>
-              Description
-            </mat-card-title>
+            <mat-card-title> Description </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
             <div>{{ reviewActivatorData.name }} - {{ reviewActivatorData.activatorMetadata.description }}</div>
             <mat-list dense class="description-list">
               <mat-list-item>
                 <div class="mat-body-1">Category</div>
-                <div class="mat-chip-alternative ">
+                <div class="mat-chip-alternative">
                   {{ reviewActivatorData.activatorMetadata.category }}
                 </div>
               </mat-list-item>
@@ -153,7 +151,7 @@
                 <div class="mat-body-1">Platforms</div>
                 <div
                   *ngFor="let platform of reviewActivatorData.activatorMetadata.platforms"
-                  class="mat-chip-alternative "
+                  class="mat-chip-alternative"
                 >
                   {{ platform.value }}
                 </div>
@@ -166,7 +164,7 @@
               </mat-list-item>
               <mat-list-item *ngFor="let variable of reviewActivatorData.activatorMetadata.variables">
                 <div class="mat-body-1">{{ unSlugify(variable.name) }}</div>
-                <div class="mat-chip-alternative ">
+                <div class="mat-chip-alternative">
                   {{ variable.value.length > 0 ? variable.value : '-' }}
                 </div>
               </mat-list-item>

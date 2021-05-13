@@ -8,7 +8,7 @@ describe('ActivatorStoreViewVersionHistoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreViewVersionHistoryComponent]
+      declarations: [ActivatorStoreViewVersionHistoryComponent],
     }).compileComponents();
   }));
 

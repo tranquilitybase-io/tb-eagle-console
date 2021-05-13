@@ -3,9 +3,10 @@
     class="step"
     *ngFor="let step of steps; index as i"
     [ngClass]="{
-      'current': i == current,
-      'activated': i < current
-    }">
+      current: i == current,
+      activated: i < current
+    }"
+  >
     {{ step }}
   </div>
 </div>

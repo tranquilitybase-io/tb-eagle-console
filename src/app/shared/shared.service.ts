@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { ActivatorCategory } from '@app/mission-control/activator-store/activator-store.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SharedService {
   private BASE_URL = `${globalThis.location.origin}/api`;
