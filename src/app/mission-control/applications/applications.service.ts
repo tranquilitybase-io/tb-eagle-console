@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Application, ApplicationDeployment } from './applications.model';
 import { Router } from '@angular/router';
@@ -22,14 +22,12 @@ export class ApplicationsService extends EntityCollectionServiceBase<Application
 
   createApplication(application: Application) {
     const url = `${this.BASE_URL}/application/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(url, { ...application, solutionId: Number(application.solutionId) }, { headers });
+    return this.http.post(url, { ...application, solutionId: Number(application.solutionId) });
   }
 
   deployApplication(id: number) {
     const url = `${this.BASE_URL}/applicationDeployment/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(url, { id }, { headers });
+    return this.http.post(url, { id });
   }
 
   private handleError(error: HttpErrorResponse) {
