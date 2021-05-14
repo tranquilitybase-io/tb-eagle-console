@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -19,44 +19,31 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
 
   setDeprecated(id: number): Observable<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(
-      url,
-      { id, status: 'Deprecated', accessRequestedById: 0 },
-      { headers }
-    ) as Observable<Activator>;
+    return this.http.post(url, { id, status: 'Deprecated', accessRequestedById: 0 }) as Observable<Activator>;
   }
 
   setLocked(id: number): Observable<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(url, { id, status: 'Locked', accessRequestedById: 0 }, { headers }) as Observable<Activator>;
+    return this.http.post(url, { id, status: 'Locked', accessRequestedById: 0 }) as Observable<Activator>;
   }
 
   denyAccess(activatorId: number, teamId: string): Observable<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(
-      url,
-      { id: activatorId, status: 'Locked', accessRequestedById: 0 },
-      { headers }
-    ) as Observable<Activator>;
+    return this.http.post(url, { id: activatorId, status: 'Locked', accessRequestedById: 0 }) as Observable<Activator>;
   }
 
   grantAccess(activatorId: number, teamId: string): Observable<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(
-      url,
-      { id: activatorId, status: 'Available', accessRequestedById: 0 },
-      { headers }
-    ) as Observable<Activator>;
+    return this.http.post(url, {
+      id: activatorId,
+      status: 'Available',
+      accessRequestedById: 0,
+    }) as Observable<Activator>;
   }
 
   requestAccess(id: number, user: User): Observable<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(url, { id, accessRequestedById: user.id }, { headers }) as Observable<Activator>;
+    return this.http.post(url, { id, accessRequestedById: user.id }) as Observable<Activator>;
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -95,23 +82,17 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   createActivatorByURL(repoURL: string): Observable<Activator> {
     const url = `${this.BASE_URL}/activatorByURL/`;
 
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.post(url, { url: repoURL }, { headers }) as Observable<Activator>;
+    return this.http.post(url, { url: repoURL }) as Observable<Activator>;
   }
 
   updateActivator(activatorData: Activator): Observable<Activator> {
     const url = `${this.BASE_URL}/activator/${activatorData.id}`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.put(url, activatorData, { headers }) as Observable<Activator>;
+    return this.http.put(url, activatorData) as Observable<Activator>;
   }
 
   onboardActivator(activatorData: Activator): Observable<any> {
     const url = `${this.BASE_URL}/activatorOnboard/`;
 
-    const id_token = localStorage.getItem('id_token');
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.post(url, { id: activatorData.id }, { headers });
+    return this.http.post(url, { id: activatorData.id });
   }
 }

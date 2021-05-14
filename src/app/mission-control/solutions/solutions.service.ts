@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { SolutionDeployment, Solution } from './solutions.model';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -18,10 +18,7 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
 
   deploySolution(id: number) {
     const url = `${this.BASE_URL}/solutiondeployment/`;
-
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.post(url, { id }, { headers });
+    return this.http.post(url, { id });
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -44,10 +41,7 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
 
   toggleFavorites(solutionId: number, isFavourite: Boolean): Observable<Solution> {
     const url = `${this.BASE_URL}/solution/${solutionId}`;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.put<Solution>(url, { isFavourite }, { headers });
+    return this.http.put<Solution>(url, { isFavourite });
   }
 
   getSolutions(queryParams: QueryParam[]): Observable<Solution[]> {

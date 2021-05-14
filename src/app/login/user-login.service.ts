@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from './login.model';
 
@@ -21,9 +21,7 @@ export class UserLoginService {
     const url = `${this.BASE_URL}/login`;
     const params = { username, password };
 
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.post<User>(url, params, { headers });
+    return this.http.post<User>(url, params);
   }
 
   loginSuccess(user: User): void {
@@ -45,8 +43,7 @@ export class UserLoginService {
 
   updateShowWelcome(userId: number, showWelcome: boolean): void {
     const url = `${this.BASE_URL}/user/${userId}`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.put(url, { showWelcome }, { headers }).subscribe(
+    this.http.put(url, { showWelcome }).subscribe(
       (val: boolean) => {
         console.log('PUT call successful value returned in body', val);
       },

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Settings } from './settings.model';
@@ -15,14 +15,8 @@ export class SettingsService extends EntityCollectionServiceBase<Settings> {
   private BASE_URL = `${globalThis.location.origin}/api`;
   private url = `${this.BASE_URL}/settings/`;
 
-  private prepareHeaders = () => {
-    return new HttpHeaders({ 'Content-Type': 'application/json' });
-  };
-
-  createSettings = (settings: Settings): Observable<Settings> =>
-    this.http.post<Settings>(this.url, settings, { headers: this.prepareHeaders() });
-  deleteSettings = (): Observable<Settings> => this.http.delete<any>(this.url, { headers: this.prepareHeaders() });
-  getSettings = (): Observable<Settings> => this.http.get<Settings>(this.url, { headers: this.prepareHeaders() });
-  updateSettings = (settings: Settings): Observable<Settings> =>
-    this.http.put<Settings>(this.url, settings, { headers: this.prepareHeaders() });
+  createSettings = (settings: Settings): Observable<Settings> => this.http.post<Settings>(this.url, settings);
+  deleteSettings = (): Observable<Settings> => this.http.delete<any>(this.url);
+  getSettings = (): Observable<Settings> => this.http.get<Settings>(this.url);
+  updateSettings = (settings: Settings): Observable<Settings> => this.http.put<Settings>(this.url, settings);
 }
