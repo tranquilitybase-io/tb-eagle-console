@@ -13,9 +13,9 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./applications-create-review.component.scss'],
 })
 export class ApplicationsCreateReviewComponent implements OnInit {
-  @Input() applicationFormGroup: FormGroup;
+  @Input() applicationForm: FormGroup;
   @Input() activator: Activator;
-  @Input() solution: Solution;
+  @Input() solution$: Observable<Solution>;
   @Output() onSubmit = new EventEmitter();
 
   layout$: Observable<Layout>;
@@ -32,28 +32,20 @@ export class ApplicationsCreateReviewComponent implements OnInit {
     ]);
   }
 
-  get applicationId(): string {
-    return this.applicationFormGroup.get('solutionId').value;
-  }
-
   get applicationName(): string {
-    return this.applicationFormGroup.get('name').value;
+    return this.applicationForm.get('name').value;
   }
 
   get applicationDescription(): string {
-    return this.applicationFormGroup.get('description').value;
+    return this.applicationForm.get('description').value;
   }
 
   get applicationEnv(): string {
-    return this.applicationFormGroup.get('env').value;
+    return this.applicationForm.get('env').value;
   }
 
   get applicationStatus(): string {
-    return this.applicationFormGroup.get('status').value;
-  }
-
-  get activatorId(): string {
-    return this.applicationFormGroup.get('activatorId').value;
+    return this.applicationForm.get('status').value;
   }
 
   get sensitivityColor(): string {
@@ -62,10 +54,6 @@ export class ApplicationsCreateReviewComponent implements OnInit {
 
   get activatorStatusColor(): string {
     return this.statusColorMap.get(String(this.activator.status).toLowerCase());
-  }
-
-  get solutionIsActiveColor(): string {
-    return this.solution.isActive === true ? 'accent' : '';
   }
 
   get activatorDescription(): string {
