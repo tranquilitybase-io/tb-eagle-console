@@ -4,17 +4,30 @@
     <mat-card class="review-card">
       <mat-card-header>
         <mat-card-title>
-          {{ applicationName }}
+          {{ (solution$ | async)?.name }}
+          <mat-chip *ngIf="(solution$ | async)?.isActive" color="accent" class="card-title-chip" selected>
+            Active
+          </mat-chip>
         </mat-card-title>
         <mat-card-subtitle>
-          <p>{{ applicationDescription }}</p>
+          <p>{{ (solution$ | async)?.description }}</p>
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <mat-list dense class="card-details-list">
           <mat-list-item>
-            <div class="card-detail-label">Solution</div>
-            <p matInput readonly="true">{{ applicationSolutionName }}</p>
+            <div class="card-detail-label">Business Unit</div>
+            <p matInput readonly="true">{{ (solution$ | async)?.businessUnit.name }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Team</div>
+            <p matInput readonly="true">{{ (solution$ | async)?.team.name }}</p>
+          </mat-list-item>
+
+          <mat-list-item>
+            <div class="card-detail-label">Cost Centre</div>
+            <p matInput readonly="true">{{ (solution$ | async)?.costCentre }}</p>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
@@ -57,7 +70,7 @@
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
-  <!-- <mat-grid-tile [colspan]="(layout$ | async).applicationCreationReviewLeftColumnSpan">
+  <mat-grid-tile [colspan]="(layout$ | async).applicationCreationReviewLeftColumnSpan">
     <mat-grid-tile-header>Application</mat-grid-tile-header>
     <mat-card class="review-card">
       <mat-card-header>
@@ -69,5 +82,5 @@
         </mat-card-subtitle>
       </mat-card-header>
     </mat-card>
-  </mat-grid-tile> -->
+  </mat-grid-tile>
 </mat-grid-list>

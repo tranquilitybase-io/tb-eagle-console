@@ -1,6 +1,6 @@
 <header>
   <app-breadcrumbs
-    *ngIf="!(selectedSolution$ | async); else solutionSelectedBreadcrmbs"
+    *ngIf="!selectedSolutionId; else solutionSelectedBreadcrmbs"
     [steps]="[
       {
         name: 'Activator Store',
@@ -20,9 +20,9 @@
           link: '/mission-control/solutions'
         },
         {
-          name: selectedSolutionName,
+          name: (selectedSolution$ | async)?.name,
           link: '/mission-control/solutions/view',
-          id: (selectedSolution$ | async).id
+          id: (selectedSolution$ | async)?.id
         },
         {
           name: 'Provision new activator',
@@ -47,11 +47,17 @@
 </header>
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step
-    [stepControl]="applicationForm"
+    [editable]="false"
+    [completed]="true"
+    state="done"
     (click)="onNavigateStepperBack()"
     [routerLink]="'/mission-control/activator-store'"
   >
-    <ng-template matStepLabel><div (click)="onNavigateStepperBack()">Selection</div></ng-template>
+    <ng-template matStepLabel><div (click)="onNavigateStepperBack()">Activator Selection</div></ng-template>
+  </mat-step>
+
+  <mat-step [editable]="true" [stepControl]="applicationForm">
+    <ng-template matStepLabel>Application details</ng-template>
 
     <form [formGroup]="applicationForm">
       <app-alert
@@ -61,7 +67,7 @@
       <p>
         <mat-form-field class="small-width" appearance="outline">
           <mat-label>Solution</mat-label>
-          <mat-select required formControlName="solutionId">
+          <mat-select required formControlName="solutionId" (selectionChange)="handleSolutionChange($event)">
             <mat-option *ngFor="let item of availableSolutions" [value]="item.key"> {{ item.value }} </mat-option>
           </mat-select>
           <mat-error *ngIf="isFieldValid('solutionId')"> Solution is <strong>required</strong> </mat-error>
@@ -69,7 +75,7 @@
       </p>
       <p>
         <mat-form-field class="small-width" appearance="outline">
-          <mat-label>Nameeee</mat-label>
+          <mat-label>Name</mat-label>
           <input
             matInput
             required
@@ -97,7 +103,7 @@
         </mat-form-field>
       </p>
       <div class="app-bottom-action right">
-        <button mat-button color="primary" matStepperNext>
+        <button mat-button color="primary" type="button" matStepperNext>
           Review
           <mat-icon>chevron_right</mat-icon>
         </button>
@@ -120,10 +126,9 @@
   <mat-step [completed]="false" [editable]="false">
     <ng-template matStepLabel>Review</ng-template>
     <app-applications-create-review
-      [applicationFormGroup]="applicationForm"
+      [applicationForm]="applicationForm"
       [activator]="selectedActivator"
-      [solution]="selectedSolution$ | async"
-      [applicationSolutionName]="solutionName"
+      [solution$]="selectedSolution$"
     ></app-applications-create-review>
     <div class="app-bottom-action left">
       <button
@@ -162,4 +167,5 @@
     <mat-icon fontSet="material-icons-outlined">file_copy</mat-icon>
   </ng-template>
 </mat-horizontal-stepper>
+
 <div class="app-bottom-background"></div>
