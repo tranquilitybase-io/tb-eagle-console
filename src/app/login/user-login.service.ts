@@ -21,11 +21,7 @@ export class UserLoginService {
     const url = `${this.BASE_URL}/login`;
     const params = { username, password };
 
-    const id_token = localStorage.getItem('id_token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : '',
-    });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.post<User>(url, params, { headers });
   }

@@ -16,11 +16,7 @@ export class SettingsService extends EntityCollectionServiceBase<Settings> {
   private url = `${this.BASE_URL}/settings/`;
 
   private prepareHeaders = () => {
-    const id_token = localStorage.getItem('id_token');
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : '',
-    });
+    return new HttpHeaders({ 'Content-Type': 'application/json' });
   };
 
   createSettings = (settings: Settings): Observable<Settings> =>

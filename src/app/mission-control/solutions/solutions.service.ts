@@ -19,10 +19,7 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
   deploySolution(id: number) {
     const url = `${this.BASE_URL}/solutiondeployment/`;
 
-    const id_token = localStorage.getItem('id_token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.post(url, { id }, { headers });
   }

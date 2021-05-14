@@ -71,10 +71,7 @@ export class NotificationsService {
   getNotificationData(): Observable<Notification[]> {
     const url = `${this.BASE_URL}/notifications/`;
 
-    const id_token = localStorage.getItem('id_token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.get<Notification[]>(url, { headers }).pipe(catchError(this.handleError));
   }
@@ -82,10 +79,7 @@ export class NotificationsService {
   getNotificationMetaData(): Observable<NotificationsMeta> {
     const url = `${this.BASE_URL}/notificationsMeta/`;
 
-    const id_token = localStorage.getItem('id_token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     return this.http.get<NotificationsMeta>(url, { headers }).pipe(catchError(this.handleError));
   }
