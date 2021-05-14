@@ -20,7 +20,7 @@ import { LayoutModule } from './layout/layout.module';
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: '',
@@ -29,24 +29,29 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/mission-control/solutions',
-        pathMatch: 'full'
+        redirectTo: '/home',
+        //redirectTo: '/mission-control/solutions',
+        pathMatch: 'full',
       },
       {
         path: 'mission-control',
-        loadChildren: () => import('./mission-control/mission-control.module').then(m => m.MissionControlModule)
+        loadChildren: () => import('./mission-control/mission-control.module').then((m) => m.MissionControlModule),
       },
       {
         path: 'administration',
-        loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule)
-      }
-    ]
-  }
+        loadChildren: () => import('./administration/administration.module').then((m) => m.AdministrationModule),
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+      },
+    ],
+  },
 ];
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   root: `${globalThis.location.origin}/api`,
-  timeout: 1000 * 60
+  timeout: 1000 * 60,
 };
 
 @NgModule({
@@ -61,12 +66,12 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
-      logOnly: environment.production // Restrict extension to log-only mode
+      logOnly: environment.production, // Restrict extension to log-only mode
     }),
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
   ],
   providers: [AuthGuardService, { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

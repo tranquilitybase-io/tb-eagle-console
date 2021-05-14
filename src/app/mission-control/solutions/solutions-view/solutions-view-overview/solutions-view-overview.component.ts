@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-solutions-view-overview',
   templateUrl: './solutions-view-overview.component.html',
-  styleUrls: ['./solutions-view-overview.component.scss']
+  styleUrls: ['./solutions-view-overview.component.scss'],
 })
 export class SolutionsViewOverviewComponent {
   @Input() solution: Solution;
@@ -25,7 +25,7 @@ export class SolutionsViewOverviewComponent {
 
   get rightColumnWidth$(): Observable<number> {
     return this.layout$.pipe(
-      map(layout => {
+      map((layout) => {
         let rightColSpan =
           layout.applicationCreationReviewGridColumnsAmount - layout.applicationCreationReviewLeftColumnSpan;
         return rightColSpan === 0 ? layout.applicationCreationReviewGridColumnsAmount : rightColSpan;

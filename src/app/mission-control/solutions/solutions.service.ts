@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { SolutionDeployment } from './solutions.model';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { SolutionDeployment, Solution } from './solutions.model';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { QueryParam } from './solutions-home/solutions-home-list-filter/solutions-home-list-filter.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SolutionsService extends EntityCollectionServiceBase<any> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {
@@ -42,5 +43,22 @@ export class SolutionsService extends EntityCollectionServiceBase<any> {
   getDeployments(): Observable<SolutionDeployment[]> {
     const url = `${this.BASE_URL}/solutiondeployments/`;
     return this.http.get<SolutionDeployment[]>(url).pipe(catchError(this.handleError));
+  }
+
+  toggleFavorites(solutionId: number, isFavourite: Boolean): Observable<Solution> {
+    const url = `${this.BASE_URL}/solution/${solutionId}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.put<Solution>(url, { isFavourite }, { headers });
+  }
+
+  getSolutions(queryParams: QueryParam[]): Observable<Solution[]> {
+    const url = `${this.BASE_URL}/solutions/`;
+    let params = new HttpParams();
+    for (let obj of queryParams) {
+      params = params.append(obj.key, obj.value);
+    }
+    return this.http.get<Solution[]>(url, { params });
   }
 }

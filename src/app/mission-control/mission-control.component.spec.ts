@@ -8,7 +8,7 @@ describe('MissionControlComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MissionControlComponent]
+      declarations: [MissionControlComponent],
     }).compileComponents();
   }));
 

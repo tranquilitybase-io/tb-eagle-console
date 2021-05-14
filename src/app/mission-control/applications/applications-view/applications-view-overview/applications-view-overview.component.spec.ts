@@ -16,7 +16,7 @@ describe('ApplicationsViewOverviewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ApplicationsViewOverviewComponent],
-      imports: [MatButtonModule, MatCardModule, MatChipsModule, MatGridListModule, MatListModule, MatTabsModule]
+      imports: [MatButtonModule, MatCardModule, MatChipsModule, MatGridListModule, MatListModule, MatTabsModule],
     }).compileComponents();
   }));
 

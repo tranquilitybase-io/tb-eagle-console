@@ -3,18 +3,20 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { KeyValue } from '@angular/common';
-import { selectUserIsAdmin } from '@app/login/login.reducer';
+import { selectUserIsMCAdmin } from '@app/login/login.reducer';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { selectIsSelectedSolution, selectSelectedSolution } from '@app/mission-control/solutions/solutions.reducer';
 import { selectActivatorData } from '../activator-store.reducer';
 import {
+  requestAccess,
+  resetAPICallStatuses,
   setDeprecated,
   setLocked,
-  requestAccess,
-  storeActivatorData
+  storeActivatorData,
 } from '@app/mission-control/activator-store/activator-store.actions';
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
+import { ActivatorStoreDialogCreateOnboardingComponent } from './../activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
 import { ActivatorStoreService } from '../activator-store.service';
 import { Activator } from '../activator-store.model';
 import { Solution } from '@app/mission-control/solutions/solutions.model';
@@ -22,12 +24,12 @@ import { Solution } from '@app/mission-control/solutions/solutions.model';
 @Component({
   selector: 'app-activator-store-view',
   templateUrl: './activator-store-view.component.html',
-  styleUrls: ['./activator-store-view.component.scss']
+  styleUrls: ['./activator-store-view.component.scss'],
 })
 export class ActivatorStoreViewComponent implements OnInit {
   activator: Activator = {} as Activator;
   activator$: Observable<Activator>;
-  userIsAdmin$: Observable<boolean>;
+  userIsMCAdmin$: Observable<boolean>;
   private teamList: KeyValue<string, string>[];
 
   isSelectedSolution$: Observable<boolean>;
@@ -38,31 +40,33 @@ export class ActivatorStoreViewComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store<any>,
     private route: ActivatedRoute,
+    private router: Router,
     private activatorStoreService: ActivatorStoreService
   ) {
     this.activator$ = this.store.pipe(select(selectActivatorData));
   }
 
   ngOnInit() {
+    this.store.dispatch(resetAPICallStatuses());
     this.activator = this.route.snapshot.data['activator'] as Activator;
     this.store.dispatch(storeActivatorData({ activatorData: this.activator }));
-    this.activator$.subscribe(activatorData => {
+    this.activator$.subscribe((activatorData) => {
       this.activator = activatorData;
       this.selectedActivatorName = this.activator.name;
     });
 
-    this.userIsAdmin$ = this.store.pipe(select(selectUserIsAdmin));
+    this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
     this.isSelectedSolution$ = this.store.pipe(select(selectIsSelectedSolution));
     this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
     this.teamList = this.route.snapshot.data['teamList'];
 
     this.route.queryParams
       .pipe(
-        switchMap(params => {
+        switchMap((params) => {
           return this.activatorStoreService.getByKey(params['id']);
         })
       )
-      .subscribe(activator => {
+      .subscribe((activator) => {
         this.store.dispatch(storeActivatorData({ activatorData: activator }));
       });
   }
@@ -83,6 +87,10 @@ export class ActivatorStoreViewComponent implements OnInit {
     return String(this.activator.status).toLowerCase() === 'deprecated';
   }
 
+  get isDraft(): boolean {
+    return this.activator && String(this.activator.status).toLowerCase() === 'draft';
+  }
+
   setDeprecated() {
     this.store.dispatch(setDeprecated({ id: this.activator.id }));
   }
@@ -97,12 +105,26 @@ export class ActivatorStoreViewComponent implements OnInit {
       data: {
         activatorId: this.activator.id,
         teamList: this.teamList,
-        accessRequestedBy: this.activator.accessRequestedBy
-      }
+        accessRequestedBy: this.activator.accessRequestedBy,
+      },
     });
   }
 
   requestAccess() {
     this.store.dispatch(requestAccess({ id: this.activator.id }));
+  }
+
+  onboard() {
+    this.dialog.open(ActivatorStoreDialogCreateOnboardingComponent, {
+      autoFocus: false,
+      data: {
+        activator: this.activator,
+        redirect: false,
+      },
+    });
+  }
+
+  edit() {
+    this.router.navigate(['mission-control', 'activator-store', 'edit'], { queryParams: { id: this.activator.id } });
   }
 }

@@ -19,9 +19,9 @@ const routes: Routes = [
     path: '',
     component: TeamsCreateComponent,
     resolve: {
-      businessUnitList: BusinessUnitResolver
-    }
-  }
+      businessUnitList: BusinessUnitResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -36,7 +36,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class TeamsCreateModule {}

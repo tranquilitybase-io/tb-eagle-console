@@ -7,7 +7,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 @Component({
   selector: 'app-solution-created',
   templateUrl: './solution-created.component.html',
-  styleUrls: ['./solution-created.component.scss']
+  styleUrls: ['./solution-created.component.scss'],
 })
 export class SolutionCreatedComponent extends MatSnackBar {
   constructor(

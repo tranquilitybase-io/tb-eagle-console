@@ -8,7 +8,7 @@ describe('UsersHomeGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UsersHomeGridComponent]
+      declarations: [UsersHomeGridComponent],
     }).compileComponents();
   }));
 

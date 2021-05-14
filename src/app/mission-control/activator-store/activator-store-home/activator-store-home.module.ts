@@ -10,13 +10,18 @@ import { ActivatorStoreHomeCategoryGridComponent } from './activator-store-home-
 import { ActivatorStoreHomeGridCardComponent } from './activator-store-home-grid/activator-store-home-grid-card/activator-store-home-grid-card.component';
 import { ActivatorStoreHomeGridComponent } from './activator-store-home-grid/activator-store-home-grid.component';
 import { ActivatorStoreHomeListComponent } from './activator-store-home-list/activator-store-home-list.component';
+import { ActivatorStoreHomeListFilterComponent } from './activator-store-home-list-filter/activator-store-home-list-filter.component';
 
 import { ActivatorStoreDialogModule } from '../activator-store-dialog/activator-store-dialog.module';
 
+import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -35,28 +40,33 @@ const routes: Routes = [
     path: '',
     component: ActivatorStoreHomeComponent,
     resolve: {
-      teamList: TeamResolver
-    }
-  }
+      teamList: TeamResolver,
+    },
+  },
 ];
 
 @NgModule({
   declarations: [
-    ActivatorStoreHomeComponent,
-    ActivatorStoreHomeGridComponent,
-    ActivatorStoreHomeGridCardComponent,
     ActivatorStoreHomeCategoryGridComponent,
-    ActivatorStoreHomeListComponent
+    ActivatorStoreHomeComponent,
+    ActivatorStoreHomeGridCardComponent,
+    ActivatorStoreHomeGridComponent,
+    ActivatorStoreHomeListComponent,
+    ActivatorStoreHomeListFilterComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     ActivatorStoreDialogModule,
     RouterModule.forChild(routes),
+    LayoutModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatChipsModule,
     MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
@@ -68,7 +78,7 @@ const routes: Routes = [
     MatSortModule,
     MatStepperModule,
     MatTableModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class ActivatorStoreHomeModule {}

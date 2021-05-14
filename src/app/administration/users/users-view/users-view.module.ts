@@ -21,9 +21,9 @@ const routes: Routes = [
     path: '',
     component: UsersViewComponent,
     resolve: {
-      user: UserByIdResolver
-    }
-  }
+      user: UserByIdResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -40,7 +40,7 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatSelectModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class UsersViewModule {}

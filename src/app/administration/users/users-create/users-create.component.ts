@@ -11,7 +11,7 @@ import { selectCreateUserDataStatus } from '../users.reducer';
 @Component({
   selector: 'app-users-create',
   templateUrl: './users-create.component.html',
-  styleUrls: ['./users-create.component.scss']
+  styleUrls: ['./users-create.component.scss'],
 })
 export class UsersCreateComponent implements OnInit {
   userForm: FormGroup;
@@ -25,9 +25,9 @@ export class UsersCreateComponent implements OnInit {
       id: 0,
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]]
+      email: ['', [Validators.required, Validators.pattern(ValidatorPattern.EMAIL)]],
     });
-    this.createUserDataStatus$.subscribe(status => this.handleLoading(status));
+    this.createUserDataStatus$.subscribe((status) => this.handleLoading(status));
   }
   private navigateToUsersHome() {
     this.router.navigateByUrl('/administration/users');

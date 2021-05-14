@@ -5,7 +5,7 @@ import { Observable, Observer } from 'rxjs';
 @Component({
   selector: 'app-yes-no-dialog',
   templateUrl: './yes-no-dialog.component.html',
-  styleUrls: ['./yes-no-dialog.component.scss']
+  styleUrls: ['./yes-no-dialog.component.scss'],
 })
 export class YesNoDialogComponent implements OnInit {
   userInput$: Observable<boolean>;
@@ -18,11 +18,11 @@ export class YesNoDialogComponent implements OnInit {
   ngOnInit() {
     this.userInput$ = new Observable((observer: Observer<boolean>) => {
       this.dialogRef.afterClosed().subscribe(
-        result => {
+        (result) => {
           observer.next(result);
           observer.complete();
         },
-        error => {
+        (error) => {
           observer.next(false);
           observer.complete();
         }

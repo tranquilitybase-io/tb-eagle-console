@@ -8,7 +8,7 @@ describe('TeamsViewOverviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TeamsViewOverviewComponent]
+      declarations: [TeamsViewOverviewComponent],
     }).compileComponents();
   }));
 

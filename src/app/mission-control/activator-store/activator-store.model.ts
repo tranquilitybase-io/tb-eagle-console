@@ -67,8 +67,8 @@ export interface Activator {
   billing: string;
   businessUnit: ActivatorBusinessUnit;
   businessUnitId: number;
-  cd: string[] | ActivatorCD[];
-  ci: string[] | ActivatorCI[];
+  cd: ActivatorCD[];
+  ci: ActivatorCI[];
   envs: ActivatorEnv[];
   hosting: string[];
   id: number;
@@ -91,4 +91,9 @@ export interface ActivatorStoreGrantAccessDialogData {
   activatorId: number;
   teamList: KeyValue<string, string>[];
   accessRequestedBy: User;
+}
+
+export interface ActivatorStoreDialogCreateOnboardingData {
+  activator: Activator;
+  redirect: boolean;
 }

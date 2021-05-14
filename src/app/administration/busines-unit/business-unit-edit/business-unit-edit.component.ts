@@ -11,7 +11,7 @@ import { Loadable } from '@app/shared/shared.reducer';
 @Component({
   selector: 'app-business-unit-edit',
   templateUrl: './business-unit-edit.component.html',
-  styleUrls: ['./business-unit-edit.component.scss']
+  styleUrls: ['./business-unit-edit.component.scss'],
 })
 export class BusinessUnitEditComponent implements OnInit {
   businessForm: FormGroup;
@@ -34,9 +34,9 @@ export class BusinessUnitEditComponent implements OnInit {
       id: this.businessUnit.id,
       name: [this.businessUnit.name, Validators.required],
       description: [this.businessUnit.description, Validators.required],
-      isActive: [this.businessUnit.isActive, Validators.required]
+      isActive: [this.businessUnit.isActive, Validators.required],
     });
-    this.updateBusinessUnitStatus$.subscribe(status => this.handleLoading(status));
+    this.updateBusinessUnitStatus$.subscribe((status) => this.handleLoading(status));
   }
 
   private navigateToBusinessUnitHome() {

@@ -16,9 +16,9 @@ const routes: Routes = [
     path: '',
     component: BusinessUnitEditComponent,
     resolve: {
-      businessUnit: BusinessUnitByIdResolver
-    }
-  }
+      businessUnit: BusinessUnitByIdResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -33,7 +33,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class BusinessUnitEditModule {}

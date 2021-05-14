@@ -56,7 +56,7 @@
     <button
       mat-raised-button
       color="primary"
-      *ngIf="isLocked && !(userIsAdmin$ | async)"
+      *ngIf="isLocked && !(userIsMCAdmin$ | async)"
       (click)="requestAccess()"
       class="button-policy"
     >
@@ -65,7 +65,7 @@
     <button
       mat-raised-button
       color="primary"
-      *ngIf="isLocked && (userIsAdmin$ | async)"
+      *ngIf="isLocked && (userIsMCAdmin$ | async)"
       (click)="grantAccess()"
       class="button-policy"
     >
@@ -74,7 +74,7 @@
     <button
       mat-raised-button
       color="primary"
-      *ngIf="isAvailable && (userIsAdmin$ | async)"
+      *ngIf="isAvailable && (userIsMCAdmin$ | async)"
       (click)="setLocked()"
       class="button-policy"
     >
@@ -83,7 +83,7 @@
     <button
       mat-raised-button
       color="primary"
-      *ngIf="(isAvailable || isLocked) && (userIsAdmin$ | async)"
+      *ngIf="(isAvailable || isLocked) && (userIsMCAdmin$ | async)"
       (click)="setDeprecated()"
       class="button-policy"
     >
@@ -92,11 +92,31 @@
     <button
       mat-raised-button
       color="primary"
-      *ngIf="isDeprecated && (userIsAdmin$ | async)"
+      *ngIf="isDeprecated && (userIsMCAdmin$ | async)"
       (click)="setLocked()"
       class="button-policy"
     >
       Undeprecate
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isDraft && (userIsMCAdmin$ | async)"
+      routerLink="/mission-control/activator-store/edit"
+      [queryParams]="{ id: activator.id }"
+      (click)="edit()"
+      class="button-policy"
+    >
+      Edit
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="isDraft && (userIsMCAdmin$ | async)"
+      (click)="onboard()"
+      class="button-policy"
+    >
+      Onboard
     </button>
   </div>
 </header>
@@ -121,7 +141,7 @@
   </mat-tab>
 </mat-tab-group>
 
-<div *ngIf="!(userIsAdmin$ | async)">
+<div *ngIf="!(userIsMCAdmin$ | async)">
   <div class="bottom-bar-background">
     <div class="app-bottom-action right">
       <a

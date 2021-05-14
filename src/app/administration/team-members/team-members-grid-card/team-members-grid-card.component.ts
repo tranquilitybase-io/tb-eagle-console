@@ -5,7 +5,7 @@ import { TeamMember } from '../team-members.model';
 @Component({
   selector: 'app-team-members-grid-card',
   templateUrl: './team-members-grid-card.component.html',
-  styleUrls: ['./team-members-grid-card.component.scss']
+  styleUrls: ['./team-members-grid-card.component.scss'],
 })
 export class TeamMembersGridCardComponent implements OnInit {
   @Input() teamMember: TeamMember;

@@ -24,9 +24,9 @@ describe('ApplicationsViewComponent', () => {
         ApplicationsViewBillingComponent,
         ApplicationsViewComponent,
         ApplicationsViewUsersComponent,
-        ApplicationsViewVersionHistoryComponent
+        ApplicationsViewVersionHistoryComponent,
       ],
-      imports: [MatButtonModule, MatCardModule, MatChipsModule, MatGridListModule, MatListModule, MatTabsModule]
+      imports: [MatButtonModule, MatCardModule, MatChipsModule, MatGridListModule, MatListModule, MatTabsModule],
     }).compileComponents();
   }));
 

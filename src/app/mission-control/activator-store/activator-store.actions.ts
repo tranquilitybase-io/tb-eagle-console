@@ -1,15 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { Activator, ActivatorsMetadata, ActivatorCategory } from './activator-store.model';
+import { QueryParam } from './activator-store-home/activator-store-home-list-filter/activator-store-home-list-filter.model';
 
 const key = '[ActivatorStore]';
 
-export const getActivators = createAction(`${key} getActivators`);
+export const getActivators = createAction(`${key} getActivators`, props<{ queryParams: QueryParam[] }>());
 export const getActivatorsError = createAction(`${key} getActivatorsError`, props<{ error: any }>());
 export const getActivatorsSuccess = createAction(`${key} getActivatorsSuccess`, props<{ activators: Activator[] }>());
-
-export const getByCategory = createAction(`${key} getByCategory`, props<{ category: string }>());
-export const getByCategoryError = createAction(`${key} getByCategoryError`, props<{ error: any }>());
-export const getByCategorySuccess = createAction(`${key} getByCategorySuccess`, props<{ activators: Activator[] }>());
 
 export const getMetaData = createAction(`${key} getMetaData`);
 export const getMetaDataError = createAction(`${key} getMetaDataError`, props<{ error: any }>());
@@ -98,5 +95,14 @@ export const updateActivatorSuccess = createAction(
 );
 export const updateActivatorError = createAction('[ActivatorStore] updateActivatorError', props<{ error: any }>());
 
+export const onboardActivator = createAction(
+  '[ActivatorStore] onboardActivator',
+  props<{ activatorData: Activator }>()
+);
+export const onboardActivatorSuccess = createAction('[ActivatorStore] onboardActivatorSuccess');
+export const onboardActivatorError = createAction('[ActivatorStore] onboardActivatorError', props<{ error: any }>());
+
 export const resetActivatorDataStatus = createAction('[ActivatorStore] resetActivatorDataStatus');
 export const resetAPICallStatuses = createAction('[ActivatorStore] resetAPICallStatuses');
+
+export const displayCategoryPage = createAction('[ActivatorStore] displayCategoryPage', props<{ display: boolean }>());

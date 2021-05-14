@@ -1,0 +1,15 @@
+<div class="grid-container site-grid-container">
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+  <mat-grid-list
+    *ngIf="!isLoading"
+    [cols]="(layout$ | async).gridCols"
+    [rowHeight]="(layout$ | async).siteGridItemHeight"
+    gutterSize="24px"
+  >
+    <mat-grid-tile *ngFor="let site of sites$ | async" colspan="1" rowspan="1">
+      <app-sites-home-grid-card class="site-grid-card" [site]="site"></app-sites-home-grid-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

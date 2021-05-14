@@ -1,4 +1,15 @@
-<app-grid-view-switch class="view-settings-bar" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+<div class="top-container">
+  <button
+    mat-button
+    class="create-new-button"
+    color="primary"
+    [disabled]="!isUserTeamAdmin && !(userIsLZAdmin$ | async)"
+    (click)="addNewTeamMember()"
+  >
+    + Add New Team Member
+  </button>
+  <app-grid-view-switch class="view-settings-bar" [gridViewName]="gridViewOptionsName"></app-grid-view-switch>
+</div>
 <app-team-members-grid *ngIf="!(isGridViewEnabled$ | async); else listview"></app-team-members-grid>
 <ng-template #listview>
   <app-team-members-list></app-team-members-list>

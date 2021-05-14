@@ -6,13 +6,13 @@ import { Store } from '@ngrx/store';
 import { createActivatorByURL, resetActivatorDataStatus } from '../../activator-store.actions';
 import { selectCreateActivatorByURLStatus } from '../../activator-store.reducer';
 import { Loadable } from '@app/shared/shared.reducer';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activator-store-dialog-grant-access',
   templateUrl: './activator-store-dialog-create.component.html',
-  styleUrls: ['./activator-store-dialog-create.component.scss']
+  styleUrls: ['./activator-store-dialog-create.component.scss'],
 })
 export class ActivatorStoreDialogCreateComponent implements OnInit {
   createActivatorForm: FormGroup;
@@ -27,11 +27,11 @@ export class ActivatorStoreDialogCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.createActivatorByURLStatus$.subscribe(status => {
+    this.createActivatorByURLStatus$.subscribe((status) => {
       this.handleStatus(status);
     });
     this.createActivatorForm = this.formBuilder.group({
-      url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
+      url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
     });
   }
 

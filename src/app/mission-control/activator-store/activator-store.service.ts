@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Activator, ActivatorCategory, ActivatorsMetadata } from './activator-store.model';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { User } from '@app/login/login.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { QueryParam } from './activator-store-home/activator-store-home-list-filter/activator-store-home-list-filter.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActivatorStoreService extends EntityCollectionServiceBase<Activator> {
   private BASE_URL = `${globalThis.location.origin}/api`;
@@ -19,9 +20,11 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
   setDeprecated(id: number): Observable<Activator> {
     const url = `${this.BASE_URL}/setactivatorstatus/`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(url, { id, status: 'Deprecated', accessRequestedById: 0 }, { headers }) as Observable<
-      Activator
-    >;
+    return this.http.post(
+      url,
+      { id, status: 'Deprecated', accessRequestedById: 0 },
+      { headers }
+    ) as Observable<Activator>;
   }
 
   setLocked(id: number): Observable<Activator> {
@@ -79,15 +82,25 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     return this.http.get<ActivatorCategory[]>(url);
   }
 
-  getByCategory(category: string): Observable<Activator[]> {
-    const params = category === 'All' ? null : { category };
+  getActivators(queryParams: QueryParam[]): Observable<Activator[]> {
+    let params = new HttpParams();
+    for (let obj of queryParams) {
+      params = params.append(obj.key, obj.value);
+    }
+
     const url = `${this.BASE_URL}/activators/`;
     return this.http.get<Activator[]>(url, { params });
   }
 
   createActivatorByURL(repoURL: string): Observable<Activator> {
     const url = `${this.BASE_URL}/activatorByURL/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    const id_token = localStorage.getItem('id_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: id_token ? `Bearer ${id_token}` : '',
+    });
+
     return this.http.post(url, { url: repoURL }, { headers }) as Observable<Activator>;
   }
 
@@ -95,5 +108,17 @@ export class ActivatorStoreService extends EntityCollectionServiceBase<Activator
     const url = `${this.BASE_URL}/activator/${activatorData.id}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.put(url, activatorData, { headers }) as Observable<Activator>;
+  }
+
+  onboardActivator(activatorData: Activator): Observable<any> {
+    const url = `${this.BASE_URL}/activatorOnboard/`;
+
+    const id_token = localStorage.getItem('id_token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: id_token ? `Bearer ${id_token}` : '',
+    });
+
+    return this.http.post(url, { id: activatorData.id }, { headers });
   }
 }

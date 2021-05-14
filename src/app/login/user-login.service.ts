@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { User } from './login.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserLoginService {
   isAuthenticated = false;
@@ -24,16 +24,19 @@ export class UserLoginService {
     const id_token = localStorage.getItem('id_token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: id_token ? `Bearer ${id_token}` : ''
+      Authorization: id_token ? `Bearer ${id_token}` : '',
     });
 
     return this.http.post<User>(url, params, { headers });
   }
 
   loginSuccess(user: User): void {
+    this.router.navigateByUrl('/home');
+    /*
     if (user.isAdmin) this.router.navigateByUrl('/administration/landing-zone');
     else if (!user.teams.length) this.router.navigateByUrl('/administration/teams');
     else this.router.navigateByUrl('/mission-control/solutions');
+    */
   }
 
   loginFailure(): void {
@@ -51,7 +54,7 @@ export class UserLoginService {
       (val: boolean) => {
         console.log('PUT call successful value returned in body', val);
       },
-      response => {
+      (response) => {
         console.log('PUT call in error', response);
       },
       () => {

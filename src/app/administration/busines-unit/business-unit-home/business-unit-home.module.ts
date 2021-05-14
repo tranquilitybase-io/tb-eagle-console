@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
+import { BusinessUnitHomeFilterComponent } from './business-unit-home-filter/business-unit-home-filter.component';
 import { BusinessUnitHomeGridCardComponent } from './business-unit-home-grid/business-unit-home-grid-card/business-unit-home-grid-card.component';
 import { BusinessUnitHomeGridComponent } from './business-unit-home-grid/business-unit-home-grid.component';
 import { BusinessUnitHomeListComponent } from './business-unit-home-list/business-unit-home-list.component';
-import { BusinessUnitHomeSelectComponent } from './business-unit-home-select/business-unit-home-select.component';
 import { BusinessUnitsHomeComponent } from './business-unit-home.component';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -27,17 +27,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 const routes: Routes = [
   {
     path: '',
-    component: BusinessUnitsHomeComponent
-  }
+    component: BusinessUnitsHomeComponent,
+  },
 ];
 
 @NgModule({
   declarations: [
+    BusinessUnitHomeFilterComponent,
     BusinessUnitHomeGridCardComponent,
     BusinessUnitHomeGridComponent,
     BusinessUnitHomeListComponent,
-    BusinessUnitHomeSelectComponent,
-    BusinessUnitsHomeComponent
+    BusinessUnitsHomeComponent,
   ],
   imports: [
     CommonModule,
@@ -56,7 +56,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class BusinessUnitHomeModule {}

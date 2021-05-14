@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Application } from '../../applications.model';
 import { DeploymentState } from '@app/shared/shared.model';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ApplicationsDialogDeployComponent } from '../../applications-dialog/applications-dialog-deploy/applications-dialog-deploy.component';
 @Component({
   selector: 'app-applications-grid-card',
   templateUrl: './applications-grid-card.component.html',
-  styleUrls: ['./applications-grid-card.component.scss']
+  styleUrls: ['./applications-grid-card.component.scss'],
 })
 export class ApplicationsGridCardComponent implements OnInit {
   @Input() app: Application;

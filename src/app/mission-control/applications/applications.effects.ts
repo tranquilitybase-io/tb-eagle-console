@@ -7,7 +7,7 @@ import {
   createApplicationSuccess,
   startDeployment,
   startDeploymentError,
-  startDeploymentSuccess
+  startDeploymentSuccess,
 } from './applications.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -24,13 +24,13 @@ export class ApplicationsEffects {
   createApplication$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createApplication),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.service.createApplication(action.application).pipe(
           map(() => {
             this.snackBarService.success('Activator has been provisioned');
             return createApplicationSuccess();
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Application has not been created');
             return of(createApplicationError({ error }));
           })
@@ -42,12 +42,12 @@ export class ApplicationsEffects {
   startDeployment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(startDeployment),
-      mergeMap(action =>
+      mergeMap((action) =>
         this.service.deployApplication(action.id).pipe(
           map(() => {
             return startDeploymentSuccess();
           }),
-          catchError(error => {
+          catchError((error) => {
             this.snackBarService.error('Something went wrong. Application has not been deployed');
             return of(startDeploymentError(error));
           })

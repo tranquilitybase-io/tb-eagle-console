@@ -1,0 +1,59 @@
+<header>
+  <app-breadcrumbs></app-breadcrumbs>
+</header>
+<main>
+  <form [formGroup]="form" class="landing-zones-form-container">
+    <mat-form-field class="small-width" appearance="outline">
+      <mat-label>Service Provider</mat-label>
+      <mat-select formControlName="csp">
+        <mat-option [value]="'Amazon Web Services'">Amazon Web Services</mat-option>
+        <mat-option [value]="'Google Cloud Platform'">Google Cloud Platform </mat-option>
+        <mat-option [value]="'Microsoft Azure'">Microsoft Azure</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="small-width" appearance="outline">
+      <mat-label>Site</mat-label>
+      <mat-select formControlName="site">
+        <mat-option [value]="'asia-east1'">asia-east1</mat-option>
+        <mat-option [value]="'asia-east2'">asia-east2</mat-option>
+        <mat-option [value]="'asia-northeast1'">asia-northeast1</mat-option>
+        <mat-option [value]="'asia-northeast2'">asia-northeast2</mat-option>
+        <mat-option [value]="'asia-northeast3'">asia-northeast3</mat-option>
+        <mat-option [value]="'asia-south1'">asia-south1</mat-option>
+        <mat-option [value]="'asia-southeast1'">asia-southeast1</mat-option>
+        <mat-option [value]="'asia-southeast2'">asia-southeast2</mat-option>
+        <mat-option [value]="'australia-southeast1'">australia-southeast1</mat-option>
+        <mat-option [value]="'europe-north1'">europe-north1</mat-option>
+        <mat-option [value]="'europe-west1'">europe-west1</mat-option>
+        <mat-option [value]="'europe-west2'">europe-west2</mat-option>
+        <mat-option [value]="'europe-west3'">europe-west3</mat-option>
+        <mat-option [value]="'europe-west4'">europe-west4</mat-option>
+        <mat-option [value]="'europe-west6'">europe-west6</mat-option>
+        <mat-option [value]="'southamerica-east1'">southamerica-east1</mat-option>
+        <mat-option [value]="'us-central1'">us-central1</mat-option>
+        <mat-option [value]="'us-east1'">us-east1</mat-option>
+        <mat-option [value]="'us-east4'">us-east4</mat-option>
+        <mat-option [value]="'us-west1'">us-west1</mat-option>
+        <mat-option [value]="'us-west2'">us-west2</mat-option>
+        <mat-option [value]="'us-west3'">us-west3</mat-option>
+        <mat-option [value]="'us-west4'">us-west4</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="small-width" appearance="outline">
+      <mat-label>Organization Url </mat-label>
+      <input matInput type="text" />
+    </mat-form-field>
+  </form>
+</main>
+<div class="app-bottom-action left">
+  <div class="app-bottom-action left">
+    <button mat-button color="primary">
+      <mat-icon class="app-cancel-icon">cancel</mat-icon>
+      Cancel
+    </button>
+  </div>
+</div>
+<div class="app-bottom-action right">
+  <button mat-button color="primary">Submit</button>
+</div>
+<div class="app-bottom-background"></div>

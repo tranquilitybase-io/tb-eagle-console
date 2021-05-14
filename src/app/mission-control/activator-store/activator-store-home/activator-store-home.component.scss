@@ -1,9 +1,9 @@
 .controls-activator-home {
   display: flex;
   margin: 1rem 1rem;
-  padding-bottom: 1rem;
   border-bottom: 1px solid var(--grey);
   justify-content: space-between;
+  align-items: center;
 
   .switches-activator-home {
     display: flex;
@@ -26,9 +26,16 @@
 header {
   background-color: var(--active-grey-background);
   padding: 0.2rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .grid-container {
   display: block;
   padding: 0 1.5rem;
+}
+
+.home-list-filter {
+  flex: 1;
 }

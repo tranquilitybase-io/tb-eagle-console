@@ -4,10 +4,10 @@ import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UsersHomeComponent } from './users-home.component';
+import { UsersHomeFilterComponent } from './users-home-filter/users-home-filter.component';
 import { UsersHomeGridCardComponent } from './users-home-grid/users-home-grid-card/users-home-grid-card.component';
 import { UsersHomeGridComponent } from './users-home-grid/users-home-grid.component';
 import { UsersHomeListComponent } from './users-home-list/users-home-list.component';
-import { UsersHomeSelectComponent } from './users-home-select/users-home-select.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -28,17 +28,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 const routes: Routes = [
   {
     path: '',
-    component: UsersHomeComponent
-  }
+    component: UsersHomeComponent,
+  },
 ];
 
 @NgModule({
   declarations: [
     UsersHomeComponent,
-    UsersHomeGridComponent,
+    UsersHomeFilterComponent,
     UsersHomeGridCardComponent,
+    UsersHomeGridComponent,
     UsersHomeListComponent,
-    UsersHomeSelectComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +58,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class UsersHomeModule {}

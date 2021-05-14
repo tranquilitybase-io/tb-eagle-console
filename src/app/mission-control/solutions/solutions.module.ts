@@ -11,49 +11,49 @@ import { SharedModule } from '@app/shared/shared.module';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./solutions-home/solutions-home.module').then(m => m.SolutionsHomeModule),
+    loadChildren: () => import('./solutions-home/solutions-home.module').then((m) => m.SolutionsHomeModule),
     data: {
       breadcrumbsSteps: [
         {
-          name: 'Solutions'
-        }
-      ]
-    }
+          name: 'Solutions',
+        },
+      ],
+    },
   },
   {
     path: 'create',
-    loadChildren: () => import('./solutions-create/solutions-create.module').then(m => m.SolutionsCreateModule),
+    loadChildren: () => import('./solutions-create/solutions-create.module').then((m) => m.SolutionsCreateModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Solutions',
-          link: '/mission-control/solutions'
+          link: '/mission-control/solutions',
         },
         {
-          name: 'Create new Solution'
-        }
-      ]
-    }
+          name: 'Create new Solution',
+        },
+      ],
+    },
   },
   {
     path: 'edit',
-    loadChildren: () => import('./solutions-edit/solutions-edit.module').then(m => m.SolutionsViewEditModule)
+    loadChildren: () => import('./solutions-edit/solutions-edit.module').then((m) => m.SolutionsViewEditModule),
   },
   {
     path: 'view',
-    loadChildren: () => import('./solutions-view/solutions-view.module').then(m => m.SolutionsViewModule),
+    loadChildren: () => import('./solutions-view/solutions-view.module').then((m) => m.SolutionsViewModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Solutions',
-          link: '/mission-control/solutions'
+          link: '/mission-control/solutions',
         },
         {
-          name: 'View'
-        }
-      ]
-    }
-  }
+          name: 'View',
+        },
+      ],
+    },
+  },
 ];
 
 @NgModule({
@@ -63,7 +63,7 @@ const routes: Routes = [
     StoreModule.forFeature(solutionFeatureKey, reducer),
     EffectsModule.forFeature([SolutionEffects]),
     RouterModule.forChild(routes),
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class SolutionsModule {}

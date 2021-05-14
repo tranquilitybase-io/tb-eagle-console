@@ -11,14 +11,12 @@ import { ActivatorByIdResolver } from '@app/shared/resolvers/activator-by-id.res
 import { ActiveSolutionsResolver } from '@app/shared/resolvers/active-solutions.resolver';
 
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MatDialogModule,
-  MatStepperModule,
-  MatListModule,
-  MatGridListModule,
-  MatCardModule,
-  MatChipsModule
-} from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -31,9 +29,9 @@ const routes: Routes = [
     component: ApplicationsCreateComponent,
     resolve: {
       activator: ActivatorByIdResolver,
-      availableSolutions: ActiveSolutionsResolver
-    }
-  }
+      availableSolutions: ActiveSolutionsResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -55,7 +53,7 @@ const routes: Routes = [
     MatInputModule,
     MatListModule,
     MatSelectModule,
-    MatStepperModule
-  ]
+    MatStepperModule,
+  ],
 })
 export class ApplicationsCreateModule {}

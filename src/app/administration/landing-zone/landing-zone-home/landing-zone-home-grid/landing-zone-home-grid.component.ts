@@ -13,7 +13,7 @@ import { getLandingZoneActions } from '../landing-zone-home.actions';
 @Component({
   selector: 'app-landing-zone-home-grid',
   templateUrl: './landing-zone-home-grid.component.html',
-  styleUrls: ['./landing-zone-home-grid.component.scss']
+  styleUrls: ['./landing-zone-home-grid.component.scss'],
 })
 export class LandingZoneHomeGridComponent implements OnInit {
   actions$: Observable<LandingZoneAction[]>;
@@ -37,11 +37,11 @@ export class LandingZoneHomeGridComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(getLandingZoneActions());
-    this.landingZoneService.getAll().subscribe(actions => {
+    this.landingZoneService.getAll().subscribe((actions) => {
       this.filterAllLength = actions.length;
-      this.filterCompletedLength = actions.filter(action => action.completionRate === 100).length;
-      this.filterInProgressLength = actions.filter(action => action.completionRate !== 100 && !action.locked).length;
-      this.filterLockedLength = actions.filter(action => action.locked).length;
+      this.filterCompletedLength = actions.filter((action) => action.completionRate === 100).length;
+      this.filterInProgressLength = actions.filter((action) => action.completionRate !== 100 && !action.locked).length;
+      this.filterLockedLength = actions.filter((action) => action.locked).length;
     });
   }
 

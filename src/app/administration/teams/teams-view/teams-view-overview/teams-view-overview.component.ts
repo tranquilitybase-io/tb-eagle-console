@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-teams-view-overview',
   templateUrl: './teams-view-overview.component.html',
-  styleUrls: ['./teams-view-overview.component.scss']
+  styleUrls: ['./teams-view-overview.component.scss'],
 })
 export class TeamsViewOverviewComponent implements OnInit {
   team: Team;

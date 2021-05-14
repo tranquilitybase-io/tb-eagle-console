@@ -5,7 +5,7 @@ import { Environment } from '@app/administration/landing-zone/landing-zone-envir
 @Component({
   selector: 'app-solutions-view-workspace-info',
   templateUrl: './solutions-view-workspace-info.component.html',
-  styleUrls: ['./solutions-view-workspace-info.component.scss']
+  styleUrls: ['./solutions-view-workspace-info.component.scss'],
 })
 export class SolutionsViewWorkspaceInfoComponent implements OnInit {
   @Input() solution: Solution;

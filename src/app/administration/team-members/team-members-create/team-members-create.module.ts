@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -15,8 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 const routes: Routes = [
   {
     path: '',
-    component: TeamMembersCreateComponent
-  }
+    component: TeamMembersCreateComponent,
+  },
 ];
 
 @NgModule({
@@ -32,7 +32,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
 export class TeamMembersCreateModule {}

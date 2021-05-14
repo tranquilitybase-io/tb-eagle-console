@@ -8,7 +8,7 @@ describe('UsersViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BusinessUnitViewComponent]
+      declarations: [BusinessUnitViewComponent],
     }).compileComponents();
   }));
 

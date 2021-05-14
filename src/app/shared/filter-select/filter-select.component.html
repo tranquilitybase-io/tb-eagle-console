@@ -1,0 +1,6 @@
+<mat-form-field>
+  <mat-label>Filters</mat-label>
+  <mat-select [formControl]="filterCtrl" [disabled]="disabled" (selectionChange)="select($event.value)">
+    <mat-option *ngFor="let item of options" [value]="item"> {{ item.name }} </mat-option>
+  </mat-select>
+</mat-form-field>

@@ -18,11 +18,13 @@ jobs:
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
-    - name: Use Node.js 12.x
+    - name: Use Node.js 14.x
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: '14.x'
     - name: Install dependencies and run tests
       run: |
         npm install
         npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
+    - name: Validate docker build for production
+      run: docker build .

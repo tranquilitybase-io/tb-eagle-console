@@ -14,8 +14,8 @@ import { SharedModule } from '@app/shared/shared.module';
 const routes: Routes = [
   {
     path: '',
-    component: BusinessUnitCreateComponent
-  }
+    component: BusinessUnitCreateComponent,
+  },
 ];
 
 @NgModule({
@@ -30,7 +30,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class BusinessUnitCreateModule {}

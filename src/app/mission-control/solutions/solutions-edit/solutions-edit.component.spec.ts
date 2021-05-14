@@ -1,13 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SolutionsEditComponent } from './solutions-edit.component';
-import {
-  MatFormFieldModule,
-  MatSelectModule,
-  MatIconModule,
-  MatOptionModule,
-  MatListModule,
-  MatInputModule
-} from '@angular/material';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -31,9 +29,9 @@ describe('SolutionsEditComponent', () => {
         MatIconModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
       ],
-      providers: [provideMockStore({ initialState })]
+      providers: [provideMockStore({ initialState })],
     }).compileComponents();
   }));
 

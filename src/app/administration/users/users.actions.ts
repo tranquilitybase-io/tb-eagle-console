@@ -1,9 +1,10 @@
 import { createAction, props } from '@ngrx/store';
+import { QueryParam } from './users-home/users-home-filter/users-home-filter.model';
 import { User } from './users.model';
 
 const key = '[users]';
 
-export const getUsers = createAction(`${key} getUsers`);
+export const getUsers = createAction(`${key} getUsers`, props<{ queryParams: QueryParam[] }>());
 export const getUsersSuccess = createAction(`${key} getUsersSuccess`, props<{ users: User[] }>());
 export const getUsersError = createAction(`${key} getUsersError`, props<{ error: any }>());
 

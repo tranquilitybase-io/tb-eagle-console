@@ -13,7 +13,7 @@ import { ApplicationsService } from '@app/mission-control/applications/applicati
 import { setApplicationDeploymentsData } from '@app/mission-control/applications/applications.actions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotificationsService {
   notificationUpdate: any;
@@ -27,22 +27,22 @@ export class NotificationsService {
 
   pollingInitAll() {
     this.notificationUpdate = setInterval(() => {
-      this.getNotificationData().subscribe(notificationsData => {
+      this.getNotificationData().subscribe((notificationsData) => {
         this.store.dispatch(setNotificationsData({ notificationsData }));
       });
-      this.getNotificationMetaData().subscribe(notificationsMetaData =>
+      this.getNotificationMetaData().subscribe((notificationsMetaData) =>
         this.store.dispatch(setNotificationsMetaData({ notificationsMetaData }))
       );
       if (this.router.url.includes('/mission-control/solutions')) {
         this.solutionsService
           .getDeployments()
-          .subscribe(solutionDeploymentsData =>
+          .subscribe((solutionDeploymentsData) =>
             this.store.dispatch(setSolutionDeploymentsData({ solutionDeploymentsData }))
           );
         if (this.router.url.includes('/mission-control/solutions/view')) {
           this.applicationsService
             .getDeployments()
-            .subscribe(applicationDeploymentsData =>
+            .subscribe((applicationDeploymentsData) =>
               this.store.dispatch(setApplicationDeploymentsData({ applicationDeploymentsData }))
             );
         }
@@ -76,9 +76,7 @@ export class NotificationsService {
       'Content-Type': 'application/json'
     });
 
-    return this.http
-      .get<Notification[]>(url, { headers })
-      .pipe(catchError(this.handleError));
+    return this.http.get<Notification[]>(url, { headers }).pipe(catchError(this.handleError));
   }
 
   getNotificationMetaData(): Observable<NotificationsMeta> {
@@ -89,8 +87,6 @@ export class NotificationsService {
       'Content-Type': 'application/json'
     });
 
-    return this.http
-      .get<NotificationsMeta>(url, { headers })
-      .pipe(catchError(this.handleError));
+    return this.http.get<NotificationsMeta>(url, { headers }).pipe(catchError(this.handleError));
   }
 }

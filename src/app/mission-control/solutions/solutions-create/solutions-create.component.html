@@ -218,27 +218,19 @@
         <mat-grid-tile-header>Workspace</mat-grid-tile-header>
         <mat-card class="workspace-card primary">
           <mat-card-content class="workspace-card-content">
-            <div class="mat-h4">
-              CI (Continuous intergration service)
-            </div>
+            <div class="mat-h4">CI (Continuous intergration service)</div>
             <mat-chip-list>
               <mat-chip>{{ ci }}</mat-chip>
             </mat-chip-list>
-            <div class="mat-h4">
-              Source Control
-            </div>
+            <div class="mat-h4">Source Control</div>
             <mat-chip-list>
               <mat-chip>{{ sourceControl }}</mat-chip>
             </mat-chip-list>
-            <div class="mat-h4">
-              CD (Continuous deployment)
-            </div>
+            <div class="mat-h4">CD (Continuous deployment)</div>
             <mat-chip-list>
               <mat-chip>{{ cd }}</mat-chip>
             </mat-chip-list>
-            <div class="mat-h4">
-              Available environments
-            </div>
+            <div class="mat-h4">Available environments</div>
             <mat-chip-list>
               <mat-chip *ngFor="let item of environments">{{ item }}</mat-chip>
             </mat-chip-list>

@@ -5,8 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ApplicationsModule } from '@app/mission-control/applications/applications.module';
 import { TeamMembersModule } from '@app/administration/team-members/team-members.module';
 
-import { SolutionsViewResolver } from '@app/shared/resolvers/solutions-view.resolver';
-
 import { SolutionsViewApplicationsComponent } from './solutions-view-applications/solutions-view-applications.component';
 import { SolutionsViewComponent } from './solutions-view.component';
 import { SolutionsViewOverviewComponent } from './solutions-view-overview/solutions-view-overview.component';
@@ -32,17 +30,14 @@ const routes: Routes = [
   {
     path: '',
     component: SolutionsViewComponent,
-    resolve: {
-      solution: SolutionsViewResolver
-    }
   },
   {
     path: 'application',
     loadChildren: () =>
       import('@app/mission-control/applications/applications-view/applications-view.module').then(
-        m => m.ApplicationsViewModule
-      )
-  }
+        (m) => m.ApplicationsViewModule
+      ),
+  },
 ];
 
 @NgModule({
@@ -51,7 +46,7 @@ const routes: Routes = [
     SolutionsViewSelectComponent,
     SolutionsViewWorkspaceInfoComponent,
     SolutionsViewOverviewComponent,
-    SolutionsViewApplicationsComponent
+    SolutionsViewApplicationsComponent,
   ],
   imports: [
     CommonModule,
@@ -72,7 +67,7 @@ const routes: Routes = [
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class SolutionsViewModule {}

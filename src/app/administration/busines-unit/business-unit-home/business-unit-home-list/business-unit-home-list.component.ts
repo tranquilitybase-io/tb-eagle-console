@@ -1,13 +1,15 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BusinessUnit } from '../../business-unit.model';
 
 @Component({
   selector: 'app-business-unit-home-list',
   templateUrl: './business-unit-home-list.component.html',
-  styleUrls: ['./business-unit-home-list.component.scss']
+  styleUrls: ['./business-unit-home-list.component.scss'],
 })
 export class BusinessUnitHomeListComponent implements OnInit {
   @Input() businessUnitList$: Observable<BusinessUnit[]>;
@@ -24,7 +26,7 @@ export class BusinessUnitHomeListComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.businessUnitList$.subscribe(businessUnits => {
+    this.businessUnitList$.subscribe((businessUnits) => {
       this.dataSource = new MatTableDataSource(businessUnits);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

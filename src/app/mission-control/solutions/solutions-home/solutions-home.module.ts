@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SolutionSelectComponent } from './solution-select/solution-select.component';
 import { SolutionsHomeComponent } from './solutions-home.component';
 import { SolutionsHomeGridCardComponent } from './solutions-home-grid/solutions-home-grid-card/solutions-home-grid-card.component';
 import { SolutionsHomeGridComponent } from './solutions-home-grid/solutions-home-grid.component';
 import { SolutionsHomeListComponent } from './solutions-home-list/solutions-home-list.component';
+import { SolutionsHomeListFilterComponent } from './solutions-home-list-filter/solutions-home-list-filter.component';
 
 import { LandingZoneDialogModule } from './solutions-home-dialog/solutions-home-dialog.module';
 
@@ -30,17 +30,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 const routes: Routes = [
   {
     path: '',
-    component: SolutionsHomeComponent
-  }
+    component: SolutionsHomeComponent,
+  },
 ];
 
 @NgModule({
   declarations: [
-    SolutionSelectComponent,
     SolutionsHomeComponent,
     SolutionsHomeGridCardComponent,
     SolutionsHomeGridComponent,
-    SolutionsHomeListComponent
+    SolutionsHomeListComponent,
+    SolutionsHomeListFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -61,7 +61,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatSortModule,
     MatTableModule,
-    MatTooltipModule
-  ]
+    MatTooltipModule,
+  ],
 })
 export class SolutionsHomeModule {}

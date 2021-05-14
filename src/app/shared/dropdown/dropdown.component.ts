@@ -9,9 +9,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DropdownComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class DropdownComponent implements ControlValueAccessor {
   private registeredOnChange: (value: any) => void = () => {};
@@ -24,7 +24,7 @@ export class DropdownComponent implements ControlValueAccessor {
   @Input() required = false;
   @Input() label: string;
   @Input() placeholder = '';
-  @Input() displayFn: (value: any) => string = x => (!x ? this.placeholder : x.toString());
+  @Input() displayFn: (value: any) => string = (x) => (!x ? this.placeholder : x.toString());
   @Input() set values(values: any[]) {
     this._values = values;
     this.selected = values[0];

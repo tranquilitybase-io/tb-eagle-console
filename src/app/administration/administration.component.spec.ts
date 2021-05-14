@@ -11,7 +11,7 @@ describe('AdministrationComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AdministrationComponent],
-      imports: [RouterTestingModule, NoopAnimationsModule]
+      imports: [RouterTestingModule, NoopAnimationsModule],
     }).compileComponents();
   }));
 

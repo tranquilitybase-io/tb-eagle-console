@@ -9,14 +9,14 @@ import { MatCardModule } from '@angular/material/card';
 const routes: Routes = [
   {
     path: 'edit',
-    loadChildren: () => import('../../solutions-edit/solutions-edit.module').then(m => m.SolutionsViewEditModule)
-  }
+    loadChildren: () => import('../../solutions-edit/solutions-edit.module').then((m) => m.SolutionsViewEditModule),
+  },
 ];
 
 @NgModule({
   declarations: [SolutionsHomeDialogDeployComponent],
   entryComponents: [SolutionsHomeDialogDeployComponent],
   exports: [SolutionsHomeDialogDeployComponent],
-  imports: [CommonModule, MatButtonModule, MatDialogModule, MatCardModule, RouterModule.forChild(routes)]
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatCardModule, RouterModule.forChild(routes)],
 })
 export class LandingZoneDialogModule {}

@@ -9,7 +9,7 @@ import { denyAccess, grantAccess } from '../../activator-store.actions';
 @Component({
   selector: 'app-activator-store-dialog-grant-access',
   templateUrl: './activator-store-dialog-grant-access.component.html',
-  styleUrls: ['./activator-store-dialog-grant-access.component.scss']
+  styleUrls: ['./activator-store-dialog-grant-access.component.scss'],
 })
 export class ActivatorStoreDialogGrantAccessComponent implements OnInit {
   grantAccessForm: FormGroup;
@@ -23,7 +23,7 @@ export class ActivatorStoreDialogGrantAccessComponent implements OnInit {
 
   ngOnInit() {
     this.grantAccessForm = this.formBuilder.group({
-      teamId: ['', Validators.required]
+      teamId: ['', Validators.required],
     });
   }
 

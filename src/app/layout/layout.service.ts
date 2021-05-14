@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LayoutService {
   constructor(private breakpointObserver: BreakpointObserver) {}
@@ -15,73 +15,83 @@ export class LayoutService {
         switch (true) {
           case breakpoints[Breakpoints.Small]:
             return {
+              activatorGridItemHeight: '730px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewGridHeight: '1200px',
+              applicationCreationReviewLeftColumnSpan: 5,
+              applicationGridItemHeight: '600px',
               gridCols: 2,
               landingZoneGridItemHeight: '180px',
-              activatorGridItemHeight: '730px',
-              applicationGridItemHeight: '600px',
-              applicationCreationReviewGridHeight: '1200px',
-              applicationCreationReviewGridColumnsAmount: 5,
-              applicationCreationReviewLeftColumnSpan: 5,
+              sharedServicesGridItemHeight: '180px',
               solutionGridItemHeight: '470px',
+              solutionsViewApplicationsGridHeight: '1000px',
               teamGridItemHeight: '470px',
               userGridItemHeight: '470px',
-              solutionsViewApplicationsGridHeight: '1000px'
+              siteGridItemHeight: '570px',
             };
           case breakpoints[Breakpoints.Medium]:
             return {
+              activatorGridItemHeight: '630px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewGridHeight: '1200px',
+              applicationCreationReviewLeftColumnSpan: 5,
+              applicationGridItemHeight: '550px',
               gridCols: 3,
               landingZoneGridItemHeight: '150px',
-              activatorGridItemHeight: '630px',
-              applicationGridItemHeight: '550px',
-              applicationCreationReviewGridHeight: '1200px',
-              applicationCreationReviewGridColumnsAmount: 5,
-              applicationCreationReviewLeftColumnSpan: 5,
+              sharedServicesGridItemHeight: '150px',
               solutionGridItemHeight: '430px',
+              solutionsViewApplicationsGridHeight: '1000px',
               teamGridItemHeight: '430px',
               userGridItemHeight: '430px',
-              solutionsViewApplicationsGridHeight: '1000px'
+              siteGridItemHeight: '570px',
             };
           case breakpoints[Breakpoints.Large]:
             return {
+              activatorGridItemHeight: '530px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewGridHeight: '700px',
+              applicationCreationReviewLeftColumnSpan: 3,
+              applicationGridItemHeight: '500px',
               gridCols: 4,
               landingZoneGridItemHeight: '150px',
-              activatorGridItemHeight: '530px',
-              applicationGridItemHeight: '500px',
-              applicationCreationReviewGridHeight: '700px',
-              applicationCreationReviewGridColumnsAmount: 5,
-              applicationCreationReviewLeftColumnSpan: 3,
+              sharedServicesGridItemHeight: '150px',
               solutionGridItemHeight: '410px',
+              solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '390px',
               userGridItemHeight: '390px',
-              solutionsViewApplicationsGridHeight: '500px'
+              siteGridItemHeight: '430px',
             };
           case breakpoints[Breakpoints.XLarge]:
             return {
+              activatorGridItemHeight: '430px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewGridHeight: '700px',
+              applicationCreationReviewLeftColumnSpan: 3,
+              applicationGridItemHeight: '500px',
               gridCols: 5,
               landingZoneGridItemHeight: '150px',
-              activatorGridItemHeight: '430px',
-              applicationGridItemHeight: '500px',
-              applicationCreationReviewGridHeight: '700px',
-              applicationCreationReviewGridColumnsAmount: 5,
-              applicationCreationReviewLeftColumnSpan: 3,
+              sharedServicesGridItemHeight: '150px',
               solutionGridItemHeight: '350px',
+              solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '350px',
               userGridItemHeight: '350px',
-              solutionsViewApplicationsGridHeight: '500px'
+              siteGridItemHeight: '430px',
             };
           default:
             return {
+              activatorGridItemHeight: '550px',
+              applicationCreationReviewGridColumnsAmount: 5,
+              applicationCreationReviewGridHeight: '700px',
+              applicationCreationReviewLeftColumnSpan: 3,
+              applicationGridItemHeight: '600px',
               gridCols: 1,
               landingZoneGridItemHeight: '210px',
-              activatorGridItemHeight: '550px',
-              applicationGridItemHeight: '600px',
-              applicationCreationReviewGridHeight: '700px',
-              applicationCreationReviewGridColumnsAmount: 5,
-              applicationCreationReviewLeftColumnSpan: 3,
+              sharedServicesGridItemHeight: '210px',
               solutionGridItemHeight: '510px',
+              solutionsViewApplicationsGridHeight: '500px',
               teamGridItemHeight: '510px',
               userGridItemHeight: '510px',
-              solutionsViewApplicationsGridHeight: '500px'
+              siteGridItemHeight: '600px',
             };
         }
       })

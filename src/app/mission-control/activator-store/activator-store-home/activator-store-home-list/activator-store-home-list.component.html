@@ -1,19 +1,5 @@
-<div class="actions-top-bar">
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event.target.value)"
-      [(ngModel)]="filterValue"
-      placeholder="Ex. Activator name or description"
-    />
-    <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="applyFilter('')">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-</div>
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="(getByCategoryStatus$ | async).loading ? null : dataSource" matSort>
+  <table mat-table [dataSource]="(getByActivatorsStatus$ | async).loading ? null : dataSource" matSort>
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -121,33 +107,43 @@
           [matTooltip]="row.accessRequestedBy ? 'Access requested' : ''"
         >
           <mat-icon>more_vert</mat-icon>
-          <mat-icon *ngIf="actionNeeded(row)" color="warn" class="action-needed-icon">
-            stop_circle
-          </mat-icon>
+          <mat-icon *ngIf="actionNeeded(row)" color="warn" class="action-needed-icon"> stop_circle </mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
-          <button mat-menu-item *ngIf="isLocked(row.status) && !(userIsAdmin$ | async)" (click)="requestAccess(row.id)">
+          <button
+            mat-menu-item
+            *ngIf="isLocked(row.status) && !(userIsMCAdmin$ | async)"
+            (click)="requestAccess(row.id)"
+          >
             Request Access
           </button>
-          <button mat-menu-item *ngIf="isLocked(row.status) && (userIsAdmin$ | async)" (click)="grantAccess(row)">
+          <button mat-menu-item *ngIf="isLocked(row.status) && (userIsMCAdmin$ | async)" (click)="grantAccess(row)">
             Grant Access
           </button>
-          <button mat-menu-item *ngIf="isAvailable(row.status) && (userIsAdmin$ | async)" (click)="setLocked(row.id)">
+          <button mat-menu-item *ngIf="isAvailable(row.status) && (userIsMCAdmin$ | async)" (click)="setLocked(row.id)">
             Lock
           </button>
           <button
             mat-menu-item
-            *ngIf="(isAvailable(row.status) || isLocked(row.status)) && (userIsAdmin$ | async)"
+            *ngIf="(isAvailable(row.status) || isLocked(row.status)) && (userIsMCAdmin$ | async)"
             (click)="setDeprecated(row.id)"
           >
             Deprecate
           </button>
-          <button mat-menu-item *ngIf="isDeprecated(row.status) && (userIsAdmin$ | async)" (click)="setLocked(row.id)">
+          <button
+            mat-menu-item
+            *ngIf="isDeprecated(row.status) && (userIsMCAdmin$ | async)"
+            (click)="setLocked(row.id)"
+          >
             Undeprecate
           </button>
-          <button mat-menu-item>
-            Mark as favourite
+          <button mat-menu-item *ngIf="isDraft(row.status) && (userIsMCAdmin$ | async)" (click)="onboard(row)">
+            Onboard
           </button>
+          <button mat-menu-item *ngIf="isDraft(row.status) && (userIsMCAdmin$ | async)" (click)="edit(row)">
+            Edit
+          </button>
+          <button mat-menu-item>Mark as favourite</button>
         </mat-menu>
       </td>
     </ng-container>
@@ -156,8 +152,14 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-card *ngIf="(getByCategoryStatus$ | async).loading" class="progress-spinner-container">
+  <mat-card *ngIf="(getByActivatorsStatus$ | async).loading" class="progress-spinner-container">
     <mat-progress-spinner color="primary" mode="indeterminate"> </mat-progress-spinner>
+  </mat-card>
+  <mat-card
+    *ngIf="(activators$ | async).length === 0 && !(getByActivatorsStatus$ | async).loading"
+    class="progress-spinner-container"
+  >
+    No data meeting the given criteria
   </mat-card>
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

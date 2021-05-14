@@ -12,7 +12,7 @@ import { ActivatorStoreService } from '@app/mission-control/activator-store/acti
 @Component({
   selector: 'app-activator-store-view-overview',
   templateUrl: './activator-store-view-overview.component.html',
-  styleUrls: ['./activator-store-view-overview.component.scss']
+  styleUrls: ['./activator-store-view-overview.component.scss'],
 })
 export class ActivatorStoreViewOverviewComponent implements OnInit {
   activator: Activator = { sensitivity: '' } as Activator;
@@ -30,16 +30,16 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
     this.store.dispatch(setProgress({ step: 0 }));
     this.activator = this.route.snapshot.data['activator'] as Activator;
     this.store.dispatch(storeActivatorData({ activatorData: this.activator }));
-    this.activator$.subscribe(activatorData => {
+    this.activator$.subscribe((activatorData) => {
       this.activator = activatorData;
     });
     this.route.queryParams
       .pipe(
-        switchMap(params => {
+        switchMap((params) => {
           return this.activatorStoreService.getByKey(params['id']);
         })
       )
-      .subscribe(activator => {
+      .subscribe((activator) => {
         this.store.dispatch(storeActivatorData({ activatorData: activator }));
       });
   }
@@ -50,67 +50,67 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
         name: 'Data sensitivity',
         value: this.activator.sensitivity,
         class:
-          this.activator.sensitivity && this.activator.sensitivity.toLowerCase() === 'restricted' ? 'red' : 'dark-grey'
+          this.activator.sensitivity && this.activator.sensitivity.toLowerCase() === 'restricted' ? 'red' : 'dark-grey',
       },
       {
         name: 'Category',
-        value: this.activator.activatorMetadata.category
+        value: this.activator.activatorMetadata.category,
       },
       {
         name: 'User capacity',
-        value: this.activator.userCapacity
+        value: this.activator.userCapacity,
       },
       {
         name: 'Server capacity',
-        value: this.activator.serverCapacity
+        value: this.activator.serverCapacity,
       },
       {
         name: 'Supported regions',
-        value: this.activator.regions
-      }
+        value: this.activator.regions,
+      },
     ];
   }
 
   get envs() {
-    return this.activator.envs.map(env => {
+    return this.activator.envs.map((env) => {
       return { value: env.name };
     });
   }
 
   get ci() {
-    return ((this.activator.ci || []) as ActivatorCI[]).map(ci => ci.value);
+    return ((this.activator.ci || []) as ActivatorCI[]).map((ci) => ci.value);
   }
 
   get deploymentOptions(): Property[] {
     return [
       {
         name: 'Hosting',
-        value: this.activator.hosting
+        value: this.activator.hosting,
       },
       {
         name: 'Api Management',
-        value: this.activator.apiManagement
+        value: this.activator.apiManagement,
       },
       {
         name: 'Cloud Platform',
-        value: this.activator.activatorMetadata.platforms
+        value: this.activator.activatorMetadata.platforms,
       },
       {
         name: 'Environment',
-        value: this.envs
+        value: this.envs,
       },
       {
         name: 'CI (Continious integration)',
-        value: this.activator.ci
+        value: this.activator.ci,
       },
       {
         name: 'CD (Continious deployment)',
-        value: this.activator.cd
+        value: this.activator.cd,
       },
       {
         name: 'Source control',
-        value: [this.activator.sourceControl]
-      }
+        value: [this.activator.sourceControl],
+      },
     ];
   }
 
@@ -120,5 +120,10 @@ export class ActivatorStoreViewOverviewComponent implements OnInit {
 
   get activatorLink(): string {
     return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.activatorLink;
+  }
+
+  unSlugify(string) {
+    const unslugifiedString = string.replaceAll('_', ' ');
+    return unslugifiedString.charAt(0).toUpperCase() + unslugifiedString.slice(1);
   }
 }

@@ -25,9 +25,9 @@ const routes: Routes = [
     component: TeamsViewComponent,
     resolve: {
       team: TeamByIdResolver,
-      teamMembers: TeamMembersByTeamIdResolver
-    }
-  }
+      teamMembers: TeamMembersByTeamIdResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -43,7 +43,7 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatTabsModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class TeamsViewModule {}

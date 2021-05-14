@@ -8,7 +8,7 @@ describe('LoginFormPaneComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginFormPaneComponent]
+      declarations: [LoginFormPaneComponent],
     }).compileComponents();
   }));
 

@@ -14,18 +14,10 @@
         <mat-icon>add</mat-icon>
       </button>
       <mat-menu #addMenu="matMenu">
-        <button mat-flat-button (click)="createNewSolution()">
-          Create new solution
-        </button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewActivator()">
-          Add new activator
-        </button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewUser()">
-          Create new user
-        </button>
-        <button *ngIf="userIsAdmin$ | async" mat-flat-button (click)="createNewTeam()">
-          Create new team
-        </button>
+        <button mat-flat-button (click)="createNewSolution()">Create new solution</button>
+        <button *ngIf="userIsMCAdmin$ | async" mat-flat-button (click)="createNewActivator()">Add new activator</button>
+        <button *ngIf="userIsLZAdmin$ | async" mat-flat-button (click)="createNewUser()">Create new user</button>
+        <button *ngIf="userIsLZAdmin$ | async" mat-flat-button (click)="createNewTeam()">Create new team</button>
       </mat-menu>
 
       <span class="spacer"></span>
@@ -75,14 +67,40 @@
 </mat-toolbar>
 
 <mat-sidenav-container autosize>
-  <mat-sidenav mode="side" [opened]="isExpanded">
+  <mat-sidenav mode="side" [opened]="isExpanded" [ngClass]="!isExpanded ? 'slideLeft' : 'slideRight'">
     <mat-nav-list>
+      <div>
+        <div class="section-header" *ngIf="isExpanded">Home</div>
+        <a
+          (click)="isExpanded = !isExpanded"
+          mat-list-item
+          routerLink="/home"
+          [matTooltip]="!isExpanded ? 'Sites' : null"
+          matTooltipPosition="after"
+          [class.active]="isLinkActive('/home')"
+        >
+          <mat-icon>home</mat-icon>
+          <span *ngIf="isExpanded">Sites</span>
+        </a>
+        <a
+          (click)="isExpanded = !isExpanded"
+          mat-list-item
+          routerLink="/home"
+          [matTooltip]="!isExpanded ? 'Sites' : null"
+          matTooltipPosition="after"
+        >
+          <!-- [class.active]="isLinkActive('/home')" -->
+          <mat-icon>dashboard</mat-icon>
+          <span *ngIf="isExpanded">Dashboard</span>
+        </a>
+      </div>
       <div>
         <div class="section-header" *ngIf="isExpanded">Mission control</div>
         <a
+          (click)="isExpanded = !isExpanded"
           mat-list-item
           routerLink="/mission-control/solutions"
-          [queryParams]="{ groupSwitch: 'Actives' }"
+          [queryParams]="{ isActive: 'true' }"
           [matTooltip]="!isExpanded ? 'Solutions' : null"
           matTooltipPosition="after"
           [class.active]="isLinkActive('/mission-control/solutions')"
@@ -90,22 +108,25 @@
           <mat-icon>filter_none</mat-icon>
           <span *ngIf="isExpanded"> Solutions</span>
         </a>
-        <a
-          mat-list-item
-          routerLink="/mission-control/activator-store"
-          [queryParams]="{ categorySwitch: 'Category' }"
-          [class.active]="isLinkActive('/mission-control/activator-store')"
-          [matTooltip]="!isExpanded ? 'Activator store' : null"
-          matTooltipPosition="after"
-        >
-          <mat-icon>storefront</mat-icon>
-          <span *ngIf="isExpanded"> Activator store</span>
-        </a>
+        <div (click)="showActivatorsCategories()">
+          <a
+            (click)="isExpanded = !isExpanded"
+            mat-list-item
+            routerLink="/mission-control/activator-store"
+            [class.active]="isLinkActive('/mission-control/activator-store')"
+            [matTooltip]="!isExpanded ? 'Activator store' : null"
+            matTooltipPosition="after"
+          >
+            <mat-icon>storefront</mat-icon>
+            <span *ngIf="isExpanded">Activator store</span>
+          </a>
+        </div>
       </div>
       <mat-divider *ngIf="!isExpanded" class="miniDrawerBr"></mat-divider>
       <div class="section-header" *ngIf="isExpanded">Administration menu</div>
-      <div *ngIf="userIsAdmin$ | async">
+      <div *ngIf="userIsLZAdmin$ | async">
         <a
+          (click)="isExpanded = !isExpanded"
           mat-list-item
           routerLink="/administration/landing-zone"
           [class.active]="isLinkActive('/administration/landing-zone')"
@@ -115,14 +136,21 @@
           <mat-icon>account_tree</mat-icon>
           <span *ngIf="isExpanded"> Landing Zone</span>
         </a>
-        <a mat-list-item [matTooltip]="!isExpanded ? 'Shared Services' : null" matTooltipPosition="after">
+        <a
+          (click)="isExpanded = !isExpanded"
+          mat-list-item
+          routerLink="/administration/shared-services"
+          [class.active]="isLinkActive('/administration/shared-services')"
+          [matTooltip]="!isExpanded ? 'Shared Services' : null"
+          matTooltipPosition="after"
+        >
           <mat-icon>storage</mat-icon> <span *ngIf="isExpanded"> Shared Services</span>
         </a>
       </div>
       <a
+        (click)="isExpanded = !isExpanded"
         mat-list-item
         routerLink="/administration/users"
-        [queryParams]="{ groupSwitch: 'Actives' }"
         [class.active]="isLinkActive('/administration/users')"
         [matTooltip]="!isExpanded ? 'Users' : null"
         matTooltipPosition="after"
@@ -130,9 +158,9 @@
         <mat-icon>person</mat-icon> <span *ngIf="isExpanded"> Users</span>
       </a>
       <a
+        (click)="isExpanded = !isExpanded"
         mat-list-item
         routerLink="/administration/teams"
-        [queryParams]="{ groupSwitch: 'Actives' }"
         [class.active]="isLinkActive('/administration/teams')"
         [matTooltip]="!isExpanded ? 'Teams' : null"
         matTooltipPosition="after"
@@ -141,7 +169,8 @@
         <span *ngIf="isExpanded"> Teams</span>
       </a>
       <a
-        *ngIf="userIsAdmin$ | async"
+        (click)="isExpanded = !isExpanded"
+        *ngIf="userIsLZAdmin$ | async"
         mat-list-item
         routerLink="/administration/business-unit"
         [class.active]="isLinkActive('/administration/business-unit')"
@@ -150,14 +179,26 @@
       >
         <mat-icon>business</mat-icon> <span *ngIf="isExpanded">Business Units</span>
       </a>
-      <a mat-list-item [matTooltip]="!isExpanded ? 'Settings' : null" matTooltipPosition="after">
+      <a
+        (click)="isExpanded = !isExpanded"
+        *ngIf="userIsLZAdmin$ | async"
+        mat-list-item
+        routerLink="/administration/settings"
+        [class.active]="isLinkActive('/administration/settings')"
+        [matTooltip]="!isExpanded ? 'Settings' : null"
+        matTooltipPosition="after"
+      >
         <mat-icon>settings</mat-icon> <span *ngIf="isExpanded"> Settings</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div [ngClass]="isExpanded == false ? 'smallDrawer' : null">
-      <router-outlet></router-outlet>
-    </div>
+    <div
+      *ngIf="isExpanded"
+      (click)="isExpanded = !isExpanded"
+      class="cfc-page-overlay"
+      [ngClass]="isExpanded ? 'greyCover' : null"
+    ></div>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

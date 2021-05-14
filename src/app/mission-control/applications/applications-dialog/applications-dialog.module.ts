@@ -9,6 +9,6 @@ import { MatCardModule } from '@angular/material/card';
   declarations: [ApplicationsDialogDeployComponent],
   entryComponents: [ApplicationsDialogDeployComponent],
   exports: [ApplicationsDialogDeployComponent],
-  imports: [CommonModule, MatButtonModule, MatDialogModule, MatCardModule]
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatCardModule],
 })
 export class ApplicationsDialogModule {}

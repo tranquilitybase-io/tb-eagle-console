@@ -9,69 +9,69 @@ import { EffectsModule } from '@ngrx/effects';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./teams-home/teams-home.module').then(m => m.TeamsHomeModule)
+    loadChildren: () => import('./teams-home/teams-home.module').then((m) => m.TeamsHomeModule),
   },
   {
     path: 'create',
-    loadChildren: () => import('./teams-create/teams-create.module').then(m => m.TeamsCreateModule),
+    loadChildren: () => import('./teams-create/teams-create.module').then((m) => m.TeamsCreateModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Teams',
-          link: '/administration/teams'
+          link: '/administration/teams',
         },
         {
-          name: 'Create new Team'
-        }
-      ]
-    }
+          name: 'Create new Team',
+        },
+      ],
+    },
   },
   {
     path: 'edit',
-    loadChildren: () => import('./teams-edit/teams-edit.module').then(m => m.TeamsEditModule),
+    loadChildren: () => import('./teams-edit/teams-edit.module').then((m) => m.TeamsEditModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Teams',
-          link: '/administration/teams'
+          link: '/administration/teams',
         },
         {
-          name: 'Edit'
-        }
-      ]
-    }
+          name: 'Edit',
+        },
+      ],
+    },
   },
   {
     path: 'view',
-    loadChildren: () => import('./teams-view/teams-view.module').then(m => m.TeamsViewModule),
+    loadChildren: () => import('./teams-view/teams-view.module').then((m) => m.TeamsViewModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Teams',
-          link: '/administration/teams'
+          link: '/administration/teams',
         },
         {
-          name: 'View'
-        }
-      ]
-    }
+          name: 'View',
+        },
+      ],
+    },
   },
   {
     path: 'create-team-member',
     loadChildren: () =>
-      import('../team-members/team-members-create/team-members-create.module').then(m => m.TeamMembersCreateModule),
+      import('../team-members/team-members-create/team-members-create.module').then((m) => m.TeamMembersCreateModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Teams',
-          link: '/administration/teams'
+          link: '/administration/teams',
         },
         {
-          name: 'Create new team member'
-        }
-      ]
-    }
-  }
+          name: 'Create new team member',
+        },
+      ],
+    },
+  },
 ];
 
 @NgModule({
@@ -79,7 +79,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([TeamsEffects])
-  ]
+    EffectsModule.forFeature([TeamsEffects]),
+  ],
 })
 export class TeamsModule {}

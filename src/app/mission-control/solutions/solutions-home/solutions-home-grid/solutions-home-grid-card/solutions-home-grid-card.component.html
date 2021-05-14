@@ -2,9 +2,11 @@
   <mat-card-header>
     <mat-card-title>
       <div class="card-actions-bar">
-        <button mat-icon-button>
-          <mat-icon>star_border</mat-icon>
-        </button>
+        <app-favorite-button
+          [isFavourite]="solution.isFavourite"
+          [isLoading]="isFavouriteLoading$ | async"
+          (click)="toggleFavorites()"
+        ></app-favorite-button>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -49,9 +51,7 @@
             >{{ solution.deploymentState | titlecase }}</mat-chip
           >
           <ng-template #notDeployed>
-            <mat-chip>
-              Not Deployed
-            </mat-chip>
+            <mat-chip> Not Deployed </mat-chip>
           </ng-template>
         </div>
       </mat-grid-tile>
@@ -108,9 +108,7 @@
         >{{ solution.deploymentState | titlecase }}</mat-chip
       >
       <ng-template #notDeployed>
-        <mat-chip>
-          Not Deployed
-        </mat-chip>
+        <mat-chip> Not Deployed </mat-chip>
       </ng-template>
     </div>
     <mat-progress-spinner color="primary" mode="indeterminate" diameter="150" strokeWidth="5"> </mat-progress-spinner>
@@ -123,18 +121,14 @@
     </div>
   </mat-card-footer>
   <mat-card-actions *ngIf="active">
-    <a mat-button routerLink="view" [queryParams]="{ id: solution.id }">
-      View
-    </a>
+    <a mat-button routerLink="view" [queryParams]="{ id: solution.id }"> View </a>
     <button
       [disabled]="isDeploymentStateSuccess || isDeploymentInProgress"
       mat-button
       color="primary"
-      (click)="deploy(); clicked = true"
+      (click)="deploy()"
     >
-      <div class="mat-button-text">
-        Deploy
-      </div>
+      <div class="mat-button-text">Deploy</div>
       <mat-icon>chevron_right</mat-icon>
     </button>
   </mat-card-actions>

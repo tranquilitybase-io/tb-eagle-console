@@ -1,0 +1,43 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+template: |
+  # What's Changed
+  $CHANGES
+categories:
+  - title: 'Breaking'
+    label: 'type: breaking'
+  - title: 'New'
+    label: 'type: feature'
+  - title: 'Bug Fixes'
+    label: 'type: bug'
+  - title: 'Maintenance'
+    label: 'type: maintenance'
+  - title: 'Documentation'
+    label: 'type: docs'
+  - title: 'Dependency Updates'
+    label: 'type: dependencies'
+  - title: 'Refactoring'
+    label: 'type: refactoring'
+  - title: 'UX/UI Update'
+    label: 'type: ux/ui update'
+
+version-resolver:
+  major:
+    labels:
+      - 'type: breaking'
+  minor:
+    labels:
+      - 'type: feature'
+  patch:
+    labels:
+      - 'type: bug'
+      - 'type: maintenance'
+      - 'type: docs'
+      - 'type: dependencies'
+      - 'type: security'
+      - 'type: refactoring'
+      - 'type: ux/ui update'
+  default: patch
+
+exclude-labels:
+  - 'skip-changelog'

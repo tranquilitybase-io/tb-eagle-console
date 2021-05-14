@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-activator-store-dialog-missing-solutions',
   templateUrl: './activator-store-dialog-missing-solutions.component.html',
-  styleUrls: ['./activator-store-dialog-missing-solutions.component.scss']
+  styleUrls: ['./activator-store-dialog-missing-solutions.component.scss'],
 })
 export class ActivatorStoreDialogMissingSolutionsComponent implements OnInit {
   constructor(private router: Router, private dialogRef: MatDialogRef<ActivatorStoreDialogMissingSolutionsComponent>) {}
@@ -13,7 +13,7 @@ export class ActivatorStoreDialogMissingSolutionsComponent implements OnInit {
   ngOnInit() {}
 
   activateArchived() {
-    this.router.navigateByUrl(`/mission-control/solutions?groupSwitch=Archived`);
+    this.router.navigateByUrl(`/mission-control/solutions?isActive=false`);
     this.dialogRef.close();
   }
 

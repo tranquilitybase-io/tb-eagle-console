@@ -1,4 +1,4 @@
-<ng-container *ngIf="userIsAdmin$ | async; else dev">
+<ng-container *ngIf="userIsLZAdmin$ | async; else dev">
   <h1 mat-dialog-title class="mcm-msg">Welcome to <b class="red-reader">Tranquility Base</b> and the Eagle Console</h1>
   <mat-dialog-content class="mat-typography">
     <p class="mcm-dsc">
@@ -39,7 +39,7 @@
       <button
         mat-button
         routerLink="/administration/teams"
-        [queryParams]="{ groupSwitch: 'Actives' }"
+        [queryParams]="{ isActive: true }"
         routerLinkActive="active"
         class="mcm-link"
         (click)="setShowWelcome(!checkWelcome)"
@@ -70,7 +70,7 @@
       <button
         mat-button
         routerLink="/mission-control/solutions"
-        [queryParams]="{ groupSwitch: 'Actives' }"
+        [queryParams]="{ isActive: true }"
         routerLinkActive="active"
         class="mcm-link"
         (click)="setShowWelcome(!checkWelcome)"
