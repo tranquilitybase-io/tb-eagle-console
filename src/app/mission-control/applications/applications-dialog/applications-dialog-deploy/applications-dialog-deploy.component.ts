@@ -11,7 +11,7 @@ import { Activator } from '@app/mission-control/activator-store/activator-store.
 @Component({
   selector: 'app-solutions-home-dialog-deploy.component',
   templateUrl: './applications-dialog-deploy.component.html',
-  styleUrls: ['./applications-dialog-deploy.component.scss']
+  styleUrls: ['./applications-dialog-deploy.component.scss'],
 })
 export class ApplicationsDialogDeployComponent {
   constructor(

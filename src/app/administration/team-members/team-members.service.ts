@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { TeamMember } from './team-members.model';
-import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TeamMembersService extends EntityCollectionServiceBase<TeamMember> {
   private BASE_URL = `${globalThis.location.origin}/api`;
@@ -17,8 +17,7 @@ export class TeamMembersService extends EntityCollectionServiceBase<TeamMember> 
 
   createTeamMember(teamMember: TeamMember): Observable<TeamMember> {
     const url = `${this.BASE_URL}/teamMember/`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(url, teamMember, { headers }) as Observable<TeamMember>;
+    return this.http.post(url, teamMember) as Observable<TeamMember>;
   }
 
   private handleError(error: HttpErrorResponse) {

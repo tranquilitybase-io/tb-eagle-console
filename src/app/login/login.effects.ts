@@ -17,8 +17,8 @@ export class LoginEffects {
       ofType(LoginActions.login),
       exhaustMap(({ username, password }) =>
         this.LoginService.login(username, password).pipe(
-          map(user => LoginActions.loginSuccess({ user })),
-          catchError(error => of(LoginActions.loginFailure()))
+          map((user) => LoginActions.loginSuccess({ user })),
+          catchError((error) => of(LoginActions.loginFailure()))
         )
       )
     )
@@ -46,7 +46,7 @@ export class LoginEffects {
     () =>
       this.actions$.pipe(
         ofType(updateShowWelcome),
-        tap(action => this.LoginService.updateShowWelcome(action.userId, action.showWelcome))
+        tap((action) => this.LoginService.updateShowWelcome(action.userId, action.showWelcome))
       ),
     { dispatch: false }
   );

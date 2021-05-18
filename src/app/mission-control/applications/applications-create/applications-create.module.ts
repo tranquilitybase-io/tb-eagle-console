@@ -29,9 +29,9 @@ const routes: Routes = [
     component: ApplicationsCreateComponent,
     resolve: {
       activator: ActivatorByIdResolver,
-      availableSolutions: ActiveSolutionsResolver
-    }
-  }
+      availableSolutions: ActiveSolutionsResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -53,7 +53,7 @@ const routes: Routes = [
     MatInputModule,
     MatListModule,
     MatSelectModule,
-    MatStepperModule
-  ]
+    MatStepperModule,
+  ],
 })
 export class ApplicationsCreateModule {}

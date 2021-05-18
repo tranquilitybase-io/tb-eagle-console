@@ -9,54 +9,54 @@ import { BusinessUnitEffects } from './business-unit.effects';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./business-unit-home/business-unit-home.module').then(m => m.BusinessUnitHomeModule)
+    loadChildren: () => import('./business-unit-home/business-unit-home.module').then((m) => m.BusinessUnitHomeModule),
   },
   {
     path: 'create',
     loadChildren: () =>
-      import('./business-unit-create/business-unit-create.module').then(m => m.BusinessUnitCreateModule),
+      import('./business-unit-create/business-unit-create.module').then((m) => m.BusinessUnitCreateModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Business unit',
-          link: '/administration/business-unit'
+          link: '/administration/business-unit',
         },
         {
-          name: 'Create new Business Unit'
-        }
-      ]
-    }
+          name: 'Create new Business Unit',
+        },
+      ],
+    },
   },
   {
     path: 'view',
-    loadChildren: () => import('./business-unit-view/business-unit-view.module').then(m => m.BusinessUnitViewModule),
+    loadChildren: () => import('./business-unit-view/business-unit-view.module').then((m) => m.BusinessUnitViewModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Business unit',
-          link: '/administration/business-unit'
+          link: '/administration/business-unit',
         },
         {
-          name: 'View'
-        }
-      ]
-    }
+          name: 'View',
+        },
+      ],
+    },
   },
   {
     path: 'edit',
-    loadChildren: () => import('./business-unit-edit/business-unit-edit.module').then(m => m.BusinessUnitEditModule),
+    loadChildren: () => import('./business-unit-edit/business-unit-edit.module').then((m) => m.BusinessUnitEditModule),
     data: {
       breadcrumbsSteps: [
         {
           name: 'Business unit',
-          link: '/administration/business-unit'
+          link: '/administration/business-unit',
         },
         {
-          name: 'Edit'
-        }
-      ]
-    }
-  }
+          name: 'Edit',
+        },
+      ],
+    },
+  },
 ];
 
 @NgModule({
@@ -65,7 +65,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([BusinessUnitEffects])
-  ]
+    EffectsModule.forFeature([BusinessUnitEffects]),
+  ],
 })
 export class BusinessUnitModule {}

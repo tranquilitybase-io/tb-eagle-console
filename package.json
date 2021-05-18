@@ -8,14 +8,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "reformat": "prettier --write \"**/*.{html,ts,scss}\""
+    "reformat": "prettier --write \"**/*.{html,ts,scss}\"",
+    "pretty-quick": "pretty-quick --pattern \"**/*.*(html|ts|scss)\" --staged",
+    "prepare": "husky install"
   },
   "private": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --pattern \"**/*.*(html|ts|scss)\" --staged"
-    }
-  },
   "dependencies": {
     "@angular/animations": "10.2.4",
     "@angular/cdk": "10.2.7",
@@ -41,18 +38,18 @@
     "@angular/compiler-cli": "10.2.4",
     "@angular/language-service": "10.2.5",
     "@ngrx/store-devtools": "10.1.2",
-    "@types/jasmine": "3.6.11",
-    "@types/jasminewd2": "2.0.8",
-    "@types/node": "14.14.39",
-    "codelyzer": "6.0.1",
-    "husky": "4.3.8",
+    "@types/jasmine": "3.7.4",
+    "@types/jasminewd2": "2.0.9",
+    "@types/node": "15.3.0",
+    "codelyzer": "6.0.2",
+    "husky": "^6.0.0",
     "karma": "6.3.2",
     "karma-chrome-launcher": "3.1.0",
     "karma-coverage-istanbul-reporter": "3.0.3",
     "karma-jasmine": "4.0.1",
-    "karma-jasmine-html-reporter": "1.5.4",
+    "karma-jasmine-html-reporter": "1.6.0",
     "minimist": "1.2.5",
-    "prettier": "2.2.1",
+    "prettier": "2.3.0",
     "pretty-quick": "3.1.0",
     "protractor": "7.0.0",
     "tslint": "6.1.3",

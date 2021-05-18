@@ -33,8 +33,8 @@ describe('SharedServicesHomeComponent', () => {
         MatIconModule,
         MatMenuModule,
         MatProgressSpinnerModule,
-        MatStepperModule
-      ]
+        MatStepperModule,
+      ],
     }).compileComponents();
   }));
 

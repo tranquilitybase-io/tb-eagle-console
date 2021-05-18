@@ -8,7 +8,7 @@ import { Team } from '../../teams.model';
 @Component({
   selector: 'app-teams-home-list',
   templateUrl: './teams-home-list.component.html',
-  styleUrls: ['./teams-home-list.component.scss']
+  styleUrls: ['./teams-home-list.component.scss'],
 })
 export class TeamsHomeListComponent implements OnInit {
   @Input() teams$: Observable<Team[]>;
@@ -22,7 +22,7 @@ export class TeamsHomeListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.teams$.subscribe(teams => {
+    this.teams$.subscribe((teams) => {
       this.dataSource = new MatTableDataSource(teams);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

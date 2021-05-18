@@ -14,7 +14,7 @@ import { ValidatorPattern } from '@app/shared/shared.model';
 @Component({
   selector: 'app-teams-edit',
   templateUrl: './teams-edit.component.html',
-  styleUrls: ['./teams-edit.component.scss']
+  styleUrls: ['./teams-edit.component.scss'],
 })
 export class TeamsEditComponent implements OnInit {
   teamData: Team;
@@ -40,10 +40,10 @@ export class TeamsEditComponent implements OnInit {
       name: [this.teamData.name, Validators.required],
       description: [this.teamData.description, Validators.required],
       cloudIdentityGroup: [this.teamData.cloudIdentityGroup, Validators.pattern(ValidatorPattern.EMAIL)],
-      businessUnitId: [this.teamData.businessUnitId, Validators.required]
+      businessUnitId: [this.teamData.businessUnitId, Validators.required],
     });
 
-    this.updateTeamDataStatus$.subscribe(status => this.handleLoading(status));
+    this.updateTeamDataStatus$.subscribe((status) => this.handleLoading(status));
   }
 
   get f() {

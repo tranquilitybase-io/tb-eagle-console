@@ -13,7 +13,7 @@ import { ValidatorPattern } from '@app/shared/shared.model';
 @Component({
   selector: 'app-teams-create',
   templateUrl: './teams-create.component.html',
-  styleUrls: ['./teams-create.component.scss']
+  styleUrls: ['./teams-create.component.scss'],
 })
 export class TeamsCreateComponent implements OnInit {
   teamForm: FormGroup;
@@ -41,10 +41,10 @@ export class TeamsCreateComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       cloudIdentityGroup: ['', Validators.pattern(ValidatorPattern.EMAIL)],
-      businessUnitId: ['', Validators.required]
+      businessUnitId: ['', Validators.required],
     });
 
-    this.createTeamDataStatus$.subscribe(status => this.handleLoading(status));
+    this.createTeamDataStatus$.subscribe((status) => this.handleLoading(status));
   }
 
   private navigateToTeamsHome() {

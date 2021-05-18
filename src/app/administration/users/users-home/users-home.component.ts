@@ -5,7 +5,7 @@ import { User } from '../users.model';
 import { Observable } from 'rxjs';
 import {
   GridViewSwitchViewsNames,
-  GridViewSwitchOptionsEnum
+  GridViewSwitchOptionsEnum,
 } from '@app/shared/grid-view-switch/grid-view-switch.model';
 import { select, Store } from '@ngrx/store';
 import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-view-switch.reducer';
@@ -17,7 +17,7 @@ import { FilterOption, QueryParam } from './users-home-filter/users-home-filter.
 @Component({
   selector: 'app-users-home',
   templateUrl: './users-home.component.html',
-  styleUrls: ['./users-home.component.scss']
+  styleUrls: ['./users-home.component.scss'],
 })
 export class UsersHomeComponent implements OnInit {
   [x: string]: any;
@@ -36,13 +36,13 @@ export class UsersHomeComponent implements OnInit {
 
   get isGridViewEnabled$(): Observable<boolean> {
     return this.currentGridViewOption$.pipe(
-      map(currentGridViewOption => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
+      map((currentGridViewOption) => currentGridViewOption === GridViewSwitchOptionsEnum.grid)
     );
   }
 
   private getCurrentQueryParams(): QueryParam[] {
     const initQueryParams = this.route.snapshot.queryParams;
-    const params = Object.keys(initQueryParams).map(key => ({ key: key, value: initQueryParams[key] }));
+    const params = Object.keys(initQueryParams).map((key) => ({ key: key, value: initQueryParams[key] }));
     return params;
   }
 
@@ -55,7 +55,7 @@ export class UsersHomeComponent implements OnInit {
   }
 
   onFilterListUpdate(filterOptions: FilterOption[]) {
-    const queryParams = filterOptions.map(filterOption => filterOption.filterQueryValue);
+    const queryParams = filterOptions.map((filterOption) => filterOption.filterQueryValue);
     //this.store.dispatch(getUsers({ queryParams }));
     this.store.dispatch(getUsers({ queryParams: [] }));
   }

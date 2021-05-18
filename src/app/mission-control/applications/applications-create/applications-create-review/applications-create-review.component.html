@@ -4,30 +4,30 @@
     <mat-card class="review-card">
       <mat-card-header>
         <mat-card-title>
-          {{ solution.name }}
-          <mat-chip *ngIf="solution.isActive" class="card-title-chip" [color]="solutionIsActiveColor" selected>
+          {{ (solution$ | async)?.name }}
+          <mat-chip *ngIf="(solution$ | async)?.isActive" color="accent" class="card-title-chip" selected>
             Active
           </mat-chip>
         </mat-card-title>
         <mat-card-subtitle>
-          <p>{{ solution.description }}</p>
+          <p>{{ (solution$ | async)?.description }}</p>
         </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <mat-list dense class="card-details-list">
           <mat-list-item>
             <div class="card-detail-label">Business Unit</div>
-            <p matInput readonly="true">{{ solution.businessUnit.name }}</p>
+            <p matInput readonly="true">{{ (solution$ | async)?.businessUnit.name }}</p>
           </mat-list-item>
 
           <mat-list-item>
             <div class="card-detail-label">Team</div>
-            <p matInput readonly="true">{{ solution.team.name }}</p>
+            <p matInput readonly="true">{{ (solution$ | async)?.team.name }}</p>
           </mat-list-item>
 
           <mat-list-item>
             <div class="card-detail-label">Cost Centre</div>
-            <p matInput readonly="true">{{ solution.costCentre }}</p>
+            <p matInput readonly="true">{{ (solution$ | async)?.costCentre }}</p>
           </mat-list-item>
         </mat-list>
       </mat-card-content>

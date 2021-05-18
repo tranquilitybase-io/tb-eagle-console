@@ -6,7 +6,7 @@ import { QueryParam } from './users-home/users-home-filter/users-home-filter.mod
 import { User } from './users.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService extends EntityCollectionServiceBase<User> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory, private http: HttpClient) {

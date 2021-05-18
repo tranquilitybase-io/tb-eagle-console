@@ -16,18 +16,18 @@ import { ActivatorStoreDialogMissingSolutionsComponent } from '@app/mission-cont
 import { Observable } from 'rxjs';
 import { Loadable } from '@app/shared/shared.reducer';
 import { selectCreateApplicationStatus } from '../applications.reducer';
+import { SolutionsService } from '@app/mission-control/solutions/solutions.service';
 
 @Component({
   selector: 'app-applications-create',
   templateUrl: './applications-create.component.html',
-  styleUrls: ['./applications-create.component.scss']
+  styleUrls: ['./applications-create.component.scss'],
 })
 export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   applicationForm: FormGroup;
   availableSolutions: KeyValue<string, string>[];
 
   selectedSolution$: Observable<Solution>;
-  selectedSolutionName: string;
   selectedActivator: Activator;
   selectedSolutionId: number;
 
@@ -37,6 +37,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
   stepper: MatStepper;
 
   constructor(
+    private solutionsService: SolutionsService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private store: Store<any>,
@@ -50,7 +51,10 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     this.selectedActivator = this.route.snapshot.data['activator'] as Activator;
 
     const availableSolutions = this.route.snapshot.data['availableSolutions'] as Solution[];
-    this.availableSolutions = availableSolutions.map(solution => ({ key: String(solution.id), value: solution.name }));
+    this.availableSolutions = availableSolutions.map((solution) => ({
+      key: String(solution.id),
+      value: solution.name,
+    }));
 
     this.applicationForm = this.formBuilder.group({
       solutionId: ['', Validators.required],
@@ -58,7 +62,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
       description: ['', Validators.required],
       env: 'DEV',
       status: 'Inactive',
-      activatorId: this.selectedActivator.id
+      activatorId: this.selectedActivator.id,
     });
 
     this.selectedSolution$ = this.store.pipe(select(selectSelectedSolution));
@@ -66,14 +70,13 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     this.store.pipe(select(selectSelectedSolution)).subscribe((solution: Solution) => {
       if (solution) {
         this.applicationForm.controls['solutionId'].setValue(String(solution.id));
-        this.selectedSolutionName = solution.name;
         this.selectedSolutionId = solution.id;
       }
     });
     if (!(availableSolutions.length || this.dialog.openDialogs.length)) {
       this.dialog.open(ActivatorStoreDialogMissingSolutionsComponent, { disableClose: true, autoFocus: false });
     }
-    this.createApplicationStatus$.subscribe(status => {
+    this.createApplicationStatus$.subscribe((status) => {
       this.handleLoading(status);
     });
   }
@@ -82,7 +85,7 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     if (status.success) {
       this.store.dispatch(discardSelectedSolution());
       this.selectedSolutionId
-        ? this.router.navigateByUrl(`/mission-control/solutions/view?id=${this.selectedSolutionId}&tab=Activators`)
+        ? this.router.navigateByUrl(`/mission-control/solutions/view?id=${this.formSolutionId}&tab=Activators`)
         : this.router.navigateByUrl('/mission-control/activator-store');
     }
     status.loading ? this.applicationForm.disable() : this.applicationForm.enable();
@@ -99,6 +102,14 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
     return this.applicationForm.get(field).touched && !this.applicationForm.get(field).valid;
   }
 
+  get solutionName(): string {
+    return this.formSolutionId ? this.availableSolutions.find((x) => x.key === this.formSolutionId).value : '';
+  }
+
+  get formSolutionId(): string {
+    return this.applicationForm.get('solutionId').value;
+  }
+
   onSubmit(application: Application) {
     if (this.applicationForm.valid) {
       this.store.dispatch(createApplication({ application }));
@@ -109,5 +120,9 @@ export class ApplicationsCreateComponent implements OnInit, AfterViewInit {
 
   onNavigateStepperBack() {
     this.router.navigateByUrl('/mission-control/activator-store');
+  }
+
+  handleSolutionChange({ value }) {
+    this.selectedSolution$ = this.solutionsService.getByKey(value);
   }
 }

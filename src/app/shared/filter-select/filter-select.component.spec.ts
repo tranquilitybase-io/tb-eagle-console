@@ -10,7 +10,7 @@ describe('SearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [FilterSelectComponent],
-      imports: [IconComponent]
+      imports: [IconComponent],
     }).compileComponents();
   }));
 

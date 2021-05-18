@@ -25,9 +25,9 @@ const routes: Routes = [
     path: '',
     component: ApplicationsViewComponent,
     resolve: {
-      application: ApplicationByIdResolver
-    }
-  }
+      application: ApplicationByIdResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -37,7 +37,7 @@ const routes: Routes = [
     ApplicationsViewComponent,
     ApplicationsViewOverviewComponent,
     ApplicationsViewUsersComponent,
-    ApplicationsViewVersionHistoryComponent
+    ApplicationsViewVersionHistoryComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +49,7 @@ const routes: Routes = [
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatTabsModule
-  ]
+    MatTabsModule,
+  ],
 })
 export class ApplicationsViewModule {}

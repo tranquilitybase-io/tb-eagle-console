@@ -9,8 +9,8 @@ import { SettingsEffects } from './settings.effects';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./settings-home/settings-home.module').then(m => m.SettingsHomeModule)
-  }
+    loadChildren: () => import('./settings-home/settings-home.module').then((m) => m.SettingsHomeModule),
+  },
 ];
 
 @NgModule({
@@ -19,7 +19,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureKey, reducer),
-    EffectsModule.forFeature([SettingsEffects])
-  ]
+    EffectsModule.forFeature([SettingsEffects]),
+  ],
 })
 export class SettingsModule {}

@@ -4,7 +4,7 @@ import { BusinessUnit } from '../../../business-unit.model';
 @Component({
   selector: 'app-business-unit-home-grid-card',
   templateUrl: './business-unit-home-grid-card.component.html',
-  styleUrls: ['./business-unit-home-grid-card.component.scss']
+  styleUrls: ['./business-unit-home-grid-card.component.scss'],
 })
 export class BusinessUnitHomeGridCardComponent implements OnInit {
   @Input() businessUnit: BusinessUnit;

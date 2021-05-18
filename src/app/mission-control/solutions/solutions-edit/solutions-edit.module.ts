@@ -35,9 +35,9 @@ const routes: Routes = [
       environmentList: EnvironmentResolver,
       solution: SolutionsViewResolver,
       sourceControlList: SourceControlResolver,
-      teamList: TeamResolver
-    }
-  }
+      teamList: TeamResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -57,7 +57,7 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     MatListModule,
-    MatSelectModule
-  ]
+    MatSelectModule,
+  ],
 })
 export class SolutionsViewEditModule {}

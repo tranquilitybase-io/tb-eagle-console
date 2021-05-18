@@ -22,8 +22,8 @@ import { MatInputModule } from '@angular/material/input';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
-  }
+    component: LoginComponent,
+  },
 ];
 
 @NgModule({
@@ -40,8 +40,8 @@ const routes: Routes = [
     MatCheckboxModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
   ],
-  providers: [UserLoginService]
+  providers: [UserLoginService],
 })
 export class LoginModule {}

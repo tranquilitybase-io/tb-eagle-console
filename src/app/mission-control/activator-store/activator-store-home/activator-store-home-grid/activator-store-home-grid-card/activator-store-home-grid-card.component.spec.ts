@@ -8,7 +8,7 @@ describe('ActivatorStoreHomeGridCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreHomeGridCardComponent]
+      declarations: [ActivatorStoreHomeGridCardComponent],
     }).compileComponents();
   }));
 

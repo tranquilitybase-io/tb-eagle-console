@@ -8,7 +8,7 @@ describe('ApplicationsViewBillingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ApplicationsViewBillingComponent]
+      declarations: [ApplicationsViewBillingComponent],
     }).compileComponents();
   }));
 

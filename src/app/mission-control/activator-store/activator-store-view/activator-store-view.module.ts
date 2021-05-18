@@ -34,10 +34,10 @@ const routes: Routes = [
     resolve: {
       applications: ApplicationsByActivatorIdResolver,
       activator: ActivatorByIdResolver,
-      teamList: TeamResolver
+      teamList: TeamResolver,
     },
-    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
-  }
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+  },
 ];
 
 @NgModule({
@@ -47,7 +47,7 @@ const routes: Routes = [
     ActivatorStoreViewComponent,
     ActivatorStoreViewOverviewComponent,
     ActivatorStoreViewUsersComponent,
-    ActivatorStoreViewVersionHistoryComponent
+    ActivatorStoreViewVersionHistoryComponent,
   ],
   providers: [ApplicationsService],
   imports: [
@@ -63,7 +63,7 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatTabsModule,
-    ActivatorStoreDialogModule
-  ]
+    ActivatorStoreDialogModule,
+  ],
 })
 export class ActivatorStoreViewModule {}

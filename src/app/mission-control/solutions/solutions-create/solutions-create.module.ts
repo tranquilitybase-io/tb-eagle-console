@@ -36,9 +36,9 @@ const routes: Routes = [
       ciList: ContinuousIntegrationResolver,
       environmentList: EnvironmentResolver,
       sourceControlList: SourceControlResolver,
-      teamList: TeamResolver
-    }
-  }
+      teamList: TeamResolver,
+    },
+  },
 ];
 
 @NgModule({
@@ -60,7 +60,7 @@ const routes: Routes = [
     MatInputModule,
     MatListModule,
     MatSelectModule,
-    MatStepperModule
-  ]
+    MatStepperModule,
+  ],
 })
 export class SolutionsCreateModule {}

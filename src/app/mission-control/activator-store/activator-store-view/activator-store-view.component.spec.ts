@@ -24,9 +24,9 @@ describe('ActivatorStoreViewComponent', () => {
         ActivatorStoreViewBillingComponent,
         ActivatorStoreViewComponent,
         ActivatorStoreViewUsersComponent,
-        ActivatorStoreViewVersionHistoryComponent
+        ActivatorStoreViewVersionHistoryComponent,
       ],
-      imports: [MatButtonModule, MatCardModule, MatChipsModule, MatGridListModule, MatListModule, MatTabsModule]
+      imports: [MatButtonModule, MatCardModule, MatChipsModule, MatGridListModule, MatListModule, MatTabsModule],
     }).compileComponents();
   }));
 

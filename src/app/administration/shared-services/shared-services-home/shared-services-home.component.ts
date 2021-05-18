@@ -9,7 +9,7 @@ import { getSharedServicesProgressItems } from '../shared-services.actions';
 @Component({
   selector: 'app-shared-services-home',
   templateUrl: './shared-services-home.component.html',
-  styleUrls: ['./shared-services-home.component.scss']
+  styleUrls: ['./shared-services-home.component.scss'],
 })
 export class SharedServicesHomeComponent implements OnInit {
   progressItems$: Observable<SharedServicesProgressItem[]> = this.store.select(selectSharedServicesProgressItems);
@@ -22,8 +22,8 @@ export class SharedServicesHomeComponent implements OnInit {
 
   ngOnInit() {
     this.selectedIndex$ = this.progressItems$.pipe(
-      map(items => {
-        const index = items.findIndex(item => !item.completed);
+      map((items) => {
+        const index = items.findIndex((item) => !item.completed);
         this.isFinished = index === -1;
         return index < 0 ? 0 : index;
       }),

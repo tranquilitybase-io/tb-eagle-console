@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-switches',
   templateUrl: './switches.component.html',
-  styleUrls: ['./switches.component.scss']
+  styleUrls: ['./switches.component.scss'],
 })
 export class SwitchesComponent implements OnInit {
   @Input() hideCount: boolean;
@@ -21,12 +21,12 @@ export class SwitchesComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get(this.paramSwitch)));
-    this.current$.subscribe(queryParam => {
+    this.current$ = this.route.queryParamMap.pipe(map((queryParams) => queryParams.get(this.paramSwitch)));
+    this.current$.subscribe((queryParam) => {
       if (queryParam !== null) this.current = queryParam;
       else {
-        this.current = this.filters.filter(el => el.defaultActive).length
-          ? this.filters.filter(el => el.defaultActive)[0].name
+        this.current = this.filters.filter((el) => el.defaultActive).length
+          ? this.filters.filter((el) => el.defaultActive)[0].name
           : this.filters[0].name;
       }
     });

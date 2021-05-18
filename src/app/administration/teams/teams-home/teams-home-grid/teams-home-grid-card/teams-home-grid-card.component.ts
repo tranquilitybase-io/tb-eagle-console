@@ -4,7 +4,7 @@ import { Team } from '@app/administration/teams/teams.model';
 @Component({
   selector: 'app-teams-home-grid-card',
   templateUrl: './teams-home-grid-card.component.html',
-  styleUrls: ['./teams-home-grid-card.component.scss']
+  styleUrls: ['./teams-home-grid-card.component.scss'],
 })
 export class TeamsHomeGridCardComponent implements OnInit {
   @Input() team: Team;

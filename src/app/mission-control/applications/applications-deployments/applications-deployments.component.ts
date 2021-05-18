@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-applications-deployments',
   templateUrl: './applications-deployments.component.html',
-  styleUrls: ['./applications-deployments.component.scss']
+  styleUrls: ['./applications-deployments.component.scss'],
 })
 export class ApplicationsDeploymentsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'env', 'status', 'description', 'actions'];

@@ -25,8 +25,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./shared-services-home/shared-services-home.module').then(m => m.SharedServicesHomeModule)
-  }
+      import('./shared-services-home/shared-services-home.module').then((m) => m.SharedServicesHomeModule),
+  },
 ];
 
 @NgModule({
@@ -47,13 +47,13 @@ const routes: Routes = [
     MatIconModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatStepperModule
+    MatStepperModule,
   ],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { displayDefaultIndicatorType: false }
-    }
-  ]
+      useValue: { displayDefaultIndicatorType: false },
+    },
+  ],
 })
 export class SharedServicesModule {}

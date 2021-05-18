@@ -5,6 +5,6 @@ import reducer, { featureKey } from './notifications.reducer';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, StoreModule.forFeature(featureKey, reducer)]
+  imports: [CommonModule, StoreModule.forFeature(featureKey, reducer)],
 })
 export class NotificationsModule {}

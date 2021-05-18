@@ -41,11 +41,11 @@ export class SolutionDeployment {
 export enum FilterNames {
   FAVOURITES = 'Favourites',
   ACTIVES = 'Actives',
-  ARCHIVED = 'Archived'
+  ARCHIVED = 'Archived',
 }
 
 export const FilterNamesValues = {
   [FilterNames.FAVOURITES]: 'Favourites',
   [FilterNames.ACTIVES]: 'Actives',
-  [FilterNames.ARCHIVED]: 'Archived'
+  [FilterNames.ARCHIVED]: 'Archived',
 };

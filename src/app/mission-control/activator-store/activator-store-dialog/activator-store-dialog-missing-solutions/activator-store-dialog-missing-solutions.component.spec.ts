@@ -8,7 +8,7 @@ describe('ActivatorStoreDialogMissingSolutionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActivatorStoreDialogMissingSolutionsComponent]
+      declarations: [ActivatorStoreDialogMissingSolutionsComponent],
     }).compileComponents();
   }));
 

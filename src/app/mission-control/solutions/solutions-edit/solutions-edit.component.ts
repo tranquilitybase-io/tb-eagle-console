@@ -14,7 +14,7 @@ import { Loadable } from '@app/shared/shared.reducer';
 @Component({
   selector: 'app-solutions-edit',
   templateUrl: './solutions-edit.component.html',
-  styleUrls: ['./solutions-edit.component.scss']
+  styleUrls: ['./solutions-edit.component.scss'],
 })
 export class SolutionsEditComponent implements OnInit {
   solution: Solution;
@@ -50,7 +50,7 @@ export class SolutionsEditComponent implements OnInit {
     this.teamList = this.route.snapshot.data['teamList'];
     this.solution = this.route.snapshot.data['solution'];
 
-    const environmentIdList = (this.solution.environments as Environment[]).map(env => env.id);
+    const environmentIdList = (this.solution.environments as Environment[]).map((env) => env.id);
 
     this.solutionForm = this.formBuilder.group({
       id: this.solution.id,
@@ -63,10 +63,10 @@ export class SolutionsEditComponent implements OnInit {
       cdId: [this.solution.cdId],
       sourceControlId: [this.solution.sourceControlId],
       isSandbox: [this.solution.isSandbox],
-      environments: [environmentIdList]
+      environments: [environmentIdList],
     });
 
-    this.updateSolutionStatus$.subscribe(status => this.handleLoading(status));
+    this.updateSolutionStatus$.subscribe((status) => this.handleLoading(status));
   }
 
   private handleLoading = (status: Loadable) => {

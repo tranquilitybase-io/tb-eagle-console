@@ -35,20 +35,20 @@ const routes: Routes = [
     resolve: {
       environmentListData: EnvironmentListDataResolver,
       folderStructureTreeData: FolderStructureTreeDataResolver,
-      lanVPCListData: LanVPCListDataResolver
+      lanVPCListData: LanVPCListDataResolver,
     },
     data: {
       breadcrumbsSteps: [
         {
           name: 'Landing Zone',
-          link: '/administration/landing-zone'
+          link: '/administration/landing-zone',
         },
         {
-          name: 'Environment'
-        }
-      ]
-    }
-  }
+          name: 'Environment',
+        },
+      ],
+    },
+  },
 ];
 
 @NgModule({
@@ -72,7 +72,7 @@ const routes: Routes = [
     MatSelectModule,
     MatTooltipModule,
     MatTreeModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class LandingZoneEnvironmentModule {}

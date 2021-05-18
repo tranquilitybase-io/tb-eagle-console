@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-solutions-view-select',
   templateUrl: './solutions-view-select.component.html',
-  styleUrls: ['./solutions-view-select.component.scss']
+  styleUrls: ['./solutions-view-select.component.scss'],
 })
 export class SolutionsViewSelectComponent implements OnInit {
   current$: Observable<string>;
@@ -19,7 +19,7 @@ export class SolutionsViewSelectComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.current$ = this.route.queryParamMap.pipe(map(queryParams => queryParams.get('groupSwitch')));
+    this.current$ = this.route.queryParamMap.pipe(map((queryParams) => queryParams.get('groupSwitch')));
 
     this.onGroupSwitch(this.route.snapshot.queryParams.categorySwitch || 'Favourites');
   }
@@ -29,8 +29,8 @@ export class SolutionsViewSelectComponent implements OnInit {
       relativeTo: this.route,
       queryParamsHandling: 'merge',
       queryParams: {
-        groupSwitch: value
-      }
+        groupSwitch: value,
+      },
     });
     this.onSelection.emit(value);
   }
