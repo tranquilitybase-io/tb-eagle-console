@@ -34,7 +34,7 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
     // todo: set filters after getting categories
   }
 
-  nagivate(category: string) {
+  navigate(category: string) {
     this.router.navigate(['mission-control', 'activator-store'], {
       queryParams: { category },
     });

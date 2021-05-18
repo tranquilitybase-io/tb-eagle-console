@@ -29,7 +29,8 @@ export interface ActivatorType {
 }
 
 export interface ActivatorCategory {
-  category: string;
+  id: number;
+  categoryDescription: string;
 }
 
 export interface ActivatorCI {
