@@ -25,7 +25,7 @@
   gutterSize="24px"
 >
   <mat-grid-tile *ngFor="let category of categories$ | async" colspan="1" rowspan="1">
-    <button mat-stroked-button class="category-button" (click)="navigate(category.categoryDescription)">
+    <button mat-stroked-button class="category-button" (click)="navigate(category)">
       <div class="category border"></div>
       <div>
         <div>

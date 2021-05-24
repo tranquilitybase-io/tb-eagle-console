@@ -34,11 +34,12 @@ export class ActivatorStoreHomeCategoryGridComponent implements OnInit {
     // todo: set filters after getting categories
   }
 
-  navigate(category: string) {
+  navigate(category: ActivatorCategory) {
+    const categoryName = category.categoryDescription;
     this.router.navigate(['mission-control', 'activator-store'], {
-      queryParams: { category },
+      queryParams: { categoryName },
     });
-    this.store.dispatch(getActivators({ queryParams: [{ key: 'category', value: category }] }));
+    this.store.dispatch(getActivators({ queryParams: [{ key: 'category', value: category.id.toString() }] }));
   }
 
   setFilter(filter: string) {
