@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectUserIsTeamAdmin, selectUser } from '@app/login/login.reducer';
+import { selectUserIsTeamAdmin, selectUser, selectUserIsLZAdmin } from '@app/login/login.reducer';
 import { User } from '@app/login/login.model';
 import { Team } from '@app/administration/teams/teams.model';
 import { selectTeams } from '@app/administration/teams/teams.reducer';
@@ -23,6 +23,7 @@ export class TeamMembersGridComponent implements OnInit {
   dataSource: MatTableDataSource<{}>;
   userInfo$: Observable<User>;
   isUserTeamAdmin$: Observable<boolean>;
+  isUserLZAdmin$: Observable<boolean>;
   teams$: Observable<Team[]>;
   teams;
   user;
@@ -34,6 +35,7 @@ export class TeamMembersGridComponent implements OnInit {
 
   ngOnInit() {
     this.isUserTeamAdmin$ = this.store.pipe(select(selectUserIsTeamAdmin));
+    this.isUserLZAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
     this.userInfo$ = this.store.pipe(select(selectUser));
     this.userInfo$.subscribe((user) => (this.user = user));
     this.teams$ = this.store.pipe(select(selectTeams));
@@ -85,7 +87,7 @@ export class TeamMembersGridComponent implements OnInit {
     let id = this.route.snapshot.queryParams.id - 1;
     let boolean;
     this.user.teams.forEach((team) => {
-      if (this.teams[id]?.description === team && this.isTeamAdmin) {
+      if ((this.teams[id]?.description === team && this.isUserTeamAdmin$) || this.isUserLZAdmin$) {
         boolean = true;
       } else {
         boolean = false;

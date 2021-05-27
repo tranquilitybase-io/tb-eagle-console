@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeamMember } from '../team-members.model';
 import { Observable } from 'rxjs';
-import { selectUser, selectUserIsTeamAdmin } from '@app/login/login.reducer';
+import { selectUser, selectUserIsTeamAdmin, selectUserIsLZAdmin } from '@app/login/login.reducer';
 import { select, Store } from '@ngrx/store';
 import { User } from '@app/login/login.model';
 import { Team } from '@app/administration/teams/teams.model';
@@ -17,6 +17,7 @@ export class TeamMembersGridCardComponent implements OnInit {
   @Input() teamMember: TeamMember;
   userInfo$: Observable<User>;
   isUserTeamAdmin$: Observable<boolean>;
+  isUserLZAdmin$: Observable<boolean>;
   teams$: Observable<Team[]>;
   teams;
   user;
@@ -24,6 +25,7 @@ export class TeamMembersGridCardComponent implements OnInit {
 
   ngOnInit() {
     this.isUserTeamAdmin$ = this.store.pipe(select(selectUserIsTeamAdmin));
+    this.isUserLZAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
     this.userInfo$ = this.store.pipe(select(selectUser));
     this.userInfo$.subscribe((user) => (this.user = user));
     this.teams$ = this.store.pipe(select(selectTeams));
@@ -42,7 +44,7 @@ export class TeamMembersGridCardComponent implements OnInit {
     let id = this.route.snapshot.queryParams.id - 1;
     let boolean;
     this.user.teams.forEach((team) => {
-      if (this.teams[id]?.description === team && this.isTeamAdmin) {
+      if ((this.teams[id]?.description === team && this.isUserTeamAdmin$) || this.isUserLZAdmin$) {
         boolean = true;
       } else {
         boolean = false;
