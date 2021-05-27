@@ -8,7 +8,7 @@ import { selectGridViewSwitchOptions } from '@app/shared/grid-view-switch/grid-v
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { selectUserIsLZAdmin } from '@app/login/login.reducer';
+import { selectUserIsLZAdmin, selectUserIsTeamAdmin } from '@app/login/login.reducer';
 
 @Component({
   selector: 'app-team-members-container',
@@ -18,13 +18,14 @@ import { selectUserIsLZAdmin } from '@app/login/login.reducer';
 export class TeamMembersContainerComponent implements OnInit {
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teamMembers;
   currentGridViewOption$: Observable<string>;
-  isUserTeamAdmin = false;
+  isUserTeamAdmin$: Observable<boolean>;
   userIsLZAdmin$: Observable<boolean>;
   constructor(private store: Store<any>, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.currentGridViewOption$ = this.store.pipe(select(selectGridViewSwitchOptions(this.gridViewOptionsName)));
     this.userIsLZAdmin$ = this.store.pipe(select(selectUserIsLZAdmin));
+    this.isUserTeamAdmin$ = this.store.pipe(select(selectUserIsTeamAdmin));
   }
 
   get isGridViewEnabled$(): Observable<boolean> {

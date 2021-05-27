@@ -11,6 +11,7 @@
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
           <button mat-menu-item (click)="viewUser(teamMember.userId)">View</button>
+          <button mat-menu-item (click)="editUser(teamMember.userId)">Edit</button>
         </mat-menu>
       </div>
     </mat-card-title>
@@ -33,5 +34,6 @@
 
   <mat-card-actions>
     <button mat-button (click)="viewUser(teamMember.userId)">View</button>
+    <button *ngIf="isTeamAdmin()" mat-button (click)="editUser(teamMember.userId)">Edit</button>
   </mat-card-actions>
 </mat-card>

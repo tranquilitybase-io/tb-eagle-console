@@ -43,6 +43,10 @@ export const selectUserIsLZAdmin = createSelector(
   selectFeature,
   () => (JSON.parse(localStorage.getItem('user')) as User).isLZAdmin
 );
+export const selectUserIsTeamAdmin = createSelector(
+  selectFeature,
+  () => (JSON.parse(localStorage.getItem('user')) as User).isTeamAdmin
+);
 export const selectUserName = createSelector(
   selectFeature,
   () => (JSON.parse(localStorage.getItem('user')) as User).firstName

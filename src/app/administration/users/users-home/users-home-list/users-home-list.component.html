@@ -36,7 +36,12 @@
         >
           <mat-icon aria-hidden="false" aria-label="View user icon">remove_red_eye</mat-icon>
         </a>
-        <a mat-icon-button matTooltip="Edit user details" routerLink="edit" [queryParams]="{ id: row.id }">
+        <a
+          mat-icon-button
+          matTooltip="Edit user details"
+          routerLink="/edit"
+          [queryParams]="{ id: row.id, categorySwitch: 'users' }"
+        >
           <mat-icon aria-hidden="false" aria-label="Edit user icon">edit</mat-icon>
         </a>
       </td>

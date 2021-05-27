@@ -73,4 +73,10 @@ export class TeamMembersCreateComponent implements OnInit {
       this.teamMemberForm.markAllAsTouched();
     }
   }
+
+  cancel() {
+    let teamId;
+    this.route.queryParams.subscribe((params) => (teamId = params.teamId));
+    this.router.navigateByUrl(`/administration/teams/view?id=${teamId}`);
+  }
 }
