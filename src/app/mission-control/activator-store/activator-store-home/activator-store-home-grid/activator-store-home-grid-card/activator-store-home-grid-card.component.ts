@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Activator } from '@app/mission-control/activator-store/activator-store.model';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input, HostListener, OnDestroy } from '@angular/core';
+import { Activator, ActivatorCategory } from '@app/mission-control/activator-store/activator-store.model';
+import { Observable, Subscription } from 'rxjs';
 import { KeyValue } from '@angular/common';
 import { Store, select } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,19 +11,23 @@ import { setDeprecated, setLocked, requestAccess } from '@app/mission-control/ac
 
 import { ActivatorStoreDialogGrantAccessComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-grant-access/activator-store-dialog-grant-access.component';
 import { ActivatorStoreDialogCreateOnboardingComponent } from '@app/mission-control/activator-store/activator-store-dialog/activator-store-dialog-create-onboarding/activator-store-dialog-create-onboarding.component';
+import { selectCategories } from '@app/mission-control/activator-store/activator-store.reducer';
 
 @Component({
   selector: 'app-activator-store-home-grid-card',
   templateUrl: './activator-store-home-grid-card.component.html',
   styleUrls: ['./activator-store-home-grid-card.component.scss'],
 })
-export class ActivatorStoreHomeGridCardComponent implements OnInit {
+export class ActivatorStoreHomeGridCardComponent implements OnInit, OnDestroy {
   @Input() activator: Activator;
   active = false;
   userIsMCAdmin$: Observable<boolean>;
+  category: string;
+  subscription: Subscription;
 
   private statusColorMap: Map<string, string>;
   private teamList: KeyValue<string, string>[];
+ 
 
   constructor(
     private store: Store<any>,
@@ -39,6 +43,22 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
     ]);
     this.userIsMCAdmin$ = this.store.pipe(select(selectUserIsMCAdmin));
     this.teamList = this.route.snapshot.data['teamList'];
+
+    let categoryName = "";
+    if (this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.category) {
+      this.subscription = this.store.select(selectCategories).subscribe((categories: ActivatorCategory[]) => {
+        let foundCategory = categories.find(c => Number(c.id) === Number(this.activator.activatorMetadata.category));
+        if (foundCategory)
+        {
+          categoryName = foundCategory.categoryDescription;
+        }
+      })
+    }
+    this.category = categoryName;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   get isAvailable(): boolean {
@@ -61,9 +81,7 @@ export class ActivatorStoreHomeGridCardComponent implements OnInit {
     return this.statusColorMap.get(String(this.activator.status).toLowerCase());
   }
 
-  get category(): string {
-    return this.activator && this.activator.activatorMetadata && this.activator.activatorMetadata.category;
-  }
+ 
 
   get isDraft(): boolean {
     return this.activator && this.activator.status === 'Draft';

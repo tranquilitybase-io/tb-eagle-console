@@ -7,7 +7,7 @@ export interface ActivatorsMetadata {
 
 export interface ActivatorMetadata {
   activatorLink: string;
-  category: string;
+  category: number;
   description: string;
   id: number;
   lastUpdated: string;
