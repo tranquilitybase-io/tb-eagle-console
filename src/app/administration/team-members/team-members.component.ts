@@ -9,14 +9,14 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { selectUserId, selectUserIsLZAdmin } from '@app/login/login.reducer';
-import { TeamMember } from '../team-members.model';
+import { TeamMember } from './team-members.model';
 
 @Component({
-  selector: 'app-team-members-container',
-  templateUrl: './team-members-container.component.html',
-  styleUrls: ['./team-members-container.component.scss'],
+  selector: 'app-team-members',
+  templateUrl: './team-members.component.html',
+  styleUrls: ['./team-members.component.scss'],
 })
-export class TeamMembersContainerComponent implements OnInit {
+export class TeamMembersComponent implements OnInit {
   currentGridViewOption$: Observable<string>;
   gridViewOptionsName: GridViewSwitchViewsNames = GridViewSwitchViewsNames.teamMembers;
   loggedUserId: number;

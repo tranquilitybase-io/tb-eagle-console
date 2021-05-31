@@ -7,7 +7,7 @@ import { TeamMembersEffects } from './team-members.effects';
 import reducer, { featureKey } from './team-members.reducer';
 import { StoreModule } from '@ngrx/store';
 
-import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
+import { TeamMembersComponent } from './team-members.component';
 import { TeamMembersGridCardComponent } from './team-members-grid/team-members-grid-card/team-members-grid-card.component';
 import { TeamMembersGridComponent } from './team-members-grid/team-members-grid.component';
 import { TeamMembersListComponent } from './team-members-list/team-members-list.component';
@@ -27,7 +27,7 @@ import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
-    TeamMembersContainerComponent,
+    TeamMembersComponent,
     TeamMembersGridCardComponent,
     TeamMembersGridComponent,
     TeamMembersListComponent,
@@ -50,6 +50,6 @@ import { MatTableModule } from '@angular/material/table';
     MatSortModule,
     MatTableModule,
   ],
-  exports: [TeamMembersContainerComponent, TeamMembersGridComponent, TeamMembersListComponent],
+  exports: [TeamMembersComponent, TeamMembersGridComponent, TeamMembersListComponent],
 })
 export class TeamMembersModule {}
