@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { createTeamMember } from '../team-members.actions';
 import { TeamMember } from '../team-members.model';
 import { Loadable } from '@app/shared/shared.reducer';
-import { selectCreateTeamDataStatus } from '@app/administration/teams/teams.reducer';
+import { selectCreateTeamMemberStatus } from '../team-members.reducer';
 
 @Component({
   selector: 'app-team-members-create',
@@ -22,7 +22,7 @@ export class TeamMembersCreateComponent implements OnInit {
   users$: Observable<User[]>;
   defaultTeam: KeyValue<string, string> = { key: '', value: '' };
 
-  createTeamMemberStatus$: Observable<Loadable> = this.store.select(selectCreateTeamDataStatus);
+  createTeamMemberStatus$: Observable<Loadable> = this.store.select(selectCreateTeamMemberStatus);
 
   constructor(
     private formBuilder: FormBuilder,
@@ -72,5 +72,11 @@ export class TeamMembersCreateComponent implements OnInit {
     } else {
       this.teamMemberForm.markAllAsTouched();
     }
+  }
+
+  cancel() {
+    let teamId;
+    this.route.queryParams.subscribe((params) => (teamId = params.teamId));
+    this.router.navigateByUrl(`/administration/teams/view?id=${teamId}`);
   }
 }

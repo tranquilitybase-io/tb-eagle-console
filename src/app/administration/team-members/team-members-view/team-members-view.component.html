@@ -1,0 +1,38 @@
+<header>
+  <app-breadcrumbs
+    [steps]="[
+      { name: 'Teams', link: '/administration/teams' },
+      {
+        name: teamMember ? teamMember?.team?.name : 'View',
+        link: '/administration/teams/view',
+        id: teamMember?.teamId
+      },
+      { name: 'View team member' }
+    ]"
+  ></app-breadcrumbs>
+</header>
+
+<main>
+  <p>
+    <mat-form-field class="small-width" appearance="outline">
+      <mat-label>Team</mat-label>
+      <input matInput [value]="teamMember?.team?.name" readonly />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="small-width" appearance="outline">
+      <mat-label>User Info</mat-label>
+      <input matInput [value]="teamMemberInfo" readonly />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-checkbox [checked]="teamMember?.isTeamAdmin" disabled>Team Admin</mat-checkbox>
+  </p>
+  <div class="app-bottom-action left">
+    <button mat-button type="button" color="primary" (click)="back()">
+      <mat-icon class="app-cancel-icon">arrow_back</mat-icon>
+      Back
+    </button>
+  </div>
+</main>
+<div class="app-bottom-background"></div>

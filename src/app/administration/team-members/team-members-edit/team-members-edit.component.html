@@ -7,7 +7,7 @@
         link: '/administration/teams/view',
         id: defaultTeam.key ? defaultTeam.key : ''
       },
-      { name: 'Create new team member' }
+      { name: 'Edit team member' }
     ]"
   ></app-breadcrumbs>
 </header>
@@ -17,18 +17,13 @@
     <p>
       <mat-form-field class="small-width" appearance="outline">
         <mat-label>Team</mat-label>
-        <input matInput [value]="defaultTeam && defaultTeam.value" readonly />
+        <input matInput [value]="teamMember?.team?.name" readonly />
       </mat-form-field>
     </p>
     <p>
       <mat-form-field class="small-width" appearance="outline">
-        <mat-label>User</mat-label>
-        <mat-select required formControlName="userId">
-          <mat-option *ngFor="let item of users$ | async" [value]="item.id">
-            {{ item.firstName + ' ' + item.lastName }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.userId.errors?.required"> User is <strong>required</strong> </mat-error>
+        <mat-label>User Info</mat-label>
+        <input matInput [value]="teamMemberInfo" readonly />
       </mat-form-field>
     </p>
     <p>
@@ -41,8 +36,8 @@
       </button>
     </div>
     <div class="app-bottom-action right">
-      <button mat-button color="primary" [loading]="(createTeamMemberStatus$ | async).loading">
-        Create Team Member
+      <button mat-button color="primary" [loading]="(updateTeamMemberStatus$ | async).loading">
+        Update Team Member
         <mat-icon>chevron_right</mat-icon>
       </button>
     </div>
