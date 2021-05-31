@@ -67,11 +67,11 @@ export class TeamMembersListComponent implements OnInit {
     return isActive ? 'primary' : '';
   }
 
-  viewUser(userId: number) {
-    this.router.navigateByUrl(`/administration/users/view?id=${userId}`);
+  viewTeamMember(id: number) {
+    this.router.navigateByUrl(`/administration/teams/view-team-member?id=${id}`);
   }
 
-  editUser(userId: number) {
-    this.router.navigateByUrl(`/administration/users/edit?id=${userId}`);
+  editTeamMember(id: number) {
+    this.router.navigateByUrl(`/administration/teams/edit-team-member?id=${id}`);
   }
 }

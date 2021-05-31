@@ -22,11 +22,11 @@ export class TeamMembersGridCardComponent implements OnInit {
     this.store.pipe(select(selectUserId)).subscribe((userId) => (this.loggedUserId = userId));
   }
 
-  viewUser(userId: number) {
-    this.router.navigateByUrl(`/administration/users/view?id=${userId}`);
+  viewUser(id: number) {
+    this.router.navigateByUrl(`/administration/teams/view-team-member?id=${id}`);
   }
 
-  editUser(userId: number) {
-    this.router.navigateByUrl(`/administration/users/edit?id=${userId}`);
+  editUser(id: number) {
+    this.router.navigateByUrl(`/administration/teams/edit-team-member?id=${id}`);
   }
 }

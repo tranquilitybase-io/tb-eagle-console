@@ -20,6 +20,11 @@ export class TeamMembersService extends EntityCollectionServiceBase<TeamMember> 
     return this.http.post(url, teamMember) as Observable<TeamMember>;
   }
 
+  updateTeamMember(teamMember: TeamMember): Observable<TeamMember> {
+    const url = `${this.BASE_URL}/teamMember/${teamMember.id}`;
+    return this.http.put(url, teamMember) as Observable<TeamMember>;
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

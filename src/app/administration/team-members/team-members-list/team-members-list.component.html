@@ -37,14 +37,14 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell class="nowrap" *matCellDef="let row" [style.color]="row.color">
-        <a mat-icon-button matTooltip="View user details" (click)="viewUser(row.userId)">
+        <a mat-icon-button matTooltip="View user details" (click)="viewTeamMember(row.id)">
           <mat-icon aria-hidden="false" aria-label="View user icon">remove_red_eye</mat-icon>
         </a>
         <a
           *ngIf="userIsTeamAdmin || (userIsLZAdmin$ | async)"
           mat-icon-button
           matTooltip="Edit user details"
-          (click)="editUser(row.userId)"
+          (click)="editTeamMember(row.id)"
         >
           <mat-icon aria-hidden="false" aria-label="Edit user icon">edit</mat-icon>
         </a>

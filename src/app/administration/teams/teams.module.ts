@@ -72,6 +72,22 @@ const routes: Routes = [
       ],
     },
   },
+  {
+    path: 'edit-team-member',
+    loadChildren: () =>
+      import('../team-members/team-members-edit/team-members-edit.module').then((m) => m.TeamMembersEditModule),
+    data: {
+      breadcrumbsSteps: [
+        {
+          name: 'Teams',
+          link: '/administration/teams',
+        },
+        {
+          name: 'Edit team member',
+        },
+      ],
+    },
+  },
 ];
 
 @NgModule({
