@@ -88,6 +88,22 @@ const routes: Routes = [
       ],
     },
   },
+  {
+    path: 'view-team-member',
+    loadChildren: () =>
+      import('../team-members/team-members-view/team-members-view.module').then((m) => m.TeamMembersViewModule),
+    data: {
+      breadcrumbsSteps: [
+        {
+          name: 'Teams',
+          link: '/administration/teams',
+        },
+        {
+          name: 'View team member',
+        },
+      ],
+    },
+  },
 ];
 
 @NgModule({

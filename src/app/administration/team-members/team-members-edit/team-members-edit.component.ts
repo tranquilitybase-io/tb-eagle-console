@@ -72,8 +72,6 @@ export class TeamMembersEditComponent implements OnInit {
   }
 
   cancel() {
-    let teamId;
-    this.route.queryParams.subscribe((params) => (teamId = params.teamId));
-    this.router.navigateByUrl(`/administration/teams/view?id=${teamId}`);
+    this.router.navigateByUrl(`/administration/teams/view?id=${this.teamMember.teamId}`);
   }
 }
