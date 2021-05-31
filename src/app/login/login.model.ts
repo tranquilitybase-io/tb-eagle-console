@@ -1,13 +1,12 @@
 import { Team } from '@app/administration/teams/teams.model';
 
 export interface User {
-  id?: number;
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
   isMCAdmin: boolean;
   isLZAdmin: boolean;
-  isTeamAdmin: boolean;
   showWelcome: boolean;
   teams: string[] | Team[];
 }

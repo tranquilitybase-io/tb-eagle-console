@@ -34,6 +34,8 @@
 
   <mat-card-actions>
     <button mat-button (click)="viewUser(teamMember.userId)">View</button>
-    <button *ngIf="isTeamAdmin()" mat-button (click)="editUser(teamMember.userId)">Edit</button>
+    <button *ngIf="userIsTeamAdmin || (userIsLZAdmin$ | async)" mat-button (click)="editUser(teamMember.userId)">
+      Edit
+    </button>
   </mat-card-actions>
 </mat-card>

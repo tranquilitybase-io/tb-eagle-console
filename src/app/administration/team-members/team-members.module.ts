@@ -8,7 +8,7 @@ import reducer, { featureKey } from './team-members.reducer';
 import { StoreModule } from '@ngrx/store';
 
 import { TeamMembersContainerComponent } from './team-members-container/team-members-container.component';
-import { TeamMembersGridCardComponent } from './team-members-grid-card/team-members-grid-card.component';
+import { TeamMembersGridCardComponent } from './team-members-grid/team-members-grid-card/team-members-grid-card.component';
 import { TeamMembersGridComponent } from './team-members-grid/team-members-grid.component';
 import { TeamMembersListComponent } from './team-members-list/team-members-list.component';
 

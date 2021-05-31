@@ -1,20 +1,32 @@
-.grid-container {
-  margin: 0 1rem;
+.mat-elevation-z8 {
+  margin: 1rem;
+  margin-top: 0;
+  overflow: auto;
 }
 
-.create-new-button {
-  height: 100%;
-  width: 100%;
-  border-radius: 10px;
-  border: 1px dashed var(--dark-grey-2);
-  font-size: 1.5rem;
-  padding: 0 2rem;
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+}
 
-  .mat-icon {
-    line-height: 3rem;
-    font-size: 2rem;
-    height: 3rem;
-    width: 3rem;
-    margin-left: -2rem;
-  }
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.actions-top-bar {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.action-button {
+  min-width: fit-content;
+}
+
+.mat-chip {
+  border-radius: 4px;
 }
